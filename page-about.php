@@ -1,0 +1,154 @@
+﻿<?php
+/**
+ * Template Name: About
+ * Hot Water Heroes Plumbing — About Page
+ * Simplified: Meet the Team + Our Values only
+ */
+get_header(); ?>
+
+<main class="site-main" id="main-content">
+
+    <section class="page-hero" aria-label="About Hot Water Heroes Plumbing">
+        <div class="page-hero__inner">
+            <span class="section__label">About Hot Water Heroes Plumbing</span>
+            <h1 class="page-hero__title">Who We Are</h1>
+            <p class="page-hero__desc">Board-certified providers and core values that make HWH Tampa's most trusted name in aesthetics.</p>
+        </div>
+    </section>
+
+    <!-- Team Preview -->
+    <section class="team-preview" aria-label="Meet our team">
+        <div class="section__inner">
+            <div class="section__header reveal">
+                <span class="section__label">Our Experts</span>
+                <h2 class="section__title">Meet the Team</h2>
+                <p class="section__desc">Board-certified providers dedicated to delivering exceptional results with precision and care.</p>
+            </div>
+            <div class="team-grid reveal">
+                <?php
+                $team_preview = new WP_Query([
+                    'post_type'      => 'team_member',
+                    'posts_per_page' => 4,
+                    'orderby'        => 'menu_order',
+                    'order'          => 'ASC',
+                    'no_found_rows'  => true,
+                ]);
+
+                if ($team_preview->have_posts()) :
+                    while ($team_preview->have_posts()) : $team_preview->the_post();
+                        $role = get_post_meta(get_the_ID(), '_team_role', true);
+                        $name_parts = explode(' ', get_the_title());
+                        $initials = '';
+                        foreach ($name_parts as $part) {
+                            $clean = preg_replace('/[^A-Za-z]/', '', $part);
+                            if ($clean) $initials .= strtoupper($clean[0]);
+                        }
+                        $initials = substr($initials, 0, 2);
+                ?>
+                    <article class="team-card">
+                        <div class="team-card__image">
+                            <?php if (has_post_thumbnail()) : ?>
+                                <?php the_post_thumbnail('medium', ['loading' => 'lazy', 'decoding' => 'async']); ?>
+                            <?php else : ?>
+                                <div class="team-card__placeholder" aria-hidden="true"><?php echo esc_html($initials); ?></div>
+                            <?php endif; ?>
+                        </div>
+                        <h3 class="team-card__name"><?php the_title(); ?></h3>
+                        <?php if ($role) : ?>
+                            <span class="team-card__role"><?php echo esc_html($role); ?></span>
+                        <?php endif; ?>
+                        <?php if (has_excerpt()) : ?>
+                            <p class="team-card__bio"><?php echo wp_trim_words(get_the_excerpt(), 20); ?></p>
+                        <?php endif; ?>
+                    </article>
+                <?php endwhile; wp_reset_postdata();
+                else : ?>
+                    <!-- Fallback when no team members yet -->
+                    <article class="team-card">
+                        <div class="team-card__image">
+                            <div class="team-card__placeholder" aria-hidden="true">DR</div>
+                        </div>
+                        <h3 class="team-card__name">Dr. Rachel Torres</h3>
+                        <span class="team-card__role">Medical Director</span>
+                        <p class="team-card__bio">Board-certified with 12+ years in aesthetic medicine. Specializes in advanced injectables and facial rejuvenation.</p>
+                    </article>
+                    <article class="team-card">
+                        <div class="team-card__image">
+                            <div class="team-card__placeholder" aria-hidden="true">SM</div>
+                        </div>
+                        <h3 class="team-card__name">Sarah Mitchell, PA-C</h3>
+                        <span class="team-card__role">Lead Injector</span>
+                        <p class="team-card__bio">Physician assistant with specialized training in dermal fillers and neurotoxins. Known for her artistic eye.</p>
+                    </article>
+                    <article class="team-card">
+                        <div class="team-card__image">
+                            <div class="team-card__placeholder" aria-hidden="true">JC</div>
+                        </div>
+                        <h3 class="team-card__name">Jennifer Chen, RN</h3>
+                        <span class="team-card__role">Aesthetic Nurse</span>
+                        <p class="team-card__bio">Registered nurse specializing in laser treatments and skin rejuvenation. Passionate about patient education.</p>
+                    </article>
+                    <article class="team-card">
+                        <div class="team-card__image">
+                            <div class="team-card__placeholder" aria-hidden="true">AL</div>
+                        </div>
+                        <h3 class="team-card__name">Amanda Lopez</h3>
+                        <span class="team-card__role">Patient Coordinator</span>
+                        <p class="team-card__bio">Your first point of contact. Amanda ensures every visit is seamless from booking to aftercare follow-up.</p>
+                    </article>
+                <?php endif; ?>
+            </div>
+            <div style="text-align:center;margin-top:2.5rem;" class="reveal">
+                <a href="<?php echo esc_url(home_url('/team/')); ?>" class="btn btn--primary">View Full Team →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section" aria-label="Our core values">
+        <div class="section__inner">
+            <div class="section__header reveal">
+                <span class="section__label">What We Stand For</span>
+                <h2 class="section__title">Our Core Values</h2>
+            </div>
+            <div class="values-grid reveal">
+                <article class="value-card">
+                    <div class="value-card__number" aria-hidden="true">01</div>
+                    <h3 class="value-card__title">Patient First</h3>
+                    <p class="value-card__text">Your safety, comfort, and goals drive every decision we make. We never push treatments you don't need.</p>
+                </article>
+                <article class="value-card">
+                    <div class="value-card__number" aria-hidden="true">02</div>
+                    <h3 class="value-card__title">Natural Results</h3>
+                    <p class="value-card__text">We enhance your unique beauty — never overdo. Our goal is for people to say you look refreshed, not "done."</p>
+                </article>
+                <article class="value-card">
+                    <div class="value-card__number" aria-hidden="true">03</div>
+                    <h3 class="value-card__title">Continuous Innovation</h3>
+                    <p class="value-card__text">We invest in the latest FDA-approved technologies and ongoing education to offer you the best options available.</p>
+                </article>
+                <article class="value-card">
+                    <div class="value-card__number" aria-hidden="true">04</div>
+                    <h3 class="value-card__title">Transparency</h3>
+                    <p class="value-card__text">Honest pricing, realistic expectations, and thorough consultations. No hidden fees, no pressure — ever.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" aria-label="Book a consultation">
+        <div class="cta-section__inner reveal">
+            <span class="cta-section__label">Start Your Journey</span>
+            <h2 class="cta-section__title">Ready to Meet Us?</h2>
+            <p class="cta-section__text">Book a complimentary consultation and see why Tampa trusts Hot Water Heroes Plumbing.</p>
+            <div class="cta-section__actions">
+                <a href="#request-service" class="btn btn--primary btn--lg">Book a Consultation</a>
+                <a href="tel:18135551234" class="btn btn--outline btn--lg">Call (813) 555-1234</a>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<?php get_footer(); ?>
