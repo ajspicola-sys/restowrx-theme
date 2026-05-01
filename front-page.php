@@ -104,16 +104,16 @@ get_header(); ?>
         <div class="hero__inner">
             <!-- LEFT: Content -->
             <div class="hero__content">
-                <span class="hero__badge">⚡ Tampa Bay's #1 Plumbing Team — Available 24/7</span>
+                <span class="hero__badge">🔧🛡️ Certified Plumbers · Serving Tampa Bay Since Day One</span>
 
                 <h1 class="hero__title">
-                    Hot Water.<br>
-                    <em>No Waiting.</em>
+                    Tampa Bay's<br>
+                    <em>Hot Water Experts.</em>
                 </h1>
 
                 <div class="hero__divider" aria-hidden="true"></div>
 
-                <p class="hero__subtitle">When your water heater fails, every minute matters. Hot Water Heroes delivers same-day repair, installation, and emergency plumbing service across the entire Tampa Bay area — fast, honest, and guaranteed.</p>
+                <p class="hero__subtitle">No cold showers. No waiting around. Hot Water Heroes shows up fast, fixes it right, and backs every job with a satisfaction guarantee — 24 hours a day, 7 days a week.</p>
 
                 <div class="hero__actions">
                     <a href="tel:18135551234" class="btn btn--primary btn--lg">
