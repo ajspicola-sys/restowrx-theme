@@ -9922,7 +9922,7 @@ a.contact-card__text:hover {
 
 /* Logo */
 .hwh-nav__logo { display:flex; align-items:center; flex-shrink:0; text-decoration:none; }
-.hwh-nav__logo-img { height:38px; width:auto; transition:filter .3s ease; }
+.hwh-nav__logo-img { height:55px; width:auto; transition:filter .3s ease; }
 .hwh-nav__logo:hover .hwh-nav__logo-img { filter:drop-shadow(0 0 10px rgba(242,47,58,.3)); }
 
 /* Nav links */
