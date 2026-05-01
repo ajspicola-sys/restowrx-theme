@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * Template Name: Homepage
  * Hot Water Heroes Plumbing — Front Page v3 (Bold Redesign)

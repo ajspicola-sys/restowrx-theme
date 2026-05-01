@@ -316,10 +316,10 @@ function hwh_schema_markup() {
         'currenciesAccepted' => 'USD',
         'paymentAccepted'  => 'Cash, Credit Card, Financing via Cherry',
         'image'            => [
-            'https://hotwaterheroes.com/wp-content/uploads/2026/03/hwh-logo.png',
+            'https://hotwaterheroesplumbing.com/wp-content/uploads/2025/08/HEROES-16-x-9-in-scaled-e1755179786780.png',
             'https://hotwaterheroes.com/wp-content/uploads/2026/04/Hero-Apirl4.png',
         ],
-        'logo'             => 'https://hotwaterheroes.com/wp-content/uploads/2026/03/hwh-logo.png',
+        'logo'             => 'https://hotwaterheroesplumbing.com/wp-content/uploads/2025/08/HEROES-16-x-9-in-scaled-e1755179786780.png',
         'sameAs'           => [
             'https://www.facebook.com/hotwaterheroes/',
             'https://www.instagram.com/hotwaterheroes/',
@@ -2470,7 +2470,7 @@ function hwh_review_schema() {
             'itemReviewed'  => [
                 '@type' => 'MedicalBusiness',
                 'name'  => 'Hot Water Heroes Plumbing',
-                'image' => 'https://hotwaterheroes.com/wp-content/uploads/2026/03/hwh-logo.png',
+                'image' => 'https://hotwaterheroesplumbing.com/wp-content/uploads/2025/08/HEROES-16-x-9-in-scaled-e1755179786780.png',
             ],
         ];
     }

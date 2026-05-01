@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * Hot Water Heroes — Header Template v2
  * Two-layer: dark top bar + white nav bar
@@ -132,7 +132,7 @@
 
             <!-- Logo -->
             <a href="<?php echo esc_url(home_url('/')); ?>" class="hwh-nav__logo" aria-label="Hot Water Heroes Plumbing — Home">
-                <img src="https://hotwaterheroes.com/wp-content/uploads/2026/03/hwh-logo.png"
+                <img src="https://hotwaterheroesplumbing.com/wp-content/uploads/2025/08/HEROES-16-x-9-in-scaled-e1755179786780.png"
                      alt="Hot Water Heroes Plumbing" width="160" height="40"
                      loading="eager" decoding="async" class="hwh-nav__logo-img">
             </a>
@@ -250,7 +250,7 @@
     <div class="mobile-menu__drawer">
         <div class="mobile-menu__header">
             <a href="<?php echo esc_url(home_url('/')); ?>" class="hwh-nav__logo">
-                <img src="https://hotwaterheroes.com/wp-content/uploads/2026/03/hwh-logo.png" alt="Hot Water Heroes" width="140" height="36">
+                <img src="https://hotwaterheroesplumbing.com/wp-content/uploads/2025/08/HEROES-16-x-9-in-scaled-e1755179786780.png" alt="Hot Water Heroes" width="140" height="36">
             </a>
             <button class="mobile-menu__close" id="mobile-close" aria-label="Close navigation">×</button>
         </div>
