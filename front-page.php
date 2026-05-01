@@ -300,44 +300,64 @@ get_header(); ?>
 </section>
 
 <!-- ══════════════════════════════════════════════════════
-     TESTIMONIALS — Dark navy background
+     TESTIMONIALS — Split: mascot left, stacked reviews right
      ══════════════════════════════════════════════════════ -->
 <section class="hwh-reviews" aria-label="Customer reviews">
     <div class="hwh-section-inner">
-        <div class="hwh-section-header hwh-section-header--light">
-            <span class="hwh-label hwh-label--red">Real Customers</span>
-            <h2 class="hwh-section-title hwh-section-title--white">What Tampa Bay Says<br><em>About Us</em></h2>
+        <div class="hwh-reviews-split">
+
+            <!-- LEFT: Mascot visual -->
+            <div class="hwh-reviews-split__visual reveal">
+                <div class="hwh-reviews-split__img-wrap">
+                    <img src="https://hotwaterheroesplumbing.com/wp-content/uploads/2026/05/Heaty-Phone.png"
+                         alt="Heaty the Hot Water Heroes mascot checking reviews on his phone"
+                         loading="lazy" decoding="async" width="520" height="580"
+                         class="hwh-reviews-split__img">
+                </div>
+                <div class="hwh-reviews-split__badge">
+                    <span class="hwh-reviews-split__badge-stars">★★★★★</span>
+                    <span class="hwh-reviews-split__badge-text">5.0 on Google · 120+ Reviews</span>
+                </div>
+            </div>
+
+            <!-- RIGHT: Stacked reviews -->
+            <div class="hwh-reviews-split__cards reveal">
+                <div class="hwh-reviews-split__header">
+                    <span class="hwh-label hwh-label--red">Real Customers</span>
+                    <h2 class="hwh-section-title hwh-section-title--white">What Tampa Bay Says<br><em>About Us</em></h2>
+                </div>
+
+                <article class="hwh-review-card hwh-review-card--stacked">
+                    <div class="hwh-review-card__stars" aria-label="5 stars">★★★★★</div>
+                    <p class="hwh-review-card__text">"Our water heater went out on a Sunday evening. Hot Water Heroes had someone at our door within 2 hours and replaced the whole unit by 9pm. Unbelievable service — will definitely use them again."</p>
+                    <div class="hwh-review-card__author">
+                        <strong>Mike T.</strong>
+                        <span>Google Review</span>
+                    </div>
+                </article>
+
+                <article class="hwh-review-card hwh-review-card--stacked">
+                    <div class="hwh-review-card__stars" aria-label="5 stars">★★★★★</div>
+                    <p class="hwh-review-card__text">"Fair pricing, fast timing, and the plumber was super professional. He explained every step and left everything cleaner than he found it. Hot Water Heroes is the real deal."</p>
+                    <div class="hwh-review-card__author">
+                        <strong>Sarah K.</strong>
+                        <span>Google Review</span>
+                    </div>
+                </article>
+
+                <article class="hwh-review-card hwh-review-card--stacked">
+                    <div class="hwh-review-card__stars" aria-label="5 stars">★★★★★</div>
+                    <p class="hwh-review-card__text">"Switched to tankless and couldn't be happier. The install was clean and fast — they walked me through everything. Already saving money on my electric bill. 10/10 recommend."</p>
+                    <div class="hwh-review-card__author">
+                        <strong>Dave R.</strong>
+                        <span>Google Review</span>
+                    </div>
+                </article>
+            </div>
+
         </div>
-        <div class="hwh-reviews-grid">
-            <article class="hwh-review-card reveal">
-                <div class="hwh-review-card__stars" aria-label="5 stars">★★★★★</div>
-                <p class="hwh-review-card__text">"Our water heater went out on a Sunday evening. Hot Water Heroes had someone at our door within 2 hours and replaced the whole unit by 9pm. Unbelievable service."</p>
-                <div class="hwh-review-card__author">
-                    <strong>Mike T.</strong>
-                    <span>Google Review</span>
-                </div>
-            </article>
-            <article class="hwh-review-card reveal">
-                <div class="hwh-review-card__stars" aria-label="5 stars">★★★★★</div>
-                <p class="hwh-review-card__text">"Fair pricing, fast timing, and the plumber was super professional. He explained every step and left everything cleaner than he found it. Hot Water Heroes is the real deal."</p>
-                <div class="hwh-review-card__author">
-                    <strong>Sarah K.</strong>
-                    <span>Google Review</span>
-                </div>
-            </article>
-            <article class="hwh-review-card reveal">
-                <div class="hwh-review-card__stars" aria-label="5 stars">★★★★★</div>
-                <p class="hwh-review-card__text">"Switched to tankless and couldn't be happier. The install was clean and fast — they walked me through everything. Already saving money on my electric bill. 10/10."</p>
-                <div class="hwh-review-card__author">
-                    <strong>Dave R.</strong>
-                    <span>Google Review</span>
-                </div>
-            </article>
-        </div>
-        <div class="hwh-center" style="margin-top:2.5rem;">
-            <div class="hwh-google-badge">
-                <span style="font-size:1.4rem;">★★★★★</span>
-                <span>5.0 on Google · 120+ Reviews</span>
+    </div>
+</section>
             </div>
         </div>
     </div>

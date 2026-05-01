@@ -9996,3 +9996,96 @@ a.contact-card__text:hover {
   .hwh-nav__call { display:none; }
   .site-main { padding-top:90px; }
 }
+
+/* ==========================================================================
+   HWH REVIEWS — Split Layout (mascot left, stacked cards right)
+   ========================================================================== */
+.hwh-reviews-split {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+/* Left: mascot image with red square bg */
+.hwh-reviews-split__visual { position: relative; display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
+.hwh-reviews-split__img-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+}
+.hwh-reviews-split__img-wrap::before {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: -20px;
+  width: 85%;
+  height: 85%;
+  background: #F22F3A;
+  border-radius: 18px;
+  z-index: 0;
+}
+.hwh-reviews-split__img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: auto;
+  border-radius: 18px;
+  display: block;
+  filter: drop-shadow(0 20px 40px rgba(0,0,0,.35));
+}
+.hwh-reviews-split__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .75rem;
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 9999px;
+  padding: .7rem 1.8rem;
+  color: rgba(255,255,255,.8);
+  font-size: .82rem;
+  font-weight: 600;
+  align-self: flex-start;
+  margin-left: 1rem;
+}
+.hwh-reviews-split__badge-stars { color: #F5C542; font-size: 1rem; letter-spacing: .05em; }
+
+/* Right: header + stacked cards */
+.hwh-reviews-split__header { margin-bottom: 1.75rem; }
+.hwh-reviews-split__cards { display: flex; flex-direction: column; gap: 1.25rem; }
+
+/* Stacked card variant */
+.hwh-review-card--stacked {
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 16px;
+  padding: 1.5rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  transition: all .3s ease;
+  border-left: 3px solid #F22F3A;
+}
+.hwh-review-card--stacked:hover {
+  background: rgba(255,255,255,.09);
+  transform: translateX(4px);
+  border-left-color: #F22F3A;
+}
+.hwh-review-card--stacked .hwh-review-card__text {
+  font-size: .88rem;
+  color: rgba(255,255,255,.75);
+  line-height: 1.7;
+  font-style: italic;
+  margin: 0;
+}
+.hwh-review-card--stacked .hwh-review-card__stars { color: #F5C542; font-size: .95rem; letter-spacing: .08em; }
+.hwh-review-card--stacked .hwh-review-card__author { display: flex; align-items: center; gap: .6rem; margin-top: .25rem; }
+.hwh-review-card--stacked .hwh-review-card__author strong { font-size: .85rem; font-weight: 700; color: #fff; }
+.hwh-review-card--stacked .hwh-review-card__author span { font-size: .72rem; color: rgba(255,255,255,.4); }
+
+@media(max-width:1024px) {
+  .hwh-reviews-split { grid-template-columns: 1fr; gap: 3rem; }
+  .hwh-reviews-split__visual { align-items: center; }
+  .hwh-reviews-split__img-wrap { max-width: 340px; }
+  .hwh-reviews-split__badge { align-self: center; margin-left: 0; }
+}
