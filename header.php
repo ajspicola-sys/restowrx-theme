@@ -62,7 +62,7 @@
     <style id="hwh-critical-css">
         html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
         body { margin: 0; font-family: 'Inter','Helvetica Neue',Arial,sans-serif; background: #F8F9FB; overflow-x: hidden; }
-        .site-main { padding-top: 110px; }
+        .site-main { padding-top: 115px; }
         .hwh-header { position: fixed; top: 0; left: 0; right: 0; z-index: 200; }
         .hwh-topbar { background: #0F2440; height: 40px; display: flex; align-items: center; }
         .hwh-topbar__inner { max-width: 1280px; margin: 0 auto; padding: 0 clamp(1.25rem,1rem + 2vw,3rem); display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 1.5rem; }

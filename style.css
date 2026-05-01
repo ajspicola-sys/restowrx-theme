@@ -9894,7 +9894,7 @@ a.contact-card__text:hover {
 
 /* ── Top bar ─────────────────────────────────────────────────────── */
 .hwh-topbar { background: #0F2440; height: 40px; overflow: hidden; transition: height .3s ease, opacity .3s ease; }
-.hwh-header.is-scrolled .hwh-topbar { height: 0; opacity: 0; }
+/* topbar always visible */
 .hwh-topbar__inner { max-width:1280px; margin:0 auto; padding:0 clamp(1.25rem,1rem + 2vw,3rem); display:flex; align-items:center; justify-content:space-between; height:100%; gap:1.5rem; }
 .hwh-topbar__left { display:flex; align-items:center; gap:.75rem; flex-shrink:0; }
 .hwh-topbar__right { display:flex; align-items:center; gap:.6rem; flex-shrink:0; }
