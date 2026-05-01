@@ -10150,3 +10150,18 @@ a.contact-card__text:hover {
   filter: drop-shadow(0 20px 40px rgba(0,0,0,0.45));
   animation: hwh-float 5s ease-in-out infinite;
 }
+
+/* HWH Hero — truly fixed height, no growth on zoom */
+.hwh-hero {
+  height: 700px !important;
+  min-height: 0 !important;
+  max-height: 700px !important;
+  overflow: hidden !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+.hwh-hero__inner {
+  height: 100%;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
