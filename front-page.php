@@ -83,15 +83,15 @@ get_header(); ?>
 </script>
 
     <!-- ═══════════════════════════════════════════════════════════════
-         HERO SECTION
+         HERO SECTION — v2 (push test: redesigned layout)
          ═══════════════════════════════════════════════════════════════ -->
     <section class="hero" id="hero" aria-label="Hot Water Heroes Plumbing — Tampa Bay's Trusted Plumbers">
 
-        <!-- Bold angular gradient background — no blur blobs -->
+        <!-- Bold angular gradient background -->
         <div class="hero__bg-overlay" aria-hidden="true"></div>
         <div class="hero__grid-lines" aria-hidden="true"></div>
 
-        <!-- Subtle floating particles (kept — works fine for industrial) -->
+        <!-- Floating particles -->
         <div class="hero__particles" aria-hidden="true">
             <span class="hero__particle" style="--x:8%;--y:25%;--delay:0s;--size:3px;"></span>
             <span class="hero__particle" style="--x:88%;--y:18%;--delay:1.2s;--size:2px;"></span>
@@ -104,23 +104,28 @@ get_header(); ?>
         <div class="hero__inner">
             <!-- LEFT: Content -->
             <div class="hero__content">
-                <span class="hero__badge">🔧 Tampa Bay's #1 Water Heater Specialists</span>
+                <span class="hero__badge">⚡ Tampa Bay's #1 Plumbing Team — Available 24/7</span>
 
                 <h1 class="hero__title">
-                    Your Water Heater<br>
-                    <em>Fixed Fast.</em>
+                    Hot Water.<br>
+                    <em>No Waiting.</em>
                 </h1>
 
                 <div class="hero__divider" aria-hidden="true"></div>
 
-                <p class="hero__subtitle">Licensed, insured, and available 24/7 — Hot Water Heroes handles water heater repair, installation, drain cleaning, and emergency plumbing across the entire Tampa Bay area.</p>
+                <p class="hero__subtitle">When your water heater fails, every minute matters. Hot Water Heroes delivers same-day repair, installation, and emergency plumbing service across the entire Tampa Bay area — fast, honest, and guaranteed.</p>
 
                 <div class="hero__actions">
                     <a href="tel:18135551234" class="btn btn--primary btn--lg">
                         📞 Call (813) 555-1234
                     </a>
-                    <a href="<?php echo esc_url(home_url('/services/')); ?>" class="btn btn--outline btn--lg">View Services</a>
+                    <a href="<?php echo esc_url(home_url('/services/')); ?>" class="btn btn--outline btn--lg">Our Services →</a>
                 </div>
+
+                <!-- Trust line -->
+                <p class="hero__trust-line" aria-label="Customer trust indicator">
+                    ✅ Trusted by <strong>1,200+ Tampa Bay homeowners</strong> · Licensed &amp; Fully Insured
+                </p>
 
                 <!-- Stats row -->
                 <div class="hero__stats" aria-label="Company highlights">
@@ -145,7 +150,7 @@ get_header(); ?>
             <div class="hero__visual" aria-hidden="true">
                 <div class="hero__model">
                     <img src="<?php echo esc_url(home_url('/')); ?>wp-content/uploads/hwh-hero-plumber.png"
-                         alt="Hot Water Heroes licensed plumber"
+                         alt="Hot Water Heroes licensed plumber serving Tampa Bay"
                          class="hero__model-img"
                          fetchpriority="high"
                          decoding="async"
@@ -155,13 +160,13 @@ get_header(); ?>
 
                 <!-- Floating service badges -->
                 <div class="hero__visual-badge hero__visual-badge--1">
-                    <span>🔥</span> Water Heater Repair
+                    <span>🔥</span> Same-Day Water Heater Fix
                 </div>
                 <div class="hero__visual-badge hero__visual-badge--2">
-                    <span>🚿</span> Same-Day Service
+                    <span>⏱️</span> Avg. Response: 90 Min
                 </div>
                 <div class="hero__visual-badge hero__visual-badge--3">
-                    <span>🛡️</span> Licensed & Insured
+                    <span>🛡️</span> Licensed &amp; Insured
                 </div>
             </div>
         </div>
