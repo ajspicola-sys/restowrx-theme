@@ -76,7 +76,7 @@ get_header(); ?>
             <p class="cta-section__text">Schedule your consultation and ask about our financing options. Our team will help you find the perfect plan.</p>
             <div class="cta-section__actions">
                 <a href="#request-service" class="btn btn--primary btn--lg">Request Service</a>
-                <a href="tel:18135551234" class="btn btn--outline btn--lg">Call (813) 555-1234</a>
+                <a href="tel:+18134275862" class="btn btn--outline btn--lg">Call 813-42-PLUMB</a>
             </div>
         </div>
     </section>

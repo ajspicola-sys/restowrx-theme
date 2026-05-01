@@ -17,7 +17,7 @@ get_header(); ?>
     "alternateName": "HWH Plumbing",
     "description": "Tampa Bay's trusted plumbing company — expert water heater repair, installation, drain cleaning, leak detection, and 24/7 emergency plumbing services.",
     "url": "<?php echo esc_url(home_url('/')); ?>",
-    "telephone": "+18135551234",
+    "telephone": "+18134275862",
     "email": "info@hotwaterheroes.com",
     "priceRange": "$$",
     "image": "<?php echo esc_url(home_url('/')); ?>wp-content/uploads/hwh-logo.png",
@@ -56,9 +56,9 @@ get_header(); ?>
             </p>
 
             <div class="hwh-hero__actions">
-                <a href="tel:18135551234" class="hwh-btn hwh-btn--red hwh-btn--lg">
+                <a href="tel:+18134275862" class="hwh-btn hwh-btn--red hwh-btn--lg">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                    (813) 555-1234 — Call Now
+                    813-42-PLUMB — Call Now
                 </a>
                 <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="hwh-btn hwh-btn--ghost hwh-btn--lg">
                     Book Online →
@@ -474,9 +474,9 @@ get_header(); ?>
             <p class="hwh-cta__text">Don't let a small leak turn into a big headache. Call now or book online — available 24/7 across all of Tampa Bay.</p>
         </div>
         <div class="hwh-cta__actions">
-            <a href="tel:18135551234" class="hwh-btn hwh-btn--white hwh-btn--lg">
+            <a href="tel:+18134275862" class="hwh-btn hwh-btn--white hwh-btn--lg">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                Call (813) 555-1234
+                Call 813-42-PLUMB
             </a>
             <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="hwh-btn hwh-btn--ghost-white hwh-btn--lg">
                 Request Service Online →

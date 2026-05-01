@@ -144,7 +144,7 @@ get_header(); ?>
             <p class="cta-section__text">Book a complimentary consultation and see why Tampa trusts Hot Water Heroes Plumbing.</p>
             <div class="cta-section__actions">
                 <a href="#request-service" class="btn btn--primary btn--lg">Book a Consultation</a>
-                <a href="tel:18135551234" class="btn btn--outline btn--lg">Call (813) 555-1234</a>
+                <a href="tel:+18134275862" class="btn btn--outline btn--lg">Call 813-42-PLUMB</a>
             </div>
         </div>
     </section>

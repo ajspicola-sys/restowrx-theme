@@ -139,7 +139,7 @@ get_header(); ?>
             <p class="cta-section__text">Our Beauty Bank is the easiest way to stay consistent with your treatments while enjoying flexibility and exclusive savings.</p>
             <div class="cta-section__actions">
                 <a href="#request-service" class="btn btn--primary btn--lg">Book a Consultation</a>
-                <a href="tel:18135551234" class="btn btn--outline btn--lg">Call (813) 555-1234</a>
+                <a href="tel:+18134275862" class="btn btn--outline btn--lg">Call 813-42-PLUMB</a>
             </div>
         </div>
     </section>

@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * Hot Water Heroes — Header Template v2
  * Two-layer: dark top bar + white nav bar
@@ -89,9 +89,9 @@
 
             <!-- Left: quick info -->
             <div class="hwh-topbar__left">
-                <a href="tel:+18135551234" class="hwh-topbar__item hwh-topbar__item--phone">
+                <a href="tel:+18134275862" class="hwh-topbar__item hwh-topbar__item--phone">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                    (813) 555-1234
+                    813-42-PLUMB
                 </a>
                 <span class="hwh-topbar__sep" aria-hidden="true">|</span>
                 <span class="hwh-topbar__item">
@@ -228,7 +228,7 @@
 
             <!-- Actions -->
             <div class="hwh-nav__actions">
-                <a href="tel:+18135551234" class="hwh-nav__call" aria-label="Call (813) 555-1234">
+                <a href="tel:+18134275862" class="hwh-nav__call" aria-label="Call 813-42-PLUMB">
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
                 </a>
                 <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="hwh-btn hwh-btn--red hwh-btn--sm">Book Service</a>
@@ -279,9 +279,9 @@
 
         <div class="mobile-menu__footer">
             <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="hwh-btn hwh-btn--red" style="width:100%;justify-content:center;">Book a Service →</a>
-            <a href="tel:+18135551234" class="mobile-menu__contact-item">
+            <a href="tel:+18134275862" class="mobile-menu__contact-item">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                (813) 555-1234 — 24/7 Emergency
+                813-42-PLUMB — 24/7 Emergency
             </a>
             <a href="mailto:info@hotwaterheroes.com" class="mobile-menu__contact-item">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>

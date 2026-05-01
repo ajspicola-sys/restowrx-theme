@@ -94,7 +94,7 @@ get_header(); ?>
                             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                         </div>
                         <h3 class="contact-card__title">Phone</h3>
-                        <a href="tel:18135551234" class="contact-card__text">(813) 555-1234</a>
+                        <a href="tel:+18134275862" class="contact-card__text">813-42-PLUMB</a>
                     </div>
 
                     <div class="contact-card">
@@ -174,7 +174,7 @@ get_header(); ?>
             <h2 class="cta-section__title">Have Questions?<br>We Have Answers</h2>
             <p class="cta-section__text">Our team is ready to help you find the perfect treatment. Don't hesitate to reach out.</p>
             <div class="cta-section__actions">
-                <a href="tel:18135551234" class="btn btn--primary btn--lg">Call (813) 555-1234</a>
+                <a href="tel:+18134275862" class="btn btn--primary btn--lg">Call 813-42-PLUMB</a>
                 <a href="mailto:support@hotwaterheroes.com" class="btn btn--outline btn--lg">Email Us</a>
             </div>
         </div>

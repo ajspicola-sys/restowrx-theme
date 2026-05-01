@@ -291,7 +291,7 @@ function hwh_schema_markup() {
         'alternateName'    => 'Hot Water Heroes Plumbing',
         'description'      => "Tampa Bay's premier medical spa offering Botox, dermal fillers, RF microneedling, laser treatments, facials, IV therapy, and medical-grade skincare. Led by HWH Master Plumbers, APRN — board-certified aesthetic provider.",
         'url'              => esc_url(home_url('/')),
-        'telephone'        => '+18135551234',
+        'telephone'        => '+18134275862',
         'email'            => 'support@hotwaterheroes.com',
         'foundingDate'     => '2024',
         'address'          => [
