@@ -75,9 +75,9 @@ get_header(); ?>
 
         <div class="hwh-hero__visual" aria-hidden="true">
             <div class="hwh-hero__van-wrap">
-                <img src="https://hotwaterheroesplumbing.com/wp-content/uploads/2025/09/Untitled-1.png"
+                <img src="https://hotwaterheroesplumbing.com/wp-content/uploads/2025/12/HWH-HERO-VAN.png"
                      alt="Hot Water Heroes service van"
-                     fetchpriority="high" decoding="async" width="700" height="420"
+                     fetchpriority="high" decoding="async"
                      class="hwh-hero__van">
             </div>
         </div>
