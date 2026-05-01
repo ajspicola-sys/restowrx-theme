@@ -10014,17 +10014,7 @@ a.contact-card__text:hover {
   width: 100%;
   max-width: 440px;
 }
-.hwh-reviews-split__img-wrap::before {
-  content: '';
-  position: absolute;
-  bottom: -20px;
-  left: -20px;
-  width: 85%;
-  height: 85%;
-  background: #F22F3A;
-  border-radius: 18px;
-  z-index: 0;
-}
+/* red square removed — image has one built in */
 .hwh-reviews-split__img {
   position: relative;
   z-index: 1;
@@ -10089,3 +10079,12 @@ a.contact-card__text:hover {
   .hwh-reviews-split__img-wrap { max-width: 340px; }
   .hwh-reviews-split__badge { align-self: center; margin-left: 0; }
 }
+
+/* HWH Reviews Carousel Controls */
+.hwh-rev-carousel__track { display: flex; flex-direction: column; gap: 1.25rem; }
+.hwh-rev-carousel__controls { display: flex; align-items: center; gap: 1rem; margin-top: 1.5rem; }
+.hwh-rev-carousel__btn { width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15); color: rgba(255,255,255,.7); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all .25s ease; flex-shrink: 0; }
+.hwh-rev-carousel__btn:hover { background: #F22F3A; border-color: #F22F3A; color: #fff; transform: scale(1.08); }
+.hwh-rev-carousel__dots { display: flex; gap: .5rem; }
+.hwh-rev-carousel__dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.2); border: none; cursor: pointer; transition: all .25s ease; padding: 0; }
+.hwh-rev-carousel__dot.is-active { background: #F22F3A; width: 22px; border-radius: 4px; }

@@ -300,7 +300,7 @@ get_header(); ?>
 </section>
 
 <!-- ══════════════════════════════════════════════════════
-     TESTIMONIALS — Split: mascot left, stacked reviews right
+     TESTIMONIALS — Split: mascot left, 2-up carousel right
      ══════════════════════════════════════════════════════ -->
 <section class="hwh-reviews" aria-label="Customer reviews">
     <div class="hwh-section-inner">
@@ -320,48 +320,113 @@ get_header(); ?>
                 </div>
             </div>
 
-            <!-- RIGHT: Stacked reviews -->
+            <!-- RIGHT: Carousel (2 visible at a time) -->
             <div class="hwh-reviews-split__cards reveal">
                 <div class="hwh-reviews-split__header">
                     <span class="hwh-label hwh-label--red">Real Customers</span>
                     <h2 class="hwh-section-title hwh-section-title--white">What Tampa Bay Says<br><em>About Us</em></h2>
                 </div>
 
-                <article class="hwh-review-card hwh-review-card--stacked">
-                    <div class="hwh-review-card__stars" aria-label="5 stars">★★★★★</div>
-                    <p class="hwh-review-card__text">"Our water heater went out on a Sunday evening. Hot Water Heroes had someone at our door within 2 hours and replaced the whole unit by 9pm. Unbelievable service — will definitely use them again."</p>
-                    <div class="hwh-review-card__author">
-                        <strong>Mike T.</strong>
-                        <span>Google Review</span>
-                    </div>
-                </article>
+                <div class="hwh-rev-carousel" id="reviews-carousel" aria-label="Customer reviews carousel">
+                    <div class="hwh-rev-carousel__track">
 
-                <article class="hwh-review-card hwh-review-card--stacked">
-                    <div class="hwh-review-card__stars" aria-label="5 stars">★★★★★</div>
-                    <p class="hwh-review-card__text">"Fair pricing, fast timing, and the plumber was super professional. He explained every step and left everything cleaner than he found it. Hot Water Heroes is the real deal."</p>
-                    <div class="hwh-review-card__author">
-                        <strong>Sarah K.</strong>
-                        <span>Google Review</span>
-                    </div>
-                </article>
+                        <article class="hwh-review-card hwh-review-card--stacked">
+                            <div class="hwh-review-card__stars" aria-label="5 stars">★★★★★</div>
+                            <p class="hwh-review-card__text">"Our water heater went out on a Sunday evening. Hot Water Heroes had someone at our door within 2 hours and replaced the whole unit by 9pm. Unbelievable service — will definitely use them again."</p>
+                            <div class="hwh-review-card__author">
+                                <strong>Mike T.</strong>
+                                <span>Google Review</span>
+                            </div>
+                        </article>
 
-                <article class="hwh-review-card hwh-review-card--stacked">
-                    <div class="hwh-review-card__stars" aria-label="5 stars">★★★★★</div>
-                    <p class="hwh-review-card__text">"Switched to tankless and couldn't be happier. The install was clean and fast — they walked me through everything. Already saving money on my electric bill. 10/10 recommend."</p>
-                    <div class="hwh-review-card__author">
-                        <strong>Dave R.</strong>
-                        <span>Google Review</span>
+                        <article class="hwh-review-card hwh-review-card--stacked">
+                            <div class="hwh-review-card__stars" aria-label="5 stars">★★★★★</div>
+                            <p class="hwh-review-card__text">"Fair pricing, fast timing, and the plumber was super professional. He explained every step and left everything cleaner than he found it. Hot Water Heroes is the real deal."</p>
+                            <div class="hwh-review-card__author">
+                                <strong>Sarah K.</strong>
+                                <span>Google Review</span>
+                            </div>
+                        </article>
+
+                        <article class="hwh-review-card hwh-review-card--stacked">
+                            <div class="hwh-review-card__stars" aria-label="5 stars">★★★★★</div>
+                            <p class="hwh-review-card__text">"Switched to tankless and couldn't be happier. The install was clean and fast — they walked me through everything. Already saving money on my electric bill. 10/10 recommend."</p>
+                            <div class="hwh-review-card__author">
+                                <strong>Dave R.</strong>
+                                <span>Google Review</span>
+                            </div>
+                        </article>
+
                     </div>
-                </article>
+
+                    <div class="hwh-rev-carousel__controls">
+                        <button class="hwh-rev-carousel__btn" id="rev-prev" aria-label="Previous reviews">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg>
+                        </button>
+                        <div class="hwh-rev-carousel__dots" id="rev-dots" role="tablist"></div>
+                        <button class="hwh-rev-carousel__btn" id="rev-next" aria-label="Next reviews">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg>
+                        </button>
+                    </div>
+                </div>
             </div>
 
         </div>
     </div>
 </section>
-            </div>
-        </div>
-    </div>
-</section>
+
+<script>
+(function(){
+    var track   = document.querySelector('.hwh-rev-carousel__track');
+    var cards   = track ? Array.from(track.querySelectorAll('.hwh-review-card--stacked')) : [];
+    var dotsEl  = document.getElementById('rev-dots');
+    var prevBtn = document.getElementById('rev-prev');
+    var nextBtn = document.getElementById('rev-next');
+    if (!track || cards.length < 2) return;
+
+    var perPage = 2;
+    var total   = cards.length;
+    var pages   = Math.ceil(total / perPage);
+    var current = 0;
+
+    // Build dots
+    for (var i = 0; i < pages; i++) {
+        var dot = document.createElement('button');
+        dot.className = 'hwh-rev-carousel__dot' + (i === 0 ? ' is-active' : '');
+        dot.setAttribute('role', 'tab');
+        dot.setAttribute('aria-label', 'Page ' + (i + 1));
+        (function(idx){ dot.addEventListener('click', function(){ goTo(idx); }); })(i);
+        dotsEl.appendChild(dot);
+    }
+
+    function goTo(page) {
+        current = ((page % pages) + pages) % pages;
+        var start = current * perPage;
+        cards.forEach(function(c, i) {
+            c.style.display = (i >= start && i < start + perPage) ? '' : 'none';
+            c.style.opacity = '0';
+            c.style.transform = 'translateY(8px)';
+            if (i >= start && i < start + perPage) {
+                requestAnimationFrame(function(){
+                    requestAnimationFrame(function(){
+                        c.style.transition = 'opacity .35s ease, transform .35s ease';
+                        c.style.opacity = '1';
+                        c.style.transform = 'translateY(0)';
+                    });
+                });
+            }
+        });
+        dotsEl.querySelectorAll('.hwh-rev-carousel__dot').forEach(function(d, i){
+            d.classList.toggle('is-active', i === current);
+        });
+    }
+
+    prevBtn.addEventListener('click', function(){ goTo(current - 1); });
+    nextBtn.addEventListener('click', function(){ goTo(current + 1); });
+    goTo(0);
+})();
+</script>
+
 
 <!-- ══════════════════════════════════════════════════════
      SERVICE AREAS — Light bg, city grid
