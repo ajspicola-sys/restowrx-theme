@@ -9850,7 +9850,7 @@ a.contact-card__text:hover {
 .hwh-footer__inner { max-width:1280px; margin:0 auto; padding:0 clamp(1.25rem,1rem + 2vw,3rem); display:grid; grid-template-columns:1.6fr 1fr 1fr 1.2fr; gap:3.5rem; }
 
 /* Brand col */
-.hwh-footer__logo img { height:50px; width:auto; margin-bottom:1.25rem; }
+.hwh-footer__logo img { height:auto; width:auto; margin-bottom:1.25rem; }
 .hwh-footer__brand-text { font-size:.85rem; line-height:1.75; color:rgba(255,255,255,.55); margin-bottom:1.5rem; }
 .hwh-footer__social { display:flex; gap:.6rem; margin-bottom:1.25rem; }
 .hwh-footer__social-link { width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.1); display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,.55); transition:all .25s ease; }
@@ -9922,7 +9922,7 @@ a.contact-card__text:hover {
 
 /* Logo */
 .hwh-nav__logo { display:flex; align-items:center; flex-shrink:0; text-decoration:none; }
-.hwh-nav__logo-img { height:55px; width:auto; transition:filter .3s ease; }
+.hwh-nav__logo-img { height:65px; width:auto; transition:filter .3s ease; }
 .hwh-nav__logo:hover .hwh-nav__logo-img { filter:drop-shadow(0 0 10px rgba(242,47,58,.3)); }
 
 /* Nav links */

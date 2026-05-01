@@ -133,7 +133,7 @@
             <!-- Logo -->
             <a href="<?php echo esc_url(home_url('/')); ?>" class="hwh-nav__logo" aria-label="Hot Water Heroes Plumbing — Home">
                 <img src="https://hotwaterheroesplumbing.com/wp-content/uploads/2025/08/HEROES-16-x-9-in-scaled-e1755179786780.png"
-                     alt="Hot Water Heroes Plumbing" width="220" height="55"
+                     alt="Hot Water Heroes Plumbing" width="260" height="65"
                      loading="eager" decoding="async" class="hwh-nav__logo-img">
             </a>
 
