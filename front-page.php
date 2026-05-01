@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Template Name: Homepage
  * Hot Water Heroes Plumbing — Front Page v3 (Bold Redesign)
@@ -74,31 +74,11 @@ get_header(); ?>
         </div>
 
         <div class="hwh-hero__visual" aria-hidden="true">
-            <div class="hwh-hero__img-wrap">
-                <img src="<?php echo esc_url(home_url('/')); ?>wp-content/uploads/hwh-hero-plumber.png"
-                     alt="Hot Water Heroes licensed plumber"
-                     fetchpriority="high" decoding="async" width="560" height="860">
-            </div>
-            <div class="hwh-hero__card hwh-hero__card--1">
-                <span class="hwh-hero__card-icon">🔥</span>
-                <div>
-                    <strong>Same-Day Repair</strong>
-                    <span>Water heaters fixed fast</span>
-                </div>
-            </div>
-            <div class="hwh-hero__card hwh-hero__card--2">
-                <span class="hwh-hero__card-icon">⏱️</span>
-                <div>
-                    <strong>~90 Min Response</strong>
-                    <span>Emergency callouts</span>
-                </div>
-            </div>
-            <div class="hwh-hero__card hwh-hero__card--3">
-                <span class="hwh-hero__card-icon">🛡️</span>
-                <div>
-                    <strong>Satisfaction Guarantee</strong>
-                    <span>Every job, every time</span>
-                </div>
+            <div class="hwh-hero__van-wrap">
+                <img src="https://hotwaterheroesplumbing.com/wp-content/uploads/2025/09/Untitled-1.png"
+                     alt="Hot Water Heroes service van"
+                     fetchpriority="high" decoding="async" width="700" height="420"
+                     class="hwh-hero__van">
             </div>
         </div>
     </div>
