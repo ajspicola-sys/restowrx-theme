@@ -5254,9 +5254,21 @@ a.contact-card__text:hover {
 }
 
 .service-why-us__icon {
-  font-size: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: rgba(242, 47, 58, 0.08);
+  color: var(--brand);
   margin-bottom: 1.5rem;
-  display: block;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+.service-why-us__card:hover .service-why-us__icon {
+  background: var(--brand);
+  color: #fff;
+  transform: scale(1.08);
 }
 
 .service-why-us__card-title {
