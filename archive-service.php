@@ -75,9 +75,9 @@ $all_cats = get_terms( [
 
                 <!-- Trust chips -->
                 <div class="svc-hero__chips">
-                    <span class="svc-hero__chip">✅ Licensed & Insured</span>
-                    <span class="svc-hero__chip">⚡ Same-Day Service</span>
-                    <span class="svc-hero__chip">🛡️ 1-Year Warranty</span>
+                    <span class="svc-hero__chip">Licensed & Insured</span>
+                    <span class="svc-hero__chip">Same-Day Service</span>
+                    <span class="svc-hero__chip">Upfront Pricing</span>
                 </div>
             </div>
 
@@ -174,7 +174,7 @@ $all_cats = get_terms( [
 
                 <div class="svc-grid" id="svc-grid">
                     <?php while ( have_posts() ) : the_post();
-                        $icon     = get_post_meta( get_the_ID(), '_service_icon', true ) ?: '🔧';
+                        $icon     = get_post_meta( get_the_ID(), '_service_icon', true ) ?: '';
                         $price    = get_post_meta( get_the_ID(), '_service_price', true );
                         $duration = get_post_meta( get_the_ID(), '_service_duration', true );
 
@@ -334,7 +334,7 @@ $all_cats = get_terms( [
                         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
                     </div>
                     <h3 class="svc-process__title">Done & Guaranteed</h3>
-                    <p class="svc-process__text">We complete the job, clean up, and back it with a 1-year labor warranty.</p>
+                    <p class="svc-process__text">We complete the job, clean up, and make sure everything is working perfectly.</p>
                 </div>
             </div>
         </div>

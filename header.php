@@ -187,7 +187,7 @@ $hwh_menu_services = hwh_get_menu_services();
                                 <div class="hwh-drop__col">
                                     <span class="hwh-drop__heading"><?php echo esc_html( $cat_name ); ?></span>
                                     <?php foreach ( array_slice( $posts, 0, 5 ) as $s ) :
-                                        $icon    = get_post_meta( $s->ID, '_service_icon', true ) ?: '🔧';
+                                        $icon    = get_post_meta( $s->ID, '_service_icon', true ) ?: '';
                                         $excerpt = wp_trim_words( get_post_field( 'post_excerpt', $s->ID ) ?: get_post_field( 'post_content', $s->ID ), 7, '' );
                                     ?>
                                     <a href="<?php echo esc_url( get_permalink( $s->ID ) ); ?>" class="hwh-drop__item">
@@ -206,14 +206,14 @@ $hwh_menu_services = hwh_get_menu_services();
                                 <div class="hwh-drop__col">
                                     <span class="hwh-drop__heading">Popular Services</span>
                                     <a href="<?php echo esc_url(home_url('/services/')); ?>" class="hwh-drop__item">
-                                        <span class="hwh-drop__icon">🔧</span>
+                                        <span class="hwh-drop__icon"></span>
                                         <span><strong>Browse All Services</strong></span>
                                     </a>
                                 </div>
                                 <?php endif; ?>
 
                                 <div class="hwh-drop__promo">
-                                    <span class="hwh-drop__promo-label">⚡ New Customer Deal</span>
+                                    <span class="hwh-drop__promo-label">New Customer Deal</span>
                                     <h4 class="hwh-drop__promo-title">$50 Off Your First Service</h4>
                                     <p class="hwh-drop__promo-text">Book any plumbing service and save $50 on your first visit. New customers only.</p>
                                     <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="hwh-drop__promo-btn">Book Now →</a>
@@ -293,7 +293,7 @@ $hwh_menu_services = hwh_get_menu_services();
                     'no_found_rows'  => true,
                 ] );
                 foreach ( $mobile_svcs as $ms ) :
-                    $ms_icon = get_post_meta( $ms->ID, '_service_icon', true ) ?: '🔧';
+                    $ms_icon = get_post_meta( $ms->ID, '_service_icon', true ) ?: '';
                 ?>
                 <li><a href="<?php echo esc_url( get_permalink( $ms->ID ) ); ?>">↳ <?php echo esc_html( $ms->post_title ); ?></a></li>
                 <?php endforeach; wp_reset_postdata(); ?>

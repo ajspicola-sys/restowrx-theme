@@ -7,7 +7,7 @@
 get_header();
 
 $post_id      = get_the_ID();
-$icon         = get_post_meta($post_id, '_service_icon', true)     ?: '🔧';
+$icon         = get_post_meta($post_id, '_service_icon', true)     ?: '';
 $price        = get_post_meta($post_id, '_service_price', true);
 $duration     = get_post_meta($post_id, '_service_duration', true);
 $video        = get_post_meta($post_id, '_service_video', true);
@@ -68,7 +68,6 @@ $has_image     = has_post_thumbnail();
                 </nav>
 
                 <span class="section__label service-hero__cat">
-                    <span aria-hidden="true"><?php echo esc_html($icon); ?></span>
                     <?php echo esc_html($category_name); ?>
                 </span>
 
@@ -137,7 +136,6 @@ $has_image     = has_post_thumbnail();
                 <!-- Sticky quick-info & booking sidebar -->
                 <aside class="service-body__sidebar reveal" aria-label="Quick booking">
                     <div class="service-sidebar">
-                        <div class="service-sidebar__icon" aria-hidden="true"><?php echo esc_html($icon); ?></div>
                         <h2 class="service-sidebar__title"><?php the_title(); ?></h2>
 
                         <?php if ($price): ?>
@@ -157,11 +155,6 @@ $has_image     = has_post_thumbnail();
                         <div class="service-sidebar__row">
                             <span class="service-sidebar__label">Category</span>
                             <span class="service-sidebar__value"><?php echo esc_html($category_name); ?></span>
-                        </div>
-
-                        <div class="service-sidebar__row">
-                            <span class="service-sidebar__label">Warranty</span>
-                            <span class="service-sidebar__value">1-Year Labor</span>
                         </div>
 
                         <div class="service-sidebar__divider"></div>
@@ -275,16 +268,7 @@ $has_image     = has_post_thumbnail();
                         <p>Most emergency calls get a tech dispatched within the hour. We're available 24/7, 365 days.</p>
                     </div>
                 </div>
-                <div class="svc-trust__card">
-                    <div class="svc-trust__card-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                    </div>
-                    <div class="svc-trust__card-body">
-                        <strong class="svc-trust__card-num">1<span>yr</span></strong>
-                        <h3>Labor Warranty</h3>
-                        <p>Every repair backed by a full 1-year warranty. If it's not right, we come back free.</p>
-                    </div>
-                </div>
+
             </div>
         </div>
     </section>
@@ -334,7 +318,7 @@ $has_image     = has_post_thumbnail();
             </div>
             <div class="related-services__grid reveal">
                 <?php while ($related->have_posts()): $related->the_post();
-                    $r_icon = get_post_meta(get_the_ID(), '_service_icon', true) ?: '🔧';
+                    $r_icon = get_post_meta(get_the_ID(), '_service_icon', true) ?: '';
                 ?>
                 <a href="<?php the_permalink(); ?>" class="service-card">
                     <?php if (has_post_thumbnail()): ?>
@@ -361,9 +345,9 @@ $has_image     = has_post_thumbnail();
         <div class="svc-cta__pulse" aria-hidden="true"></div>
         <div class="svc-cta__inner reveal">
             <div class="svc-cta__text">
-                <span class="svc-cta__eyebrow">📞 Ready to Get Started?</span>
+                <span class="svc-cta__eyebrow">Ready to Get Started?</span>
                 <h2 class="svc-cta__title">Need <em><?php the_title(); ?></em>?</h2>
-                <p class="svc-cta__desc">Call us or book online — we'll have a licensed plumber at your door fast. Free estimates, upfront pricing, and a 1-year labor warranty on every job.</p>
+                <p class="svc-cta__desc">Call us or book online — we'll have a licensed plumber at your door fast. Free estimates and upfront pricing on every job.</p>
             </div>
             <div class="svc-cta__actions">
                 <a href="tel:+18134275862" class="btn btn--primary btn--lg">

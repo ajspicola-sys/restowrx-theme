@@ -120,11 +120,11 @@ get_header(); ?>
                 </article>
                 <article class="about-val">
                     <div class="about-val__icon">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
                     </div>
                     <div class="about-val__num">04</div>
-                    <h3 class="about-val__title">Guaranteed Work</h3>
-                    <p class="about-val__text">Every repair comes with a 1-year labor warranty. If something isn't right, we come back and fix it — no cost, no questions.</p>
+                    <h3 class="about-val__title">Clean &amp; Professional</h3>
+                    <p class="about-val__text">We treat your home like our own. Drop cloths, boot covers, and a spotless cleanup when we're done. Every single time.</p>
                 </article>
             </div>
         </div>

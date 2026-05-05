@@ -131,19 +131,19 @@ get_header(); ?>
             'no_found_rows'  => true,
         ]);
         $fallback = [
-            ['icon'=>'🔥','title'=>'Water Heater Repair',      'text'=>'Fast diagnosis and repair of all water heater brands and sizes. No hot water? We fix it same-day.'],
-            ['icon'=>'⚡','title'=>'Water Heater Installation', 'text'=>'Full installation of tank and tankless units — properly sized, up to code, done right the first time.'],
-            ['icon'=>'💧','title'=>'Tankless Water Heaters',   'text'=>'Endless hot water with a tankless upgrade. We sell, install, and service all major brands.'],
-            ['icon'=>'🔩','title'=>'Drain Cleaning',           'text'=>'Slow drains or full blockages cleared with hydro-jetting and professional snaking.'],
-            ['icon'=>'🚨','title'=>'Emergency Plumbing',       'text'=>'Burst pipe? Major leak? We\'re available 24/7 — nights, weekends, and holidays.'],
-            ['icon'=>'🔍','title'=>'Leak Detection & Repair',  'text'=>'Non-invasive technology finds hidden leaks before they cause major damage to your home.'],
+            ['title'=>'Water Heater Repair',      'text'=>'Fast diagnosis and repair of all water heater brands and sizes. No hot water? We fix it same-day.'],
+            ['title'=>'Water Heater Installation', 'text'=>'Full installation of tank and tankless units — properly sized, up to code, done right the first time.'],
+            ['title'=>'Tankless Water Heaters',   'text'=>'Endless hot water with a tankless upgrade. We sell, install, and service all major brands.'],
+            ['title'=>'Drain Cleaning',           'text'=>'Slow drains or full blockages cleared with hydro-jetting and professional snaking.'],
+            ['title'=>'Emergency Plumbing',       'text'=>'Burst pipe? Major leak? We\'re available 24/7 — nights, weekends, and holidays.'],
+            ['title'=>'Leak Detection & Repair',  'text'=>'Non-invasive technology finds hidden leaks before they cause major damage to your home.'],
         ];
         ?>
 
         <div class="hwh-services-grid">
             <?php if ($services->have_posts()) :
                 while ($services->have_posts()) : $services->the_post();
-                    $icon  = get_post_meta(get_the_ID(), '_service_icon', true) ?: '🔧';
+                    $icon  = get_post_meta(get_the_ID(), '_service_icon', true) ?: '';
                     $price = get_post_meta(get_the_ID(), '_service_price', true);
             ?>
                 <article class="hwh-service-card reveal">
@@ -159,7 +159,6 @@ get_header(); ?>
             else :
                 foreach ($fallback as $svc) : ?>
                 <article class="hwh-service-card reveal">
-                    <div class="hwh-service-card__icon"><?php echo esc_html($svc['icon']); ?></div>
                     <h3 class="hwh-service-card__title"><?php echo esc_html($svc['title']); ?></h3>
                     <p class="hwh-service-card__text"><?php echo esc_html($svc['text']); ?></p>
                     <a href="<?php echo esc_url(home_url('/services/')); ?>" class="hwh-service-card__link">Learn More →</a>
@@ -186,28 +185,28 @@ get_header(); ?>
         <div class="hwh-process-steps">
             <div class="hwh-process-step">
                 <div class="hwh-process-step__num">01</div>
-                <div class="hwh-process-step__icon">📞</div>
+                <div class="hwh-process-step__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
                 <h3 class="hwh-process-step__title">Call or Book Online</h3>
                 <p class="hwh-process-step__text">Reach us 24/7 by phone or schedule online. We confirm your appointment fast — often same-day.</p>
             </div>
             <div class="hwh-process-connector" aria-hidden="true"></div>
             <div class="hwh-process-step">
                 <div class="hwh-process-step__num">02</div>
-                <div class="hwh-process-step__icon">🚚</div>
+                <div class="hwh-process-step__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
                 <h3 class="hwh-process-step__title">We Show Up On Time</h3>
                 <p class="hwh-process-step__text">A licensed plumber arrives fully equipped and ready. We respect your time and your home.</p>
             </div>
             <div class="hwh-process-connector" aria-hidden="true"></div>
             <div class="hwh-process-step">
                 <div class="hwh-process-step__num">03</div>
-                <div class="hwh-process-step__icon">🔍</div>
+                <div class="hwh-process-step__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
                 <h3 class="hwh-process-step__title">Diagnose &amp; Quote</h3>
                 <p class="hwh-process-step__text">We find the problem and give you a clear, upfront price. No surprises, no pressure.</p>
             </div>
             <div class="hwh-process-connector" aria-hidden="true"></div>
             <div class="hwh-process-step">
                 <div class="hwh-process-step__num">04</div>
-                <div class="hwh-process-step__icon">✅</div>
+                <div class="hwh-process-step__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
                 <h3 class="hwh-process-step__title">Fixed &amp; Guaranteed</h3>
                 <p class="hwh-process-step__text">We complete the work cleanly and efficiently. Every job is backed by our satisfaction guarantee.</p>
             </div>
@@ -419,14 +418,14 @@ get_header(); ?>
                 <h2 class="hwh-section-title">Serving All of<br><em>Tampa Bay</em></h2>
                 <p class="hwh-section-desc">Hillsborough, Pinellas, and Pasco County — if you're in the Tampa Bay area, we've got you covered with fast, reliable plumbing service.</p>
                 <div class="hwh-areas__cities">
-                    <span class="hwh-areas__city">📍 Tampa &amp; South Tampa</span>
-                    <span class="hwh-areas__city">📍 St. Pete &amp; Clearwater</span>
-                    <span class="hwh-areas__city">📍 Brandon &amp; Riverview</span>
-                    <span class="hwh-areas__city">📍 Wesley Chapel &amp; Lutz</span>
-                    <span class="hwh-areas__city">📍 Carrollwood &amp; Westchase</span>
-                    <span class="hwh-areas__city">📍 Land O' Lakes &amp; Odessa</span>
-                    <span class="hwh-areas__city">📍 Lithia &amp; Valrico</span>
-                    <span class="hwh-areas__city">📍 New Tampa &amp; Zephyrhills</span>
+                    <span class="hwh-areas__city">Tampa &amp; South Tampa</span>
+                    <span class="hwh-areas__city">St. Pete &amp; Clearwater</span>
+                    <span class="hwh-areas__city">Brandon &amp; Riverview</span>
+                    <span class="hwh-areas__city">Wesley Chapel &amp; Lutz</span>
+                    <span class="hwh-areas__city">Carrollwood &amp; Westchase</span>
+                    <span class="hwh-areas__city">Land O' Lakes &amp; Odessa</span>
+                    <span class="hwh-areas__city">Lithia &amp; Valrico</span>
+                    <span class="hwh-areas__city">New Tampa &amp; Zephyrhills</span>
                 </div>
                 <a href="<?php echo esc_url(home_url('/service-areas/')); ?>" class="hwh-btn hwh-btn--navy">View All Areas →</a>
             </div>
@@ -436,7 +435,7 @@ get_header(); ?>
                      loading="lazy" decoding="async" width="500" height="500"
                      class="hwh-areas__map">
                 <div class="hwh-areas__badge">
-                    <span>⚡</span> Same-Day Available
+                    <span>Same-Day Available</span>
                 </div>
             </div>
         </div>
