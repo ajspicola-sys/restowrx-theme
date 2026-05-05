@@ -230,33 +230,60 @@ $has_image     = has_post_thumbnail();
     <!-- ═══════════════════════════════════════════════════════
          WHY CHOOSE HWH (Static trust section)
          ═══════════════════════════════════════════════════════ -->
-    <section class="service-why-us" aria-label="Why choose Hot Water Heroes">
-        <div class="section__inner">
-            <div class="section__header reveal">
-                <span class="section__label">The HWH Difference</span>
-                <h2 class="section__title">Why Tampa Trusts Us</h2>
+    <section class="svc-trust" aria-label="Why choose Hot Water Heroes">
+        <div class="svc-trust__inner">
+            <div class="svc-trust__left reveal">
+                <span class="section__label" style="border-color:rgba(255,255,255,.15);color:rgba(255,255,255,.7);background:rgba(255,255,255,.05);">The HWH Difference</span>
+                <h2 class="svc-trust__heading">Why Tampa<br><em>Trusts Us</em></h2>
+                <p class="svc-trust__desc">We've built our reputation one job at a time — honest work, fair prices, and no surprises. That's why 2,400+ homeowners choose Hot Water Heroes.</p>
+                <div class="svc-trust__stat">
+                    <span class="svc-trust__stat-stars">★★★★★</span>
+                    <div>
+                        <strong>4.9 / 5.0</strong>
+                        <span>Google Rating · 120+ Reviews</span>
+                    </div>
+                </div>
             </div>
-            <div class="service-why-us__grid reveal">
-                <div class="service-why-us__card">
-                    <div class="service-why-us__icon" aria-hidden="true">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <div class="svc-trust__right reveal">
+                <div class="svc-trust__card">
+                    <div class="svc-trust__card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                     </div>
-                    <h3 class="service-why-us__card-title">Licensed &amp; Insured</h3>
-                    <p class="service-why-us__card-text">Every technician is fully licensed, background-checked, and carries full liability insurance. Your home is protected.</p>
+                    <div class="svc-trust__card-body">
+                        <strong class="svc-trust__card-num">100%</strong>
+                        <h3>Licensed &amp; Insured</h3>
+                        <p>Every tech is background-checked with full liability coverage. Your home is always protected.</p>
+                    </div>
                 </div>
-                <div class="service-why-us__card">
-                    <div class="service-why-us__icon" aria-hidden="true">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 1 0 0 7h5a3.5 3.5 0 1 1 0 7H6"/></svg>
+                <div class="svc-trust__card">
+                    <div class="svc-trust__card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 1 0 0 7h5a3.5 3.5 0 1 1 0 7H6"/></svg>
                     </div>
-                    <h3 class="service-why-us__card-title">Upfront, Honest Pricing</h3>
-                    <p class="service-why-us__card-text">You approve the price before we start — in writing. No hidden fees, no "while we were in there" surprises. Ever.</p>
+                    <div class="svc-trust__card-body">
+                        <strong class="svc-trust__card-num">$0</strong>
+                        <h3>Hidden Fees</h3>
+                        <p>You approve the price in writing before we turn a wrench. No "while we were in there" surprises.</p>
+                    </div>
                 </div>
-                <div class="service-why-us__card">
-                    <div class="service-why-us__icon" aria-hidden="true">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <div class="svc-trust__card">
+                    <div class="svc-trust__card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                     </div>
-                    <h3 class="service-why-us__card-title">Fast Response, 24/7</h3>
-                    <p class="service-why-us__card-text">Most jobs dispatched within 60 minutes. Emergencies don't wait — and neither do we. Available around the clock.</p>
+                    <div class="svc-trust__card-body">
+                        <strong class="svc-trust__card-num">&lt;60<span>min</span></strong>
+                        <h3>Average Response</h3>
+                        <p>Most emergency calls get a tech dispatched within the hour. We're available 24/7, 365 days.</p>
+                    </div>
+                </div>
+                <div class="svc-trust__card">
+                    <div class="svc-trust__card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    <div class="svc-trust__card-body">
+                        <strong class="svc-trust__card-num">1<span>yr</span></strong>
+                        <h3>Labor Warranty</h3>
+                        <p>Every repair backed by a full 1-year warranty. If it's not right, we come back free.</p>
+                    </div>
                 </div>
             </div>
         </div>

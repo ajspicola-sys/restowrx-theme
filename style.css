@@ -5305,6 +5305,183 @@ a.contact-card__text:hover {
   .service-hero__actions .btn { width: 100%; justify-content: center; }
 }
 
+/* ── Trust Section (dark navy 2-col) ──────────────────────────────── */
+.svc-trust {
+  background: linear-gradient(150deg, #070e1a 0%, var(--brand-navy-dark) 30%, var(--brand-navy) 70%, #102c50 100%);
+  padding: clamp(5rem, 4rem + 4vw, 8rem) 0;
+  position: relative;
+  overflow: hidden;
+}
+.svc-trust::before {
+  content: '';
+  position: absolute;
+  top: -30%;
+  right: -10%;
+  width: 500px;
+  height: 160%;
+  background: linear-gradient(180deg, transparent, rgba(242,47,58,.06) 30%, rgba(242,47,58,.1) 50%, rgba(242,47,58,.06) 70%, transparent);
+  transform: rotate(-25deg);
+  filter: blur(50px);
+  pointer-events: none;
+}
+
+.svc-trust__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 1rem + 2vw, 3rem);
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: clamp(3rem, 2rem + 4vw, 5rem);
+  align-items: start;
+  position: relative;
+  z-index: 1;
+}
+
+.svc-trust__left {
+  position: sticky;
+  top: 140px;
+}
+
+.svc-trust__heading {
+  font-family: 'Montserrat', Georgia, serif;
+  font-size: clamp(2.5rem, 2rem + 3vw, 4rem);
+  font-weight: 300;
+  color: #fff;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 1rem 0 1.25rem;
+}
+.svc-trust__heading em {
+  font-style: normal;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--brand) 0%, #FF6B74 60%, #FFA07A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.svc-trust__desc {
+  font-size: clamp(0.88rem, 0.82rem + 0.3vw, 0.98rem);
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.8;
+  max-width: 40ch;
+  margin-bottom: 2rem;
+}
+
+.svc-trust__stat {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  backdrop-filter: blur(8px);
+}
+.svc-trust__stat-stars {
+  font-size: 1.4rem;
+  color: #F5C542;
+  letter-spacing: 0.05em;
+}
+.svc-trust__stat strong {
+  display: block;
+  font-family: 'Montserrat', Georgia, serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #fff;
+}
+.svc-trust__stat span {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* Right: stacked cards */
+.svc-trust__right {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.svc-trust__card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  padding: 1.5rem 1.75rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
+.svc-trust__card:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(242, 47, 58, 0.3);
+  transform: translateX(6px);
+}
+
+.svc-trust__card-icon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: rgba(242, 47, 58, 0.12);
+  border: 1px solid rgba(242, 47, 58, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand);
+  transition: all 0.3s ease;
+}
+.svc-trust__card:hover .svc-trust__card-icon {
+  background: var(--brand);
+  color: #fff;
+  transform: scale(1.05);
+}
+
+.svc-trust__card-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.svc-trust__card-num {
+  font-family: 'Montserrat', Georgia, serif;
+  font-size: clamp(1.8rem, 1.4rem + 1.5vw, 2.4rem);
+  font-weight: 900;
+  color: #fff;
+  line-height: 1;
+  display: block;
+  margin-bottom: 0.25rem;
+  letter-spacing: -0.02em;
+}
+.svc-trust__card-num span {
+  font-size: 0.45em;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.05em;
+  margin-left: 0.1em;
+}
+
+.svc-trust__card-body h3 {
+  font-family: 'Montserrat', Georgia, serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0 0 0.35rem;
+}
+.svc-trust__card-body p {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.4);
+  line-height: 1.65;
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .svc-trust__inner { grid-template-columns: 1fr; }
+  .svc-trust__left { position: static; text-align: center; }
+  .svc-trust__desc { max-width: 100%; margin-left: auto; margin-right: auto; }
+  .svc-trust__stat { justify-content: center; }
+}
+
 /* ==========================================================================
    RELATED SERVICES
    ========================================================================== */
