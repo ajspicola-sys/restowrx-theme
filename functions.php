@@ -755,7 +755,7 @@ function hwh_create_services() {
     $categories = [
         'Water Heater Services'       => 'Professional water heater installation, repair, and maintenance for residential and commercial properties.',
         'Drain & Pipe Services'    => 'Expert drain cleaning, pipe repair, sewer line service, and camera inspections.',
-        'Emergency & General'   => 'Body contouring, hair restoration, IV therapy, and wellness treatments for total transformation.',
+        'Emergency & General'   => 'Emergency repairs, general plumbing maintenance, and comprehensive home plumbing solutions.',
     ];
 
     $cat_ids = [];
@@ -860,7 +860,7 @@ function hwh_create_services() {
             'title'    => 'Backflow Prevention',
             'icon'     => '??',
             'category' => 'Emergency & General',
-            'excerpt'  => 'Medically supervised weight loss programs tailored to your goals with proven treatments and ongoing support.',
+            'excerpt'  => 'Professional backflow preventer installation, testing, and annual certification to protect your water supply.',
         ],
         [
             'title'    => 'Hair Restoration',
