@@ -10686,7 +10686,6 @@ a.contact-card__text:hover {
   height: auto;
   object-fit: contain;
   filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.55));
-  animation: svcMascotFloat 5s ease-in-out infinite;
 }
 
 /* Radial glow behind Heaty */
