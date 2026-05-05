@@ -10249,17 +10249,25 @@ a.contact-card__text:hover {
   50%       { transform: rotate( 1.5deg) translateY(-8px); }
 }
 
-/* Water drop drip animation (teardrop shape — longer travel) */
-.e404__drop {
-  animation: e404-drip 2s ease-in infinite;
+/* Water drop drip — each drop gets its own keyframe so they scatter */
+.e404__drop--1 { animation: e404-drip-1 2s   0s     ease-in infinite; }
+.e404__drop--2 { animation: e404-drip-2 2s   0.65s  ease-in infinite; }
+.e404__drop--3 { animation: e404-drip-3 1.9s 1.3s   ease-in infinite; }
+
+@keyframes e404-drip-1 {
+  0%   { transform: translate(0,  0);    opacity: 1; }
+  70%  { opacity: 1; }
+  100% { transform: translate(-10px, 42px); opacity: 0; }
 }
-.e404__drop--1 { animation-delay: 0s;    animation-duration: 2s;   }
-.e404__drop--2 { animation-delay: 0.65s; animation-duration: 2s;   }
-.e404__drop--3 { animation-delay: 1.3s;  animation-duration: 2s;   }
-@keyframes e404-drip {
-  0%   { transform: translateY(0);    opacity: 1; }
-  75%  { opacity: 1; }
-  100% { transform: translateY(40px); opacity: 0; }
+@keyframes e404-drip-2 {
+  0%   { transform: translate(0,  0);    opacity: 1; }
+  70%  { opacity: 1; }
+  100% { transform: translate(8px, 40px);  opacity: 0; }
+}
+@keyframes e404-drip-3 {
+  0%   { transform: translate(0,  0);    opacity: 1; }
+  70%  { opacity: 1; }
+  100% { transform: translate(-5px, 38px); opacity: 0; }
 }
 
 /* Ghost "404" — visible on dark navy via gradient fill + stroke */
