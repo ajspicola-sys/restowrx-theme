@@ -1,6 +1,6 @@
 <?php
 /**
- * Hot Water Heroes Plumbing — Theme Functions
+ * Hot Water Heroes Plumbing ï¿½ Theme Functions
  * Performance-optimized build
  */
 
@@ -123,7 +123,7 @@ function hwh_enqueue_styles() {
     // but auto-busts cache when the file actually changes
     $theme_version = filemtime(get_stylesheet_directory() . '/style.css');
 
-    // Google Fonts — single optimized request with display=swap
+    // Google Fonts ï¿½ single optimized request with display=swap
     wp_enqueue_style(
         'hwh-google-fonts',
         'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap',
@@ -131,7 +131,7 @@ function hwh_enqueue_styles() {
         null
     );
 
-    // Main stylesheet — cacheable, busts only when file changes
+    // Main stylesheet ï¿½ cacheable, busts only when file changes
     wp_enqueue_style('hwh-style', get_stylesheet_uri(), ['hwh-google-fonts'], $theme_version);
 }
 add_action('wp_enqueue_scripts', 'hwh_enqueue_styles');
@@ -140,7 +140,7 @@ add_action('wp_enqueue_scripts', 'hwh_enqueue_styles');
 // The main stylesheet MUST be render-blocking to prevent FOUC.
 // Google Fonts can safely load async since system fonts render as fallback.
 function hwh_async_styles($html, $handle) {
-    // Only defer Google Fonts — NOT the main theme stylesheet
+    // Only defer Google Fonts ï¿½ NOT the main theme stylesheet
     if ( $handle === 'hwh-google-fonts' && !is_admin() ) {
         $html = str_replace("media='all'", "media='print' onload=\"this.media='all'\"", $html);
         $html = str_replace('media="all"', "media=\"print\" onload=\"this.media='all'\"", $html);
@@ -170,7 +170,7 @@ add_action('wp_head', 'hwh_resource_hints', 1);
 // -- Performance: External image proxy & WebP cache -----------------
 // Fetches third-party images (e.g. Ageless AI before/after), resizes to
 // max 800px wide, converts to WebP, and caches in wp-uploads.
-// Subsequent requests serve the local WebP — eliminates 9+ MB of PNG downloads.
+// Subsequent requests serve the local WebP ï¿½ eliminates 9+ MB of PNG downloads.
 function hwh_cached_image_url( $src_url, $max_w = 800 ) {
     $upload   = wp_upload_dir();
     $cache_dir = $upload['basedir'] . '/hwh-img-cache';
@@ -227,7 +227,7 @@ function hwh_cached_image_url( $src_url, $max_w = 800 ) {
         $img = $resized;
     }
 
-    // Save as WebP (quality 82 — good balance of size vs. quality)
+    // Save as WebP (quality 82 ï¿½ good balance of size vs. quality)
     if ( function_exists( 'imagewebp' ) ) {
         imagewebp( $img, $file_path, 82 );
     } else {
@@ -261,7 +261,7 @@ if (!defined('WP_POST_REVISIONS')) {
 }
 
 // ============================================================
-// AI SEARCH VISIBILITY & STRUCTURED DATA — HOT WATER HEROES
+// AI SEARCH VISIBILITY & STRUCTURED DATA ï¿½ HOT WATER HEROES
 // Comprehensive JSON-LD schema for Google AI Overviews,
 // ChatGPT, Perplexity, Bing Copilot, and all AEO signals.
 // ============================================================
@@ -274,10 +274,10 @@ function hwh_schema_markup() {
         '@type'       => 'Person',
         '@id'         => esc_url(home_url('/')) . '#angela-spicola',
         'name'        => 'HWH Master Plumbers',
-        'jobTitle'    => 'Founder & Lead Aesthetic Provider',
+        'jobTitle'    => 'Founder & Master Plumber',
         'honorificPrefix' => 'Master Plumber',
-        'description' => 'Board-certified Advanced Practice Registered Nurse and founder of Hot Water Heroes Plumbing in Tampa Bay, FL. Specializes in Botox, dermal fillers, laser treatments, and medical aesthetics.',
-        'worksFor'    => [ '@type' => 'MedicalBusiness', 'name' => 'Hot Water Heroes Plumbing' ],
+        'description' => 'Licensed Master Plumber and founder of Hot Water Heroes Plumbing in Tampa Bay, FL. Specializes in water heater installation, emergency plumbing, and residential repiping.',
+        'worksFor'    => [ '@type' => 'Plumber', 'name' => 'Hot Water Heroes Plumbing' ],
         'sameAs'      => [ 'https://www.instagram.com/hotwaterheroes/' ],
     ];
 
@@ -289,7 +289,7 @@ function hwh_schema_markup() {
         'name'             => 'Hot Water Heroes Plumbing',
         'legalName'        => 'Hot Water Heroes Plumbing LLC',
         'alternateName'    => 'Hot Water Heroes Plumbing',
-        'description'      => "Tampa Bay's premier medical spa offering Botox, dermal fillers, RF microneedling, laser treatments, facials, IV therapy, and medical-grade skincare. Led by HWH Master Plumbers, APRN — board-certified aesthetic provider.",
+        'description'      => "Tampa Bay's trusted plumbing company offering Botox, dermal fillers, RF microneedling, laser treatments, facials, IV therapy, and medical-grade skincare. Led by HWH Master Plumbers, APRN ï¿½ board-certified aesthetic provider.",
         'url'              => esc_url(home_url('/')),
         'telephone'        => '+18134275862',
         'email'            => 'support@hotwaterheroes.com',
@@ -362,7 +362,7 @@ function hwh_schema_markup() {
             [
                 '@type'       => 'Offer',
                 'name'        => 'Free Consultation',
-                'description' => 'Complimentary aesthetic consultation with our board-certified provider.',
+                'description' => 'Free plumbing estimate with our licensed team.',
                 'price'       => '0',
                 'priceCurrency' => 'USD',
                 'url'         => esc_url(home_url('/contact/')),
@@ -378,7 +378,7 @@ function hwh_schema_markup() {
         '@id'             => esc_url(home_url('/')) . '#website',
         'name'            => 'Hot Water Heroes Plumbing',
         'url'             => esc_url(home_url('/')),
-        'description'     => "Tampa Bay's premier medical spa — Botox, fillers, laser treatments, RF microneedling, and medical-grade skincare.",
+        'description'     => "Tampa Bay's trusted plumbing company ï¿½ water heater installation, emergency repairs, drain cleaning, repiping, and 24/7 service.",
         'inLanguage'      => 'en-US',
         'publisher'       => [ '@id' => esc_url(home_url('/')) . '#hwh-plumbing' ],
         'potentialAction' => [
@@ -389,13 +389,13 @@ function hwh_schema_markup() {
     ];
     echo '<script type="application/ld+json">' . wp_json_encode($website, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . '</script>' . "\n";
 
-    // -- Enhanced Service schema — singular service pages only -----------------
+    // -- Enhanced Service schema ï¿½ singular service pages only -----------------
     if (is_singular('service')) {
         $post_id   = get_the_ID();
         $price     = get_post_meta($post_id, '_service_price', true);
         $duration  = get_post_meta($post_id, '_service_duration', true);
         $cats      = get_the_terms($post_id, 'service_category');
-        $cat_name  = ($cats && !is_wp_error($cats)) ? $cats[0]->name : 'Aesthetic Treatment';
+        $cat_name  = ($cats && !is_wp_error($cats)) ? $cats[0]->name : 'Plumbing Service';
         $excerpt   = wp_strip_all_tags(get_the_excerpt() ?: get_the_title() . ' treatment at Hot Water Heroes Plumbing in Tampa Bay, FL.');
 
         $service_schema = [
@@ -600,33 +600,33 @@ function hwh_create_blog_posts() {
 <p>One of the most common questions we hear at Hot Water Heroes Plumbing is: "Should I get Botox or fillers?" While both are injectable treatments that can help you look younger, they work in fundamentally different ways.</p>
 
 <h3>Botox: The Wrinkle Relaxer</h3>
-<p>Botox (and similar neuromodulators like Dysport and Jeuveau) works by temporarily relaxing the muscles that cause dynamic wrinkles — think forehead lines, crow\'s feet, and frown lines between the brows. It\'s ideal for wrinkles that appear when you make facial expressions.</p>
+<p>Botox (and similar neuromodulators like Dysport and Jeuveau) works by temporarily relaxing the muscles that cause dynamic wrinkles ï¿½ think forehead lines, crow\'s feet, and frown lines between the brows. It\'s ideal for wrinkles that appear when you make facial expressions.</p>
 
 <h3>Dermal Fillers: The Volume Restorer</h3>
-<p>Fillers, on the other hand, work by adding volume beneath the skin\'s surface. They\'re perfect for plumping lips, restoring lost cheek volume, smoothing nasolabial folds, and enhancing facial contours. Popular brands include Juvéderm and Restylane.</p>
+<p>Fillers, on the other hand, work by adding volume beneath the skin\'s surface. They\'re perfect for plumping lips, restoring lost cheek volume, smoothing nasolabial folds, and enhancing facial contours. Popular brands include Juvï¿½derm and Restylane.</p>
 
 <h3>Which Should You Choose?</h3>
-<p>The answer depends on your specific concerns. Many of our clients at Hot Water Heroes Plumbing benefit from a combination of both treatments — what we call a "liquid facelift." During your complimentary consultation, our expert injectors will create a customized treatment plan tailored to your unique facial anatomy and goals.</p>
+<p>The answer depends on your specific concerns. Many of our clients at Hot Water Heroes Plumbing benefit from a combination of both treatments ï¿½ what we call a "liquid facelift." During your complimentary consultation, our expert injectors will create a customized treatment plan tailored to your unique facial anatomy and goals.</p>
 
 <p><strong>Ready to find out which treatment is right for you?</strong> Book a free consultation at Hot Water Heroes Plumbing today.</p>',
         ],
         [
-            'title'    => 'The Ultimate Guide to Medical-Grade Skincare',
+            'title'    => 'The Ultimate Guide to Professional Plumbing',
             'category' => 'Tips & Maintenance',
             'excerpt'  => 'Why medical-grade products outperform drugstore brands and how to build a results-driven skincare routine.',
             'content'  => '<h2>Why Medical-Grade Matters</h2>
 <p>Not all skincare is created equal. While drugstore products can provide basic hydration and sun protection, medical-grade skincare is formulated with higher concentrations of active ingredients that penetrate deeper into the skin for visible, lasting results.</p>
 
 <h3>Key Differences</h3>
-<p>Medical-grade products, like those from ZO Skin Health (which we carry at Hot Water Heroes Plumbing), are backed by clinical research and contain pharmaceutical-grade ingredients. They\'re designed to target specific skin concerns at the cellular level — something over-the-counter products simply can\'t match.</p>
+<p>Medical-grade products, like those from ZO Skin Health (which we carry at Hot Water Heroes Plumbing), are backed by clinical research and contain pharmaceutical-grade ingredients. They\'re designed to target specific skin concerns at the cellular level ï¿½ something over-the-counter products simply can\'t match.</p>
 
 <h3>Building Your Routine</h3>
 <p>A solid medical-grade skincare routine includes four essential steps:</p>
 <ul>
-<li><strong>Cleanser</strong> — Remove impurities without stripping your skin</li>
-<li><strong>Active Treatment</strong> — Target specific concerns (retinol, vitamin C, etc.)</li>
-<li><strong>Moisturizer</strong> — Lock in hydration and protect the skin barrier</li>
-<li><strong>Sunscreen</strong> — The single most important anti-aging product you can use</li>
+<li><strong>Cleanser</strong> ï¿½ Remove impurities without stripping your skin</li>
+<li><strong>Active Treatment</strong> ï¿½ Target specific concerns (retinol, vitamin C, etc.)</li>
+<li><strong>Moisturizer</strong> ï¿½ Lock in hydration and protect the skin barrier</li>
+<li><strong>Sunscreen</strong> ï¿½ The single most important anti-aging product you can use</li>
 </ul>
 
 <p>Our providers at Hot Water Heroes Plumbing can analyze your skin and recommend the exact products you need. No guesswork, no wasted money on products that don\'t work.</p>',
@@ -634,7 +634,7 @@ function hwh_create_blog_posts() {
         [
             'title'    => 'What to Expect at Your First Med Spa Visit',
             'category' => 'How-To Guides',
-            'excerpt'  => 'A complete walkthrough of your consultation, treatment, and aftercare at Hot Water Heroes Plumbing — so you know exactly what to expect.',
+            'excerpt'  => 'A complete walkthrough of your consultation, treatment, and aftercare at Hot Water Heroes Plumbing ï¿½ so you know exactly what to expect.',
             'content'  => '<h2>Your First Visit, Demystified</h2>
 <p>If you\'ve never been to a med spa before, it\'s completely normal to feel a mix of excitement and nervousness. At Hot Water Heroes Plumbing, we\'ve designed every step of the experience to make you feel comfortable, informed, and cared for.</p>
 
@@ -652,7 +652,7 @@ function hwh_create_blog_posts() {
         [
             'title'    => '5 Anti-Aging Treatments That Actually Work',
             'category' => 'HWH News',
-            'excerpt'  => 'Cut through the noise — these are the five proven anti-aging treatments our providers recommend most.',
+            'excerpt'  => 'Cut through the noise ï¿½ these are the five proven anti-aging treatments our providers recommend most.',
             'content'  => '<h2>Evidence-Based Anti-Aging</h2>
 <p>The beauty industry is full of promises, but only a handful of treatments deliver scientifically proven results. Here are the five anti-aging treatments we recommend most at Hot Water Heroes Plumbing.</p>
 
@@ -676,17 +676,17 @@ function hwh_create_blog_posts() {
         [
             'title'    => 'The Benefits of IV Therapy for Skin Health',
             'category' => 'Emergency Services',
-            'excerpt'  => 'Discover how IV vitamin infusions can transform your skin from the inside out — boosting hydration, glow, and cellular repair.',
+            'excerpt'  => 'Discover how IV vitamin infusions can transform your skin from the inside out ï¿½ boosting hydration, glow, and cellular repair.',
             'content'  => '<h2>Beauty From the Inside Out</h2>
-<p>While topical treatments and procedures work on the surface, true skin health starts from within. That\'s where IV therapy comes in — delivering essential vitamins, minerals, and antioxidants directly to your bloodstream for maximum absorption.</p>
+<p>While topical treatments and procedures work on the surface, true skin health starts from within. That\'s where IV therapy comes in ï¿½ delivering essential vitamins, minerals, and antioxidants directly to your bloodstream for maximum absorption.</p>
 
 <h3>How IV Therapy Helps Your Skin</h3>
 <p>Our custom IV drips at Hot Water Heroes Plumbing are formulated with skin-boosting nutrients including:</p>
 <ul>
-<li><strong>Vitamin C</strong> — A powerful antioxidant that brightens skin and supports collagen production</li>
-<li><strong>Glutathione</strong> — The "master antioxidant" that detoxifies and promotes an even, luminous complexion</li>
-<li><strong>B-Complex Vitamins</strong> — Essential for cellular repair and energy production</li>
-<li><strong>Zinc</strong> — Supports skin healing and reduces inflammation</li>
+<li><strong>Vitamin C</strong> ï¿½ A powerful antioxidant that brightens skin and supports collagen production</li>
+<li><strong>Glutathione</strong> ï¿½ The "master antioxidant" that detoxifies and promotes an even, luminous complexion</li>
+<li><strong>B-Complex Vitamins</strong> ï¿½ Essential for cellular repair and energy production</li>
+<li><strong>Zinc</strong> ï¿½ Supports skin healing and reduces inflammation</li>
 </ul>
 
 <h3>Beyond Skin Benefits</h3>
@@ -697,24 +697,24 @@ function hwh_create_blog_posts() {
         [
             'title'    => 'Glo2Facial: Why Tampa Bay\'s It-Girls Are Obsessed',
             'category' => 'How-To Guides',
-            'excerpt'  => 'The Glo2Facial is the hottest facial treatment in Tampa Bay right now — here\'s why everyone is booking one.',
+            'excerpt'  => 'The Glo2Facial is the hottest facial treatment in Tampa Bay right now ï¿½ here\'s why everyone is booking one.',
             'content'  => '<h2>The Facial That Changed Everything</h2>
-<p>If you\'ve been on Instagram lately, you\'ve probably seen the Glo2Facial everywhere. This innovative three-in-one treatment has taken Tampa Bay by storm — and for good reason.</p>
+<p>If you\'ve been on Instagram lately, you\'ve probably seen the Glo2Facial everywhere. This innovative three-in-one treatment has taken Tampa Bay by storm ï¿½ and for good reason.</p>
 
 <h3>What Makes It Special?</h3>
 <p>Unlike traditional facials, the Glo2Facial uses a proprietary OxyPods technology that triggers a natural oxygenation process from within your skin. This means nutrients are absorbed more effectively, leading to better, longer-lasting results.</p>
 
 <h3>The Three-Step Process</h3>
 <ol>
-<li><strong>Exfoliate</strong> — Gentle resurfacing removes dead skin cells and prepares the skin</li>
-<li><strong>Oxygenate</strong> — The OxyPods reaction floods skin with oxygen from within</li>
-<li><strong>Infuse</strong> — Nutrient-rich serums are pushed deeper into the skin for maximum absorption</li>
+<li><strong>Exfoliate</strong> ï¿½ Gentle resurfacing removes dead skin cells and prepares the skin</li>
+<li><strong>Oxygenate</strong> ï¿½ The OxyPods reaction floods skin with oxygen from within</li>
+<li><strong>Infuse</strong> ï¿½ Nutrient-rich serums are pushed deeper into the skin for maximum absorption</li>
 </ol>
 
 <h3>Why We Love It</h3>
 <p>The Glo2Facial delivers instant, visible results with absolutely zero downtime. You can literally get one on your lunch break and return to work glowing. It\'s safe for all skin types and can be customized for specific concerns like hydration, brightening, or anti-aging.</p>
 
-<p><strong>Want that Tampa Bay glow?</strong> Book your Glo2Facial at Hot Water Heroes Plumbing — or host a Glo2Facial Party with your friends!</p>',
+<p><strong>Want that Tampa Bay glow?</strong> Book your Glo2Facial at Hot Water Heroes Plumbing ï¿½ or host a Glo2Facial Party with your friends!</p>',
         ],
     ];
 
@@ -778,7 +778,7 @@ function hwh_create_services() {
             'title'    => 'Jeuveau',
             'icon'     => '?',
             'category' => 'Water Heater Services',
-            'excerpt'  => 'The modern alternative to Botox — Jeuveau delivers smooth, wrinkle-free results with a formula designed specifically for aesthetics.',
+            'excerpt'  => 'The modern alternative to Botox ï¿½ Jeuveau delivers smooth, wrinkle-free results with a formula designed specifically for aesthetics.',
         ],
         [
             'title'    => 'Water Heater Installation',
@@ -1089,8 +1089,8 @@ function hwh_team_meta_html($post) {
     <div class="hwh-team-row">
         <div class="hwh-team-field">
             <label for="team_specialties">Specialties</label>
-            <input type="text" id="team_specialties" name="team_specialties" value="<?php echo esc_attr($specialties); ?>" placeholder="Botox, Dermal Fillers, PRP Therapy">
-            <p class="description">Comma-separated specialties shown as tags, e.g. "Botox, Fillers, PRP"</p>
+            <input type="text" id="team_specialties" name="team_specialties" value="<?php echo esc_attr($specialties); ?>" placeholder="Water Heaters, Drain Cleaning, Repiping">
+            <p class="description">Comma-separated specialties shown as tags, e.g. "Water Heaters, Drain Cleaning, Repiping"</p>
         </div>
     </div>
     <?php
@@ -1184,7 +1184,7 @@ function hwh_product_meta_html($post) {
         <div class="hwh-product-field">
             <label for="product_video_bg">Video Background URL (optional)</label>
             <input type="url" id="product_video_bg" name="product_video_bg" value="<?php echo esc_attr($video); ?>" placeholder="https://example.com/video.mp4">
-            <p class="description">MP4 video URL — plays faintly behind the product card. Leave blank for no video.</p>
+            <p class="description">MP4 video URL ï¿½ plays faintly behind the product card. Leave blank for no video.</p>
         </div>
     </div>
     <?php
@@ -1243,7 +1243,7 @@ function hwh_heartbeat_settings($settings) {
 add_filter('heartbeat_settings', 'hwh_heartbeat_settings');
 
 // ------------------------------------------------------------------------
-// BUILT-IN SEO META BOX — edit SEO title, description & OG image
+// BUILT-IN SEO META BOX ï¿½ edit SEO title, description & OG image
 // directly from the WordPress editor on every page/post/service
 // ------------------------------------------------------------------------
 
@@ -1353,9 +1353,9 @@ function hwh_seo_meta_html($post) {
                    id="hwh_seo_title"
                    name="hwh_seo_title"
                    value="<?php echo esc_attr($seo_title); ?>"
-                   placeholder="<?php echo esc_attr($post->post_title . ' — Hot Water Heroes Plumbing'); ?>"
+                   placeholder="<?php echo esc_attr($post->post_title . ' ï¿½ Hot Water Heroes Plumbing'); ?>"
                    maxlength="120">
-            <span class="hwh-seo-hint">Recommended: 50–60 characters. Leave blank to use default.</span>
+            <span class="hwh-seo-hint">Recommended: 50ï¿½60 characters. Leave blank to use default.</span>
             <span class="hwh-seo-counter" id="seo-title-counter">0/60</span>
         </div>
 
@@ -1367,7 +1367,7 @@ function hwh_seo_meta_html($post) {
                       rows="3"
                       placeholder="A brief summary for search engines..."
                       maxlength="320"><?php echo esc_textarea($seo_desc); ?></textarea>
-            <span class="hwh-seo-hint">Recommended: 120–160 characters.</span>
+            <span class="hwh-seo-hint">Recommended: 120ï¿½160 characters.</span>
             <span class="hwh-seo-counter" id="seo-desc-counter">0/160</span>
         </div>
 
@@ -1379,14 +1379,14 @@ function hwh_seo_meta_html($post) {
                    name="hwh_og_image"
                    value="<?php echo esc_attr($og_image); ?>"
                    placeholder="https://hotwaterheroes.com/wp-content/uploads/...">
-            <span class="hwh-seo-hint">Image shown when shared on Facebook, Twitter, etc. Ideal size: 1200×630px.</span>
+            <span class="hwh-seo-hint">Image shown when shared on Facebook, Twitter, etc. Ideal size: 1200ï¿½630px.</span>
         </div>
 
         <!-- Live Google Preview -->
         <div class="hwh-seo-preview">
             <div class="hwh-seo-preview__label">Google Search Preview</div>
             <div class="hwh-seo-preview__title" id="seo-preview-title">
-                <?php echo esc_html($seo_title ?: $post->post_title . ' — Hot Water Heroes Plumbing'); ?>
+                <?php echo esc_html($seo_title ?: $post->post_title . ' ï¿½ Hot Water Heroes Plumbing'); ?>
             </div>
             <div class="hwh-seo-preview__url">
                 <?php echo esc_url(get_permalink($post->ID)); ?>
@@ -1405,7 +1405,7 @@ function hwh_seo_meta_html($post) {
         var descCounter  = document.getElementById('seo-desc-counter');
         var previewTitle = document.getElementById('seo-preview-title');
         var previewDesc  = document.getElementById('seo-preview-desc');
-        var defaultTitle = <?php echo json_encode($post->post_title . ' — Hot Water Heroes Plumbing'); ?>;
+        var defaultTitle = <?php echo json_encode($post->post_title . ' ï¿½ Hot Water Heroes Plumbing'); ?>;
 
         function updateCounter(input, counter, ideal) {
             var len = input.value.length;
@@ -1468,11 +1468,11 @@ function hwh_custom_title($title) {
     }
     // Product pages
     if (is_singular('product')) {
-        $title['title'] = get_the_title() . ' | Medical-Grade Skincare';
+        $title['title'] = get_the_title() . ' | Professional Plumbing';
         $title['site']  = 'Hot Water Heroes Plumbing';
         return $title;
     }
-    // All other singular pages — use custom SEO title if set
+    // All other singular pages ï¿½ use custom SEO title if set
     if (is_singular()) {
         $custom = get_post_meta(get_the_ID(), '_hwh_seo_title', true);
         if (!empty($custom)) {
@@ -1520,7 +1520,7 @@ function hwh_faq_schema() {
     $faqs = [
         ['q' => 'Is there a minimum commitment?', 'a' => 'We ask for a minimum 6-month commitment to get the most out of your Beauty Bank membership. After that, you can continue month-to-month or cancel anytime.'],
         ['q' => 'Do my credits expire?', 'a' => 'No! Your banked credits never expire as long as your membership is active. If you cancel, unused credits remain available for 90 days.'],
-        ['q' => 'What can I use my credits on?', 'a' => 'Your Beauty Bank credits can be used on any service or product we offer — Botox, fillers, facials, laser treatments, IV therapy, skincare products, and more.'],
+        ['q' => 'What can I use my credits on?', 'a' => 'Your Beauty Bank credits can be used on any service or product we offer ï¿½ Botox, fillers, facials, laser treatments, IV therapy, skincare products, and more.'],
         ['q' => 'Can I share my credits with friends or family?', 'a' => 'Absolutely! You can gift your credits to friends and family members.'],
         ['q' => 'How much should I set as my monthly deposit?', 'a' => 'Most of our members choose between $100-$300/month. During your complimentary consultation, we\'ll help you find the perfect amount.'],
     ];
@@ -1585,7 +1585,7 @@ function hwh_handle_contact_form() {
     if ( empty($recipients) ) $recipients = ['support@hotwaterheroes.com'];
     $to = $recipients;
 
-    $subject = '? New Message — Hot Water Heroes Plumbing Website';
+    $subject = '? New Message ï¿½ Hot Water Heroes Plumbing Website';
 
     // -- Prepare substitution values ---------------------------------
     $service_display = $service ? ucwords(str_replace('-', ' ', $service)) : 'Not specified';
@@ -1702,12 +1702,12 @@ function hwh_settings_page_html() {
     if ( ! current_user_can('manage_options') ) return;
 
     if ( isset($_POST['hwh_settings_nonce']) && wp_verify_nonce($_POST['hwh_settings_nonce'], 'hwh_save_settings') ) {
-        // Multiple emails — stored as comma-separated string
+        // Multiple emails ï¿½ stored as comma-separated string
         $emails_raw = sanitize_text_field($_POST['hwh_notification_emails'] ?? 'support@hotwaterheroes.com');
         $emails_clean = implode(', ', array_filter(array_map('sanitize_email', array_map('trim', explode(',', $emails_raw))), 'is_email'));
         update_option('hwh_notification_emails', $emails_clean ?: 'support@hotwaterheroes.com');
 
-        // Email template — allow HTML
+        // Email template ï¿½ allow HTML
         $template = wp_unslash($_POST['hwh_email_template'] ?? '');
         update_option('hwh_email_template', $template);
 
@@ -1719,7 +1719,7 @@ function hwh_settings_page_html() {
     ?>
     <div class="wrap">
         <h1 style="display:flex;align-items:center;gap:10px;margin-bottom:24px;">
-            <span style="font-size:1.4rem;">?</span> Hot Water Heroes Plumbing — Settings
+            <span style="font-size:1.4rem;">?</span> Hot Water Heroes Plumbing ï¿½ Settings
         </h1>
 
         <form method="post">
@@ -1740,7 +1740,7 @@ function hwh_settings_page_html() {
             <!-- Section: Email Template -->
             <div style="background:#fff;border-radius:10px;padding:28px 32px;max-width:800px;margin-bottom:20px;box-shadow:0 1px 4px rgba(0,0,0,0.08);">
                 <h2 style="margin:0 0 6px;font-size:16px;">?? Email Template (HTML)</h2>
-                <p style="margin:0 0 16px;color:#666;font-size:13px;">Customize the HTML email that gets sent to your inbox. Use the tags below to insert form data — they'll be replaced automatically.</p>
+                <p style="margin:0 0 16px;color:#666;font-size:13px;">Customize the HTML email that gets sent to your inbox. Use the tags below to insert form data ï¿½ they'll be replaced automatically.</p>
 
                 <!-- Placeholder Tags Reference -->
                 <div style="background:#FFF5F5;border:1px solid #e8d8ff;border-radius:8px;padding:16px 20px;margin-bottom:16px;">
@@ -1812,7 +1812,7 @@ function hwh_add_settings_menu() {
 }
 add_action('admin_menu', 'hwh_add_settings_menu');
 
-// -- Deal Popup — Customizer Controls -------------------------------
+// -- Deal Popup ï¿½ Customizer Controls -------------------------------
 // Client manages all popup content from Appearance ? Customize ? ?? Deal Popup
 // Zero code required. Changes go live on Save & Publish.
 add_action('customize_register', 'hwh_popup_customizer');
@@ -1863,7 +1863,7 @@ function hwh_popup_customizer($wp_customize) {
         'type'        => 'text',
         'section'     => 'hwh_popup',
         'label'       => 'Discount Code (optional)',
-        'description' => 'Leave blank if no promo code — the code box won\'t appear.',
+        'description' => 'Leave blank if no promo code ï¿½ the code box won\'t appear.',
     ]);
 
     // Button text
@@ -2211,7 +2211,7 @@ function hwh_importer_page() {
 // Fires automatically after every git pull / theme file change.
 // Compares the combined modified-time of key theme files against a stored
 // value. If anything changed, it purges LiteSpeed, Cloudflare (via LSC), and
-// the WP object cache — zero manual effort required.
+// the WP object cache ï¿½ zero manual effort required.
 // =============================================================================
 add_action( 'init', function () {
     $theme_dir = get_template_directory();
@@ -2236,7 +2236,7 @@ add_action( 'init', function () {
     $stored_sig = get_option( 'hwh_theme_sig', '' );
 
     if ( $current_sig === $stored_sig ) {
-        return; // Nothing changed — skip
+        return; // Nothing changed ï¿½ skip
     }
 
     // Files changed: update stored signature
@@ -2263,11 +2263,11 @@ add_action( 'init', function () {
         w3tc_flush_all();
     }
 
-}, 1 ); // Priority 1 — run early
+}, 1 ); // Priority 1 ï¿½ run early
 
 
 // =============================================================================
-// AI SEARCH VISIBILITY — HOMEPAGE FAQ SCHEMA
+// AI SEARCH VISIBILITY ï¿½ HOMEPAGE FAQ SCHEMA
 // These Q&As directly feed Google AI Overviews, ChatGPT, and Perplexity
 // when users ask questions about med spas in Tampa Bay.
 // =============================================================================
@@ -2281,11 +2281,11 @@ function hwh_homepage_faq_schema() {
         ],
         [
             'q' => 'Who is the provider at Hot Water Heroes Plumbing?',
-            'a' => 'Hot Water Heroes Plumbing is founded and led by HWH Master Plumbers, APRN — a board-certified Advanced Practice Registered Nurse specializing in aesthetic medicine. Angela brings years of clinical experience delivering natural, results-driven outcomes for clients throughout Tampa Bay and the surrounding areas.',
+            'a' => 'Hot Water Heroes Plumbing is founded and led by HWH Master Plumbers, APRN ï¿½ a board-certified Advanced Practice Registered Nurse specializing in aesthetic medicine. Angela brings years of clinical experience delivering natural, results-driven outcomes for clients throughout Tampa Bay and the surrounding areas.',
         ],
         [
             'q' => 'Where is Hot Water Heroes Plumbing located?',
-            'a' => 'Hot Water Heroes Plumbing is located at 10043 N Dale Mabry Hwy, Tampa Bay, FL 33618 — conveniently serving Carrollwood, Westchase, Lutz, Land O Lakes, and the greater Tampa Bay Bay area. Call (813) 230-2219 to book.',
+            'a' => 'Hot Water Heroes Plumbing is located at 10043 N Dale Mabry Hwy, Tampa Bay, FL 33618 ï¿½ conveniently serving Carrollwood, Westchase, Lutz, Land O Lakes, and the greater Tampa Bay Bay area. Call (813) 230-2219 to book.',
         ],
         [
             'q' => 'How much does Botox cost at Hot Water Heroes Plumbing?',
@@ -2309,7 +2309,7 @@ function hwh_homepage_faq_schema() {
         ],
         [
             'q' => 'Does Hot Water Heroes Plumbing offer financing?',
-            'a' => 'Yes, Hot Water Heroes Plumbing offers payment plan financing through Cherry — a healthcare financing platform that lets you split your treatment costs into manageable monthly payments with easy online approval.',
+            'a' => 'Yes, Hot Water Heroes Plumbing offers payment plan financing through Cherry ï¿½ a healthcare financing platform that lets you split your treatment costs into manageable monthly payments with easy online approval.',
         ],
         [
             'q' => 'What makes Hot Water Heroes Plumbing different from other Tampa Bay med spas?',
@@ -2338,7 +2338,7 @@ add_action('wp_head', 'hwh_homepage_faq_schema', 6);
 
 
 // =============================================================================
-// AI SEARCH VISIBILITY — SERVICE PAGE FAQ SCHEMA
+// AI SEARCH VISIBILITY ï¿½ SERVICE PAGE FAQ SCHEMA
 // Auto-generates a FAQPage schema on every service page from common
 // treatment-specific questions. Helps AI tools cite specific services.
 // =============================================================================
@@ -2393,14 +2393,14 @@ add_action('wp_head', 'hwh_service_faq_schema', 7);
 
 
 // =============================================================================
-// AI SEARCH VISIBILITY — ALLOW AI CRAWLERS IN ROBOTS.TXT
+// AI SEARCH VISIBILITY ï¿½ ALLOW AI CRAWLERS IN ROBOTS.TXT
 // Explicitly permits GPTBot (ChatGPT), PerplexityBot, ClaudeBot (Anthropic),
 // Applebot-Extended (Apple Intelligence), and Google-Extended (Bard/Gemini).
 // Without this, AI tools may not index the site for their training data.
 // =============================================================================
 add_filter('robots_txt', 'hwh_allow_ai_crawlers', 10, 2);
 function hwh_allow_ai_crawlers($output, $public) {
-    $ai_rules  = "\n# -- AI Search Crawlers — explicitly allowed for AI search visibility --\n";
+    $ai_rules  = "\n# -- AI Search Crawlers ï¿½ explicitly allowed for AI search visibility --\n";
     $ai_rules .= "User-agent: GPTBot\nAllow: /\n\n";          // ChatGPT / OpenAI
     $ai_rules .= "User-agent: ChatGPT-User\nAllow: /\n\n";    // ChatGPT browsing
     $ai_rules .= "User-agent: OAI-SearchBot\nAllow: /\n\n";   // OpenAI SearchGPT
@@ -2418,7 +2418,7 @@ function hwh_allow_ai_crawlers($output, $public) {
 
 
 // =============================================================================
-// AI SEARCH VISIBILITY — HOMEPAGE REVIEW SCHEMA
+// AI SEARCH VISIBILITY ï¿½ HOMEPAGE REVIEW SCHEMA
 // Outputs 5 real-sounding sample reviews as Review entities on the homepage.
 // AI tools use Review schema to assess business authority and sentiment.
 // UPDATE these with real Google review content when available.
@@ -2431,7 +2431,7 @@ function hwh_review_schema() {
             'author'  => 'Sarah M.',
             'rating'  => 5,
             'date'    => '2026-03-15',
-            'body'    => 'Angela is absolutely amazing! I got Botox and filler for the first time and she made me feel so comfortable. The results look completely natural — not overdone at all. HWH is the only company I\'ll go from now on.',
+            'body'    => 'Angela is absolutely amazing! I got Botox and filler for the first time and she made me feel so comfortable. The results look completely natural ï¿½ not overdone at all. HWH is the only company I\'ll go from now on.',
         ],
         [
             'author'  => 'Jessica R.',
