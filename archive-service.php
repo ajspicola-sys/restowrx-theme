@@ -150,6 +150,26 @@ $all_cats = get_terms( [
          ════════════════════════════════════════════════════════════ -->
     <section class="svc-archive" aria-label="All services">
         <div class="section__inner">
+
+            <!-- Section intro -->
+            <div class="svc-archive__header reveal">
+                <div class="svc-archive__header-text">
+                    <span class="section__label">What We Do</span>
+                    <h2 class="section__title">Our Plumbing Services</h2>
+                    <p class="section__desc">Click any service to learn more about what's included, pricing, and how fast we can get to you.</p>
+                </div>
+                <?php
+                    global $wp_query;
+                    $total = $wp_query->found_posts ?? 0;
+                ?>
+                <?php if ( $total > 0 ) : ?>
+                <div class="svc-archive__count" aria-hidden="true">
+                    <strong><?php echo intval( $total ); ?></strong>
+                    <span>services available</span>
+                </div>
+                <?php endif; ?>
+            </div>
+
             <?php if ( have_posts() ) : ?>
 
                 <div class="svc-grid" id="svc-grid">
@@ -272,49 +292,50 @@ $all_cats = get_terms( [
     </section>
 
     <!-- ════════════════════════════════════════════════════════════
-         WHY HWH
+         HOW IT WORKS — Process steps
          ════════════════════════════════════════════════════════════ -->
-    <section class="svc-why" aria-label="Why choose Hot Water Heroes">
+    <section class="svc-process" aria-label="How it works">
         <div class="section__inner">
-            <div class="section__header reveal">
-                <span class="section__label">Why HWH</span>
-                <h2 class="section__title">Tampa's Most Trusted Plumbers</h2>
-                <p class="section__desc">We don't just fix the leak — we fix the source, explain every step, and stand behind our work.</p>
+            <div class="section__header reveal" style="text-align:center;">
+                <span class="section__label">How It Works</span>
+                <h2 class="section__title">From Call to Completion<br>in 4 Simple Steps</h2>
             </div>
-            <div class="svc-why__grid reveal">
-
-                <div class="svc-why__card">
-                    <div class="svc-why__icon" aria-hidden="true">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <div class="svc-process__steps reveal">
+                <div class="svc-process__step">
+                    <div class="svc-process__num">1</div>
+                    <div class="svc-process__icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L7.91 9.27a16 16 0 0 0 6.29 6.29l1.45-1.45a2 2 0 0 1 2.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z"/></svg>
                     </div>
-                    <h3 class="svc-why__title">Licensed &amp; Fully Insured</h3>
-                    <p class="svc-why__text">Every technician is state-licensed, background-checked, and covered by full liability insurance so your home is always protected.</p>
+                    <h3 class="svc-process__title">Call or Book Online</h3>
+                    <p class="svc-process__text">Reach us by phone or fill out a quick form. We'll match you with the right technician.</p>
                 </div>
-
-                <div class="svc-why__card">
-                    <div class="svc-why__icon" aria-hidden="true">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <div class="svc-process__connector" aria-hidden="true"></div>
+                <div class="svc-process__step">
+                    <div class="svc-process__num">2</div>
+                    <div class="svc-process__icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                     </div>
-                    <h3 class="svc-why__title">Same-Day Availability</h3>
-                    <p class="svc-why__text">We keep trucks stocked and technicians dispatched daily. Most calls are answered and on-site within 60 minutes — no waiting days for an appointment.</p>
+                    <h3 class="svc-process__title">Fast Dispatch</h3>
+                    <p class="svc-process__text">A licensed tech arrives — usually within 60 minutes, with a fully stocked truck.</p>
                 </div>
-
-                <div class="svc-why__card">
-                    <div class="svc-why__icon" aria-hidden="true">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 1 0 0 7h5a3.5 3.5 0 1 1 0 7H6"/></svg>
+                <div class="svc-process__connector" aria-hidden="true"></div>
+                <div class="svc-process__step">
+                    <div class="svc-process__num">3</div>
+                    <div class="svc-process__icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 1 0 0 7h5a3.5 3.5 0 1 1 0 7H6"/></svg>
                     </div>
-                    <h3 class="svc-why__title">Upfront, Flat-Rate Pricing</h3>
-                    <p class="svc-why__text">You'll know the full price before any work begins — no surprise invoices, no hourly guesswork. What we quote is what you pay.</p>
+                    <h3 class="svc-process__title">Upfront Quote</h3>
+                    <p class="svc-process__text">We diagnose the issue and give you the full price before work starts. No surprises.</p>
                 </div>
-
-                <div class="svc-why__card">
-                    <div class="svc-why__icon" aria-hidden="true">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                <div class="svc-process__connector" aria-hidden="true"></div>
+                <div class="svc-process__step">
+                    <div class="svc-process__num">4</div>
+                    <div class="svc-process__icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
                     </div>
-                    <h3 class="svc-why__title">1-Year Labor Warranty</h3>
-                    <p class="svc-why__text">Every repair and installation is backed by a 12-month labor warranty. If anything goes wrong, we come back and make it right — at no cost.</p>
+                    <h3 class="svc-process__title">Done & Guaranteed</h3>
+                    <p class="svc-process__text">We complete the job, clean up, and back it with a 1-year labor warranty.</p>
                 </div>
-
             </div>
         </div>
     </section>
@@ -323,20 +344,25 @@ $all_cats = get_terms( [
          EMERGENCY CTA BANNER
          ════════════════════════════════════════════════════════════ -->
     <section class="svc-cta" aria-label="Emergency plumbing CTA">
+        <div class="svc-cta__pulse" aria-hidden="true"></div>
         <div class="svc-cta__inner reveal">
             <div class="svc-cta__text">
                 <span class="svc-cta__eyebrow">🚨 Plumbing Emergency?</span>
                 <h2 class="svc-cta__title">We're Available<br><em>Right Now.</em></h2>
                 <p class="svc-cta__desc">Don't let a burst pipe or overflowing drain turn into a renovation. Our emergency crew is standing by 24 hours a day, 7 days a week.</p>
             </div>
-            <div class="svc-cta__actions">
-                <a href="tel:+18134275862" class="btn btn--primary btn--lg">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L7.91 9.27a16 16 0 0 0 6.29 6.29l1.45-1.45a2 2 0 0 1 2.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z"/></svg>
-                    Call 813-42-PLUMB
-                </a>
-                <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="btn btn--outline btn--lg">
-                    Schedule Online
-                </a>
+            <div class="svc-cta__right">
+                <img src="https://hotwaterheroesplumbing.com/wp-content/uploads/2026/05/Heaty-Normal.png"
+                     alt="Heaty mascot" class="svc-cta__heaty" width="160" height="180" loading="lazy" decoding="async">
+                <div class="svc-cta__actions">
+                    <a href="tel:+18134275862" class="btn btn--primary btn--lg">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L7.91 9.27a16 16 0 0 0 6.29 6.29l1.45-1.45a2 2 0 0 1 2.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z"/></svg>
+                        Call 813-42-PLUMB
+                    </a>
+                    <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="btn btn--outline btn--lg">
+                        Schedule Online
+                    </a>
+                </div>
             </div>
         </div>
     </section>
