@@ -1,158 +1,80 @@
-﻿<?php
+<?php
 /**
- * Template Name: Parties
- * Hot Water Heroes Plumbing — Botox & Glo2Facial Parties
+ * Template Name: Service Areas
+ * Hot Water Heroes Plumbing — Service Area Coverage Page
  */
 get_header(); ?>
 
 <main class="site-main" id="main-content">
 
     <!-- Hero -->
-    <section class="page-hero page-hero--parties" aria-label="Beauty parties">
+    <section class="page-hero" aria-label="Service areas">
         <div class="page-hero__inner">
-            <span class="section__label"><span aria-hidden="true">🥂</span> Beauty & Wellness Parties</span>
-            <h1 class="page-hero__title">Host a Glamorous Event<br>with <em>Hot Water Heroes Plumbing</em></h1>
-            <p class="page-hero__desc">Whether it's a girls' night, birthday bash, bridal event, or corporate wellness day — our parties combine luxury, laughter, and expert care in one unforgettable experience.</p>
+            <span class="section__label">Where We Work</span>
+            <h1 class="page-hero__title">Serving All of<br><em>Tampa Bay</em></h1>
+            <p class="page-hero__desc">From South Tampa to Wesley Chapel, we provide fast, reliable plumbing service across Hillsborough, Pinellas, and Pasco counties.</p>
             <div class="hero__actions" style="justify-content:center;">
-                <a href="#request-service" class="btn btn--primary btn--lg">Book a Party →</a>
-                <a href="#party-types" class="btn btn--outline btn--lg">Explore Parties</a>
+                <a href="#request-service" class="btn btn--primary btn--lg">Request Service</a>
+                <a href="tel:+18134275862" class="btn btn--outline btn--lg">Call 813-42-PLUMB</a>
             </div>
         </div>
     </section>
 
-    <!-- Party Types -->
-    <section class="party-types" id="party-types">
+    <!-- Coverage Areas -->
+    <section class="party-types" id="coverage-areas">
         <div class="section__inner">
 
-            <!-- Botox Party -->
-            <div class="party-block reveal">
-                <div class="party-block__header">
-                    <span class="party-block__emoji">💉</span>
-                    <div>
-                        <span class="section__label">Party Type 01</span>
-                        <h2 class="section__title">Botox Party</h2>
-                    </div>
+            <div class="section__header reveal">
+                <span class="section__label">Coverage Map</span>
+                <h2 class="section__title">Areas We Serve</h2>
+                <p class="section__desc">We dispatch licensed plumbers to all major Tampa Bay communities. If you're in the area, we've got you covered.</p>
+            </div>
+
+            <div class="party-block__features" style="margin-top:2rem;">
+                <div class="party-feature-card reveal">
+                    <div class="party-feature-card__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+                    <h4 class="party-feature-card__title">Hillsborough County</h4>
+                    <p class="party-feature-card__text">Tampa, South Tampa, Carrollwood, Westchase, Brandon, Riverview, Lithia, Valrico, New Tampa, Temple Terrace</p>
                 </div>
-                <div class="party-block__grid">
-                    <div class="party-block__content">
-                        <h3 class="party-block__subtitle">The Glow-Down on Botox Parties</h3>
-                        <p class="party-block__text">A Botox party is a social, relaxing event where you and your guests receive professional Botox treatments in a private group setting. Our skilled injectors provide safe, FDA-approved Botox in a fun and laid-back environment.</p>
-                        <p class="party-block__text">Whether you host at our med spa or prefer your home, office, or private venue, we bring the expertise — and the glow!</p>
-                        <div class="party-block__features">
-                            <div class="party-feature-card">
-                                <div class="party-feature-card__icon">✅</div>
-                                <h4 class="party-feature-card__title">FDA-Approved Treatments</h4>
-                                <p class="party-feature-card__text">We only use safe, clinically tested products like Botox® Cosmetic, approved by the FDA for reducing fine lines and wrinkles. You can trust you're receiving the highest quality in every dose.</p>
-                            </div>
-                            <div class="party-feature-card">
-                                <div class="party-feature-card__icon">👩‍⚕️</div>
-                                <h4 class="party-feature-card__title">Certified Medical Professionals</h4>
-                                <p class="party-feature-card__text">Your party will be staffed by our trained injectors — licensed, experienced, and passionate about natural-looking results. Every treatment is performed with expert precision.</p>
-                            </div>
-                            <div class="party-feature-card">
-                                <div class="party-feature-card__icon">🎉</div>
-                                <h4 class="party-feature-card__title">Comfortable & Fun Atmosphere</h4>
-                                <p class="party-feature-card__text">Whether at our med spa or in the comfort of your home, we create a stylish, relaxed space where you and your guests can unwind, enjoy refreshments, and feel pampered.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="party-block__visual">
-                        <div class="party-block__image-placeholder">
-                            <span>💉</span>
-                            <p>Botox Party Experience</p>
-                        </div>
-                        <a href="#request-service" class="btn btn--primary btn--lg" style="width:100%;margin-top:1.5rem;">Book a Botox Party →</a>
-                    </div>
+                <div class="party-feature-card reveal">
+                    <div class="party-feature-card__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+                    <h4 class="party-feature-card__title">Pinellas County</h4>
+                    <p class="party-feature-card__text">St. Petersburg, Clearwater, Largo, Pinellas Park, Dunedin, Safety Harbor, Oldsmar, Palm Harbor</p>
+                </div>
+                <div class="party-feature-card reveal">
+                    <div class="party-feature-card__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+                    <h4 class="party-feature-card__title">Pasco County</h4>
+                    <p class="party-feature-card__text">Wesley Chapel, Lutz, Land O' Lakes, Odessa, Zephyrhills, New Port Richey, Trinity</p>
                 </div>
             </div>
 
-            <!-- Divider -->
-            <div class="party-divider reveal">
-                <div class="party-divider__line"></div>
-                <span class="party-divider__text">or</span>
-                <div class="party-divider__line"></div>
-            </div>
-
-            <!-- Glo2Facial Party -->
-            <div class="party-block reveal">
-                <div class="party-block__header">
-                    <span class="party-block__emoji">✨</span>
-                    <div>
-                        <span class="section__label">Party Type 02</span>
-                        <h2 class="section__title">Glo2Facial Party</h2>
-                    </div>
-                </div>
-                <div class="party-block__grid party-block__grid--reverse">
-                    <div class="party-block__content">
-                        <h3 class="party-block__subtitle">Glow Together, Shine All Day</h3>
-                        <p class="party-block__text">Gather your besties and get ready for the ultimate skin-refreshing celebration. A Glo2Facial Party is a group self-care experience where everyone receives our signature three-in-one facial in a social, relaxed setting.</p>
-                        <p class="party-block__text">Whether you're prepping for an event or just want to glow up with your girls, this is skincare with a side of fun. We bring the beauty to you — or host at our luxurious med spa in Tampa!</p>
-                        <div class="party-block__features">
-                            <div class="party-feature-card">
-                                <div class="party-feature-card__icon">🌟</div>
-                                <h4 class="party-feature-card__title">Instantly Glowing Skin</h4>
-                                <p class="party-feature-card__text">Each facial deeply exfoliates, oxygenates, and infuses nutrients — leaving your skin smooth, dewy, and red-carpet ready with zero downtime.</p>
-                            </div>
-                            <div class="party-feature-card">
-                                <div class="party-feature-card__icon">🫧</div>
-                                <h4 class="party-feature-card__title">Boosts Oxygen from Within</h4>
-                                <p class="party-feature-card__text">Unlike traditional facials, this treatment stimulates natural oxygenation from inside your skin, promoting better absorption of active ingredients and a lasting glow.</p>
-                            </div>
-                            <div class="party-feature-card">
-                                <div class="party-feature-card__icon">📸</div>
-                                <h4 class="party-feature-card__title">Event-Ready in One Session</h4>
-                                <p class="party-feature-card__text">There's no redness or peeling, just radiant results. Snap selfies with confidence — your skin will be glowing the same day.</p>
-                            </div>
-                        </div>
-                        <a href="#request-service" class="btn btn--primary btn--lg" style="margin-top:1.5rem;">Book a Glo2Facial Party →</a>
-                    </div>
-                    <div class="party-block__visual">
-                        <div class="party-block__video-wrapper">
-                            <iframe
-                                srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 .5em black}</style><a href='https://www.youtube.com/embed/cXLYHldxOy8?autoplay=1'><img src='https://img.youtube.com/vi/cXLYHldxOy8/hqdefault.jpg' alt='HWH Glo2Facial Party Video'><span>&#x25B6;</span></a>"
-                                title="HWH Glo2Facial Party"
-                                frameborder="0"
-                                loading="lazy"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen>
-                            </iframe>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
-    <!-- How It Works -->
+    <!-- Why Choose Us for Your Area -->
     <section class="party-how-it-works">
         <div class="section__inner">
             <div class="section__header reveal">
-                <span class="section__label">How It Works</span>
-                <h2 class="section__title">Planning Your Party is Easy</h2>
+                <span class="section__label">Why Local Matters</span>
+                <h2 class="section__title">The Hot Water Heroes Advantage</h2>
             </div>
             <div class="party-steps reveal">
                 <div class="party-step">
                     <div class="party-step__number">01</div>
-                    <h3 class="party-step__title">Choose Your Party</h3>
-                    <p class="party-step__text">Pick between a Botox Party, Glo2Facial Party, or combine both for the ultimate glow-up experience.</p>
+                    <h3 class="party-step__title">Fast Response</h3>
+                    <p class="party-step__text">Our local plumbers are stationed across Tampa Bay, so we can reach you quickly — often within the hour.</p>
                 </div>
                 <div class="party-step__arrow">→</div>
                 <div class="party-step">
                     <div class="party-step__number">02</div>
-                    <h3 class="party-step__title">Pick a Date & Location</h3>
-                    <p class="party-step__text">Host at our luxurious med spa, your home, office, or any private venue in the Greater Tampa Bay area.</p>
+                    <h3 class="party-step__title">Local Knowledge</h3>
+                    <p class="party-step__text">We know Tampa Bay plumbing — from older Seminole Heights homes to new Wesley Chapel builds. We understand the unique challenges of Florida plumbing.</p>
                 </div>
                 <div class="party-step__arrow">→</div>
                 <div class="party-step">
                     <div class="party-step__number">03</div>
-                    <h3 class="party-step__title">Invite Your Crew</h3>
-                    <p class="party-step__text">Gather 4+ friends and get ready for an unforgettable beauty experience with expert-level treatments.</p>
-                </div>
-                <div class="party-step__arrow">→</div>
-                <div class="party-step">
-                    <div class="party-step__number">04</div>
-                    <h3 class="party-step__title">Glow Together!</h3>
-                    <p class="party-step__text">Enjoy refreshments, expert treatments, and leave looking and feeling absolutely radiant.</p>
+                    <h3 class="party-step__title">Community Trusted</h3>
+                    <p class="party-step__text">Hundreds of 5-star reviews from your neighbors. We're proud to be Tampa Bay's go-to plumbing team.</p>
                 </div>
             </div>
         </div>
@@ -163,53 +85,45 @@ get_header(); ?>
         <div class="section__inner">
             <div class="section__header reveal">
                 <span class="section__label">Questions?</span>
-                <h2 class="section__title">Party FAQ</h2>
+                <h2 class="section__title">Service Area FAQ</h2>
             </div>
             <div class="faq-list reveal">
                 <details class="faq-item">
-                    <summary class="faq-item__question">Is Botox safe to get in a party setting?</summary>
+                    <summary class="faq-item__question">Do you service my area?</summary>
                     <div class="faq-item__answer">
-                        <p>Yes! All Botox treatments are administered by our licensed medical professionals in a clean, controlled environment. We follow all safety protocols — just like we would during a private appointment.</p>
+                        <p>We serve all of Hillsborough, Pinellas, and Pasco counties. If you're in the greater Tampa Bay area, chances are we can get to you. Call us and we'll confirm.</p>
                     </div>
                 </details>
                 <details class="faq-item">
-                    <summary class="faq-item__question">Do you travel outside of Tampa?</summary>
+                    <summary class="faq-item__question">How fast can a plumber get to me?</summary>
                     <div class="faq-item__answer">
-                        <p>We serve the greater Tampa Bay area, including St. Pete, Clearwater, Wesley Chapel, and surrounding cities. If you're outside this zone, let us know — travel may still be possible!</p>
+                        <p>For emergencies, we aim to have a plumber at your door within 60 minutes. For scheduled appointments, we offer same-day and next-day availability in most areas.</p>
                     </div>
                 </details>
                 <details class="faq-item">
-                    <summary class="faq-item__question">What's included in a Glo2Facial party?</summary>
+                    <summary class="faq-item__question">Is there an extra charge for distant locations?</summary>
                     <div class="faq-item__answer">
-                        <p>Each guest receives a customized Glo2Facial — a relaxing treatment that oxygenates, exfoliates, and infuses skin with nutrients. It's safe, gentle, and delivers an instant glow with no downtime.</p>
+                        <p>No. We charge the same rates across our entire service area. There are no hidden trip fees or mileage charges for any location within our coverage zone.</p>
                     </div>
                 </details>
                 <details class="faq-item">
-                    <summary class="faq-item__question">How many guests can attend?</summary>
+                    <summary class="faq-item__question">Do you offer emergency service on weekends?</summary>
                     <div class="faq-item__answer">
-                        <p>We recommend a minimum of 4 guests and can accommodate up to 15 depending on the venue and treatments chosen. Contact us for larger groups — we'll make it work!</p>
-                    </div>
-                </details>
-                <details class="faq-item">
-                    <summary class="faq-item__question">Can I combine Botox and Glo2Facial at one party?</summary>
-                    <div class="faq-item__answer">
-                        <p>Absolutely! Many hosts choose to offer both options so guests can pick their treatment. It makes for an even more luxurious experience.</p>
+                        <p>Yes! Our emergency plumbing service is available 24/7, 365 days a year — including weekends and holidays. Call 813-42-PLUMB anytime.</p>
                     </div>
                 </details>
             </div>
         </div>
     </section>
 
-
     <!-- CTA -->
     <section class="cta-section">
         <div class="cta-section__inner reveal">
-            <span class="cta-section__label">Ready to Celebrate?</span>
-            <h2 class="cta-section__title">Book Your<br>Glow-Up Party</h2>
-            <p class="cta-section__text">Contact us to plan the ultimate beauty experience for you and your friends.</p>
-            <p class="cta-section__urgency">⚡ Limited weekend spots available — book early!</p>
+            <span class="cta-section__label">Need a Plumber?</span>
+            <h2 class="cta-section__title">We're in<br>Your Neighborhood.</h2>
+            <p class="cta-section__text">Fast, local, and always available. Call now or book online.</p>
             <div class="cta-section__actions">
-                <a href="#request-service" class="btn btn--primary btn--lg">Book a Party</a>
+                <a href="#request-service" class="btn btn--primary btn--lg">Request Service</a>
                 <a href="tel:+18134275862" class="btn btn--outline btn--lg">Call 813-42-PLUMB</a>
             </div>
         </div>
