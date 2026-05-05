@@ -250,7 +250,7 @@ $popup_expiry  = get_theme_mod('hwh_popup_expiry', '');
 $popup_active  = $popup_enabled;
 if ($popup_active && !empty($popup_expiry) && strtotime($popup_expiry) && strtotime($popup_expiry) < time()) $popup_active = false;
 if ($popup_active) :
-    $p_badge    = esc_html(get_theme_mod('hwh_popup_badge',    '🔧 Limited Time'));
+    $p_badge    = esc_html(get_theme_mod('hwh_popup_badge',    'Limited Time'));
     $p_title    = esc_html(get_theme_mod('hwh_popup_title',    '$50 Off Your First Service'));
     $p_text     = esc_html(get_theme_mod('hwh_popup_text',     'Book your first plumbing service and save $50. Available for new customers in Tampa Bay.'));
     $p_code     = esc_html(get_theme_mod('hwh_popup_code',     ''));

@@ -1,10 +1,10 @@
-﻿<?php
+<?php
 /**
- * Hot Water Heroes Plumbing — Theme Functions
+ * Hot Water Heroes Plumbing � Theme Functions
  * Performance-optimized build
  */
 
-// ── Theme Setup ────────────────────────────────────────────────────
+// -- Theme Setup ----------------------------------------------------
 function hwh_setup() {
     add_theme_support('title-tag');
     add_theme_support('post-thumbnails');
@@ -18,7 +18,7 @@ function hwh_setup() {
 }
 add_action('after_setup_theme', 'hwh_setup');
 
-// ── Performance: Disable WP Emoji Scripts ──────────────────────────
+// -- Performance: Disable WP Emoji Scripts --------------------------
 function hwh_disable_emojis() {
     remove_action('wp_head', 'print_emoji_detection_script', 7);
     remove_action('admin_print_scripts', 'print_emoji_detection_script');
@@ -41,7 +41,7 @@ function hwh_disable_emojis() {
 }
 add_action('init', 'hwh_disable_emojis');
 
-// ── Performance: Remove unnecessary head clutter ───────────────────
+// -- Performance: Remove unnecessary head clutter -------------------
 function hwh_cleanup_head() {
     remove_action('wp_head', 'wp_generator');
     remove_action('wp_head', 'wlwmanifest_link');
@@ -55,7 +55,7 @@ function hwh_cleanup_head() {
 }
 add_action('after_setup_theme', 'hwh_cleanup_head');
 
-// ── Performance: Disable oEmbed ────────────────────────────────────
+// -- Performance: Disable oEmbed ------------------------------------
 function hwh_disable_oembed() {
     remove_action('rest_api_init', 'wp_oembed_register_route');
     remove_filter('oembed_dataparse', 'wp_filter_oembed_result', 10);
@@ -64,7 +64,7 @@ function hwh_disable_oembed() {
 }
 add_action('init', 'hwh_disable_oembed', 9999);
 
-// ── Performance: Dequeue block library CSS on frontend ─────────────
+// -- Performance: Dequeue block library CSS on frontend -------------
 function hwh_dequeue_block_styles() {
     if (!is_admin()) {
         wp_dequeue_style('wp-block-library');
@@ -76,7 +76,7 @@ function hwh_dequeue_block_styles() {
 }
 add_action('wp_enqueue_scripts', 'hwh_dequeue_block_styles', 100);
 
-// ── Performance: Remove jQuery from frontend ───────────────────────
+// -- Performance: Remove jQuery from frontend -----------------------
 function hwh_deregister_jquery() {
     if (!is_admin() && !is_customize_preview()) {
         wp_deregister_script('jquery');
@@ -86,7 +86,7 @@ function hwh_deregister_jquery() {
 }
 add_action('wp_enqueue_scripts', 'hwh_deregister_jquery', 100);
 
-// ── Force correct page template by slug ────────────────────────────
+// -- Force correct page template by slug ----------------------------
 function hwh_force_page_templates($template) {
     if (is_page()) {
         $slug = get_post_field('post_name', get_queried_object_id());
@@ -117,13 +117,13 @@ function hwh_force_page_templates($template) {
 }
 add_filter('template_include', 'hwh_force_page_templates');
 
-// ── Enqueue Assets ─────────────────────────────────────────────────
+// -- Enqueue Assets -------------------------------------------------
 function hwh_enqueue_styles() {
     // Use file modification time so browser caches CSS between visits
     // but auto-busts cache when the file actually changes
     $theme_version = filemtime(get_stylesheet_directory() . '/style.css');
 
-    // Google Fonts — single optimized request with display=swap
+    // Google Fonts � single optimized request with display=swap
     wp_enqueue_style(
         'hwh-google-fonts',
         'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap',
@@ -131,16 +131,16 @@ function hwh_enqueue_styles() {
         null
     );
 
-    // Main stylesheet — cacheable, busts only when file changes
+    // Main stylesheet � cacheable, busts only when file changes
     wp_enqueue_style('hwh-style', get_stylesheet_uri(), ['hwh-google-fonts'], $theme_version);
 }
 add_action('wp_enqueue_scripts', 'hwh_enqueue_styles');
 
-// ── Performance: Make only Google Fonts non-render-blocking ───────────
+// -- Performance: Make only Google Fonts non-render-blocking -----------
 // The main stylesheet MUST be render-blocking to prevent FOUC.
 // Google Fonts can safely load async since system fonts render as fallback.
 function hwh_async_styles($html, $handle) {
-    // Only defer Google Fonts — NOT the main theme stylesheet
+    // Only defer Google Fonts � NOT the main theme stylesheet
     if ( $handle === 'hwh-google-fonts' && !is_admin() ) {
         $html = str_replace("media='all'", "media='print' onload=\"this.media='all'\"", $html);
         $html = str_replace('media="all"', "media=\"print\" onload=\"this.media='all'\"", $html);
@@ -156,7 +156,7 @@ function hwh_async_styles($html, $handle) {
 add_filter('style_loader_tag', 'hwh_async_styles', 10, 2);
 
 
-// ── Performance: Preload critical fonts only (preconnects live in header.php) ──
+// -- Performance: Preload critical fonts only (preconnects live in header.php) --
 function hwh_resource_hints() {
     // DNS prefetch for external image CDN
     echo '<link rel="dns-prefetch" href="//hotwaterheroes.com">' . "\n";
@@ -167,10 +167,10 @@ function hwh_resource_hints() {
 }
 add_action('wp_head', 'hwh_resource_hints', 1);
 
-// ── Performance: External image proxy & WebP cache ─────────────────
+// -- Performance: External image proxy & WebP cache -----------------
 // Fetches third-party images (e.g. Ageless AI before/after), resizes to
 // max 800px wide, converts to WebP, and caches in wp-uploads.
-// Subsequent requests serve the local WebP — eliminates 9+ MB of PNG downloads.
+// Subsequent requests serve the local WebP � eliminates 9+ MB of PNG downloads.
 function hwh_cached_image_url( $src_url, $max_w = 800 ) {
     $upload   = wp_upload_dir();
     $cache_dir = $upload['basedir'] . '/hwh-img-cache';
@@ -227,7 +227,7 @@ function hwh_cached_image_url( $src_url, $max_w = 800 ) {
         $img = $resized;
     }
 
-    // Save as WebP (quality 82 — good balance of size vs. quality)
+    // Save as WebP (quality 82 � good balance of size vs. quality)
     if ( function_exists( 'imagewebp' ) ) {
         imagewebp( $img, $file_path, 82 );
     } else {
@@ -241,7 +241,7 @@ function hwh_cached_image_url( $src_url, $max_w = 800 ) {
     return file_exists( $file_path ) ? $file_url : $src_url;
 }
 
-// ── Performance: Add async/defer to non-critical scripts ───────────
+// -- Performance: Add async/defer to non-critical scripts -----------
 function hwh_script_loader_tag($tag, $handle) {
     // Defer non-critical scripts
     $defer_scripts = ['wp-embed'];
@@ -255,18 +255,18 @@ add_filter('script_loader_tag', 'hwh_script_loader_tag', 10, 2);
 // NOTE: Version query strings (ver=) are kept intentionally for cache busting.
 // They ensure the browser loads the latest CSS when the theme is updated.
 
-// ── Performance: Limit post revisions ──────────────────────────────
+// -- Performance: Limit post revisions ------------------------------
 if (!defined('WP_POST_REVISIONS')) {
     define('WP_POST_REVISIONS', 5);
 }
 
 // ============================================================
-// AI SEARCH VISIBILITY & STRUCTURED DATA — HOT WATER HEROES
+// AI SEARCH VISIBILITY & STRUCTURED DATA � HOT WATER HEROES
 // Comprehensive JSON-LD schema for Google AI Overviews,
 // ChatGPT, Perplexity, Bing Copilot, and all AEO signals.
 // ============================================================
 
-// ── 1. MedicalBusiness + WebSite + Person (Angela) ── every page ─────────────
+// -- 1. MedicalBusiness + WebSite + Person (Angela) -- every page -------------
 function hwh_schema_markup() {
 
     // Named provider: HWH Master Plumbers APRN
@@ -289,7 +289,7 @@ function hwh_schema_markup() {
         'name'             => 'Hot Water Heroes Plumbing',
         'legalName'        => 'Hot Water Heroes Plumbing LLC',
         'alternateName'    => 'Hot Water Heroes Plumbing',
-        'description'      => "Tampa Bay's premier medical spa offering Botox, dermal fillers, RF microneedling, laser treatments, facials, IV therapy, and medical-grade skincare. Led by HWH Master Plumbers, APRN — board-certified aesthetic provider.",
+        'description'      => "Tampa Bay's premier medical spa offering Botox, dermal fillers, RF microneedling, laser treatments, facials, IV therapy, and medical-grade skincare. Led by HWH Master Plumbers, APRN � board-certified aesthetic provider.",
         'url'              => esc_url(home_url('/')),
         'telephone'        => '+18134275862',
         'email'            => 'support@hotwaterheroes.com',
@@ -378,7 +378,7 @@ function hwh_schema_markup() {
         '@id'             => esc_url(home_url('/')) . '#website',
         'name'            => 'Hot Water Heroes Plumbing',
         'url'             => esc_url(home_url('/')),
-        'description'     => "Tampa Bay's premier medical spa — Botox, fillers, laser treatments, RF microneedling, and medical-grade skincare.",
+        'description'     => "Tampa Bay's premier medical spa � Botox, fillers, laser treatments, RF microneedling, and medical-grade skincare.",
         'inLanguage'      => 'en-US',
         'publisher'       => [ '@id' => esc_url(home_url('/')) . '#hwh-plumbing' ],
         'potentialAction' => [
@@ -389,7 +389,7 @@ function hwh_schema_markup() {
     ];
     echo '<script type="application/ld+json">' . wp_json_encode($website, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . '</script>' . "\n";
 
-    // ── Enhanced Service schema — singular service pages only ─────────────────
+    // -- Enhanced Service schema � singular service pages only -----------------
     if (is_singular('service')) {
         $post_id   = get_the_ID();
         $price     = get_post_meta($post_id, '_service_price', true);
@@ -416,7 +416,7 @@ function hwh_schema_markup() {
 }
 add_action('wp_head', 'hwh_schema_markup', 5);
 
-// ── Auto-create All Pages ──────────────────────────────────────────
+// -- Auto-create All Pages ------------------------------------------
 function hwh_create_pages() {
     if (get_option('hwh_pages_created_v5')) return;
 
@@ -462,7 +462,7 @@ function hwh_create_pages() {
 }
 add_action('after_switch_theme', 'hwh_create_pages');
 
-// ── Fix Reading Settings (one-time) ───────────────────────────────
+// -- Fix Reading Settings (one-time) -------------------------------
 function hwh_fix_reading_settings() {
     if (get_option('hwh_reading_fixed_v2')) return;
 
@@ -494,7 +494,7 @@ function hwh_fix_reading_settings() {
 }
 add_action('init', 'hwh_fix_reading_settings');
 
-// ── Shared helper: check if a page with a given slug exists (any status) ──
+// -- Shared helper: check if a page with a given slug exists (any status) --
 function hwh_page_slug_exists( $slug ) {
     $q = new WP_Query([
         'post_type'              => 'page',
@@ -508,7 +508,7 @@ function hwh_page_slug_exists( $slug ) {
     return $q->have_posts();
 }
 
-// ── Auto-create Privacy Policy page ───────────────────────────────────
+// -- Auto-create Privacy Policy page -----------------------------------
 function hwh_create_privacy_page() {
     if ( get_option('hwh_privacy_page_created_v1') ) return;
     if ( ! hwh_page_slug_exists('privacy-policy') ) {
@@ -524,7 +524,7 @@ function hwh_create_privacy_page() {
 }
 add_action('init', 'hwh_create_privacy_page');
 
-// ── Auto-create Cancellation Policy page ──────────────────────────────
+// -- Auto-create Cancellation Policy page ------------------------------
 function hwh_create_cancellation_page() {
     if ( get_option('hwh_cancellation_page_created_v1') ) return;
     if ( ! hwh_page_slug_exists('cancellation-policy') ) {
@@ -540,7 +540,7 @@ function hwh_create_cancellation_page() {
 }
 add_action('init', 'hwh_create_cancellation_page');
 
-// ── Auto-create Refund Policy page ────────────────────────────────────
+// -- Auto-create Refund Policy page ------------------------------------
 function hwh_create_refund_page() {
     if ( get_option('hwh_refund_page_created_v1') ) return;
     if ( ! hwh_page_slug_exists('refund-policy') ) {
@@ -556,7 +556,7 @@ function hwh_create_refund_page() {
 }
 add_action('init', 'hwh_create_refund_page');
 
-// ── Auto-create Beauty Bank page ──────────────────────────────────────
+// -- Auto-create Beauty Bank page --------------------------------------
 function hwh_create_specials_page() {
     if ( get_option('hwh_specials_page_created_v1') ) return;
     if ( ! hwh_page_slug_exists('specials') ) {
@@ -572,7 +572,7 @@ function hwh_create_specials_page() {
 }
 add_action('init', 'hwh_create_specials_page');
 
-// ── Auto-create Starter Blog Posts ─────────────────────────────────
+// -- Auto-create Starter Blog Posts ---------------------------------
 function hwh_create_blog_posts() {
     if (get_option('hwh_blog_created_v1')) return;
 
@@ -600,13 +600,13 @@ function hwh_create_blog_posts() {
 <p>One of the most common questions we hear at Hot Water Heroes Plumbing is: "Should I get Botox or fillers?" While both are injectable treatments that can help you look younger, they work in fundamentally different ways.</p>
 
 <h3>Botox: The Wrinkle Relaxer</h3>
-<p>Botox (and similar neuromodulators like Dysport and Jeuveau) works by temporarily relaxing the muscles that cause dynamic wrinkles — think forehead lines, crow\'s feet, and frown lines between the brows. It\'s ideal for wrinkles that appear when you make facial expressions.</p>
+<p>Botox (and similar neuromodulators like Dysport and Jeuveau) works by temporarily relaxing the muscles that cause dynamic wrinkles � think forehead lines, crow\'s feet, and frown lines between the brows. It\'s ideal for wrinkles that appear when you make facial expressions.</p>
 
 <h3>Dermal Fillers: The Volume Restorer</h3>
-<p>Fillers, on the other hand, work by adding volume beneath the skin\'s surface. They\'re perfect for plumping lips, restoring lost cheek volume, smoothing nasolabial folds, and enhancing facial contours. Popular brands include Juvéderm and Restylane.</p>
+<p>Fillers, on the other hand, work by adding volume beneath the skin\'s surface. They\'re perfect for plumping lips, restoring lost cheek volume, smoothing nasolabial folds, and enhancing facial contours. Popular brands include Juv�derm and Restylane.</p>
 
 <h3>Which Should You Choose?</h3>
-<p>The answer depends on your specific concerns. Many of our clients at Hot Water Heroes Plumbing benefit from a combination of both treatments — what we call a "liquid facelift." During your complimentary consultation, our expert injectors will create a customized treatment plan tailored to your unique facial anatomy and goals.</p>
+<p>The answer depends on your specific concerns. Many of our clients at Hot Water Heroes Plumbing benefit from a combination of both treatments � what we call a "liquid facelift." During your complimentary consultation, our expert injectors will create a customized treatment plan tailored to your unique facial anatomy and goals.</p>
 
 <p><strong>Ready to find out which treatment is right for you?</strong> Book a free consultation at Hot Water Heroes Plumbing today.</p>',
         ],
@@ -618,15 +618,15 @@ function hwh_create_blog_posts() {
 <p>Not all skincare is created equal. While drugstore products can provide basic hydration and sun protection, medical-grade skincare is formulated with higher concentrations of active ingredients that penetrate deeper into the skin for visible, lasting results.</p>
 
 <h3>Key Differences</h3>
-<p>Medical-grade products, like those from ZO Skin Health (which we carry at Hot Water Heroes Plumbing), are backed by clinical research and contain pharmaceutical-grade ingredients. They\'re designed to target specific skin concerns at the cellular level — something over-the-counter products simply can\'t match.</p>
+<p>Medical-grade products, like those from ZO Skin Health (which we carry at Hot Water Heroes Plumbing), are backed by clinical research and contain pharmaceutical-grade ingredients. They\'re designed to target specific skin concerns at the cellular level � something over-the-counter products simply can\'t match.</p>
 
 <h3>Building Your Routine</h3>
 <p>A solid medical-grade skincare routine includes four essential steps:</p>
 <ul>
-<li><strong>Cleanser</strong> — Remove impurities without stripping your skin</li>
-<li><strong>Active Treatment</strong> — Target specific concerns (retinol, vitamin C, etc.)</li>
-<li><strong>Moisturizer</strong> — Lock in hydration and protect the skin barrier</li>
-<li><strong>Sunscreen</strong> — The single most important anti-aging product you can use</li>
+<li><strong>Cleanser</strong> � Remove impurities without stripping your skin</li>
+<li><strong>Active Treatment</strong> � Target specific concerns (retinol, vitamin C, etc.)</li>
+<li><strong>Moisturizer</strong> � Lock in hydration and protect the skin barrier</li>
+<li><strong>Sunscreen</strong> � The single most important anti-aging product you can use</li>
 </ul>
 
 <p>Our providers at Hot Water Heroes Plumbing can analyze your skin and recommend the exact products you need. No guesswork, no wasted money on products that don\'t work.</p>',
@@ -634,7 +634,7 @@ function hwh_create_blog_posts() {
         [
             'title'    => 'What to Expect at Your First Med Spa Visit',
             'category' => 'How-To Guides',
-            'excerpt'  => 'A complete walkthrough of your consultation, treatment, and aftercare at Hot Water Heroes Plumbing — so you know exactly what to expect.',
+            'excerpt'  => 'A complete walkthrough of your consultation, treatment, and aftercare at Hot Water Heroes Plumbing � so you know exactly what to expect.',
             'content'  => '<h2>Your First Visit, Demystified</h2>
 <p>If you\'ve never been to a med spa before, it\'s completely normal to feel a mix of excitement and nervousness. At Hot Water Heroes Plumbing, we\'ve designed every step of the experience to make you feel comfortable, informed, and cared for.</p>
 
@@ -652,7 +652,7 @@ function hwh_create_blog_posts() {
         [
             'title'    => '5 Anti-Aging Treatments That Actually Work',
             'category' => 'HWH News',
-            'excerpt'  => 'Cut through the noise — these are the five proven anti-aging treatments our providers recommend most.',
+            'excerpt'  => 'Cut through the noise � these are the five proven anti-aging treatments our providers recommend most.',
             'content'  => '<h2>Evidence-Based Anti-Aging</h2>
 <p>The beauty industry is full of promises, but only a handful of treatments deliver scientifically proven results. Here are the five anti-aging treatments we recommend most at Hot Water Heroes Plumbing.</p>
 
@@ -676,17 +676,17 @@ function hwh_create_blog_posts() {
         [
             'title'    => 'The Benefits of IV Therapy for Skin Health',
             'category' => 'Emergency Services',
-            'excerpt'  => 'Discover how IV vitamin infusions can transform your skin from the inside out — boosting hydration, glow, and cellular repair.',
+            'excerpt'  => 'Discover how IV vitamin infusions can transform your skin from the inside out � boosting hydration, glow, and cellular repair.',
             'content'  => '<h2>Beauty From the Inside Out</h2>
-<p>While topical treatments and procedures work on the surface, true skin health starts from within. That\'s where IV therapy comes in — delivering essential vitamins, minerals, and antioxidants directly to your bloodstream for maximum absorption.</p>
+<p>While topical treatments and procedures work on the surface, true skin health starts from within. That\'s where IV therapy comes in � delivering essential vitamins, minerals, and antioxidants directly to your bloodstream for maximum absorption.</p>
 
 <h3>How IV Therapy Helps Your Skin</h3>
 <p>Our custom IV drips at Hot Water Heroes Plumbing are formulated with skin-boosting nutrients including:</p>
 <ul>
-<li><strong>Vitamin C</strong> — A powerful antioxidant that brightens skin and supports collagen production</li>
-<li><strong>Glutathione</strong> — The "master antioxidant" that detoxifies and promotes an even, luminous complexion</li>
-<li><strong>B-Complex Vitamins</strong> — Essential for cellular repair and energy production</li>
-<li><strong>Zinc</strong> — Supports skin healing and reduces inflammation</li>
+<li><strong>Vitamin C</strong> � A powerful antioxidant that brightens skin and supports collagen production</li>
+<li><strong>Glutathione</strong> � The "master antioxidant" that detoxifies and promotes an even, luminous complexion</li>
+<li><strong>B-Complex Vitamins</strong> � Essential for cellular repair and energy production</li>
+<li><strong>Zinc</strong> � Supports skin healing and reduces inflammation</li>
 </ul>
 
 <h3>Beyond Skin Benefits</h3>
@@ -697,24 +697,24 @@ function hwh_create_blog_posts() {
         [
             'title'    => 'Glo2Facial: Why Tampa Bay\'s It-Girls Are Obsessed',
             'category' => 'How-To Guides',
-            'excerpt'  => 'The Glo2Facial is the hottest facial treatment in Tampa Bay right now — here\'s why everyone is booking one.',
+            'excerpt'  => 'The Glo2Facial is the hottest facial treatment in Tampa Bay right now � here\'s why everyone is booking one.',
             'content'  => '<h2>The Facial That Changed Everything</h2>
-<p>If you\'ve been on Instagram lately, you\'ve probably seen the Glo2Facial everywhere. This innovative three-in-one treatment has taken Tampa Bay by storm — and for good reason.</p>
+<p>If you\'ve been on Instagram lately, you\'ve probably seen the Glo2Facial everywhere. This innovative three-in-one treatment has taken Tampa Bay by storm � and for good reason.</p>
 
 <h3>What Makes It Special?</h3>
 <p>Unlike traditional facials, the Glo2Facial uses a proprietary OxyPods technology that triggers a natural oxygenation process from within your skin. This means nutrients are absorbed more effectively, leading to better, longer-lasting results.</p>
 
 <h3>The Three-Step Process</h3>
 <ol>
-<li><strong>Exfoliate</strong> — Gentle resurfacing removes dead skin cells and prepares the skin</li>
-<li><strong>Oxygenate</strong> — The OxyPods reaction floods skin with oxygen from within</li>
-<li><strong>Infuse</strong> — Nutrient-rich serums are pushed deeper into the skin for maximum absorption</li>
+<li><strong>Exfoliate</strong> � Gentle resurfacing removes dead skin cells and prepares the skin</li>
+<li><strong>Oxygenate</strong> � The OxyPods reaction floods skin with oxygen from within</li>
+<li><strong>Infuse</strong> � Nutrient-rich serums are pushed deeper into the skin for maximum absorption</li>
 </ol>
 
 <h3>Why We Love It</h3>
 <p>The Glo2Facial delivers instant, visible results with absolutely zero downtime. You can literally get one on your lunch break and return to work glowing. It\'s safe for all skin types and can be customized for specific concerns like hydration, brightening, or anti-aging.</p>
 
-<p><strong>Want that Tampa Bay glow?</strong> Book your Glo2Facial at Hot Water Heroes Plumbing — or host a Glo2Facial Party with your friends!</p>',
+<p><strong>Want that Tampa Bay glow?</strong> Book your Glo2Facial at Hot Water Heroes Plumbing � or host a Glo2Facial Party with your friends!</p>',
         ],
     ];
 
@@ -741,7 +741,7 @@ function hwh_create_blog_posts() {
 add_action('after_switch_theme', 'hwh_create_blog_posts');
 add_action('init', 'hwh_create_blog_posts');
 
-// ── Auto-create All Services ───────────────────────────────────────
+// -- Auto-create All Services ---------------------------------------
 function hwh_create_services() {
     if (get_option('hwh_services_created_v2')) return;
 
@@ -767,116 +767,116 @@ function hwh_create_services() {
 
     // Define all 18 services across 3 categories
     $services = [
-        // ── Injectables (3 services) ──────────────────────────────
+        // -- Injectables (3 services) ------------------------------
         [
             'title'    => 'Botox',
-            'icon'     => '💉',
+            'icon'     => '??',
             'category' => 'Water Heater Services',
             'excerpt'  => 'Smooth away fine lines and wrinkles with the world\'s most trusted neuromodulator, expertly administered for natural-looking results.',
         ],
         [
             'title'    => 'Jeuveau',
-            'icon'     => '✨',
+            'icon'     => '?',
             'category' => 'Water Heater Services',
-            'excerpt'  => 'The modern alternative to Botox — Jeuveau delivers smooth, wrinkle-free results with a formula designed specifically for aesthetics.',
+            'excerpt'  => 'The modern alternative to Botox � Jeuveau delivers smooth, wrinkle-free results with a formula designed specifically for aesthetics.',
         ],
         [
             'title'    => 'Water Heater Installation',
-            'icon'     => '💎',
+            'icon'     => '??',
             'category' => 'Water Heater Services',
             'excerpt'  => 'Restore volume, enhance contours, and achieve a refreshed, youthful appearance with premium hyaluronic acid fillers.',
         ],
 
-        // ── Skin & Facials (6 services) ───────────────────────────
+        // -- Skin & Facials (6 services) ---------------------------
         [
             'title'    => 'Chemical Peels',
-            'icon'     => '🧴',
+            'icon'     => '??',
             'category' => 'Drain & Pipe Services',
             'excerpt'  => 'Reveal fresh, radiant skin by removing damaged outer layers with customized chemical peel treatments.',
         ],
         [
             'title'    => 'Microneedling',
-            'icon'     => '🔬',
+            'icon'     => '??',
             'category' => 'Drain & Pipe Services',
             'excerpt'  => 'Stimulate your skin\'s natural collagen production to improve texture, tone, and firmness with precision microneedling.',
         ],
         [
             'title'    => 'Secret RF Microneedling',
-            'icon'     => '⚡',
+            'icon'     => '?',
             'category' => 'Drain & Pipe Services',
             'excerpt'  => 'Combine radiofrequency energy with microneedling for deeper skin tightening and dramatic rejuvenation results.',
         ],
         [
             'title'    => 'PRP Facial',
-            'icon'     => '🌟',
+            'icon'     => '??',
             'category' => 'Drain & Pipe Services',
             'excerpt'  => 'Harness your body\'s own growth factors for natural skin renewal, improved texture, and a radiant glow.',
         ],
         [
             'title'    => 'Glo2Facial',
-            'icon'     => '✦',
+            'icon'     => '?',
             'category' => 'Drain & Pipe Services',
             'excerpt'  => 'A next-generation facial that combines exfoliation, oxygenation, and infusion for an instant, healthy glow.',
         ],
         [
             'title'    => 'Cellis Derma PRP',
-            'icon'     => '🧬',
+            'icon'     => '??',
             'category' => 'Drain & Pipe Services',
             'excerpt'  => 'Advanced PRP therapy combined with cutting-edge Cellis technology for superior skin rejuvenation and healing.',
         ],
 
-        // ── Body & Wellness (9 services) ──────────────────────────
+        // -- Body & Wellness (9 services) --------------------------
         [
             'title'    => 'Sewer & Water Line',
-            'icon'     => '🔆',
+            'icon'     => '??',
             'category' => 'Emergency & General',
             'excerpt'  => 'Fractional CO2 laser resurfacing to dramatically reduce scars, wrinkles, and sun damage with precision technology.',
         ],
         [
             'title'    => 'Laser Treatments',
-            'icon'     => '💡',
+            'icon'     => '??',
             'category' => 'Emergency & General',
             'excerpt'  => 'A range of advanced laser therapies for hair removal, skin tightening, pigmentation correction, and more.',
         ],
         [
             'title'    => 'Butt Lift',
-            'icon'     => '🍑',
+            'icon'     => '??',
             'category' => 'Emergency & General',
             'excerpt'  => 'Non-surgical butt enhancement to lift, firm, and sculpt for a naturally contoured silhouette.',
         ],
         [
             'title'    => 'Sclerotherapy',
-            'icon'     => '🩺',
+            'icon'     => '??',
             'category' => 'Emergency & General',
             'excerpt'  => 'Eliminate spider veins and varicose veins with this safe, proven injection-based treatment.',
         ],
         [
             'title'    => 'Weight Loss',
-            'icon'     => '⚖️',
+            'icon'     => '??',
             'category' => 'Emergency & General',
             'excerpt'  => 'Medically supervised weight loss programs tailored to your goals with proven treatments and ongoing support.',
         ],
         [
             'title'    => 'Hair Restoration',
-            'icon'     => '💆',
+            'icon'     => '??',
             'category' => 'Emergency & General',
             'excerpt'  => 'Advanced hair restoration treatments to combat thinning and stimulate natural hair growth for fuller, healthier hair.',
         ],
         [
             'title'    => 'Leak Detection',
-            'icon'     => '💧',
+            'icon'     => '??',
             'category' => 'Emergency & General',
             'excerpt'  => 'Boost hydration, energy, and immunity with custom IV vitamin infusions delivered directly to your bloodstream.',
         ],
         [
             'title'    => 'Vaginal PRP',
-            'icon'     => '🌸',
+            'icon'     => '??',
             'category' => 'Emergency & General',
             'excerpt'  => 'A confidential, non-surgical treatment using platelet-rich plasma to enhance intimate wellness and rejuvenation.',
         ],
         [
             'title'    => 'Penile PRP',
-            'icon'     => '🔬',
+            'icon'     => '??',
             'category' => 'Emergency & General',
             'excerpt'  => 'A discreet, non-surgical PRP treatment designed to improve intimate health, sensitivity, and confidence.',
         ],
@@ -913,7 +913,7 @@ function hwh_create_services() {
 }
 add_action('after_switch_theme', 'hwh_create_services');
 
-// ── Services Custom Post Type ──────────────────────────────────────
+// -- Services Custom Post Type --------------------------------------
 function hwh_register_services() {
     register_post_type('service', [
         'labels' => [
@@ -926,7 +926,7 @@ function hwh_register_services() {
             'view_item'          => 'View Service',
             'search_items'       => 'Search Services',
             'not_found'          => 'No services found',
-            'menu_name'          => '💆 Services',
+            'menu_name'          => '?? Services',
         ],
         'public'             => true,
         'has_archive'        => true,
@@ -953,7 +953,7 @@ function hwh_register_services() {
 }
 add_action('init', 'hwh_register_services');
 
-// ── Show ALL services on the services archive page ─────────────────
+// -- Show ALL services on the services archive page -----------------
 function hwh_services_per_page($query) {
     if (!is_admin() && $query->is_main_query() && $query->is_post_type_archive('service')) {
         $query->set('posts_per_page', 100);
@@ -963,7 +963,7 @@ function hwh_services_per_page($query) {
 }
 add_action('pre_get_posts', 'hwh_services_per_page');
 
-// ── Service custom fields (meta box) ───────────────────────────────
+// -- Service custom fields (meta box) -------------------------------
 function hwh_service_meta_boxes() {
     add_meta_box(
         'hwh_service_details',
@@ -991,8 +991,8 @@ function hwh_service_meta_html($post) {
     <div class="hwh-meta-row">
         <div class="hwh-meta-field">
             <label for="service_icon">Icon (emoji)</label>
-            <input type="text" id="service_icon" name="service_icon" value="<?php echo esc_attr($icon); ?>" placeholder="💉">
-            <p class="description">Paste an emoji like 💉 ✨ 🔬 🧴 ⚡ 💎</p>
+            <input type="text" id="service_icon" name="service_icon" value="<?php echo esc_attr($icon); ?>" placeholder="??">
+            <p class="description">Paste an emoji like ?? ? ?? ?? ? ??</p>
         </div>
         <div class="hwh-meta-field">
             <label for="service_price">Starting Price</label>
@@ -1020,7 +1020,7 @@ function hwh_save_service_meta($post_id) {
 }
 add_action('save_post_service', 'hwh_save_service_meta');
 
-// ── Team Member Custom Post Type ───────────────────────────────────
+// -- Team Member Custom Post Type -----------------------------------
 function hwh_register_team() {
     register_post_type('team_member', [
         'labels' => [
@@ -1033,7 +1033,7 @@ function hwh_register_team() {
             'view_item'          => 'View Team Member',
             'search_items'       => 'Search Team Members',
             'not_found'          => 'No team members found',
-            'menu_name'          => '👩‍⚕️ Team',
+            'menu_name'          => '????? Team',
         ],
         'public'             => false,
         'show_ui'            => true,
@@ -1047,7 +1047,7 @@ function hwh_register_team() {
 }
 add_action('init', 'hwh_register_team');
 
-// ── Team Member custom fields (meta box) ───────────────────────────
+// -- Team Member custom fields (meta box) ---------------------------
 function hwh_team_meta_boxes() {
     add_meta_box(
         'hwh_team_details',
@@ -1110,7 +1110,7 @@ function hwh_save_team_meta($post_id) {
 }
 add_action('save_post_team_member', 'hwh_save_team_meta');
 
-// ── Product Custom Post Type ───────────────────────────────────────
+// -- Product Custom Post Type ---------------------------------------
 function hwh_register_products() {
     register_post_type('product', [
         'labels' => [
@@ -1123,7 +1123,7 @@ function hwh_register_products() {
             'view_item'          => 'View Product',
             'search_items'       => 'Search Products',
             'not_found'          => 'No products found',
-            'menu_name'          => '🛍️ Products',
+            'menu_name'          => '??? Products',
         ],
         'public'             => false,
         'show_ui'            => true,
@@ -1137,7 +1137,7 @@ function hwh_register_products() {
 }
 add_action('init', 'hwh_register_products');
 
-// ── Product custom fields (meta box) ───────────────────────────────
+// -- Product custom fields (meta box) -------------------------------
 function hwh_product_meta_boxes() {
     add_meta_box(
         'hwh_product_details',
@@ -1184,7 +1184,7 @@ function hwh_product_meta_html($post) {
         <div class="hwh-product-field">
             <label for="product_video_bg">Video Background URL (optional)</label>
             <input type="url" id="product_video_bg" name="product_video_bg" value="<?php echo esc_attr($video); ?>" placeholder="https://example.com/video.mp4">
-            <p class="description">MP4 video URL — plays faintly behind the product card. Leave blank for no video.</p>
+            <p class="description">MP4 video URL � plays faintly behind the product card. Leave blank for no video.</p>
         </div>
     </div>
     <?php
@@ -1204,7 +1204,7 @@ function hwh_save_product_meta($post_id) {
 }
 add_action('save_post_product', 'hwh_save_product_meta');
 
-// ── Flush rewrite rules on theme activation ────────────────────────
+// -- Flush rewrite rules on theme activation ------------------------
 function hwh_rewrite_flush() {
     hwh_register_services();
     hwh_register_team();
@@ -1213,7 +1213,7 @@ function hwh_rewrite_flush() {
 }
 add_action('after_switch_theme', 'hwh_rewrite_flush');
 
-// ── Performance: Add image optimization defaults ───────────────────
+// -- Performance: Add image optimization defaults -------------------
 function hwh_image_size_defaults() {
     update_option('thumbnail_size_w', 150);
     update_option('thumbnail_size_h', 150);
@@ -1224,7 +1224,7 @@ function hwh_image_size_defaults() {
 }
 add_action('after_switch_theme', 'hwh_image_size_defaults');
 
-// ── Performance: Add WebP support ──────────────────────────────────
+// -- Performance: Add WebP support ----------------------------------
 function hwh_allow_webp($mimes) {
     $mimes['webp'] = 'image/webp';
     $mimes['avif'] = 'image/avif';
@@ -1232,28 +1232,28 @@ function hwh_allow_webp($mimes) {
 }
 add_filter('upload_mimes', 'hwh_allow_webp');
 
-// ── Security: Disable XML-RPC ──────────────────────────────────────
+// -- Security: Disable XML-RPC --------------------------------------
 add_filter('xmlrpc_enabled', '__return_false');
 
-// ── Performance: Reduce heartbeat interval ─────────────────────────
+// -- Performance: Reduce heartbeat interval -------------------------
 function hwh_heartbeat_settings($settings) {
     $settings['interval'] = 60;
     return $settings;
 }
 add_filter('heartbeat_settings', 'hwh_heartbeat_settings');
 
-// ════════════════════════════════════════════════════════════════════════
-// BUILT-IN SEO META BOX — edit SEO title, description & OG image
+// ------------------------------------------------------------------------
+// BUILT-IN SEO META BOX � edit SEO title, description & OG image
 // directly from the WordPress editor on every page/post/service
-// ════════════════════════════════════════════════════════════════════════
+// ------------------------------------------------------------------------
 
-// ── Register the meta box on all editable post types ───────────────
+// -- Register the meta box on all editable post types ---------------
 function hwh_seo_meta_box() {
     $post_types = ['post', 'page', 'service'];
     foreach ($post_types as $pt) {
         add_meta_box(
             'hwh_seo_meta',
-            '🔍 SEO Settings',
+            '?? SEO Settings',
             'hwh_seo_meta_html',
             $pt,
             'normal',
@@ -1263,7 +1263,7 @@ function hwh_seo_meta_box() {
 }
 add_action('add_meta_boxes', 'hwh_seo_meta_box');
 
-// ── Render the meta box HTML ───────────────────────────────────────
+// -- Render the meta box HTML ---------------------------------------
 function hwh_seo_meta_html($post) {
     wp_nonce_field('hwh_seo_meta', 'hwh_seo_nonce');
 
@@ -1353,9 +1353,9 @@ function hwh_seo_meta_html($post) {
                    id="hwh_seo_title"
                    name="hwh_seo_title"
                    value="<?php echo esc_attr($seo_title); ?>"
-                   placeholder="<?php echo esc_attr($post->post_title . ' — Hot Water Heroes Plumbing'); ?>"
+                   placeholder="<?php echo esc_attr($post->post_title . ' � Hot Water Heroes Plumbing'); ?>"
                    maxlength="120">
-            <span class="hwh-seo-hint">Recommended: 50–60 characters. Leave blank to use default.</span>
+            <span class="hwh-seo-hint">Recommended: 50�60 characters. Leave blank to use default.</span>
             <span class="hwh-seo-counter" id="seo-title-counter">0/60</span>
         </div>
 
@@ -1367,7 +1367,7 @@ function hwh_seo_meta_html($post) {
                       rows="3"
                       placeholder="A brief summary for search engines..."
                       maxlength="320"><?php echo esc_textarea($seo_desc); ?></textarea>
-            <span class="hwh-seo-hint">Recommended: 120–160 characters.</span>
+            <span class="hwh-seo-hint">Recommended: 120�160 characters.</span>
             <span class="hwh-seo-counter" id="seo-desc-counter">0/160</span>
         </div>
 
@@ -1379,14 +1379,14 @@ function hwh_seo_meta_html($post) {
                    name="hwh_og_image"
                    value="<?php echo esc_attr($og_image); ?>"
                    placeholder="https://hotwaterheroes.com/wp-content/uploads/...">
-            <span class="hwh-seo-hint">Image shown when shared on Facebook, Twitter, etc. Ideal size: 1200×630px.</span>
+            <span class="hwh-seo-hint">Image shown when shared on Facebook, Twitter, etc. Ideal size: 1200�630px.</span>
         </div>
 
         <!-- Live Google Preview -->
         <div class="hwh-seo-preview">
             <div class="hwh-seo-preview__label">Google Search Preview</div>
             <div class="hwh-seo-preview__title" id="seo-preview-title">
-                <?php echo esc_html($seo_title ?: $post->post_title . ' — Hot Water Heroes Plumbing'); ?>
+                <?php echo esc_html($seo_title ?: $post->post_title . ' � Hot Water Heroes Plumbing'); ?>
             </div>
             <div class="hwh-seo-preview__url">
                 <?php echo esc_url(get_permalink($post->ID)); ?>
@@ -1405,7 +1405,7 @@ function hwh_seo_meta_html($post) {
         var descCounter  = document.getElementById('seo-desc-counter');
         var previewTitle = document.getElementById('seo-preview-title');
         var previewDesc  = document.getElementById('seo-preview-desc');
-        var defaultTitle = <?php echo json_encode($post->post_title . ' — Hot Water Heroes Plumbing'); ?>;
+        var defaultTitle = <?php echo json_encode($post->post_title . ' � Hot Water Heroes Plumbing'); ?>;
 
         function updateCounter(input, counter, ideal) {
             var len = input.value.length;
@@ -1436,7 +1436,7 @@ function hwh_seo_meta_html($post) {
     <?php
 }
 
-// ── Save the SEO meta fields ───────────────────────────────────────
+// -- Save the SEO meta fields ---------------------------------------
 function hwh_save_seo_meta($post_id) {
     if (!isset($_POST['hwh_seo_nonce']) || !wp_verify_nonce($_POST['hwh_seo_nonce'], 'hwh_seo_meta')) return;
     if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
@@ -1451,7 +1451,7 @@ function hwh_save_seo_meta($post_id) {
 }
 add_action('save_post', 'hwh_save_seo_meta');
 
-// ── Override the <title> tag with custom SEO title ─────────────────
+// -- Override the <title> tag with custom SEO title -----------------
 function hwh_custom_title($title) {
     // Homepage
     if (is_front_page()) {
@@ -1472,7 +1472,7 @@ function hwh_custom_title($title) {
         $title['site']  = 'Hot Water Heroes Plumbing';
         return $title;
     }
-    // All other singular pages — use custom SEO title if set
+    // All other singular pages � use custom SEO title if set
     if (is_singular()) {
         $custom = get_post_meta(get_the_ID(), '_hwh_seo_title', true);
         if (!empty($custom)) {
@@ -1483,7 +1483,7 @@ function hwh_custom_title($title) {
 }
 add_filter('document_title_parts', 'hwh_custom_title');
 
-// ── Output meta description & OG tags in <head> ───────────────────
+// -- Output meta description & OG tags in <head> -------------------
 function hwh_seo_head_tags() {
     if (is_singular()) {
         $post_id = get_the_ID();
@@ -1513,14 +1513,14 @@ function hwh_seo_head_tags() {
 }
 add_action('wp_head', 'hwh_seo_head_tags', 5);
 
-// ── FAQ Schema for Memberships Page ────────────────────────────────
+// -- FAQ Schema for Memberships Page --------------------------------
 function hwh_faq_schema() {
     if (!is_page('memberships')) return;
 
     $faqs = [
         ['q' => 'Is there a minimum commitment?', 'a' => 'We ask for a minimum 6-month commitment to get the most out of your Beauty Bank membership. After that, you can continue month-to-month or cancel anytime.'],
         ['q' => 'Do my credits expire?', 'a' => 'No! Your banked credits never expire as long as your membership is active. If you cancel, unused credits remain available for 90 days.'],
-        ['q' => 'What can I use my credits on?', 'a' => 'Your Beauty Bank credits can be used on any service or product we offer — Botox, fillers, facials, laser treatments, IV therapy, skincare products, and more.'],
+        ['q' => 'What can I use my credits on?', 'a' => 'Your Beauty Bank credits can be used on any service or product we offer � Botox, fillers, facials, laser treatments, IV therapy, skincare products, and more.'],
         ['q' => 'Can I share my credits with friends or family?', 'a' => 'Absolutely! You can gift your credits to friends and family members.'],
         ['q' => 'How much should I set as my monthly deposit?', 'a' => 'Most of our members choose between $100-$300/month. During your complimentary consultation, we\'ll help you find the perfect amount.'],
     ];
@@ -1546,10 +1546,10 @@ function hwh_faq_schema() {
 }
 add_action('wp_head', 'hwh_faq_schema', 6);
 
-// ── Disable XML-RPC for security ──────────────────────────────────
+// -- Disable XML-RPC for security ----------------------------------
 add_filter('xmlrpc_enabled', '__return_false');
 
-// ── Add security headers ──────────────────────────────────────────
+// -- Add security headers ------------------------------------------
 function hwh_security_headers() {
     if (!is_admin()) {
         header('X-Content-Type-Options: nosniff');
@@ -1559,7 +1559,7 @@ function hwh_security_headers() {
 }
 add_action('send_headers', 'hwh_security_headers');
 
-// ── Contact Form: AJAX email handler ───────────────────────────────
+// -- Contact Form: AJAX email handler -------------------------------
 function hwh_handle_contact_form() {
     // Verify nonce
     if ( ! isset($_POST['hwh_contact_nonce']) || ! wp_verify_nonce($_POST['hwh_contact_nonce'], 'hwh_contact_form') ) {
@@ -1579,19 +1579,19 @@ function hwh_handle_contact_form() {
         wp_send_json_error(['message' => 'Please fill in all required fields.']);
     }
 
-    // ── Build recipients list (supports multiple, comma-separated) ──
+    // -- Build recipients list (supports multiple, comma-separated) --
     $recipients_raw = get_option('hwh_notification_emails', 'support@hotwaterheroes.com');
     $recipients = array_filter(array_map('trim', explode(',', $recipients_raw)), 'is_email');
     if ( empty($recipients) ) $recipients = ['support@hotwaterheroes.com'];
     $to = $recipients;
 
-    $subject = '✨ New Message — Hot Water Heroes Plumbing Website';
+    $subject = '? New Message � Hot Water Heroes Plumbing Website';
 
-    // ── Prepare substitution values ─────────────────────────────────
+    // -- Prepare substitution values ---------------------------------
     $service_display = $service ? ucwords(str_replace('-', ' ', $service)) : 'Not specified';
     $phone_display   = $phone ?: 'Not provided';
 
-    // ── Get custom or default template ─────────────────────────────
+    // -- Get custom or default template -----------------------------
     $default_template = hwh_default_email_template();
     $template = get_option('hwh_email_template', '') ?: $default_template;
 
@@ -1627,7 +1627,7 @@ function hwh_handle_contact_form() {
 add_action('wp_ajax_hwh_contact_submit',        'hwh_handle_contact_form');
 add_action('wp_ajax_nopriv_hwh_contact_submit', 'hwh_handle_contact_form');
 
-// ── Default email template (used when no custom template is saved) ──
+// -- Default email template (used when no custom template is saved) --
 function hwh_default_email_template() {
     return '<!DOCTYPE html>
 <html lang="en">
@@ -1681,7 +1681,7 @@ function hwh_default_email_template() {
               <p style="margin:0;font-size:15px;color:#333;line-height:1.7;">{{message}}</p>
             </div>
             <div style="text-align:center;margin-top:32px;">
-              <a href="mailto:{{email}}" style="display:inline-block;background:linear-gradient(135deg,#AC13F9,#8a0fd4);color:#ffffff;text-decoration:none;padding:14px 36px;border-radius:50px;font-size:14px;font-weight:600;letter-spacing:0.5px;">Reply to {{first_name}} →</a>
+              <a href="mailto:{{email}}" style="display:inline-block;background:linear-gradient(135deg,#AC13F9,#8a0fd4);color:#ffffff;text-decoration:none;padding:14px 36px;border-radius:50px;font-size:14px;font-weight:600;letter-spacing:0.5px;">Reply to {{first_name}} ?</a>
             </div>
           </td>
         </tr>
@@ -1697,21 +1697,21 @@ function hwh_default_email_template() {
 </html>';
 }
 
-// ── HWH Settings Page (Admin Dashboard) ──────────────────────────
+// -- HWH Settings Page (Admin Dashboard) --------------------------
 function hwh_settings_page_html() {
     if ( ! current_user_can('manage_options') ) return;
 
     if ( isset($_POST['hwh_settings_nonce']) && wp_verify_nonce($_POST['hwh_settings_nonce'], 'hwh_save_settings') ) {
-        // Multiple emails — stored as comma-separated string
+        // Multiple emails � stored as comma-separated string
         $emails_raw = sanitize_text_field($_POST['hwh_notification_emails'] ?? 'support@hotwaterheroes.com');
         $emails_clean = implode(', ', array_filter(array_map('sanitize_email', array_map('trim', explode(',', $emails_raw))), 'is_email'));
         update_option('hwh_notification_emails', $emails_clean ?: 'support@hotwaterheroes.com');
 
-        // Email template — allow HTML
+        // Email template � allow HTML
         $template = wp_unslash($_POST['hwh_email_template'] ?? '');
         update_option('hwh_email_template', $template);
 
-        echo '<div class="notice notice-success is-dismissible"><p><strong>✅ Settings saved!</strong></p></div>';
+        echo '<div class="notice notice-success is-dismissible"><p><strong>? Settings saved!</strong></p></div>';
     }
 
     $current_emails  = get_option('hwh_notification_emails', 'support@hotwaterheroes.com');
@@ -1719,7 +1719,7 @@ function hwh_settings_page_html() {
     ?>
     <div class="wrap">
         <h1 style="display:flex;align-items:center;gap:10px;margin-bottom:24px;">
-            <span style="font-size:1.4rem;">✨</span> Hot Water Heroes Plumbing — Settings
+            <span style="font-size:1.4rem;">?</span> Hot Water Heroes Plumbing � Settings
         </h1>
 
         <form method="post">
@@ -1727,7 +1727,7 @@ function hwh_settings_page_html() {
 
             <!-- Section: Recipients -->
             <div style="background:#fff;border-radius:10px;padding:28px 32px;max-width:800px;margin-bottom:20px;box-shadow:0 1px 4px rgba(0,0,0,0.08);">
-                <h2 style="margin:0 0 6px;font-size:16px;">📬 Notification Recipients</h2>
+                <h2 style="margin:0 0 6px;font-size:16px;">?? Notification Recipients</h2>
                 <p style="margin:0 0 20px;color:#666;font-size:13px;">Separate multiple email addresses with commas. All recipients receive every submission.</p>
                 <label for="hwh_notification_emails" style="display:block;font-weight:600;margin-bottom:6px;font-size:13px;">Email Address(es)</label>
                 <input type="text" id="hwh_notification_emails" name="hwh_notification_emails"
@@ -1739,8 +1739,8 @@ function hwh_settings_page_html() {
 
             <!-- Section: Email Template -->
             <div style="background:#fff;border-radius:10px;padding:28px 32px;max-width:800px;margin-bottom:20px;box-shadow:0 1px 4px rgba(0,0,0,0.08);">
-                <h2 style="margin:0 0 6px;font-size:16px;">🎨 Email Template (HTML)</h2>
-                <p style="margin:0 0 16px;color:#666;font-size:13px;">Customize the HTML email that gets sent to your inbox. Use the tags below to insert form data — they'll be replaced automatically.</p>
+                <h2 style="margin:0 0 6px;font-size:16px;">?? Email Template (HTML)</h2>
+                <p style="margin:0 0 16px;color:#666;font-size:13px;">Customize the HTML email that gets sent to your inbox. Use the tags below to insert form data � they'll be replaced automatically.</p>
 
                 <!-- Placeholder Tags Reference -->
                 <div style="background:#f9f6ff;border:1px solid #e8d8ff;border-radius:8px;padding:16px 20px;margin-bottom:16px;">
@@ -1762,14 +1762,14 @@ function hwh_settings_page_html() {
                                   onclick="insertTag('<?php echo esc_js($tag); ?>')"><?php echo esc_html($tag); ?></span>
                         <?php endforeach; ?>
                     </div>
-                    <p style="margin:10px 0 0;font-size:11px;color:#888;">💡 Click a tag to insert it at your cursor position in the editor below.</p>
+                    <p style="margin:10px 0 0;font-size:11px;color:#888;">?? Click a tag to insert it at your cursor position in the editor below.</p>
                 </div>
 
                 <label for="hwh_email_template" style="display:block;font-weight:600;margin-bottom:6px;font-size:13px;">HTML Template</label>
                 <textarea id="hwh_email_template" name="hwh_email_template"
                           rows="24"
                           style="width:100%;font-family:'Courier New',monospace;font-size:12px;line-height:1.6;padding:14px;border:1px solid #ddd;border-radius:6px;resize:vertical;background:#1a1a2e;color:#e8e8f0;"><?php echo esc_textarea($current_template); ?></textarea>
-                <p style="margin:8px 0 0;font-size:12px;color:#888;">⚠️ Click "Reset to Default" to restore the original branded template.</p>
+                <p style="margin:8px 0 0;font-size:12px;color:#888;">?? Click "Reset to Default" to restore the original branded template.</p>
             </div>
 
             <div style="max-width:800px;display:flex;gap:12px;align-items:center;">
@@ -1804,7 +1804,7 @@ function hwh_settings_page_html() {
 function hwh_add_settings_menu() {
     add_options_page(
         'Hot Water Heroes Plumbing Settings',
-        '✨ HWH Settings',
+        '? HWH Settings',
         'manage_options',
         'hwh-settings',
         'hwh_settings_page_html'
@@ -1812,14 +1812,14 @@ function hwh_add_settings_menu() {
 }
 add_action('admin_menu', 'hwh_add_settings_menu');
 
-// ── Deal Popup — Customizer Controls ───────────────────────────────
-// Client manages all popup content from Appearance → Customize → 🎯 Deal Popup
+// -- Deal Popup � Customizer Controls -------------------------------
+// Client manages all popup content from Appearance ? Customize ? ?? Deal Popup
 // Zero code required. Changes go live on Save & Publish.
 add_action('customize_register', 'hwh_popup_customizer');
 function hwh_popup_customizer($wp_customize) {
 
     $wp_customize->add_section('hwh_popup', [
-        'title'       => '🎯 Deal Popup',
+        'title'       => '?? Deal Popup',
         'priority'    => 30,
         'description' => 'Control the promotional popup. Turn it on/off, set the offer text, button, and when it expires. Visitors only see it once every 7 days.',
     ]);
@@ -1833,12 +1833,12 @@ function hwh_popup_customizer($wp_customize) {
     ]);
 
     // Badge
-    $wp_customize->add_setting('hwh_popup_badge', ['default' => '✦ Limited Time Offer', 'sanitize_callback' => 'sanitize_text_field', 'transport' => 'refresh']);
+    $wp_customize->add_setting('hwh_popup_badge', ['default' => '? Limited Time Offer', 'sanitize_callback' => 'sanitize_text_field', 'transport' => 'refresh']);
     $wp_customize->add_control('hwh_popup_badge', [
         'type'        => 'text',
         'section'     => 'hwh_popup',
         'label'       => 'Badge Label',
-        'description' => 'Small tag above the title. e.g. "✦ New Client Special"',
+        'description' => 'Small tag above the title. e.g. "? New Client Special"',
     ]);
 
     // Title
@@ -1863,7 +1863,7 @@ function hwh_popup_customizer($wp_customize) {
         'type'        => 'text',
         'section'     => 'hwh_popup',
         'label'       => 'Discount Code (optional)',
-        'description' => 'Leave blank if no promo code — the code box won\'t appear.',
+        'description' => 'Leave blank if no promo code � the code box won\'t appear.',
     ]);
 
     // Button text
@@ -1914,7 +1914,7 @@ function hwh_popup_customizer($wp_customize) {
 }
 
 
-// -- Service Page Extras � Video & Benefits Meta Box ----------------
+// -- Service Page Extras ? Video & Benefits Meta Box ----------------
 add_action('add_meta_boxes', 'hwh_service_extras_meta_box');
 function hwh_service_extras_meta_box() {
     add_meta_box('hwh_service_extras','?? Video & Key Benefits','hwh_service_extras_html','service','normal','high');
@@ -1974,7 +1974,7 @@ function hwh_importer_admin_notice() {
 
     echo '<div class="notice notice-info" style="padding:1rem 1.25rem;display:flex;align-items:center;gap:1.5rem;">';
     echo '<div>';
-    echo '<strong>?? Hot Water Heroes Plumbing Theme</strong> � ';
+    echo '<strong>?? Hot Water Heroes Plumbing Theme</strong> ? ';
     echo 'Import all services, posts, categories, and custom fields from the bundled demo content?';
     echo '</div>';
     echo '<a href="' . esc_url( $import_url ) . '" class="button button-primary" style="white-space:nowrap;">Import Content Now</a>';
@@ -2040,7 +2040,7 @@ function hwh_run_demo_import() {
         exit;
 
     } else {
-        // WordPress Importer plugin not active � fall back to lightweight WXR parser
+        // WordPress Importer plugin not active ? fall back to lightweight WXR parser
         hwh_lightweight_wxr_import( $xml_file );
         update_option( 'hwh_demo_imported', current_time( 'mysql' ) );
         delete_transient( 'hwh_just_activated' );
@@ -2191,7 +2191,7 @@ function hwh_importer_page() {
     echo '<h1>?? HWH Demo Content Importer</h1>';
     if ( $already && $already !== 'dismissed' ) {
         echo '<p>Content was last imported on <strong>' . esc_html( $already ) . '</strong>.</p>';
-        echo '<p>You can re-import at any time � existing posts with the same slug will be skipped.</p>';
+        echo '<p>You can re-import at any time ? existing posts with the same slug will be skipped.</p>';
     }
     echo '<p>This will import all services, pages, blog posts, categories, and custom field data from the bundled <code>demo-content/content.xml</code> file.</p>';
     echo '<p><strong>Note:</strong> Images won\'t be re-uploaded automatically unless the WordPress Importer plugin is active and the original URLs are reachable.</p>';
@@ -2211,7 +2211,7 @@ function hwh_importer_page() {
 // Fires automatically after every git pull / theme file change.
 // Compares the combined modified-time of key theme files against a stored
 // value. If anything changed, it purges LiteSpeed, Cloudflare (via LSC), and
-// the WP object cache — zero manual effort required.
+// the WP object cache � zero manual effort required.
 // =============================================================================
 add_action( 'init', function () {
     $theme_dir = get_template_directory();
@@ -2236,7 +2236,7 @@ add_action( 'init', function () {
     $stored_sig = get_option( 'hwh_theme_sig', '' );
 
     if ( $current_sig === $stored_sig ) {
-        return; // Nothing changed — skip
+        return; // Nothing changed � skip
     }
 
     // Files changed: update stored signature
@@ -2263,11 +2263,11 @@ add_action( 'init', function () {
         w3tc_flush_all();
     }
 
-}, 1 ); // Priority 1 — run early
+}, 1 ); // Priority 1 � run early
 
 
 // =============================================================================
-// AI SEARCH VISIBILITY — HOMEPAGE FAQ SCHEMA
+// AI SEARCH VISIBILITY � HOMEPAGE FAQ SCHEMA
 // These Q&As directly feed Google AI Overviews, ChatGPT, and Perplexity
 // when users ask questions about med spas in Tampa Bay.
 // =============================================================================
@@ -2281,11 +2281,11 @@ function hwh_homepage_faq_schema() {
         ],
         [
             'q' => 'Who is the provider at Hot Water Heroes Plumbing?',
-            'a' => 'Hot Water Heroes Plumbing is founded and led by HWH Master Plumbers, APRN — a board-certified Advanced Practice Registered Nurse specializing in aesthetic medicine. Angela brings years of clinical experience delivering natural, results-driven outcomes for clients throughout Tampa Bay and the surrounding areas.',
+            'a' => 'Hot Water Heroes Plumbing is founded and led by HWH Master Plumbers, APRN � a board-certified Advanced Practice Registered Nurse specializing in aesthetic medicine. Angela brings years of clinical experience delivering natural, results-driven outcomes for clients throughout Tampa Bay and the surrounding areas.',
         ],
         [
             'q' => 'Where is Hot Water Heroes Plumbing located?',
-            'a' => 'Hot Water Heroes Plumbing is located at 10043 N Dale Mabry Hwy, Tampa Bay, FL 33618 — conveniently serving Carrollwood, Westchase, Lutz, Land O Lakes, and the greater Tampa Bay Bay area. Call (813) 230-2219 to book.',
+            'a' => 'Hot Water Heroes Plumbing is located at 10043 N Dale Mabry Hwy, Tampa Bay, FL 33618 � conveniently serving Carrollwood, Westchase, Lutz, Land O Lakes, and the greater Tampa Bay Bay area. Call (813) 230-2219 to book.',
         ],
         [
             'q' => 'How much does Botox cost at Hot Water Heroes Plumbing?',
@@ -2309,7 +2309,7 @@ function hwh_homepage_faq_schema() {
         ],
         [
             'q' => 'Does Hot Water Heroes Plumbing offer financing?',
-            'a' => 'Yes, Hot Water Heroes Plumbing offers payment plan financing through Cherry — a healthcare financing platform that lets you split your treatment costs into manageable monthly payments with easy online approval.',
+            'a' => 'Yes, Hot Water Heroes Plumbing offers payment plan financing through Cherry � a healthcare financing platform that lets you split your treatment costs into manageable monthly payments with easy online approval.',
         ],
         [
             'q' => 'What makes Hot Water Heroes Plumbing different from other Tampa Bay med spas?',
@@ -2338,7 +2338,7 @@ add_action('wp_head', 'hwh_homepage_faq_schema', 6);
 
 
 // =============================================================================
-// AI SEARCH VISIBILITY — SERVICE PAGE FAQ SCHEMA
+// AI SEARCH VISIBILITY � SERVICE PAGE FAQ SCHEMA
 // Auto-generates a FAQPage schema on every service page from common
 // treatment-specific questions. Helps AI tools cite specific services.
 // =============================================================================
@@ -2393,14 +2393,14 @@ add_action('wp_head', 'hwh_service_faq_schema', 7);
 
 
 // =============================================================================
-// AI SEARCH VISIBILITY — ALLOW AI CRAWLERS IN ROBOTS.TXT
+// AI SEARCH VISIBILITY � ALLOW AI CRAWLERS IN ROBOTS.TXT
 // Explicitly permits GPTBot (ChatGPT), PerplexityBot, ClaudeBot (Anthropic),
 // Applebot-Extended (Apple Intelligence), and Google-Extended (Bard/Gemini).
 // Without this, AI tools may not index the site for their training data.
 // =============================================================================
 add_filter('robots_txt', 'hwh_allow_ai_crawlers', 10, 2);
 function hwh_allow_ai_crawlers($output, $public) {
-    $ai_rules  = "\n# ── AI Search Crawlers — explicitly allowed for AI search visibility ──\n";
+    $ai_rules  = "\n# -- AI Search Crawlers � explicitly allowed for AI search visibility --\n";
     $ai_rules .= "User-agent: GPTBot\nAllow: /\n\n";          // ChatGPT / OpenAI
     $ai_rules .= "User-agent: ChatGPT-User\nAllow: /\n\n";    // ChatGPT browsing
     $ai_rules .= "User-agent: OAI-SearchBot\nAllow: /\n\n";   // OpenAI SearchGPT
@@ -2418,7 +2418,7 @@ function hwh_allow_ai_crawlers($output, $public) {
 
 
 // =============================================================================
-// AI SEARCH VISIBILITY — HOMEPAGE REVIEW SCHEMA
+// AI SEARCH VISIBILITY � HOMEPAGE REVIEW SCHEMA
 // Outputs 5 real-sounding sample reviews as Review entities on the homepage.
 // AI tools use Review schema to assess business authority and sentiment.
 // UPDATE these with real Google review content when available.
@@ -2431,7 +2431,7 @@ function hwh_review_schema() {
             'author'  => 'Sarah M.',
             'rating'  => 5,
             'date'    => '2026-03-15',
-            'body'    => 'Angela is absolutely amazing! I got Botox and filler for the first time and she made me feel so comfortable. The results look completely natural — not overdone at all. HWH is the only company I\'ll go from now on.',
+            'body'    => 'Angela is absolutely amazing! I got Botox and filler for the first time and she made me feel so comfortable. The results look completely natural � not overdone at all. HWH is the only company I\'ll go from now on.',
         ],
         [
             'author'  => 'Jessica R.',

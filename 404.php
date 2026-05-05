@@ -15,7 +15,6 @@ $random_services = new WP_Query( [
 ] );
 
 /* Fallback icon map if a service has no _service_icon meta */
-$fallback_icons = [ '🔧', '🔥', '🚿', '🛠️', '💧', '⚙️', '🪠', '🔩' ];
 $fi = 0;
 ?>
 
@@ -112,15 +111,9 @@ $fi = 0;
                 <nav class="e404__links" aria-label="Quick service links">
                     <p class="e404__links-label">Jump straight to a service:</p>
                     <div class="e404__links-grid">
-                        <?php while ( $random_services->have_posts() ) : $random_services->the_post();
-                            $icon = get_post_meta( get_the_ID(), '_service_icon', true );
-                            if ( ! $icon ) {
-                                $icon = $fallback_icons[ $fi % count( $fallback_icons ) ];
-                                $fi++;
-                            }
-                        ?>
+                        <?php while ( $random_services->have_posts() ) : $random_services->the_post(); ?>
                         <a href="<?php the_permalink(); ?>" class="e404__link-card">
-                            <span class="e404__link-icon" aria-hidden="true"><?php echo esc_html( $icon ); ?></span>
+                            <span class="e404__link-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
                             <span class="e404__link-name"><?php the_title(); ?></span>
                         </a>
                         <?php endwhile; wp_reset_postdata(); ?>
@@ -132,19 +125,19 @@ $fi = 0;
                     <p class="e404__links-label">Or go somewhere useful:</p>
                     <div class="e404__links-grid">
                         <a href="<?php echo esc_url( home_url( '/services/' ) ); ?>" class="e404__link-card">
-                            <span class="e404__link-icon" aria-hidden="true">🔧</span>
+                            <span class="e404__link-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
                             <span class="e404__link-name">All Services</span>
                         </a>
                         <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="e404__link-card">
-                            <span class="e404__link-icon" aria-hidden="true">📞</span>
+                            <span class="e404__link-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
                             <span class="e404__link-name">Contact Us</span>
                         </a>
                         <a href="<?php echo esc_url( home_url( '/about/' ) ); ?>" class="e404__link-card">
-                            <span class="e404__link-icon" aria-hidden="true">🏢</span>
+                            <span class="e404__link-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
                             <span class="e404__link-name">About HWH</span>
                         </a>
                         <a href="tel:+18134275862" class="e404__link-card">
-                            <span class="e404__link-icon" aria-hidden="true">📲</span>
+                            <span class="e404__link-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
                             <span class="e404__link-name">Call Now</span>
                         </a>
                     </div>
