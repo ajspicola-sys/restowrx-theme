@@ -124,7 +124,7 @@ body {
   font-size: clamp(0.9rem, 0.85rem + 0.25vw, 1rem);
   line-height: 1.6;
   color: var(--text-dark);
-  background: var(--bg-cream);
+  background: #0A1628;
   overflow-x: hidden;
   scrollbar-width: thin;
   scrollbar-color: var(--brand) transparent;
@@ -9836,7 +9836,7 @@ a.contact-card__text:hover {
 /* ==========================================================================
    HWH FOOTER v2
    ========================================================================== */
-.hwh-footer { background: #0A1628; color: rgba(255,255,255,0.7); font-family: 'Inter', sans-serif; margin-top: -2px; padding-top: 0; position: relative; z-index: 1; }
+.hwh-footer { background: #0A1628; color: rgba(255,255,255,0.7); font-family: 'Inter', sans-serif; margin-top: 0; padding-top: 0; position: relative; z-index: 1; border-top: none; }
 
 /* Emergency bar */
 .hwh-footer__emergency { background: #F22F3A; padding: .9rem 0; }
