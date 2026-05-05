@@ -94,7 +94,7 @@ get_header(); ?>
         </div>
     </section>
 
-    <!-- Consultation CTA -->
+    <!-- Service CTA -->
     <section class="cta-section" aria-label="Book with us">
         <div class="cta-section__inner reveal">
             <span class="cta-section__label">Need Help Choosing?</span>

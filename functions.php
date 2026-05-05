@@ -2311,7 +2311,7 @@ function hwh_homepage_faq_schema() {
         ],
         [
             'q' => 'Is Hot Water Heroes Plumbing good for first-time homeowners?',
-            'a' => 'Absolutely. Hot Water Heroes Plumbing welcomes first-time customers and provides a friendly, transparent experience. Our licensed plumbers, APRN, takes a thorough, educational approach to every consultation, ensuring you understand every treatment option before making any decisions. They offer a $50 off first-visit special for new clients.',
+            'a' => 'Absolutely. Hot Water Heroes Plumbing welcomes first-time customers and provides a friendly, transparent experience. Our licensed plumbers, team takes a thorough, professional approach to every estimate, ensuring you understand every treatment option before making any decisions. They offer a $50 off first-visit special for new clients.',
         ],
         [
             'q' => 'Does Hot Water Heroes Plumbing offer financing?',
@@ -2365,7 +2365,7 @@ function hwh_service_faq_schema() {
         [
             'q' => 'How long does ' . $service_name . ' take at Hot Water Heroes Plumbing?',
             'a' => $duration
-                ? $service_name . ' appointments at Hot Water Heroes Plumbing typically take ' . esc_html($duration) . '. Times may vary based on your individual treatment plan.'
+                ? $service_name . ' services at Hot Water Heroes Plumbing typically take ' . esc_html($duration) . '. Times may vary based on the scope of your specific job.'
                 : $service_name . ' treatment times vary by client. Contact Hot Water Heroes Plumbing at (813) 230-2219 for details.',
         ],
         [
