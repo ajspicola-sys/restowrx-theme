@@ -1,8 +1,35 @@
-﻿<?php
+<?php
 /**
  * Hot Water Heroes — Header Template v2
  * Two-layer: dark top bar + white nav bar
  */
+
+/* ── Mega-menu: services grouped by category ──────────────────────
+   Pull all published services, bucket them by their first
+   service_category term. Cached per request via a static var.
+   ----------------------------------------------------------------- */
+function hwh_get_menu_services() {
+    static $cols = null;
+    if ( $cols !== null ) return $cols;
+
+    $services = get_posts( [
+        'post_type'      => 'service',
+        'post_status'    => 'publish',
+        'posts_per_page' => 30,
+        'orderby'        => 'menu_order',
+        'order'          => 'ASC',
+        'no_found_rows'  => true,
+    ] );
+
+    $cols = [];   // [ 'Category Name' => [ post, ... ] ]
+    foreach ( $services as $s ) {
+        $terms = get_the_terms( $s->ID, 'service_category' );
+        $cat   = ( $terms && ! is_wp_error( $terms ) ) ? $terms[0]->name : 'Services';
+        $cols[ $cat ][] = $s;
+    }
+    return $cols;
+}
+$hwh_menu_services = hwh_get_menu_services();
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -149,54 +176,42 @@
                         </a>
                         <div class="hwh-drop">
                             <div class="hwh-drop__inner">
+
+                                <?php if ( ! empty( $hwh_menu_services ) ) :
+                                    // Render up to 3 category columns
+                                    $col_count = 0;
+                                    foreach ( $hwh_menu_services as $cat_name => $posts ) :
+                                        if ( $col_count >= 3 ) break;
+                                        $col_count++;
+                                ?>
                                 <div class="hwh-drop__col">
-                                    <span class="hwh-drop__heading">Water Heaters</span>
-                                    <a href="<?php echo esc_url(home_url('/services/water-heater-repair/')); ?>" class="hwh-drop__item">
-                                        <span class="hwh-drop__icon">🔥</span>
+                                    <span class="hwh-drop__heading"><?php echo esc_html( $cat_name ); ?></span>
+                                    <?php foreach ( array_slice( $posts, 0, 5 ) as $s ) :
+                                        $icon    = get_post_meta( $s->ID, '_service_icon', true ) ?: '🔧';
+                                        $excerpt = wp_trim_words( get_post_field( 'post_excerpt', $s->ID ) ?: get_post_field( 'post_content', $s->ID ), 7, '' );
+                                    ?>
+                                    <a href="<?php echo esc_url( get_permalink( $s->ID ) ); ?>" class="hwh-drop__item">
+                                        <span class="hwh-drop__icon"><?php echo esc_html( $icon ); ?></span>
                                         <span>
-                                            <strong>Water Heater Repair</strong>
-                                            <em>Same-day diagnosis &amp; fix</em>
+                                            <strong><?php echo esc_html( $s->post_title ); ?></strong>
+                                            <?php if ( $excerpt ) : ?><em><?php echo esc_html( $excerpt ); ?></em><?php endif; ?>
                                         </span>
                                     </a>
-                                    <a href="<?php echo esc_url(home_url('/services/water-heater-installation/')); ?>" class="hwh-drop__item">
-                                        <span class="hwh-drop__icon">⚡</span>
-                                        <span>
-                                            <strong>Water Heater Installation</strong>
-                                            <em>All brands, up to code</em>
-                                        </span>
-                                    </a>
-                                    <a href="<?php echo esc_url(home_url('/services/tankless-water-heaters/')); ?>" class="hwh-drop__item">
-                                        <span class="hwh-drop__icon">💧</span>
-                                        <span>
-                                            <strong>Tankless Water Heaters</strong>
-                                            <em>Endless hot water upgrades</em>
-                                        </span>
+                                    <?php endforeach; ?>
+                                </div>
+                                <?php endforeach; ?>
+
+                                <?php else : ?>
+                                <!-- Fallback: no services in WP yet -->
+                                <div class="hwh-drop__col">
+                                    <span class="hwh-drop__heading">Popular Services</span>
+                                    <a href="<?php echo esc_url(home_url('/services/')); ?>" class="hwh-drop__item">
+                                        <span class="hwh-drop__icon">🔧</span>
+                                        <span><strong>Browse All Services</strong></span>
                                     </a>
                                 </div>
-                                <div class="hwh-drop__col">
-                                    <span class="hwh-drop__heading">Plumbing Services</span>
-                                    <a href="<?php echo esc_url(home_url('/services/drain-cleaning/')); ?>" class="hwh-drop__item">
-                                        <span class="hwh-drop__icon">🔩</span>
-                                        <span>
-                                            <strong>Drain Cleaning</strong>
-                                            <em>Hydro-jetting &amp; snaking</em>
-                                        </span>
-                                    </a>
-                                    <a href="<?php echo esc_url(home_url('/services/emergency-plumbing/')); ?>" class="hwh-drop__item">
-                                        <span class="hwh-drop__icon">🚨</span>
-                                        <span>
-                                            <strong>Emergency Plumbing</strong>
-                                            <em>24/7 rapid response</em>
-                                        </span>
-                                    </a>
-                                    <a href="<?php echo esc_url(home_url('/services/leak-detection/')); ?>" class="hwh-drop__item">
-                                        <span class="hwh-drop__icon">🔍</span>
-                                        <span>
-                                            <strong>Leak Detection &amp; Repair</strong>
-                                            <em>Non-invasive technology</em>
-                                        </span>
-                                    </a>
-                                </div>
+                                <?php endif; ?>
+
                                 <div class="hwh-drop__promo">
                                     <span class="hwh-drop__promo-label">⚡ New Customer Deal</span>
                                     <h4 class="hwh-drop__promo-title">$50 Off Your First Service</h4>
@@ -267,9 +282,21 @@
             <ul class="mobile-menu__links">
                 <li><a href="<?php echo esc_url(home_url('/')); ?>">Home</a></li>
                 <li><a href="<?php echo esc_url(home_url('/services/')); ?>">All Services</a></li>
-                <li><a href="<?php echo esc_url(home_url('/services/water-heater-repair/')); ?>">↳ Water Heater Repair</a></li>
-                <li><a href="<?php echo esc_url(home_url('/services/emergency-plumbing/')); ?>">↳ Emergency Plumbing</a></li>
-                <li><a href="<?php echo esc_url(home_url('/services/drain-cleaning/')); ?>">↳ Drain Cleaning</a></li>
+                <?php
+                // Dynamic mobile service sub-links (up to 6 total)
+                $mobile_svcs = get_posts( [
+                    'post_type'      => 'service',
+                    'post_status'    => 'publish',
+                    'posts_per_page' => 6,
+                    'orderby'        => 'menu_order',
+                    'order'          => 'ASC',
+                    'no_found_rows'  => true,
+                ] );
+                foreach ( $mobile_svcs as $ms ) :
+                    $ms_icon = get_post_meta( $ms->ID, '_service_icon', true ) ?: '🔧';
+                ?>
+                <li><a href="<?php echo esc_url( get_permalink( $ms->ID ) ); ?>">↳ <?php echo esc_html( $ms->post_title ); ?></a></li>
+                <?php endforeach; wp_reset_postdata(); ?>
                 <li><a href="<?php echo esc_url(home_url('/about/')); ?>">About Us</a></li>
                 <li><a href="<?php echo esc_url(home_url('/service-areas/')); ?>">Service Areas</a></li>
                 <li><a href="<?php echo esc_url(home_url('/financing/')); ?>">Financing</a></li>
