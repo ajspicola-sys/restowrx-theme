@@ -2484,3 +2484,55 @@ function hwh_review_schema() {
     echo '<script type="application/ld+json">' . wp_json_encode($schema_reviews, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) . '</script>' . "\n";
 }
 add_action('wp_head', 'hwh_review_schema', 8);
+
+// ============================================================================
+// SERVICE EXCERPT SANITIZER
+// Intercepts database-stored med-spa excerpts and replaces with plumbing copy
+// ============================================================================
+function hwh_sanitize_service_excerpt($excerpt) {
+    if (get_post_type() !== 'service') return $excerpt;
+
+    // List of med-spa keywords to detect
+    $medspa_keywords = ['botox', 'filler', 'injectable', 'aesthetic', 'skincare', 'wrinkle', 'collagen', 'rejuvenation', 'facial', 'retinol', 'glo2', 'microneedling', 'peel', 'sclerotherapy', 'kybella', 'iv therapy', 'iv vitamin', 'bloodstream', 'hydration', 'immunity', 'hyaluronic', 'neuromodulator', 'plumping', 'anti-aging', 'skin'];
+
+    $excerpt_lower = strtolower($excerpt);
+    $is_medspa = false;
+    foreach ($medspa_keywords as $kw) {
+        if (strpos($excerpt_lower, $kw) !== false) {
+            $is_medspa = true;
+            break;
+        }
+    }
+
+    if (!$is_medspa) return $excerpt;
+
+    // Generate a clean plumbing excerpt based on the service title
+    $title = strtolower(get_the_title());
+    $fallbacks = [
+        'water heater'    => 'Professional water heater repair and installation for all tank and tankless models. Same-day service available.',
+        'drain'           => 'Expert drain cleaning using hydro-jetting and camera inspection. We clear tough clogs fast.',
+        'pipe'            => 'Licensed pipe repair and replacement for burst, corroded, or leaking pipes across Tampa Bay.',
+        'repipe'          => 'Complete whole-home repiping from galvanized or polybutylene to modern PEX or copper.',
+        'leak'            => 'Advanced leak detection using electronic and camera-based technology. Minimize damage, find leaks fast.',
+        'sewer'           => 'Comprehensive sewer line repair, replacement, and camera inspection services.',
+        'toilet'          => 'Toilet repair, replacement, and installation. Running toilets, clogs, and upgrades.',
+        'faucet'          => 'Professional faucet installation and repair for kitchen, bathroom, and utility fixtures.',
+        'garbage'         => 'Garbage disposal installation, repair, and replacement for all major brands.',
+        'sump'            => 'Sump pump installation and repair to protect your home from flooding.',
+        'gas'             => 'Licensed gas line installation, repair, and leak detection for residential properties.',
+        'backflow'        => 'Backflow preventer installation, testing, and annual certification.',
+        'water filter'    => 'Whole-house water filtration and softener systems for cleaner, better-tasting water.',
+        'camera'          => 'Video camera pipe inspection to diagnose clogs, cracks, and root intrusion.',
+        'slab'            => 'Slab leak detection and repair using minimally invasive techniques.',
+    ];
+
+    foreach ($fallbacks as $keyword => $desc) {
+        if (strpos($title, $keyword) !== false) {
+            return $desc;
+        }
+    }
+
+    // Generic fallback
+    return 'Professional plumbing service by licensed Tampa Bay plumbers. Call 813-42-PLUMB for a free estimate.';
+}
+add_filter('get_the_excerpt', 'hwh_sanitize_service_excerpt', 20);
