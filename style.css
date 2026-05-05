@@ -10481,38 +10481,118 @@ a.contact-card__text:hover {
 .svc-hero {
   position: relative;
   background: linear-gradient(
-    140deg,
-    var(--brand-navy-dark) 0%,
-    var(--brand-navy)      60%,
+    150deg,
+    #070e1a   0%,
+    var(--brand-navy-dark) 25%,
+    var(--brand-navy)      70%,
     #102c50                100%
   );
-  padding: clamp(6rem, 5rem + 4vw, 10rem) 0 clamp(3rem, 2rem + 2vw, 5rem);
+  padding: clamp(6rem, 5rem + 4vw, 9rem) 0 clamp(3.5rem, 2rem + 3vw, 5rem);
   overflow: hidden;
 }
 
-/* Pipe-grid watermark */
-.svc-hero__watermark {
+/* Subtle noise texture overlay */
+.svc-hero::after {
+  content: '';
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  color: rgba(255, 255, 255, 0.04);
+  background: url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
   pointer-events: none;
+  z-index: 0;
 }
 
+/* ── Background effects ────────────────────────────────────────── */
+.svc-hero__bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Diagonal red accent stripe */
+.svc-hero__stripe {
+  position: absolute;
+  top: -20%;
+  right: -5%;
+  width: 350px;
+  height: 160%;
+  background: linear-gradient(
+    180deg,
+    transparent        0%,
+    rgba(242, 47, 58, 0.06) 30%,
+    rgba(242, 47, 58, 0.1)  50%,
+    rgba(242, 47, 58, 0.06) 70%,
+    transparent        100%
+  );
+  transform: rotate(-25deg);
+  filter: blur(40px);
+}
+
+/* Floating ambient water drops */
+.svc-hero__drop {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--s);
+  height: var(--s);
+  border-radius: 50%;
+  background: #4DA8FF;
+  animation: svcHeroPulse var(--dur) var(--d) ease-in-out infinite;
+  box-shadow: 0 0 calc(var(--s) * 3) rgba(77, 168, 255, 0.4);
+}
+@keyframes svcHeroPulse {
+  0%, 100% { transform: scale(1);   opacity: 0.15; }
+  50%      { transform: scale(1.8); opacity: 0.5;  }
+}
+
+/* ── Two-column layout ─────────────────────────────────────────── */
 .svc-hero__inner {
   position: relative;
   z-index: 1;
   max-width: 1280px;
   margin: 0 auto;
   padding: 0 clamp(1.25rem, 1rem + 2vw, 3rem);
-  display: flex;
-  flex-direction: column;
-  gap: 2.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
 }
 
+/* ── Left: text column ─────────────────────────────────────────── */
 .svc-hero__text {
-  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Live badge */
+.svc-hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1.1rem;
+  border-radius: 9999px;
+  background: rgba(242, 47, 58, 0.12);
+  border: 1px solid rgba(242, 47, 58, 0.3);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #FF8A90;
+  width: fit-content;
+  backdrop-filter: blur(8px);
+}
+.svc-hero__badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22C55E;
+  box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5);
+  animation: svcHeroDotPulse 2s ease-in-out infinite;
+}
+@keyframes svcHeroDotPulse {
+  0%, 100% { box-shadow: 0 0 0 0   rgba(34, 197, 94, 0.5); }
+  50%      { box-shadow: 0 0 0 6px rgba(34, 197, 94, 0);   }
 }
 
 .svc-hero__label {
@@ -10522,27 +10602,26 @@ a.contact-card__text:hover {
 
 .svc-hero__title {
   font-family: 'Montserrat', Georgia, serif;
-  font-size: clamp(2.6rem, 2rem + 3vw, 4.5rem);
+  font-size: clamp(2.8rem, 2rem + 3.5vw, 4.8rem);
   font-weight: 300;
-  line-height: 1.08;
+  line-height: 1.05;
   color: #fff;
-  margin: 1rem 0 1.25rem;
+  letter-spacing: -0.02em;
 }
 .svc-hero__title em {
   font-style: normal;
-  font-weight: 700;
-  background: linear-gradient(135deg, var(--brand) 0%, #FF6B74 100%);
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--brand) 0%, #FF6B74 60%, #FFA07A 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .svc-hero__desc {
-  font-size: clamp(0.95rem, 0.85rem + 0.35vw, 1.05rem);
-  color: rgba(255, 255, 255, 0.65);
-  line-height: 1.75;
-  max-width: 52ch;
-  margin-bottom: 2rem;
+  font-size: clamp(0.92rem, 0.82rem + 0.35vw, 1.02rem);
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.8;
+  max-width: 48ch;
 }
 
 .svc-hero__actions {
@@ -10551,10 +10630,10 @@ a.contact-card__text:hover {
   flex-wrap: wrap;
 }
 
-/* Outline override on dark bg */
+/* Outline button override for dark bg */
 .svc-hero .btn--outline {
-  border-color: rgba(255, 255, 255, 0.25);
-  color: #fff;
+  border-color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.9);
 }
 .svc-hero .btn--outline:hover {
   border-color: var(--brand);
@@ -10562,27 +10641,140 @@ a.contact-card__text:hover {
   color: #fff;
 }
 
-/* Trust chips row */
+/* Trust chips */
 .svc-hero__chips {
   display: flex;
-  gap: 0.65rem;
+  gap: 0.6rem;
   flex-wrap: wrap;
+  margin-top: 0.25rem;
 }
 
 .svc-hero__chip {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
-  padding: 0.4rem 1rem;
+  gap: 0.3rem;
+  padding: 0.35rem 0.85rem;
   border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  font-size: 0.78rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.72rem;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.7);
   white-space: nowrap;
   backdrop-filter: blur(4px);
+  transition: background 0.3s ease, border-color 0.3s ease;
 }
+.svc-hero__chip:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ── Right: visual column ──────────────────────────────────────── */
+.svc-hero__visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 420px;
+}
+
+/* Main SVG illustration */
+.svc-hero__illus {
+  width: min(380px, 80%);
+  height: auto;
+  filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.5));
+  position: relative;
+  z-index: 1;
+}
+
+/* Wrench gentle rock */
+.svc-hero__wrench {
+  transform-origin: 202px 260px;
+  animation: svcWrenchRock 4s ease-in-out infinite;
+}
+@keyframes svcWrenchRock {
+  0%, 100% { transform: rotate(0deg);   }
+  25%      { transform: rotate(5deg);   }
+  75%      { transform: rotate(-5deg);  }
+}
+
+/* Valve wheel slow spin */
+.svc-hero__valve {
+  transform-origin: 202px 60px;
+  animation: svcValveSpin 12s linear infinite;
+}
+@keyframes svcValveSpin {
+  from { transform: rotate(0deg);   }
+  to   { transform: rotate(360deg); }
+}
+
+/* Drip animation from junction */
+.svc-hero__drip {
+  animation: svcDrip 2.2s ease-in infinite;
+}
+.svc-hero__drip--1 { animation-delay: 0s;   }
+.svc-hero__drip--2 { animation-delay: 0.7s; }
+.svc-hero__drip--3 { animation-delay: 1.4s; }
+@keyframes svcDrip {
+  0%   { transform: translate(0, 0);      opacity: 0.6; }
+  70%  { opacity: 0.5; }
+  100% { transform: translate(-5px, 35px); opacity: 0;   }
+}
+
+/* ── Floating glassmorphic stat cards ──────────────────────────── */
+.svc-hero__float {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.8rem 1.2rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  z-index: 3;
+  animation: svcFloat 5s ease-in-out infinite;
+}
+.svc-hero__float strong {
+  font-family: 'Montserrat', Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.2;
+}
+.svc-hero__float span {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 0.15rem;
+}
+
+/* Positions and stagger */
+.svc-hero__float--1 {
+  top: 8%;
+  right: 5%;
+  animation-delay: 0s;
+}
+.svc-hero__float--2 {
+  bottom: 12%;
+  left: 2%;
+  animation-delay: 1.5s;
+}
+.svc-hero__float--3 {
+  bottom: 25%;
+  right: 0%;
+  animation-delay: 3s;
+}
+
+@keyframes svcFloat {
+  0%, 100% { transform: translateY(0);    }
+  50%      { transform: translateY(-10px); }
+}
+
 
 /* ── Filter Bar ───────────────────────────────────────────────────── */
 .svc-filter {
@@ -11063,6 +11255,19 @@ a.contact-card__text:hover {
   .svc-grid { grid-template-columns: repeat(2, 1fr); }
   .svc-stat { padding: 0.75rem 1.5rem; }
   .svc-stat__divider { height: 36px; }
+  .svc-hero__inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .svc-hero__text { align-items: center; }
+  .svc-hero__badge { margin: 0 auto; }
+  .svc-hero__desc { max-width: 100%; }
+  .svc-hero__actions { justify-content: center; }
+  .svc-hero__chips { justify-content: center; }
+  .svc-hero__visual { min-height: 320px; }
+  .svc-hero__float--1 { top: 2%; right: 8%; }
+  .svc-hero__float--2 { bottom: 5%; left: 5%; }
+  .svc-hero__float--3 { bottom: 15%; right: 3%; }
   .svc-cta__inner {
     grid-template-columns: 1fr;
     text-align: center;
@@ -11081,6 +11286,11 @@ a.contact-card__text:hover {
   .svc-stat__divider { width: 60px; height: 1px; }
   .svc-hero__actions { flex-direction: column; }
   .svc-hero__actions .btn { width: 100%; justify-content: center; }
+  .svc-hero__visual { min-height: 260px; }
+  .svc-hero__illus { width: min(280px, 90%); }
+  .svc-hero__float { padding: 0.6rem 0.9rem; }
+  .svc-hero__float strong { font-size: 0.95rem; }
+  .svc-hero__float span { font-size: 0.55rem; }
   .svc-cta__actions { flex-direction: column; width: 100%; }
   .svc-cta__actions .btn { width: 100%; justify-content: center; }
 }

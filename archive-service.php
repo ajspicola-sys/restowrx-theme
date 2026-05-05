@@ -29,48 +29,133 @@ $all_cats = get_terms( [
 <main class="site-main" id="main-content">
 
     <!-- ════════════════════════════════════════════════════════════
-         HERO
+         HERO — Split layout: text + animated illustration
          ════════════════════════════════════════════════════════════ -->
     <section class="svc-hero" aria-label="Services overview">
 
-        <!-- Subtle pipe-grid watermark -->
-        <svg class="svc-hero__watermark" aria-hidden="true" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <pattern id="pipe-grid" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-                    <rect x="0" y="18" width="40" height="4" fill="currentColor" opacity=".35"/>
-                    <rect x="18" y="0" width="4" height="40" fill="currentColor" opacity=".35"/>
-                    <circle cx="20" cy="20" r="4" fill="currentColor" opacity=".5"/>
-                </pattern>
-            </defs>
-            <rect width="200" height="200" fill="url(#pipe-grid)"/>
-        </svg>
+        <!-- Animated background layers -->
+        <div class="svc-hero__bg" aria-hidden="true">
+            <!-- Diagonal accent stripe -->
+            <div class="svc-hero__stripe"></div>
+            <!-- Floating water drops -->
+            <span class="svc-hero__drop" style="--x:12%; --y:20%; --s:6px; --d:0s;   --dur:14s;"></span>
+            <span class="svc-hero__drop" style="--x:85%; --y:35%; --s:4px; --d:3s;   --dur:18s;"></span>
+            <span class="svc-hero__drop" style="--x:65%; --y:75%; --s:8px; --d:7s;   --dur:12s;"></span>
+            <span class="svc-hero__drop" style="--x:30%; --y:60%; --s:5px; --d:5s;   --dur:16s;"></span>
+            <span class="svc-hero__drop" style="--x:50%; --y:15%; --s:3px; --d:10s;  --dur:20s;"></span>
+            <span class="svc-hero__drop" style="--x:92%; --y:80%; --s:7px; --d:2s;   --dur:15s;"></span>
+        </div>
 
         <div class="svc-hero__inner">
+
+            <!-- Left: copy -->
             <div class="svc-hero__text">
-                <span class="section__label svc-hero__label">Tampa Bay's #1 Plumbers</span>
-                <h1 class="svc-hero__title">Every Job.<br><em>Done Right.</em></h1>
-                <p class="svc-hero__desc">From burst pipes to full water-heater installations — our licensed technicians show up fast, fix it right the first time, and clean up when they leave.</p>
+                <div class="svc-hero__badge">
+                    <span class="svc-hero__badge-dot"></span>
+                    Available Now — 24/7 Emergency
+                </div>
+
+                <h1 class="svc-hero__title">
+                    Tampa Bay's<br>
+                    <em>Plumbing</em> Experts.
+                </h1>
+
+                <p class="svc-hero__desc">From burst pipes to full water-heater installs, our licensed pros arrive fast, fix it right the first time, and clean up when they leave. No guesswork, no surprise bills.</p>
+
                 <div class="svc-hero__actions">
                     <a href="tel:+18134275862" class="btn btn--primary btn--lg">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L7.91 9.27a16 16 0 0 0 6.29 6.29l1.45-1.45a2 2 0 0 1 2.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z"/></svg>
                         Call 813-42-PLUMB
                     </a>
                     <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="btn btn--outline btn--lg">
-                        Request Service
+                        Request a Quote
                         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                     </a>
                 </div>
+
+                <!-- Trust chips -->
+                <div class="svc-hero__chips">
+                    <span class="svc-hero__chip">✅ Licensed & Insured</span>
+                    <span class="svc-hero__chip">⚡ Same-Day Service</span>
+                    <span class="svc-hero__chip">🛡️ 1-Year Warranty</span>
+                </div>
             </div>
 
-            <!-- Quick trust chips -->
-            <div class="svc-hero__chips" aria-label="Trust indicators">
-                <span class="svc-hero__chip">✅ Licensed &amp; Insured</span>
-                <span class="svc-hero__chip">⚡ Same-Day Service</span>
-                <span class="svc-hero__chip">🛡️ 1-Year Labor Warranty</span>
-                <span class="svc-hero__chip">💧 24/7 Emergency Line</span>
+            <!-- Right: illustration + floating stat cards -->
+            <div class="svc-hero__visual">
+
+                <!-- Big wrench / pipe SVG illustration -->
+                <svg class="svc-hero__illus" viewBox="0 0 400 420" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <!-- Background glow circle -->
+                    <circle cx="200" cy="210" r="170" fill="url(#hero-glow)" opacity=".6"/>
+                    <defs>
+                        <radialGradient id="hero-glow" cx="50%" cy="50%">
+                            <stop offset="0%"   stop-color="#F22F3A" stop-opacity=".18"/>
+                            <stop offset="100%" stop-color="#18375D" stop-opacity="0"/>
+                        </radialGradient>
+                    </defs>
+
+                    <!-- Pipe cross: horizontal -->
+                    <rect x="40" y="180" width="320" height="55" rx="12" fill="#1E4A7A"/>
+                    <rect x="40" y="180" width="320" height="16" rx="8"  fill="#2A5F96" opacity=".5"/>
+                    <!-- Pipe: left cap -->
+                    <rect x="28" y="172" width="32" height="71" rx="8" fill="#18375D"/>
+                    <!-- Pipe: right cap -->
+                    <rect x="340" y="172" width="32" height="71" rx="8" fill="#18375D"/>
+                    <!-- Pipe cross: vertical -->
+                    <rect x="175" y="60" width="55" height="310" rx="12" fill="#1E4A7A"/>
+                    <rect x="175" y="60" width="16" height="310" rx="8"  fill="#2A5F96" opacity=".4"/>
+                    <!-- Junction circle -->
+                    <circle cx="202" cy="207" r="38" fill="#18375D" stroke="#0F2440" stroke-width="4"/>
+                    <circle cx="202" cy="207" r="22" fill="#0F2440"/>
+                    <circle cx="202" cy="207" r="10" fill="#F22F3A" opacity=".7"/>
+
+                    <!-- Wrench (rotated around center) -->
+                    <g class="svc-hero__wrench">
+                        <!-- Handle -->
+                        <rect x="186" y="230" width="32" height="145" rx="8" fill="#F22F3A"/>
+                        <rect x="190" y="230" width="8" height="145" rx="4" fill="#FF6B74" opacity=".35"/>
+                        <!-- Head jaw -->
+                        <path d="M186 230 l-18-28 a14 14 0 0 1 0-20 l18-10 l32 0 l18 10 a14 14 0 0 1 0 20 l-18 28 z" fill="#AF2D37"/>
+                        <!-- Head opening -->
+                        <rect x="194" y="175" width="16" height="45" rx="4" fill="#0F2440"/>
+                        <!-- Jaw detail lines -->
+                        <line x1="185" y1="195" x2="175" y2="188" stroke="#0F2440" stroke-width="2.5" stroke-linecap="round"/>
+                        <line x1="219" y1="195" x2="229" y2="188" stroke="#0F2440" stroke-width="2.5" stroke-linecap="round"/>
+                    </g>
+
+                    <!-- Valve wheel (top of vertical pipe) -->
+                    <g class="svc-hero__valve">
+                        <circle cx="202" cy="60" r="24" fill="none" stroke="#F22F3A" stroke-width="5"/>
+                        <circle cx="202" cy="60" r="8" fill="#AF2D37"/>
+                        <line x1="178" y1="60" x2="226" y2="60" stroke="#F22F3A" stroke-width="5" stroke-linecap="round"/>
+                        <line x1="202" y1="36" x2="202" y2="84" stroke="#F22F3A" stroke-width="5" stroke-linecap="round"/>
+                    </g>
+
+                    <!-- Small water drips from junction -->
+                    <circle class="svc-hero__drip svc-hero__drip--1" cx="230" cy="220" r="4" fill="#4DA8FF" opacity=".6"/>
+                    <circle class="svc-hero__drip svc-hero__drip--2" cx="175" cy="225" r="3" fill="#4DA8FF" opacity=".5"/>
+                    <circle class="svc-hero__drip svc-hero__drip--3" cx="215" cy="235" r="3.5" fill="#4DA8FF" opacity=".45"/>
+                </svg>
+
+                <!-- Floating stat cards -->
+                <div class="svc-hero__float svc-hero__float--1">
+                    <strong>4.9★</strong>
+                    <span>Google Rating</span>
+                </div>
+                <div class="svc-hero__float svc-hero__float--2">
+                    <strong>2,400+</strong>
+                    <span>Jobs Completed</span>
+                </div>
+                <div class="svc-hero__float svc-hero__float--3">
+                    <strong>&lt;60 min</strong>
+                    <span>Avg. Response</span>
+                </div>
             </div>
+
         </div>
     </section>
+
 
     <!-- ════════════════════════════════════════════════════════════
          STICKY CATEGORY FILTER
