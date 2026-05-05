@@ -747,7 +747,7 @@ function hwh_create_services() {
 
     // 3 broad categories that fit the mega menu grid perfectly
     $categories = [
-        'Water Heater Services'       => 'Premium injectable treatments including Botox, fillers, and neuromodulators for facial rejuvenation.',
+        'Water Heater Services'       => 'Professional water heater installation, repair, and maintenance for residential and commercial properties.',
         'Drain & Pipe Services'    => 'Advanced skin treatments from chemical peels and microneedling to laser resurfacing and facials.',
         'Emergency & General'   => 'Body contouring, hair restoration, IV therapy, and wellness treatments for total transformation.',
     ];
@@ -1459,7 +1459,7 @@ function hwh_custom_title($title) {
         $title['site']  = 'Hot Water Heroes Plumbing';
         return $title;
     }
-    // Service pages: "Botox in Tampa Bay, FL | Hot Water Heroes Plumbing"
+    // Service pages: "Water Heater Repair in Tampa Bay, FL | Hot Water Heroes Plumbing"
     if (is_singular('service')) {
         $custom = get_post_meta(get_the_ID(), '_hwh_seo_title', true);
         $title['title'] = !empty($custom) ? $custom : get_the_title() . ' in Tampa Bay, FL';
@@ -1520,7 +1520,7 @@ function hwh_faq_schema() {
     $faqs = [
         ['q' => 'Is there a minimum commitment?', 'a' => 'We ask for a minimum 6-month commitment to get the most out of your Beauty Bank membership. After that, you can continue month-to-month or cancel anytime.'],
         ['q' => 'Do my credits expire?', 'a' => 'No! Your banked credits never expire as long as your membership is active. If you cancel, unused credits remain available for 90 days.'],
-        ['q' => 'What can I use my credits on?', 'a' => 'Your Beauty Bank credits can be used on any service or product we offer � Botox, fillers, facials, laser treatments, IV therapy, skincare products, and more.'],
+        ['q' => 'What can I use my credits on?', 'a' => 'Your maintenance plan benefits can be used on any plumbing service we offer � water heater repairs, drain cleaning, repiping, fixture installation, and more.'],
         ['q' => 'Can I share my credits with friends or family?', 'a' => 'Absolutely! You can gift your credits to friends and family members.'],
         ['q' => 'How much should I set as my monthly deposit?', 'a' => 'Most of our members choose between $100-$300/month. During your complimentary consultation, we\'ll help you find the perfect amount.'],
     ];
@@ -2269,7 +2269,7 @@ add_action( 'init', function () {
 // =============================================================================
 // AI SEARCH VISIBILITY � HOMEPAGE FAQ SCHEMA
 // These Q&As directly feed Google AI Overviews, ChatGPT, and Perplexity
-// when users ask questions about med spas in Tampa Bay.
+// when users ask questions about plumbing services in Tampa Bay.
 // =============================================================================
 function hwh_homepage_faq_schema() {
     if ( ! is_front_page() ) return;
