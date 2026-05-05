@@ -9836,10 +9836,10 @@ a.contact-card__text:hover {
 /* ==========================================================================
    HWH FOOTER v2
    ========================================================================== */
-.hwh-footer { background: #0A1628; color: rgba(255,255,255,0.7); font-family: 'Inter', sans-serif; margin-top: 0; padding-top: 0; }
+.hwh-footer { background: #0A1628; color: rgba(255,255,255,0.7); font-family: 'Inter', sans-serif; margin-top: -2px; padding-top: 0; position: relative; z-index: 1; }
 
 /* Emergency bar */
-.hwh-footer__emergency { background: #F22F3A; padding: .9rem 0; box-shadow: 0 -20px 0 0 #F22F3A; }
+.hwh-footer__emergency { background: #F22F3A; padding: .9rem 0; }
 .hwh-footer__emergency-inner { max-width:1280px; margin:0 auto; padding:0 clamp(1.25rem,1rem + 2vw,3rem); display:flex; align-items:center; gap:1rem; flex-wrap:wrap; font-size:.82rem; font-weight:600; color:#fff; }
 .hwh-footer__emergency-dot { width:8px; height:8px; background:#fff; border-radius:50%; animation:hwh-pulse 1.8s ease infinite; flex-shrink:0; }
 .hwh-footer__emergency-sep { opacity:.5; }
