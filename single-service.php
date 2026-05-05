@@ -326,7 +326,7 @@ $has_image     = has_post_thumbnail();
                         <?php the_post_thumbnail('medium', ['loading' => 'lazy', 'decoding' => 'async']); ?>
                     </div>
                     <?php else: ?>
-                    <div class="service-card__icon" aria-hidden="true"><?php echo esc_html($r_icon); ?></div>
+                    <div class="service-card__icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
                     <?php endif; ?>
                     <h3 class="service-card__title"><?php the_title(); ?></h3>
                     <p class="service-card__text"><?php echo wp_trim_words(get_the_excerpt(), 15); ?></p>

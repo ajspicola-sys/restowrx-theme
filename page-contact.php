@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Template Name: Contact
  * Hot Water Heroes Plumbing — Contact Page
@@ -13,7 +13,7 @@ get_header(); ?>
         <div class="page-hero__inner">
             <span class="section__label">Get in Touch</span>
             <h1 class="page-hero__title">Contact Us</h1>
-            <p class="page-hero__desc">We'd love to hear from you. Reach out to schedule a consultation or ask any questions.</p>
+            <p class="page-hero__desc">We'd love to hear from you. Reach out to schedule a service or ask any questions.</p>
         </div>
     </section>
 
@@ -70,7 +70,7 @@ get_header(); ?>
                         </div>
                         <div class="form-group">
                             <label for="cf-message" class="form-label">Message</label>
-                            <textarea id="cf-message" name="message" class="form-input form-textarea" rows="5" placeholder="Tell us about your goals or ask a question..."></textarea>
+                            <textarea id="cf-message" name="message" class="form-input form-textarea" rows="5" placeholder="Tell us about your plumbing issue or ask a question..."></textarea>
                         </div>
                         <input type="hidden" name="action" value="hwh_contact_submit">
                         <button type="submit" class="btn btn--primary btn--lg contact-form__submit">
@@ -81,7 +81,7 @@ get_header(); ?>
 
                     <!-- Form success state -->
                     <div class="contact-form__success" id="form-success">
-                        <div class="contact-form__success-icon">✨</div>
+                        <div class="contact-form__success-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
                         <h3 class="contact-form__success-title">Message Sent!</h3>
                         <p class="contact-form__success-text">Thank you for reaching out. Our team will get back to you within 24 hours.</p>
                     </div>
@@ -172,7 +172,7 @@ get_header(); ?>
         <div class="cta-section__inner reveal">
             <span class="cta-section__label">We're Here for You</span>
             <h2 class="cta-section__title">Have Questions?<br>We Have Answers</h2>
-            <p class="cta-section__text">Our team is ready to help you find the perfect treatment. Don't hesitate to reach out.</p>
+            <p class="cta-section__text">Our team is ready to help with any plumbing question. Don't hesitate to reach out.</p>
             <div class="cta-section__actions">
                 <a href="tel:+18134275862" class="btn btn--primary btn--lg">Call 813-42-PLUMB</a>
                 <a href="mailto:support@hotwaterheroes.com" class="btn btn--outline btn--lg">Email Us</a>

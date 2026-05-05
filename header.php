@@ -191,7 +191,7 @@ $hwh_menu_services = hwh_get_menu_services();
                                         $excerpt = wp_trim_words( get_post_field( 'post_excerpt', $s->ID ) ?: get_post_field( 'post_content', $s->ID ), 7, '' );
                                     ?>
                                     <a href="<?php echo esc_url( get_permalink( $s->ID ) ); ?>" class="hwh-drop__item">
-                                        <span class="hwh-drop__icon"><?php echo esc_html( $icon ); ?></span>
+                                        <?php if ($icon && strlen($icon) > 4) : ?><span class="hwh-drop__icon"><?php echo esc_html( $icon ); ?></span><?php endif; ?>
                                         <span>
                                             <strong><?php echo esc_html( $s->post_title ); ?></strong>
                                             <?php if ( $excerpt ) : ?><em><?php echo esc_html( $excerpt ); ?></em><?php endif; ?>

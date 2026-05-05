@@ -147,7 +147,9 @@ get_header(); ?>
                     $price = get_post_meta(get_the_ID(), '_service_price', true);
             ?>
                 <article class="hwh-service-card reveal">
+                    <?php if ($icon && strlen($icon) > 4) : // skip emojis (multi-byte chars) ?>
                     <div class="hwh-service-card__icon"><?php echo esc_html($icon); ?></div>
+                    <?php endif; ?>
                     <h3 class="hwh-service-card__title"><?php the_title(); ?></h3>
                     <p class="hwh-service-card__text"><?php echo wp_trim_words(get_the_excerpt(), 20); ?></p>
                     <?php if ($price) : ?>

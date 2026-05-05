@@ -232,7 +232,7 @@
                 var banner = document.createElement('div');
                 banner.id = 'cookie-banner'; banner.className = 'cookie-banner';
                 banner.setAttribute('role','dialog'); banner.setAttribute('aria-label','Cookie consent');
-                banner.innerHTML = '<div class="cookie-banner__inner"><p class="cookie-banner__text"><strong>🍪 Cookies</strong> — We use cookies to enhance your experience.</p><div class="cookie-banner__actions"><button class="cookie-banner__btn cookie-banner__btn--accept" id="cookie-accept">Accept</button><button class="cookie-banner__btn cookie-banner__btn--decline" id="cookie-decline">Decline</button></div></div>';
+                banner.innerHTML = '<div class="cookie-banner__inner"><p class="cookie-banner__text"><strong>Cookies</strong> — We use cookies to enhance your experience.</p><div class="cookie-banner__actions"><button class="cookie-banner__btn cookie-banner__btn--accept" id="cookie-accept">Accept</button><button class="cookie-banner__btn cookie-banner__btn--decline" id="cookie-decline">Decline</button></div></div>';
                 document.body.appendChild(banner);
                 requestAnimationFrame(function() { banner.classList.add('is-visible'); });
                 document.getElementById('cookie-accept').addEventListener('click', function() { localStorage.setItem('hwh-cookie-consent','accepted'); banner.classList.remove('is-visible'); setTimeout(function(){ banner.remove(); }, 400); });

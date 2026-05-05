@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Template Name: Team
  * Hot Water Heroes Plumbing — Meet the Team Page (Dynamic)
@@ -12,7 +12,7 @@ get_header(); ?>
         <div class="page-hero__inner">
             <span class="section__label">Our Experts</span>
             <h1 class="page-hero__title">Meet the Team</h1>
-            <p class="page-hero__desc">Board-certified providers with decades of combined experience delivering natural, beautiful results.</p>
+            <p class="page-hero__desc">Licensed, experienced plumbing professionals dedicated to honest work and quality service.</p>
         </div>
     </section>
 
@@ -95,7 +95,7 @@ get_header(); ?>
                 <?php endwhile; wp_reset_postdata();
                 else : ?>
                     <div style="text-align:center; padding:4rem 2rem;">
-                        <p style="color:#7a7a90; font-size:1.1rem;">Team members coming soon! Add them in <strong>WordPress Admin → 👩‍⚕️ Team</strong>.</p>
+                        <p style="color:#7a7a90; font-size:1.1rem;">Team members coming soon! Add them in <strong>WordPress Admin → Team</strong>.</p>
                     </div>
                 <?php endif; ?>
 
@@ -106,8 +106,8 @@ get_header(); ?>
     <section class="cta-section" aria-label="Book with us">
         <div class="cta-section__inner reveal">
             <span class="cta-section__label">Book With Us</span>
-            <h2 class="cta-section__title">Ready to Meet<br>Your Provider?</h2>
-            <p class="cta-section__text">Schedule a complimentary consultation and let our experts create your personalized treatment plan.</p>
+            <h2 class="cta-section__title">Ready to Meet<br>Our Team?</h2>
+            <p class="cta-section__text">Call us or book online — we'll dispatch a licensed plumber to your door fast.</p>
             <div class="cta-section__actions">
                 <a href="#request-service" class="btn btn--primary btn--lg">Request Service</a>
             </div>
