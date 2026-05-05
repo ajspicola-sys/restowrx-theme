@@ -10249,31 +10249,40 @@ a.contact-card__text:hover {
   50%       { transform: rotate( 1.5deg) translateY(-8px); }
 }
 
-/* Water drop drip animation */
+/* Water drop drip animation (teardrop shape — longer travel) */
 .e404__drop {
-  animation: e404-drip 1.8s ease-in infinite;
+  animation: e404-drip 2s ease-in infinite;
 }
-.e404__drop--1 { animation-delay: 0s;   animation-duration: 1.8s; }
-.e404__drop--2 { animation-delay: 0.6s; animation-duration: 1.8s; }
-.e404__drop--3 { animation-delay: 1.2s; animation-duration: 1.8s; }
+.e404__drop--1 { animation-delay: 0s;    animation-duration: 2s;   }
+.e404__drop--2 { animation-delay: 0.65s; animation-duration: 2s;   }
+.e404__drop--3 { animation-delay: 1.3s;  animation-duration: 2s;   }
 @keyframes e404-drip {
   0%   { transform: translateY(0);    opacity: 1; }
-  80%  { opacity: 1; }
-  100% { transform: translateY(28px); opacity: 0; }
+  75%  { opacity: 1; }
+  100% { transform: translateY(40px); opacity: 0; }
 }
 
-/* Big ghost number behind the pipe */
+/* Ghost "404" — visible on dark navy via gradient fill + stroke */
 .e404__number {
   position: absolute;
   font-family: 'Montserrat', Georgia, serif;
   font-size: clamp(7rem, 12vw, 14rem);
   font-weight: 900;
   letter-spacing: -0.04em;
-  color: transparent;
-  -webkit-text-stroke: 2px rgba(242, 47, 58, 0.18);
+  /* Gradient text — brand-red fading to navy so it reads on dark bg */
+  background: linear-gradient(
+    145deg,
+    rgba(242, 47, 58, 0.55) 0%,
+    rgba(242, 47, 58, 0.20) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  -webkit-text-stroke: 1px rgba(242, 47, 58, 0.35);
   user-select: none;
   z-index: 1;
   line-height: 1;
+  text-shadow: none; /* text-shadow doesn't apply to clip text, kept for fallback */
 }
 
 /* ── Text content panel ──────────────────────────────────────────── */
