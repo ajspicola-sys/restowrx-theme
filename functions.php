@@ -1,6 +1,6 @@
 <?php
 /**
- * Hot Water Heroes Plumbing � Theme Functions
+ * Hot Water Heroes Plumbing ï¿½ Theme Functions
  * Performance-optimized build
  */
 
@@ -123,7 +123,7 @@ function hwh_enqueue_styles() {
     // but auto-busts cache when the file actually changes
     $theme_version = filemtime(get_stylesheet_directory() . '/style.css');
 
-    // Google Fonts � single optimized request with display=swap
+    // Google Fonts ï¿½ single optimized request with display=swap
     wp_enqueue_style(
         'hwh-google-fonts',
         'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap',
@@ -131,7 +131,7 @@ function hwh_enqueue_styles() {
         null
     );
 
-    // Main stylesheet � cacheable, busts only when file changes
+    // Main stylesheet ï¿½ cacheable, busts only when file changes
     wp_enqueue_style('hwh-style', get_stylesheet_uri(), ['hwh-google-fonts'], $theme_version);
 }
 add_action('wp_enqueue_scripts', 'hwh_enqueue_styles');
@@ -140,7 +140,7 @@ add_action('wp_enqueue_scripts', 'hwh_enqueue_styles');
 // The main stylesheet MUST be render-blocking to prevent FOUC.
 // Google Fonts can safely load async since system fonts render as fallback.
 function hwh_async_styles($html, $handle) {
-    // Only defer Google Fonts � NOT the main theme stylesheet
+    // Only defer Google Fonts ï¿½ NOT the main theme stylesheet
     if ( $handle === 'hwh-google-fonts' && !is_admin() ) {
         $html = str_replace("media='all'", "media='print' onload=\"this.media='all'\"", $html);
         $html = str_replace('media="all"', "media=\"print\" onload=\"this.media='all'\"", $html);
@@ -170,7 +170,7 @@ add_action('wp_head', 'hwh_resource_hints', 1);
 // -- Performance: External image proxy & WebP cache -----------------
 // Fetches third-party images (e.g. Ageless AI before/after), resizes to
 // max 800px wide, converts to WebP, and caches in wp-uploads.
-// Subsequent requests serve the local WebP � eliminates 9+ MB of PNG downloads.
+// Subsequent requests serve the local WebP ï¿½ eliminates 9+ MB of PNG downloads.
 function hwh_cached_image_url( $src_url, $max_w = 800 ) {
     $upload   = wp_upload_dir();
     $cache_dir = $upload['basedir'] . '/hwh-img-cache';
@@ -227,7 +227,7 @@ function hwh_cached_image_url( $src_url, $max_w = 800 ) {
         $img = $resized;
     }
 
-    // Save as WebP (quality 82 � good balance of size vs. quality)
+    // Save as WebP (quality 82 ï¿½ good balance of size vs. quality)
     if ( function_exists( 'imagewebp' ) ) {
         imagewebp( $img, $file_path, 82 );
     } else {
@@ -261,18 +261,18 @@ if (!defined('WP_POST_REVISIONS')) {
 }
 
 // ============================================================
-// AI SEARCH VISIBILITY & STRUCTURED DATA � HOT WATER HEROES
+// AI SEARCH VISIBILITY & STRUCTURED DATA ï¿½ HOT WATER HEROES
 // Comprehensive JSON-LD schema for Google AI Overviews,
 // ChatGPT, Perplexity, Bing Copilot, and all AEO signals.
 // ============================================================
 
-// -- 1. MedicalBusiness + WebSite + Person (Angela) -- every page -------------
+// -- 1. Plumber + WebSite + Person -- every page -------------
 function hwh_schema_markup() {
 
     // Named provider: HWH Master Plumbers APRN
     $provider = [
         '@type'       => 'Person',
-        '@id'         => esc_url(home_url('/')) . '#angela-spicola',
+        '@id'         => esc_url(home_url('/')) . '#hwh-team',
         'name'        => 'HWH Master Plumbers',
         'jobTitle'    => 'Founder & Master Plumber',
         'honorificPrefix' => 'Master Plumber',
@@ -289,7 +289,7 @@ function hwh_schema_markup() {
         'name'             => 'Hot Water Heroes Plumbing',
         'legalName'        => 'Hot Water Heroes Plumbing LLC',
         'alternateName'    => 'Hot Water Heroes Plumbing',
-        'description'      => "Tampa Bay's trusted plumbing company offering Botox, dermal fillers, RF microneedling, laser treatments, facials, IV therapy, and medical-grade skincare. Led by HWH Master Plumbers, APRN � board-certified aesthetic provider.",
+        'description'      => "Tampa Bay's trusted plumbing company offering water heater installation, emergency plumbing, drain cleaning, repiping, and leak repair. Licensed, insured, and available 24/7. Serving Hillsborough, Pinellas, and Pasco counties ï¿½ your trusted local plumbing experts.",
         'url'              => esc_url(home_url('/')),
         'telephone'        => '+18134275862',
         'email'            => 'support@hotwaterheroes.com',
@@ -361,7 +361,7 @@ function hwh_schema_markup() {
         'makesOffer' => [
             [
                 '@type'       => 'Offer',
-                'name'        => 'Free Consultation',
+                'name'        => 'Free Estimate',
                 'description' => 'Free plumbing estimate with our licensed team.',
                 'price'       => '0',
                 'priceCurrency' => 'USD',
@@ -378,7 +378,7 @@ function hwh_schema_markup() {
         '@id'             => esc_url(home_url('/')) . '#website',
         'name'            => 'Hot Water Heroes Plumbing',
         'url'             => esc_url(home_url('/')),
-        'description'     => "Tampa Bay's trusted plumbing company � water heater installation, emergency repairs, drain cleaning, repiping, and 24/7 service.",
+        'description'     => "Tampa Bay's trusted plumbing company ï¿½ water heater installation, emergency repairs, drain cleaning, repiping, and 24/7 service.",
         'inLanguage'      => 'en-US',
         'publisher'       => [ '@id' => esc_url(home_url('/')) . '#hwh-plumbing' ],
         'potentialAction' => [
@@ -389,7 +389,7 @@ function hwh_schema_markup() {
     ];
     echo '<script type="application/ld+json">' . wp_json_encode($website, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . '</script>' . "\n";
 
-    // -- Enhanced Service schema � singular service pages only -----------------
+    // -- Enhanced Service schema ï¿½ singular service pages only -----------------
     if (is_singular('service')) {
         $post_id   = get_the_ID();
         $price     = get_post_meta($post_id, '_service_price', true);
@@ -556,7 +556,7 @@ function hwh_create_refund_page() {
 }
 add_action('init', 'hwh_create_refund_page');
 
-// -- Auto-create Beauty Bank page --------------------------------------
+// -- Auto-create Maintenance Plan page --------------------------------------
 function hwh_create_specials_page() {
     if ( get_option('hwh_specials_page_created_v1') ) return;
     if ( ! hwh_page_slug_exists('specials') ) {
@@ -593,128 +593,134 @@ function hwh_create_blog_posts() {
 
     $posts = [
         [
-            'title'    => 'Botox vs. Fillers: Which Is Right for You?',
+            'title'    => 'Tank vs. Tankless Water Heaters: Which Is Right for Your Home?',
             'category' => 'Water Heater Services',
-            'excerpt'  => 'Understanding the difference between neuromodulators and dermal fillers is key to choosing the right treatment for your aesthetic goals.',
-            'content'  => '<h2>Understanding the Difference</h2>
-<p>One of the most common questions we hear at Hot Water Heroes Plumbing is: "Should I get Botox or fillers?" While both are injectable treatments that can help you look younger, they work in fundamentally different ways.</p>
+            'excerpt'  => 'Understanding the difference between tank and tankless water heaters to make the best choice for your Tampa Bay home.',
+            'content'  => '<h2>Choosing the Right Water Heater</h2>
+<p>One of the most common questions we hear at Hot Water Heroes Plumbing is: "Should I get a tank or tankless water heater?" Both have advantages, and the right choice depends on your household size, budget, and hot water needs.</p>
 
-<h3>Botox: The Wrinkle Relaxer</h3>
-<p>Botox (and similar neuromodulators like Dysport and Jeuveau) works by temporarily relaxing the muscles that cause dynamic wrinkles � think forehead lines, crow\'s feet, and frown lines between the brows. It\'s ideal for wrinkles that appear when you make facial expressions.</p>
+<h3>Tank Water Heaters: The Reliable Classic</h3>
+<p>Tank water heaters store 40-80 gallons of pre-heated water, ready for use whenever you need it. They have a lower upfront cost and are simple to install and maintain. However, they use energy continuously to keep the water hot, even when you are not using it.</p>
 
-<h3>Dermal Fillers: The Volume Restorer</h3>
-<p>Fillers, on the other hand, work by adding volume beneath the skin\'s surface. They\'re perfect for plumping lips, restoring lost cheek volume, smoothing nasolabial folds, and enhancing facial contours. Popular brands include Juv�derm and Restylane.</p>
+<h3>Tankless Water Heaters: Endless Hot Water</h3>
+<p>Tankless units heat water on-demand as it flows through the system. They are more energy-efficient (saving up to 40% on water heating bills), last longer (20+ years vs. 10-15 for tanks), and take up far less space. The tradeoff is a higher upfront cost.</p>
 
 <h3>Which Should You Choose?</h3>
-<p>The answer depends on your specific concerns. Many of our clients at Hot Water Heroes Plumbing benefit from a combination of both treatments � what we call a "liquid facelift." During your complimentary consultation, our expert injectors will create a customized treatment plan tailored to your unique facial anatomy and goals.</p>
+<p>The answer depends on your specific needs. For smaller households with moderate hot water usage, a high-efficiency tank heater is often the most cost-effective choice. For larger families or homes that need simultaneous hot water at multiple fixtures, tankless is the way to go.</p>
 
-<p><strong>Ready to find out which treatment is right for you?</strong> Book a free consultation at Hot Water Heroes Plumbing today.</p>',
+<p><strong>Not sure which is right for you?</strong> Call Hot Water Heroes Plumbing for a free estimate and we will help you choose the best option for your home.</p>',
         ],
         [
-            'title'    => 'The Ultimate Guide to Professional Plumbing',
-            'category' => 'Tips & Maintenance',
-            'excerpt'  => 'Why medical-grade products outperform drugstore brands and how to build a results-driven skincare routine.',
-            'content'  => '<h2>Why Medical-Grade Matters</h2>
-<p>Not all skincare is created equal. While drugstore products can provide basic hydration and sun protection, medical-grade skincare is formulated with higher concentrations of active ingredients that penetrate deeper into the skin for visible, lasting results.</p>
+            'title'    => 'The Complete Guide to Preventing Plumbing Emergencies',
+            'category' => 'Drain & Pipe Services',
+            'excerpt'  => 'Simple maintenance tips every Tampa Bay homeowner should know to prevent costly plumbing disasters.',
+            'content'  => '<h2>Prevention Is Cheaper Than Repair</h2>
+<p>Most plumbing emergencies do not happen overnight. They build up slowly from years of neglect. At Hot Water Heroes Plumbing, we have seen it all, and most of it could have been prevented with basic maintenance.</p>
 
-<h3>Key Differences</h3>
-<p>Medical-grade products, like those from ZO Skin Health (which we carry at Hot Water Heroes Plumbing), are backed by clinical research and contain pharmaceutical-grade ingredients. They\'re designed to target specific skin concerns at the cellular level � something over-the-counter products simply can\'t match.</p>
+<h3>1. Know Where Your Main Shutoff Is</h3>
+<p>If a pipe bursts, the first thing you need to do is stop the water. Every homeowner should know exactly where the main water shutoff valve is and test it annually to make sure it works.</p>
 
-<h3>Building Your Routine</h3>
-<p>A solid medical-grade skincare routine includes four essential steps:</p>
+<h3>2. Never Pour Grease Down the Drain</h3>
+<p>Grease solidifies in your pipes and creates stubborn clogs over time. Let it cool in a container and throw it in the trash instead.</p>
+
+<h3>3. Flush Your Water Heater Annually</h3>
+<p>Sediment builds up at the bottom of your water heater tank, reducing efficiency and shortening its lifespan. A simple annual flush takes 20 minutes and can add years to your unit.</p>
+
+<h3>4. Watch for Warning Signs</h3>
+<p>Slow drains, low water pressure, discolored water, and unexplained increases in your water bill are all early signs of plumbing problems. Address them early before they become emergencies.</p>
+
+<p><strong>Want peace of mind?</strong> Ask about our annual maintenance plans at Hot Water Heroes Plumbing.</p>',
+        ],
+        [
+            'title'    => 'What to Expect When You Call a Plumber',
+            'category' => 'Drain & Pipe Services',
+            'excerpt'  => 'A step-by-step walkthrough of the Hot Water Heroes service experience, from your first call to job completion.',
+            'content'  => '<h2>Your First Call to Hot Water Heroes</h2>
+<p>If you have never called a plumber before, it is completely normal to have questions. At Hot Water Heroes Plumbing, we have designed every step of the experience to be straightforward, transparent, and stress-free.</p>
+
+<h3>Step 1: The Call</h3>
+<p>When you call 813-42-PLUMB, you will speak with a real person who will ask about your issue, schedule a convenient time, and give you an upfront service call fee. No surprises.</p>
+
+<h3>Step 2: The Diagnosis</h3>
+<p>Your licensed plumber arrives on time, inspects the problem, and gives you a written estimate before any work begins. We explain what is wrong, what needs to be done, and exactly what it will cost.</p>
+
+<h3>Step 3: The Repair</h3>
+<p>Once you approve the estimate, we get to work immediately. Our plumbers carry fully-stocked trucks, so most repairs can be completed in a single visit.</p>
+
+<h3>Step 4: The Walkthrough</h3>
+<p>When the job is done, your plumber walks you through everything that was done, answers your questions, and cleans up the work area completely.</p>
+
+<p><strong>Ready to experience the difference?</strong> Call Hot Water Heroes Plumbing today or book online.</p>',
+        ],
+        [
+            'title'    => '5 Signs You Need to Replace Your Water Heater',
+            'category' => 'Water Heater Services',
+            'excerpt'  => 'How to tell if your water heater is on its last legs and when it makes sense to repair vs. replace.',
+            'content'  => '<h2>Is Your Water Heater Telling You Something?</h2>
+<p>Your water heater works hard every day, but it will not last forever. Here are the top 5 signs it is time for a replacement.</p>
+
+<h3>1. Age</h3>
+<p>If your tank water heater is over 10-12 years old, it is living on borrowed time. Check the serial number on the manufacturer label to find the production date.</p>
+
+<h3>2. Rusty or Discolored Water</h3>
+<p>Brown or rusty water coming from your hot water tap usually means the inside of the tank is corroding. This is a sign of imminent failure.</p>
+
+<h3>3. Strange Noises</h3>
+<p>Banging, rumbling, or popping sounds from your water heater indicate heavy sediment buildup. This makes the unit work harder and can lead to leaks.</p>
+
+<h3>4. Leaking Around the Base</h3>
+<p>Any moisture or pooling water around the base of your water heater means the tank integrity is compromised. This requires immediate attention.</p>
+
+<h3>5. Not Enough Hot Water</h3>
+<p>If you are running out of hot water faster than usual, or it takes forever to heat up, the heating elements or tank capacity may no longer meet your needs.</p>
+
+<p><strong>Noticing any of these signs?</strong> Call Hot Water Heroes Plumbing for a free assessment and same-day replacement options.</p>',
+        ],
+        [
+            'title'    => 'Why Tampa Bay Homes Need Annual Plumbing Inspections',
+            'category' => 'Water Heater Services',
+            'excerpt'  => 'Florida homes face unique plumbing challenges. Here is why an annual inspection can save you thousands.',
+            'content'  => '<h2>Florida Plumbing Is Different</h2>
+<p>Tampa Bay homes face unique plumbing challenges that homes in other parts of the country do not. From hard water mineral buildup to shifting sandy soil that stresses underground pipes, our climate and geology put extra wear on your plumbing system.</p>
+
+<h3>What a Professional Inspection Covers</h3>
+<p>During an annual plumbing inspection at Hot Water Heroes Plumbing, our licensed plumbers check:</p>
 <ul>
-<li><strong>Cleanser</strong> � Remove impurities without stripping your skin</li>
-<li><strong>Active Treatment</strong> � Target specific concerns (retinol, vitamin C, etc.)</li>
-<li><strong>Moisturizer</strong> � Lock in hydration and protect the skin barrier</li>
-<li><strong>Sunscreen</strong> � The single most important anti-aging product you can use</li>
+<li><strong>Water heater</strong> - condition, age, sediment levels, anode rod, and temperature settings</li>
+<li><strong>Supply lines</strong> - checking for leaks, corrosion, and water pressure</li>
+<li><strong>Drain lines</strong> - flow testing and camera inspection if needed</li>
+<li><strong>Fixtures</strong> - faucets, toilets, and shut-off valves for leaks and proper operation</li>
+<li><strong>Water quality</strong> - hardness testing and filtration recommendations</li>
 </ul>
 
-<p>Our providers at Hot Water Heroes Plumbing can analyze your skin and recommend the exact products you need. No guesswork, no wasted money on products that don\'t work.</p>',
+<h3>The Cost of Skipping Inspections</h3>
+<p>A small leak you cannot see can waste thousands of gallons of water per year and cause mold, rot, and structural damage. A $150 inspection today can prevent a $15,000 repair tomorrow.</p>
+
+<p><strong>Protect your home.</strong> Schedule your annual plumbing inspection with Hot Water Heroes Plumbing today.</p>',
         ],
         [
-            'title'    => 'What to Expect at Your First Med Spa Visit',
-            'category' => 'How-To Guides',
-            'excerpt'  => 'A complete walkthrough of your consultation, treatment, and aftercare at Hot Water Heroes Plumbing � so you know exactly what to expect.',
-            'content'  => '<h2>Your First Visit, Demystified</h2>
-<p>If you\'ve never been to a med spa before, it\'s completely normal to feel a mix of excitement and nervousness. At Hot Water Heroes Plumbing, we\'ve designed every step of the experience to make you feel comfortable, informed, and cared for.</p>
+            'title'    => 'Hard Water in Tampa Bay: What It Does to Your Plumbing',
+            'category' => 'Drain & Pipe Services',
+            'excerpt'  => 'Tampa Bay has some of the hardest water in Florida. Learn how it affects your pipes, fixtures, and appliances.',
+            'content'  => '<h2>The Hard Truth About Tampa Bay Water</h2>
+<p>If you have ever noticed white crusty buildup on your faucets or shower heads, you have seen hard water deposits firsthand. Tampa Bay water contains high levels of calcium and magnesium minerals that wreak havoc on your plumbing over time.</p>
 
-<h3>Step 1: The Consultation</h3>
-<p>Every journey starts with a free, no-pressure consultation. You\'ll meet with one of our expert providers to discuss your goals, concerns, and medical history. We\'ll examine your skin and recommend treatments that align with your budget and expectations.</p>
+<h3>How Hard Water Damages Your Home</h3>
+<p>Hard water mineral deposits build up inside your pipes, water heater, dishwasher, and washing machine. Over time, this reduces water flow, decreases appliance efficiency, and shortens the lifespan of everything it touches.</p>
 
-<h3>Step 2: Your Treatment</h3>
-<p>On treatment day, you\'ll be welcomed into our luxury treatment suite. Depending on the procedure, the process can take anywhere from 15 minutes (for Botox) to 60 minutes (for a Glo2Facial or microneedling). Most treatments are minimally invasive with little to no downtime.</p>
-
-<h3>Step 3: Aftercare</h3>
-<p>We\'ll provide clear aftercare instructions and schedule any follow-up appointments. Our team is always available by phone or text if you have questions during your recovery.</p>
-
-<p><strong>Ready to take the first step?</strong> Book your complimentary consultation at Hot Water Heroes Plumbing today.</p>',
-        ],
-        [
-            'title'    => '5 Anti-Aging Treatments That Actually Work',
-            'category' => 'HWH News',
-            'excerpt'  => 'Cut through the noise � these are the five proven anti-aging treatments our providers recommend most.',
-            'content'  => '<h2>Evidence-Based Anti-Aging</h2>
-<p>The beauty industry is full of promises, but only a handful of treatments deliver scientifically proven results. Here are the five anti-aging treatments we recommend most at Hot Water Heroes Plumbing.</p>
-
-<h3>1. Botox & Neuromodulators</h3>
-<p>The gold standard for preventing and treating dynamic wrinkles. Regular treatments can actually slow the formation of new lines over time.</p>
-
-<h3>2. Microneedling with PRP</h3>
-<p>By creating micro-injuries in the skin and applying platelet-rich plasma, this treatment stimulates your body\'s natural collagen production for firmer, more youthful skin.</p>
-
-<h3>3. Chemical Peels</h3>
-<p>Medical-grade peels remove damaged outer layers to reveal fresh, even-toned skin underneath. They\'re excellent for hyperpigmentation, fine lines, and overall texture improvement.</p>
-
-<h3>4. Laser Skin Resurfacing</h3>
-<p>Our Helix CO2 laser delivers dramatic results for deep wrinkles, scars, and sun damage by stimulating new collagen growth at the deepest layers of skin.</p>
-
-<h3>5. Medical-Grade Retinol</h3>
-<p>Prescription-strength retinol is the most well-researched anti-aging ingredient in skincare. It accelerates cell turnover, boosts collagen, and fades discoloration.</p>
-
-<p><strong>Want a personalized anti-aging plan?</strong> Our experts will create a custom treatment roadmap during your free consultation.</p>',
-        ],
-        [
-            'title'    => 'The Benefits of IV Therapy for Skin Health',
-            'category' => 'Emergency Services',
-            'excerpt'  => 'Discover how IV vitamin infusions can transform your skin from the inside out � boosting hydration, glow, and cellular repair.',
-            'content'  => '<h2>Beauty From the Inside Out</h2>
-<p>While topical treatments and procedures work on the surface, true skin health starts from within. That\'s where IV therapy comes in � delivering essential vitamins, minerals, and antioxidants directly to your bloodstream for maximum absorption.</p>
-
-<h3>How IV Therapy Helps Your Skin</h3>
-<p>Our custom IV drips at Hot Water Heroes Plumbing are formulated with skin-boosting nutrients including:</p>
+<h3>Signs of Hard Water Problems</h3>
 <ul>
-<li><strong>Vitamin C</strong> � A powerful antioxidant that brightens skin and supports collagen production</li>
-<li><strong>Glutathione</strong> � The "master antioxidant" that detoxifies and promotes an even, luminous complexion</li>
-<li><strong>B-Complex Vitamins</strong> � Essential for cellular repair and energy production</li>
-<li><strong>Zinc</strong> � Supports skin healing and reduces inflammation</li>
+<li>White or chalky buildup on faucets and shower heads</li>
+<li>Spots on dishes and glassware after washing</li>
+<li>Dry skin and hair after showering</li>
+<li>Reduced water pressure over time</li>
+<li>Water heater making popping or rumbling sounds</li>
 </ul>
 
-<h3>Beyond Skin Benefits</h3>
-<p>IV therapy also boosts energy, strengthens immunity, and helps with recovery after intense workouts or travel. Many of our clients schedule regular drips as part of their overall wellness routine.</p>
+<h3>The Solution: Water Softener Installation</h3>
+<p>A whole-house water softener removes the excess minerals before they reach your fixtures and appliances. It extends the life of your plumbing, improves water quality, and reduces cleaning time.</p>
 
-<p><strong>Try it yourself.</strong> Book an IV therapy session at Hot Water Heroes Plumbing and feel the difference within hours.</p>',
-        ],
-        [
-            'title'    => 'Glo2Facial: Why Tampa Bay\'s It-Girls Are Obsessed',
-            'category' => 'How-To Guides',
-            'excerpt'  => 'The Glo2Facial is the hottest facial treatment in Tampa Bay right now � here\'s why everyone is booking one.',
-            'content'  => '<h2>The Facial That Changed Everything</h2>
-<p>If you\'ve been on Instagram lately, you\'ve probably seen the Glo2Facial everywhere. This innovative three-in-one treatment has taken Tampa Bay by storm � and for good reason.</p>
-
-<h3>What Makes It Special?</h3>
-<p>Unlike traditional facials, the Glo2Facial uses a proprietary OxyPods technology that triggers a natural oxygenation process from within your skin. This means nutrients are absorbed more effectively, leading to better, longer-lasting results.</p>
-
-<h3>The Three-Step Process</h3>
-<ol>
-<li><strong>Exfoliate</strong> � Gentle resurfacing removes dead skin cells and prepares the skin</li>
-<li><strong>Oxygenate</strong> � The OxyPods reaction floods skin with oxygen from within</li>
-<li><strong>Infuse</strong> � Nutrient-rich serums are pushed deeper into the skin for maximum absorption</li>
-</ol>
-
-<h3>Why We Love It</h3>
-<p>The Glo2Facial delivers instant, visible results with absolutely zero downtime. You can literally get one on your lunch break and return to work glowing. It\'s safe for all skin types and can be customized for specific concerns like hydration, brightening, or anti-aging.</p>
-
-<p><strong>Want that Tampa Bay glow?</strong> Book your Glo2Facial at Hot Water Heroes Plumbing � or host a Glo2Facial Party with your friends!</p>',
+<p><strong>Tired of hard water?</strong> Call Hot Water Heroes Plumbing for a free water quality test and softener installation estimate.</p>',
         ],
     ];
 
@@ -748,7 +754,7 @@ function hwh_create_services() {
     // 3 broad categories that fit the mega menu grid perfectly
     $categories = [
         'Water Heater Services'       => 'Professional water heater installation, repair, and maintenance for residential and commercial properties.',
-        'Drain & Pipe Services'    => 'Advanced skin treatments from chemical peels and microneedling to laser resurfacing and facials.',
+        'Drain & Pipe Services'    => 'Expert drain cleaning, pipe repair, sewer line service, and camera inspections.',
         'Emergency & General'   => 'Body contouring, hair restoration, IV therapy, and wellness treatments for total transformation.',
     ];
 
@@ -767,59 +773,59 @@ function hwh_create_services() {
 
     // Define all 18 services across 3 categories
     $services = [
-        // -- Injectables (3 services) ------------------------------
+        // -- Core Services (3 services) ------------------------------
         [
-            'title'    => 'Botox',
+            'title'    => 'Water Heater Repair',
             'icon'     => '??',
             'category' => 'Water Heater Services',
-            'excerpt'  => 'Smooth away fine lines and wrinkles with the world\'s most trusted neuromodulator, expertly administered for natural-looking results.',
+            'excerpt'  => 'Fast, reliable water heater repair for all tank and tankless models. Same-day service available across all of-looking results.',
         ],
         [
-            'title'    => 'Jeuveau',
+            'title'    => 'Water Heater Installation',
             'icon'     => '?',
             'category' => 'Water Heater Services',
-            'excerpt'  => 'The modern alternative to Botox � Jeuveau delivers smooth, wrinkle-free results with a formula designed specifically for aesthetics.',
+            'excerpt'  => 'Upgrade your home with a new high-efficiency water heater ï¿½ We install tank and tankless units from top brands with same-day availability.',
         ],
         [
             'title'    => 'Water Heater Installation',
             'icon'     => '??',
             'category' => 'Water Heater Services',
-            'excerpt'  => 'Restore volume, enhance contours, and achieve a refreshed, youthful appearance with premium hyaluronic acid fillers.',
+            'excerpt'  => 'Professional drain cleaning for kitchen, bathroom, and main sewer lines using hydro-jetting and camera inspection.',
         ],
 
-        // -- Skin & Facials (6 services) ---------------------------
+        // -- Drain & Pipe Services (6 services) ---------------------------
         [
-            'title'    => 'Chemical Peels',
+            'title'    => 'Leak Detection',
             'icon'     => '??',
             'category' => 'Drain & Pipe Services',
-            'excerpt'  => 'Reveal fresh, radiant skin by removing damaged outer layers with customized chemical peel treatments.',
+            'excerpt'  => 'Advanced electronic and camera-based leak detection to find hidden leaks without destroying your walls or floors.',
         ],
         [
-            'title'    => 'Microneedling',
+            'title'    => 'Pipe Repair',
             'icon'     => '??',
             'category' => 'Drain & Pipe Services',
-            'excerpt'  => 'Stimulate your skin\'s natural collagen production to improve texture, tone, and firmness with precision microneedling.',
+            'excerpt'  => 'Expert pipe repair and replacement for burst, corroded, or leaking pipes. Emergency service available 24/7 across Tampa Bay.',
         ],
         [
-            'title'    => 'Secret RF Microneedling',
+            'title'    => 'Whole-Home Repiping',
             'icon'     => '?',
             'category' => 'Drain & Pipe Services',
             'excerpt'  => 'Combine radiofrequency energy with microneedling for deeper skin tightening and dramatic rejuvenation results.',
         ],
         [
-            'title'    => 'PRP Facial',
+            'title'    => 'Toilet Repair',
             'icon'     => '??',
             'category' => 'Drain & Pipe Services',
             'excerpt'  => 'Harness your body\'s own growth factors for natural skin renewal, improved texture, and a radiant glow.',
         ],
         [
-            'title'    => 'Glo2Facial',
+            'title'    => 'Faucet Installation',
             'icon'     => '?',
             'category' => 'Drain & Pipe Services',
-            'excerpt'  => 'A next-generation facial that combines exfoliation, oxygenation, and infusion for an instant, healthy glow.',
+            'excerpt'  => 'Professional faucet installation, repair, and replacement for kitchen and bathroom fixtures.',
         ],
         [
-            'title'    => 'Cellis Derma PRP',
+            'title'    => 'Garbage Disposal',
             'icon'     => '??',
             'category' => 'Drain & Pipe Services',
             'excerpt'  => 'Advanced PRP therapy combined with cutting-edge Cellis technology for superior skin rejuvenation and healing.',
@@ -830,28 +836,28 @@ function hwh_create_services() {
             'title'    => 'Sewer & Water Line',
             'icon'     => '??',
             'category' => 'Emergency & General',
-            'excerpt'  => 'Fractional CO2 laser resurfacing to dramatically reduce scars, wrinkles, and sun damage with precision technology.',
+            'excerpt'  => 'Whole-house water filtration and softener installation to improve water quality and protect your plumbing system.',
         ],
         [
-            'title'    => 'Laser Treatments',
+            'title'    => 'Water Filtration',
             'icon'     => '??',
             'category' => 'Emergency & General',
             'excerpt'  => 'A range of advanced laser therapies for hair removal, skin tightening, pigmentation correction, and more.',
         ],
         [
-            'title'    => 'Butt Lift',
+            'title'    => 'Sump Pump',
             'icon'     => '??',
             'category' => 'Emergency & General',
             'excerpt'  => 'Non-surgical butt enhancement to lift, firm, and sculpt for a naturally contoured silhouette.',
         ],
         [
-            'title'    => 'Sclerotherapy',
+            'title'    => 'Gas Line Service',
             'icon'     => '??',
             'category' => 'Emergency & General',
             'excerpt'  => 'Eliminate spider veins and varicose veins with this safe, proven injection-based treatment.',
         ],
         [
-            'title'    => 'Weight Loss',
+            'title'    => 'Backflow Prevention',
             'icon'     => '??',
             'category' => 'Emergency & General',
             'excerpt'  => 'Medically supervised weight loss programs tailored to your goals with proven treatments and ongoing support.',
@@ -869,16 +875,16 @@ function hwh_create_services() {
             'excerpt'  => 'Boost hydration, energy, and immunity with custom IV vitamin infusions delivered directly to your bloodstream.',
         ],
         [
-            'title'    => 'Vaginal PRP',
+            'title'    => 'Slab Leak Repair',
             'icon'     => '??',
             'category' => 'Emergency & General',
             'excerpt'  => 'A confidential, non-surgical treatment using platelet-rich plasma to enhance intimate wellness and rejuvenation.',
         ],
         [
-            'title'    => 'Penile PRP',
+            'title'    => 'Camera Inspection',
             'icon'     => '??',
             'category' => 'Emergency & General',
-            'excerpt'  => 'A discreet, non-surgical PRP treatment designed to improve intimate health, sensitivity, and confidence.',
+            'excerpt'  => 'Video camera pipe inspection to diagnose clogs, cracks, and root intrusion without digging.',
         ],
     ];
 
@@ -1184,7 +1190,7 @@ function hwh_product_meta_html($post) {
         <div class="hwh-product-field">
             <label for="product_video_bg">Video Background URL (optional)</label>
             <input type="url" id="product_video_bg" name="product_video_bg" value="<?php echo esc_attr($video); ?>" placeholder="https://example.com/video.mp4">
-            <p class="description">MP4 video URL � plays faintly behind the product card. Leave blank for no video.</p>
+            <p class="description">MP4 video URL ï¿½ plays faintly behind the product card. Leave blank for no video.</p>
         </div>
     </div>
     <?php
@@ -1243,7 +1249,7 @@ function hwh_heartbeat_settings($settings) {
 add_filter('heartbeat_settings', 'hwh_heartbeat_settings');
 
 // ------------------------------------------------------------------------
-// BUILT-IN SEO META BOX � edit SEO title, description & OG image
+// BUILT-IN SEO META BOX ï¿½ edit SEO title, description & OG image
 // directly from the WordPress editor on every page/post/service
 // ------------------------------------------------------------------------
 
@@ -1353,9 +1359,9 @@ function hwh_seo_meta_html($post) {
                    id="hwh_seo_title"
                    name="hwh_seo_title"
                    value="<?php echo esc_attr($seo_title); ?>"
-                   placeholder="<?php echo esc_attr($post->post_title . ' � Hot Water Heroes Plumbing'); ?>"
+                   placeholder="<?php echo esc_attr($post->post_title . ' ï¿½ Hot Water Heroes Plumbing'); ?>"
                    maxlength="120">
-            <span class="hwh-seo-hint">Recommended: 50�60 characters. Leave blank to use default.</span>
+            <span class="hwh-seo-hint">Recommended: 50ï¿½60 characters. Leave blank to use default.</span>
             <span class="hwh-seo-counter" id="seo-title-counter">0/60</span>
         </div>
 
@@ -1367,7 +1373,7 @@ function hwh_seo_meta_html($post) {
                       rows="3"
                       placeholder="A brief summary for search engines..."
                       maxlength="320"><?php echo esc_textarea($seo_desc); ?></textarea>
-            <span class="hwh-seo-hint">Recommended: 120�160 characters.</span>
+            <span class="hwh-seo-hint">Recommended: 120ï¿½160 characters.</span>
             <span class="hwh-seo-counter" id="seo-desc-counter">0/160</span>
         </div>
 
@@ -1379,14 +1385,14 @@ function hwh_seo_meta_html($post) {
                    name="hwh_og_image"
                    value="<?php echo esc_attr($og_image); ?>"
                    placeholder="https://hotwaterheroes.com/wp-content/uploads/...">
-            <span class="hwh-seo-hint">Image shown when shared on Facebook, Twitter, etc. Ideal size: 1200�630px.</span>
+            <span class="hwh-seo-hint">Image shown when shared on Facebook, Twitter, etc. Ideal size: 1200ï¿½630px.</span>
         </div>
 
         <!-- Live Google Preview -->
         <div class="hwh-seo-preview">
             <div class="hwh-seo-preview__label">Google Search Preview</div>
             <div class="hwh-seo-preview__title" id="seo-preview-title">
-                <?php echo esc_html($seo_title ?: $post->post_title . ' � Hot Water Heroes Plumbing'); ?>
+                <?php echo esc_html($seo_title ?: $post->post_title . ' ï¿½ Hot Water Heroes Plumbing'); ?>
             </div>
             <div class="hwh-seo-preview__url">
                 <?php echo esc_url(get_permalink($post->ID)); ?>
@@ -1405,7 +1411,7 @@ function hwh_seo_meta_html($post) {
         var descCounter  = document.getElementById('seo-desc-counter');
         var previewTitle = document.getElementById('seo-preview-title');
         var previewDesc  = document.getElementById('seo-preview-desc');
-        var defaultTitle = <?php echo json_encode($post->post_title . ' � Hot Water Heroes Plumbing'); ?>;
+        var defaultTitle = <?php echo json_encode($post->post_title . ' ï¿½ Hot Water Heroes Plumbing'); ?>;
 
         function updateCounter(input, counter, ideal) {
             var len = input.value.length;
@@ -1472,7 +1478,7 @@ function hwh_custom_title($title) {
         $title['site']  = 'Hot Water Heroes Plumbing';
         return $title;
     }
-    // All other singular pages � use custom SEO title if set
+    // All other singular pages ï¿½ use custom SEO title if set
     if (is_singular()) {
         $custom = get_post_meta(get_the_ID(), '_hwh_seo_title', true);
         if (!empty($custom)) {
@@ -1518,11 +1524,11 @@ function hwh_faq_schema() {
     if (!is_page('memberships')) return;
 
     $faqs = [
-        ['q' => 'Is there a minimum commitment?', 'a' => 'We ask for a minimum 6-month commitment to get the most out of your Beauty Bank membership. After that, you can continue month-to-month or cancel anytime.'],
+        ['q' => 'Is there a minimum commitment?', 'a' => 'We ask for a minimum annual commitment to get the most out of your Maintenance Plan membership. After that, you can continue month-to-month or cancel anytime.'],
         ['q' => 'Do my credits expire?', 'a' => 'No! Your banked credits never expire as long as your membership is active. If you cancel, unused credits remain available for 90 days.'],
-        ['q' => 'What can I use my credits on?', 'a' => 'Your maintenance plan benefits can be used on any plumbing service we offer � water heater repairs, drain cleaning, repiping, fixture installation, and more.'],
+        ['q' => 'What can I use my credits on?', 'a' => 'Your maintenance plan benefits can be used on any plumbing service we offer ï¿½ water heater repairs, drain cleaning, repiping, fixture installation, and more.'],
         ['q' => 'Can I share my credits with friends or family?', 'a' => 'Absolutely! You can gift your credits to friends and family members.'],
-        ['q' => 'How much should I set as my monthly deposit?', 'a' => 'Most of our members choose between $100-$300/month. During your complimentary consultation, we\'ll help you find the perfect amount.'],
+        ['q' => 'How much should I set as my monthly deposit?', 'a' => 'Our plans start at affordable annual rates. During your free estimate, we\'ll help you find the perfect amount.'],
     ];
 
     $schema = [
@@ -1585,7 +1591,7 @@ function hwh_handle_contact_form() {
     if ( empty($recipients) ) $recipients = ['support@hotwaterheroes.com'];
     $to = $recipients;
 
-    $subject = '? New Message � Hot Water Heroes Plumbing Website';
+    $subject = '? New Message ï¿½ Hot Water Heroes Plumbing Website';
 
     // -- Prepare substitution values ---------------------------------
     $service_display = $service ? ucwords(str_replace('-', ' ', $service)) : 'Not specified';
@@ -1702,12 +1708,12 @@ function hwh_settings_page_html() {
     if ( ! current_user_can('manage_options') ) return;
 
     if ( isset($_POST['hwh_settings_nonce']) && wp_verify_nonce($_POST['hwh_settings_nonce'], 'hwh_save_settings') ) {
-        // Multiple emails � stored as comma-separated string
+        // Multiple emails ï¿½ stored as comma-separated string
         $emails_raw = sanitize_text_field($_POST['hwh_notification_emails'] ?? 'support@hotwaterheroes.com');
         $emails_clean = implode(', ', array_filter(array_map('sanitize_email', array_map('trim', explode(',', $emails_raw))), 'is_email'));
         update_option('hwh_notification_emails', $emails_clean ?: 'support@hotwaterheroes.com');
 
-        // Email template � allow HTML
+        // Email template ï¿½ allow HTML
         $template = wp_unslash($_POST['hwh_email_template'] ?? '');
         update_option('hwh_email_template', $template);
 
@@ -1719,7 +1725,7 @@ function hwh_settings_page_html() {
     ?>
     <div class="wrap">
         <h1 style="display:flex;align-items:center;gap:10px;margin-bottom:24px;">
-            <span style="font-size:1.4rem;">?</span> Hot Water Heroes Plumbing � Settings
+            <span style="font-size:1.4rem;">?</span> Hot Water Heroes Plumbing ï¿½ Settings
         </h1>
 
         <form method="post">
@@ -1740,7 +1746,7 @@ function hwh_settings_page_html() {
             <!-- Section: Email Template -->
             <div style="background:#fff;border-radius:10px;padding:28px 32px;max-width:800px;margin-bottom:20px;box-shadow:0 1px 4px rgba(0,0,0,0.08);">
                 <h2 style="margin:0 0 6px;font-size:16px;">?? Email Template (HTML)</h2>
-                <p style="margin:0 0 16px;color:#666;font-size:13px;">Customize the HTML email that gets sent to your inbox. Use the tags below to insert form data � they'll be replaced automatically.</p>
+                <p style="margin:0 0 16px;color:#666;font-size:13px;">Customize the HTML email that gets sent to your inbox. Use the tags below to insert form data ï¿½ they'll be replaced automatically.</p>
 
                 <!-- Placeholder Tags Reference -->
                 <div style="background:#FFF5F5;border:1px solid #e8d8ff;border-radius:8px;padding:16px 20px;margin-bottom:16px;">
@@ -1812,7 +1818,7 @@ function hwh_add_settings_menu() {
 }
 add_action('admin_menu', 'hwh_add_settings_menu');
 
-// -- Deal Popup � Customizer Controls -------------------------------
+// -- Deal Popup ï¿½ Customizer Controls -------------------------------
 // Client manages all popup content from Appearance ? Customize ? ?? Deal Popup
 // Zero code required. Changes go live on Save & Publish.
 add_action('customize_register', 'hwh_popup_customizer');
@@ -1850,7 +1856,7 @@ function hwh_popup_customizer($wp_customize) {
     ]);
 
     // Body text
-    $wp_customize->add_setting('hwh_popup_text', ['default' => 'Book your complimentary consultation today and receive $50 off any treatment on your first visit.', 'sanitize_callback' => 'sanitize_textarea_field', 'transport' => 'refresh']);
+    $wp_customize->add_setting('hwh_popup_text', ['default' => 'Book your first service today and receive $50 off any plumbing repair. New customers only.', 'sanitize_callback' => 'sanitize_textarea_field', 'transport' => 'refresh']);
     $wp_customize->add_control('hwh_popup_text', [
         'type'        => 'textarea',
         'section'     => 'hwh_popup',
@@ -1863,7 +1869,7 @@ function hwh_popup_customizer($wp_customize) {
         'type'        => 'text',
         'section'     => 'hwh_popup',
         'label'       => 'Discount Code (optional)',
-        'description' => 'Leave blank if no promo code � the code box won\'t appear.',
+        'description' => 'Leave blank if no promo code ï¿½ the code box won\'t appear.',
     ]);
 
     // Button text
@@ -2211,7 +2217,7 @@ function hwh_importer_page() {
 // Fires automatically after every git pull / theme file change.
 // Compares the combined modified-time of key theme files against a stored
 // value. If anything changed, it purges LiteSpeed, Cloudflare (via LSC), and
-// the WP object cache � zero manual effort required.
+// the WP object cache ï¿½ zero manual effort required.
 // =============================================================================
 add_action( 'init', function () {
     $theme_dir = get_template_directory();
@@ -2236,7 +2242,7 @@ add_action( 'init', function () {
     $stored_sig = get_option( 'hwh_theme_sig', '' );
 
     if ( $current_sig === $stored_sig ) {
-        return; // Nothing changed � skip
+        return; // Nothing changed ï¿½ skip
     }
 
     // Files changed: update stored signature
@@ -2263,11 +2269,11 @@ add_action( 'init', function () {
         w3tc_flush_all();
     }
 
-}, 1 ); // Priority 1 � run early
+}, 1 ); // Priority 1 ï¿½ run early
 
 
 // =============================================================================
-// AI SEARCH VISIBILITY � HOMEPAGE FAQ SCHEMA
+// AI SEARCH VISIBILITY ï¿½ HOMEPAGE FAQ SCHEMA
 // These Q&As directly feed Google AI Overviews, ChatGPT, and Perplexity
 // when users ask questions about plumbing services in Tampa Bay.
 // =============================================================================
@@ -2277,43 +2283,43 @@ function hwh_homepage_faq_schema() {
     $faqs = [
         [
             'q' => 'What services does Hot Water Heroes Plumbing offer in Tampa Bay?',
-            'a' => 'Hot Water Heroes Plumbing in Tampa Bay, FL offers Botox and neuromodulators, dermal fillers (Juvederm, Restylane), RF microneedling, Helix CO2 laser skin resurfacing, medical-grade facials, chemical peels, Kybella, IV therapy, weight loss programs, and a curated selection of medical-grade skincare products.',
+            'a' => 'Hot Water Heroes Plumbing in Tampa Bay, FL offers water heater repair and installation, drain cleaning, pipe repair, whole-home repiping, leak detection, slab leak repair, gas line service, water filtration, sump pump installation, and 24/7 emergency plumbing service.',
         ],
         [
             'q' => 'Who is the provider at Hot Water Heroes Plumbing?',
-            'a' => 'Hot Water Heroes Plumbing is founded and led by HWH Master Plumbers, APRN � a board-certified Advanced Practice Registered Nurse specializing in aesthetic medicine. Angela brings years of clinical experience delivering natural, results-driven outcomes for clients throughout Tampa Bay and the surrounding areas.',
+            'a' => 'Hot Water Heroes Plumbing is a family-owned, licensed plumbing company ï¿½ serving Tampa Bay with fast, honest, and affordable plumbing services. Our team of licensed master plumbers brings decades of combined experience to every job.',
         ],
         [
             'q' => 'Where is Hot Water Heroes Plumbing located?',
-            'a' => 'Hot Water Heroes Plumbing is located at 10043 N Dale Mabry Hwy, Tampa Bay, FL 33618 � conveniently serving Carrollwood, Westchase, Lutz, Land O Lakes, and the greater Tampa Bay Bay area. Call (813) 230-2219 to book.',
+            'a' => 'Hot Water Heroes Plumbing is located at 10043 N Dale Mabry Hwy, Tampa Bay, FL 33618 ï¿½ conveniently serving Carrollwood, Westchase, Lutz, Land O Lakes, and the greater Tampa Bay Bay area. Call (813) 230-2219 to book.',
         ],
         [
-            'q' => 'How much does Botox cost at Hot Water Heroes Plumbing?',
-            'a' => 'Botox pricing at Hot Water Heroes Plumbing varies based on the number of units and treatment areas. We offer complimentary consultations so you can get an accurate, personalized quote. Beauty Bank memberships also provide monthly credit savings on all treatments including Botox.',
+            'q' => 'How much does a plumbing service call cost at Hot Water Heroes Plumbing?',
+            'a' => 'Service call pricing at Hot Water Heroes Plumbing depends on the type of work needed. We provide free written estimates before any work begins so you know exactly what to expect. Maintenance plan members receive 15% off all repairs.',
         ],
         [
-            'q' => 'Does Hot Water Heroes Plumbing offer free consultations?',
-            'a' => 'Yes! Hot Water Heroes Plumbing offers complimentary consultations with HWH Master Plumbers, APRN. During your consultation, she will assess your aesthetic goals and create a personalized treatment plan tailored to your needs. Book online or call (813) 230-2219.',
+            'q' => 'Does Hot Water Heroes Plumbing offer free estimates?',
+            'a' => 'Yes! Hot Water Heroes Plumbing provides free estimates on all plumbing work. A licensed plumber will diagnose your issue and provide a written quote before any work begins. Book online or call 813-42-PLUMB.',
         ],
         [
             'q' => 'What are Hot Water Heroes Plumbing\'s hours?',
             'a' => 'Hot Water Heroes Plumbing is open Monday through Wednesday from 9:00 AM to 7:00 PM, and Thursday through Saturday from 9:00 AM to 4:00 PM. They are closed on Sundays.',
         ],
         [
-            'q' => 'What is the Beauty Bank membership at Hot Water Heroes Plumbing?',
-            'a' => 'The Beauty Bank is Hot Water Heroes Plumbing\'s monthly savings membership. Members set a custom monthly deposit (starting at $50/month) that accumulates as credits redeemable for any service or product. Credits never expire while your membership is active, and members receive exclusive pricing and priority booking.',
+            'q' => 'What is the Maintenance Plan at Hot Water Heroes Plumbing?',
+            'a' => 'The Maintenance Plan is Hot Water Heroes Plumbing\'s annual service plan. Members receive priority scheduling, annual inspections, (starting at $50/month) that accumulates as credits redeemable for any service or product. Credits never expire while your membership is active, and members receive exclusive pricing and priority booking.',
         ],
         [
-            'q' => 'Is Hot Water Heroes Plumbing good for first-time med spa clients?',
-            'a' => 'Absolutely. Hot Water Heroes Plumbing specializes in natural-looking results and welcomes first-time clients. HWH Master Plumbers, APRN, takes a thorough, educational approach to every consultation, ensuring you understand every treatment option before making any decisions. They offer a $50 off first-visit special for new clients.',
+            'q' => 'Is Hot Water Heroes Plumbing good for first-time homeowners?',
+            'a' => 'Absolutely. Hot Water Heroes Plumbing welcomes first-time customers and provides a friendly, transparent experience. Our licensed plumbers, APRN, takes a thorough, educational approach to every consultation, ensuring you understand every treatment option before making any decisions. They offer a $50 off first-visit special for new clients.',
         ],
         [
             'q' => 'Does Hot Water Heroes Plumbing offer financing?',
-            'a' => 'Yes, Hot Water Heroes Plumbing offers payment plan financing through Cherry � a healthcare financing platform that lets you split your treatment costs into manageable monthly payments with easy online approval.',
+            'a' => 'Yes, Hot Water Heroes Plumbing offers payment plan financing through Cherry ï¿½ a healthcare financing platform that lets you split your treatment costs into manageable monthly payments with easy online approval.',
         ],
         [
-            'q' => 'What makes Hot Water Heroes Plumbing different from other Tampa Bay med spas?',
-            'a' => 'Hot Water Heroes Plumbing stands out for its board-certified APRN provider HWH Master Plumbers, its commitment to natural, personalized results, transparent pricing, and its unique Beauty Bank membership program. They use only FDA-approved products and advanced techniques to deliver safe, effective outcomes.',
+            'q' => 'What makes Hot Water Heroes Plumbing different from other Tampa Bay plumbers?',
+            'a' => 'Hot Water Heroes Plumbing stands out for its team of licensed master plumbers, its commitment to honest, quality workmanship, transparent pricing, and its Maintenance Plan membership program. All work is performed by licensed, insured plumbers and backed by our satisfaction guarantee.',
         ],
     ];
 
@@ -2338,7 +2344,7 @@ add_action('wp_head', 'hwh_homepage_faq_schema', 6);
 
 
 // =============================================================================
-// AI SEARCH VISIBILITY � SERVICE PAGE FAQ SCHEMA
+// AI SEARCH VISIBILITY ï¿½ SERVICE PAGE FAQ SCHEMA
 // Auto-generates a FAQPage schema on every service page from common
 // treatment-specific questions. Helps AI tools cite specific services.
 // =============================================================================
@@ -2353,8 +2359,8 @@ function hwh_service_faq_schema() {
         [
             'q' => 'How much does ' . $service_name . ' cost at Hot Water Heroes Plumbing?',
             'a' => $price
-                ? $service_name . ' at Hot Water Heroes Plumbing starts at ' . esc_html($price) . '. We offer complimentary consultations for a personalized quote. Beauty Bank members receive exclusive savings.'
-                : $service_name . ' pricing at Hot Water Heroes Plumbing is customized to your treatment goals. Book a complimentary consultation with HWH Master Plumbers, APRN to get an accurate quote.',
+                ? $service_name . ' at Hot Water Heroes Plumbing starts at ' . esc_html($price) . '. We provide free written estimates before any work begins. Maintenance plan members save 15% on all repairs.'
+                : $service_name . ' pricing at Hot Water Heroes Plumbing depends on the scope of work. Call us for a free estimate from a licensed plumber.',
         ],
         [
             'q' => 'How long does ' . $service_name . ' take at Hot Water Heroes Plumbing?',
@@ -2364,11 +2370,11 @@ function hwh_service_faq_schema() {
         ],
         [
             'q' => 'Is ' . $service_name . ' safe?',
-            'a' => $service_name . ' at Hot Water Heroes Plumbing is performed by HWH Master Plumbers, a board-certified APRN with extensive aesthetic medicine experience. All treatments use FDA-approved products and protocols for your safety.',
+            'a' => $service_name . ' at Hot Water Heroes Plumbing is performed by licensed, insured plumbers with years of experience. All work is done to code and backed by our satisfaction guarantee.',
         ],
         [
             'q' => 'Where can I get ' . $service_name . ' in Tampa Bay, FL?',
-            'a' => 'Hot Water Heroes Plumbing offers ' . $service_name . ' in Tampa Bay, FL at 10043 N Dale Mabry Hwy, Tampa Bay, FL 33618. Call (813) 230-2219 or book online to schedule your complimentary consultation.',
+            'a' => 'Hot Water Heroes Plumbing offers ' . $service_name . ' in Tampa Bay, FL at 10043 N Dale Mabry Hwy, Tampa Bay, FL 33618. Call (813) 230-2219 or book online to schedule your free estimate.',
         ],
     ];
 
@@ -2393,14 +2399,14 @@ add_action('wp_head', 'hwh_service_faq_schema', 7);
 
 
 // =============================================================================
-// AI SEARCH VISIBILITY � ALLOW AI CRAWLERS IN ROBOTS.TXT
+// AI SEARCH VISIBILITY ï¿½ ALLOW AI CRAWLERS IN ROBOTS.TXT
 // Explicitly permits GPTBot (ChatGPT), PerplexityBot, ClaudeBot (Anthropic),
 // Applebot-Extended (Apple Intelligence), and Google-Extended (Bard/Gemini).
 // Without this, AI tools may not index the site for their training data.
 // =============================================================================
 add_filter('robots_txt', 'hwh_allow_ai_crawlers', 10, 2);
 function hwh_allow_ai_crawlers($output, $public) {
-    $ai_rules  = "\n# -- AI Search Crawlers � explicitly allowed for AI search visibility --\n";
+    $ai_rules  = "\n# -- AI Search Crawlers ï¿½ explicitly allowed for AI search visibility --\n";
     $ai_rules .= "User-agent: GPTBot\nAllow: /\n\n";          // ChatGPT / OpenAI
     $ai_rules .= "User-agent: ChatGPT-User\nAllow: /\n\n";    // ChatGPT browsing
     $ai_rules .= "User-agent: OAI-SearchBot\nAllow: /\n\n";   // OpenAI SearchGPT
@@ -2418,7 +2424,7 @@ function hwh_allow_ai_crawlers($output, $public) {
 
 
 // =============================================================================
-// AI SEARCH VISIBILITY � HOMEPAGE REVIEW SCHEMA
+// AI SEARCH VISIBILITY ï¿½ HOMEPAGE REVIEW SCHEMA
 // Outputs 5 real-sounding sample reviews as Review entities on the homepage.
 // AI tools use Review schema to assess business authority and sentiment.
 // UPDATE these with real Google review content when available.
@@ -2431,25 +2437,25 @@ function hwh_review_schema() {
             'author'  => 'Sarah M.',
             'rating'  => 5,
             'date'    => '2026-03-15',
-            'body'    => 'Angela is absolutely amazing! I got Botox and filler for the first time and she made me feel so comfortable. The results look completely natural � not overdone at all. HWH is the only company I\'ll go from now on.',
+            'body'    => 'The team at Hot Water Heroes is absolutely amazing! They replaced our water heater the same day we called. The work was clean and professional ï¿½ not overdone at all. HWH is the only company I\'ll go from now on.',
         ],
         [
             'author'  => 'Jessica R.',
             'rating'  => 5,
             'date'    => '2026-02-28',
-            'body'    => 'Best med spa in Tampa Bay hands down. The space is beautiful, the staff is professional, and Angela clearly knows her craft. I\'ve had Botox and a HydraFacial here and I\'m obsessed with my results.',
+            'body'    => 'Best plumbing company in Tampa Bay. They showed up on time, diagnosed the issue quickly, and had it fixed within the hour. Highly recommend to anyone in the Tampa Bay area.',
         ],
         [
             'author'  => 'Michelle T.',
             'rating'  => 5,
             'date'    => '2026-01-20',
-            'body'    => 'I\'ve been a Beauty Bank member for 3 months and it is SO worth it. I bank credits every month and use them on whatever I need. Angela is thorough, professional, and genuinely cares about her clients.',
+            'body'    => 'We signed up for the Maintenance Plan and it is totally worth it. The annual inspection caught a small leak we never would have noticed. The team is thorough, professional, and genuinely cares about their customers.',
         ],
         [
             'author'  => 'Danielle K.',
             'rating'  => 5,
             'date'    => '2025-12-10',
-            'body'    => 'First time getting lip filler and Angela walked me through everything. She was honest about what would look good on my face and didn\'t upsell me on anything unnecessary. Results are gorgeous.',
+            'body'    => 'First time calling a plumber and the HWH team walked us through everything. They were honest about what actually needed fixing on my face and didn\'t upsell me on anything unnecessary. Results are gorgeous.',
         ],
         [
             'author'  => 'Olivia W.',
