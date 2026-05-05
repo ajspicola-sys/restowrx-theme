@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Hot Water Heroes Plumbing — Search Results Template
  */
@@ -50,7 +50,7 @@ get_header(); ?>
                 </div>
             <?php else : ?>
                 <div class="search-results__empty reveal" style="text-align:center;padding:4rem 0;">
-                    <div style="font-size:3rem;margin-bottom:1rem;">🔍</div>
+                    <div style="font-size:3rem;margin-bottom:1rem;"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
                     <h2 class="section__title">No Results Found</h2>
                     <p class="section__desc">We couldn't find what you're looking for. Try a different search term or browse our popular pages.</p>
                     <div style="display:flex;gap:1rem;justify-content:center;margin-top:2rem;flex-wrap:wrap;">

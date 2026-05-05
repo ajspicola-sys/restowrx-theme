@@ -164,7 +164,7 @@ get_header(); ?>
         <div class="svc-cta__pulse" aria-hidden="true"></div>
         <div class="svc-cta__inner reveal">
             <div class="svc-cta__text">
-                <span class="svc-cta__eyebrow">🤝 Let's Talk</span>
+                <span class="svc-cta__eyebrow">Let's Talk</span>
                 <h2 class="svc-cta__title">Ready to Work<br><em>With Us?</em></h2>
                 <p class="svc-cta__desc">Whether it's a dripping faucet or a full water heater replacement, we'd love to earn your trust. Give us a call — or book online in under a minute.</p>
             </div>

@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Hot Water Heroes Plumbing — Blog/Archive Template
  * Performance-optimized: lazy loading, semantic HTML, category filters
@@ -10,9 +10,9 @@ get_header(); ?>
     <!-- Blog Hero -->
     <section class="page-hero page-hero--blog" aria-label="Blog">
         <div class="page-hero__inner">
-            <span class="section__label"><span aria-hidden="true">📝</span> Our Journal</span>
-            <h1 class="page-hero__title">Beauty Tips &amp;<br><em>Treatment Insights</em></h1>
-            <p class="page-hero__desc">Stay informed with expert advice, skincare tips, and the latest treatments from our clinical team.</p>
+            <span class="section__label">HWH Blog</span>
+            <h1 class="page-hero__title">Plumbing Tips &amp;<br><em>Expert Insights</em></h1>
+            <p class="page-hero__desc">Helpful guides, maintenance tips, and the latest plumbing advice from the Hot Water Heroes team.</p>
         </div>
     </section>
 
@@ -72,7 +72,7 @@ get_header(); ?>
                                 </div>
                             <?php else : ?>
                                 <div class="blog-card__img blog-card__img--placeholder" aria-hidden="true">
-                                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(172,19,249,0.4)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+                                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
                                 </div>
                             <?php endif; ?>
                             <div class="blog-card__body">
@@ -103,9 +103,9 @@ get_header(); ?>
                 </nav>
             <?php else : ?>
                 <div class="blog-empty reveal">
-                    <span class="blog-empty__icon" aria-hidden="true">📝</span>
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
                     <h2 class="blog-empty__title">Coming Soon</h2>
-                    <p class="blog-empty__text">Our blog is launching soon with beauty tips, treatment guides, and expert insights from the Hot Water Heroes Plumbing team.</p>
+                    <p class="blog-empty__text">Our blog is launching soon with plumbing tips, maintenance guides, and expert advice from the Hot Water Heroes team.</p>
                     <a href="<?php echo esc_url(home_url('/')); ?>" class="btn btn--primary">Back to Home</a>
                 </div>
             <?php endif; ?>
@@ -113,13 +113,13 @@ get_header(); ?>
     </section>
 
     <!-- Blog CTA -->
-    <section class="cta-section" aria-label="Book a consultation">
+    <section class="cta-section" aria-label="Request service">
         <div class="cta-section__inner reveal">
-            <span class="cta-section__label">Have Questions?</span>
-            <h2 class="cta-section__title">Ready to Start<br>Your Glow-Up?</h2>
-            <p class="cta-section__text">Book a complimentary consultation and let our experts create a personalized treatment plan just for you.</p>
+            <span class="cta-section__label">Have a Plumbing Issue?</span>
+            <h2 class="cta-section__title">Need Help?<br>We're On Our Way.</h2>
+            <p class="cta-section__text">Call us or book online — fast, reliable plumbing service across Tampa Bay.</p>
             <div class="cta-section__actions">
-                <a href="#request-service" class="btn btn--primary btn--lg">Book a Consultation</a>
+                <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary btn--lg">Request Service</a>
                 <a href="tel:+18134275862" class="btn btn--outline btn--lg">Call 813-42-PLUMB</a>
             </div>
         </div>

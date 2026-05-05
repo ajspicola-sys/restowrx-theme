@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Template Name: Products
  * Hot Water Heroes Plumbing — Products Page (Dynamic)
@@ -12,7 +12,7 @@ get_header(); ?>
         <div class="page-hero__inner">
             <span class="section__label">Curated Collection</span>
             <h1 class="page-hero__title">Our Products</h1>
-            <p class="page-hero__desc">Physician-selected, medical-grade products to complement your treatments and elevate your daily routine.</p>
+            <p class="page-hero__desc">Professional-grade plumbing products and equipment we trust and recommend.</p>
         </div>
     </section>
 
@@ -55,7 +55,7 @@ get_header(); ?>
                                     ]); ?>
                                 <?php else : ?>
                                     <div class="product-card__placeholder" aria-hidden="true">
-                                        <span>🛍️</span>
+                                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
                                     </div>
                                 <?php endif; ?>
                             </div>
@@ -86,7 +86,7 @@ get_header(); ?>
                 <?php endwhile; wp_reset_postdata();
                 else : ?>
                     <div style="text-align:center; padding:4rem 2rem; grid-column: 1/-1;">
-                        <p style="color:#7a7a90; font-size:1.1rem;">Products coming soon! Add them in <strong>WordPress Admin → 🛍️ Products</strong>.</p>
+                        <p style="color:#7a7a90; font-size:1.1rem;">Products coming soon! Add them in <strong>WordPress Admin → Products</strong>.</p>
                     </div>
                 <?php endif; ?>
 
@@ -98,8 +98,8 @@ get_header(); ?>
     <section class="cta-section" aria-label="Book with us">
         <div class="cta-section__inner reveal">
             <span class="cta-section__label">Need Help Choosing?</span>
-            <h2 class="cta-section__title">Get a Personalized<br>Product Recommendation</h2>
-            <p class="cta-section__text">Our providers will analyze your skin and recommend the perfect products for your goals.</p>
+            <h2 class="cta-section__title">Need Help<br>Choosing?</h2>
+            <p class="cta-section__text">Our team can recommend the right products for your plumbing needs. Call us anytime.</p>
             <div class="cta-section__actions">
                 <a href="#request-service" class="btn btn--primary btn--lg">Request Service</a>
             </div>

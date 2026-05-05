@@ -255,7 +255,7 @@ $all_cats = get_terms( [
             <?php else : ?>
                 <!-- Empty state -->
                 <div class="svc-empty">
-                    <span class="svc-empty__icon">🚧</span>
+                    <span class="svc-empty__icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
                     <h2 class="svc-empty__title">Services Coming Soon</h2>
                     <p class="svc-empty__text">We're loading our full service menu. Call us directly and we'll get you sorted.</p>
                     <a href="tel:+18134275862" class="btn btn--primary btn--lg">Call Now</a>
@@ -347,7 +347,7 @@ $all_cats = get_terms( [
         <div class="svc-cta__pulse" aria-hidden="true"></div>
         <div class="svc-cta__inner reveal">
             <div class="svc-cta__text">
-                <span class="svc-cta__eyebrow">🚨 Plumbing Emergency?</span>
+                <span class="svc-cta__eyebrow">Plumbing Emergency?</span>
                 <h2 class="svc-cta__title">We're Available<br><em>Right Now.</em></h2>
                 <p class="svc-cta__desc">Don't let a burst pipe or overflowing drain turn into a renovation. Our emergency crew is standing by 24 hours a day, 7 days a week.</p>
             </div>
