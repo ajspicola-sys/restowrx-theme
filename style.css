@@ -10678,47 +10678,45 @@ a.contact-card__text:hover {
   min-height: 420px;
 }
 
-/* Main SVG illustration */
-.svc-hero__illus {
-  width: min(380px, 80%);
-  height: auto;
-  filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.5));
+/* Heaty mascot image */
+.svc-hero__mascot {
   position: relative;
+  z-index: 2;
+  width: min(380px, 75%);
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.55));
+  animation: svcMascotFloat 5s ease-in-out infinite;
+}
+
+/* Radial glow behind Heaty */
+.svc-hero__mascot-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 360px;
+  height: 360px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(242, 47, 58, 0.2) 0%,
+    rgba(242, 47, 58, 0.08) 40%,
+    transparent 70%
+  );
   z-index: 1;
+  pointer-events: none;
+  animation: svcGlowPulse 4s ease-in-out infinite;
 }
 
-/* Wrench gentle rock */
-.svc-hero__wrench {
-  transform-origin: 202px 260px;
-  animation: svcWrenchRock 4s ease-in-out infinite;
-}
-@keyframes svcWrenchRock {
-  0%, 100% { transform: rotate(0deg);   }
-  25%      { transform: rotate(5deg);   }
-  75%      { transform: rotate(-5deg);  }
+@keyframes svcMascotFloat {
+  0%, 100% { transform: translateY(0);     }
+  50%      { transform: translateY(-14px); }
 }
 
-/* Valve wheel slow spin */
-.svc-hero__valve {
-  transform-origin: 202px 60px;
-  animation: svcValveSpin 12s linear infinite;
-}
-@keyframes svcValveSpin {
-  from { transform: rotate(0deg);   }
-  to   { transform: rotate(360deg); }
-}
-
-/* Drip animation from junction */
-.svc-hero__drip {
-  animation: svcDrip 2.2s ease-in infinite;
-}
-.svc-hero__drip--1 { animation-delay: 0s;   }
-.svc-hero__drip--2 { animation-delay: 0.7s; }
-.svc-hero__drip--3 { animation-delay: 1.4s; }
-@keyframes svcDrip {
-  0%   { transform: translate(0, 0);      opacity: 0.6; }
-  70%  { opacity: 0.5; }
-  100% { transform: translate(-5px, 35px); opacity: 0;   }
+@keyframes svcGlowPulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1);    opacity: 1;   }
+  50%      { transform: translate(-50%, -50%) scale(1.08); opacity: 0.7; }
 }
 
 /* ── Floating glassmorphic stat cards ──────────────────────────── */
@@ -11287,7 +11285,7 @@ a.contact-card__text:hover {
   .svc-hero__actions { flex-direction: column; }
   .svc-hero__actions .btn { width: 100%; justify-content: center; }
   .svc-hero__visual { min-height: 260px; }
-  .svc-hero__illus { width: min(280px, 90%); }
+  .svc-hero__mascot { width: min(280px, 90%); }
   .svc-hero__float { padding: 0.6rem 0.9rem; }
   .svc-hero__float strong { font-size: 0.95rem; }
   .svc-hero__float span { font-size: 0.55rem; }

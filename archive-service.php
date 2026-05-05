@@ -81,64 +81,24 @@ $all_cats = get_terms( [
                 </div>
             </div>
 
-            <!-- Right: illustration + floating stat cards -->
+            <!-- Right: Heaty mascot + floating stat cards -->
             <div class="svc-hero__visual">
 
-                <!-- Big wrench / pipe SVG illustration -->
-                <svg class="svc-hero__illus" viewBox="0 0 400 420" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <!-- Background glow circle -->
-                    <circle cx="200" cy="210" r="170" fill="url(#hero-glow)" opacity=".6"/>
-                    <defs>
-                        <radialGradient id="hero-glow" cx="50%" cy="50%">
-                            <stop offset="0%"   stop-color="#F22F3A" stop-opacity=".18"/>
-                            <stop offset="100%" stop-color="#18375D" stop-opacity="0"/>
-                        </radialGradient>
-                    </defs>
+                <!-- Glow backdrop behind Heaty -->
+                <div class="svc-hero__mascot-glow" aria-hidden="true"></div>
 
-                    <!-- Pipe cross: horizontal -->
-                    <rect x="40" y="180" width="320" height="55" rx="12" fill="#1E4A7A"/>
-                    <rect x="40" y="180" width="320" height="16" rx="8"  fill="#2A5F96" opacity=".5"/>
-                    <!-- Pipe: left cap -->
-                    <rect x="28" y="172" width="32" height="71" rx="8" fill="#18375D"/>
-                    <!-- Pipe: right cap -->
-                    <rect x="340" y="172" width="32" height="71" rx="8" fill="#18375D"/>
-                    <!-- Pipe cross: vertical -->
-                    <rect x="175" y="60" width="55" height="310" rx="12" fill="#1E4A7A"/>
-                    <rect x="175" y="60" width="16" height="310" rx="8"  fill="#2A5F96" opacity=".4"/>
-                    <!-- Junction circle -->
-                    <circle cx="202" cy="207" r="38" fill="#18375D" stroke="#0F2440" stroke-width="4"/>
-                    <circle cx="202" cy="207" r="22" fill="#0F2440"/>
-                    <circle cx="202" cy="207" r="10" fill="#F22F3A" opacity=".7"/>
+                <!-- Heaty mascot image -->
+                <img
+                    src="https://hotwaterheroesplumbing.com/wp-content/uploads/2026/05/Heaty-Normal.png"
+                    alt="Heaty — Hot Water Heroes mascot"
+                    class="svc-hero__mascot"
+                    width="420"
+                    height="480"
+                    loading="eager"
+                    decoding="async"
+                >
 
-                    <!-- Wrench (rotated around center) -->
-                    <g class="svc-hero__wrench">
-                        <!-- Handle -->
-                        <rect x="186" y="230" width="32" height="145" rx="8" fill="#F22F3A"/>
-                        <rect x="190" y="230" width="8" height="145" rx="4" fill="#FF6B74" opacity=".35"/>
-                        <!-- Head jaw -->
-                        <path d="M186 230 l-18-28 a14 14 0 0 1 0-20 l18-10 l32 0 l18 10 a14 14 0 0 1 0 20 l-18 28 z" fill="#AF2D37"/>
-                        <!-- Head opening -->
-                        <rect x="194" y="175" width="16" height="45" rx="4" fill="#0F2440"/>
-                        <!-- Jaw detail lines -->
-                        <line x1="185" y1="195" x2="175" y2="188" stroke="#0F2440" stroke-width="2.5" stroke-linecap="round"/>
-                        <line x1="219" y1="195" x2="229" y2="188" stroke="#0F2440" stroke-width="2.5" stroke-linecap="round"/>
-                    </g>
-
-                    <!-- Valve wheel (top of vertical pipe) -->
-                    <g class="svc-hero__valve">
-                        <circle cx="202" cy="60" r="24" fill="none" stroke="#F22F3A" stroke-width="5"/>
-                        <circle cx="202" cy="60" r="8" fill="#AF2D37"/>
-                        <line x1="178" y1="60" x2="226" y2="60" stroke="#F22F3A" stroke-width="5" stroke-linecap="round"/>
-                        <line x1="202" y1="36" x2="202" y2="84" stroke="#F22F3A" stroke-width="5" stroke-linecap="round"/>
-                    </g>
-
-                    <!-- Small water drips from junction -->
-                    <circle class="svc-hero__drip svc-hero__drip--1" cx="230" cy="220" r="4" fill="#4DA8FF" opacity=".6"/>
-                    <circle class="svc-hero__drip svc-hero__drip--2" cx="175" cy="225" r="3" fill="#4DA8FF" opacity=".5"/>
-                    <circle class="svc-hero__drip svc-hero__drip--3" cx="215" cy="235" r="3.5" fill="#4DA8FF" opacity=".45"/>
-                </svg>
-
-                <!-- Floating stat cards -->
+                <!-- Floating stat cards around Heaty -->
                 <div class="svc-hero__float svc-hero__float--1">
                     <strong>4.9★</strong>
                     <span>Google Rating</span>
