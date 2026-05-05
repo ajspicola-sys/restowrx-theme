@@ -1293,7 +1293,7 @@ function hwh_seo_meta_html($post) {
         }
         .hwh-seo-field input:focus,
         .hwh-seo-field textarea:focus {
-            border-color: #AC13F9;
+            border-color: #F22F3A;
             outline: none;
             box-shadow: 0 0 0 2px rgba(201,169,110,0.15);
         }
@@ -1323,7 +1323,7 @@ function hwh_seo_meta_html($post) {
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.08em;
-            color: #AC13F9;
+            color: #F22F3A;
             margin-bottom: 8px;
         }
         .hwh-seo-preview__title {
@@ -1637,10 +1637,10 @@ function hwh_default_email_template() {
     <tr><td align="center">
       <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;border-radius:16px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.12);">
         <tr>
-          <td style="background:linear-gradient(135deg,#0f0720 0%,#1a0a35 60%,#2d0d5e 100%);padding:40px 40px 32px;text-align:center;">
+          <td style="background:linear-gradient(135deg,#0f0720 0%,#0A1628 60%,#2d0d5e 100%);padding:40px 40px 32px;text-align:center;">
             <p style="margin:0 0 8px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(201,169,110,0.9);">Hot Water Heroes Plumbing</p>
             <h1 style="margin:0;font-size:26px;font-weight:300;color:#f0ebe3;letter-spacing:1px;">New Website Message</h1>
-            <div style="width:40px;height:2px;background:linear-gradient(90deg,#AC13F9,#C9A96E);margin:16px auto 0;border-radius:2px;"></div>
+            <div style="width:40px;height:2px;background:linear-gradient(90deg,#F22F3A,#C9A96E);margin:16px auto 0;border-radius:2px;"></div>
           </td>
         </tr>
         <tr>
@@ -1649,39 +1649,39 @@ function hwh_default_email_template() {
             <table width="100%" cellpadding="0" cellspacing="0">
               <tr>
                 <td style="padding:0 8px 16px 0;width:50%;vertical-align:top;">
-                  <div style="background:#f9f6ff;border-radius:10px;padding:16px 18px;border-left:3px solid #AC13F9;">
-                    <p style="margin:0 0 4px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#AC13F9;font-weight:600;">Name</p>
-                    <p style="margin:0;font-size:15px;color:#1a0a35;font-weight:500;">{{name}}</p>
+                  <div style="background:#FFF5F5;border-radius:10px;padding:16px 18px;border-left:3px solid #F22F3A;">
+                    <p style="margin:0 0 4px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#F22F3A;font-weight:600;">Name</p>
+                    <p style="margin:0;font-size:15px;color:#0A1628;font-weight:500;">{{name}}</p>
                   </div>
                 </td>
                 <td style="padding:0 0 16px 8px;width:50%;vertical-align:top;">
-                  <div style="background:#f9f6ff;border-radius:10px;padding:16px 18px;border-left:3px solid #AC13F9;">
-                    <p style="margin:0 0 4px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#AC13F9;font-weight:600;">Email</p>
-                    <p style="margin:0;font-size:15px;color:#1a0a35;font-weight:500;"><a href="mailto:{{email}}" style="color:#AC13F9;text-decoration:none;">{{email}}</a></p>
+                  <div style="background:#FFF5F5;border-radius:10px;padding:16px 18px;border-left:3px solid #F22F3A;">
+                    <p style="margin:0 0 4px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#F22F3A;font-weight:600;">Email</p>
+                    <p style="margin:0;font-size:15px;color:#0A1628;font-weight:500;"><a href="mailto:{{email}}" style="color:#F22F3A;text-decoration:none;">{{email}}</a></p>
                   </div>
                 </td>
               </tr>
               <tr>
                 <td style="padding:0 8px 16px 0;vertical-align:top;">
-                  <div style="background:#f9f6ff;border-radius:10px;padding:16px 18px;border-left:3px solid #C9A96E;">
+                  <div style="background:#FFF5F5;border-radius:10px;padding:16px 18px;border-left:3px solid #C9A96E;">
                     <p style="margin:0 0 4px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#C9A96E;font-weight:600;">Phone</p>
-                    <p style="margin:0;font-size:15px;color:#1a0a35;font-weight:500;">{{phone}}</p>
+                    <p style="margin:0;font-size:15px;color:#0A1628;font-weight:500;">{{phone}}</p>
                   </div>
                 </td>
                 <td style="padding:0 0 16px 8px;vertical-align:top;">
-                  <div style="background:#f9f6ff;border-radius:10px;padding:16px 18px;border-left:3px solid #C9A96E;">
+                  <div style="background:#FFF5F5;border-radius:10px;padding:16px 18px;border-left:3px solid #C9A96E;">
                     <p style="margin:0 0 4px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#C9A96E;font-weight:600;">Service Interest</p>
-                    <p style="margin:0;font-size:15px;color:#1a0a35;font-weight:500;">{{service}}</p>
+                    <p style="margin:0;font-size:15px;color:#0A1628;font-weight:500;">{{service}}</p>
                   </div>
                 </td>
               </tr>
             </table>
-            <div style="background:#f9f6ff;border-radius:10px;padding:20px 22px;margin-top:4px;border-left:3px solid #AC13F9;">
-              <p style="margin:0 0 8px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#AC13F9;font-weight:600;">Message</p>
+            <div style="background:#FFF5F5;border-radius:10px;padding:20px 22px;margin-top:4px;border-left:3px solid #F22F3A;">
+              <p style="margin:0 0 8px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#F22F3A;font-weight:600;">Message</p>
               <p style="margin:0;font-size:15px;color:#333;line-height:1.7;">{{message}}</p>
             </div>
             <div style="text-align:center;margin-top:32px;">
-              <a href="mailto:{{email}}" style="display:inline-block;background:linear-gradient(135deg,#AC13F9,#8a0fd4);color:#ffffff;text-decoration:none;padding:14px 36px;border-radius:50px;font-size:14px;font-weight:600;letter-spacing:0.5px;">Reply to {{first_name}} ?</a>
+              <a href="mailto:{{email}}" style="display:inline-block;background:linear-gradient(135deg,#F22F3A,#C41E27);color:#ffffff;text-decoration:none;padding:14px 36px;border-radius:50px;font-size:14px;font-weight:600;letter-spacing:0.5px;">Reply to {{first_name}} ?</a>
             </div>
           </td>
         </tr>
@@ -1743,8 +1743,8 @@ function hwh_settings_page_html() {
                 <p style="margin:0 0 16px;color:#666;font-size:13px;">Customize the HTML email that gets sent to your inbox. Use the tags below to insert form data — they'll be replaced automatically.</p>
 
                 <!-- Placeholder Tags Reference -->
-                <div style="background:#f9f6ff;border:1px solid #e8d8ff;border-radius:8px;padding:16px 20px;margin-bottom:16px;">
-                    <p style="margin:0 0 10px;font-size:12px;font-weight:700;color:#AC13F9;letter-spacing:1px;text-transform:uppercase;">Available Placeholder Tags</p>
+                <div style="background:#FFF5F5;border:1px solid #e8d8ff;border-radius:8px;padding:16px 20px;margin-bottom:16px;">
+                    <p style="margin:0 0 10px;font-size:12px;font-weight:700;color:#F22F3A;letter-spacing:1px;text-transform:uppercase;">Available Placeholder Tags</p>
                     <div style="display:flex;flex-wrap:wrap;gap:8px;">
                         <?php
                         $tags = [

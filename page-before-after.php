@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Template Name: Before After
  * Hot Water Heroes Plumbing — Before & After Gallery
@@ -11,7 +11,7 @@ get_header(); ?>
         <div class="page-hero__inner">
             <span class="section__label">Real Results</span>
             <h1 class="page-hero__title">Before & After</h1>
-            <p class="page-hero__desc">See the transformations our clients have experienced. All results shown are from actual Hot Water Heroes Plumbing patients.</p>
+            <p class="page-hero__desc">See the quality of our work. All photos are from actual Hot Water Heroes plumbing projects across Tampa Bay.</p>
         </div>
     </section>
 
@@ -19,17 +19,16 @@ get_header(); ?>
         <div class="section__inner">
 
             <!-- Filter tabs -->
-            <div class="gallery-filters reveal" role="group" aria-label="Filter by treatment type">
+            <div class="gallery-filters reveal" role="group" aria-label="Filter by project type">
                 <button class="gallery-filter is-active" data-filter="all">All</button>
-                <button class="gallery-filter" data-filter="botox">Botox</button>
-                <button class="gallery-filter" data-filter="fillers">Fillers</button>
-                <button class="gallery-filter" data-filter="laser">Laser</button>
-                <button class="gallery-filter" data-filter="peels">Peels</button>
-                <button class="gallery-filter" data-filter="microneedling">Microneedling</button>
+                <button class="gallery-filter" data-filter="water-heater">Water Heaters</button>
+                <button class="gallery-filter" data-filter="pipe-repair">Pipe Repair</button>
+                <button class="gallery-filter" data-filter="bathroom">Bathroom</button>
+                <button class="gallery-filter" data-filter="drain">Drain Cleaning</button>
             </div>
 
             <div class="gallery-grid reveal">
-                <div class="gallery-card" data-category="botox">
+                <div class="gallery-card" data-category="water-heater">
                     <div class="gallery-card__images">
                         <div class="gallery-card__before">
                             <span class="gallery-card__label">Before</span>
@@ -41,12 +40,12 @@ get_header(); ?>
                         </div>
                     </div>
                     <div class="gallery-card__info">
-                        <h3 class="gallery-card__title">Botox — Forehead & Crow's Feet</h3>
-                        <p class="gallery-card__desc">40 units of Botox to smooth forehead lines and crow's feet. Results shown at 2 weeks post-treatment.</p>
+                        <h3 class="gallery-card__title">Tank Water Heater Replacement</h3>
+                        <p class="gallery-card__desc">Removed corroded 15-year-old water heater and installed new 50-gallon energy-efficient unit. Same-day service.</p>
                     </div>
                 </div>
 
-                <div class="gallery-card" data-category="fillers">
+                <div class="gallery-card" data-category="pipe-repair">
                     <div class="gallery-card__images">
                         <div class="gallery-card__before">
                             <span class="gallery-card__label">Before</span>
@@ -58,12 +57,12 @@ get_header(); ?>
                         </div>
                     </div>
                     <div class="gallery-card__info">
-                        <h3 class="gallery-card__title">Lip Filler — Natural Enhancement</h3>
-                        <p class="gallery-card__desc">1 syringe of Juvederm Ultra for subtle volume and definition. Results shown at 2 weeks.</p>
+                        <h3 class="gallery-card__title">Burst Pipe Emergency Repair</h3>
+                        <p class="gallery-card__desc">Repaired a burst copper pipe under the kitchen sink. Minimal drywall damage, completed in under 2 hours.</p>
                     </div>
                 </div>
 
-                <div class="gallery-card" data-category="laser">
+                <div class="gallery-card" data-category="bathroom">
                     <div class="gallery-card__images">
                         <div class="gallery-card__before">
                             <span class="gallery-card__label">Before</span>
@@ -75,12 +74,12 @@ get_header(); ?>
                         </div>
                     </div>
                     <div class="gallery-card__info">
-                        <h3 class="gallery-card__title">Laser Skin Rejuvenation</h3>
-                        <p class="gallery-card__desc">3 sessions of laser resurfacing for sun damage and hyperpigmentation. Results at 6 weeks.</p>
+                        <h3 class="gallery-card__title">Full Bathroom Repiping</h3>
+                        <p class="gallery-card__desc">Complete repipe of outdated galvanized pipes to PEX throughout a master bathroom. 1-day turnaround.</p>
                     </div>
                 </div>
 
-                <div class="gallery-card" data-category="fillers">
+                <div class="gallery-card" data-category="drain">
                     <div class="gallery-card__images">
                         <div class="gallery-card__before">
                             <span class="gallery-card__label">Before</span>
@@ -92,12 +91,12 @@ get_header(); ?>
                         </div>
                     </div>
                     <div class="gallery-card__info">
-                        <h3 class="gallery-card__title">Cheek & Jawline Fillers</h3>
-                        <p class="gallery-card__desc">2 syringes of Voluma for cheek augmentation and jawline contour. Results at 2 weeks.</p>
+                        <h3 class="gallery-card__title">Main Line Drain Clearing</h3>
+                        <p class="gallery-card__desc">Hydro-jetting a severely clogged main sewer line. Camera inspection confirmed full clearance.</p>
                     </div>
                 </div>
 
-                <div class="gallery-card" data-category="microneedling">
+                <div class="gallery-card" data-category="water-heater">
                     <div class="gallery-card__images">
                         <div class="gallery-card__before">
                             <span class="gallery-card__label">Before</span>
@@ -109,12 +108,12 @@ get_header(); ?>
                         </div>
                     </div>
                     <div class="gallery-card__info">
-                        <h3 class="gallery-card__title">Microneedling — Acne Scarring</h3>
-                        <p class="gallery-card__desc">4 sessions of microneedling with PRP for acne scar improvement. Results at 3 months.</p>
+                        <h3 class="gallery-card__title">Tankless Water Heater Upgrade</h3>
+                        <p class="gallery-card__desc">Replaced an old tank heater with a compact Navien tankless unit. Endless hot water and 40% lower energy bills.</p>
                     </div>
                 </div>
 
-                <div class="gallery-card" data-category="peels">
+                <div class="gallery-card" data-category="pipe-repair">
                     <div class="gallery-card__images">
                         <div class="gallery-card__before">
                             <span class="gallery-card__label">Before</span>
@@ -126,25 +125,25 @@ get_header(); ?>
                         </div>
                     </div>
                     <div class="gallery-card__info">
-                        <h3 class="gallery-card__title">Chemical Peel — Melasma</h3>
-                        <p class="gallery-card__desc">Series of 3 VI Peels for melasma and uneven skin tone. Results at 8 weeks.</p>
+                        <h3 class="gallery-card__title">Slab Leak Repair</h3>
+                        <p class="gallery-card__desc">Located and repaired a hidden slab leak using electronic detection. Minimal floor disruption.</p>
                     </div>
                 </div>
             </div>
 
             <div class="gallery-disclaimer reveal">
-                <p>* Individual results may vary. All photos are of actual Hot Water Heroes Plumbing patients and are unretouched.</p>
+                <p>* All photos are from actual Hot Water Heroes projects. Results may vary based on property conditions.</p>
             </div>
         </div>
     </section>
 
-    <section class="cta-section" aria-label="Book your transformation">
+    <section class="cta-section" aria-label="Request service">
         <div class="cta-section__inner reveal">
-            <span class="cta-section__label">Your Transformation Awaits</span>
-            <h2 class="cta-section__title">Ready for Your<br>Before & After?</h2>
-            <p class="cta-section__text">Book a consultation and start your journey to natural, beautiful results.</p>
+            <span class="cta-section__label">Need Quality Plumbing Work?</span>
+            <h2 class="cta-section__title">Your Home<br>Deserves the Best.</h2>
+            <p class="cta-section__text">Call us or book online — we'll dispatch a licensed plumber to your door fast.</p>
             <div class="cta-section__actions">
-                <a href="#request-service" class="btn btn--primary btn--lg">Request Service</a>
+                <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary btn--lg">Request Service</a>
             </div>
         </div>
     </section>
