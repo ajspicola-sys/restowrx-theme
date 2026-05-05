@@ -9805,6 +9805,53 @@ a.contact-card__text:hover {
 .hwh-cta{padding:7rem 0;background:#F22F3A;position:relative;overflow:hidden}
 .hwh-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 80% 50%,rgba(0,0,0,.15) 0%,transparent 60%),radial-gradient(ellipse 40% 60% at 10% 30%,rgba(255,255,255,.08) 0%,transparent 50%);pointer-events:none}
 .hwh-cta__inner{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 clamp(1.25rem,1rem + 2vw,3rem);display:flex;align-items:center;justify-content:space-between;gap:3rem;flex-wrap:wrap}
+
+/* ==========================================================================
+   HWH FOOTER v3 — Clean dark navy, no emergency bar
+   ========================================================================== */
+.hwh-foot { background: #0A1628; color: rgba(255,255,255,0.7); font-family: 'Inter', sans-serif; }
+
+/* Main body */
+.hwh-foot__main { padding: 5rem 0 4rem; }
+.hwh-foot__inner { max-width:1280px; margin:0 auto; padding:0 clamp(1.25rem,1rem + 2vw,3rem); display:grid; grid-template-columns:1.6fr 1fr 1fr 1.2fr; gap:3.5rem; }
+
+/* Brand col */
+.hwh-foot__logo img { height:auto; width:auto; margin-bottom:1.25rem; }
+.hwh-foot__brand-text { font-size:.85rem; line-height:1.75; color:rgba(255,255,255,.55); margin-bottom:1.5rem; }
+.hwh-foot__social { display:flex; gap:.6rem; margin-bottom:1.25rem; }
+.hwh-foot__social-link { width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.1); display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,.55); transition:all .25s ease; }
+.hwh-foot__social-link:hover { background:#F22F3A; border-color:#F22F3A; color:#fff; transform:translateY(-2px); }
+.hwh-foot__rating { display:flex; align-items:center; gap:.6rem; font-size:.78rem; color:rgba(255,255,255,.5); }
+.hwh-foot__stars { color:#F5C542; letter-spacing:.05em; font-size:.9rem; }
+
+/* Nav cols */
+.hwh-foot__heading { font-family:'Montserrat',serif; font-size:.65rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:#F22F3A; margin-bottom:1.25rem; }
+.hwh-foot__links { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:.6rem; }
+.hwh-foot__links a { font-size:.85rem; color:rgba(255,255,255,.55); text-decoration:none; transition:all .2s ease; display:inline-flex; align-items:center; gap:.35rem; }
+.hwh-foot__links a:hover { color:#fff; transform:translateX(3px); }
+
+/* Contact col */
+.hwh-foot__contact { display:flex; flex-direction:column; gap:.9rem; }
+.hwh-foot__contact-item { display:flex; align-items:center; gap:.75rem; font-size:.84rem; color:rgba(255,255,255,.55); }
+.hwh-foot__contact-item svg { flex-shrink:0; color:#F22F3A; opacity:.8; }
+.hwh-foot__contact-item a { color:rgba(255,255,255,.75); text-decoration:none; transition:color .2s ease; font-weight:600; }
+.hwh-foot__contact-item a:hover { color:#fff; }
+
+/* Bottom bar */
+.hwh-foot__bottom { border-top:1px solid rgba(255,255,255,.06); padding:1.5rem 0; }
+.hwh-foot__bottom-inner { max-width:1280px; margin:0 auto; padding:0 clamp(1.25rem,1rem + 2vw,3rem); display:flex; align-items:center; justify-content:space-between; gap:1.5rem; flex-wrap:wrap; }
+.hwh-foot__copyright { font-size:.75rem; color:rgba(255,255,255,.3); margin:0; }
+.hwh-foot__legal { display:flex; gap:1.5rem; flex-wrap:wrap; }
+.hwh-foot__legal a { font-size:.75rem; color:rgba(255,255,255,.3); text-decoration:none; transition:color .2s ease; }
+.hwh-foot__legal a:hover { color:rgba(255,255,255,.7); }
+
+/* Responsive */
+@media(max-width:1024px) { .hwh-foot__inner { grid-template-columns:1fr 1fr; gap:2.5rem; } }
+@media(max-width:640px) {
+  .hwh-foot__inner { grid-template-columns:1fr; gap:2rem; }
+  .hwh-foot__bottom-inner { flex-direction:column; text-align:center; }
+  .hwh-foot__legal { justify-content:center; }
+}
 .hwh-cta__title{font-family:'Montserrat',serif;font-size:clamp(2rem,1.5rem + 2.5vw,3.5rem);font-weight:900;color:#fff;line-height:1.05;margin-bottom:1rem;letter-spacing:-.02em}
 .hwh-cta__text{font-size:1rem;color:rgba(255,255,255,.8);line-height:1.65;max-width:420px}
 .hwh-cta__actions{display:flex;flex-direction:column;gap:1rem;flex-shrink:0}

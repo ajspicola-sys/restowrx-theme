@@ -1,7 +1,7 @@
-﻿<?php
+<?php
 /**
- * Hot Water Heroes — Footer Template v2
- * Bold dark navy design, plumbing-focused
+ * Hot Water Heroes — Footer v3
+ * Clean dark navy footer, no emergency bar
  */
 ?>
 
@@ -22,52 +22,41 @@
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m18 15-6-6-6 6"/></svg>
 </button>
 
-<footer class="hwh-footer" role="contentinfo">
-
-    <!-- Top: Emergency bar -->
-    <div class="hwh-footer__emergency">
-        <div class="hwh-footer__emergency-inner">
-            <span class="hwh-footer__emergency-dot" aria-hidden="true"></span>
-            <strong>24/7 Emergency Plumbing Available</strong>
-            <span class="hwh-footer__emergency-sep" aria-hidden="true">—</span>
-            <span>Water heater out? Pipe burst? We answer day and night.</span>
-            <a href="tel:+18134275862" class="hwh-footer__emergency-btn">Call Now: 813-42-PLUMB</a>
-        </div>
-    </div>
+<footer class="hwh-foot" role="contentinfo">
 
     <!-- Main footer body -->
-    <div class="hwh-footer__main">
-        <div class="hwh-footer__inner">
+    <div class="hwh-foot__main">
+        <div class="hwh-foot__inner">
 
             <!-- Brand col -->
-            <div class="hwh-footer__brand">
-                <a href="<?php echo esc_url(home_url('/')); ?>" class="hwh-footer__logo" aria-label="Hot Water Heroes — Home">
+            <div class="hwh-foot__brand">
+                <a href="<?php echo esc_url(home_url('/')); ?>" class="hwh-foot__logo" aria-label="Hot Water Heroes — Home">
                     <img src="https://hotwaterheroesplumbing.com/wp-content/uploads/2024/11/Untitled-design-12-scaled.png"
                          alt="Hot Water Heroes Plumbing" width="300" height="144"
                          loading="lazy" decoding="async">
                 </a>
-                <p class="hwh-footer__brand-text">Tampa Bay's trusted plumbing team — fast, honest, and available around the clock for water heater repair, installation, and emergency plumbing.</p>
-                <div class="hwh-footer__social">
-                    <a href="https://www.facebook.com/hotwaterheroes/" class="hwh-footer__social-link" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+                <p class="hwh-foot__brand-text">Tampa Bay's trusted plumbing team — fast, honest, and available around the clock for water heater repair, installation, and emergency plumbing.</p>
+                <div class="hwh-foot__social">
+                    <a href="https://www.facebook.com/hotwaterheroes/" class="hwh-foot__social-link" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
                     </a>
-                    <a href="https://www.instagram.com/hotwaterheroes/" class="hwh-footer__social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+                    <a href="https://www.instagram.com/hotwaterheroes/" class="hwh-foot__social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
                     </a>
-                    <a href="https://g.co/hotwaterheroes" class="hwh-footer__social-link" aria-label="Google Reviews" target="_blank" rel="noopener noreferrer">
+                    <a href="https://g.co/hotwaterheroes" class="hwh-foot__social-link" aria-label="Google Reviews" target="_blank" rel="noopener noreferrer">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
                     </a>
                 </div>
-                <div class="hwh-footer__rating">
-                    <span class="hwh-footer__stars">★★★★★</span>
+                <div class="hwh-foot__rating">
+                    <span class="hwh-foot__stars">★★★★★</span>
                     <span>5.0 · 120+ Google Reviews</span>
                 </div>
             </div>
 
             <!-- Services col -->
-            <div class="hwh-footer__col">
-                <h4 class="hwh-footer__heading">Our Services</h4>
-                <ul class="hwh-footer__links">
+            <div class="hwh-foot__col">
+                <h4 class="hwh-foot__heading">Our Services</h4>
+                <ul class="hwh-foot__links">
                     <li><a href="<?php echo esc_url(home_url('/services/water-heater-repair/')); ?>">Water Heater Repair</a></li>
                     <li><a href="<?php echo esc_url(home_url('/services/water-heater-installation/')); ?>">Water Heater Installation</a></li>
                     <li><a href="<?php echo esc_url(home_url('/services/tankless-water-heaters/')); ?>">Tankless Water Heaters</a></li>
@@ -79,9 +68,9 @@
             </div>
 
             <!-- Company col -->
-            <div class="hwh-footer__col">
-                <h4 class="hwh-footer__heading">Company</h4>
-                <ul class="hwh-footer__links">
+            <div class="hwh-foot__col">
+                <h4 class="hwh-foot__heading">Company</h4>
+                <ul class="hwh-foot__links">
                     <li><a href="<?php echo esc_url(home_url('/about/')); ?>">About Us</a></li>
                     <li><a href="<?php echo esc_url(home_url('/service-areas/')); ?>">Service Areas</a></li>
                     <li><a href="<?php echo esc_url(home_url('/blog/')); ?>">Plumbing Tips Blog</a></li>
@@ -91,22 +80,22 @@
             </div>
 
             <!-- Contact col -->
-            <div class="hwh-footer__col">
-                <h4 class="hwh-footer__heading">Contact Us</h4>
-                <div class="hwh-footer__contact">
-                    <div class="hwh-footer__contact-item">
+            <div class="hwh-foot__col">
+                <h4 class="hwh-foot__heading">Contact Us</h4>
+                <div class="hwh-foot__contact">
+                    <div class="hwh-foot__contact-item">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                         <a href="tel:+18134275862">813-42-PLUMB</a>
                     </div>
-                    <div class="hwh-footer__contact-item">
+                    <div class="hwh-foot__contact-item">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                         <a href="mailto:info@hotwaterheroes.com">info@hotwaterheroes.com</a>
                     </div>
-                    <div class="hwh-footer__contact-item">
+                    <div class="hwh-foot__contact-item">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                         <span>Tampa Bay, FL</span>
                     </div>
-                    <div class="hwh-footer__contact-item">
+                    <div class="hwh-foot__contact-item">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                         <span>Mon–Fri 7am–6pm · 24/7 Emergency</span>
                     </div>
@@ -118,10 +107,10 @@
     </div>
 
     <!-- Bottom bar -->
-    <div class="hwh-footer__bottom">
-        <div class="hwh-footer__bottom-inner">
-            <p class="hwh-footer__copyright">© <?php echo date('Y'); ?> Hot Water Heroes Plumbing. All rights reserved. · Licensed &amp; Insured · Tampa Bay, FL</p>
-            <div class="hwh-footer__legal">
+    <div class="hwh-foot__bottom">
+        <div class="hwh-foot__bottom-inner">
+            <p class="hwh-foot__copyright">© <?php echo date('Y'); ?> Hot Water Heroes Plumbing. All rights reserved. · Licensed &amp; Insured · Tampa Bay, FL</p>
+            <div class="hwh-foot__legal">
                 <a href="<?php echo esc_url(home_url('/privacy-policy/')); ?>">Privacy Policy</a>
                 <a href="<?php echo esc_url(home_url('/cancellation-policy/')); ?>">Cancellation Policy</a>
                 <a href="<?php echo esc_url(home_url('/refund-policy/')); ?>">Refund Policy</a>
@@ -202,7 +191,7 @@
         });
         // Floating CTA hide near footer
         var floatingCta = document.getElementById('floating-cta');
-        var siteFooter  = document.querySelector('.hwh-footer');
+        var siteFooter  = document.querySelector('.hwh-foot');
         if (floatingCta && siteFooter) {
             new IntersectionObserver(function(entries) {
                 floatingCta.style.opacity       = entries[0].isIntersecting ? '0' : '';
