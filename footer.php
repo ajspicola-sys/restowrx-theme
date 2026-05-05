@@ -100,7 +100,7 @@
                         <span>Mon–Fri 7am–6pm · 24/7 Emergency</span>
                     </div>
                 </div>
-                <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="hwh-btn hwh-btn--red" style="margin-top:1.5rem;font-size:.78rem;">Request Service →</a>
+                <a href="#request-service" class="hwh-btn hwh-btn--red" style="margin-top:1.5rem;font-size:.78rem;">Request Service</a>
             </div>
 
         </div>
@@ -186,7 +186,7 @@
                 var id = this.getAttribute('href'); if (id==='#') return;
                 var target = document.querySelector(id);
                 if (target) { e.preventDefault(); var y = target.getBoundingClientRect().top + window.scrollY - (header ? header.offsetHeight : 0) - 20; window.scrollTo({ top: y, behavior: 'smooth' }); }
-                else if (id==='#request-service') { e.preventDefault(); window.location.href = '<?php echo esc_url(home_url("/contact/")); ?>'; }
+                // ServiceTitan modal handles #request-service links
             });
         });
         // Floating CTA hide near footer
