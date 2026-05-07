@@ -27,7 +27,7 @@ get_header(); ?>
         {"@type":"City","name":"Clearwater"},{"@type":"City","name":"Brandon"},
         {"@type":"City","name":"Wesley Chapel"},{"@type":"City","name":"Riverview"}
     ],
-    "aggregateRating": {"@type":"AggregateRating","ratingValue":"5","reviewCount":"120","bestRating":"5"},
+    "aggregateRating": {"@type":"AggregateRating","ratingValue":"5","reviewCount":"30","bestRating":"5"},
     "sameAs": ["https://www.instagram.com/hotwaterheroes/","https://www.facebook.com/hotwaterheroes/"]
 }
 </script>
@@ -95,7 +95,7 @@ get_header(); ?>
         </div>
         <div class="hwh-stat-item__div" aria-hidden="true"></div>
         <div class="hwh-stat-item">
-            <span class="hwh-stat-item__num">120+</span>
+            <span class="hwh-stat-item__num">30+</span>
             <span class="hwh-stat-item__label">5-Star Reviews</span>
         </div>
         <div class="hwh-stat-item__div" aria-hidden="true"></div>
@@ -264,7 +264,7 @@ get_header(); ?>
                     <span class="hwh-why__stat-lbl">Jobs Completed</span>
                 </div>
                 <div class="hwh-why__stat-card">
-                    <span class="hwh-why__stat-num">120+</span>
+                    <span class="hwh-why__stat-num">30+</span>
                     <span class="hwh-why__stat-lbl">5-Star Reviews</span>
                 </div>
                 <div class="hwh-why__stat-card hwh-why__stat-card--accent">
@@ -297,7 +297,7 @@ get_header(); ?>
                 </div>
                 <div class="hwh-reviews-split__badge">
                     <span class="hwh-reviews-split__badge-stars">★★★★★</span>
-                    <span class="hwh-reviews-split__badge-text">5.0 on Google · 120+ Reviews</span>
+                    <span class="hwh-reviews-split__badge-text">5.0 on Google � 30+ Reviews</span>
                 </div>
             </div>
 

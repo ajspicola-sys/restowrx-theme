@@ -49,7 +49,7 @@
                 </div>
                 <div class="hwh-foot__rating">
                     <span class="hwh-foot__stars">★★★★★</span>
-                    <span>5.0 · 120+ Google Reviews</span>
+                    <span>5.0 · 30+ Google Reviews</span>
                 </div>
             </div>
 
@@ -97,7 +97,7 @@
                     </div>
                     <div class="hwh-foot__contact-item">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                        <span>Mon–Fri 7am–6pm · 24/7 Emergency</span>
+                        <span>Open 24 Hours · 7 Days a Week</span>
                     </div>
                 </div>
                 <a href="#request-service" class="hwh-btn hwh-btn--red" style="margin-top:1.5rem;font-size:.78rem;">Request Service</a>

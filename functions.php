@@ -296,10 +296,10 @@ function hwh_schema_markup() {
         'foundingDate'     => '2024',
         'address'          => [
             '@type'           => 'PostalAddress',
-            'streetAddress'   => '10043 N Dale Mabry Hwy',
-            'addressLocality' => 'Tampa Bay',
+            'streetAddress'   => '9249 Lazy Ln',
+            'addressLocality' => 'Tampa',
             'addressRegion'   => 'FL',
-            'postalCode'      => '33618',
+            'postalCode'      => '33614',
             'addressCountry'  => 'US',
         ],
         'geo' => [
@@ -307,10 +307,9 @@ function hwh_schema_markup() {
             'latitude'  => 28.0678,
             'longitude' => -82.5054,
         ],
-        'hasMap'           => 'https://maps.google.com/?q=10043+N+Dale+Mabry+Hwy+Tampa Bay+FL+33618',
+        'hasMap'           => 'https://maps.google.com/?q=9249+Lazy+Ln+Tampa+FL+33614',
         'openingHoursSpecification' => [
-            [ '@type' => 'OpeningHoursSpecification', 'dayOfWeek' => ['Monday','Tuesday','Wednesday'], 'opens' => '09:00', 'closes' => '19:00' ],
-            [ '@type' => 'OpeningHoursSpecification', 'dayOfWeek' => ['Thursday','Friday','Saturday'],  'opens' => '09:00', 'closes' => '16:00' ],
+            [ '@type' => 'OpeningHoursSpecification', 'dayOfWeek' => ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'], 'opens' => '00:00', 'closes' => '23:59' ],
         ],
         'priceRange'       => '$$-$$$',
         'currenciesAccepted' => 'USD',
@@ -330,7 +329,7 @@ function hwh_schema_markup() {
             'ratingValue' => '5.0',
             'bestRating'  => '5',
             'worstRating' => '1',
-            'reviewCount' => '70',
+            'reviewCount' => '30',
         ],
         'employee'         => [ $provider ],
         'founder'          => $provider,
@@ -1627,7 +1626,7 @@ function hwh_handle_contact_form() {
     if ($sent) {
         wp_send_json_success(['message' => 'Message sent! We\'ll get back to you within 24 hours.']);
     } else {
-        wp_send_json_error(['message' => 'Something went wrong. Please call us at (813) 230-2219.']);
+        wp_send_json_error(['message' => 'Something went wrong. Please call us at (813) 427-5862.']);
     }
 }
 add_action('wp_ajax_hwh_contact_submit',        'hwh_handle_contact_form');
@@ -2291,7 +2290,7 @@ function hwh_homepage_faq_schema() {
         ],
         [
             'q' => 'Where is Hot Water Heroes Plumbing located?',
-            'a' => 'Hot Water Heroes Plumbing is located at 10043 N Dale Mabry Hwy, Tampa Bay, FL 33618 ï¿½ conveniently serving Carrollwood, Westchase, Lutz, Land O Lakes, and the greater Tampa Bay Bay area. Call (813) 230-2219 to book.',
+            'a' => 'Hot Water Heroes Plumbing is located at 9249 Lazy Ln, Tampa, FL 33614 (Egypt Lake-Leto neighborhood) ï¿½ conveniently serving Carrollwood, Westchase, Lutz, Land O Lakes, and the greater Tampa Bay Bay area. Call (813) 427-5862 to book.',
         ],
         [
             'q' => 'How much does a plumbing service call cost at Hot Water Heroes Plumbing?',
@@ -2303,7 +2302,7 @@ function hwh_homepage_faq_schema() {
         ],
         [
             'q' => 'What are Hot Water Heroes Plumbing\'s hours?',
-            'a' => 'Hot Water Heroes Plumbing is open Monday through Wednesday from 9:00 AM to 7:00 PM, and Thursday through Saturday from 9:00 AM to 4:00 PM. They are closed on Sundays.',
+            'a' => 'Hot Water Heroes Plumbing is open 24 hours a day, 7 days a week � including weekends and holidays. Call (813) 427-5862 anytime.',
         ],
         [
             'q' => 'What is the Maintenance Plan at Hot Water Heroes Plumbing?',
@@ -2366,7 +2365,7 @@ function hwh_service_faq_schema() {
             'q' => 'How long does ' . $service_name . ' take at Hot Water Heroes Plumbing?',
             'a' => $duration
                 ? $service_name . ' services at Hot Water Heroes Plumbing typically take ' . esc_html($duration) . '. Times may vary based on the scope of your specific job.'
-                : $service_name . ' treatment times vary by client. Contact Hot Water Heroes Plumbing at (813) 230-2219 for details.',
+                : $service_name . ' treatment times vary by client. Contact Hot Water Heroes Plumbing at (813) 427-5862 for details.',
         ],
         [
             'q' => 'Is ' . $service_name . ' safe?',
@@ -2374,7 +2373,7 @@ function hwh_service_faq_schema() {
         ],
         [
             'q' => 'Where can I get ' . $service_name . ' in Tampa Bay, FL?',
-            'a' => 'Hot Water Heroes Plumbing offers ' . $service_name . ' in Tampa Bay, FL at 10043 N Dale Mabry Hwy, Tampa Bay, FL 33618. Call (813) 230-2219 or book online to schedule your free estimate.',
+            'a' => 'Hot Water Heroes Plumbing offers ' . $service_name . ' in Tampa Bay, FL at 9249 Lazy Ln, Tampa, FL 33614. Call (813) 427-5862 or book online to schedule your free estimate.',
         ],
     ];
 
