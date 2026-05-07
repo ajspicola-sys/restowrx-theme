@@ -1,5 +1,5 @@
 # -----------------------------------------------------------------
-#  Livia Med Spa Theme -- Git Sync Helper
+#  Hot Water Heroes Theme -- Git Sync Helper
 #  Usage:
 #    .\sync.ps1          -> PULL latest from GitHub
 #    .\sync.ps1 "msg"    -> COMMIT all changes + PUSH to GitHub

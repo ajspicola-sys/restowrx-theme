@@ -281,7 +281,7 @@ function hwh_schema_markup() {
         'sameAs'      => [ 'https://www.instagram.com/hotwaterheroes/' ],
     ];
 
-    // Full MedicalBusiness entity
+    // Full LocalBusiness entity (Plumber)
     $business = [
         '@context'         => 'https://schema.org',
         '@type'            => ['Plumber', 'HomeAndConstructionBusiness', 'LocalBusiness'],
@@ -396,16 +396,16 @@ function hwh_schema_markup() {
         $duration  = get_post_meta($post_id, '_service_duration', true);
         $cats      = get_the_terms($post_id, 'service_category');
         $cat_name  = ($cats && !is_wp_error($cats)) ? $cats[0]->name : 'Plumbing Service';
-        $excerpt   = wp_strip_all_tags(get_the_excerpt() ?: get_the_title() . ' treatment at Hot Water Heroes Plumbing in Tampa Bay, FL.');
+        $excerpt   = wp_strip_all_tags(get_the_excerpt() ?: get_the_title() . ' service in Tampa Bay, FL.');
 
         $service_schema = [
             '@context'    => 'https://schema.org',
             '@type'       => ['Service', 'Service'],
             '@id'         => get_permalink($post_id) . '#service',
             'name'        => get_the_title(),
-            'description' => wp_strip_all_tags(get_the_excerpt() ?: get_the_title() . ' treatment at Hot Water Heroes Plumbing in Tampa Bay, FL.'),
+            'description' => wp_strip_all_tags(get_the_excerpt() ?: get_the_title() . ' service in Tampa Bay, FL.'),
             'provider'    => [
-                '@type' => 'MedicalBusiness',
+                '@type' => 'Plumber',
                 'name'  => 'Hot Water Heroes Plumbing',
             ],
             'areaServed'  => 'Tampa Bay, FL',
@@ -810,7 +810,7 @@ function hwh_create_services() {
             'title'    => 'Whole-Home Repiping',
             'icon'     => '?',
             'category' => 'Drain & Pipe Services',
-            'excerpt'  => 'Combine radiofrequency energy with microneedling for deeper skin tightening and dramatic rejuvenation results.',
+            'excerpt'  => 'Fast, professional drain cleaning using hydro-jetting and camera inspection. We clear tough clogs same-day.',
         ],
         [
             'title'    => 'Toilet Repair',
@@ -1934,7 +1934,7 @@ function hwh_service_extras_html($post) {
     echo '<td><input type="url" id="_service_video" name="_service_video" value="' . esc_attr($video) . '" style="width:100%;padding:6px 10px;border:1px solid #ddd;border-radius:4px" placeholder="https://youtube.com/watch?v=...">';
     echo '<p style="color:#666;font-size:12px;margin:4px 0 0">Paste a YouTube or Vimeo URL. Leave blank to hide the video section.</p></td></tr>';
     echo '<tr><th style="padding:12px 0;vertical-align:top"><label for="_service_benefits"><strong>? Key Benefits</strong></label></th>';
-    echo '<td><textarea id="_service_benefits" name="_service_benefits" rows="6" style="width:100%;padding:6px 10px;border:1px solid #ddd;border-radius:4px;font-family:inherit" placeholder="No pain, no downtime&#10;Results visible after 1 session">' . esc_textarea($benefits) . '</textarea>';
+    echo '<td><textarea id="_service_benefits" name="_service_benefits" rows="6" style="width:100%;padding:6px 10px;border:1px solid #ddd;border-radius:4px;font-family:inherit" placeholder="Same-day service available&#10;Licensed & insured technicians&#10;Free written estimate included">' . esc_textarea($benefits) . '</textarea>';
     echo '<p style="color:#666;font-size:12px;margin:4px 0 0">One benefit per line. Leave blank to hide the benefits section.</p></td></tr>';
     echo '</table>';
 }
@@ -2311,11 +2311,11 @@ function hwh_homepage_faq_schema() {
         ],
         [
             'q' => 'Is Hot Water Heroes Plumbing good for first-time homeowners?',
-            'a' => 'Absolutely. Hot Water Heroes Plumbing welcomes first-time customers and provides a friendly, transparent experience. Our licensed plumbers, team takes a thorough, professional approach to every estimate, ensuring you understand every treatment option before making any decisions. They offer a $50 off first-visit special for new clients.',
+            'a' => 'Absolutely. Hot Water Heroes Plumbing welcomes first-time customers and provides a friendly, transparent experience. Our licensed plumbers take a thorough, professional approach to every estimate, explaining your options clearly before any work begins. New customers receive a $50 off first-service special.',
         ],
         [
             'q' => 'Does Hot Water Heroes Plumbing offer financing?',
-            'a' => 'Yes, Hot Water Heroes Plumbing offers payment plan financing through Cherry ï¿½ a healthcare financing platform that lets you split your treatment costs into manageable monthly payments with easy online approval.',
+            'a' => 'Yes, Hot Water Heroes Plumbing offers flexible payment plan financing through Cherry � allowing you to split the cost of plumbing repairs or installations into manageable monthly payments with easy online approval. Ask our team for details when you book.',
         ],
         [
             'q' => 'What makes Hot Water Heroes Plumbing different from other Tampa Bay plumbers?',
@@ -2455,13 +2455,13 @@ function hwh_review_schema() {
             'author'  => 'Danielle K.',
             'rating'  => 5,
             'date'    => '2025-12-10',
-            'body'    => 'First time calling a plumber and the HWH team walked us through everything. They were honest about what actually needed fixing on my face and didn\'t upsell me on anything unnecessary. Results are gorgeous.',
+            'body'    => 'First time calling a plumber and the HWH team walked us through everything. They were honest about what actually needed fixing and didn\'t upsell me on anything unnecessary. Our pipes are running perfectly and we couldn\'t be happier.',
         ],
         [
-            'author'  => 'Olivia W.',
+            'author'  => 'Kevin O.',
             'rating'  => 5,
             'date'    => '2025-11-05',
-            'body'    => 'The RF microneedling service at HWH has transformed my skin. Angela customized the treatment for my skin concerns and I saw results within two weeks. Highly recommend to anyone dealing with textured skin or scarring.',
+            'body'    => 'Called Hot Water Heroes at 7am with a broken water heater. They had a technician out within 90 minutes and replaced the entire unit the same day. Professional, clean, and priced fairly. Will absolutely use them again.',
         ],
     ];
 
@@ -2474,7 +2474,7 @@ function hwh_review_schema() {
             'datePublished' => $r['date'],
             'reviewBody'    => $r['body'],
             'itemReviewed'  => [
-                '@type' => 'MedicalBusiness',
+                '@type' => 'Plumber',
                 'name'  => 'Hot Water Heroes Plumbing',
                 'image' => 'https://hotwaterheroesplumbing.com/wp-content/uploads/2025/08/HEROES-16-x-9-in-scaled-e1755179786780.png',
             ],
