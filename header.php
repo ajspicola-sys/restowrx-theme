@@ -220,8 +220,6 @@ $hwh_menu_services = hwh_get_menu_services();
                                 </div>
                             </div>
                             <div class="hwh-drop__footer">
-                                <a href="<?php echo esc_url(home_url('/service-areas/')); ?>" class="hwh-drop__footer-link">📍 Service Areas</a>
-                                <a href="<?php echo esc_url(home_url('/financing/')); ?>" class="hwh-drop__footer-link">💳 Financing Available</a>
                                 <a href="<?php echo esc_url(home_url('/services/')); ?>" class="hwh-drop__footer-cta">View All Services →</a>
                             </div>
                         </div>
@@ -229,12 +227,7 @@ $hwh_menu_services = hwh_get_menu_services();
                     <li class="hwh-nav__item<?php if (is_page('about')) echo ' hwh-nav__item--active'; ?>">
                         <a href="<?php echo esc_url(home_url('/about/')); ?>" class="hwh-nav__link">About</a>
                     </li>
-                    <li class="hwh-nav__item<?php if (is_page('service-areas')) echo ' hwh-nav__item--active'; ?>">
-                        <a href="<?php echo esc_url(home_url('/service-areas/')); ?>" class="hwh-nav__link">Service Areas</a>
-                    </li>
-                    <li class="hwh-nav__item<?php if (is_page('financing')) echo ' hwh-nav__item--active'; ?>">
-                        <a href="<?php echo esc_url(home_url('/financing/')); ?>" class="hwh-nav__link">Financing</a>
-                    </li>
+
                     <li class="hwh-nav__item<?php if (is_page('contact')) echo ' hwh-nav__item--active'; ?>">
                         <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="hwh-nav__link">Contact</a>
                     </li>
@@ -298,8 +291,7 @@ $hwh_menu_services = hwh_get_menu_services();
                 <li><a href="<?php echo esc_url( get_permalink( $ms->ID ) ); ?>">↳ <?php echo esc_html( $ms->post_title ); ?></a></li>
                 <?php endforeach; wp_reset_postdata(); ?>
                 <li><a href="<?php echo esc_url(home_url('/about/')); ?>">About Us</a></li>
-                <li><a href="<?php echo esc_url(home_url('/service-areas/')); ?>">Service Areas</a></li>
-                <li><a href="<?php echo esc_url(home_url('/financing/')); ?>">Financing</a></li>
+
                 <li><a href="<?php echo esc_url(home_url('/contact/')); ?>">Contact</a></li>
             </ul>
         </nav>

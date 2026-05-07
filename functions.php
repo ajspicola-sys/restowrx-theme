@@ -95,12 +95,10 @@ function hwh_force_page_templates($template) {
             'about'        => 'page-about.php',
             'contact'      => 'page-contact.php',
             'maintenance-plan' => 'page-maintenance-plan.php',
-            'service-areas' => 'page-service-areas.php',
             'products'     => 'page-products.php',
             'shop'         => 'page-products.php',
             'values'       => 'page-values.php',
             'before-after' => 'page-before-after.php',
-            'financing'    => 'page-financing.php',
             'privacy-policy'      => 'page-privacy-policy.php',
             'cancellation-policy' => 'page-cancellation-policy.php',
             'refund-policy'       => 'page-refund-policy.php',
@@ -428,9 +426,7 @@ function hwh_create_pages() {
         'Before After'   => '',
         'Careers'        => '',
         'Specials'       => '',
-        'Service Areas'  => '',
         'Blog'           => '',
-        'Financing'      => '',
     ];
 
     foreach ($pages as $title => $content) {
@@ -476,17 +472,6 @@ function hwh_fix_reading_settings() {
     $home_page = get_page_by_title('Home', OBJECT, 'page');
     if ($home_page) {
         update_option('page_on_front', $home_page->ID);
-    }
-
-    // Auto-create Financing page if it doesn't exist
-    $financing = get_page_by_title('Financing', OBJECT, 'page');
-    if (!$financing) {
-        wp_insert_post([
-            'post_title'  => 'Financing',
-            'post_content' => '',
-            'post_status' => 'publish',
-            'post_type'   => 'page',
-        ]);
     }
 
     update_option('hwh_reading_fixed_v2', true);

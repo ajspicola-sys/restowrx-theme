@@ -72,9 +72,7 @@
                 <h4 class="hwh-foot__heading">Company</h4>
                 <ul class="hwh-foot__links">
                     <li><a href="<?php echo esc_url(home_url('/about/')); ?>">About Us</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/service-areas/')); ?>">Service Areas</a></li>
                     <li><a href="<?php echo esc_url(home_url('/blog/')); ?>">Plumbing Tips Blog</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/financing/')); ?>">Financing Options</a></li>
                     <li><a href="<?php echo esc_url(home_url('/contact/')); ?>">Contact Us</a></li>
                 </ul>
             </div>
