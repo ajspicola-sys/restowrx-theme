@@ -94,8 +94,8 @@ function hwh_force_page_templates($template) {
             'team'         => 'page-team.php',
             'about'        => 'page-about.php',
             'contact'      => 'page-contact.php',
-            'memberships'  => 'page-memberships.php',
-            'parties'      => 'page-parties.php',
+            'maintenance-plan' => 'page-maintenance-plan.php',
+            'service-areas' => 'page-service-areas.php',
             'products'     => 'page-products.php',
             'shop'         => 'page-products.php',
             'values'       => 'page-values.php',
@@ -104,7 +104,7 @@ function hwh_force_page_templates($template) {
             'privacy-policy'      => 'page-privacy-policy.php',
             'cancellation-policy' => 'page-cancellation-policy.php',
             'refund-policy'       => 'page-refund-policy.php',
-            'specials'         => 'page-beauty-bank.php',
+            'specials'         => 'page-maintenance-plan.php',
         ];
         if (isset($map[$slug])) {
             $custom = get_template_directory() . '/' . $map[$slug];
@@ -428,8 +428,8 @@ function hwh_create_pages() {
         'Contact'        => '',
         'Before After'   => '',
         'Careers'        => '',
-        'Parties'        => '',
-        'Memberships'    => '',
+        'Specials'       => '',
+        'Service Areas'  => '',
         'Blog'           => '',
         'Financing'      => '',
     ];
@@ -559,10 +559,10 @@ add_action('init', 'hwh_create_refund_page');
 // -- Auto-create Maintenance Plan page --------------------------------------
 function hwh_create_specials_page() {
     if ( get_option('hwh_specials_page_created_v1') ) return;
-    if ( ! hwh_page_slug_exists('specials') ) {
+    if ( ! hwh_page_slug_exists('maintenance-plan') ) {
         wp_insert_post([
-            'post_title'   => 'Specials',
-            'post_name'    => 'specials',
+            'post_title'   => 'Maintenance Plan',
+            'post_name'    => 'maintenance-plan',
             'post_content' => '',
             'post_status'  => 'publish',
             'post_type'    => 'page',
@@ -1519,9 +1519,9 @@ function hwh_seo_head_tags() {
 }
 add_action('wp_head', 'hwh_seo_head_tags', 5);
 
-// -- FAQ Schema for Memberships Page --------------------------------
+// -- FAQ Schema for Maintenance Plan Page --------------------------------
 function hwh_faq_schema() {
-    if (!is_page('memberships')) return;
+    if (!is_page(['memberships','maintenance-plan'])) return;
 
     $faqs = [
         ['q' => 'Is there a minimum commitment?', 'a' => 'We ask for a minimum annual commitment to get the most out of your Maintenance Plan membership. After that, you can continue month-to-month or cancel anytime.'],
