@@ -182,13 +182,13 @@
             if (img.complete) img.classList.add('is-loaded');
             else img.addEventListener('load', function() { this.classList.add('is-loaded'); });
         });
-        // Smooth anchors
+        // Smooth anchors (skip #request-service — handled by ServiceTitan)
         document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
             anchor.addEventListener('click', function(e) {
                 var id = this.getAttribute('href'); if (id==='#') return;
+                if (id === '#request-service') return; // ServiceTitan handles this
                 var target = document.querySelector(id);
                 if (target) { e.preventDefault(); var y = target.getBoundingClientRect().top + window.scrollY - (header ? header.offsetHeight : 0) - 20; window.scrollTo({ top: y, behavior: 'smooth' }); }
-                // ServiceTitan modal handles #request-service links
             });
         });
         // Floating CTA hide near footer
@@ -311,10 +311,22 @@ if ($popup_active) :
 // Make all #request-service links trigger the ServiceTitan scheduler
 document.addEventListener('click', function(e) {
     var link = e.target.closest('a[href*="request-service"]');
-    if (link && typeof _scheduler !== 'undefined') {
-        e.preventDefault();
-        e.stopPropagation();
+    if (!link) return;
+    e.preventDefault();
+    e.stopPropagation();
+    // If ServiceTitan widget is loaded, show it immediately
+    if (typeof _scheduler !== 'undefined') {
         _scheduler.show({ schedulerId: 'sched_qqit9iulh11zn50hfwpifqcv' });
+    } else {
+        // Widget still loading — wait for it, then show
+        var check = setInterval(function() {
+            if (typeof _scheduler !== 'undefined') {
+                clearInterval(check);
+                _scheduler.show({ schedulerId: 'sched_qqit9iulh11zn50hfwpifqcv' });
+            }
+        }, 200);
+        // Give up after 8 seconds and redirect to contact page
+        setTimeout(function() { clearInterval(check); window.location.href = '/contact/'; }, 8000);
     }
 });
 </script>
