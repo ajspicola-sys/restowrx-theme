@@ -298,74 +298,25 @@ if ($popup_active) :
 <?php endif; ?>
 
 <!-- ═══════════════════════════════════════════
-     ServiceTitan Scheduler Modal
+     ServiceTitan Scheduler Widget
      ═══════════════════════════════════════════ -->
-<div class="st-modal" id="st-scheduler-modal" aria-hidden="true" role="dialog" aria-label="Schedule Service">
-    <div class="st-modal__overlay" id="st-modal-overlay"></div>
-    <div class="st-modal__container">
-        <button class="st-modal__close" id="st-modal-close" aria-label="Close scheduler">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-        </button>
-        <div class="st-modal__body" id="st-scheduler-container">
-            <!-- ServiceTitan widget renders here -->
-        </div>
-    </div>
-</div>
-<style>
-.st-modal{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all .3s ease;pointer-events:none}
-.st-modal.is-open{opacity:1;visibility:visible;pointer-events:auto}
-.st-modal__overlay{position:absolute;inset:0;background:rgba(10,22,40,.7);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
-.st-modal__container{position:relative;z-index:1;width:min(95vw,700px);max-height:90vh;background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.35);transform:translateY(20px) scale(.97);transition:transform .35s cubic-bezier(.22,1,.36,1)}
-.st-modal.is-open .st-modal__container{transform:translateY(0) scale(1)}
-.st-modal__close{position:absolute;top:14px;right:14px;z-index:2;width:36px;height:36px;border:none;background:rgba(10,22,40,.08);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s ease;color:#0A1628}
-.st-modal__close:hover{background:#F22F3A;color:#fff}
-.st-modal__body{min-height:500px;padding:1.5rem}
-.st-modal__body iframe{border:none;width:100%;min-height:480px}
-</style>
+<script
+    id="se-widget-embed"
+    src="https://embed.scheduler.servicetitan.com/scheduler-v1.js"
+    data-api-key="a5ho8p45cwcx13uditg8r6h0"
+    data-schedulerid="sched_qqit9iulh11zn50hfwpifqcv"
+    defer>
+</script>
 <script>
-(function(){
-    var modal = document.getElementById('st-scheduler-modal');
-    var overlay = document.getElementById('st-modal-overlay');
-    var closeBtn = document.getElementById('st-modal-close');
-    var container = document.getElementById('st-scheduler-container');
-    var widgetLoaded = false;
-
-    function openScheduler(e) {
-        if (e) e.preventDefault();
-        // Load widget script on first open
-        if (!widgetLoaded) {
-            var s = document.createElement('script');
-            s.id = 'se-widget-embed';
-            s.src = 'https://embed.scheduler.servicetitan.com/scheduler-v1.js';
-            s.defer = true;
-            s.setAttribute('data-api-key', 'a5ho8p45cwcx13uditg8r6h0');
-            s.setAttribute('data-schedulerid', 'sched_qqit9iulh11zn50hfwpifqcv');
-            container.appendChild(s);
-            widgetLoaded = true;
-        }
-        modal.classList.add('is-open');
-        modal.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
+// Make all #request-service links trigger the ServiceTitan scheduler
+document.addEventListener('click', function(e) {
+    var link = e.target.closest('a[href*="request-service"]');
+    if (link && typeof _scheduler !== 'undefined') {
+        e.preventDefault();
+        e.stopPropagation();
+        _scheduler.show({ schedulerId: 'sched_qqit9iulh11zn50hfwpifqcv' });
     }
-
-    function closeScheduler() {
-        modal.classList.remove('is-open');
-        modal.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-    }
-
-    // Intercept ALL #request-service links
-    document.addEventListener('click', function(e) {
-        var link = e.target.closest('a[href*="request-service"]');
-        if (link) openScheduler(e);
-    });
-
-    closeBtn.addEventListener('click', closeScheduler);
-    overlay.addEventListener('click', closeScheduler);
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && modal.classList.contains('is-open')) closeScheduler();
-    });
-})();
+});
 </script>
 
 <?php wp_footer(); ?>
