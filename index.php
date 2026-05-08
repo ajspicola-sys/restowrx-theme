@@ -32,23 +32,19 @@ get_header(); ?>
                 <a href="<?php echo esc_url($blog_url); ?>"
                    class="blog-filter-btn <?php echo !$current_cat ? 'is-active' : ''; ?>">All Posts</a>
                 <?php
-                $blog_cats = get_terms([
-                    'taxonomy'   => 'service_category',
+                $blog_cats = get_categories([
                     'orderby'    => 'name',
                     'order'      => 'ASC',
                     'hide_empty' => false,
+                    'exclude'    => [1], // Exclude 'Uncategorized'
                 ]);
-                if (!is_wp_error($blog_cats)) :
-                    foreach ($blog_cats as $cat) :
+                foreach ($blog_cats as $cat) :
                 ?>
-                    <a href="<?php echo esc_url(get_term_link($cat)); ?>"
+                    <a href="<?php echo esc_url(get_category_link($cat->term_id)); ?>"
                        class="blog-filter-btn <?php echo ($current_cat == $cat->term_id) ? 'is-active' : ''; ?>">
                         <?php echo esc_html($cat->name); ?>
                     </a>
-                <?php
-                    endforeach;
-                endif;
-                ?>
+                <?php endforeach; ?>
             </div>
         </div>
     </section>
