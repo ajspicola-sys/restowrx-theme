@@ -147,7 +147,11 @@ get_header(); ?>
                     $price = get_post_meta(get_the_ID(), '_service_price', true);
             ?>
                 <article class="hwh-service-card reveal">
-                    <?php if ($icon && strlen($icon) > 4) : // skip emojis (multi-byte chars) ?>
+                    <?php if (has_post_thumbnail()) : ?>
+                    <div class="hwh-service-card__img">
+                        <?php the_post_thumbnail("medium", ["loading" => "lazy", "decoding" => "async"]); ?>
+                    </div>
+                    <?php elseif ($icon && strlen($icon) > 4) : ?>
                     <div class="hwh-service-card__icon"><?php echo esc_html($icon); ?></div>
                     <?php endif; ?>
                     <h3 class="hwh-service-card__title"><?php the_title(); ?></h3>
