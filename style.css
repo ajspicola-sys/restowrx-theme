@@ -10234,8 +10234,8 @@ a.contact-card__text:hover {
 .hwh-nav__logo:hover .hwh-nav__logo-img { filter:drop-shadow(0 0 10px rgba(242,47,58,.3)); }
 
 /* Nav links */
-.hwh-nav { flex:1; }
-.hwh-nav__links { display:flex; align-items:center; gap:.1rem; list-style:none; padding:0; margin:0; }
+.hwh-nav { flex:1; display:flex; justify-content:center; }
+.hwh-nav__links { display:flex; align-items:center; justify-content:center; gap:.1rem; list-style:none; padding:0; margin:0; }
 .hwh-nav__item { position:static; }
 .hwh-nav__link { display:flex; align-items:center; gap:4px; padding:.5rem 1rem; font-family:'Inter',sans-serif; font-size:.83rem; font-weight:500; color:#0F2440; text-decoration:none; border-radius:9999px; transition:all .25s ease; white-space:nowrap; position:relative; }
 .hwh-nav__link:hover { color:#F22F3A; background:rgba(242,47,58,.06); }
