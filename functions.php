@@ -1065,14 +1065,14 @@ function hwh_team_meta_html($post) {
     <div class="hwh-team-row">
         <div class="hwh-team-field">
             <label for="team_role">Role / Title</label>
-            <input type="text" id="team_role" name="team_role" value="<?php echo esc_attr($role); ?>" placeholder="Medical Director, MD">
-            <p class="description">e.g. "Medical Director, MD" or "Lead Injector, PA-C"</p>
+            <input type="text" id="team_role" name="team_role" value="<?php echo esc_attr($role); ?>" placeholder="Master Plumber">
+            <p class="description">e.g. "Master Plumber" or "Licensed Journeyman"</p>
         </div>
     </div>
     <div class="hwh-team-row">
         <div class="hwh-team-field">
             <label for="team_credentials">Credential Badges</label>
-            <input type="text" id="team_credentials" name="team_credentials" value="<?php echo esc_attr($credentials); ?>" placeholder="Board Certified, 12+ Years, AAAM Member">
+            <input type="text" id="team_credentials" name="team_credentials" value="<?php echo esc_attr($credentials); ?>" placeholder="Licensed, 10+ Years, Master Plumber">
             <p class="description">Comma-separated badges shown under the name, e.g. "Board Certified, 12+ Years"</p>
         </div>
     </div>
