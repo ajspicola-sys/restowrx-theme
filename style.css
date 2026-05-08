@@ -10007,7 +10007,7 @@ a.contact-card__text:hover {
 .hwh-service-card:hover{border-color:#F22F3A;transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,.1)}
 .hwh-service-card:hover::before{transform:scaleX(1)}
 .hwh-service-card__icon{font-size:2.2rem}
-.hwh-service-card__title{font-family:'Montserrat',serif;font-size:1.1rem;font-weight:800;color:#0F2440;line-height:1.2}
+.hwh-service-card__title{font-family:'Montserrat',serif;font-size:.92rem;font-weight:800;color:#0F2440;line-height:1.2}
 .hwh-service-card__text{font-size:.88rem;color:#3D6491;line-height:1.65;flex:1}
 .hwh-service-card__price{font-size:.78rem;font-weight:700;color:#F22F3A;letter-spacing:.04em}
 .hwh-service-card__link{font-size:.82rem;font-weight:700;color:#F22F3A;text-decoration:none;display:inline-block;margin-top:.25rem;transition:letter-spacing .2s ease}
