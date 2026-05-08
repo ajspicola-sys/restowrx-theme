@@ -1,6 +1,6 @@
-﻿<?php
+<?php
 /**
- * Hot Water Heroes Plumbing — Single Post Template
+ * Hot Water Heroes Plumbing � Single Post Template
  * Performance-optimized: lazy loading, optimized WP_Query, semantic HTML
  */
 get_header(); ?>
@@ -19,10 +19,10 @@ get_header(); ?>
                 <div class="post-meta-line">
                     <time class="post-meta-line__date" datetime="<?php echo get_the_date('c'); ?>" itemprop="datePublished"><?php echo get_the_date('F j, Y'); ?></time>
                     <?php if (has_category()) : ?>
-                        <span class="post-meta-line__sep" aria-hidden="true">·</span>
+                        <span class="post-meta-line__sep" aria-hidden="true">�</span>
                         <span class="post-meta-line__cat" itemprop="articleSection"><?php the_category(', '); ?></span>
                     <?php endif; ?>
-                    <span class="post-meta-line__sep" aria-hidden="true">·</span>
+                    <span class="post-meta-line__sep" aria-hidden="true">�</span>
                     <span class="post-meta-line__read"><?php echo ceil(str_word_count(strip_tags(get_the_content())) / 250); ?> min read</span>
                 </div>
                 <h1 class="page-hero__title" itemprop="headline"><?php the_title(); ?></h1>
@@ -61,7 +61,7 @@ get_header(); ?>
                     </div>
                     <div class="post-author-bar__share">
                         <span class="post-author-bar__share-label">Share</span>
-                        <a href="https://twitter.com/intent/tweet?url=<?php echo urlencode(get_permalink()); ?>&text=<?php echo urlencode(get_the_title()); ?>" target="_blank" rel="noopener noreferrer" class="post-share-link" aria-label="Share on Twitter">𝕏</a>
+                        <a href="https://twitter.com/intent/tweet?url=<?php echo urlencode(get_permalink()); ?>&text=<?php echo urlencode(get_the_title()); ?>" target="_blank" rel="noopener noreferrer" class="post-share-link" aria-label="Share on Twitter">??</a>
                         <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode(get_permalink()); ?>" target="_blank" rel="noopener noreferrer" class="post-share-link" aria-label="Share on Facebook">f</a>
                     </div>
                 </div>
@@ -71,7 +71,7 @@ get_header(); ?>
                     <div class="post-content__tags">
                         <?php the_tags('<span class="post-tag">', '</span><span class="post-tag">', '</span>'); ?>
                     </div>
-                    <a href="<?php echo esc_url(home_url('/blog/')); ?>" class="btn btn--outline">← Back to Blog</a>
+                    <a href="<?php echo esc_url(home_url('/blog/')); ?>" class="btn btn--outline">? Back to Blog</a>
                 </div>
 
                 <!-- Related Posts -->

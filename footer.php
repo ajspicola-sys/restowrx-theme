@@ -7,7 +7,7 @@
 
 <!-- Floating Mobile CTA -->
 <div class="floating-cta" id="floating-cta" aria-label="Quick actions">
-    <a href="#request-service" class="floating-cta__btn floating-cta__btn--book">
+    <a href="/contact/" class="floating-cta__btn floating-cta__btn--book">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg>
         Book Now
     </a>
@@ -102,7 +102,7 @@
                         <span>Open 24 Hours · 7 Days a Week</span>
                     </div>
                 </div>
-                <a href="#request-service" class="hwh-btn hwh-btn--red" style="margin-top:1.5rem;font-size:.78rem;">Request Service</a>
+                <a href="/contact/" class="hwh-btn hwh-btn--red" style="margin-top:1.5rem;font-size:.78rem;">Request Service</a>
             </div>
 
         </div>
@@ -182,11 +182,11 @@
             if (img.complete) img.classList.add('is-loaded');
             else img.addEventListener('load', function() { this.classList.add('is-loaded'); });
         });
-        // Smooth anchors (skip #request-service — handled by ServiceTitan)
+        // Smooth anchors (skip /contact/ — handled by ServiceTitan)
         document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
             anchor.addEventListener('click', function(e) {
                 var id = this.getAttribute('href'); if (id==='#') return;
-                if (id === '#request-service') return; // ServiceTitan handles this
+                if (id === '/contact/') return; // ServiceTitan handles this
                 var target = document.querySelector(id);
                 if (target) { e.preventDefault(); var y = target.getBoundingClientRect().top + window.scrollY - (header ? header.offsetHeight : 0) - 20; window.scrollTo({ top: y, behavior: 'smooth' }); }
             });
@@ -257,7 +257,7 @@ if ($popup_active) :
     $p_text     = esc_html(get_theme_mod('hwh_popup_text',     'Book your first plumbing service and save $50. Available for new customers in Tampa Bay.'));
     $p_code     = esc_html(get_theme_mod('hwh_popup_code',     ''));
     $p_btn_text = esc_html(get_theme_mod('hwh_popup_btn_text', 'Claim Offer Now'));
-    $p_btn_url  = esc_url(get_theme_mod('hwh_popup_btn_url',   '#request-service'));
+    $p_btn_url  = esc_url(get_theme_mod('hwh_popup_btn_url',   '/contact/'));
     $p_delay    = absint(get_theme_mod('hwh_popup_delay',      5)) * 1000;
     $p_freq     = absint(get_theme_mod('hwh_popup_frequency',  7));
 ?>
@@ -297,39 +297,8 @@ if ($popup_active) :
 })();</script>
 <?php endif; ?>
 
-<!-- ═══════════════════════════════════════════
-     ServiceTitan Scheduler Widget
-     ═══════════════════════════════════════════ -->
-<script
-    id="se-widget-embed"
-    src="https://embed.scheduler.servicetitan.com/scheduler-v1.js"
-    data-api-key="a5ho8p45cwcx13uditg8r6h0"
-    data-schedulerid="sched_qqit9iulh11zn50hfwpifqcv"
-    defer>
-</script>
-<script>
-// Make all #request-service links trigger the ServiceTitan scheduler
-document.addEventListener('click', function(e) {
-    var link = e.target.closest('a[href*="request-service"]');
-    if (!link) return;
-    e.preventDefault();
-    e.stopPropagation();
-    // If ServiceTitan widget is loaded, show it immediately
-    if (typeof _scheduler !== 'undefined') {
-        _scheduler.show({ schedulerId: 'sched_qqit9iulh11zn50hfwpifqcv' });
-    } else {
-        // Widget still loading — wait for it, then show
-        var check = setInterval(function() {
-            if (typeof _scheduler !== 'undefined') {
-                clearInterval(check);
-                _scheduler.show({ schedulerId: 'sched_qqit9iulh11zn50hfwpifqcv' });
-            }
-        }, 200);
-        // Give up after 8 seconds and redirect to contact page
-        setTimeout(function() { clearInterval(check); window.location.href = '/contact/'; }, 8000);
-    }
-});
-</script>
+<!-- ServiceTitan scheduler widget disabled — re-enable when configured -->
+
 
 <?php wp_footer(); ?>
 

@@ -121,7 +121,7 @@ get_header(); ?>
             <h2 class="cta-section__title">See Our Values<br>in Action</h2>
             <p class="cta-section__text">Call us or book online and experience plumbing service guided by integrity.</p>
             <div class="cta-section__actions">
-                <a href="#request-service" class="btn btn--primary btn--lg">Request Service</a>
+                <a href="/contact/" class="btn btn--primary btn--lg">Request Service</a>
                 <a href="<?php echo esc_url(home_url('/team/')); ?>" class="btn btn--outline btn--lg">Meet the Team</a>
             </div>
         </div>

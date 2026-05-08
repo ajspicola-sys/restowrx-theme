@@ -101,7 +101,7 @@ get_header(); ?>
             <h2 class="cta-section__title">Need Help<br>Choosing?</h2>
             <p class="cta-section__text">Our team can recommend the right products for your plumbing needs. Call us anytime.</p>
             <div class="cta-section__actions">
-                <a href="#request-service" class="btn btn--primary btn--lg">Request Service</a>
+                <a href="/contact/" class="btn btn--primary btn--lg">Request Service</a>
             </div>
         </div>
     </section>

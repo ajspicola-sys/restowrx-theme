@@ -14,7 +14,7 @@ get_header(); ?>
             <h1 class="page-hero__title">Maintenance<br><em>Plan</em></h1>
             <p class="page-hero__desc">The easiest way to protect your home's plumbing — scheduled maintenance, priority service, and exclusive member savings.</p>
             <div style="margin-top:2rem;">
-                <a href="#request-service" class="btn btn--primary btn--lg">Join Today</a>
+                <a href="/contact/" class="btn btn--primary btn--lg">Join Today</a>
             </div>
         </div>
     </section>
@@ -129,7 +129,7 @@ get_header(); ?>
             <h2 class="cta-section__title">Ready to Join<br>Our Plan?</h2>
             <p class="cta-section__text">Prevent costly repairs, skip the wait on service calls, and save on every job. Call us to sign up today.</p>
             <div class="cta-section__actions">
-                <a href="#request-service" class="btn btn--primary btn--lg">Request Service</a>
+                <a href="/contact/" class="btn btn--primary btn--lg">Request Service</a>
                 <a href="tel:+18134275862" class="btn btn--outline btn--lg">Call 813-42-PLUMB</a>
             </div>
         </div>

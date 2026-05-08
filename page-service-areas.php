@@ -14,7 +14,7 @@ get_header(); ?>
             <h1 class="page-hero__title">Serving All of<br><em>Tampa Bay</em></h1>
             <p class="page-hero__desc">From South Tampa to Wesley Chapel, we provide fast, reliable plumbing service across Hillsborough, Pinellas, and Pasco counties.</p>
             <div class="hero__actions" style="justify-content:center;">
-                <a href="#request-service" class="btn btn--primary btn--lg">Request Service</a>
+                <a href="/contact/" class="btn btn--primary btn--lg">Request Service</a>
                 <a href="tel:+18134275862" class="btn btn--outline btn--lg">Call 813-42-PLUMB</a>
             </div>
         </div>
@@ -123,7 +123,7 @@ get_header(); ?>
             <h2 class="cta-section__title">We're in<br>Your Neighborhood.</h2>
             <p class="cta-section__text">Fast, local, and always available. Call now or book online.</p>
             <div class="cta-section__actions">
-                <a href="#request-service" class="btn btn--primary btn--lg">Request Service</a>
+                <a href="/contact/" class="btn btn--primary btn--lg">Request Service</a>
                 <a href="tel:+18134275862" class="btn btn--outline btn--lg">Call 813-42-PLUMB</a>
             </div>
         </div>

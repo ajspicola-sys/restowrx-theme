@@ -109,7 +109,7 @@ get_header(); ?>
             <h2 class="cta-section__title">Ready to Meet<br>Our Team?</h2>
             <p class="cta-section__text">Call us or book online — we'll dispatch a licensed plumber to your door fast.</p>
             <div class="cta-section__actions">
-                <a href="#request-service" class="btn btn--primary btn--lg">Request Service</a>
+                <a href="/contact/" class="btn btn--primary btn--lg">Request Service</a>
             </div>
         </div>
     </section>
