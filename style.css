@@ -1324,7 +1324,7 @@ html {
 
 .hero__title {
   font-size: clamp(3rem, 2rem + 4vw, 5.75rem);
-  font-weight: 300;
+  font-weight: 800;
   color: var(--text-dark);
   line-height: 1.0;
   margin-bottom: 1.25rem;
@@ -4000,7 +4000,7 @@ html {
 .page-hero__title {
   font-size: clamp(2.5rem, 2rem + 2.5vw, 4rem);
   color: var(--text-dark);
-  font-weight: 300;
+  font-weight: 800;
   margin-bottom: 1rem;
 }
 
@@ -4392,7 +4392,7 @@ a.contact-card__text:hover {
 .blog-hero__title {
   font-family: 'Montserrat', Georgia, serif;
   font-size: clamp(2.2rem, 1.6rem + 3vw, 3.8rem);
-  font-weight: 300; color: #fff;
+  font-weight: 800; color: #fff;
   line-height: 1.1; letter-spacing: -0.02em;
   margin-bottom: 1rem;
 }
@@ -4858,7 +4858,7 @@ a.contact-card__text:hover {
 .service-hero__title {
   font-family: 'Montserrat', Georgia, serif;
   font-size: clamp(2.4rem, 1.8rem + 3vw, 4.2rem);
-  font-weight: 300;
+  font-weight: 800;
   color: #fff;
   line-height: 1.08;
   margin-bottom: 1.25rem;
@@ -10911,7 +10911,7 @@ a.contact-card__text:hover {
 .svc-hero__title {
   font-family: 'Montserrat', Georgia, serif;
   font-size: clamp(2.8rem, 2rem + 3.5vw, 4.8rem);
-  font-weight: 300;
+  font-weight: 800;
   line-height: 1.05;
   color: #fff;
   letter-spacing: -0.02em;
@@ -11753,7 +11753,7 @@ a.contact-card__text:hover {
 .about-hero__title {
   font-family: 'Montserrat', Georgia, serif;
   font-size: clamp(2.8rem, 2rem + 3.5vw, 4.8rem);
-  font-weight: 300;
+  font-weight: 800;
   line-height: 1.05;
   color: #fff;
   letter-spacing: -0.02em;
