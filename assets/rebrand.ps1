@@ -19,9 +19,9 @@ Write-Host "`n[1] style.css"
 $cssPath = Join-Path $root 'style.css'
 $cssPairs = @(
     @('Theme Name:       Livia Med Spa',    'Theme Name:       Hot Water Heroes'),
-    @('Theme URI:        https://liviamedspa.com', 'Theme URI:        https://hotwaterheroes.com'),
+    @('Theme URI:        https://liviamedspa.com', 'Theme URI:        https://hotwaterheroesplumbing.com'),
     @('Author:           Livia Med Spa',    'Author:           Hot Water Heroes'),
-    @('Author URI:       https://liviamedspa.com', 'Author URI:       https://hotwaterheroes.com'),
+    @('Author URI:       https://liviamedspa.com', 'Author URI:       https://hotwaterheroesplumbing.com'),
     @('Text Domain:      livia-medspa',     'Text Domain:      hot-water-heroes'),
     @('LIVIA MED SPA - DESIGN TOKEN SYSTEM', 'HOT WATER HEROES - DESIGN TOKEN SYSTEM'),
     @('/* Brand purples */', '/* Brand Red, Navy & White */'),
@@ -94,8 +94,8 @@ $funcPath = Join-Path $root 'functions.php'
 $funcPairs = @(
     @('LIVIA Med Spa', 'Hot Water Heroes Plumbing'),
     @('Livia Med Spa', 'Hot Water Heroes Plumbing'),
-    @('liviamedspa.com', 'hotwaterheroes.com'),
-    @('support@liviamedspa.com', 'info@hotwaterheroes.com'),
+    @('liviamedspa.com', 'hotwaterheroesplumbing.com'),
+    @('support@liviamedspa.com', 'joe@hotwaterheroesplumbing.com'),
     @('+18132302219', '+18135551234'),
     @("'livia-google-fonts'", "'hwh-google-fonts'"),
     @("'livia-style'", "'hwh-style'"),
@@ -172,7 +172,7 @@ $funcPairs = @(
     @("'Body & Wellness'", "'Emergency & General'"),
     @('Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap',
        'Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap'),
-    @('dns-prefetch" href="//liviamedspa.com"', 'dns-prefetch" href="//hotwaterheroes.com"')
+    @('dns-prefetch" href="//liviamedspa.com"', 'dns-prefetch" href="//hotwaterheroesplumbing.com"')
 )
 ApplyReplacements -FilePath $funcPath -Pairs $funcPairs
 
@@ -182,7 +182,7 @@ $headerPath = Join-Path $root 'header.php'
 $headerPairs = @(
     @('LIVIA Med Spa', 'Hot Water Heroes Plumbing'),
     @('Livia Med Spa', 'Hot Water Heroes Plumbing'),
-    @('liviamedspa.com', 'hotwaterheroes.com'),
+    @('liviamedspa.com', 'hotwaterheroesplumbing.com'),
     @('@liviamedspa', '@hotwaterheroes'),
     @('content="#1A0E2E"', 'content="#0F2440"'),
     @('content="#F0EBE3"', 'content="#E8EEF7"'),
@@ -204,7 +204,7 @@ $footerPath = Join-Path $root 'footer.php'
 $footerPairs = @(
     @('LIVIA Med Spa', 'Hot Water Heroes'),
     @('Livia Med Spa', 'Hot Water Heroes'),
-    @('liviamedspa.com', 'hotwaterheroes.com'),
+    @('liviamedspa.com', 'hotwaterheroesplumbing.com'),
     @("'livia-cookie-consent'", "'hwh-cookie-consent'"),
     @("'livia-popup-dismissed'", "'hwh-popup-dismissed'"),
     @("'livia_popup_enabled'", "'hwh_popup_enabled'"),
@@ -246,7 +246,7 @@ $bulkPairs = @(
     @('Livia Med Spa', 'Hot Water Heroes Plumbing'),
     @('LIVIA', 'HWH'),
     @('livia_', 'hwh_'),
-    @('liviamedspa.com', 'hotwaterheroes.com'),
+    @('liviamedspa.com', 'hotwaterheroesplumbing.com'),
     @('(813) 230-2219', '(813) 555-1234'),
     @('8132302219', '18135551234'),
     @('#book-now', '#request-service'),

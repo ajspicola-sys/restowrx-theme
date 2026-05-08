@@ -1,8 +1,8 @@
-﻿<?php
+<?php
 /**
- * Hot Water Heroes — One-Time Git Deploy Script
+ * Hot Water Heroes � One-Time Git Deploy Script
  * Upload to: /public_html/deploy.php
- * Visit: https://hotwaterheroes.com/deploy.php?key=HWHGitDeploy2026
+ * Visit: https://hotwaterheroesplumbing.com/deploy.php?key=HWHGitDeploy2026
  * DELETES ITSELF after running for security.
  */
 

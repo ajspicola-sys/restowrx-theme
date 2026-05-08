@@ -157,7 +157,7 @@ add_filter('style_loader_tag', 'hwh_async_styles', 10, 2);
 // -- Performance: Preload critical fonts only (preconnects live in header.php) --
 function hwh_resource_hints() {
     // DNS prefetch for external image CDN
-    echo '<link rel="dns-prefetch" href="//hotwaterheroes.com">' . "\n";
+    echo '<link rel="dns-prefetch" href="//hotwaterheroesplumbing.com">' . "\n";
 
     // Preload the most critical font files (the weights used above the fold)
     echo '<link rel="preload" href="https://fonts.gstatic.com/s/cormorantgaramond/v16/co3YmX5slCNuHLi8bLeY9MK7whWMhyjYqXtK.woff2" as="font" type="font/woff2" crossorigin>' . "\n";
@@ -290,7 +290,7 @@ function hwh_schema_markup() {
         'description'      => "Tampa Bay's trusted plumbing company offering water heater installation, emergency plumbing, drain cleaning, repiping, and leak repair. Licensed, insured, and available 24/7. Serving Hillsborough, Pinellas, and Pasco counties ï¿½ your trusted local plumbing experts.",
         'url'              => esc_url(home_url('/')),
         'telephone'        => '+18134275862',
-        'email'            => 'support@hotwaterheroes.com',
+        'email'            => 'joe@hotwaterheroesplumbing.com',
         'foundingDate'     => '2024',
         'address'          => [
             '@type'           => 'PostalAddress',
@@ -314,7 +314,7 @@ function hwh_schema_markup() {
         'paymentAccepted'  => 'Cash, Credit Card, Financing via Cherry',
         'image'            => [
             'https://hotwaterheroesplumbing.com/wp-content/uploads/2025/08/HEROES-16-x-9-in-scaled-e1755179786780.png',
-            'https://hotwaterheroes.com/wp-content/uploads/2026/04/Hero-Apirl4.png',
+            'https://hotwaterheroesplumbing.com/wp-content/uploads/2026/04/Hero-Apirl4.png',
         ],
         'logo'             => 'https://hotwaterheroesplumbing.com/wp-content/uploads/2025/08/HEROES-16-x-9-in-scaled-e1755179786780.png',
         'sameAs'           => [
@@ -1368,7 +1368,7 @@ function hwh_seo_meta_html($post) {
                    id="hwh_og_image"
                    name="hwh_og_image"
                    value="<?php echo esc_attr($og_image); ?>"
-                   placeholder="https://hotwaterheroes.com/wp-content/uploads/...">
+                   placeholder="https://hotwaterheroesplumbing.com/wp-content/uploads/...">
             <span class="hwh-seo-hint">Image shown when shared on Facebook, Twitter, etc. Ideal size: 1200ï¿½630px.</span>
         </div>
 
@@ -1570,9 +1570,9 @@ function hwh_handle_contact_form() {
     }
 
     // -- Build recipients list (supports multiple, comma-separated) --
-    $recipients_raw = get_option('hwh_notification_emails', 'support@hotwaterheroes.com');
+    $recipients_raw = get_option('hwh_notification_emails', 'joe@hotwaterheroesplumbing.com');
     $recipients = array_filter(array_map('trim', explode(',', $recipients_raw)), 'is_email');
-    if ( empty($recipients) ) $recipients = ['support@hotwaterheroes.com'];
+    if ( empty($recipients) ) $recipients = ['joe@hotwaterheroesplumbing.com'];
     $to = $recipients;
 
     $subject = '? New Message ï¿½ Hot Water Heroes Plumbing Website';
@@ -1677,7 +1677,7 @@ function hwh_default_email_template() {
         </tr>
         <tr>
           <td style="background:#0f0720;padding:24px 40px;text-align:center;">
-            <p style="margin:0;font-size:11px;color:rgba(240,235,227,0.4);letter-spacing:1px;">Hot Water Heroes Plumbing &middot; Tampa Bay, FL &middot; <a href="https://hotwaterheroes.com" style="color:rgba(172,19,249,0.7);text-decoration:none;">hotwaterheroes.com</a></p>
+            <p style="margin:0;font-size:11px;color:rgba(240,235,227,0.4);letter-spacing:1px;">Hot Water Heroes Plumbing &middot; Tampa Bay, FL &middot; <a href="https://hotwaterheroesplumbing.com" style="color:rgba(172,19,249,0.7);text-decoration:none;">hotwaterheroesplumbing.com</a></p>
           </td>
         </tr>
       </table>
@@ -1693,9 +1693,9 @@ function hwh_settings_page_html() {
 
     if ( isset($_POST['hwh_settings_nonce']) && wp_verify_nonce($_POST['hwh_settings_nonce'], 'hwh_save_settings') ) {
         // Multiple emails ï¿½ stored as comma-separated string
-        $emails_raw = sanitize_text_field($_POST['hwh_notification_emails'] ?? 'support@hotwaterheroes.com');
+        $emails_raw = sanitize_text_field($_POST['hwh_notification_emails'] ?? 'joe@hotwaterheroesplumbing.com');
         $emails_clean = implode(', ', array_filter(array_map('sanitize_email', array_map('trim', explode(',', $emails_raw))), 'is_email'));
-        update_option('hwh_notification_emails', $emails_clean ?: 'support@hotwaterheroes.com');
+        update_option('hwh_notification_emails', $emails_clean ?: 'joe@hotwaterheroesplumbing.com');
 
         // Email template ï¿½ allow HTML
         $template = wp_unslash($_POST['hwh_email_template'] ?? '');
@@ -1704,7 +1704,7 @@ function hwh_settings_page_html() {
         echo '<div class="notice notice-success is-dismissible"><p><strong>? Settings saved!</strong></p></div>';
     }
 
-    $current_emails  = get_option('hwh_notification_emails', 'support@hotwaterheroes.com');
+    $current_emails  = get_option('hwh_notification_emails', 'joe@hotwaterheroesplumbing.com');
     $current_template = get_option('hwh_email_template', '') ?: hwh_default_email_template();
     ?>
     <div class="wrap">
@@ -1723,8 +1723,8 @@ function hwh_settings_page_html() {
                 <input type="text" id="hwh_notification_emails" name="hwh_notification_emails"
                        value="<?php echo esc_attr($current_emails); ?>"
                        style="width:100%;max-width:600px;padding:10px 14px;border:1px solid #ddd;border-radius:6px;font-size:14px;"
-                       placeholder="support@hotwaterheroes.com, manager@hotwaterheroes.com">
-                <p style="margin:8px 0 0;font-size:12px;color:#888;">Example: <code>support@hotwaterheroes.com, angie@hotwaterheroes.com</code></p>
+                       placeholder="joe@hotwaterheroesplumbing.com, joe@hotwaterheroesplumbing.com">
+                <p style="margin:8px 0 0;font-size:12px;color:#888;">Example: <code>joe@hotwaterheroesplumbing.com, joe@hotwaterheroesplumbing.com</code></p>
             </div>
 
             <!-- Section: Email Template -->

@@ -15,7 +15,7 @@ Write-Host "header.php done"
 # ── footer.php ────────────────────────────────────────────────────────────────
 $p = Join-Path $root 'footer.php'
 $c = [System.IO.File]::ReadAllText($p,[System.Text.Encoding]::UTF8)
-$c = $c.Replace('https://blvd.app/@liviamedspa/login', 'https://hotwaterheroes.com/book/')
+$c = $c.Replace('https://blvd.app/@liviamedspa/login', 'https://hotwaterheroesplumbing.com/book/')
 $c = $c.Replace('Livia-Logo-White.png', 'hwh-logo-white.png')
 # social proof names - Olivia P remains; overwrite the whole array
 $c = $c.Replace("'Sarah M.','Jessica L.','Emily R.','Amanda K.','Lauren B.','Michelle T.','Brittany S.','Courtney H.','Taylor N.','Kayla D.','Madison F.','Rachel W.','Stephanie V.','Megan C.','Olivia P.','Ashley R.','Natalie G.','Danielle M.'",
@@ -58,7 +58,7 @@ Write-Host "functions.php done"
 $p = Join-Path $root 'assets\deploy.php'
 $c = [System.IO.File]::ReadAllText($p,[System.Text.Encoding]::UTF8)
 $c = $c.Replace('Livia Med Spa', 'Hot Water Heroes')
-$c = $c.Replace('liviamedspa.com', 'hotwaterheroes.com')
+$c = $c.Replace('liviamedspa.com', 'hotwaterheroesplumbing.com')
 $c = $c.Replace('LiviaGitDeploy2026', 'HWHGitDeploy2026')
 $c = $c.Replace('livia-medspa-theme', 'hot-water-heroes-theme')
 [System.IO.File]::WriteAllText($p,$c,[System.Text.Encoding]::UTF8)

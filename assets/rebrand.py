@@ -29,9 +29,9 @@ css_path = os.path.join(ROOT, 'style.css')
 css_replacements = [
     # Theme header
     ('Theme Name:       Livia Med Spa',    'Theme Name:       Hot Water Heroes'),
-    ('Theme URI:        https://liviamedspa.com', 'Theme URI:        https://hotwaterheroes.com'),
+    ('Theme URI:        https://liviamedspa.com', 'Theme URI:        https://hotwaterheroesplumbing.com'),
     ('Author:           Livia Med Spa',    'Author:           Hot Water Heroes'),
-    ('Author URI:       https://liviamedspa.com', 'Author URI:       https://hotwaterheroes.com'),
+    ('Author URI:       https://liviamedspa.com', 'Author URI:       https://hotwaterheroesplumbing.com'),
     ('Text Domain:      livia-medspa',     'Text Domain:      hot-water-heroes'),
     ('LIVIA MED SPA - DESIGN TOKEN SYSTEM', 'HOT WATER HEROES - DESIGN TOKEN SYSTEM'),
     # Root block — brand colors
@@ -167,8 +167,8 @@ func_replacements = [
     # Business info
     ('LIVIA Med Spa', 'Hot Water Heroes Plumbing'),
     ('Livia Med Spa', 'Hot Water Heroes Plumbing'),
-    ('liviamedspa.com', 'hotwaterheroes.com'),
-    ('support@liviamedspa.com', 'info@hotwaterheroes.com'),
+    ('liviamedspa.com', 'hotwaterheroesplumbing.com'),
+    ('support@liviamedspa.com', 'joe@hotwaterheroesplumbing.com'),
     ('+18132302219', '+18135551234'),
     # Schema types
     ("'MedicalBusiness', 'MedSpa', 'LocalBusiness'", "'Plumber', 'HomeAndConstructionBusiness', 'LocalBusiness'"),
@@ -213,7 +213,7 @@ func_replacements = [
     ("'Skin & Facials'",  "'Drain & Pipe Services'"),
     ("'Body & Wellness'", "'Emergency & General'"),
     # DNS prefetch
-    ('dns-prefetch" href="//liviamedspa.com"', 'dns-prefetch" href="//hotwaterheroes.com"'),
+    ('dns-prefetch" href="//liviamedspa.com"', 'dns-prefetch" href="//hotwaterheroesplumbing.com"'),
     # Fonts preload (Cormorant + DM Sans -> remove, Google Fonts will load)
     ("'livia-google-fonts'", "'hwh-google-fonts'"),
 ]
@@ -231,13 +231,13 @@ header_replacements = [
     ('Livia Med Spa', 'Hot Water Heroes Plumbing'),
     ("content=\"#1A0E2E\"", "content=\"#0F2440\""),
     ("content=\"#F0EBE3\"", "content=\"#E8EEF7\""),
-    ('liviamedspa.com', 'hotwaterheroes.com'),
+    ('liviamedspa.com', 'hotwaterheroesplumbing.com'),
     ('@liviamedspa', '@hotwaterheroes'),
     ("Tampa's premier medical spa offering Botox", "Tampa Bay's trusted plumbing experts offering"),
     ("Tampa's premier boutique medical spa", "Tampa Bay's trusted plumbing company"),
     # Logo
     ('https://liviamedspa.com/wp-content/uploads/2026/03/New-Livia-Logo.png',
-     'https://hotwaterheroes.com/wp-content/uploads/hwh-logo.png'),
+     'https://hotwaterheroesplumbing.com/wp-content/uploads/hwh-logo.png'),
     ('alt="LIVIA Med Spa"', 'alt="Hot Water Heroes Plumbing"'),
     ('alt="Hot Water Heroes Plumbing" class="site-logo__img" width="160"', 
      'alt="Hot Water Heroes Plumbing" class="site-logo__img" width="180"'),
@@ -274,7 +274,7 @@ footer_replacements = [
     ('LIVIA Med Spa \u2014 Footer Template', 'Hot Water Heroes \u2014 Footer Template'),
     ('LIVIA Med Spa', 'Hot Water Heroes'),
     ('Livia Med Spa', 'Hot Water Heroes'),
-    ('liviamedspa.com', 'hotwaterheroes.com'),
+    ('liviamedspa.com', 'hotwaterheroesplumbing.com'),
     # JS keys
     ("'livia-cookie-consent'", "'hwh-cookie-consent'"),
     ("'livia-popup-dismissed'", "'hwh-popup-dismissed'"),
@@ -302,10 +302,10 @@ footer_replacements = [
     ('alt="LIVIA Med Spa Client Portal on Phone"', 'alt="Hot Water Heroes Booking App"'),
     # Client portal image
     ('https://liviamedspa.com/wp-content/uploads/2026/02/Phone-mockup-1-scaled-e1770923706701-768x979.png',
-     'https://hotwaterheroes.com/wp-content/uploads/hwh-app-mockup.png'),
+     'https://hotwaterheroesplumbing.com/wp-content/uploads/hwh-app-mockup.png'),
     # Footer logo
     ('https://liviamedspa.com/wp-content/uploads/2026/03/Livia-Logo-White.png',
-     'https://hotwaterheroes.com/wp-content/uploads/hwh-logo-white.png'),
+     'https://hotwaterheroesplumbing.com/wp-content/uploads/hwh-logo-white.png'),
     # Brand text
     ("Tampa's premier destination for advanced aesthetics, proudly serving South Tampa, Hyde Park, Westchase, Brandon, and St. Petersburg.",
      "Tampa Bay's trusted plumbing experts. Serving Tampa, St. Pete, Clearwater, Brandon, Wesley Chapel & surrounding areas."),
@@ -365,7 +365,7 @@ footer_replacements = [
     ("businessId: '9563faa5-e2e5-4a6a-b5f5-0636ea78b80e',",
      "// TODO: Add HWH booking widget ID here"),
     # Ageless AI section - mark as TODO
-    ('ageless.ai', 'hotwaterheroes.com'),
+    ('ageless.ai', 'hotwaterheroesplumbing.com'),
     ('Ageless AI', 'HWH Preview'),
     ('livia_cached_image_url', 'hwh_cached_image_url'),
     # livia function refs still in footer JS (contact form action)
@@ -382,7 +382,7 @@ bulk = [
     ('Livia Med Spa', 'Hot Water Heroes Plumbing'),
     ('LIVIA', 'HWH'),
     ('livia_', 'hwh_'),
-    ('liviamedspa.com', 'hotwaterheroes.com'),
+    ('liviamedspa.com', 'hotwaterheroesplumbing.com'),
     ('(813) 230-2219', '(813) 555-1234'),
     ('8132302219', '18135551234'),
     ('Angela Spicola, APRN', 'our licensed plumbers'),

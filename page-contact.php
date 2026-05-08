@@ -102,7 +102,7 @@ get_header(); ?>
                             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
                         </div>
                         <h3 class="contact-card__title">Email</h3>
-                        <a href="mailto:support@hotwaterheroes.com" class="contact-card__text">support@hotwaterheroes.com</a>
+                        <a href="mailto:joe@hotwaterheroesplumbing.com" class="contact-card__text">joe@hotwaterheroesplumbing.com</a>
                     </div>
 
                     <div class="contact-card">
@@ -163,7 +163,7 @@ get_header(); ?>
             <p class="cta-section__text">Our team is ready to help with any plumbing question. Don't hesitate to reach out.</p>
             <div class="cta-section__actions">
                 <a href="tel:+18134275862" class="btn btn--primary btn--lg">Call 813-42-PLUMB</a>
-                <a href="mailto:support@hotwaterheroes.com" class="btn btn--outline btn--lg">Email Us</a>
+                <a href="mailto:joe@hotwaterheroesplumbing.com" class="btn btn--outline btn--lg">Email Us</a>
             </div>
         </div>
     </section>

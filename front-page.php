@@ -18,7 +18,7 @@ get_header(); ?>
     "description": "Tampa Bay's trusted plumbing company — expert water heater repair, installation, drain cleaning, leak detection, and 24/7 emergency plumbing services.",
     "url": "<?php echo esc_url(home_url('/')); ?>",
     "telephone": "+18134275862",
-    "email": "info@hotwaterheroes.com",
+    "email": "joe@hotwaterheroesplumbing.com",
     "priceRange": "$$",
     "image": "<?php echo esc_url(home_url('/')); ?>wp-content/uploads/hwh-logo.png",
     "address": { "@type": "PostalAddress", "addressLocality": "Tampa", "addressRegion": "FL", "addressCountry": "US" },
