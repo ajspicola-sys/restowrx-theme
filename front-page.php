@@ -47,7 +47,7 @@ get_header(); ?>
             </div>
 
             <h1 class="hwh-hero__title">
-                Tampa Bay's #1 Plumber.<br>
+                No Hot Water?<br>
                 <span class="hwh-hero__title-accent">We Fix It Today.</span>
             </h1>
 
@@ -131,7 +131,7 @@ get_header(); ?>
             'no_found_rows'  => true,
         ]);
         $fallback = [
-            ['title'=>'Water Heater Repair',      'text'=>'Fast diagnosis and repair of all water heater brands and sizes. Tampa Bay's #1 Plumber. We fix it same-day.'],
+            ['title'=>'Water Heater Repair',      'text'=>'Fast diagnosis and repair of all water heater brands and sizes. No hot water? We fix it same-day.'],
             ['title'=>'Water Heater Installation', 'text'=>'Full installation of tank and tankless units — properly sized, up to code, done right the first time.'],
             ['title'=>'Tankless Water Heaters',   'text'=>'Endless hot water with a tankless upgrade. We sell, install, and service all major brands.'],
             ['title'=>'Drain Cleaning',           'text'=>'Slow drains or full blockages cleared with hydro-jetting and professional snaking.'],
