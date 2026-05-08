@@ -2545,13 +2545,13 @@ function hwh_sanitize_service_content($content) {
     $title = esc_html(get_the_title());
     return '<div class="svc-placeholder-content">
         <h2>Professional ' . $title . ' in Tampa Bay</h2>
-        <p>Hot Water Heroes Plumbing provides expert ' . strtolower($title) . ' services across Hillsborough, Pinellas, and Pasco counties. Our licensed plumbers are equipped to handle any job ï¿½ big or small.</p>
+        <p>Hot Water Heroes Plumbing provides expert ' . strtolower($title) . ' services across Hillsborough, Pinellas, and Pasco counties. Our licensed plumbers are equipped to handle any job — big or small.</p>
         <h3>Why Choose Hot Water Heroes?</h3>
         <ul>
-            <li><strong>Licensed & Insured</strong> ï¿½ All work performed by certified plumbers</li>
-            <li><strong>Upfront Pricing</strong> ï¿½ Written estimates before we start</li>
-            <li><strong>Same-Day Service</strong> ï¿½ Available for most repairs</li>
-            <li><strong>Satisfaction Guaranteed</strong> ï¿½ We stand behind our work</li>
+            <li><strong>Licensed & Insured</strong> — All work performed by certified plumbers</li>
+            <li><strong>Upfront Pricing</strong> — Written estimates before we start</li>
+            <li><strong>Same-Day Service</strong> — Available for most repairs</li>
+            <li><strong>Satisfaction Guaranteed</strong> — We stand behind our work</li>
         </ul>
         <p>Call <strong>813-42-PLUMB</strong> or <a href="' . esc_url(home_url('/contact/')) . '">book online</a> to schedule your service today.</p>
     </div>';

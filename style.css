@@ -9566,27 +9566,27 @@ a.contact-card__text:hover {
 /* ==========================================================================
    BEAUTY BANK PAGE
    ========================================================================== */
-.beauty-bank-hero {
+.maint-plan-hero {
   background: linear-gradient(135deg, var(--bg-cream) 0%, var(--bg-lavender) 60%, var(--bg-lavender-deep) 100%);
 }
 
-.beauty-bank-section {
+.maint-plan-section {
   padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
 }
 
-.beauty-bank-how {
+.maint-plan-how {
   background: var(--bg-cream);
 }
 
 /* Steps */
-.beauty-bank-steps {
+.maint-plan-steps {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   margin-top: 3rem;
 }
 
-.beauty-bank-step {
+.maint-plan-step {
   background: #fff;
   border-radius: 20px;
   padding: 2.5rem 2rem;
@@ -9596,12 +9596,12 @@ a.contact-card__text:hover {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.beauty-bank-step:hover {
+.maint-plan-step:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 40px rgba(var(--brand-rgb), 0.1);
 }
 
-.beauty-bank-step__num {
+.maint-plan-step__num {
   font-family: 'Montserrat', serif;
   font-size: 3.5rem;
   font-weight: 300;
@@ -9613,7 +9613,7 @@ a.contact-card__text:hover {
   margin-bottom: 1rem;
 }
 
-.beauty-bank-step h3 {
+.maint-plan-step h3 {
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
   font-weight: 600;
@@ -9621,29 +9621,29 @@ a.contact-card__text:hover {
   margin-bottom: 0.75rem;
 }
 
-.beauty-bank-step p {
+.maint-plan-step p {
   font-size: 0.88rem;
   color: var(--text-muted);
   line-height: 1.6;
 }
 
 /* Benefits */
-.beauty-bank-benefits {
+.maint-plan-benefits {
   background: linear-gradient(180deg, var(--bg-cream) 0%, var(--bg-lavender) 100%);
   border-top: 1px solid rgba(var(--brand-rgb), 0.08);
 }
 
-.beauty-bank-benefits .section__label { color: var(--brand); }
-.beauty-bank-benefits .section__title { color: var(--text-dark); }
+.maint-plan-benefits .section__label { color: var(--brand); }
+.maint-plan-benefits .section__title { color: var(--text-dark); }
 
-.beauty-bank-benefit-grid {
+.maint-plan-benefit-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
   margin-top: 3rem;
 }
 
-.beauty-bank-benefit {
+.maint-plan-benefit {
   background: #FFFFFF;
   border: 1px solid rgba(var(--brand-rgb), 0.12);
   border-radius: 18px;
@@ -9652,19 +9652,19 @@ a.contact-card__text:hover {
   transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.beauty-bank-benefit:hover {
+.maint-plan-benefit:hover {
   background: #FFFFFF;
   border-color: rgba(var(--brand-rgb), 0.35);
   box-shadow: 0 8px 30px rgba(var(--brand-rgb), 0.1);
 }
 
-.beauty-bank-benefit__icon {
+.maint-plan-benefit__icon {
   font-size: 2.25rem;
   display: block;
   margin-bottom: 1rem;
 }
 
-.beauty-bank-benefit h3 {
+.maint-plan-benefit h3 {
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
   font-weight: 600;
@@ -9672,25 +9672,25 @@ a.contact-card__text:hover {
   margin-bottom: 0.6rem;
 }
 
-.beauty-bank-benefit p {
+.maint-plan-benefit p {
   font-size: 0.85rem;
   color: var(--text-muted);
   line-height: 1.6;
 }
 
 /* Policy Cards */
-.beauty-bank-policy {
+.maint-plan-policy {
   background: var(--bg-cream);
 }
 
-.beauty-bank-policy-grid {
+.maint-plan-policy-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
   margin-top: 3rem;
 }
 
-.beauty-bank-policy-card {
+.maint-plan-policy-card {
   background: #fff;
   border-radius: 18px;
   padding: 2rem;
@@ -9699,17 +9699,17 @@ a.contact-card__text:hover {
   transition: transform 0.3s ease;
 }
 
-.beauty-bank-policy-card:hover {
+.maint-plan-policy-card:hover {
   transform: translateY(-3px);
 }
 
-.beauty-bank-policy-card__icon {
+.maint-plan-policy-card__icon {
   font-size: 1.75rem;
   margin-bottom: 0.75rem;
   display: block;
 }
 
-.beauty-bank-policy-card h3 {
+.maint-plan-policy-card h3 {
   font-family: 'Inter', sans-serif;
   font-size: 0.95rem;
   font-weight: 600;
@@ -9717,7 +9717,7 @@ a.contact-card__text:hover {
   margin-bottom: 0.75rem;
 }
 
-.beauty-bank-policy-card ul {
+.maint-plan-policy-card ul {
   list-style: none;
   padding: 0;
   display: flex;
@@ -9725,7 +9725,7 @@ a.contact-card__text:hover {
   gap: 0.5rem;
 }
 
-.beauty-bank-policy-card li {
+.maint-plan-policy-card li {
   font-size: 0.84rem;
   color: var(--text-mid);
   line-height: 1.5;
@@ -9733,7 +9733,7 @@ a.contact-card__text:hover {
   position: relative;
 }
 
-.beauty-bank-policy-card li::before {
+.maint-plan-policy-card li::before {
   content: '›';
   position: absolute;
   left: 0;
@@ -9742,15 +9742,15 @@ a.contact-card__text:hover {
 }
 
 @media (max-width: 960px) {
-  .beauty-bank-steps,
-  .beauty-bank-benefit-grid { grid-template-columns: 1fr 1fr; }
-  .beauty-bank-policy-grid { grid-template-columns: 1fr 1fr; }
+  .maint-plan-steps,
+  .maint-plan-benefit-grid { grid-template-columns: 1fr 1fr; }
+  .maint-plan-policy-grid { grid-template-columns: 1fr 1fr; }
 }
 
 @media (max-width: 600px) {
-  .beauty-bank-steps,
-  .beauty-bank-benefit-grid,
-  .beauty-bank-policy-grid { grid-template-columns: 1fr; }
+  .maint-plan-steps,
+  .maint-plan-benefit-grid,
+  .maint-plan-policy-grid { grid-template-columns: 1fr; }
 }
 
 /* ==========================================================================

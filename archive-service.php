@@ -104,7 +104,7 @@ $all_cats = get_terms( [
                     <span>Google Rating</span>
                 </div>
                 <div class="svc-hero__float svc-hero__float--2">
-                    <strong>2,400+</strong>
+                    <strong>5?</strong>
                     <span>Jobs Completed</span>
                 </div>
                 <div class="svc-hero__float svc-hero__float--3">
@@ -270,8 +270,8 @@ $all_cats = get_terms( [
     <section class="svc-stats" aria-label="Company stats">
         <div class="section__inner svc-stats__inner">
             <div class="svc-stat">
-                <strong class="svc-stat__num">2,400<span>+</span></strong>
-                <span class="svc-stat__label">Happy Customers</span>
+                <strong class="svc-stat__num">5.0<span>?</span></strong>
+                <span class="svc-stat__label">Google Rated</span>
             </div>
             <div class="svc-stat__divider" aria-hidden="true"></div>
             <div class="svc-stat">

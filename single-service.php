@@ -228,7 +228,7 @@ $has_image     = has_post_thumbnail();
             <div class="svc-trust__left reveal">
                 <span class="section__label" style="border-color:rgba(255,255,255,.15);color:rgba(255,255,255,.7);background:rgba(255,255,255,.05);">The HWH Difference</span>
                 <h2 class="svc-trust__heading">Why Tampa<br><em>Trusts Us</em></h2>
-                <p class="svc-trust__desc">We've built our reputation one job at a time — honest work, fair prices, and no surprises. That's why 2,400+ homeowners choose Hot Water Heroes.</p>
+                <p class="svc-trust__desc">We've built our reputation one job at a time — honest work, fair prices, and no surprises. That's why Tampa Bay homeowners trust Hot Water Heroes.</p>
                 <div class="svc-trust__stat">
                     <span class="svc-trust__stat-stars">★★★★★</span>
                     <div>
