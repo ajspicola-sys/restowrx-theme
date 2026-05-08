@@ -33,10 +33,10 @@ get_header(); ?>
                    class="blog-filter-btn <?php echo !$current_cat ? 'is-active' : ''; ?>">All Posts</a>
                 <?php
                 $blog_cats = get_categories([
-                    'orderby'    => 'count',
-                    'order'      => 'DESC',
-                    'hide_empty' => true,
-                    'number'     => 6,
+                    'orderby'    => 'name',
+                    'order'      => 'ASC',
+                    'hide_empty' => false,
+                    'number'     => 8,
                     'exclude'    => [1], // Exclude 'Uncategorized'
                 ]);
                 foreach ($blog_cats as $cat) :
