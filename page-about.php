@@ -19,7 +19,7 @@ get_header(); ?>
             <div class="about-hero__text">
                 <span class="svc-hero__badge">
                     <span class="svc-hero__badge-dot" aria-hidden="true"></span>
-                    Serving Tampa Bay Since 2010
+                    Serving Tampa Bay Since 2025
                 </span>
                 <h1 class="about-hero__title">We're Not Just<br><em>Plumbers.</em></h1>
                 <p class="about-hero__desc">We're your neighbors, your emergency lifeline at 2 AM, and the team that treats your home like it's our own. Hot Water Heroes was built on one promise: honest work, fair prices, and no surprises.</p>
@@ -38,12 +38,12 @@ get_header(); ?>
                     loading="eager" decoding="async"
                 >
                 <div class="svc-hero__float svc-hero__float--1">
-                    <strong>15+</strong>
-                    <span>Years Experience</span>
+                    <strong>24/7</strong>
+                    <span>Emergency Service</span>
                 </div>
                 <div class="svc-hero__float svc-hero__float--2">
-                    <strong>2,400+</strong>
-                    <span>Happy Customers</span>
+                    <strong>5★</strong>
+                    <span>Google Rated</span>
                 </div>
             </div>
         </div>
@@ -56,28 +56,28 @@ get_header(); ?>
         <div class="section__inner">
             <div class="section__header reveal" style="text-align: center;">
                 <span class="section__label">Our Story</span>
-                <h2 class="section__title">From One Truck to Tampa's<br>Most Trusted Team</h2>
+                <h2 class="section__title">From Day One, Built on<br>Doing Things Right</h2>
             </div>
             <div class="about-story__content reveal">
                 <div class="about-story__block">
-                    <div class="about-story__year">2010</div>
+                    <div class="about-story__year">Late 2025</div>
                     <div class="about-story__detail">
                         <h3>The Beginning</h3>
-                        <p>Hot Water Heroes started with a single truck, a toolbox, and a commitment to doing things right. Our founder saw too many homeowners getting overcharged for sloppy work — and decided Tampa Bay deserved better.</p>
+                        <p>Hot Water Heroes launched in late 2025 with a simple mission: give Tampa Bay homeowners honest plumbing service at fair prices. Our founder saw too many families getting overcharged for sloppy work — and decided it was time for something better.</p>
                     </div>
                 </div>
                 <div class="about-story__block">
-                    <div class="about-story__year">2015</div>
+                    <div class="about-story__year">2026</div>
                     <div class="about-story__detail">
-                        <h3>Growing Roots</h3>
-                        <p>Word spread fast. By 2015 we'd grown to a full crew of licensed technicians, expanded into water heater installations, and earned hundreds of five-star reviews from homeowners across Hillsborough County.</p>
+                        <h3>Growing Fast</h3>
+                        <p>Word spread quickly. Within months we earned five-star reviews, expanded our service area across Hillsborough, Pinellas, and Pasco counties, and built a reputation for showing up on time, every time.</p>
                     </div>
                 </div>
                 <div class="about-story__block">
                     <div class="about-story__year">Today</div>
                     <div class="about-story__detail">
                         <h3>Tampa's Go-To Team</h3>
-                        <p>Today we're a full-service plumbing company with 24/7 emergency response, a fleet of fully stocked trucks, and a 4.9-star Google rating. But we've never forgotten where we started — one job at a time, done right.</p>
+                        <p>Today we're a full-service plumbing company with 24/7 emergency response, fully stocked trucks, and a growing list of loyal customers. We're just getting started — but our commitment to doing things right hasn't changed one bit.</p>
                     </div>
                 </div>
             </div>
@@ -136,13 +136,8 @@ get_header(); ?>
     <section class="svc-stats" aria-label="Company stats">
         <div class="section__inner svc-stats__inner">
             <div class="svc-stat">
-                <strong class="svc-stat__num">2,400<span>+</span></strong>
-                <span class="svc-stat__label">Happy Customers</span>
-            </div>
-            <div class="svc-stat__divider" aria-hidden="true"></div>
-            <div class="svc-stat">
-                <strong class="svc-stat__num">15<span>+</span></strong>
-                <span class="svc-stat__label">Years in Tampa Bay</span>
+                <strong class="svc-stat__num">5.0<span>★</span></strong>
+                <span class="svc-stat__label">Google Rating</span>
             </div>
             <div class="svc-stat__divider" aria-hidden="true"></div>
             <div class="svc-stat">
@@ -151,8 +146,52 @@ get_header(); ?>
             </div>
             <div class="svc-stat__divider" aria-hidden="true"></div>
             <div class="svc-stat">
-                <strong class="svc-stat__num">4.9<span>★</span></strong>
-                <span class="svc-stat__label">Google Rating</span>
+                <strong class="svc-stat__num">100<span>%</span></strong>
+                <span class="svc-stat__label">Licensed &amp; Insured</span>
+            </div>
+            <div class="svc-stat__divider" aria-hidden="true"></div>
+            <div class="svc-stat">
+                <strong class="svc-stat__num">3</strong>
+                <span class="svc-stat__label">Companies, One Family</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════
+         FAMILY OF COMPANIES
+         ════════════════════════════════════════════════════════════ -->
+    <section class="about-family" aria-label="Our family of companies">
+        <div class="section__inner">
+            <div class="section__header reveal" style="text-align: center;">
+                <span class="section__label">Stronger Together</span>
+                <h2 class="section__title">A Complete Home<br>Recovery Team</h2>
+                <p class="section__subtitle" style="max-width:640px;margin:0 auto;">Our family of companies — Hot Water Heroes Plumbing, RestoWrx, and Spicola Construction — covers every stage of your home's needs. We stop leaks, restore damage, and rebuild better than before, all with the same dedication to quality and care.</p>
+            </div>
+            <div class="about-family__grid reveal">
+                <article class="about-family__card">
+                    <div class="about-family__icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                    </div>
+                    <h3 class="about-family__name">Hot Water Heroes Plumbing</h3>
+                    <p class="about-family__desc">We stop the leak. Emergency plumbing, water heater repair &amp; installation, drain cleaning, and full repiping — fast, honest, and available 24/7.</p>
+                    <span class="about-family__tag">Plumbing &amp; Water Heaters</span>
+                </article>
+                <article class="about-family__card">
+                    <div class="about-family__icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    </div>
+                    <h3 class="about-family__name">RestoWrx</h3>
+                    <p class="about-family__desc">We restore the damage. Water damage mitigation, mold remediation, fire &amp; smoke restoration — getting your home back to normal, fast.</p>
+                    <span class="about-family__tag">Restoration &amp; Mitigation</span>
+                </article>
+                <article class="about-family__card">
+                    <div class="about-family__icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="6" width="22" height="14" rx="2"/><path d="M1 10h22"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                    </div>
+                    <h3 class="about-family__name">Spicola Construction</h3>
+                    <p class="about-family__desc">We rebuild better than before. General contracting, renovations, and structural repairs — from foundation to finish.</p>
+                    <span class="about-family__tag">Construction &amp; Renovation</span>
+                </article>
             </div>
         </div>
     </section>

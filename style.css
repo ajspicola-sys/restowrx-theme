@@ -11990,5 +11990,81 @@ a.contact-card__text:hover {
   .about-story__content::before { left: 28px; }
   .about-story__year { width: 56px; height: 56px; font-size: 0.72rem; }
   .about-story__block { gap: 1.25rem; }
+  .about-family__grid { grid-template-columns: 1fr; }
+}
+
+/* ── Family of Companies ──────────────────────────────────────────── */
+.about-family {
+  padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
+  background: linear-gradient(180deg, #fff 0%, var(--bg-cream) 100%);
+}
+
+.about-family__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.about-family__card {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.05);
+  border-radius: 1.25rem;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+}
+.about-family__card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(var(--ink-rgb), 0.1);
+  border-color: rgba(var(--brand-rgb), 0.15);
+}
+
+.about-family__icon {
+  width: 64px; height: 64px;
+  margin: 0 auto 1.25rem;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 16px;
+  background: rgba(var(--brand-rgb), 0.08);
+  color: var(--brand);
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+.about-family__card:hover .about-family__icon {
+  background: var(--brand);
+  color: #fff;
+  transform: scale(1.08);
+}
+
+.about-family__name {
+  font-family: 'Montserrat', Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 0.6rem;
+}
+
+.about-family__desc {
+  font-size: 0.88rem;
+  color: var(--text-subtle);
+  line-height: 1.7;
+  margin-bottom: 1.25rem;
+}
+
+.about-family__tag {
+  display: inline-block;
+  padding: 0.3rem 0.9rem;
+  background: rgba(var(--brand-rgb), 0.08);
+  border-radius: 9999px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brand);
+}
+
+@media (max-width: 900px) {
+  .about-family__grid { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; }
 }
 
