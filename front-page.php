@@ -47,7 +47,7 @@ get_header(); ?>
             </div>
 
             <h1 class="hwh-hero__title">
-                Tampa Bay''s #1 Plumber.<br>
+                Your Plumbing Heroes.<br>
                 <span class="hwh-hero__title-accent">We Fix It Today.</span>
             </h1>
 
