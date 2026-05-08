@@ -47,7 +47,7 @@ get_header(); ?>
             </div>
 
             <h1 class="hwh-hero__title">
-                No Hot Water?<br>
+                Tampa Bay''s #1 Plumber.<br>
                 <span class="hwh-hero__title-accent">We Fix It Today.</span>
             </h1>
 
@@ -297,7 +297,7 @@ get_header(); ?>
                 </div>
                 <div class="hwh-reviews-split__badge">
                     <span class="hwh-reviews-split__badge-stars">★★★★★</span>
-                    <span class="hwh-reviews-split__badge-text">5.0 on Google � 30+ Reviews</span>
+                    <span class="hwh-reviews-split__badge-text">5.0 on Google � 30+ Reviews</span>
                 </div>
             </div>
 
