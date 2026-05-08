@@ -10017,7 +10017,7 @@ a.contact-card__text:hover {
 .hwh-process{padding:7rem 0;background:#0F2440}
 .hwh-process-steps{display:flex;align-items:flex-start;gap:0;margin-top:1rem}
 .hwh-process-step{flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 1.5rem}
-.hwh-process-step__num{font-family:'Montserrat',serif;font-size:4rem;font-weight:900;color:rgba(242,47,58,.15);line-height:1;margin-bottom:-1rem}
+.hwh-process-step__num{font-family:'Montserrat',serif;font-size:4rem;font-weight:900;color:rgba(242,47,58,.35);line-height:1;margin-bottom:.25rem}
 .hwh-process-step__icon{font-size:1.6rem;margin-bottom:1rem;position:relative;z-index:1;width:64px;height:64px;background:rgba(242,47,58,.15);border:1.5px solid rgba(242,47,58,.3);border-radius:50%;display:flex;align-items:center;justify-content:center}
 .hwh-process-step__title{font-family:'Montserrat',serif;font-size:1rem;font-weight:800;color:#fff;margin-bottom:.6rem}
 .hwh-process-step__text{font-size:.84rem;color:rgba(255,255,255,.55);line-height:1.65}
