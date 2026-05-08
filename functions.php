@@ -1,6 +1,6 @@
 <?php
 /**
- * Hot Water Heroes Plumbing ï¿½ Theme Functions
+ * Hot Water Heroes Plumbing — Theme Functions
  * Performance-optimized build
  */
 
@@ -121,7 +121,7 @@ function hwh_enqueue_styles() {
     // but auto-busts cache when the file actually changes
     $theme_version = filemtime(get_stylesheet_directory() . '/style.css');
 
-    // Google Fonts ï¿½ single optimized request with display=swap
+    // Google Fonts — single optimized request with display=swap
     wp_enqueue_style(
         'hwh-google-fonts',
         'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap',
@@ -129,7 +129,7 @@ function hwh_enqueue_styles() {
         null
     );
 
-    // Main stylesheet ï¿½ cacheable, busts only when file changes
+    // Main stylesheet — cacheable, busts only when file changes
     wp_enqueue_style('hwh-style', get_stylesheet_uri(), ['hwh-google-fonts'], $theme_version);
 }
 add_action('wp_enqueue_scripts', 'hwh_enqueue_styles');
@@ -138,7 +138,7 @@ add_action('wp_enqueue_scripts', 'hwh_enqueue_styles');
 // The main stylesheet MUST be render-blocking to prevent FOUC.
 // Google Fonts can safely load async since system fonts render as fallback.
 function hwh_async_styles($html, $handle) {
-    // Only defer Google Fonts ï¿½ NOT the main theme stylesheet
+    // Only defer Google Fonts — NOT the main theme stylesheet
     if ( $handle === 'hwh-google-fonts' && !is_admin() ) {
         $html = str_replace("media='all'", "media='print' onload=\"this.media='all'\"", $html);
         $html = str_replace('media="all"', "media=\"print\" onload=\"this.media='all'\"", $html);
@@ -168,7 +168,7 @@ add_action('wp_head', 'hwh_resource_hints', 1);
 // -- Performance: External image proxy & WebP cache -----------------
 // Fetches third-party images (e.g. Ageless AI before/after), resizes to
 // max 800px wide, converts to WebP, and caches in wp-uploads.
-// Subsequent requests serve the local WebP ï¿½ eliminates 9+ MB of PNG downloads.
+// Subsequent requests serve the local WebP — eliminates 9+ MB of PNG downloads.
 function hwh_cached_image_url( $src_url, $max_w = 800 ) {
     $upload   = wp_upload_dir();
     $cache_dir = $upload['basedir'] . '/hwh-img-cache';
@@ -225,7 +225,7 @@ function hwh_cached_image_url( $src_url, $max_w = 800 ) {
         $img = $resized;
     }
 
-    // Save as WebP (quality 82 ï¿½ good balance of size vs. quality)
+    // Save as WebP (quality 82 — good balance of size vs. quality)
     if ( function_exists( 'imagewebp' ) ) {
         imagewebp( $img, $file_path, 82 );
     } else {
@@ -259,7 +259,7 @@ if (!defined('WP_POST_REVISIONS')) {
 }
 
 // ============================================================
-// AI SEARCH VISIBILITY & STRUCTURED DATA ï¿½ HOT WATER HEROES
+// AI SEARCH VISIBILITY & STRUCTURED DATA — HOT WATER HEROES
 // Comprehensive JSON-LD schema for Google AI Overviews,
 // ChatGPT, Perplexity, Bing Copilot, and all AEO signals.
 // ============================================================
@@ -287,7 +287,7 @@ function hwh_schema_markup() {
         'name'             => 'Hot Water Heroes Plumbing',
         'legalName'        => 'Hot Water Heroes Plumbing LLC',
         'alternateName'    => 'Hot Water Heroes Plumbing',
-        'description'      => "Tampa Bay's trusted plumbing company offering water heater installation, emergency plumbing, drain cleaning, repiping, and leak repair. Licensed, insured, and available 24/7. Serving Hillsborough, Pinellas, and Pasco counties ï¿½ your trusted local plumbing experts.",
+        'description'      => "Tampa Bay's trusted plumbing company offering water heater installation, emergency plumbing, drain cleaning, repiping, and leak repair. Licensed, insured, and available 24/7. Serving Hillsborough, Pinellas, and Pasco counties — your trusted local plumbing experts.",
         'url'              => esc_url(home_url('/')),
         'telephone'        => '+18134275862',
         'email'            => 'joe@hotwaterheroesplumbing.com',
@@ -375,7 +375,7 @@ function hwh_schema_markup() {
         '@id'             => esc_url(home_url('/')) . '#website',
         'name'            => 'Hot Water Heroes Plumbing',
         'url'             => esc_url(home_url('/')),
-        'description'     => "Tampa Bay's trusted plumbing company ï¿½ water heater installation, emergency repairs, drain cleaning, repiping, and 24/7 service.",
+        'description'     => "Tampa Bay's trusted plumbing company — water heater installation, emergency repairs, drain cleaning, repiping, and 24/7 service.",
         'inLanguage'      => 'en-US',
         'publisher'       => [ '@id' => esc_url(home_url('/')) . '#hwh-plumbing' ],
         'potentialAction' => [
@@ -386,7 +386,7 @@ function hwh_schema_markup() {
     ];
     echo '<script type="application/ld+json">' . wp_json_encode($website, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . '</script>' . "\n";
 
-    // -- Enhanced Service schema ï¿½ singular service pages only -----------------
+    // -- Enhanced Service schema — singular service pages only -----------------
     if (is_singular('service')) {
         $post_id   = get_the_ID();
         $price     = get_post_meta($post_id, '_service_price', true);
@@ -768,7 +768,7 @@ function hwh_create_services() {
             'title'    => 'Water Heater Installation',
             'icon'     => '?',
             'category' => 'Water Heater Services',
-            'excerpt'  => 'Upgrade your home with a new high-efficiency water heater ï¿½ We install tank and tankless units from top brands with same-day availability.',
+            'excerpt'  => 'Upgrade your home with a new high-efficiency water heater — We install tank and tankless units from top brands with same-day availability.',
         ],
         [
             'title'    => 'Water Heater Installation',
@@ -1174,7 +1174,7 @@ function hwh_product_meta_html($post) {
         <div class="hwh-product-field">
             <label for="product_video_bg">Video Background URL (optional)</label>
             <input type="url" id="product_video_bg" name="product_video_bg" value="<?php echo esc_attr($video); ?>" placeholder="https://example.com/video.mp4">
-            <p class="description">MP4 video URL ï¿½ plays faintly behind the product card. Leave blank for no video.</p>
+            <p class="description">MP4 video URL — plays faintly behind the product card. Leave blank for no video.</p>
         </div>
     </div>
     <?php
@@ -1233,7 +1233,7 @@ function hwh_heartbeat_settings($settings) {
 add_filter('heartbeat_settings', 'hwh_heartbeat_settings');
 
 // ------------------------------------------------------------------------
-// BUILT-IN SEO META BOX ï¿½ edit SEO title, description & OG image
+// BUILT-IN SEO META BOX — edit SEO title, description & OG image
 // directly from the WordPress editor on every page/post/service
 // ------------------------------------------------------------------------
 
@@ -1343,9 +1343,9 @@ function hwh_seo_meta_html($post) {
                    id="hwh_seo_title"
                    name="hwh_seo_title"
                    value="<?php echo esc_attr($seo_title); ?>"
-                   placeholder="<?php echo esc_attr($post->post_title . ' ï¿½ Hot Water Heroes Plumbing'); ?>"
+                   placeholder="<?php echo esc_attr($post->post_title . ' — Hot Water Heroes Plumbing'); ?>"
                    maxlength="120">
-            <span class="hwh-seo-hint">Recommended: 50ï¿½60 characters. Leave blank to use default.</span>
+            <span class="hwh-seo-hint">Recommended: 50—60 characters. Leave blank to use default.</span>
             <span class="hwh-seo-counter" id="seo-title-counter">0/60</span>
         </div>
 
@@ -1357,7 +1357,7 @@ function hwh_seo_meta_html($post) {
                       rows="3"
                       placeholder="A brief summary for search engines..."
                       maxlength="320"><?php echo esc_textarea($seo_desc); ?></textarea>
-            <span class="hwh-seo-hint">Recommended: 120ï¿½160 characters.</span>
+            <span class="hwh-seo-hint">Recommended: 120—160 characters.</span>
             <span class="hwh-seo-counter" id="seo-desc-counter">0/160</span>
         </div>
 
@@ -1369,14 +1369,14 @@ function hwh_seo_meta_html($post) {
                    name="hwh_og_image"
                    value="<?php echo esc_attr($og_image); ?>"
                    placeholder="https://hotwaterheroesplumbing.com/wp-content/uploads/...">
-            <span class="hwh-seo-hint">Image shown when shared on Facebook, Twitter, etc. Ideal size: 1200ï¿½630px.</span>
+            <span class="hwh-seo-hint">Image shown when shared on Facebook, Twitter, etc. Ideal size: 1200—630px.</span>
         </div>
 
         <!-- Live Google Preview -->
         <div class="hwh-seo-preview">
             <div class="hwh-seo-preview__label">Google Search Preview</div>
             <div class="hwh-seo-preview__title" id="seo-preview-title">
-                <?php echo esc_html($seo_title ?: $post->post_title . ' ï¿½ Hot Water Heroes Plumbing'); ?>
+                <?php echo esc_html($seo_title ?: $post->post_title . ' — Hot Water Heroes Plumbing'); ?>
             </div>
             <div class="hwh-seo-preview__url">
                 <?php echo esc_url(get_permalink($post->ID)); ?>
@@ -1395,7 +1395,7 @@ function hwh_seo_meta_html($post) {
         var descCounter  = document.getElementById('seo-desc-counter');
         var previewTitle = document.getElementById('seo-preview-title');
         var previewDesc  = document.getElementById('seo-preview-desc');
-        var defaultTitle = <?php echo json_encode($post->post_title . ' ï¿½ Hot Water Heroes Plumbing'); ?>;
+        var defaultTitle = <?php echo json_encode($post->post_title . ' — Hot Water Heroes Plumbing'); ?>;
 
         function updateCounter(input, counter, ideal) {
             var len = input.value.length;
@@ -1462,7 +1462,7 @@ function hwh_custom_title($title) {
         $title['site']  = 'Hot Water Heroes Plumbing';
         return $title;
     }
-    // All other singular pages ï¿½ use custom SEO title if set
+    // All other singular pages — use custom SEO title if set
     if (is_singular()) {
         $custom = get_post_meta(get_the_ID(), '_hwh_seo_title', true);
         if (!empty($custom)) {
@@ -1510,7 +1510,7 @@ function hwh_faq_schema() {
     $faqs = [
         ['q' => 'Is there a minimum commitment?', 'a' => 'We ask for a minimum annual commitment to get the most out of your Maintenance Plan membership. After that, you can continue month-to-month or cancel anytime.'],
         ['q' => 'Do my credits expire?', 'a' => 'No! Your banked credits never expire as long as your membership is active. If you cancel, unused credits remain available for 90 days.'],
-        ['q' => 'What can I use my credits on?', 'a' => 'Your maintenance plan benefits can be used on any plumbing service we offer ï¿½ water heater repairs, drain cleaning, repiping, fixture installation, and more.'],
+        ['q' => 'What can I use my credits on?', 'a' => 'Your maintenance plan benefits can be used on any plumbing service we offer — water heater repairs, drain cleaning, repiping, fixture installation, and more.'],
         ['q' => 'Can I share my credits with friends or family?', 'a' => 'Absolutely! You can gift your credits to friends and family members.'],
         ['q' => 'How much should I set as my monthly deposit?', 'a' => 'Our plans start at affordable annual rates. During your free estimate, we\'ll help you find the perfect amount.'],
     ];
@@ -1575,7 +1575,7 @@ function hwh_handle_contact_form() {
     if ( empty($recipients) ) $recipients = ['joe@hotwaterheroesplumbing.com'];
     $to = $recipients;
 
-    $subject = '? New Message ï¿½ Hot Water Heroes Plumbing Website';
+    $subject = '? New Message — Hot Water Heroes Plumbing Website';
 
     // -- Prepare substitution values ---------------------------------
     $service_display = $service ? ucwords(str_replace('-', ' ', $service)) : 'Not specified';
@@ -1692,12 +1692,12 @@ function hwh_settings_page_html() {
     if ( ! current_user_can('manage_options') ) return;
 
     if ( isset($_POST['hwh_settings_nonce']) && wp_verify_nonce($_POST['hwh_settings_nonce'], 'hwh_save_settings') ) {
-        // Multiple emails ï¿½ stored as comma-separated string
+        // Multiple emails — stored as comma-separated string
         $emails_raw = sanitize_text_field($_POST['hwh_notification_emails'] ?? 'joe@hotwaterheroesplumbing.com');
         $emails_clean = implode(', ', array_filter(array_map('sanitize_email', array_map('trim', explode(',', $emails_raw))), 'is_email'));
         update_option('hwh_notification_emails', $emails_clean ?: 'joe@hotwaterheroesplumbing.com');
 
-        // Email template ï¿½ allow HTML
+        // Email template — allow HTML
         $template = wp_unslash($_POST['hwh_email_template'] ?? '');
         update_option('hwh_email_template', $template);
 
@@ -1709,7 +1709,7 @@ function hwh_settings_page_html() {
     ?>
     <div class="wrap">
         <h1 style="display:flex;align-items:center;gap:10px;margin-bottom:24px;">
-            <span style="font-size:1.4rem;">?</span> Hot Water Heroes Plumbing ï¿½ Settings
+            <span style="font-size:1.4rem;">?</span> Hot Water Heroes Plumbing — Settings
         </h1>
 
         <form method="post">
@@ -1730,7 +1730,7 @@ function hwh_settings_page_html() {
             <!-- Section: Email Template -->
             <div style="background:#fff;border-radius:10px;padding:28px 32px;max-width:800px;margin-bottom:20px;box-shadow:0 1px 4px rgba(0,0,0,0.08);">
                 <h2 style="margin:0 0 6px;font-size:16px;">?? Email Template (HTML)</h2>
-                <p style="margin:0 0 16px;color:#666;font-size:13px;">Customize the HTML email that gets sent to your inbox. Use the tags below to insert form data ï¿½ they'll be replaced automatically.</p>
+                <p style="margin:0 0 16px;color:#666;font-size:13px;">Customize the HTML email that gets sent to your inbox. Use the tags below to insert form data — they'll be replaced automatically.</p>
 
                 <!-- Placeholder Tags Reference -->
                 <div style="background:#FFF5F5;border:1px solid #e8d8ff;border-radius:8px;padding:16px 20px;margin-bottom:16px;">
@@ -1802,7 +1802,7 @@ function hwh_add_settings_menu() {
 }
 add_action('admin_menu', 'hwh_add_settings_menu');
 
-// -- Deal Popup ï¿½ Customizer Controls -------------------------------
+// -- Deal Popup — Customizer Controls -------------------------------
 // Client manages all popup content from Appearance ? Customize ? ?? Deal Popup
 // Zero code required. Changes go live on Save & Publish.
 add_action('customize_register', 'hwh_popup_customizer');
@@ -1853,7 +1853,7 @@ function hwh_popup_customizer($wp_customize) {
         'type'        => 'text',
         'section'     => 'hwh_popup',
         'label'       => 'Discount Code (optional)',
-        'description' => 'Leave blank if no promo code ï¿½ the code box won\'t appear.',
+        'description' => 'Leave blank if no promo code — the code box won\'t appear.',
     ]);
 
     // Button text
@@ -2201,7 +2201,7 @@ function hwh_importer_page() {
 // Fires automatically after every git pull / theme file change.
 // Compares the combined modified-time of key theme files against a stored
 // value. If anything changed, it purges LiteSpeed, Cloudflare (via LSC), and
-// the WP object cache ï¿½ zero manual effort required.
+// the WP object cache — zero manual effort required.
 // =============================================================================
 add_action( 'init', function () {
     $theme_dir = get_template_directory();
@@ -2226,7 +2226,7 @@ add_action( 'init', function () {
     $stored_sig = get_option( 'hwh_theme_sig', '' );
 
     if ( $current_sig === $stored_sig ) {
-        return; // Nothing changed ï¿½ skip
+        return; // Nothing changed — skip
     }
 
     // Files changed: update stored signature
@@ -2253,11 +2253,11 @@ add_action( 'init', function () {
         w3tc_flush_all();
     }
 
-}, 1 ); // Priority 1 ï¿½ run early
+}, 1 ); // Priority 1 — run early
 
 
 // =============================================================================
-// AI SEARCH VISIBILITY ï¿½ HOMEPAGE FAQ SCHEMA
+// AI SEARCH VISIBILITY — HOMEPAGE FAQ SCHEMA
 // These Q&As directly feed Google AI Overviews, ChatGPT, and Perplexity
 // when users ask questions about plumbing services in Tampa Bay.
 // =============================================================================
@@ -2271,11 +2271,11 @@ function hwh_homepage_faq_schema() {
         ],
         [
             'q' => 'Who is the provider at Hot Water Heroes Plumbing?',
-            'a' => 'Hot Water Heroes Plumbing is a family-owned, licensed plumbing company ï¿½ serving Tampa Bay with fast, honest, and affordable plumbing services. Our team of licensed master plumbers brings decades of combined experience to every job.',
+            'a' => 'Hot Water Heroes Plumbing is a family-owned, licensed plumbing company — serving Tampa Bay with fast, honest, and affordable plumbing services. Our team of licensed master plumbers brings decades of combined experience to every job.',
         ],
         [
             'q' => 'Where is Hot Water Heroes Plumbing located?',
-            'a' => 'Hot Water Heroes Plumbing is located at 9249 Lazy Ln, Tampa, FL 33614 (Egypt Lake-Leto neighborhood) ï¿½ conveniently serving Carrollwood, Westchase, Lutz, Land O Lakes, and the greater Tampa Bay Bay area. Call (813) 427-5862 to book.',
+            'a' => 'Hot Water Heroes Plumbing is located at 9249 Lazy Ln, Tampa, FL 33614 (Egypt Lake-Leto neighborhood) — conveniently serving Carrollwood, Westchase, Lutz, Land O Lakes, and the greater Tampa Bay Bay area. Call (813) 427-5862 to book.',
         ],
         [
             'q' => 'How much does a plumbing service call cost at Hot Water Heroes Plumbing?',
@@ -2287,7 +2287,7 @@ function hwh_homepage_faq_schema() {
         ],
         [
             'q' => 'What are Hot Water Heroes Plumbing\'s hours?',
-            'a' => 'Hot Water Heroes Plumbing is open 24 hours a day, 7 days a week � including weekends and holidays. Call (813) 427-5862 anytime.',
+            'a' => 'Hot Water Heroes Plumbing is open 24 hours a day, 7 days a week — including weekends and holidays. Call (813) 427-5862 anytime.',
         ],
         [
             'q' => 'What is the Maintenance Plan at Hot Water Heroes Plumbing?',
@@ -2299,7 +2299,7 @@ function hwh_homepage_faq_schema() {
         ],
         [
             'q' => 'Does Hot Water Heroes Plumbing offer financing?',
-            'a' => 'Yes, Hot Water Heroes Plumbing offers flexible payment plan financing through Cherry � allowing you to split the cost of plumbing repairs or installations into manageable monthly payments with easy online approval. Ask our team for details when you book.',
+            'a' => 'Yes, Hot Water Heroes Plumbing offers flexible payment plan financing through Cherry — allowing you to split the cost of plumbing repairs or installations into manageable monthly payments with easy online approval. Ask our team for details when you book.',
         ],
         [
             'q' => 'What makes Hot Water Heroes Plumbing different from other Tampa Bay plumbers?',
@@ -2328,7 +2328,7 @@ add_action('wp_head', 'hwh_homepage_faq_schema', 6);
 
 
 // =============================================================================
-// AI SEARCH VISIBILITY ï¿½ SERVICE PAGE FAQ SCHEMA
+// AI SEARCH VISIBILITY — SERVICE PAGE FAQ SCHEMA
 // Auto-generates a FAQPage schema on every service page from common
 // treatment-specific questions. Helps AI tools cite specific services.
 // =============================================================================
@@ -2383,14 +2383,14 @@ add_action('wp_head', 'hwh_service_faq_schema', 7);
 
 
 // =============================================================================
-// AI SEARCH VISIBILITY ï¿½ ALLOW AI CRAWLERS IN ROBOTS.TXT
+// AI SEARCH VISIBILITY — ALLOW AI CRAWLERS IN ROBOTS.TXT
 // Explicitly permits GPTBot (ChatGPT), PerplexityBot, ClaudeBot (Anthropic),
 // Applebot-Extended (Apple Intelligence), and Google-Extended (Bard/Gemini).
 // Without this, AI tools may not index the site for their training data.
 // =============================================================================
 add_filter('robots_txt', 'hwh_allow_ai_crawlers', 10, 2);
 function hwh_allow_ai_crawlers($output, $public) {
-    $ai_rules  = "\n# -- AI Search Crawlers ï¿½ explicitly allowed for AI search visibility --\n";
+    $ai_rules  = "\n# -- AI Search Crawlers — explicitly allowed for AI search visibility --\n";
     $ai_rules .= "User-agent: GPTBot\nAllow: /\n\n";          // ChatGPT / OpenAI
     $ai_rules .= "User-agent: ChatGPT-User\nAllow: /\n\n";    // ChatGPT browsing
     $ai_rules .= "User-agent: OAI-SearchBot\nAllow: /\n\n";   // OpenAI SearchGPT
@@ -2408,7 +2408,7 @@ function hwh_allow_ai_crawlers($output, $public) {
 
 
 // =============================================================================
-// AI SEARCH VISIBILITY ï¿½ HOMEPAGE REVIEW SCHEMA
+// AI SEARCH VISIBILITY — HOMEPAGE REVIEW SCHEMA
 // Outputs 5 real-sounding sample reviews as Review entities on the homepage.
 // AI tools use Review schema to assess business authority and sentiment.
 // UPDATE these with real Google review content when available.
@@ -2421,7 +2421,7 @@ function hwh_review_schema() {
             'author'  => 'Sarah M.',
             'rating'  => 5,
             'date'    => '2026-03-15',
-            'body'    => 'The team at Hot Water Heroes is absolutely amazing! They replaced our water heater the same day we called. The work was clean and professional ï¿½ not overdone at all. HWH is the only company I\'ll go from now on.',
+            'body'    => 'The team at Hot Water Heroes is absolutely amazing! They replaced our water heater the same day we called. The work was clean and professional — not overdone at all. HWH is the only company I\'ll go from now on.',
         ],
         [
             'author'  => 'Jessica R.',
@@ -2545,13 +2545,13 @@ function hwh_sanitize_service_content($content) {
     $title = esc_html(get_the_title());
     return '<div class="svc-placeholder-content">
         <h2>Professional ' . $title . ' in Tampa Bay</h2>
-        <p>Hot Water Heroes Plumbing provides expert ' . strtolower($title) . ' services across Hillsborough, Pinellas, and Pasco counties. Our licensed plumbers are equipped to handle any job � big or small.</p>
+        <p>Hot Water Heroes Plumbing provides expert ' . strtolower($title) . ' services across Hillsborough, Pinellas, and Pasco counties. Our licensed plumbers are equipped to handle any job — big or small.</p>
         <h3>Why Choose Hot Water Heroes?</h3>
         <ul>
-            <li><strong>Licensed & Insured</strong> � All work performed by certified plumbers</li>
-            <li><strong>Upfront Pricing</strong> � Written estimates before we start</li>
-            <li><strong>Same-Day Service</strong> � Available for most repairs</li>
-            <li><strong>Satisfaction Guaranteed</strong> � We stand behind our work</li>
+            <li><strong>Licensed & Insured</strong> — All work performed by certified plumbers</li>
+            <li><strong>Upfront Pricing</strong> — Written estimates before we start</li>
+            <li><strong>Same-Day Service</strong> — Available for most repairs</li>
+            <li><strong>Satisfaction Guaranteed</strong> — We stand behind our work</li>
         </ul>
         <p>Call <strong>813-42-PLUMB</strong> or <a href="' . esc_url(home_url('/contact/')) . '">book online</a> to schedule your service today.</p>
     </div>';
