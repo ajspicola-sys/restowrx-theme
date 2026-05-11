@@ -137,21 +137,21 @@ add_action('wp_enqueue_scripts', 'hwh_enqueue_styles');
 // -- Performance: Make only Google Fonts non-render-blocking -----------
 // The main stylesheet MUST be render-blocking to prevent FOUC.
 // Google Fonts can safely load async since system fonts render as fallback.
+// Google Fonts loaded normally (not deferred) to prevent FOUT from Livia legacy fonts
+// Font files are preloaded above so Inter/Montserrat arrives before first paint
 function hwh_async_styles($html, $handle) {
-    // Only defer Google Fonts ï¿½ NOT the main theme stylesheet
-    if ( $handle === 'hwh-google-fonts' && !is_admin() ) {
-        $html = str_replace("media='all'", "media='print' onload=\"this.media='all'\"", $html);
-        $html = str_replace('media="all"', "media=\"print\" onload=\"this.media='all'\"", $html);
-        $noscript = '<noscript>' . str_replace(
-            ["media='print'", 'media="print"', " onload=\"this.media='all'\""],
-            ["media='all'",  'media="all"',  ''],
-            $html
-        ) . '</noscript>';
-        $html .= $noscript;
-    }
+    // Removed async deferral - was causing flash of Livia MedSpa fonts on first load
     return $html;
 }
 add_filter('style_loader_tag', 'hwh_async_styles', 10, 2);
+
+
+
+
+
+
+
+
 
 
 // -- Performance: Preload critical fonts only (preconnects live in header.php) --
@@ -159,9 +159,9 @@ function hwh_resource_hints() {
     // DNS prefetch for external image CDN
     echo '<link rel="dns-prefetch" href="//hotwaterheroesplumbing.com">' . "\n";
 
-    // Preload the most critical font files (the weights used above the fold)
-    echo '<link rel="preload" href="https://fonts.gstatic.com/s/cormorantgaramond/v16/co3YmX5slCNuHLi8bLeY9MK7whWMhyjYqXtK.woff2" as="font" type="font/woff2" crossorigin>' . "\n";
-    echo '<link rel="preload" href="https://fonts.gstatic.com/s/dmsans/v15/rP2tp2ywxg089UriI5-g4vlH9VoD8CmcqZG40F9JadbnoET0.woff2" as="font" type="font/woff2" crossorigin>' . "\n";
+    // Preload HWH critical font files (Inter 600 + Montserrat 700 - weights used above the fold)
+    echo '<link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2" as="font" type="font/woff2" crossorigin>' . "\n";
+    echo '<link rel="preload" href="https://fonts.gstatic.com/s/montserrat/v26/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Hw5aXo.woff2" as="font" type="font/woff2" crossorigin>' . "\n";
 }
 add_action('wp_head', 'hwh_resource_hints', 1);
 
