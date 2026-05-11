@@ -4983,7 +4983,7 @@ a.contact-card__text:hover {
   font-size: 0.78rem;
 }
 .breadcrumbs--hero a {
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(255, 255, 255, 0.65);
   text-decoration: none;
   transition: color 0.2s ease;
 }
@@ -6833,7 +6833,7 @@ a.contact-card__text:hover {
 }
 
 .breadcrumbs--hero .breadcrumbs__item a {
-  color: rgba(106, 75, 120, 0.65);
+  color: rgba(255, 255, 255, 0.65);
 }
 
 .breadcrumbs__item a:hover {
@@ -6847,7 +6847,7 @@ a.contact-card__text:hover {
 }
 
 .breadcrumbs--hero .breadcrumbs__sep {
-  color: rgba(var(--brand-rgb), 0.4);
+  color: rgba(255, 255, 255, 0.3);
 }
 
 .breadcrumbs__item--current {
@@ -6856,8 +6856,8 @@ a.contact-card__text:hover {
 }
 
 .breadcrumbs--hero .breadcrumbs__item--current {
-  color: rgba(var(--dark-rgb), 0.55);
-  font-weight: 500;
+  color: rgba(255, 255, 255, 0.90);
+  font-weight: 600;
 }
 
 /* ==========================================================================
