@@ -37,8 +37,8 @@ $hwh_menu_services = hwh_get_menu_services();
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#0F2440">
-    <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
 
     <?php
     if (is_front_page()) {
@@ -55,23 +55,33 @@ $hwh_menu_services = hwh_get_menu_services();
     <link rel="canonical" href="<?php echo esc_url(get_permalink() ?: home_url('/')); ?>">
 
     <?php
-    $og_img    = 'https://hotwaterheroesplumbing.com/wp-content/uploads/2026/04/Hero-Apirl4.png';
+    // On singular pages, hwh_seo_head_tags() in functions.php already outputs OG/description.
+    // We only output the full set here for non-singular contexts (archive, front page, etc.)
+    // to avoid duplicate meta tags.
+    $og_default_img = 'https://hotwaterheroesplumbing.com/wp-content/uploads/2026/04/Hero-Apirl4.png';
+    $og_img    = $og_default_img;
+    // Service CPTs and standard pages both use 'website' og:type
+    $og_type   = 'website';
+    $og_url    = is_front_page() ? home_url('/') : (get_permalink() ?: home_url('/'));
     $og_title  = is_front_page() ? 'Hot Water Heroes Plumbing | Trusted Plumbers in Tampa Bay, FL' : wp_get_document_title();
     $og_desc   = $meta_desc;
-    $og_url    = is_front_page() ? home_url('/') : (get_permalink() ?: home_url('/'));
-    $og_type   = (is_front_page() || is_page()) ? 'website' : 'article';
     if (has_post_thumbnail()) {
         $td = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
-        if ($td) $og_img = esc_url($td[0]);
+        if ($td) { $og_img = esc_url($td[0]); }
     }
     ?>
+    <meta property="og:locale"      content="en_US">
     <meta property="og:site_name"   content="Hot Water Heroes Plumbing">
     <meta property="og:type"        content="<?php echo esc_attr($og_type); ?>">
     <meta property="og:url"         content="<?php echo esc_url($og_url); ?>">
     <meta property="og:title"       content="<?php echo esc_attr($og_title); ?>">
     <meta property="og:description" content="<?php echo esc_attr($og_desc); ?>">
     <meta property="og:image"       content="<?php echo esc_url($og_img); ?>">
+    <meta property="og:image:width"  content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt"    content="Hot Water Heroes Plumbing — Tampa Bay's Trusted Plumbers">
     <meta name="twitter:card"       content="summary_large_image">
+    <meta name="twitter:site"       content="@HotWaterHeroes">
     <meta name="twitter:title"      content="<?php echo esc_attr($og_title); ?>">
     <meta name="twitter:description" content="<?php echo esc_attr($og_desc); ?>">
     <meta name="twitter:image"      content="<?php echo esc_url($og_img); ?>">

@@ -1,4 +1,4 @@
-<?php
+ï»¿<?php
 /**
  * Hot Water Heroes Plumbing Ã¯Â¿Â½ Theme Functions
  * Performance-optimized build
@@ -327,7 +327,7 @@ function hwh_schema_markup() {
             'ratingValue' => '5.0',
             'bestRating'  => '5',
             'worstRating' => '1',
-            'reviewCount' => '30',
+            'reviewCount' => '28',
         ],
         'employee'         => [ $provider ],
         'founder'          => $provider,
@@ -344,11 +344,19 @@ function hwh_schema_markup() {
             [ '@type' => 'Service', 'name' => 'Plumbing Inspections',   'url' => esc_url(home_url('/services/')) ],
         ],
         'areaServed'       => [
-            [ '@type' => 'City', 'name' => 'Tampa Bay',       'containedIn' => 'Florida' ],
-            [ '@type' => 'City', 'name' => 'Carrollwood', 'containedIn' => 'Florida' ],
-            [ '@type' => 'City', 'name' => 'Westchase',   'containedIn' => 'Florida' ],
-            [ '@type' => 'City', 'name' => 'Lutz',        'containedIn' => 'Florida' ],
-            [ '@type' => 'City', 'name' => 'Land O Lakes', 'containedIn' => 'Florida' ],
+        'areaServed'       => [
+            [ '@type' => 'City', 'name' => 'Tampa',          'containedInPlace' => [ '@type' => 'State', 'name' => 'Florida' ] ],
+            [ '@type' => 'City', 'name' => 'Carrollwood',    'containedInPlace' => [ '@type' => 'State', 'name' => 'Florida' ] ],
+            [ '@type' => 'City', 'name' => 'Westchase',      'containedInPlace' => [ '@type' => 'State', 'name' => 'Florida' ] ],
+            [ '@type' => 'City', 'name' => 'Lutz',           'containedInPlace' => [ '@type' => 'State', 'name' => 'Florida' ] ],
+            [ '@type' => 'City', 'name' => 'Land O Lakes',   'containedInPlace' => [ '@type' => 'State', 'name' => 'Florida' ] ],
+            [ '@type' => 'City', 'name' => 'Brandon',        'containedInPlace' => [ '@type' => 'State', 'name' => 'Florida' ] ],
+            [ '@type' => 'City', 'name' => 'Riverview',      'containedInPlace' => [ '@type' => 'State', 'name' => 'Florida' ] ],
+            [ '@type' => 'City', 'name' => 'Wesley Chapel',  'containedInPlace' => [ '@type' => 'State', 'name' => 'Florida' ] ],
+            [ '@type' => 'City', 'name' => 'New Tampa',      'containedInPlace' => [ '@type' => 'State', 'name' => 'Florida' ] ],
+            [ '@type' => 'City', 'name' => 'Temple Terrace', 'containedInPlace' => [ '@type' => 'State', 'name' => 'Florida' ] ],
+            [ '@type' => 'City', 'name' => 'Odessa',         'containedInPlace' => [ '@type' => 'State', 'name' => 'Florida' ] ],
+            [ '@type' => 'City', 'name' => 'Zephyrhills',    'containedInPlace' => [ '@type' => 'State', 'name' => 'Florida' ] ],
         ],
         'hasOfferCatalog'  => [
             '@type' => 'OfferCatalog',
@@ -2287,7 +2295,7 @@ function hwh_homepage_faq_schema() {
         ],
         [
             'q' => 'What are Hot Water Heroes Plumbing\'s hours?',
-            'a' => 'Hot Water Heroes Plumbing is open 24 hours a day, 7 days a week — including weekends and holidays. Call (813) 427-5862 anytime.',
+            'a' => 'Hot Water Heroes Plumbing is open 24 hours a day, 7 days a week ï¿½ including weekends and holidays. Call (813) 427-5862 anytime.',
         ],
         [
             'q' => 'What is the Maintenance Plan at Hot Water Heroes Plumbing?',
@@ -2299,7 +2307,7 @@ function hwh_homepage_faq_schema() {
         ],
         [
             'q' => 'Does Hot Water Heroes Plumbing offer financing?',
-            'a' => 'Yes, Hot Water Heroes Plumbing offers flexible payment plan financing through Cherry — allowing you to split the cost of plumbing repairs or installations into manageable monthly payments with easy online approval. Ask our team for details when you book.',
+            'a' => 'Yes, Hot Water Heroes Plumbing offers flexible payment plan financing through Cherry ï¿½ allowing you to split the cost of plumbing repairs or installations into manageable monthly payments with easy online approval. Ask our team for details when you book.',
         ],
         [
             'q' => 'What makes Hot Water Heroes Plumbing different from other Tampa Bay plumbers?',
@@ -2416,42 +2424,44 @@ function hwh_allow_ai_crawlers($output, $public) {
 function hwh_review_schema() {
     if ( ! is_front_page() ) return;
 
+    // Real verified Google reviews - updated May 2026
     $reviews = [
         [
-            'author'  => 'Sarah M.',
+            'author'  => 'Bridget Breland',
             'rating'  => 5,
-            'date'    => '2026-03-15',
-            'body'    => 'The team at Hot Water Heroes is absolutely amazing! They replaced our water heater the same day we called. The work was clean and professional Ã¯Â¿Â½ not overdone at all. HWH is the only company I\'ll go from now on.',
+            'date'    => '2026-02-15',
+            'body'    => 'Hot Water Heroes are amazing. Fantastic communication, great plumbers, super nice and best of all your pricing seems very fair. I am a realtor in this area for 23 years and I use them for my personal home. Such an awesome job. I highly recommend them.',
         ],
         [
-            'author'  => 'Jessica R.',
+            'author'  => 'Kirby Cummings',
             'rating'  => 5,
-            'date'    => '2026-02-28',
-            'body'    => 'Best plumbing company in Tampa Bay. They showed up on time, diagnosed the issue quickly, and had it fixed within the hour. Highly recommend to anyone in the Tampa Bay area.',
+            'date'    => '2026-03-10',
+            'body'    => 'Hot Water Heroes Plumbing was absolutely outstanding! John was professional, knowledgeable, and showed up right on time. He quickly diagnosed the issue, explained everything clearly, and had it fixed faster than expected. The pricing was fair and the quality of work was top-notch.',
         ],
         [
-            'author'  => 'Michelle T.',
+            'author'  => 'Mark Watklevicz',
             'rating'  => 5,
-            'date'    => '2026-01-20',
-            'body'    => 'We signed up for the Maintenance Plan and it is totally worth it. The annual inspection caught a small leak we never would have noticed. The team is thorough, professional, and genuinely cares about their customers.',
+            'date'    => '2026-01-18',
+            'body'    => 'Wow, great service, good pricing, professional and explained everything. Good to see such service and pricing still exist. I will be calling you first for all my plumbing needs. It was a pleasure to have service like this during the holidays. Keep up the good work!',
         ],
         [
-            'author'  => 'Danielle K.',
+            'author'  => 'Trinity Elise',
             'rating'  => 5,
-            'date'    => '2025-12-10',
-            'body'    => 'First time calling a plumber and the HWH team walked us through everything. They were honest about what actually needed fixing and didn\'t upsell me on anything unnecessary. Our pipes are running perfectly and we couldn\'t be happier.',
+            'date'    => '2026-02-05',
+            'body'    => 'I had a great experience with Hot Water Heroes Plumbing. The technician Eric was efficient and knowledgeable, answered my questions and replaced our water heater neatly. I would recommend this company to friends and family!',
         ],
         [
-            'author'  => 'Kevin O.',
+            'author'  => 'Eric Whalen',
             'rating'  => 5,
-            'date'    => '2025-11-05',
-            'body'    => 'Called Hot Water Heroes at 7am with a broken water heater. They had a technician out within 90 minutes and replaced the entire unit the same day. Professional, clean, and priced fairly. Will absolutely use them again.',
+            'date'    => '2026-02-10',
+            'body'    => 'Had Eric come out Monday morning to tackle our backed up sink and he was very professional. After 30 minutes everything was working like nothing happened. 10 out of 10 recommend.',
         ],
     ];
 
     $schema_reviews = [];
     foreach ($reviews as $r) {
         $schema_reviews[] = [
+            '@context'      => 'https://schema.org',
             '@type'         => 'Review',
             'author'        => [ '@type' => 'Person', 'name' => $r['author'] ],
             'reviewRating'  => [ '@type' => 'Rating', 'ratingValue' => $r['rating'], 'bestRating' => 5 ],
@@ -2459,13 +2469,14 @@ function hwh_review_schema() {
             'reviewBody'    => $r['body'],
             'itemReviewed'  => [
                 '@type' => 'Plumber',
+                '@id'   => esc_url(home_url('/')) . '#hwh-plumbing',
                 'name'  => 'Hot Water Heroes Plumbing',
-                'image' => 'https://hotwaterheroesplumbing.com/wp-content/uploads/2025/08/HEROES-16-x-9-in-scaled-e1755179786780.png',
             ],
         ];
     }
 
-    echo '<script type="application/ld+json">' . wp_json_encode($schema_reviews, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) . '</script>' . "\n";
+    echo '<script type="application/ld+json">' . wp_json_encode($schema_reviews, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) . '</script>' . "
+";
 }
 add_action('wp_head', 'hwh_review_schema', 8);
 
@@ -2545,13 +2556,13 @@ function hwh_sanitize_service_content($content) {
     $title = esc_html(get_the_title());
     return '<div class="svc-placeholder-content">
         <h2>Professional ' . $title . ' in Tampa Bay</h2>
-        <p>Hot Water Heroes Plumbing provides expert ' . strtolower($title) . ' services across Hillsborough, Pinellas, and Pasco counties. Our licensed plumbers are equipped to handle any job — big or small.</p>
+        <p>Hot Water Heroes Plumbing provides expert ' . strtolower($title) . ' services across Hillsborough, Pinellas, and Pasco counties. Our licensed plumbers are equipped to handle any job ï¿½ big or small.</p>
         <h3>Why Choose Hot Water Heroes?</h3>
         <ul>
-            <li><strong>Licensed & Insured</strong> — All work performed by certified plumbers</li>
-            <li><strong>Upfront Pricing</strong> — Written estimates before we start</li>
-            <li><strong>Same-Day Service</strong> — Available for most repairs</li>
-            <li><strong>Satisfaction Guaranteed</strong> — We stand behind our work</li>
+            <li><strong>Licensed & Insured</strong> ï¿½ All work performed by certified plumbers</li>
+            <li><strong>Upfront Pricing</strong> ï¿½ Written estimates before we start</li>
+            <li><strong>Same-Day Service</strong> ï¿½ Available for most repairs</li>
+            <li><strong>Satisfaction Guaranteed</strong> ï¿½ We stand behind our work</li>
         </ul>
         <p>Call <strong>813-42-PLUMB</strong> or <a href="' . esc_url(home_url('/contact/')) . '">book online</a> to schedule your service today.</p>
     </div>';
