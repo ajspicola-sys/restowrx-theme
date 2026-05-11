@@ -37,7 +37,7 @@ $hwh_menu_services = hwh_get_menu_services();
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#0F2440">
-    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-capable" content="yes">
 
     <?php
@@ -59,22 +59,27 @@ $hwh_menu_services = hwh_get_menu_services();
     $og_title  = is_front_page() ? 'Hot Water Heroes Plumbing | Trusted Plumbers in Tampa Bay, FL' : wp_get_document_title();
     $og_desc   = $meta_desc;
     $og_url    = is_front_page() ? home_url('/') : (get_permalink() ?: home_url('/'));
-    $og_type   = (is_front_page() || is_page()) ? 'website' : 'article';
+    $og_type   = 'website';
     if (has_post_thumbnail()) {
         $td = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
         if ($td) $og_img = esc_url($td[0]);
     }
     ?>
+    <meta property="og:locale"       content="en_US">
     <meta property="og:site_name"   content="Hot Water Heroes Plumbing">
     <meta property="og:type"        content="<?php echo esc_attr($og_type); ?>">
     <meta property="og:url"         content="<?php echo esc_url($og_url); ?>">
     <meta property="og:title"       content="<?php echo esc_attr($og_title); ?>">
     <meta property="og:description" content="<?php echo esc_attr($og_desc); ?>">
     <meta property="og:image"       content="<?php echo esc_url($og_img); ?>">
-    <meta name="twitter:card"       content="summary_large_image">
-    <meta name="twitter:title"      content="<?php echo esc_attr($og_title); ?>">
+    <meta property="og:image:width"  content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt"    content="Hot Water Heroes Plumbing - Tampa Bay Plumbers">
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:site"        content="@HotWaterHeroes">
+    <meta name="twitter:title"       content="<?php echo esc_attr($og_title); ?>">
     <meta name="twitter:description" content="<?php echo esc_attr($og_desc); ?>">
-    <meta name="twitter:image"      content="<?php echo esc_url($og_img); ?>">
+    <meta name="twitter:image"       content="<?php echo esc_url($og_img); ?>">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
