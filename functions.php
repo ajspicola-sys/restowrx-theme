@@ -1012,6 +1012,24 @@ add_filter( 'wpseo_canonical', 'hwh_fix_yoast_canonical', 10, 1 );
 // Also fix the canonical in Rank Math if active
 add_filter( 'rank_math/frontend/canonical', 'hwh_fix_yoast_canonical', 10, 1 );
 
+// -- FIX: Purge old Hostinger staging domain from all canonicals ------
+// The staging URL (olive-ferret-752298.hostingersite.com) leaks into
+// some category canonicals stored in the database. This replaces it
+// with the real domain everywhere.
+function hwh_purge_staging_canonical( $canonical ) {
+    if ( is_string( $canonical ) ) {
+        $canonical = str_replace(
+            'olive-ferret-752298.hostingersite.com',
+            'hotwaterheroesplumbing.com',
+            $canonical
+        );
+    }
+    return $canonical;
+}
+add_filter( 'get_canonical_url',                'hwh_purge_staging_canonical', 99 );
+add_filter( 'wpseo_canonical',                  'hwh_purge_staging_canonical', 99 );
+add_filter( 'rank_math/frontend/canonical',     'hwh_purge_staging_canonical', 99 );
+
 // -- Show ALL services on the services archive page -----------------
 function hwh_services_per_page($query) {
     if (!is_admin() && $query->is_main_query() && $query->is_post_type_archive('service')) {
