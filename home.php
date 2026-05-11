@@ -32,11 +32,22 @@ get_header(); ?>
                 <a href="<?php echo esc_url($blog_url); ?>"
                    class="blog-filter-btn <?php echo !$current_cat ? 'is-active' : ''; ?>">All Posts</a>
                 <?php
+                // Only show plumbing service categories that have published posts
+                $service_slugs = [
+                    'water-heaters',
+                    'drain-cleaning',
+                    'emergency-plumbing',
+                    'leak-detection',
+                    'repiping',
+                    'plumbing-tips',
+                    'maintenance',
+                    'tankless-water-heaters',
+                ];
                 $blog_cats = get_categories([
                     'orderby'    => 'name',
                     'order'      => 'ASC',
-                    'hide_empty' => false,
-                    'exclude'    => [1], // Exclude 'Uncategorized'
+                    'hide_empty' => true,
+                    'slug'       => $service_slugs,
                 ]);
                 foreach ($blog_cats as $cat) :
                 ?>
