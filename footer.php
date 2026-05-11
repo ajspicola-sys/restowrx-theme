@@ -136,6 +136,12 @@
 
     document.body.classList.add('is-loaded');
 
+    // Fix white screen when navigating back — bfcache restores the
+    // page with the exit-transition class still applied.
+    window.addEventListener('pageshow', function(e) {
+        if (e.persisted) document.body.classList.remove('is-leaving');
+    });
+
     // Scroll reveal
     (function() {
         var obs = new IntersectionObserver(function(entries) {

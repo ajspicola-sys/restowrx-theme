@@ -1,40 +1,21 @@
 <?php
 /**
- * Hot Water Heroes — Blog Page Template
- * Auto-loaded by WordPress for any Page with the slug "blog".
- * No Settings > Reading config required.
+ * Hot Water Heroes — Blog Posts Index (home.php)
+ *
+ * WordPress template hierarchy: when Settings > Reading has a static
+ * front page and a Posts page, WP loads home.php for the posts page.
+ * The main query is already populated by WordPress — we just loop it.
  */
 
 get_header();
 
-// ── Read query params from URL ─────────────────────────────────────────────
-$paged  = isset( $_GET['paged'] ) ? absint( $_GET['paged'] ) : 1;
-$cat_id = isset( $_GET['cat'] )   ? absint( $_GET['cat'] )   : 0;
-
-// ── Build WP_Query ────────────────────────────────────────────────────────
-$query_args = array(
-    'post_type'           => 'post',
-    'post_status'         => 'publish',
-    'posts_per_page'      => 9,
-    'paged'               => $paged,
-    'ignore_sticky_posts' => true,
-);
-if ( $cat_id ) {
-    $query_args['cat'] = $cat_id;
-}
-$blog_query = new WP_Query( $query_args );
-
-// ── Pagination base URL (preserves ?cat= if set) ──────────────────────────
-$page_url      = trailingslashit( get_permalink() );
-$paginate_base = $cat_id
-    ? add_query_arg( 'cat', $cat_id, $page_url ) . '%_%'
-    : $page_url . '%_%';
-
+$current_cat = get_query_var( 'cat' );
+$is_paged    = is_paged();
 ?>
 
 <main class="site-main" id="main-content">
 
-    <!-- Blog Hero -->
+    <!-- ─── Blog Hero ─── -->
     <section class="blog-hero" aria-label="Blog">
         <div class="blog-hero__bg" aria-hidden="true">
             <div class="blog-hero__orb blog-hero__orb--1"></div>
@@ -47,28 +28,19 @@ $paginate_base = $cat_id
         </div>
     </section>
 
-    <!-- Category Filter Bar -->
+    <!-- ─── Category Filters ─── -->
     <section class="blog-filters" aria-label="Filter by category">
         <div class="section__inner">
             <div class="blog-filters__bar">
 
-                <!-- All Posts — links back to /blog/ with no filter -->
-                <a href="<?php echo esc_url( $page_url ); ?>"
-                   class="blog-filter-btn <?php echo ! $cat_id ? 'is-active' : ''; ?>">
-                    All Posts
-                </a>
+                <a href="<?php echo esc_url( home_url( '/blog/' ) ); ?>"
+                   class="blog-filter-btn <?php echo ! $current_cat ? 'is-active' : ''; ?>">All Posts</a>
 
                 <?php
-                // Only show categories that (a) match our plumbing slugs and (b) have posts.
                 $service_slugs = array(
-                    'water-heaters',
-                    'drain-cleaning',
-                    'emergency-plumbing',
-                    'leak-detection',
-                    'repiping',
-                    'plumbing-tips',
-                    'maintenance',
-                    'tankless-water-heaters',
+                    'water-heaters', 'drain-cleaning', 'emergency-plumbing',
+                    'leak-detection', 'repiping', 'plumbing-tips',
+                    'maintenance', 'tankless-water-heaters',
                 );
                 $filter_cats = get_categories( array(
                     'slug'       => $service_slugs,
@@ -77,11 +49,9 @@ $paginate_base = $cat_id
                     'order'      => 'ASC',
                 ) );
                 foreach ( $filter_cats as $fc ) :
-                    // Link stays on /blog/ and appends ?cat=ID
-                    $filter_url = add_query_arg( 'cat', $fc->term_id, $page_url );
                 ?>
-                    <a href="<?php echo esc_url( $filter_url ); ?>"
-                       class="blog-filter-btn <?php echo ( $cat_id === $fc->term_id ) ? 'is-active' : ''; ?>">
+                    <a href="<?php echo esc_url( get_category_link( $fc->term_id ) ); ?>"
+                       class="blog-filter-btn <?php echo ( (int) $current_cat === $fc->term_id ) ? 'is-active' : ''; ?>">
                         <?php echo esc_html( $fc->name ); ?>
                     </a>
                 <?php endforeach; ?>
@@ -90,25 +60,24 @@ $paginate_base = $cat_id
         </div>
     </section>
 
-    <!-- Posts -->
+    <!-- ─── Posts ─── -->
     <section class="blog-archive" aria-label="Blog posts">
         <div class="section__inner">
 
-        <?php if ( $blog_query->have_posts() ) : ?>
+        <?php if ( have_posts() ) : ?>
 
             <?php
-            // ── Featured card: first post on page 1, no filter ────────────
-            $showed_featured = false;
-            if ( $paged === 1 && ! $cat_id && $blog_query->have_posts() ) :
-                $blog_query->the_post();
-                $showed_featured = true;
+            /* ── Featured card ────────────────────────────────────────
+             * Show only on page 1 with no category filter.
+             * We call the_post() once to consume post #1, render it
+             * as the featured card, then let the grid loop handle
+             * everything that remains.
+             */
+            $show_featured = ( ! $current_cat && ! $is_paged );
 
-                // Get featured image URL — try large, fall back to full
-                $thumb_id  = get_post_thumbnail_id();
-                $thumb_src = $thumb_id
-                    ? ( wp_get_attachment_image_url( $thumb_id, 'large' )
-                        ?: wp_get_attachment_image_url( $thumb_id, 'full' ) )
-                    : '';
+            if ( $show_featured ) :
+                the_post();
+                $thumb_url = get_the_post_thumbnail_url( get_the_ID(), 'large' );
             ?>
             <article class="blog-featured reveal" itemscope itemtype="https://schema.org/BlogPosting">
                 <a href="<?php the_permalink(); ?>"
@@ -116,12 +85,10 @@ $paginate_base = $cat_id
                    aria-label="Read: <?php the_title_attribute(); ?>">
 
                     <div class="blog-featured__img">
-                        <?php if ( $thumb_src ) : ?>
-                            <img src="<?php echo esc_url( $thumb_src ); ?>"
+                        <?php if ( $thumb_url ) : ?>
+                            <img src="<?php echo esc_url( $thumb_url ); ?>"
                                  alt="<?php the_title_attribute(); ?>"
-                                 loading="eager"
-                                 decoding="async"
-                                 fetchpriority="high"
+                                 loading="eager" decoding="async" fetchpriority="high"
                                  itemprop="image">
                         <?php else : ?>
                             <div class="blog-featured__placeholder" aria-hidden="true">
@@ -133,9 +100,8 @@ $paginate_base = $cat_id
 
                     <div class="blog-featured__body">
                         <div class="blog-card__meta">
-                            <?php $post_cats = get_the_category(); ?>
-                            <?php if ( $post_cats ) : ?>
-                                <span class="blog-card__cat"><?php echo esc_html( $post_cats[0]->name ); ?></span>
+                            <?php $cats = get_the_category(); if ( $cats ) : ?>
+                                <span class="blog-card__cat"><?php echo esc_html( $cats[0]->name ); ?></span>
                             <?php endif; ?>
                             <time class="blog-card__date"
                                   datetime="<?php echo esc_attr( get_the_date( 'c' ) ); ?>"
@@ -159,31 +125,25 @@ $paginate_base = $cat_id
                     </div>
                 </a>
             </article>
-            <?php endif; // end featured ?>
+            <?php endif; ?>
 
 
-            <!-- Post Grid: remaining posts (or all posts when filtered / page > 1) -->
-            <?php if ( $blog_query->have_posts() ) : ?>
+            <!-- ── Post Grid ── -->
+            <?php if ( have_posts() ) : ?>
             <div class="blog-grid">
-                <?php while ( $blog_query->have_posts() ) : $blog_query->the_post();
-                    // Get image URL with fallback
-                    $card_thumb_id  = get_post_thumbnail_id();
-                    $card_thumb_src = $card_thumb_id
-                        ? ( wp_get_attachment_image_url( $card_thumb_id, 'medium_large' )
-                            ?: wp_get_attachment_image_url( $card_thumb_id, 'full' ) )
-                        : '';
+                <?php while ( have_posts() ) : the_post();
+                    $card_thumb = get_the_post_thumbnail_url( get_the_ID(), 'medium_large' );
                 ?>
                     <article class="blog-card reveal" itemscope itemtype="https://schema.org/BlogPosting">
                         <a href="<?php the_permalink(); ?>"
                            class="blog-card__link"
                            aria-label="Read: <?php the_title_attribute(); ?>">
 
-                            <?php if ( $card_thumb_src ) : ?>
+                            <?php if ( $card_thumb ) : ?>
                                 <div class="blog-card__img">
-                                    <img src="<?php echo esc_url( $card_thumb_src ); ?>"
+                                    <img src="<?php echo esc_url( $card_thumb ); ?>"
                                          alt="<?php the_title_attribute(); ?>"
-                                         loading="lazy"
-                                         decoding="async">
+                                         loading="lazy" decoding="async">
                                 </div>
                             <?php else : ?>
                                 <div class="blog-card__img blog-card__img--placeholder" aria-hidden="true">
@@ -193,9 +153,8 @@ $paginate_base = $cat_id
 
                             <div class="blog-card__body">
                                 <div class="blog-card__meta">
-                                    <?php $card_cats = get_the_category(); ?>
-                                    <?php if ( $card_cats ) : ?>
-                                        <span class="blog-card__cat"><?php echo esc_html( $card_cats[0]->name ); ?></span>
+                                    <?php $cats = get_the_category(); if ( $cats ) : ?>
+                                        <span class="blog-card__cat"><?php echo esc_html( $cats[0]->name ); ?></span>
                                     <?php endif; ?>
                                     <time class="blog-card__date"
                                           datetime="<?php echo esc_attr( get_the_date( 'c' ) ); ?>">
@@ -212,18 +171,14 @@ $paginate_base = $cat_id
                     </article>
                 <?php endwhile; ?>
             </div>
-            <?php endif; // end grid ?>
+            <?php endif; ?>
 
 
-            <!-- Pagination: ?paged=N — safe for static page templates -->
-            <?php if ( $blog_query->max_num_pages > 1 ) : ?>
+            <!-- ── Pagination ── -->
+            <?php if ( $GLOBALS['wp_query']->max_num_pages > 1 ) : ?>
             <nav class="blog-pagination" aria-label="Blog pagination">
                 <?php
                 echo paginate_links( array(
-                    'base'      => $paginate_base,
-                    'format'    => '?paged=%#%',
-                    'current'   => $paged,
-                    'total'     => $blog_query->max_num_pages,
                     'prev_text' => '&larr; Previous',
                     'next_text' => 'Next &rarr;',
                     'type'      => 'list',
@@ -233,7 +188,7 @@ $paginate_base = $cat_id
             <?php endif; ?>
 
         <?php else : ?>
-            <!-- Empty state -->
+
             <div class="blog-empty reveal">
                 <div class="blog-empty__icon-wrap">
                     <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
@@ -242,14 +197,13 @@ $paginate_base = $cat_id
                 <p class="blog-empty__text">Plumbing tips, maintenance guides, and expert advice — coming soon from the Hot Water Heroes team.</p>
                 <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="hwh-btn hwh-btn--red">Back to Home</a>
             </div>
+
         <?php endif; ?>
 
-        <?php wp_reset_postdata(); ?>
         </div>
     </section>
 
-
-    <!-- CTA -->
+    <!-- ─── CTA ─── -->
     <section class="cta-section" aria-label="Request service">
         <div class="cta-section__inner reveal">
             <span class="cta-section__label">Have a Plumbing Issue?</span>
@@ -263,15 +217,5 @@ $paginate_base = $cat_id
     </section>
 
 </main>
-
-<script>
-// Fix white screen on browser back — page exit animation leaves 'is-leaving'
-// on body when bfcache restores the page; clear it on pageshow.
-window.addEventListener('pageshow', function(e) {
-    if (document.body.classList.contains('is-leaving')) {
-        document.body.classList.remove('is-leaving');
-    }
-});
-</script>
 
 <?php get_footer(); ?>
