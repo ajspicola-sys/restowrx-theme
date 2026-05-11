@@ -925,13 +925,14 @@ function hwh_register_services() {
             'not_found'          => 'No services found',
             'menu_name'          => '?? Services',
         ],
-        'public'             => true,
-        'has_archive'        => true,
-        'rewrite'            => ['slug' => 'services'],
-        'menu_icon'          => 'dashicons-heart',
-        'menu_position'      => 5,
-        'supports'           => ['title', 'editor', 'thumbnail', 'excerpt'],
-        'show_in_rest'       => true,
+        'public'              => true,
+        'exclude_from_search' => true,
+        'has_archive'         => true,
+        'rewrite'             => ['slug' => 'services'],
+        'menu_icon'           => 'dashicons-heart',
+        'menu_position'       => 5,
+        'supports'            => ['title', 'editor', 'thumbnail', 'excerpt'],
+        'show_in_rest'        => true,
     ]);
 
     // Service Categories
