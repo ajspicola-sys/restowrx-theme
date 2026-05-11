@@ -969,9 +969,7 @@ function hwh_register_services() {
 add_action('init', 'hwh_register_services');
 
 // -- Redirect /service/ (singular) → /services/ (plural) -----------
-// The CPT slug is 'services' but some canonical tags reference the
-// singular '/service/' path, resulting in 404s and broken canonicals.
-// This 301 redirect ensures Google follows through to the real page.
+// Safety net for external links and bookmarks pointing to old URLs.
 function hwh_redirect_singular_service() {
     if ( is_admin() || wp_doing_ajax() || wp_doing_cron() ) return;
 
@@ -984,6 +982,35 @@ function hwh_redirect_singular_service() {
     }
 }
 add_action( 'template_redirect', 'hwh_redirect_singular_service', 1 );
+
+// -- FIX: Force correct canonical URL for service pages ----------------
+// WordPress generates a canonical based on the post type name ('service')
+// instead of the rewrite slug ('services'), producing a /service/ canonical
+// that 404s. This filter corrects it at the source so Google sees
+// only one canonical pointing to the real /services/ URL.
+function hwh_fix_service_canonical( $canonical_url, $post ) {
+    if ( get_post_type( $post ) === 'service' ) {
+        // Build the correct canonical from the rewrite slug
+        $canonical_url = home_url( '/services/' . $post->post_name . '/' );
+    }
+    return $canonical_url;
+}
+add_filter( 'get_canonical_url', 'hwh_fix_service_canonical', 10, 2 );
+
+// Also fix the canonical in Yoast SEO if active
+function hwh_fix_yoast_canonical( $canonical ) {
+    if ( is_singular( 'service' ) ) {
+        $post = get_queried_object();
+        if ( $post ) {
+            $canonical = home_url( '/services/' . $post->post_name . '/' );
+        }
+    }
+    return $canonical;
+}
+add_filter( 'wpseo_canonical', 'hwh_fix_yoast_canonical', 10, 1 );
+
+// Also fix the canonical in Rank Math if active
+add_filter( 'rank_math/frontend/canonical', 'hwh_fix_yoast_canonical', 10, 1 );
 
 // -- Show ALL services on the services archive page -----------------
 function hwh_services_per_page($query) {
