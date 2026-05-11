@@ -10278,7 +10278,8 @@ a.contact-card__text:hover {
 .hwh-drop__promo-btn:hover { background:#AF2D37; transform:translateY(-1px); color:#fff; }
 
 /* Dropdown footer bar */
-.hwh-drop__footer { background:#F8F9FB; border-top:1px solid #eee; padding:1rem 2rem; max-width:100%; display:flex; align-items:center; gap:2rem; }
+.hwh-drop__footer { background:#F8F9FB; border-top:1px solid #eee; }
+.hwh-drop__footer__inner { max-width:1280px; margin:0 auto; padding:1rem 2rem; display:flex; align-items:center; gap:2rem; }
 .hwh-drop__footer-link { font-size:.78rem; font-weight:600; color:#3D6491; text-decoration:none; transition:color .2s ease; }
 .hwh-drop__footer-link:hover { color:#F22F3A; }
 .hwh-drop__footer-cta { margin-left:auto; font-size:.78rem; font-weight:800; color:#F22F3A; text-decoration:none; transition:letter-spacing .2s ease; }

@@ -215,7 +215,9 @@ $hwh_menu_services = hwh_get_menu_services();
 
                             </div>
                             <div class="hwh-drop__footer">
-                                <a href="<?php echo esc_url(home_url('/services/')); ?>" class="hwh-drop__footer-cta">View All Services →</a>
+                                <div class="hwh-drop__footer__inner">
+                                    <a href="<?php echo esc_url(home_url('/services/')); ?>" class="hwh-drop__footer-cta">View All Services →</a>
+                                </div>
                             </div>
                         </div>
                     </li>
