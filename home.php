@@ -108,6 +108,7 @@ $blog_query = new WP_Query( array(
             <?php endif; ?>
 
             <!-- Post Grid -->
+            <div id="blog-posts-wrap">
             <?php if ( $blog_query->have_posts() ) : ?>
             <div class="blog-grid">
                 <?php while ( $blog_query->have_posts() ) : $blog_query->the_post(); ?>
@@ -161,6 +162,7 @@ $blog_query = new WP_Query( array(
                 ?>
             </nav>
             <?php endif; ?>
+            </div><!-- #blog-posts-wrap -->
 
         <?php else : ?>
 
@@ -195,4 +197,64 @@ $blog_query = new WP_Query( array(
 
 </main>
 
+<script>
+(function() {
+    var wrap = document.getElementById('blog-posts-wrap');
+    if (!wrap) return;
+
+    var ajaxUrl = '<?php echo esc_url( admin_url( "admin-ajax.php" ) ); ?>';
+
+    wrap.addEventListener('click', function(e) {
+        // Find the clicked pagination link
+        var link = e.target.closest('.blog-pagination a');
+        if (!link) return;
+        e.preventDefault();
+
+        // Extract page number from the URL
+        var url  = new URL(link.href);
+        var page = 1;
+        // Try /page/N/ format
+        var match = url.pathname.match(/\/page\/(\d+)/);
+        if (match) {
+            page = parseInt(match[1], 10);
+        }
+        // Try ?paged=N format
+        if (url.searchParams.get('paged')) {
+            page = parseInt(url.searchParams.get('paged'), 10);
+        }
+
+        // Fade out
+        wrap.style.opacity = '0.4';
+        wrap.style.transition = 'opacity 0.25s ease';
+
+        // Fetch
+        var data = new FormData();
+        data.append('action', 'hwh_load_posts');
+        data.append('page', page);
+
+        fetch(ajaxUrl, { method: 'POST', body: data })
+            .then(function(r) { return r.json(); })
+            .then(function(res) {
+                if (res.success && res.data.html) {
+                    wrap.innerHTML = res.data.html;
+                    wrap.style.opacity = '1';
+
+                    // Scroll to top of grid
+                    wrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+                    // Trigger reveal animations on new cards
+                    var cards = wrap.querySelectorAll('.reveal');
+                    cards.forEach(function(card) {
+                        card.classList.add('is-visible');
+                    });
+                }
+            })
+            .catch(function() {
+                wrap.style.opacity = '1';
+            });
+    });
+})();
+</script>
+
 <?php get_footer(); ?>
+

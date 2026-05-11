@@ -969,6 +969,78 @@ function hwh_blog_only_posts($query) {
 }
 add_action('pre_get_posts', 'hwh_blog_only_posts');
 
+// -- AJAX Blog Pagination -------------------------------------------
+function hwh_ajax_blog_posts() {
+    $paged = isset( $_POST['page'] ) ? absint( $_POST['page'] ) : 1;
+
+    $blog_query = new WP_Query( array(
+        'post_type'           => 'post',
+        'post_status'         => 'publish',
+        'posts_per_page'      => 9,
+        'paged'               => $paged,
+        'ignore_sticky_posts' => false,
+    ) );
+
+    ob_start();
+
+    if ( $blog_query->have_posts() ) :
+        echo '<div class="blog-grid">';
+        while ( $blog_query->have_posts() ) : $blog_query->the_post();
+            $card_img = get_the_post_thumbnail_url( get_the_ID(), 'medium_large' );
+            ?>
+            <article class="blog-card reveal" itemscope itemtype="https://schema.org/BlogPosting">
+                <a href="<?php the_permalink(); ?>" class="blog-card__link" aria-label="Read: <?php the_title_attribute(); ?>">
+                    <?php if ( $card_img ) : ?>
+                        <div class="blog-card__img">
+                            <img src="<?php echo esc_url( $card_img ); ?>" alt="<?php the_title_attribute(); ?>" loading="lazy" decoding="async">
+                        </div>
+                    <?php else : ?>
+                        <div class="blog-card__img blog-card__img--placeholder" aria-hidden="true">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                        </div>
+                    <?php endif; ?>
+                    <div class="blog-card__body">
+                        <div class="blog-card__meta">
+                            <?php
+                            $ccats = get_the_category();
+                            if ( ! empty( $ccats ) ) {
+                                echo '<span class="blog-card__cat">' . esc_html( $ccats[0]->name ) . '</span>';
+                            }
+                            ?>
+                            <time class="blog-card__date" datetime="<?php echo esc_attr( get_the_date( 'c' ) ); ?>"><?php echo esc_html( get_the_date( 'M j, Y' ) ); ?></time>
+                        </div>
+                        <h2 class="blog-card__title" itemprop="headline"><?php the_title(); ?></h2>
+                        <p class="blog-card__excerpt"><?php echo wp_trim_words( get_the_excerpt(), 18 ); ?></p>
+                        <span class="blog-card__read">Read Article <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                    </div>
+                </a>
+            </article>
+            <?php
+        endwhile;
+        echo '</div>';
+
+        // Pagination
+        if ( $blog_query->max_num_pages > 1 ) {
+            echo '<nav class="blog-pagination" aria-label="Blog pagination">';
+            echo paginate_links( array(
+                'total'     => $blog_query->max_num_pages,
+                'current'   => $paged,
+                'prev_text' => '&larr; Previous',
+                'next_text' => 'Next &rarr;',
+                'type'      => 'list',
+            ) );
+            echo '</nav>';
+        }
+    endif;
+
+    wp_reset_postdata();
+
+    $html = ob_get_clean();
+    wp_send_json_success( array( 'html' => $html ) );
+}
+add_action( 'wp_ajax_hwh_load_posts', 'hwh_ajax_blog_posts' );
+add_action( 'wp_ajax_nopriv_hwh_load_posts', 'hwh_ajax_blog_posts' );
+
 // -- Service custom fields (meta box) -------------------------------
 function hwh_service_meta_boxes() {
     add_meta_box(
