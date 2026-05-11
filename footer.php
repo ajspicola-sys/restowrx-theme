@@ -72,7 +72,9 @@
                 <h4 class="hwh-foot__heading">Company</h4>
                 <ul class="hwh-foot__links">
                     <li><a href="<?php echo esc_url(home_url('/about/')); ?>">About Us</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/blog/')); ?>">Plumbing Tips Blog</a></li>
+                    <?php $blog_page_id = get_option('page_for_posts'); if ($blog_page_id) : ?>
+                    <li><a href="<?php echo esc_url(get_permalink($blog_page_id)); ?>">Plumbing Tips Blog</a></li>
+                    <?php endif; ?>
                     <li><a href="<?php echo esc_url(home_url('/contact/')); ?>">Contact Us</a></li>
                 </ul>
             </div>
