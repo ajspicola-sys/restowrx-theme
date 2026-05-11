@@ -335,12 +335,13 @@ get_header(); ?>
 
                         <article class="hwh-review-card hwh-review-card--stacked">
                             <div class="hwh-review-card__stars" aria-label="5 stars">★★★★★</div>
-                            <p class="hwh-review-card__text">"For anyone in Tampa needing water heater installation or water heater repair, Hot Water Heroes is a company I would definitely recommend. Professional service, clear communication, and strong expertise with water heaters. I am super impressed!"</p>
+                            <p class="hwh-review-card__text">"Wow, great service, good pricing, professional and explained everything. Good to see such service and pricing still exist. I will be calling you first for all my plumbing needs. It was a pleasure to have service like this during the holidays. Keep up the good work!"</p>
                             <div class="hwh-review-card__author">
-                                <strong>CJ Fortson</strong>
+                                <strong>Mark Watklevicz</strong>
                                 <span>Google Review</span>
                             </div>
                         </article>
+
 
 
                     </div>
