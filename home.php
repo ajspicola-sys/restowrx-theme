@@ -54,12 +54,10 @@ get_header(); ?>
         <div class="section__inner">
             <?php if (have_posts()) : ?>
 
-                <?php $post_count = 0; ?>
+                <?php $showed_featured = false; ?>
 
                 <!-- Featured Post (First) -->
-                <?php if (!$current_cat && !is_paged()) : ?>
-                    <?php while (have_posts()) : the_post(); $post_count++;
-                        if ($post_count > 1) break; ?>
+                <?php if (!$current_cat && !is_paged() && have_posts()) : the_post(); $showed_featured = true; ?>
                         <article class="blog-featured reveal" itemscope itemtype="https://schema.org/BlogPosting">
                             <a href="<?php the_permalink(); ?>" class="blog-featured__link" aria-label="Read: <?php the_title_attribute(); ?>">
                                 <div class="blog-featured__img">
@@ -104,15 +102,13 @@ get_header(); ?>
                 <!-- Post Grid -->
                 <div class="blog-grid">
                     <?php
-                    // If we already showed featured post, continue from post 2
-                    // Otherwise start from post 1
-                    if ($current_cat || is_paged()) {
-                        rewind_posts();
-                        $post_count = 0;
-                    }
+                    // Always rewind so grid starts from post 1
+                    rewind_posts();
+                    $grid_count = 0;
                     while (have_posts()) : the_post();
-                        $post_count++;
-                        if (!$current_cat && !is_paged() && $post_count <= 1) continue;
+                        $grid_count++;
+                        // Skip post 1 if it was already shown as the featured card
+                        if ($showed_featured && $grid_count <= 1) continue;
                     ?>
                         <article class="blog-card reveal" itemscope itemtype="https://schema.org/BlogPosting">
                             <a href="<?php the_permalink(); ?>" class="blog-card__link" aria-label="Read: <?php the_title_attribute(); ?>">
