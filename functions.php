@@ -960,6 +960,14 @@ function hwh_services_per_page($query) {
 }
 add_action('pre_get_posts', 'hwh_services_per_page');
 
+// -- Force blog page to only show regular posts (no services) -------
+function hwh_blog_only_posts($query) {
+    if (!is_admin() && $query->is_main_query() && $query->is_home()) {
+        $query->set('post_type', 'post');
+    }
+}
+add_action('pre_get_posts', 'hwh_blog_only_posts');
+
 // -- Service custom fields (meta box) -------------------------------
 function hwh_service_meta_boxes() {
     add_meta_box(
