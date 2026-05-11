@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Hot Water Heroes Plumbing — Theme Functions
  * Performance-optimized build
@@ -103,6 +103,7 @@ function hwh_force_page_templates($template) {
             'cancellation-policy' => 'page-cancellation-policy.php',
             'refund-policy'       => 'page-refund-policy.php',
             'specials'         => 'page-maintenance-plan.php',
+            'service-areas'    => 'page-service-areas.php',
         ];
         if (isset($map[$slug])) {
             $custom = get_template_directory() . '/' . $map[$slug];
@@ -563,6 +564,22 @@ function hwh_create_specials_page() {
 }
 add_action('init', 'hwh_create_specials_page');
 
+// -- Auto-create Service Areas page ------------------------------------
+function hwh_create_service_areas_page() {
+    if ( get_option('hwh_service_areas_page_created_v1') ) return;
+    if ( ! hwh_page_slug_exists('service-areas') ) {
+        wp_insert_post([
+            'post_title'   => 'Service Areas',
+            'post_name'    => 'service-areas',
+            'post_content' => '',
+            'post_status'  => 'publish',
+            'post_type'    => 'page',
+        ]);
+    }
+    update_option('hwh_service_areas_page_created_v1', true);
+}
+add_action('init', 'hwh_create_service_areas_page');
+
 // -- Auto-create Starter Blog Posts ---------------------------------
 function hwh_create_blog_posts() {
     if (get_option('hwh_blog_created_v1')) return;
@@ -950,6 +967,23 @@ function hwh_register_services() {
     ]);
 }
 add_action('init', 'hwh_register_services');
+
+// -- Redirect /service/ (singular) → /services/ (plural) -----------
+// The CPT slug is 'services' but some canonical tags reference the
+// singular '/service/' path, resulting in 404s and broken canonicals.
+// This 301 redirect ensures Google follows through to the real page.
+function hwh_redirect_singular_service() {
+    if ( is_admin() || wp_doing_ajax() || wp_doing_cron() ) return;
+
+    $request = trim( $_SERVER['REQUEST_URI'], '/' );
+    // Match /service/anything (singular, NOT /services/)
+    if ( preg_match( '#^service/(.+)#', $request, $m ) ) {
+        $target = home_url( '/services/' . $m[1] );
+        wp_redirect( $target, 301 );
+        exit;
+    }
+}
+add_action( 'template_redirect', 'hwh_redirect_singular_service', 1 );
 
 // -- Show ALL services on the services archive page -----------------
 function hwh_services_per_page($query) {
