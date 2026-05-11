@@ -212,12 +212,7 @@ $hwh_menu_services = hwh_get_menu_services();
                                 </div>
                                 <?php endif; ?>
 
-                                <div class="hwh-drop__promo">
-                                    <span class="hwh-drop__promo-label">New Customer Deal</span>
-                                    <h4 class="hwh-drop__promo-title">$50 Off Your First Service</h4>
-                                    <p class="hwh-drop__promo-text">Book any plumbing service and save $50 on your first visit. New customers only.</p>
-                                    <a href="/contact/" class="hwh-drop__promo-btn">Book Now →</a>
-                                </div>
+
                             </div>
                             <div class="hwh-drop__footer">
                                 <a href="<?php echo esc_url(home_url('/services/')); ?>" class="hwh-drop__footer-cta">View All Services →</a>

@@ -12069,3 +12069,361 @@ a.contact-card__text:hover {
   .about-family__grid { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; }
 }
 
+/* ==========================================================================
+   MOBILE & TABLET RESPONSIVE — Global Pass
+   Breakpoints: 1024px (tablet), 768px (large phone / small tablet), 480px (phone)
+   ========================================================================== */
+
+/* ── 1. Two-layer header adjustments ─────────────────────────────── */
+@media (max-width: 1024px) {
+  /* Hide desktop nav; hamburger already shown via hwh-nav__hamburger */
+  .hwh-nav { display: none !important; }
+  .hwh-nav__hamburger { display: flex !important; }
+
+  /* Topbar: shrink and hide extras */
+  .hwh-topbar__sep { display: none; }
+  .hwh-topbar__item:not(.hwh-topbar__item--phone):not(.hwh-topbar__item--live) { display: none; }
+  .hwh-topbar__search-input { width: 120px; }
+
+  /* Logo slightly smaller */
+  .hwh-nav__logo-img { height: 52px; }
+
+  /* Adjust site-main so content clears two-layer header */
+  .site-main { padding-top: 100px; }
+}
+
+@media (max-width: 768px) {
+  /* Collapse topbar height on small tablets */
+  .hwh-topbar { height: auto; min-height: 36px; padding: 0.3rem 0; }
+  .hwh-topbar__inner { flex-wrap: wrap; gap: 0.4rem; }
+  .hwh-topbar__search { display: none; }
+  .hwh-topbar__social { display: none; }
+  .hwh-nav__logo-img { height: 46px; }
+  .site-main { padding-top: 88px; }
+}
+
+@media (max-width: 480px) {
+  /* On very small phones, topbar only shows phone number */
+  .hwh-topbar__item--live { display: none; }
+  .hwh-topbar__right { display: none; }
+  .hwh-nav__logo-img { height: 40px; }
+  .hwh-nav__call { display: none; }
+  .site-main { padding-top: 82px; }
+}
+
+/* ── 2. Hero section ──────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  /* Override the fixed 700px so it scrolls naturally on tablet */
+  .hwh-hero {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    padding: 6rem 0 4rem !important;
+  }
+  .hwh-hero__inner {
+    grid-template-columns: 1fr !important;
+    text-align: center;
+    height: auto;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .hwh-hero__visual { display: none !important; }
+  .hwh-hero__actions,
+  .hwh-hero__trust { justify-content: center; }
+  .hwh-hero__sub { margin-left: auto; margin-right: auto; }
+}
+
+@media (max-width: 768px) {
+  .hwh-hero { padding: 5rem 0 3rem !important; }
+  .hwh-hero__title { font-size: clamp(2.2rem, 6vw, 3rem) !important; }
+  .hwh-hero__actions { flex-direction: column; align-items: center; gap: 0.85rem; }
+  .hwh-hero__actions .hwh-btn { width: 100%; max-width: 360px; justify-content: center; }
+}
+
+@media (max-width: 480px) {
+  .hwh-hero { padding: 4.5rem 0 2.5rem !important; }
+  .hwh-hero__title { font-size: clamp(1.9rem, 7vw, 2.5rem) !important; }
+  .hwh-hero__sub { font-size: 0.92rem; }
+  .hwh-hero__trust { gap: 0.35rem 0.85rem; justify-content: center; }
+}
+
+/* ── 3. Stats bar ─────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .hwh-stats__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+  .hwh-stat-item { padding: 1rem 1.25rem; }
+  .hwh-stat-item__div { display: none; }
+}
+
+@media (max-width: 480px) {
+  .hwh-stats__inner {
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+  .hwh-stat-item__num { font-size: 1.6rem; }
+}
+
+/* ── 4. Services grid ─────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .hwh-services-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .hwh-services-grid { grid-template-columns: 1fr; }
+}
+
+/* ── 5. How It Works process steps ──────────────────────────────── */
+@media (max-width: 1024px) {
+  .hwh-process-steps {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+  .hwh-process-connector { display: none; }
+  .hwh-process-step { max-width: 480px; width: 100%; padding: 0 1rem; }
+}
+
+@media (max-width: 480px) {
+  .hwh-process { padding: 4rem 0; }
+  .hwh-process-step { text-align: center; }
+  .hwh-process-step__icon { margin: 0 auto 0.75rem; }
+}
+
+/* ── 6. Why Choose Us ─────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .hwh-why__grid { grid-template-columns: 1fr; gap: 3rem; }
+  .hwh-why { padding: 5rem 0; }
+}
+
+@media (max-width: 768px) {
+  .hwh-why__stats { grid-template-columns: 1fr 1fr; }
+  .hwh-why__stat-card { padding: 1.5rem 1rem; }
+}
+
+@media (max-width: 480px) {
+  .hwh-why__stats { grid-template-columns: 1fr 1fr; gap: 0.85rem; }
+  .hwh-why__stat-num { font-size: 1.75rem; }
+}
+
+/* ── 7. Reviews split ─────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .hwh-reviews-split {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .hwh-reviews-split__visual { align-items: center; }
+  .hwh-reviews-split__img-wrap { max-width: 300px; margin: 0 auto; }
+  .hwh-reviews-split__badge { align-self: center; margin-left: 0; }
+  .hwh-reviews { padding: 5rem 0; }
+}
+
+@media (max-width: 480px) {
+  .hwh-reviews-split__img-wrap { max-width: 220px; }
+  .hwh-reviews-split__badge { font-size: 0.72rem; padding: 0.55rem 1.2rem; }
+  .hwh-review-card--stacked { padding: 1.2rem 1.25rem; }
+}
+
+/* ── 8. Service Areas ─────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .hwh-areas__grid { grid-template-columns: 1fr; gap: 3rem; }
+  .hwh-areas__visual { display: none; }   /* hide map image on tablet/mobile */
+  .hwh-areas { padding: 5rem 0; }
+}
+
+@media (max-width: 768px) {
+  .hwh-areas__cities { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 480px) {
+  .hwh-areas__cities { grid-template-columns: 1fr; }
+  .hwh-areas { padding: 4rem 0; }
+}
+
+/* ── 9. CTA section ──────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .hwh-cta__inner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+  }
+  .hwh-cta__text { margin: 0 auto; }
+  .hwh-cta__actions { flex-direction: row; justify-content: center; flex-wrap: wrap; }
+  .hwh-cta { padding: 5rem 0; }
+}
+
+@media (max-width: 640px) {
+  .hwh-cta__actions {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  .hwh-cta__actions .hwh-btn { width: 100%; max-width: 360px; justify-content: center; }
+  .hwh-cta { padding: 4rem 0; }
+}
+
+/* ── 10. Section spacing (mobile padding reduction) ─────────────── */
+@media (max-width: 768px) {
+  .hwh-services  { padding: 4.5rem 0; }
+  .hwh-process   { padding: 4.5rem 0; }
+  .hwh-why       { padding: 4.5rem 0; }
+  .hwh-reviews   { padding: 4.5rem 0; }
+  .hwh-areas     { padding: 4.5rem 0; }
+  .hwh-cta       { padding: 4rem 0; }
+  .hwh-section-header { margin-bottom: 2.5rem; }
+}
+
+@media (max-width: 480px) {
+  .hwh-services  { padding: 3.5rem 0; }
+  .hwh-process   { padding: 3.5rem 0; }
+  .hwh-why       { padding: 3.5rem 0; }
+  .hwh-reviews   { padding: 3.5rem 0; }
+  .hwh-areas     { padding: 3.5rem 0; }
+  .hwh-cta       { padding: 3rem 0; }
+  .hwh-section-header { margin-bottom: 2rem; }
+  .hwh-section-title  { font-size: clamp(1.6rem, 6vw, 2.2rem); }
+}
+
+/* ── 11. Drop-down / mega menu (hidden on mobile — handled by mobile nav) */
+@media (max-width: 1024px) {
+  .hwh-drop { display: none !important; }
+}
+
+/* ── 12. Mobile nav drawer ───────────────────────────────────────── */
+.mobile-menu { position: fixed; inset: 0; z-index: 300; pointer-events: none; }
+.mobile-menu.is-open { pointer-events: auto; }
+.mobile-menu__overlay {
+  position: absolute; inset: 0;
+  background: rgba(10, 22, 40, 0.65);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.mobile-menu.is-open .mobile-menu__overlay { opacity: 1; }
+.mobile-menu__drawer {
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  width: min(320px, 88vw);
+  background: #0F2440;
+  overflow-y: auto;
+  transform: translateX(-100%);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.mobile-menu.is-open .mobile-menu__drawer { transform: translateX(0); }
+.mobile-menu__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.mobile-menu__close {
+  background: none; border: none; cursor: pointer;
+  color: rgba(255,255,255,0.6); font-size: 1.5rem; line-height: 1;
+  transition: color 0.2s ease; padding: 0.25rem;
+}
+.mobile-menu__close:hover { color: #F22F3A; }
+.mobile-menu__nav { padding: 0.75rem 0; }
+.mobile-menu__links { list-style: none; padding: 0; margin: 0; }
+.mobile-menu__links li a {
+  display: block;
+  padding: 0.75rem 1.5rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.75);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  transition: color 0.2s ease, background 0.2s ease;
+}
+.mobile-menu__links li a:hover { color: #fff; background: rgba(242,47,58,0.08); }
+.mobile-menu__footer {
+  padding: 1.5rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+.mobile-menu__contact-item {
+  display: flex; align-items: center; gap: 0.6rem;
+  font-size: 0.82rem; color: rgba(255,255,255,0.55); text-decoration: none;
+}
+.mobile-menu__contact-item:hover { color: #fff; }
+
+/* Hamburger icon lines */
+.hamburger { display: flex; flex-direction: column; gap: 5px; width: 22px; }
+.hamburger__line {
+  width: 100%; height: 2px;
+  background: #0F2440;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.mobile-menu.is-open ~ header .hamburger__line:nth-child(1) { transform: rotate(45deg) translate(4px, 5px); }
+.mobile-menu.is-open ~ header .hamburger__line:nth-child(2) { opacity: 0; }
+.mobile-menu.is-open ~ header .hamburger__line:nth-child(3) { transform: rotate(-45deg) translate(4px, -5px); }
+
+/* ── 13. Single-service page ─────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .single-service__grid { grid-template-columns: 1fr; }
+  .single-service__sidebar { position: static; }
+}
+
+@media (max-width: 640px) {
+  .single-service__hero { padding: 4rem 0 2.5rem; }
+  .single-service__content { padding: 2rem 0; }
+}
+
+/* ── 14. Contact page ────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .contact-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .contact-form__row { grid-template-columns: 1fr; }
+}
+
+/* ── 15. Footer ──────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .hwh-footer__inner { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+  .hwh-foot__inner   { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+}
+
+@media (max-width: 640px) {
+  .hwh-footer__inner { grid-template-columns: 1fr; gap: 2rem; }
+  .hwh-foot__inner   { grid-template-columns: 1fr; gap: 2rem; }
+  .hwh-footer__bottom-inner { flex-direction: column; text-align: center; }
+  .hwh-foot__bottom-inner   { flex-direction: column; text-align: center; }
+  .hwh-footer__legal  { justify-content: center; }
+  .hwh-foot__legal    { justify-content: center; }
+  .hwh-footer__emergency-btn { margin-left: 0; }
+}
+
+/* ── 16. Buttons full-width on very small phones ─────────────────── */
+@media (max-width: 400px) {
+  .hwh-btn--lg { padding: 0.9rem 1.5rem; font-size: 0.82rem; }
+  .hwh-hero__actions .hwh-btn { font-size: 0.82rem; }
+}
+
+/* ── 17. Service archive / svc-hero fix at 768px ─────────────────── */
+@media (max-width: 768px) {
+  .svc-filter { top: 88px; }
+  .svc-grid { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+  .svc-hero { padding: clamp(5rem, 4rem + 4vw, 7rem) 0 clamp(2.5rem, 1.5rem + 2vw, 3.5rem); }
+}
+
+@media (max-width: 480px) {
+  .svc-grid { grid-template-columns: 1fr; }
+  .svc-filter { top: 82px; }
+  .svc-archive__header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+}
+
+/* ── 18. Global overflow guard ───────────────────────────────────── */
+@media (max-width: 1024px) {
+  html, body { overflow-x: hidden; }
+  img { max-width: 100%; height: auto; }
+}
+
+
