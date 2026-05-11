@@ -1030,6 +1030,91 @@ add_filter( 'get_canonical_url',                'hwh_purge_staging_canonical', 9
 add_filter( 'wpseo_canonical',                  'hwh_purge_staging_canonical', 99 );
 add_filter( 'rank_math/frontend/canonical',     'hwh_purge_staging_canonical', 99 );
 
+// -- SEO: Force unique meta descriptions for every page ---------------
+// Pages without a custom Yoast/Rank Math meta description fall back to
+// the generic sitewide description. This filter overrides that with
+// handwritten descriptions for core pages and auto-generated ones for
+// blog posts and services (using the post excerpt).
+function hwh_fix_meta_descriptions( $description ) {
+    // The generic fallback we want to replace
+    $generic_descriptions = [
+        "Hot Water Heroes Plumbing — Tampa Bay's premier plumbing company. Water heaters, drain cleaning, emergency plumbing, and more.",
+        "Hot Water Heroes Plumbing — Tampa Bay's trusted plumbing experts for water heaters, drain cleaning, leak detection, and 24/7 emergency service.",
+    ];
+
+    $is_generic = empty( $description ) || in_array( trim( $description ), $generic_descriptions, true );
+
+    // -- Core pages: handwritten meta descriptions --
+    if ( is_page() ) {
+        $slug = get_post_field( 'post_name', get_queried_object_id() );
+        $page_metas = [
+            'about'               => 'Meet the Hot Water Heroes team — licensed Tampa Bay plumbers with 1,200+ jobs completed. Honest pricing, same-day service, and a satisfaction guarantee.',
+            'contact'             => 'Need a plumber in Tampa? Contact Hot Water Heroes Plumbing — call 813-42-PLUMB or book online for same-day service across Tampa Bay.',
+            'service-areas'       => 'Hot Water Heroes serves Tampa, St. Pete, Clearwater, Brandon, Wesley Chapel, and all of Tampa Bay. Fast, local plumbing — same-day available.',
+            'privacy-policy'      => 'Read the Hot Water Heroes Plumbing privacy policy. Learn how we collect, use, and protect your personal information.',
+            'cancellation-policy' => 'View the Hot Water Heroes cancellation and payment policy. Clear terms for appointments, no-shows, and accepted payment methods.',
+            'refund-policy'       => 'Hot Water Heroes Plumbing refund policy — upfront estimates, transparent pricing, and our satisfaction guarantee for Tampa Bay homeowners.',
+        ];
+        if ( isset( $page_metas[ $slug ] ) ) {
+            return $page_metas[ $slug ];
+        }
+    }
+
+    // -- Blog page (archive) --
+    if ( is_home() && $is_generic ) {
+        return 'Plumbing tips, water heater guides, and expert advice from Hot Water Heroes Plumbing in Tampa Bay. Learn how to protect your home and save money.';
+    }
+
+    // -- Category archives --
+    if ( is_category() && $is_generic ) {
+        $cat = get_queried_object();
+        if ( $cat ) {
+            return 'Browse ' . $cat->name . ' articles from Hot Water Heroes Plumbing — expert Tampa Bay plumbing tips, guides, and service info.';
+        }
+    }
+
+    // -- Blog posts: auto-generate from excerpt if generic --
+    if ( is_singular( 'post' ) && $is_generic ) {
+        $excerpt = get_the_excerpt();
+        if ( $excerpt && strlen( $excerpt ) > 20 ) {
+            // Trim to ~155 chars at a word boundary
+            $meta = wp_strip_all_tags( $excerpt );
+            if ( strlen( $meta ) > 155 ) {
+                $meta = substr( $meta, 0, 152 );
+                $meta = substr( $meta, 0, strrpos( $meta, ' ' ) ) . '...';
+            }
+            return $meta;
+        }
+        // Fallback: use post title
+        return get_the_title() . ' — expert plumbing advice from Hot Water Heroes Plumbing, Tampa Bay\'s trusted local plumber.';
+    }
+
+    // -- Service pages: auto-generate from excerpt if too long or generic --
+    if ( is_singular( 'service' ) ) {
+        if ( $is_generic || strlen( $description ) > 160 ) {
+            $excerpt = get_the_excerpt();
+            if ( $excerpt && strlen( $excerpt ) > 20 ) {
+                $meta = wp_strip_all_tags( $excerpt );
+                if ( strlen( $meta ) > 155 ) {
+                    $meta = substr( $meta, 0, 152 );
+                    $meta = substr( $meta, 0, strrpos( $meta, ' ' ) ) . '...';
+                }
+                return $meta;
+            }
+            return get_the_title() . ' in Tampa Bay, FL. Licensed plumbers, upfront pricing, same-day service. Call Hot Water Heroes at 813-42-PLUMB.';
+        }
+    }
+
+    // -- Services archive --
+    if ( is_post_type_archive( 'service' ) && $is_generic ) {
+        return 'Professional plumbing services in Tampa Bay — water heater repair, drain cleaning, leak detection, pipe repair, and 24/7 emergency service. Call today.';
+    }
+
+    return $description;
+}
+add_filter( 'wpseo_metadesc', 'hwh_fix_meta_descriptions', 10, 1 );
+add_filter( 'rank_math/frontend/description', 'hwh_fix_meta_descriptions', 10, 1 );
+
 // -- Show ALL services on the services archive page -----------------
 function hwh_services_per_page($query) {
     if (!is_admin() && $query->is_main_query() && $query->is_post_type_archive('service')) {
