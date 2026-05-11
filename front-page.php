@@ -301,7 +301,7 @@ get_header(); ?>
                 </div>
                 <div class="hwh-reviews-split__badge">
                     <span class="hwh-reviews-split__badge-stars">★★★★★</span>
-                    <span class="hwh-reviews-split__badge-text">5.0 on Google � 30+ Reviews</span>
+                    <span class="hwh-reviews-split__badge-text">5.0 on Google — 30+ Reviews</span>
                 </div>
             </div>
 

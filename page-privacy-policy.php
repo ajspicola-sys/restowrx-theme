@@ -1,6 +1,6 @@
 <?php
 /**
- * Hot Water Heroes Plumbing — Privacy Policy Page
+ * Hot Water Heroes Plumbing â€” Privacy Policy Page
  */
 get_header(); ?>
 
@@ -70,7 +70,7 @@ get_header(); ?>
                     <p>All personal information that you provide to us must be true, complete, and accurate, and you must notify us of any changes to such personal information.</p>
 
                     <h3>Information Automatically Collected</h3>
-                    <p><em>In Short: Some information — such as your Internet Protocol (IP) address and/or browser and device characteristics — is collected automatically when you visit our Services.</em></p>
+                    <p><em>In Short: Some information â€” such as your Internet Protocol (IP) address and/or browser and device characteristics â€” is collected automatically when you visit our Services.</em></p>
                     <p>We automatically collect certain information when you visit, use, or navigate the Services. This information does not reveal your specific identity but may include device and usage information, such as your IP address, browser and device characteristics, operating system, language preferences, referring URLs, device name, country, location, and other technical information.</p>
                     <p>Like many businesses, we also collect information through cookies and similar technologies. The information we collect includes:</p>
                     <ul>

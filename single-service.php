@@ -233,7 +233,7 @@ $has_image     = has_post_thumbnail();
                     <span class="svc-trust__stat-stars">★★★★★</span>
                     <div>
                         <strong>4.9 / 5.0</strong>
-                        <span>Google Rating � 30+ Reviews</span>
+                        <span>Google Rating — 30+ Reviews</span>
                     </div>
                 </div>
             </div>

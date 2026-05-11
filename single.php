@@ -1,6 +1,6 @@
 <?php
 /**
- * Hot Water Heroes Plumbing — Single Post Template
+ * Hot Water Heroes Plumbing â€” Single Post Template
  * Performance-optimized: lazy loading, optimized WP_Query, semantic HTML
  */
 get_header(); ?>
@@ -19,10 +19,10 @@ get_header(); ?>
                 <div class="post-meta-line">
                     <time class="post-meta-line__date" datetime="<?php echo get_the_date('c'); ?>" itemprop="datePublished"><?php echo get_the_date('F j, Y'); ?></time>
                     <?php if (has_category()) : ?>
-                        <span class="post-meta-line__sep" aria-hidden="true">·</span>
+                        <span class="post-meta-line__sep" aria-hidden="true">â€”</span>
                         <span class="post-meta-line__cat" itemprop="articleSection"><?php the_category(', '); ?></span>
                     <?php endif; ?>
-                    <span class="post-meta-line__sep" aria-hidden="true">·</span>
+                    <span class="post-meta-line__sep" aria-hidden="true">â€”</span>
                     <span class="post-meta-line__read"><?php echo ceil(str_word_count(strip_tags(get_the_content())) / 250); ?> min read</span>
                 </div>
                 <h1 class="page-hero__title" itemprop="headline"><?php the_title(); ?></h1>
