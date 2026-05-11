@@ -317,30 +317,31 @@ get_header(); ?>
 
                         <article class="hwh-review-card hwh-review-card--stacked">
                             <div class="hwh-review-card__stars" aria-label="5 stars">★★★★★</div>
-                            <p class="hwh-review-card__text">"Our water heater went out on a Sunday evening. Hot Water Heroes had someone at our door within 2 hours and replaced the whole unit by 9pm. Unbelievable service — will definitely use them again."</p>
+                            <p class="hwh-review-card__text">"Hot Water Heroes are amazing. Fantastic communication, great plumbers, super nice and best of all your pricing seems very fair. I'm a realtor in this area for 23 years and I use them for my personal home. Such an awesome job — I highly recommend them."</p>
                             <div class="hwh-review-card__author">
-                                <strong>Mike T.</strong>
+                                <strong>Bridget Breland</strong>
+                                <span>Google Review · Local Guide</span>
+                            </div>
+                        </article>
+
+                        <article class="hwh-review-card hwh-review-card--stacked">
+                            <div class="hwh-review-card__stars" aria-label="5 stars">★★★★★</div>
+                            <p class="hwh-review-card__text">"Hot Water Heroes was absolutely outstanding! John was professional, knowledgeable, and showed up right on time. He quickly diagnosed the issue, explained everything clearly, and had it fixed faster than I expected. The pricing was fair and the quality of work was top-notch."</p>
+                            <div class="hwh-review-card__author">
+                                <strong>Kirby Cummings</strong>
                                 <span>Google Review</span>
                             </div>
                         </article>
 
                         <article class="hwh-review-card hwh-review-card--stacked">
                             <div class="hwh-review-card__stars" aria-label="5 stars">★★★★★</div>
-                            <p class="hwh-review-card__text">"Fair pricing, fast timing, and the plumber was super professional. He explained every step and left everything cleaner than he found it. Hot Water Heroes is the real deal."</p>
+                            <p class="hwh-review-card__text">"For anyone in Tampa needing water heater installation or water heater repair, Hot Water Heroes is a company I would definitely recommend. Professional service, clear communication, and strong expertise with water heaters. I am super impressed!"</p>
                             <div class="hwh-review-card__author">
-                                <strong>Sarah K.</strong>
+                                <strong>CJ Fortson</strong>
                                 <span>Google Review</span>
                             </div>
                         </article>
 
-                        <article class="hwh-review-card hwh-review-card--stacked">
-                            <div class="hwh-review-card__stars" aria-label="5 stars">★★★★★</div>
-                            <p class="hwh-review-card__text">"Switched to tankless and couldn't be happier. The install was clean and fast — they walked me through everything. Already saving money on my electric bill. 10/10 recommend."</p>
-                            <div class="hwh-review-card__author">
-                                <strong>Dave R.</strong>
-                                <span>Google Review</span>
-                            </div>
-                        </article>
 
                     </div>
 
