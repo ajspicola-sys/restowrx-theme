@@ -4,7 +4,7 @@
  *
  * WordPress template hierarchy: when Settings > Reading has a static
  * front page and a Posts page, WP loads home.php for the posts page.
- * The main query is already populated by WordPress — we just loop it.
+ * The main query is already populated — we just loop through it.
  */
 
 get_header();
@@ -37,14 +37,11 @@ $is_paged    = is_paged();
                    class="blog-filter-btn <?php echo ! $current_cat ? 'is-active' : ''; ?>">All Posts</a>
 
                 <?php
-                $service_slugs = array(
-                    'water-heaters', 'drain-cleaning', 'emergency-plumbing',
-                    'leak-detection', 'repiping', 'plumbing-tips',
-                    'maintenance', 'tankless-water-heaters',
-                );
+                // Show all categories that have at least one published post
+                // (excludes "Uncategorized" with ID 1)
                 $filter_cats = get_categories( array(
-                    'slug'       => $service_slugs,
                     'hide_empty' => true,
+                    'exclude'    => array( 1 ),
                     'orderby'    => 'name',
                     'order'      => 'ASC',
                 ) );
@@ -67,17 +64,20 @@ $is_paged    = is_paged();
         <?php if ( have_posts() ) : ?>
 
             <?php
-            /* ── Featured card ────────────────────────────────────────
-             * Show only on page 1 with no category filter.
-             * We call the_post() once to consume post #1, render it
-             * as the featured card, then let the grid loop handle
-             * everything that remains.
-             */
+            // ── Featured card: first post on page 1, unfiltered only ──
             $show_featured = ( ! $current_cat && ! $is_paged );
 
             if ( $show_featured ) :
                 the_post();
+
+                // Skip posts with no title (empty/draft leftovers)
+                $feat_title = get_the_title();
+                if ( ! empty( $feat_title ) ) :
+
                 $thumb_url = get_the_post_thumbnail_url( get_the_ID(), 'large' );
+                if ( ! $thumb_url ) {
+                    $thumb_url = get_the_post_thumbnail_url( get_the_ID(), 'full' );
+                }
             ?>
             <article class="blog-featured reveal" itemscope itemtype="https://schema.org/BlogPosting">
                 <a href="<?php the_permalink(); ?>"
@@ -125,14 +125,22 @@ $is_paged    = is_paged();
                     </div>
                 </a>
             </article>
-            <?php endif; ?>
+            <?php endif; // end empty-title check ?>
+            <?php endif; // end featured ?>
 
 
             <!-- ── Post Grid ── -->
             <?php if ( have_posts() ) : ?>
             <div class="blog-grid">
                 <?php while ( have_posts() ) : the_post();
+
+                    // Skip posts with no title
+                    if ( ! get_the_title() ) continue;
+
                     $card_thumb = get_the_post_thumbnail_url( get_the_ID(), 'medium_large' );
+                    if ( ! $card_thumb ) {
+                        $card_thumb = get_the_post_thumbnail_url( get_the_ID(), 'full' );
+                    }
                 ?>
                     <article class="blog-card reveal" itemscope itemtype="https://schema.org/BlogPosting">
                         <a href="<?php the_permalink(); ?>"
@@ -175,15 +183,16 @@ $is_paged    = is_paged();
 
 
             <!-- ── Pagination ── -->
-            <?php if ( $GLOBALS['wp_query']->max_num_pages > 1 ) : ?>
+            <?php
+            $pagination = paginate_links( array(
+                'prev_text' => '&larr; Previous',
+                'next_text' => 'Next &rarr;',
+                'type'      => 'list',
+            ) );
+            if ( $pagination ) :
+            ?>
             <nav class="blog-pagination" aria-label="Blog pagination">
-                <?php
-                echo paginate_links( array(
-                    'prev_text' => '&larr; Previous',
-                    'next_text' => 'Next &rarr;',
-                    'type'      => 'list',
-                ) );
-                ?>
+                <?php echo $pagination; ?>
             </nav>
             <?php endif; ?>
 
