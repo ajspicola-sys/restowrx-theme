@@ -13,7 +13,7 @@ get_header(); ?>
             <span class="section__label">Where We Work</span>
             <h1 class="page-hero__title">Serving All of<br><em>Tampa Bay</em></h1>
             <p class="page-hero__desc">From South Tampa to Wesley Chapel, we provide fast, reliable plumbing service across Hillsborough, Pinellas, and Pasco counties.</p>
-            <div class="hero__actions" style="justify-content:center;">
+            <div class="hero__actions hero__actions--center">
                 <a href="/contact/" class="btn btn--primary btn--lg">Request Service</a>
                 <a href="tel:+18134275862" class="btn btn--outline btn--lg">Call 813-42-PLUMB</a>
             </div>
@@ -30,7 +30,7 @@ get_header(); ?>
                 <p class="section__desc">We dispatch licensed plumbers to all major Tampa Bay communities. If you're in the area, we've got you covered.</p>
             </div>
 
-            <div class="party-block__features" style="margin-top:2rem;">
+            <div class="party-block__features party-block__features--spaced">
                 <div class="party-feature-card reveal">
                     <div class="party-feature-card__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
                     <h4 class="party-feature-card__title">Hillsborough County</h4>

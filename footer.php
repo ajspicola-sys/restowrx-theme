@@ -87,22 +87,27 @@
                     </div>
                     <div class="hwh-foot__contact-item">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                        <a href="mailto:joe@hotwaterheroesplumbing.com">joe@hotwaterheroesplumbing.com</a>
+                        <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#106;&#111;&#101;&#64;&#104;&#111;&#116;&#119;&#97;&#116;&#101;&#114;&#104;&#101;&#114;&#111;&#101;&#115;&#112;&#108;&#117;&#109;&#98;&#105;&#110;&#103;&#46;&#99;&#111;&#109;" class="hwh-foot__email-link">&#106;&#111;&#101;&#64;&#104;&#111;&#116;&#119;&#97;&#116;&#101;&#114;&#104;&#101;&#114;&#111;&#101;&#115;&#112;&#108;&#117;&#109;&#98;&#105;&#110;&#103;&#46;&#99;&#111;&#109;</a>
                     </div>
                     <div class="hwh-foot__contact-item">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
                         <a href="https://hotwaterheroesplumbing.com" target="_blank" rel="noopener noreferrer">hotwaterheroesplumbing.com</a>
                     </div>
-                    <div class="hwh-foot__contact-item">
+                    <div class="hwh-foot__contact-item" itemscope itemtype="https://schema.org/PostalAddress">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                        <span>Tampa Bay, FL</span>
+                        <address class="hwh-foot__address">
+                            <span itemprop="streetAddress">9249 Lazy Ln</span>,
+                            <span itemprop="addressLocality">Tampa</span>,
+                            <span itemprop="addressRegion">FL</span>
+                            <span itemprop="postalCode">33614</span>
+                        </address>
                     </div>
                     <div class="hwh-foot__contact-item">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                         <span>Open 24 Hours · 7 Days a Week</span>
                     </div>
                 </div>
-                <a href="/contact/" class="hwh-btn hwh-btn--red" style="margin-top:1.5rem;font-size:.78rem;">Request Service</a>
+                <a href="/contact/" class="hwh-btn hwh-btn--red hwh-foot__cta-btn">Request Service</a>
             </div>
 
         </div>
@@ -121,6 +126,17 @@
     </div>
 
 </footer>
+
+<!-- Cookie consent banner — server-rendered for LLM/crawler visibility -->
+<div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Cookie consent" aria-hidden="true">
+    <div class="cookie-banner__inner">
+        <p class="cookie-banner__text"><strong>Cookies</strong> — We use cookies to enhance your experience.</p>
+        <div class="cookie-banner__actions">
+            <button class="cookie-banner__btn cookie-banner__btn--accept" id="cookie-accept">Accept</button>
+            <button class="cookie-banner__btn cookie-banner__btn--decline" id="cookie-decline">Decline</button>
+        </div>
+    </div>
+</div>
 
 <script>
 (function() {
@@ -233,18 +249,24 @@
         }
     });
 
-    // Cookie banner
+    // Cookie banner — HTML is server-rendered; JS only shows/hides it
     setTimeout(function() { rIC(function() {
+        var banner = document.getElementById('cookie-banner');
+        if (!banner) return;
         if (!localStorage.getItem('hwh-cookie-consent')) {
             setTimeout(function() {
-                var banner = document.createElement('div');
-                banner.id = 'cookie-banner'; banner.className = 'cookie-banner';
-                banner.setAttribute('role','dialog'); banner.setAttribute('aria-label','Cookie consent');
-                banner.innerHTML = '<div class="cookie-banner__inner"><p class="cookie-banner__text"><strong>Cookies</strong> — We use cookies to enhance your experience.</p><div class="cookie-banner__actions"><button class="cookie-banner__btn cookie-banner__btn--accept" id="cookie-accept">Accept</button><button class="cookie-banner__btn cookie-banner__btn--decline" id="cookie-decline">Decline</button></div></div>';
-                document.body.appendChild(banner);
-                requestAnimationFrame(function() { banner.classList.add('is-visible'); });
-                document.getElementById('cookie-accept').addEventListener('click', function() { localStorage.setItem('hwh-cookie-consent','accepted'); banner.classList.remove('is-visible'); setTimeout(function(){ banner.remove(); }, 400); });
-                document.getElementById('cookie-decline').addEventListener('click', function() { localStorage.setItem('hwh-cookie-consent','declined'); banner.classList.remove('is-visible'); setTimeout(function(){ banner.remove(); }, 400); });
+                banner.classList.add('is-visible');
+                banner.setAttribute('aria-hidden', 'false');
+                document.getElementById('cookie-accept').addEventListener('click', function() {
+                    localStorage.setItem('hwh-cookie-consent', 'accepted');
+                    banner.classList.remove('is-visible');
+                    banner.setAttribute('aria-hidden', 'true');
+                });
+                document.getElementById('cookie-decline').addEventListener('click', function() {
+                    localStorage.setItem('hwh-cookie-consent', 'declined');
+                    banner.classList.remove('is-visible');
+                    banner.setAttribute('aria-hidden', 'true');
+                });
             }, 5000);
         }
     }); }, 200);

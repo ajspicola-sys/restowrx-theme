@@ -95,7 +95,7 @@ get_header(); ?>
                         <strong>I have read and understand this Financial Policy and Agreement.</strong><br><br>
                         I authorize <strong>Hot Water Heroes Plumbing</strong> to charge my credit card for no-show appointments, late cancellation fees, and outstanding service balances.
                     </blockquote>
-                    <div style="margin-top:2rem;text-align:center;">
+                    <div class="legal-cta">
                         <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary">Questions? Contact Us</a>
                     </div>
                 </section>

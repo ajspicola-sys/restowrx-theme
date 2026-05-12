@@ -166,6 +166,49 @@ function hwh_resource_hints() {
 }
 add_action('wp_head', 'hwh_resource_hints', 1);
 
+// -- Analytics: GA4 Tracking -----------------------------------------
+// Measurement ID is set in Appearance → Customize → Analytics.
+// Script loads async and respects the site's cookie consent banner.
+function hwh_ga4_tracking() {
+    $ga4_id = get_theme_mod( 'hwh_ga4_measurement_id', '' );
+    if ( empty( $ga4_id ) || is_admin() ) return;
+    $ga4_id = esc_attr( sanitize_text_field( $ga4_id ) );
+    ?>
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $ga4_id; ?>"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '<?php echo $ga4_id; ?>', {
+        'anonymize_ip': true,
+        'send_page_view': true
+    });
+    </script>
+    <?php
+}
+add_action( 'wp_head', 'hwh_ga4_tracking', 10 );
+
+// -- Customizer: Analytics Settings ----------------------------------
+function hwh_customizer_analytics( $wp_customize ) {
+    $wp_customize->add_section( 'hwh_analytics', [
+        'title'    => __( 'Analytics', 'hwh' ),
+        'priority' => 200,
+    ] );
+    $wp_customize->add_setting( 'hwh_ga4_measurement_id', [
+        'default'           => '',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ] );
+    $wp_customize->add_control( 'hwh_ga4_measurement_id', [
+        'label'       => __( 'GA4 Measurement ID', 'hwh' ),
+        'description' => __( 'Enter your Google Analytics 4 Measurement ID (e.g. G-XXXXXXXXXX). Get it from GA4 → Admin → Data Streams.', 'hwh' ),
+        'section'     => 'hwh_analytics',
+        'type'        => 'text',
+    ] );
+}
+add_action( 'customize_register', 'hwh_customizer_analytics' );
+
 // -- Performance: External image proxy & WebP cache -----------------
 // Fetches third-party images (e.g. Ageless AI before/after), resizes to
 // max 800px wide, converts to WebP, and caches in wp-uploads.

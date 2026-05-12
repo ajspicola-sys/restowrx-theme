@@ -52,7 +52,7 @@ get_header(); ?>
                     <h2>Our Commitment</h2>
                     <p>This policy is designed to ensure transparency and fairness while upholding the highest standard of workmanship for all our customers.</p>
                     <p>If you have any questions about our refund policy or a recent service, our team is always here to help.</p>
-                    <div style="margin-top:2rem;text-align:center;">
+                    <div class="legal-cta">
                         <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary">Speak With Our Team</a>
                     </div>
                 </section>

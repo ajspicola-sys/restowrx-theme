@@ -41,24 +41,30 @@ $hwh_menu_services = hwh_get_menu_services();
     <meta name="apple-mobile-web-app-capable" content="yes">
 
     <?php
-    if (is_front_page()) {
-        $meta_desc = 'Hot Water Heroes is Tampa Bay\'s trusted plumbing company. Expert water heater repair, installation, drain cleaning, leak detection, and 24/7 emergency plumbing. Call today.';
-    } elseif (is_singular('service')) {
-        $meta_desc = wp_strip_all_tags(get_the_excerpt()) ?: get_the_title() . ' in Tampa Bay, FL — Hot Water Heroes Plumbing. Licensed, insured, and trusted by homeowners across Tampa Bay.';
-    } elseif (is_page()) {
-        $meta_desc = wp_strip_all_tags(get_the_excerpt()) ?: 'Hot Water Heroes Plumbing — Tampa Bay\'s trusted plumbing experts for water heaters, drain cleaning, leak detection, and 24/7 emergency service.';
-    } else {
-        $meta_desc = 'Hot Water Heroes Plumbing — Tampa Bay\'s premier plumbing company. Water heaters, drain cleaning, emergency plumbing, and more.';
+    // NOTE: <meta name="description"> and <link rel="canonical"> are output by
+    // Yoast SEO via wp_head() below. Do NOT add them here — doing so causes
+    // duplicate tags detected by crawlers. We only build $meta_desc for OG use.
+    if ( function_exists('YoastSEO') ) {
+        $yoast_meta = YoastSEO()->meta->for_current_page();
+        $meta_desc  = $yoast_meta ? $yoast_meta->description : '';
+    }
+    if ( empty( $meta_desc ) ) {
+        if ( is_front_page() ) {
+            $meta_desc = 'Hot Water Heroes is a trusted Tampa plumbing company specializing in water heater repair, replacement, and same-day service. Call 813-42-PLUMB.';
+        } elseif ( is_singular() ) {
+            $meta_desc = wp_strip_all_tags( get_the_excerpt() );
+        } else {
+            $meta_desc = 'Hot Water Heroes Plumbing — Tampa Bay\'s trusted plumbing experts for water heaters, drain cleaning, leak detection, and same-day service.';
+        }
     }
     ?>
-    <meta name="description" content="<?php echo esc_attr($meta_desc); ?>">
-    <link rel="canonical" href="<?php echo esc_url(get_permalink() ?: home_url('/')); ?>">
 
     <?php
     $og_img    = 'https://hotwaterheroesplumbing.com/wp-content/uploads/2026/04/Hero-Apirl4.png';
     $og_title  = is_front_page() ? 'Hot Water Heroes Plumbing | Trusted Plumbers in Tampa Bay, FL' : wp_get_document_title();
     $og_desc   = $meta_desc;
-    $og_url    = is_front_page() ? home_url('/') : (get_permalink() ?: home_url('/'));
+    $og_url    = is_singular() ? get_permalink() : ( is_front_page() ? home_url('/') : ( is_archive() ? get_term_link( get_queried_object() ) : home_url('/') ) );
+    $og_url    = is_wp_error( $og_url ) ? home_url('/') : $og_url;
     $og_type   = 'website';
     if (has_post_thumbnail()) {
         $td = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
@@ -299,14 +305,14 @@ $hwh_menu_services = hwh_get_menu_services();
         </nav>
 
         <div class="mobile-menu__footer">
-            <a href="/contact/" class="hwh-btn hwh-btn--red" style="width:100%;justify-content:center;">Book a Service</a>
+            <a href="/contact/" class="hwh-btn hwh-btn--red hwh-btn--full">Book a Service</a>
             <a href="tel:+18134275862" class="mobile-menu__contact-item">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
                 813-42-PLUMB — 24/7 Emergency
             </a>
-            <a href="mailto:joe@hotwaterheroesplumbing.com" class="mobile-menu__contact-item">
+            <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#106;&#111;&#101;&#64;&#104;&#111;&#116;&#119;&#97;&#116;&#101;&#114;&#104;&#101;&#114;&#111;&#101;&#115;&#112;&#108;&#117;&#109;&#98;&#105;&#110;&#103;&#46;&#99;&#111;&#109;" class="mobile-menu__contact-item">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                joe@hotwaterheroesplumbing.com
+                &#106;&#111;&#101;&#64;&#104;&#111;&#116;&#119;&#97;&#116;&#101;&#114;&#104;&#101;&#114;&#111;&#101;&#115;&#112;&#108;&#117;&#109;&#98;&#105;&#110;&#103;&#46;&#99;&#111;&#109;
             </a>
         </div>
     </div>

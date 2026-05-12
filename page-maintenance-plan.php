@@ -13,7 +13,7 @@ get_header(); ?>
             <span class="section__label">Annual Protection</span>
             <h1 class="page-hero__title">Maintenance<br><em>Plan</em></h1>
             <p class="page-hero__desc">The easiest way to protect your home's plumbing — scheduled maintenance, priority service, and exclusive member savings.</p>
-            <div style="margin-top:2rem;">
+            <div class="page-hero__actions">
                 <a href="/contact/" class="btn btn--primary btn--lg">Join Today</a>
             </div>
         </div>

@@ -49,11 +49,11 @@ get_header(); ?>
                     ]); ?>
                 </div>
             <?php else : ?>
-                <div class="search-results__empty reveal" style="text-align:center;padding:4rem 0;">
-                    <div style="font-size:3rem;margin-bottom:1rem;"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+                <div class="search-results__empty reveal">
+                    <div class="search-results__empty-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
                     <h2 class="section__title">No Results Found</h2>
                     <p class="section__desc">We couldn't find what you're looking for. Try a different search term or browse our popular pages.</p>
-                    <div style="display:flex;gap:1rem;justify-content:center;margin-top:2rem;flex-wrap:wrap;">
+                    <div class="search-results__empty-actions">
                         <a href="<?php echo esc_url(home_url('/services/')); ?>" class="btn btn--primary">Browse Services</a>
                         <a href="<?php echo esc_url(home_url('/products/')); ?>" class="btn btn--outline">Shop Products</a>
                         <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--outline">Contact Us</a>

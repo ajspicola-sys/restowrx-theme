@@ -12431,4 +12431,102 @@ a.contact-card__text:hover {
   img { max-width: 100%; height: auto; }
 }
 
+/* ==========================================================================
+   INLINE STYLE REPLACEMENTS
+   All classes here correspond to former inline styles moved out of templates
+   ========================================================================== */
 
+/* ── section__label light variant (dark/hero sections) ─────────────── */
+.section__label--light {
+  border-color: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* ── section__header centered variant ──────────────────────────────── */
+.section__header--center {
+  text-align: center;
+}
+
+/* ── section__subtitle narrow centered variant ──────────────────────── */
+.section__subtitle--narrow {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* ── Empty state (team, products) ───────────────────────────────────── */
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+.empty-state--grid-full {
+  grid-column: 1 / -1;
+}
+.empty-state__text {
+  color: #7a7a90;
+  font-size: 1.1rem;
+}
+
+/* ── Search results empty state ─────────────────────────────────────── */
+.search-results__empty {
+  text-align: center;
+  padding: 4rem 0;
+}
+.search-results__empty-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: var(--text-subtle);
+}
+.search-results__empty-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+/* ── hero__actions centered (service areas page) ────────────────────── */
+.hero__actions--center {
+  justify-content: center;
+}
+
+/* ── party-block__features with top spacing ─────────────────────────── */
+.party-block__features--spaced {
+  margin-top: 2rem;
+}
+
+/* ── page-hero__actions (maintenance plan) ──────────────────────────── */
+.page-hero__actions {
+  margin-top: 2rem;
+}
+
+/* ── Legal page CTA wrapper ─────────────────────────────────────────── */
+.legal-cta {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+/* ── hwh-foot footer CTA button ─────────────────────────────────────── */
+.hwh-foot__cta-btn {
+  margin-top: 1.5rem;
+  font-size: 0.78rem;
+}
+
+/* ── hwh-btn full-width modifier (mobile menu) ──────────────────────── */
+.hwh-btn--full {
+  width: 100%;
+  justify-content: center;
+}
+
+/* ── Footer address element reset ───────────────────────────────────── */
+.hwh-foot__address {
+  font-style: normal;
+  display: inline;
+  line-height: inherit;
+}
+
+/* ── contact page map iframe (removes border, adds radius) ──────────── */
+.contact-map__wrap iframe {
+  border: 0;
+  border-radius: 16px;
+}

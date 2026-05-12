@@ -85,8 +85,8 @@ get_header(); ?>
 
                 <?php endwhile; wp_reset_postdata();
                 else : ?>
-                    <div style="text-align:center; padding:4rem 2rem; grid-column: 1/-1;">
-                        <p style="color:#7a7a90; font-size:1.1rem;">Products coming soon! Add them in <strong>WordPress Admin → Products</strong>.</p>
+                    <div class="empty-state empty-state--grid-full">
+                        <p class="empty-state__text">Products coming soon! Add them in <strong>WordPress Admin → Products</strong>.</p>
                     </div>
                 <?php endif; ?>
 

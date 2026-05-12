@@ -54,7 +54,7 @@ get_header(); ?>
          ════════════════════════════════════════════════════════════ -->
     <section class="about-story" aria-label="Our story">
         <div class="section__inner">
-            <div class="section__header reveal" style="text-align: center;">
+            <div class="section__header reveal section__header--center">
                 <span class="section__label">Our Story</span>
                 <h2 class="section__title">From Day One, Built on<br>Doing Things Right</h2>
             </div>
@@ -89,7 +89,7 @@ get_header(); ?>
          ════════════════════════════════════════════════════════════ -->
     <section class="about-values" aria-label="Our core values">
         <div class="section__inner">
-            <div class="section__header reveal" style="text-align: center;">
+            <div class="section__header reveal section__header--center">
                 <span class="section__label">What We Stand For</span>
                 <h2 class="section__title">Built on Doing<br>The Right Thing</h2>
             </div>
@@ -162,10 +162,10 @@ get_header(); ?>
          ════════════════════════════════════════════════════════════ -->
     <section class="about-family" aria-label="Our family of companies">
         <div class="section__inner">
-            <div class="section__header reveal" style="text-align: center;">
+            <div class="section__header reveal section__header--center">
                 <span class="section__label">Stronger Together</span>
                 <h2 class="section__title">A Complete Home<br>Recovery Team</h2>
-                <p class="section__subtitle" style="max-width:640px;margin:0 auto;">Our family of companies — Hot Water Heroes Plumbing, RestoWrx, and Spicola Construction — covers every stage of your home's needs. We stop leaks, restore damage, and rebuild better than before, all with the same dedication to quality and care.</p>
+                <p class="section__subtitle section__subtitle--narrow">Our family of companies — Hot Water Heroes Plumbing, RestoWrx, and Spicola Construction — covers every stage of your home's needs. We stop leaks, restore damage, and rebuild better than before, all with the same dedication to quality and care.</p>
             </div>
             <div class="about-family__grid reveal">
                 <article class="about-family__card">
