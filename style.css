@@ -12530,3 +12530,53 @@ a.contact-card__text:hover {
   border: 0;
   border-radius: 16px;
 }
+
+/* ==========================================================================
+   DESKTOP PERFORMANCE — content-visibility
+   Tells the browser to skip layout/paint for off-screen sections on first
+   load. Biggest single-CSS win for desktop LCP / TBT / Speed Index.
+   contain-intrinsic-size prevents scroll-jump when content paints in.
+   ========================================================================== */
+
+.hwh-services,
+.hwh-process,
+.hwh-why,
+.hwh-reviews,
+.hwh-areas,
+.hwh-cta,
+.about-story,
+.about-values,
+.about-family,
+.svc-process,
+.svc-trust,
+.svc-stats,
+.party-types,
+.party-how-it-works,
+.party-faq,
+.maint-plan-section,
+.contact-section,
+.contact-map,
+.blog-filters,
+.blog-archive,
+.team-full,
+.products-showcase,
+.legal-page {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 600px; /* estimated height — avoids scroll-jump */
+}
+
+/* Hero and stats bar are above the fold \u2014 never defer these */
+.hwh-hero,
+.hwh-stats,
+.page-hero,
+.svc-hero,
+.about-hero,
+.blog-hero {
+  content-visibility: visible;
+}
+
+/* ── hwh-center spaced variant ───────────────────────────────────────── */
+.hwh-center--spaced {
+  margin-top: 3rem;
+}
+

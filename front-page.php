@@ -76,8 +76,9 @@ get_header(); ?>
         <div class="hwh-hero__visual" aria-hidden="true">
             <div class="hwh-hero__van-wrap">
                 <img src="https://hotwaterheroesplumbing.com/wp-content/uploads/2025/12/HWH-HERO-VAN.png"
-                     alt="Hot Water Heroes service van"
-                     fetchpriority="high" decoding="async"
+                     alt="Hot Water Heroes plumbing service van"
+                     width="680" height="480"
+                     fetchpriority="high" loading="eager" decoding="async"
                      class="hwh-hero__van">
             </div>
         </div>
@@ -172,7 +173,7 @@ get_header(); ?>
             <?php endforeach; endif; ?>
         </div>
 
-        <div class="hwh-center" style="margin-top:3rem;">
+        <div class="hwh-center hwh-center--spaced">
             <a href="<?php echo esc_url(home_url('/services/')); ?>" class="hwh-btn hwh-btn--navy hwh-btn--lg">See All Services →</a>
         </div>
     </div>

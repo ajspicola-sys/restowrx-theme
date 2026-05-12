@@ -118,20 +118,15 @@ add_filter('template_include', 'hwh_force_page_templates');
 
 // -- Enqueue Assets -------------------------------------------------
 function hwh_enqueue_styles() {
-    // Use file modification time so browser caches CSS between visits
-    // but auto-busts cache when the file actually changes
+    // Cache-bust by file mtime — auto-busts when style.css changes
     $theme_version = filemtime(get_stylesheet_directory() . '/style.css');
 
-    // Google Fonts — single optimized request with display=swap
-    wp_enqueue_style(
-        'hwh-google-fonts',
-        'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap',
-        [],
-        null
-    );
+    // Google Fonts are loaded non-render-blocking directly in header.php
+    // via the preload/onload trick. Do NOT re-enqueue here — doing so
+    // would create a second render-blocking <link> tag.
 
-    // Main stylesheet — cacheable, busts only when file changes
-    wp_enqueue_style('hwh-style', get_stylesheet_uri(), ['hwh-google-fonts'], $theme_version);
+    // Main stylesheet
+    wp_enqueue_style('hwh-style', get_stylesheet_uri(), [], $theme_version);
 }
 add_action('wp_enqueue_scripts', 'hwh_enqueue_styles');
 
