@@ -46,18 +46,32 @@ get_header();
                     <?php while ( have_posts() ) : the_post();
                         $icon  = get_post_meta( get_the_ID(), '_service_icon', true ) ?: '';
                         $price = get_post_meta( get_the_ID(), '_service_price', true );
+
+                        // Best available description: manual excerpt → post content → generic fallback
+                        $raw_excerpt = get_post_field( 'post_excerpt', get_the_ID() );
+                        $raw_content = get_post_field( 'post_content',  get_the_ID() );
+                        if ( $raw_excerpt ) {
+                            $desc = wp_trim_words( $raw_excerpt, 20 );
+                        } elseif ( $raw_content ) {
+                            $desc = wp_trim_words( strip_shortcodes( wp_strip_all_tags( $raw_content ) ), 20 );
+                        } else {
+                            $desc = 'Expert plumbing service from Tampa Bay\'s trusted team. Licensed, insured, and available 24/7.';
+                        }
                     ?>
                     <article class="hwh-service-card reveal">
+
                         <?php if ( has_post_thumbnail() ) : ?>
                         <div class="hwh-service-card__img">
-                            <?php the_post_thumbnail( 'medium', [ 'loading' => 'lazy', 'decoding' => 'async' ] ); ?>
+                            <?php the_post_thumbnail( 'medium', [ 'loading' => 'lazy', 'decoding' => 'async', 'alt' => esc_attr( get_the_title() ) ] ); ?>
                         </div>
-                        <?php elseif ( $icon && strlen( $icon ) > 4 ) : ?>
+                        <?php elseif ( $icon && strlen( $icon ) > 1 ) : ?>
                         <div class="hwh-service-card__icon"><?php echo esc_html( $icon ); ?></div>
+                        <?php else : ?>
+                        <div class="hwh-service-card__icon">🔧</div>
                         <?php endif; ?>
 
                         <h2 class="hwh-service-card__title"><?php the_title(); ?></h2>
-                        <p class="hwh-service-card__text"><?php echo wp_trim_words( get_the_excerpt(), 20 ); ?></p>
+                        <p class="hwh-service-card__text"><?php echo esc_html( $desc ); ?></p>
 
                         <?php if ( $price ) : ?>
                         <span class="hwh-service-card__price">From <?php echo esc_html( $price ); ?></span>
@@ -67,6 +81,7 @@ get_header();
                     </article>
                     <?php endwhile; ?>
                 </div>
+
 
             <?php else : ?>
                 <div style="text-align:center;padding:4rem 0;">
