@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Hot Water Heroes — Header Template v2
  * Two-layer: dark top bar + white nav bar
@@ -113,7 +113,7 @@ $hwh_menu_services = hwh_get_menu_services();
 
     <style id="hwh-critical-css">
         html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
-        body { margin: 0; font-family: 'Inter','Helvetica Neue',Arial,sans-serif; background: #F8F9FB; overflow-x: hidden; }
+        body { margin: 0; font-family: 'Inter','Helvetica Neue',Arial,sans-serif; background: #0A1628; overflow-x: hidden; }
         .site-main { padding-top: 115px; }
         .hwh-header { position: fixed; top: 0; left: 0; right: 0; z-index: 200; }
         .hwh-topbar { background: #0F2440; height: 40px; display: flex; align-items: center; }
