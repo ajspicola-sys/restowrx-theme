@@ -1,6 +1,6 @@
 <?php
 /**
- * Hot Water Heroes — Footer v3
+ * Hot Water Heroes â€” Footer v3
  * Clean dark navy footer, no emergency bar
  */
 ?>
@@ -46,9 +46,6 @@
                     <a href="https://g.co/hotwaterheroes" class="hwh-foot__social-link" aria-label="Google Reviews" target="_blank" rel="noopener noreferrer">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
                     </a>
-                    <a href="https://www.linkedin.com/company/hot-water-heroes-plumbing/" class="hwh-foot__social-link" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-                    </a>
                 </div>
                 <div class="hwh-foot__rating">
                     <span class="hwh-foot__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
@@ -66,7 +63,7 @@
                     <li><a href="<?php echo esc_url(home_url('/services/drain-cleaning/')); ?>">Drain Cleaning</a></li>
                     <li><a href="<?php echo esc_url(home_url('/contact/')); ?>">Emergency Plumbing</a></li>
                     <li><a href="<?php echo esc_url(home_url('/services/leak-detection-repair/')); ?>">Leak Detection &amp; Repair</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/services/')); ?>">All Services &rarr;</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/services/')); ?>">All Services â†’</a></li>
                 </ul>
             </div>
 
@@ -130,10 +127,10 @@
 
 </footer>
 
-<!-- Cookie consent banner — server-rendered for LLM/crawler visibility -->
+<!-- Cookie consent banner â€” server-rendered for LLM/crawler visibility -->
 <div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Cookie consent" aria-hidden="true">
     <div class="cookie-banner__inner">
-        <p class="cookie-banner__text"><strong>Cookies</strong> &mdash; We use cookies to enhance your experience.</p>
+        <p class="cookie-banner__text"><strong>Cookies</strong> â€” We use cookies to enhance your experience.</p>
         <div class="cookie-banner__actions">
             <button class="cookie-banner__btn cookie-banner__btn--accept" id="cookie-accept">Accept</button>
             <button class="cookie-banner__btn cookie-banner__btn--decline" id="cookie-decline">Decline</button>
@@ -155,7 +152,7 @@
 
     document.body.classList.add('is-loaded');
 
-    // Fix white screen when navigating back — bfcache restores the
+    // Fix white screen when navigating back â€” bfcache restores the
     // page with the exit-transition class still applied.
     window.addEventListener('pageshow', function(e) {
         if (e.persisted) document.body.classList.remove('is-leaving');
@@ -207,7 +204,7 @@
             if (img.complete) img.classList.add('is-loaded');
             else img.addEventListener('load', function() { this.classList.add('is-loaded'); });
         });
-        // Smooth anchors (skip /contact/ — handled by ServiceTitan)
+        // Smooth anchors (skip /contact/ â€” handled by ServiceTitan)
         document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
             anchor.addEventListener('click', function(e) {
                 var id = this.getAttribute('href'); if (id==='#') return;
@@ -233,7 +230,7 @@
                 e.preventDefault();
                 var btn = contactForm.querySelector('.contact-form__submit');
                 var orig = btn ? btn.innerHTML : '';
-                if (btn) { btn.innerHTML = 'Sending&#8230;'; btn.disabled = true; }
+                if (btn) { btn.innerHTML = 'Sendingâ€¦'; btn.disabled = true; }
                 var data = new FormData(contactForm); data.set('action','hwh_contact_submit');
                 fetch('<?php echo esc_url(admin_url('admin-ajax.php')); ?>', { method:'POST', body:data, credentials:'same-origin' })
                     .then(function(r){ return r.json(); })
@@ -307,11 +304,11 @@ if ($popup_active) :
             <div class="deal-popup__code-wrap">
                 <span class="deal-popup__code-label">Use Code</span>
                 <span class="deal-popup__code"><?php echo $p_code; ?></span>
-                <button class="deal-popup__copy" onclick="navigator.clipboard.writeText('<?php echo esc_js($p_code); ?>');this.textContent='&#10003; Copied!'">Copy</button>
+                <button class="deal-popup__copy" onclick="navigator.clipboard.writeText('<?php echo esc_js($p_code); ?>');this.textContent='âœ“ Copied!'">Copy</button>
             </div>
             <?php endif; ?>
             <a href="<?php echo $p_btn_url; ?>" class="hwh-btn hwh-btn--red hwh-btn--lg deal-popup__btn"><?php echo $p_btn_text; ?></a>
-            <p class="deal-popup__fine">No commitment required &middot; New customers only</p>
+            <p class="deal-popup__fine">No commitment required Â&middot; New customers only</p>
         </div>
     </div>
 </div>
@@ -328,12 +325,13 @@ if ($popup_active) :
 })();</script>
 <?php endif; ?>
 
-<!-- ServiceTitan scheduler widget disabled — re-enable when configured -->
+<!-- ServiceTitan scheduler widget disabled â€” re-enable when configured -->
 
 
 <?php wp_footer(); ?>
 
 </body>
 </html>
+
 
 

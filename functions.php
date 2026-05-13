@@ -408,28 +408,27 @@ function hwh_schema_markup() {
             'https://www.facebook.com/hotwaterheroes/',
             'https://www.instagram.com/hotwaterheroes/',
             'https://www.google.com/maps/place/Hot+Water+Heroes',
-            'https://www.linkedin.com/company/hot-water-heroes-plumbing/',
         ],
         'aggregateRating'  => [
             '@type'       => 'AggregateRating',
             'ratingValue' => '5.0',
             'bestRating'  => '5',
             'worstRating' => '1',
-            'reviewCount' => '30',
+            'reviewCount' => '28',
         ],
         'employee'         => [ $provider ],
         'founder'          => $provider,
         'serviceType' => 'Plumbing',
         'availableService' => [
-            [ '@type' => 'Service', 'name' => 'Water Heater Repair',       'url' => esc_url(home_url('/services/expert-water-heater-repair-services-in-tampa/')) ],
-            [ '@type' => 'Service', 'name' => 'Water Heater Installation',  'url' => esc_url(home_url('/services/water-heater-installation/')) ],
-            [ '@type' => 'Service', 'name' => 'Tankless Water Heaters',     'url' => esc_url(home_url('/services/tankless-water-heater-repair/')) ],
-            [ '@type' => 'Service', 'name' => 'Drain Cleaning',             'url' => esc_url(home_url('/services/drain-cleaning/')) ],
-            [ '@type' => 'Service', 'name' => 'Emergency Plumbing',         'url' => esc_url(home_url('/services/emergency-plumber/')) ],
-            [ '@type' => 'Service', 'name' => 'Leak Detection & Repair',    'url' => esc_url(home_url('/services/leak-detection-repair/')) ],
-            [ '@type' => 'Service', 'name' => 'Pipe Repair & Repiping',     'url' => esc_url(home_url('/services/pipe-repair/')) ],
-            [ '@type' => 'Service', 'name' => 'Sewer & Water Line',         'url' => esc_url(home_url('/services/sewer-water-line/')) ],
-            [ '@type' => 'Service', 'name' => 'Camera Inspection',          'url' => esc_url(home_url('/services/camera-inspection/')) ],
+            [ '@type' => 'Service', 'name' => 'Water Heater Repair', 'url' => esc_url(home_url('/services/')) ],
+            [ '@type' => 'Service', 'name' => 'Water Heater Installation',         'url' => esc_url(home_url('/services/')) ],
+            [ '@type' => 'Service', 'name' => 'Tankless Water Heaters',       'url' => esc_url(home_url('/services/')) ],
+            [ '@type' => 'Service', 'name' => 'Drain Cleaning', 'url' => esc_url(home_url('/services/')) ],
+            [ '@type' => 'Service', 'name' => 'Emergency Plumbing',  'url' => esc_url(home_url('/services/')) ],
+            [ '@type' => 'Service', 'name' => 'Leak Detection',             'url' => esc_url(home_url('/services/')) ],
+            [ '@type' => 'Service', 'name' => 'Pipe Repair & Repiping',                'url' => esc_url(home_url('/services/')) ],
+            [ '@type' => 'Service', 'name' => 'Sewer & Water Line',       'url' => esc_url(home_url('/services/')) ],
+            [ '@type' => 'Service', 'name' => 'Plumbing Inspections',   'url' => esc_url(home_url('/services/')) ],
         ],
         'areaServed'       => [
             [ '@type' => 'City', 'name' => 'Tampa',          'containedInPlace' => [ '@type' => 'State', 'name' => 'Florida' ] ],
@@ -507,111 +506,6 @@ function hwh_schema_markup() {
     }
 }
 add_action('wp_head', 'hwh_schema_markup', 5);
-
-// -- FAQ Schema for Homepage (boosts rich results eligibility) -------
-function hwh_faq_schema() {
-    if ( ! is_front_page() ) return;
-
-    $faqs = [
-        [
-            'q' => 'How quickly can Hot Water Heroes respond to a plumbing emergency in Tampa Bay?',
-            'a' => 'Hot Water Heroes provides 24/7 emergency plumbing service across Tampa Bay. In most cases, we dispatch a licensed plumber within 60 minutes. We answer the phone every hour of every day - nights, weekends, and holidays included.',
-        ],
-        [
-            'q' => 'What plumbing services does Hot Water Heroes offer in Tampa Bay?',
-            'a' => 'Hot Water Heroes offers a full range of plumbing services including water heater repair and installation, tankless water heater service, drain cleaning, leak detection, pipe repair, whole-home repiping, sewer and water line service, gas line service, slab leak repair, and 24/7 emergency plumbing throughout Hillsborough, Pinellas, and Pasco counties.',
-        ],
-        [
-            'q' => 'Does Hot Water Heroes charge for estimates?',
-            'a' => 'Hot Water Heroes provides free estimates on most plumbing projects. We give you a clear, upfront price in writing before any work begins - no surprises and no hidden fees.',
-        ],
-        [
-            'q' => 'Is Hot Water Heroes licensed and insured?',
-            'a' => 'Yes. Hot Water Heroes Plumbing is fully licensed and insured in the state of Florida. All of our technicians are background-checked and hold the appropriate plumbing certifications required by Florida law.',
-        ],
-        [
-            'q' => 'What areas does Hot Water Heroes serve?',
-            'a' => 'We serve the entire Tampa Bay area including Tampa, St. Petersburg, Clearwater, Brandon, Riverview, Wesley Chapel, Carrollwood, Westchase, Lutz, Land O Lakes, Odessa, New Tampa, Zephyrhills, and all of Hillsborough, Pinellas, and Pasco counties.',
-        ],
-    ];
-
-    $main_entity = [];
-    foreach ( $faqs as $faq ) {
-        $main_entity[] = [
-            '@type'          => 'Question',
-            'name'           => $faq['q'],
-            'acceptedAnswer' => [
-                '@type' => 'Answer',
-                'text'  => $faq['a'],
-            ],
-        ];
-    }
-
-    $schema = [
-        '@context'   => 'https://schema.org',
-        '@type'      => 'FAQPage',
-        'mainEntity' => $main_entity,
-    ];
-    echo '<script type="application/ld+json">' . wp_json_encode( $schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT ) . '</script>' . "\n";
-}
-add_action('wp_head', 'hwh_faq_schema', 6);
-
-// -- Facebook Pixel Tracking -----------------------------------------
-// Pixel ID set in Appearance → Customize → Analytics.
-function hwh_facebook_pixel() {
-    $pixel_id = get_theme_mod('hwh_fb_pixel_id', '');
-    if (empty($pixel_id) || is_admin()) return;
-    $pixel_id = esc_attr(sanitize_text_field($pixel_id));
-    ?>
-<!-- Facebook Pixel -->
-<script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init','<?php echo $pixel_id; ?>');
-fbq('track','PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=<?php echo $pixel_id; ?>&ev=PageView&noscript=1" alt=""></noscript>
-<!-- End Facebook Pixel -->
-    <?php
-}
-add_action('wp_head', 'hwh_facebook_pixel', 99);
-
-// -- Google Search Console Verification ------------------------------
-function hwh_gsc_verification() {
-    $gsc_code = get_theme_mod('hwh_gsc_verification', '');
-    if (!empty($gsc_code) && !is_admin()) {
-        echo '<meta name="google-site-verification" content="' . esc_attr(sanitize_text_field($gsc_code)) . '">' . "\n";
-    }
-}
-add_action('wp_head', 'hwh_gsc_verification', 1);
-
-// -- Customizer: Facebook Pixel + GSC Settings ----------------------
-function hwh_customizer_tracking($wp_customize) {
-    // Facebook Pixel
-    $wp_customize->add_setting('hwh_fb_pixel_id', [
-        'default'           => '',
-        'sanitize_callback' => 'sanitize_text_field',
-        'transport'         => 'refresh',
-    ]);
-    $wp_customize->add_control('hwh_fb_pixel_id', [
-        'label'       => __('Facebook Pixel ID', 'hwh'),
-        'description' => __('Enter your Facebook Pixel ID (numbers only, e.g. 1234567890). Get it from Facebook Events Manager.', 'hwh'),
-        'section'     => 'hwh_analytics',
-        'type'        => 'text',
-    ]);
-    // Google Search Console
-    $wp_customize->add_setting('hwh_gsc_verification', [
-        'default'           => '',
-        'sanitize_callback' => 'sanitize_text_field',
-        'transport'         => 'refresh',
-    ]);
-    $wp_customize->add_control('hwh_gsc_verification', [
-        'label'       => __('Google Search Console Verification Code', 'hwh'),
-        'description' => __('Paste the content value from the GSC meta tag (e.g. abc123def456). Do NOT include the full meta tag.', 'hwh'),
-        'section'     => 'hwh_analytics',
-        'type'        => 'text',
-    ]);
-}
-add_action('customize_register', 'hwh_customizer_tracking');
 
 // -- Auto-create All Pages ------------------------------------------
 function hwh_create_pages() {
@@ -1038,7 +932,7 @@ function hwh_register_services() {
             'menu_name'          => '?? Services',
         ],
         'public'              => true,
-        'exclude_from_search' => false,
+        'exclude_from_search' => true,
         'has_archive'         => true,
         'rewrite'             => ['slug' => 'services'],
         'menu_icon'           => 'dashicons-heart',
