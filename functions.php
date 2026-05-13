@@ -794,187 +794,77 @@ add_action('after_switch_theme', 'hwh_create_blog_posts');
 add_action('init', 'hwh_create_blog_posts');
 
 
-// -- Auto-create All Services (v3 — full rebuild) --------------------
+// -- Auto-create All Services ---------------------------------------
 function hwh_create_services() {
-    if ( get_option( 'hwh_services_created_v3' ) ) return;
-
-    // Delete ALL existing service posts so we start clean
-    $existing_posts = get_posts( [
-        'post_type'      => 'service',
-        'post_status'    => 'any',
-        'posts_per_page' => -1,
-        'fields'         => 'ids',
-        'no_found_rows'  => true,
-    ] );
-    foreach ( $existing_posts as $pid ) {
-        wp_delete_post( $pid, true );
-    }
+    if (get_option('hwh_services_created_v2')) return;
 
     // 3 broad categories
     $categories = [
-        'Water Heater Services' => 'Professional water heater installation, repair, and maintenance for residential and commercial properties.',
-        'Drain & Pipe Services' => 'Expert drain cleaning, pipe repair, sewer line service, and camera inspections.',
-        'Emergency & General'   => 'Emergency repairs, general plumbing maintenance, and comprehensive home plumbing solutions.',
+        'Water Heater Services'    => 'Professional water heater installation, repair, and maintenance for residential and commercial properties.',
+        'Drain & Pipe Services'    => 'Expert drain cleaning, pipe repair, sewer line service, and camera inspections.',
+        'Emergency & General'      => 'Emergency repairs, general plumbing maintenance, and comprehensive home plumbing solutions.',
     ];
 
     $cat_ids = [];
-    foreach ( $categories as $name => $desc ) {
-        $existing = term_exists( $name, 'service_category' );
-        if ( $existing ) {
-            $cat_ids[ $name ] = $existing['term_id'];
+    foreach ($categories as $name => $desc) {
+        $existing = term_exists($name, 'service_category');
+        if ($existing) {
+            $cat_ids[$name] = $existing['term_id'];
         } else {
-            $term = wp_insert_term( $name, 'service_category', [ 'description' => $desc ] );
-            if ( ! is_wp_error( $term ) ) {
-                $cat_ids[ $name ] = $term['term_id'];
+            $term = wp_insert_term($name, 'service_category', ['description' => $desc]);
+            if (!is_wp_error($term)) {
+                $cat_ids[$name] = $term['term_id'];
             }
         }
     }
 
-    // Clean, deduplicated service list
     $services = [
-        // ── Water Heater Services ─────────────────────────────────
-        [
-            'title'    => 'Water Heater Repair',
-            'icon'     => 'fire',
-            'category' => 'Water Heater Services',
-            'excerpt'  => 'Fast, reliable water heater repair for all tank and tankless models. Same-day service available across Tampa Bay.',
-        ],
-        [
-            'title'    => 'Water Heater Installation',
-            'icon'     => 'install',
-            'category' => 'Water Heater Services',
-            'excerpt'  => 'Upgrade your home with a new high-efficiency water heater. We install tank and tankless units from top brands with same-day availability.',
-        ],
-        [
-            'title'    => 'Tankless Water Heaters',
-            'icon'     => 'tankless',
-            'category' => 'Water Heater Services',
-            'excerpt'  => 'Endless hot water with a tankless upgrade. We sell, install, and service all major brands across Tampa Bay.',
-        ],
-        [
-            'title'    => 'Drain Cleaning',
-            'icon'     => 'drain',
-            'category' => 'Water Heater Services',
-            'excerpt'  => 'Professional drain cleaning for kitchen, bathroom, and main sewer lines using hydro-jetting and camera inspection.',
-        ],
-
-        // ── Drain & Pipe Services ────────────────────────────────
-        [
-            'title'    => 'Leak Detection',
-            'icon'     => 'leak',
-            'category' => 'Drain & Pipe Services',
-            'excerpt'  => 'Advanced electronic and camera-based leak detection to find hidden leaks without destroying your walls or floors.',
-        ],
-        [
-            'title'    => 'Pipe Repair',
-            'icon'     => 'pipe',
-            'category' => 'Drain & Pipe Services',
-            'excerpt'  => 'Expert pipe repair and replacement for burst, corroded, or leaking pipes. Emergency service available 24/7 across Tampa Bay.',
-        ],
-        [
-            'title'    => 'Whole-Home Repiping',
-            'icon'     => 'repipe',
-            'category' => 'Drain & Pipe Services',
-            'excerpt'  => 'Complete whole-home repiping using durable, modern materials. Protect your home from aging galvanized or corroded pipes.',
-        ],
-        [
-            'title'    => 'Toilet Repair',
-            'icon'     => 'toilet',
-            'category' => 'Drain & Pipe Services',
-            'excerpt'  => 'Toilet running, leaking, or not flushing? We repair and replace all toilet brands with same-day service.',
-        ],
-        [
-            'title'    => 'Faucet Installation',
-            'icon'     => 'faucet',
-            'category' => 'Drain & Pipe Services',
-            'excerpt'  => 'Professional faucet installation, repair, and replacement for kitchen and bathroom fixtures.',
-        ],
-        [
-            'title'    => 'Garbage Disposal',
-            'icon'     => 'disposal',
-            'category' => 'Drain & Pipe Services',
-            'excerpt'  => 'Garbage disposal jammed, leaking, or not working? We repair and install all major brands quickly and affordably.',
-        ],
-
-        // ── Emergency & General ──────────────────────────────────
-        [
-            'title'    => 'Emergency Plumber',
-            'icon'     => 'emergency',
-            'category' => 'Emergency & General',
-            'excerpt'  => '24/7 emergency plumbing service for burst pipes, major leaks, sewer backups, and no-hot-water situations.',
-        ],
-        [
-            'title'    => 'Sewer & Water Line',
-            'icon'     => 'sewer',
-            'category' => 'Emergency & General',
-            'excerpt'  => 'Expert sewer and water main line inspection, repair, and replacement. We resolve blockages and breaks fast.',
-        ],
-        [
-            'title'    => 'Water Filtration',
-            'icon'     => 'filter',
-            'category' => 'Emergency & General',
-            'excerpt'  => 'Whole-house water filtration and softener systems for cleaner, better-tasting water. Free water quality testing.',
-        ],
-        [
-            'title'    => 'Sump Pump',
-            'icon'     => 'pump',
-            'category' => 'Emergency & General',
-            'excerpt'  => 'Sump pump installation, repair, and replacement to protect your home from flooding and water damage.',
-        ],
-        [
-            'title'    => 'Gas Line Service',
-            'icon'     => 'gas',
-            'category' => 'Emergency & General',
-            'excerpt'  => 'Licensed gas line installation, repair, and leak detection for residential and commercial properties.',
-        ],
-        [
-            'title'    => 'Backflow Prevention',
-            'icon'     => 'backflow',
-            'category' => 'Emergency & General',
-            'excerpt'  => 'Professional backflow preventer installation, testing, and annual certification to protect your water supply.',
-        ],
-        [
-            'title'    => 'Slab Leak Repair',
-            'icon'     => 'slab',
-            'category' => 'Emergency & General',
-            'excerpt'  => 'Slab leak detection and repair using minimally invasive tunneling and rerouting techniques.',
-        ],
-        [
-            'title'    => 'Camera Inspection',
-            'icon'     => 'camera',
-            'category' => 'Emergency & General',
-            'excerpt'  => 'Video camera pipe inspection to diagnose clogs, cracks, and root intrusion without digging.',
-        ],
+        ['title' => 'Water Heater Repair',      'icon' => '', 'category' => 'Water Heater Services', 'excerpt' => 'Fast, reliable water heater repair for all tank and tankless models. Same-day service available across Tampa Bay.'],
+        ['title' => 'Water Heater Installation', 'icon' => '', 'category' => 'Water Heater Services', 'excerpt' => 'Upgrade your home with a new high-efficiency water heater. We install tank and tankless units from top brands with same-day availability.'],
+        ['title' => 'Tankless Water Heaters',    'icon' => '', 'category' => 'Water Heater Services', 'excerpt' => 'Endless hot water with a tankless upgrade. We sell, install, and service all major brands across Tampa Bay.'],
+        ['title' => 'Drain Cleaning',            'icon' => '', 'category' => 'Water Heater Services', 'excerpt' => 'Professional drain cleaning for kitchen, bathroom, and main sewer lines using hydro-jetting and camera inspection.'],
+        ['title' => 'Leak Detection',            'icon' => '', 'category' => 'Drain & Pipe Services', 'excerpt' => 'Advanced electronic and camera-based leak detection to find hidden leaks without destroying your walls or floors.'],
+        ['title' => 'Pipe Repair',               'icon' => '', 'category' => 'Drain & Pipe Services', 'excerpt' => 'Expert pipe repair and replacement for burst, corroded, or leaking pipes. Emergency service available 24/7 across Tampa Bay.'],
+        ['title' => 'Whole-Home Repiping',       'icon' => '', 'category' => 'Drain & Pipe Services', 'excerpt' => 'Complete whole-home repiping using durable, modern materials. Protect your home from aging galvanized or corroded pipes.'],
+        ['title' => 'Toilet Repair',             'icon' => '', 'category' => 'Drain & Pipe Services', 'excerpt' => 'Toilet running, leaking, or not flushing? We repair and replace all toilet brands with same-day service.'],
+        ['title' => 'Faucet Installation',       'icon' => '', 'category' => 'Drain & Pipe Services', 'excerpt' => 'Professional faucet installation, repair, and replacement for kitchen and bathroom fixtures.'],
+        ['title' => 'Garbage Disposal',          'icon' => '', 'category' => 'Drain & Pipe Services', 'excerpt' => 'Garbage disposal jammed, leaking, or not working? We repair and install all major brands quickly and affordably.'],
+        ['title' => 'Emergency Plumber',         'icon' => '', 'category' => 'Emergency & General',   'excerpt' => '24/7 emergency plumbing service for burst pipes, major leaks, sewer backups, and no-hot-water situations.'],
+        ['title' => 'Sewer & Water Line',        'icon' => '', 'category' => 'Emergency & General',   'excerpt' => 'Expert sewer and water main line inspection, repair, and replacement. We resolve blockages and breaks fast.'],
+        ['title' => 'Water Filtration',          'icon' => '', 'category' => 'Emergency & General',   'excerpt' => 'Whole-house water filtration and softener systems for cleaner, better-tasting water. Free water quality testing.'],
+        ['title' => 'Sump Pump',                 'icon' => '', 'category' => 'Emergency & General',   'excerpt' => 'Sump pump installation, repair, and replacement to protect your home from flooding and water damage.'],
+        ['title' => 'Gas Line Service',          'icon' => '', 'category' => 'Emergency & General',   'excerpt' => 'Licensed gas line installation, repair, and leak detection for residential and commercial properties.'],
+        ['title' => 'Backflow Prevention',       'icon' => '', 'category' => 'Emergency & General',   'excerpt' => 'Professional backflow preventer installation, testing, and annual certification to protect your water supply.'],
+        ['title' => 'Slab Leak Repair',          'icon' => '', 'category' => 'Emergency & General',   'excerpt' => 'Slab leak detection and repair using minimally invasive tunneling and rerouting techniques.'],
+        ['title' => 'Camera Inspection',         'icon' => '', 'category' => 'Emergency & General',   'excerpt' => 'Video camera pipe inspection to diagnose clogs, cracks, and root intrusion without digging.'],
     ];
 
-    $order = 0;
-    foreach ( $services as $service ) {
-        $post_id = wp_insert_post( [
+    foreach ($services as $service) {
+        $existing = get_page_by_title($service['title'], OBJECT, 'service');
+        if ($existing) {
+            if (isset($cat_ids[$service['category']])) {
+                wp_set_object_terms($existing->ID, (int) $cat_ids[$service['category']], 'service_category');
+            }
+            continue;
+        }
+
+        $post_id = wp_insert_post([
             'post_title'   => $service['title'],
             'post_excerpt' => $service['excerpt'],
             'post_content' => '',
             'post_status'  => 'publish',
             'post_type'    => 'service',
-            'menu_order'   => $order++,
-        ] );
+        ]);
 
-        if ( $post_id && ! is_wp_error( $post_id ) ) {
-            update_post_meta( $post_id, '_service_icon', $service['icon'] );
-            if ( isset( $cat_ids[ $service['category'] ] ) ) {
-                wp_set_object_terms( $post_id, (int) $cat_ids[ $service['category'] ], 'service_category' );
+        if ($post_id && !is_wp_error($post_id)) {
+            update_post_meta($post_id, '_service_icon', $service['icon']);
+            if (isset($cat_ids[$service['category']])) {
+                wp_set_object_terms($post_id, (int) $cat_ids[$service['category']], 'service_category');
             }
         }
     }
 
-    update_option( 'hwh_services_created_v3', true );
-    // Clean up old option flags so v3 is recognized as the active version
-    delete_option( 'hwh_services_created_v2' );
-    delete_option( 'hwh_services_created_v1' );
-}
-add_action( 'after_switch_theme', 'hwh_create_services' );
-add_action( 'init', 'hwh_create_services' );
-
-
+    update_option('hwh_services_created_v2', true);
 }
 add_action('after_switch_theme', 'hwh_create_services');
 
