@@ -4,7 +4,55 @@
  * Performance-optimized build
  */
 
-// -- Theme Setup ----------------------------------------------------
+// ══════════════════════════════════════════════════════════════════════
+// AUTO CACHE PURGE — fires on first request after a git pull
+// Fingerprints key theme files; if anything changed since last deploy,
+// purges LiteSpeed / WP Rocket / W3TC / WP Super Cache automatically.
+// ══════════════════════════════════════════════════════════════════════
+function hwh_auto_purge_on_deploy() {
+    // Files to watch — any change triggers a full cache purge
+    $watch = [
+        get_stylesheet_directory() . '/style.css',
+        get_stylesheet_directory() . '/header.php',
+        get_stylesheet_directory() . '/footer.php',
+        get_stylesheet_directory() . '/front-page.php',
+        get_stylesheet_directory() . '/functions.php',
+    ];
+
+    $fingerprint = '';
+    foreach ( $watch as $file ) {
+        if ( file_exists( $file ) ) {
+            $fingerprint .= filemtime( $file );
+        }
+    }
+    $fingerprint = md5( $fingerprint );
+
+    $stored = get_option( 'hwh_deploy_fingerprint', '' );
+    if ( $fingerprint === $stored ) return; // nothing changed
+
+    // Theme files changed — update stored fingerprint
+    update_option( 'hwh_deploy_fingerprint', $fingerprint, false );
+
+    // Purge LiteSpeed Cache
+    if ( class_exists( '\LiteSpeed\Purge' ) ) {
+        do_action( 'litespeed_purge_all' );
+    }
+    // Purge WP Rocket
+    if ( function_exists( 'rocket_clean_domain' ) ) {
+        rocket_clean_domain();
+    }
+    // Purge W3 Total Cache
+    if ( function_exists( 'w3tc_flush_all' ) ) {
+        w3tc_flush_all();
+    }
+    // Purge WP Super Cache
+    if ( function_exists( 'wp_cache_clear_cache' ) ) {
+        wp_cache_clear_cache();
+    }
+}
+add_action( 'init', 'hwh_auto_purge_on_deploy' );
+
+
 function hwh_setup() {
     add_theme_support('title-tag');
     add_theme_support('post-thumbnails');
