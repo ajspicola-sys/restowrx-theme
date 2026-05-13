@@ -1,21 +1,115 @@
 <?php
 /**
  * Hot Water Heroes — Services Archive
- * Uses an explicit WP_Query (same as homepage) so it
- * is never affected by Reading Settings or pre_get_posts.
+ * Explicit WP_Query. Clean card rebuild with full-bleed top image.
  */
 get_header();
 ?>
 
 <style>
-/* Services archive — full-width card images */
-.hwh-services .hwh-service-card__img {
-    margin: -2.2rem -2rem 1rem -2rem;
-    border-radius: 18px 18px 0 0;
-    aspect-ratio: 16 / 9;
+/* ── Service Archive Card — proper full-bleed image structure ─── */
+.svc-archive-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
 }
-.hwh-services .hwh-service-card__img img {
-    border-radius: 0;
+.svc-card {
+    background: #fff;
+    border: 1.5px solid #E5EBF5;
+    border-radius: 18px;
+    overflow: hidden;           /* clips image to card corners    */
+    display: flex;
+    flex-direction: column;
+    transition: all .35s ease;
+    position: relative;
+    text-decoration: none;
+}
+.svc-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #F22F3A, #F0595F);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .35s ease;
+    z-index: 1;
+}
+.svc-card:hover {
+    border-color: #F22F3A;
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(0,0,0,.1);
+}
+.svc-card:hover::before { transform: scaleX(1); }
+
+/* Image — sits flush against all 3 sides at the top */
+.svc-card__img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+.svc-card__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .4s ease;
+}
+.svc-card:hover .svc-card__img img { transform: scale(1.05); }
+
+/* Icon fallback */
+.svc-card__icon {
+    font-size: 2.5rem;
+    padding: 1.75rem 2rem 0;
+    line-height: 1;
+}
+
+/* Content area */
+.svc-card__body {
+    padding: 1.5rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: .65rem;
+    flex: 1;
+}
+.svc-card__title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    color: #0F2440;
+    line-height: 1.2;
+    margin: 0;
+}
+.svc-card__text {
+    font-size: .88rem;
+    color: #3D6491;
+    line-height: 1.65;
+    flex: 1;
+    margin: 0;
+}
+.svc-card__price {
+    font-size: .78rem;
+    font-weight: 700;
+    color: #F22F3A;
+    letter-spacing: .04em;
+}
+.svc-card__link {
+    font-size: .82rem;
+    font-weight: 700;
+    color: #F22F3A;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: .25rem;
+    transition: letter-spacing .2s ease;
+}
+.svc-card:hover .svc-card__link { letter-spacing: .05em; }
+
+@media (max-width: 1024px) {
+    .svc-archive-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+    .svc-archive-grid { grid-template-columns: 1fr; }
 }
 </style>
 
@@ -40,16 +134,15 @@ get_header();
         </div>
     </section>
 
-    <!-- ── Services Grid — explicit WP_Query, same as homepage ───── -->
-    <section class="hwh-services" aria-label="All plumbing services" style="padding-top:5rem;padding-bottom:5rem;">
+    <!-- ── Services Grid ─────────────────────────────────────────── -->
+    <section class="hwh-services" aria-label="All plumbing services" style="background:#F8F9FB;padding:5rem 0;">
         <div class="hwh-section-inner">
 
         <?php
-        // Explicit query — not affected by Reading Settings or pre_get_posts
         $services_query = new WP_Query([
             'post_type'      => 'service',
             'post_status'    => 'publish',
-            'posts_per_page' => -1,          // all services
+            'posts_per_page' => -1,
             'orderby'        => 'menu_order',
             'order'          => 'ASC',
             'no_found_rows'  => true,
@@ -57,12 +150,12 @@ get_header();
 
         if ( $services_query->have_posts() ) : ?>
 
-            <div class="hwh-services-grid">
+            <div class="svc-archive-grid">
             <?php while ( $services_query->have_posts() ) : $services_query->the_post();
                 $icon  = get_post_meta( get_the_ID(), '_service_icon', true ) ?: '';
                 $price = get_post_meta( get_the_ID(), '_service_price', true );
 
-                // Excerpt → content → generic fallback (never blank)
+                // Excerpt → content body → generic fallback
                 $excerpt = get_post_field( 'post_excerpt', get_the_ID() );
                 $content = get_post_field( 'post_content',  get_the_ID() );
                 if ( $excerpt ) {
@@ -73,30 +166,30 @@ get_header();
                     $desc = 'Expert plumbing service from Tampa Bay\'s trusted team. Licensed, insured, and available 24/7.';
                 }
             ?>
-                <article class="hwh-service-card reveal">
+                <article class="svc-card">
 
                     <?php if ( has_post_thumbnail() ) : ?>
-                    <div class="hwh-service-card__img">
-                        <?php the_post_thumbnail( 'medium', [
+                    <div class="svc-card__img">
+                        <?php the_post_thumbnail( 'large', [
                             'loading'  => 'lazy',
                             'decoding' => 'async',
                             'alt'      => esc_attr( get_the_title() ),
                         ] ); ?>
                     </div>
                     <?php elseif ( $icon ) : ?>
-                    <div class="hwh-service-card__icon"><?php echo esc_html( $icon ); ?></div>
+                    <div class="svc-card__icon"><?php echo esc_html( $icon ); ?></div>
                     <?php else : ?>
-                    <div class="hwh-service-card__icon">🔧</div>
+                    <div class="svc-card__icon">🔧</div>
                     <?php endif; ?>
 
-                    <h2 class="hwh-service-card__title"><?php the_title(); ?></h2>
-                    <p  class="hwh-service-card__text"><?php echo esc_html( $desc ); ?></p>
-
-                    <?php if ( $price ) : ?>
-                    <span class="hwh-service-card__price">From <?php echo esc_html( $price ); ?></span>
-                    <?php endif; ?>
-
-                    <a href="<?php the_permalink(); ?>" class="hwh-service-card__link">Learn More →</a>
+                    <div class="svc-card__body">
+                        <h2 class="svc-card__title"><?php the_title(); ?></h2>
+                        <p  class="svc-card__text"><?php echo esc_html( $desc ); ?></p>
+                        <?php if ( $price ) : ?>
+                        <span class="svc-card__price">From <?php echo esc_html( $price ); ?></span>
+                        <?php endif; ?>
+                        <a href="<?php the_permalink(); ?>" class="svc-card__link">Learn More →</a>
+                    </div>
 
                 </article>
             <?php endwhile;
