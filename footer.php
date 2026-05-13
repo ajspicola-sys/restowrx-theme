@@ -30,12 +30,12 @@
 
             <!-- Brand col -->
             <div class="hwh-foot__brand">
-                <a href="<?php echo esc_url(home_url('/')); ?>" class="hwh-foot__logo" aria-label="Hot Water Heroes â€” Home">
+                <a href="<?php echo esc_url(home_url('/')); ?>" class="hwh-foot__logo" aria-label="Hot Water Heroes &mdash; Home">
                     <img src="https://hotwaterheroesplumbing.com/wp-content/uploads/2024/11/Untitled-design-12-scaled.png"
                          alt="Hot Water Heroes Plumbing" width="300" height="144"
                          loading="lazy" decoding="async">
                 </a>
-                <p class="hwh-foot__brand-text">Tampa Bay's trusted plumbing team â€” fast, honest, and available around the clock for water heater repair, installation, and emergency plumbing.</p>
+                <p class="hwh-foot__brand-text">Tampa Bay's trusted plumbing team &mdash; fast, honest, and available around the clock for water heater repair, installation, and emergency plumbing.</p>
                 <div class="hwh-foot__social">
                     <a href="https://www.facebook.com/hotwaterheroes/" class="hwh-foot__social-link" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
@@ -48,8 +48,8 @@
                     </a>
                 </div>
                 <div class="hwh-foot__rating">
-                    <span class="hwh-foot__stars">â˜…â˜…â˜…â˜…â˜…</span>
-                    <span>5.0 Â· 30+ Google Reviews</span>
+                    <span class="hwh-foot__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                    <span>5.0 &middot; 30+ Google Reviews</span>
                 </div>
             </div>
 
@@ -104,7 +104,7 @@
                     </div>
                     <div class="hwh-foot__contact-item">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                        <span>Open 24 Hours Â· 7 Days a Week</span>
+                        <span>Open 24 Hours &middot; 7 Days a Week</span>
                     </div>
                 </div>
                 <a href="/contact/" class="hwh-btn hwh-btn--red hwh-foot__cta-btn">Request Service</a>
@@ -116,7 +116,7 @@
     <!-- Bottom bar -->
     <div class="hwh-foot__bottom">
         <div class="hwh-foot__bottom-inner">
-            <p class="hwh-foot__copyright">Â© <?php echo date('Y'); ?> Hot Water Heroes Plumbing. All rights reserved. Â· Licensed &amp; Insured Â· Tampa Bay, FL</p>
+            <p class="hwh-foot__copyright">&copy; <?php echo date('Y'); ?> Hot Water Heroes Plumbing. All rights reserved. &middot; Licensed &amp; Insured &middot; Tampa Bay, FL</p>
             <div class="hwh-foot__legal">
                 <a href="<?php echo esc_url(home_url('/privacy-policy/')); ?>">Privacy Policy</a>
                 <a href="<?php echo esc_url(home_url('/cancellation-policy/')); ?>">Cancellation Policy</a>
@@ -308,7 +308,7 @@ if ($popup_active) :
             </div>
             <?php endif; ?>
             <a href="<?php echo $p_btn_url; ?>" class="hwh-btn hwh-btn--red hwh-btn--lg deal-popup__btn"><?php echo $p_btn_text; ?></a>
-            <p class="deal-popup__fine">No commitment required Â· New customers only</p>
+            <p class="deal-popup__fine">No commitment required Â&middot; New customers only</p>
         </div>
     </div>
 </div>
@@ -332,4 +332,6 @@ if ($popup_active) :
 
 </body>
 </html>
+
+
 
