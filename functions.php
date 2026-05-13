@@ -515,7 +515,7 @@ function hwh_faq_schema() {
     $faqs = [
         [
             'q' => 'How quickly can Hot Water Heroes respond to a plumbing emergency in Tampa Bay?',
-            'a' => 'Hot Water Heroes provides 24/7 emergency plumbing service across Tampa Bay. In most cases, we dispatch a licensed plumber within 60 minutes. We answer the phone every hour of every day — nights, weekends, and holidays included.',
+            'a' => 'Hot Water Heroes provides 24/7 emergency plumbing service across Tampa Bay. In most cases, we dispatch a licensed plumber within 60 minutes. We answer the phone every hour of every day - nights, weekends, and holidays included.',
         ],
         [
             'q' => 'What plumbing services does Hot Water Heroes offer in Tampa Bay?',
@@ -523,7 +523,7 @@ function hwh_faq_schema() {
         ],
         [
             'q' => 'Does Hot Water Heroes charge for estimates?',
-            'a' => 'Hot Water Heroes provides free estimates on most plumbing projects. We give you a clear, upfront price in writing before any work begins — no surprises and no hidden fees.',
+            'a' => 'Hot Water Heroes provides free estimates on most plumbing projects. We give you a clear, upfront price in writing before any work begins - no surprises and no hidden fees.',
         ],
         [
             'q' => 'Is Hot Water Heroes licensed and insured?',
@@ -531,25 +531,28 @@ function hwh_faq_schema() {
         ],
         [
             'q' => 'What areas does Hot Water Heroes serve?',
-            'a' => 'We serve the entire Tampa Bay area including Tampa, St. Petersburg, Clearwater, Brandon, Riverview, Wesley Chapel, Carrollwood, Westchase, Lutz, Land O\' Lakes, Odessa, New Tampa, Zephyrhills, and all of Hillsborough, Pinellas, and Pasco counties.',
+            'a' => 'We serve the entire Tampa Bay area including Tampa, St. Petersburg, Clearwater, Brandon, Riverview, Wesley Chapel, Carrollwood, Westchase, Lutz, Land O Lakes, Odessa, New Tampa, Zephyrhills, and all of Hillsborough, Pinellas, and Pasco counties.',
         ],
     ];
+
+    $main_entity = [];
+    foreach ( $faqs as $faq ) {
+        $main_entity[] = [
+            '@type'          => 'Question',
+            'name'           => $faq['q'],
+            'acceptedAnswer' => [
+                '@type' => 'Answer',
+                'text'  => $faq['a'],
+            ],
+        ];
+    }
 
     $schema = [
         '@context'   => 'https://schema.org',
         '@type'      => 'FAQPage',
-        'mainEntity' => array_map(function($faq) {
-            return [
-                '@type'          => 'Question',
-                'name'           => $faq['q'],
-                'acceptedAnswer' => [
-                    '@type' => 'Answer',
-                    'text'  => $faq['a'],
-                ],
-            ];
-        }, $faqs),
+        'mainEntity' => $main_entity,
     ];
-    echo '<script type="application/ld+json">' . wp_json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) . '</script>' . "\n";
+    echo '<script type="application/ld+json">' . wp_json_encode( $schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT ) . '</script>' . "\n";
 }
 add_action('wp_head', 'hwh_faq_schema', 6);
 
