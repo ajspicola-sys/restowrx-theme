@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Template Name: Homepage
  * Hot Water Heroes Plumbing — Front Page v3 (Bold Redesign)
@@ -313,11 +313,11 @@ get_header(); ?>
                     <h2 class="hwh-section-title hwh-section-title--white">What Tampa Bay Says<br><em>About Us</em></h2>
                 </div>
 
-                <div class="hwh-rev-carousel" id="reviews-carousel" aria-label="Customer reviews carousel">
+                <div class="hwh-rev-carousel" id="reviews-carousel" role="region" aria-label="Customer reviews carousel">
                     <div class="hwh-rev-carousel__track">
 
                         <article class="hwh-review-card hwh-review-card--stacked">
-                            <div class="hwh-review-card__stars" aria-label="5 stars">★★★★★</div>
+                            <span class="hwh-review-card__stars" role="img" aria-label="5 stars">★★★★★</span>
                             <p class="hwh-review-card__text">"Hot Water Heroes are amazing. Fantastic communication, great plumbers, super nice and best of all your pricing seems very fair. I'm a realtor in this area for 23 years and I use them for my personal home. Such an awesome job — I highly recommend them."</p>
                             <div class="hwh-review-card__author">
                                 <strong>Bridget Breland</strong>
@@ -326,7 +326,7 @@ get_header(); ?>
                         </article>
 
                         <article class="hwh-review-card hwh-review-card--stacked">
-                            <div class="hwh-review-card__stars" aria-label="5 stars">★★★★★</div>
+                            <span class="hwh-review-card__stars" role="img" aria-label="5 stars">★★★★★</span>
                             <p class="hwh-review-card__text">"Hot Water Heroes was absolutely outstanding! John was professional, knowledgeable, and showed up right on time. He quickly diagnosed the issue, explained everything clearly, and had it fixed faster than I expected. The pricing was fair and the quality of work was top-notch."</p>
                             <div class="hwh-review-card__author">
                                 <strong>Kirby Cummings</strong>
@@ -335,7 +335,7 @@ get_header(); ?>
                         </article>
 
                         <article class="hwh-review-card hwh-review-card--stacked">
-                            <div class="hwh-review-card__stars" aria-label="5 stars">★★★★★</div>
+                            <span class="hwh-review-card__stars" role="img" aria-label="5 stars">★★★★★</span>
                             <p class="hwh-review-card__text">"Wow, great service, good pricing, professional and explained everything. Good to see such service and pricing still exist. I will be calling you first for all my plumbing needs. It was a pleasure to have service like this during the holidays. Keep up the good work!"</p>
                             <div class="hwh-review-card__author">
                                 <strong>Mark Watklevicz</strong>
