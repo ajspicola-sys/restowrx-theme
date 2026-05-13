@@ -10076,7 +10076,9 @@ a.contact-card__text:hover {
 /* ==========================================================================
    HWH FOOTER v3 — Clean dark navy, no emergency bar
    ========================================================================== */
-.hwh-foot { background: #0A1628; color: rgba(255,255,255,0.7); font-family: 'Inter', sans-serif; }
+/* Fix: prevent any white gap above footer */
+body { margin-bottom: 0 !important; }
+.hwh-foot { background: #0A1628; color: rgba(255,255,255,0.7); font-family: 'Inter', sans-serif; margin-top: 0; }
 
 /* Main body */
 .hwh-foot__main { padding: 5rem 0 4rem; }
