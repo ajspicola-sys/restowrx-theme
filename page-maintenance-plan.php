@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * Template Name: Maintenance Plan
  * Hot Water Heroes Plumbing — Maintenance Plan Membership Page
@@ -130,7 +130,7 @@ get_header(); ?>
             <p class="cta-section__text">Prevent costly repairs, skip the wait on service calls, and save on every job. Call us to sign up today.</p>
             <div class="cta-section__actions">
                 <a href="/contact/" class="btn btn--primary btn--lg">Request Service</a>
-                <a href="tel:+18134275862" class="btn btn--outline btn--lg">Call 813-42-PLUMB</a>
+                <a href="tel:+18134275862" class="btn btn--outline btn--lg">Call 813-42-PLUMB (75862)</a>
             </div>
         </div>
     </section>

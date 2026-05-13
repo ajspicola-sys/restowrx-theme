@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * Hot Water Heroes — Blog Page (home.php)
  *
@@ -190,7 +190,7 @@ $blog_query = new WP_Query( array(
             <p class="cta-section__text">Call us or book online &mdash; fast, reliable plumbing service across Tampa Bay.</p>
             <div class="cta-section__actions">
                 <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="hwh-btn hwh-btn--red hwh-btn--lg">Request Service</a>
-                <a href="tel:+18134275862" class="hwh-btn hwh-btn--ghost hwh-btn--lg">Call 813-42-PLUMB</a>
+                <a href="tel:+18134275862" class="hwh-btn hwh-btn--ghost hwh-btn--lg">Call 813-42-PLUMB (75862)</a>
             </div>
         </div>
     </section>

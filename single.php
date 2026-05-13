@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * Hot Water Heroes Plumbing — Single Post Template
  * Performance-optimized: lazy loading, optimized WP_Query, semantic HTML

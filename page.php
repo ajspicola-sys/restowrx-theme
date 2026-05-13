@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * Hot Water Heroes Plumbing — Generic Page Template
  * Auto-routes to custom templates based on page slug

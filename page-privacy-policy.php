@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * Hot Water Heroes Plumbing — Privacy Policy Page
  */

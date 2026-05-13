@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * Template Name: Service Areas
  * Hot Water Heroes Plumbing — Service Area Coverage Page
@@ -15,7 +15,7 @@ get_header(); ?>
             <p class="page-hero__desc">From South Tampa to Wesley Chapel, we provide fast, reliable plumbing service across Hillsborough, Pinellas, and Pasco counties.</p>
             <div class="hero__actions hero__actions--center">
                 <a href="/contact/" class="btn btn--primary btn--lg">Request Service</a>
-                <a href="tel:+18134275862" class="btn btn--outline btn--lg">Call 813-42-PLUMB</a>
+                <a href="tel:+18134275862" class="btn btn--outline btn--lg">Call 813-42-PLUMB (75862)</a>
             </div>
         </div>
     </section>
@@ -124,7 +124,7 @@ get_header(); ?>
             <p class="cta-section__text">Fast, local, and always available. Call now or book online.</p>
             <div class="cta-section__actions">
                 <a href="/contact/" class="btn btn--primary btn--lg">Request Service</a>
-                <a href="tel:+18134275862" class="btn btn--outline btn--lg">Call 813-42-PLUMB</a>
+                <a href="tel:+18134275862" class="btn btn--outline btn--lg">Call 813-42-PLUMB (75862)</a>
             </div>
         </div>
     </section>

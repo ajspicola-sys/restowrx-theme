@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * Hot Water Heroes Plumbing — Single Service Template
  * Premium plumbing service page: hero with image, content + sidebar,
@@ -100,7 +100,7 @@ $has_image     = has_post_thumbnail();
 
                 <div class="service-hero__actions">
                     <a href="/contact/" class="btn btn--primary btn--lg">Request This Service</a>
-                    <a href="tel:+18134275862" class="btn btn--outline btn--lg">Call 813-42-PLUMB</a>
+                    <a href="tel:+18134275862" class="btn btn--outline btn--lg">Call 813-42-PLUMB (75862)</a>
                 </div>
             </div>
 
@@ -162,7 +162,7 @@ $has_image     = has_post_thumbnail();
                         <a href="/contact/" class="btn btn--primary service-sidebar__book">Schedule Service</a>
                         <a href="tel:+18134275862" class="service-sidebar__call">
                             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                            813-42-PLUMB
+                            813-42-PLUMB (75862)
                         </a>
                         <p class="service-sidebar__fine">Free estimates · Licensed &amp; insured</p>
                     </div>
@@ -352,7 +352,7 @@ $has_image     = has_post_thumbnail();
             <div class="svc-cta__actions">
                 <a href="tel:+18134275862" class="btn btn--primary btn--lg">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L7.91 9.27a16 16 0 0 0 6.29 6.29l1.45-1.45a2 2 0 0 1 2.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z"/></svg>
-                    Call 813-42-PLUMB
+                    Call 813-42-PLUMB (75862)
                 </a>
                 <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="btn btn--outline btn--lg">
                     Schedule Online

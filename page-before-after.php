@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * Template Name: Before After
  * Hot Water Heroes Plumbing — Before & After Gallery
