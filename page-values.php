@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Template Name: Values
  * Hot Water Heroes Plumbing — Our Mission & Values Page

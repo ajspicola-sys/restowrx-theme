@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Template Name: Maintenance Plan
  * Hot Water Heroes Plumbing — Maintenance Plan Membership Page

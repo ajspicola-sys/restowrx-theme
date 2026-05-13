@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Plugin Name: HWH CSV Importer
  * Plugin URI: https://hotwaterheroesplumbing.com

@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Template Name: Service Areas
  * Hot Water Heroes Plumbing — Service Area Coverage Page

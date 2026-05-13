@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Template Name: Team
  * Hot Water Heroes Plumbing — Meet the Team Page (Dynamic)

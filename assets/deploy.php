@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Hot Water Heroes � One-Time Git Deploy Script
  * Upload to: /public_html/deploy.php

@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Hot Water Heroes — Blog Page (home.php)
  *

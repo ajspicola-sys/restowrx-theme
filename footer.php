@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Hot Water Heroes â€” Footer v3
  * Clean dark navy footer, no emergency bar

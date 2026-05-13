@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Hot Water Heroes Plumbing — Single Service Template
  * Premium plumbing service page: hero with image, content + sidebar,

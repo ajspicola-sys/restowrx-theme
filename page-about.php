@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Template Name: About
  * Hot Water Heroes Plumbing — About Page

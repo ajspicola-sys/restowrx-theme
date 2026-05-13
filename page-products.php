@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Template Name: Products
  * Hot Water Heroes Plumbing — Products Page (Dynamic)

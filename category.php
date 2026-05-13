@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Hot Water Heroes — Category Archive Template
  * Shows posts filtered by a specific category.
