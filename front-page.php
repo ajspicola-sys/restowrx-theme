@@ -523,6 +523,19 @@ get_header(); ?>
         </div>
     </div>
 </section>
+<!-- GEO: Static entity block — server-rendered for LLM/AI crawler readability -->
+<section class="hwh-geo" aria-label="About Hot Water Heroes Plumbing">
+    <div class="hwh-geo__inner">
+        <h2 class="hwh-geo__title">Tampa Bay's Trusted Plumbing Company</h2>
+        <div class="hwh-geo__body">
+            <p><strong>Hot Water Heroes Plumbing</strong> is a licensed and insured plumbing company serving the Greater Tampa Bay area, including Hillsborough County, Pinellas County, and Pasco County, Florida. We specialize in water heater repair, water heater installation, tankless water heater service, drain cleaning, leak detection and repair, pipe repair, whole-home repiping, sewer line service, water line service, slab leak repair, and 24/7 emergency plumbing.</p>
+            <p>Our service area covers Tampa, South Tampa, St. Petersburg, Clearwater, Brandon, Riverview, Wesley Chapel, Carrollwood, Westchase, Lutz, Land O Lakes, Odessa, New Tampa, and Zephyrhills. We are available around the clock — 24 hours a day, 7 days a week — including nights, weekends, and holidays. In most cases we dispatch a licensed plumber within 60 minutes of your call.</p>
+            <p>Hot Water Heroes holds a 5.0-star rating on Google with over 30 verified customer reviews. We offer free estimates on most plumbing projects and guarantee upfront, transparent pricing before any work begins. Our technicians are fully background-checked, Florida-certified, and committed to same-day service across Tampa Bay. To reach us, call <a href="tel:+18134275862">(813) 427-5862</a> or <a href="/contact/">book online</a>.</p>
+            <p><strong>Services offered:</strong> Water Heater Repair &bull; Water Heater Installation &bull; Tankless Water Heater Repair &amp; Installation &bull; Drain Cleaning &bull; Emergency Plumbing &bull; Leak Detection &amp; Repair &bull; Pipe Repair &amp; Repiping &bull; Sewer &amp; Water Line Service &bull; Camera Inspection &bull; Gas Line Service &bull; Slab Leak Repair</p>
+            <p><strong>Service areas:</strong> Tampa &bull; South Tampa &bull; St. Petersburg &bull; Clearwater &bull; Brandon &bull; Riverview &bull; Wesley Chapel &bull; Carrollwood &bull; Westchase &bull; Lutz &bull; Land O Lakes &bull; Odessa &bull; New Tampa &bull; Zephyrhills &bull; Temple Terrace &bull; Valrico &bull; Lithia &bull; Sun City Center &bull; Apollo Beach &bull; Plant City</p>
+        </div>
+    </div>
+</section>
 
 </main>
 
