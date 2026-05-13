@@ -452,6 +452,57 @@ get_header(); ?>
 </section>
 
 <!-- ══════════════════════════════════════════════════════
+     FAQ Section — word count + FAQ rich results
+     ══════════════════════════════════════════════════════ -->
+<section class="hwh-faq" id="faq" aria-label="Frequently asked plumbing questions">
+    <div class="hwh-section-inner">
+        <div class="hwh-section-header reveal">
+            <span class="hwh-label">Common Questions</span>
+            <h2 class="hwh-section-title">Tampa Bay Plumbing <em>FAQs</em></h2>
+            <p class="hwh-section-desc">Have questions? Here are the answers Tampa Bay homeowners ask most.</p>
+        </div>
+        <div class="hwh-faq__grid reveal" itemscope itemtype="https://schema.org/FAQPage">
+            <div class="hwh-faq__item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <h3 class="hwh-faq__question" itemprop="name">How quickly can you respond to a plumbing emergency?</h3>
+                <div class="hwh-faq__answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                    <p itemprop="text">We are available 24 hours a day, 7 days a week including nights, weekends, and holidays. For most emergency calls across Tampa Bay, we dispatch a licensed plumber within 60 minutes. When water is flooding your home, every minute counts and we take that seriously.</p>
+                </div>
+            </div>
+            <div class="hwh-faq__item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <h3 class="hwh-faq__question" itemprop="name">Do you charge for estimates?</h3>
+                <div class="hwh-faq__answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                    <p itemprop="text">Hot Water Heroes provides free estimates on most plumbing projects. Before any work begins, we give you a clear, written price so you know exactly what you are paying. No hidden fees and no surprises. We believe in honest, upfront pricing on every job.</p>
+                </div>
+            </div>
+            <div class="hwh-faq__item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <h3 class="hwh-faq__question" itemprop="name">Are you licensed and insured in Florida?</h3>
+                <div class="hwh-faq__answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                    <p itemprop="text">Yes. Hot Water Heroes Plumbing is fully licensed and insured in the state of Florida. Every technician on our team is background-checked and certified. Your home and your family are always protected when we are on the job.</p>
+                </div>
+            </div>
+            <div class="hwh-faq__item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <h3 class="hwh-faq__question" itemprop="name">What areas do you serve in Tampa Bay?</h3>
+                <div class="hwh-faq__answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                    <p itemprop="text">We serve all of Hillsborough, Pinellas, and Pasco counties. Service areas include Tampa, South Tampa, St. Petersburg, Clearwater, Brandon, Riverview, Wesley Chapel, Carrollwood, Westchase, Lutz, Land O Lakes, Odessa, New Tampa, and Zephyrhills. If you are in Greater Tampa Bay, we have got you covered.</p>
+                </div>
+            </div>
+            <div class="hwh-faq__item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <h3 class="hwh-faq__question" itemprop="name">Do you specialize in water heater repair and installation?</h3>
+                <div class="hwh-faq__answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                    <p itemprop="text">Water heaters are our specialty. We repair and install all major brands of tank and tankless water heaters including Rheem, Bradford White, AO Smith, and Navien. Whether your water heater is leaking, not heating, or simply aging out, we offer same-day service and free estimates across Tampa Bay.</p>
+                </div>
+            </div>
+            <div class="hwh-faq__item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <h3 class="hwh-faq__question" itemprop="name">What payment methods do you accept?</h3>
+                <div class="hwh-faq__answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                    <p itemprop="text">We accept cash, all major credit cards, and offer financing options through Cherry. Financing lets you spread the cost of larger plumbing projects into manageable monthly payments with no prepayment penalties.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
      CTA — Bold red, full width
      ══════════════════════════════════════════════════════ -->
 <section class="hwh-cta" id="request-service" aria-label="Request plumbing service">
