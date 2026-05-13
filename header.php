@@ -222,16 +222,12 @@ $hwh_menu_services = hwh_get_menu_services();
                         <div class="hwh-drop">
                             <div class="hwh-drop__inner">
 
-                                <?php if ( ! empty( $hwh_menu_services ) ) :
-                                    // Render up to 3 category columns
-                                    $col_count = 0;
+                                 <?php if ( ! empty( $hwh_menu_services ) ) :
                                     foreach ( $hwh_menu_services as $cat_name => $posts ) :
-                                        if ( $col_count >= 3 ) break;
-                                        $col_count++;
                                 ?>
                                 <div class="hwh-drop__col">
                                     <span class="hwh-drop__heading"><?php echo esc_html( $cat_name ); ?></span>
-                                    <?php foreach ( array_slice( $posts, 0, 5 ) as $s ) :
+                                    <?php foreach ( array_slice( $posts, 0, 8 ) as $s ) :
                                         $icon    = get_post_meta( $s->ID, '_service_icon', true ) ?: '';
                                         $excerpt = wp_trim_words( get_post_field( 'post_excerpt', $s->ID ) ?: get_post_field( 'post_content', $s->ID ), 7, '' );
                                     ?>
@@ -322,7 +318,7 @@ $hwh_menu_services = hwh_get_menu_services();
                 $mobile_svcs = get_posts( [
                     'post_type'      => 'service',
                     'post_status'    => 'publish',
-                    'posts_per_page' => 6,
+                    'posts_per_page' => -1,
                     'orderby'        => 'menu_order',
                     'order'          => 'ASC',
                     'no_found_rows'  => true,
