@@ -144,8 +144,8 @@ get_header(); ?>
     </div>
 </section>
 <style>
-.sc-services{background:#0A1628;padding:clamp(4rem,6vw,7rem) 0;position:relative;overflow:hidden}
-.sc-services::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 70% 50%,rgba(193,51,51,.12) 0%,transparent 70%),radial-gradient(ellipse 40% 60% at 20% 80%,rgba(24,55,93,.6) 0%,transparent 60%);pointer-events:none}
+.sc-services{background:radial-gradient(ellipse at 50% 50%,#1a2d45 0%,#0A1628 70%);padding:clamp(4rem,6vw,7rem) 0;position:relative;overflow:hidden}
+.sc-services::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(24,55,93,.4) 0%,transparent 65%);pointer-events:none}
 .sc-services::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
 .sc-services__inner{max-width:1280px;margin:0 auto;padding:0 clamp(1.25rem,1rem + 2vw,3rem);position:relative;z-index:1}
 .sc-services__header{display:flex;justify-content:space-between;align-items:flex-start;gap:3rem;margin-bottom:clamp(3rem,5vw,4rem)}
