@@ -110,71 +110,241 @@ get_header(); ?>
 </section>
 
 <!-- ══════════════════════════════════════════════════════
-     SERVICES — Clean bold grid
+     SERVICES — Dark navy, image card carousel
      ══════════════════════════════════════════════════════ -->
-<section class="hwh-services" id="services" aria-label="Our construction services">
-    <div class="hwh-section-inner">
-        <div class="hwh-section-header">
-            <span class="hwh-label">Our Expertise</span>
-            <h2 class="hwh-section-title">Construction Services<br><em>Built to Last</em></h2>
-            <p class="hwh-section-desc">From new builds to full renovations — we deliver quality craftsmanship on every project, on time and on budget.</p>
+<section class="sc-services" id="services" aria-label="Our construction services">
+    <div class="sc-services__inner">
+
+        <!-- Split header: title left, desc right -->
+        <div class="sc-services__header">
+            <div class="sc-services__header-left">
+                <span class="sc-services__label">OUR SERVICES</span>
+                <h2 class="sc-services__title">Commercial and Residential</h2>
+            </div>
+            <div class="sc-services__header-right">
+                <p>Explore our full range of construction services — from ground-up builds to complete renovations. Quality craftsmanship, transparent pricing, and results built to last.</p>
+            </div>
         </div>
 
-        <?php
-        $services = new WP_Query([
-            'post_type'      => 'service',
-            'posts_per_page' => 6,
-            'orderby'        => 'menu_order',
-            'order'          => 'ASC',
-            'no_found_rows'  => true,
-        ]);
-        $fallback = [
-            ['title'=>'New Construction',          'text'=>'Custom residential and commercial builds from the ground up — designed to your vision, built to code.'],
-            ['title'=>'Remodeling & Renovations',  'text'=>'Kitchen, bathroom, and whole-home remodels that transform your space with quality materials and craftsmanship.'],
-            ['title'=>'Roofing',                   'text'=>'Full roof replacement, repairs, and new installations — protecting your property from Florida weather.'],
-            ['title'=>'Commercial Build-Outs',     'text'=>'Tenant improvements, office renovations, and commercial construction tailored to your business needs.'],
-            ['title'=>'Additions & Extensions',    'text'=>'Expand your living space with seamlessly integrated additions that match your existing structure.'],
-            ['title'=>'Concrete & Foundation',     'text'=>'Driveways, patios, slabs, and foundation work — built strong for Florida\'s unique soil conditions.'],
-        ];
-        ?>
+        <!-- Image card carousel -->
+        <div class="sc-services__carousel" id="svc-carousel">
+            <button class="sc-services__arrow sc-services__arrow--prev" id="svc-prev" aria-label="Previous services">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
 
-        <div class="hwh-services-grid">
-            <?php if ($services->have_posts()) :
-                while ($services->have_posts()) : $services->the_post();
-                    $icon  = get_post_meta(get_the_ID(), '_service_icon', true) ?: '';
-                    $price = get_post_meta(get_the_ID(), '_service_price', true);
-            ?>
-                <article class="hwh-service-card reveal">
-                    <?php if (has_post_thumbnail()) : ?>
-                    <div class="hwh-service-card__img">
-                        <?php the_post_thumbnail("medium", ["loading" => "lazy", "decoding" => "async"]); ?>
-                    </div>
-                    <?php elseif ($icon && strlen($icon) > 4) : ?>
-                    <div class="hwh-service-card__icon"><?php echo esc_html($icon); ?></div>
-                    <?php endif; ?>
-                    <h3 class="hwh-service-card__title"><?php the_title(); ?></h3>
-                    <p class="hwh-service-card__text"><?php echo wp_trim_words(get_the_excerpt(), 20); ?></p>
-                    <?php if ($price) : ?>
-                        <span class="hwh-service-card__price">From <?php echo esc_html($price); ?></span>
-                    <?php endif; ?>
-                    <a href="<?php the_permalink(); ?>" class="hwh-service-card__link">Learn More →</a>
-                </article>
-            <?php endwhile; wp_reset_postdata();
-            else :
-                foreach ($fallback as $svc) : ?>
-                <article class="hwh-service-card reveal">
-                    <h3 class="hwh-service-card__title"><?php echo esc_html($svc['title']); ?></h3>
-                    <p class="hwh-service-card__text"><?php echo esc_html($svc['text']); ?></p>
-                    <a href="<?php echo esc_url(home_url('/services/')); ?>" class="hwh-service-card__link">Learn More →</a>
-                </article>
-            <?php endforeach; endif; ?>
+            <div class="sc-services__track-wrap">
+                <div class="sc-services__track" id="svc-track">
+
+                    <?php
+                    $svc_cards = [
+                        ['title' => 'Commercial Services',       'slug' => 'commercial'],
+                        ['title' => 'Residential',               'slug' => 'residential'],
+                        ['title' => 'Hospitality Services',      'slug' => 'hospitality'],
+                        ['title' => 'Remodeling & Renovations',  'slug' => 'remodeling'],
+                        ['title' => 'Roofing',                   'slug' => 'roofing'],
+                        ['title' => 'Concrete & Foundation',     'slug' => 'concrete'],
+                    ];
+                    foreach ($svc_cards as $i => $card) :
+                    ?>
+                    <a href="<?php echo esc_url(home_url('/services/')); ?>" class="sc-services__card">
+                        <div class="sc-services__card-img">
+                            <!-- Placeholder gradient — replace with real photos -->
+                            <div class="sc-services__card-placeholder" style="background:linear-gradient(135deg, hsl(<?php echo (220 + $i * 25); ?>,30%,25%) 0%, hsl(<?php echo (220 + $i * 25); ?>,20%,40%) 100%);"></div>
+                        </div>
+                        <span class="sc-services__card-label"><?php echo esc_html($card['title']); ?></span>
+                    </a>
+                    <?php endforeach; ?>
+
+                </div>
+            </div>
+
+            <button class="sc-services__arrow sc-services__arrow--next" id="svc-next" aria-label="Next services">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
         </div>
 
-        <div class="hwh-center hwh-center--spaced">
-            <a href="<?php echo esc_url(home_url('/services/')); ?>" class="hwh-btn hwh-btn--navy hwh-btn--lg">See All Services →</a>
-        </div>
     </div>
 </section>
+
+<style>
+/* ── Services Carousel Section ── */
+.sc-services {
+    background: var(--brand-navy, #222D3F);
+    padding: clamp(4rem, 6vw, 7rem) 0;
+}
+.sc-services__inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 clamp(1.25rem, 1rem + 2vw, 3rem);
+}
+
+/* Split header */
+.sc-services__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 3rem;
+    margin-bottom: clamp(2.5rem, 4vw, 4rem);
+}
+.sc-services__header-left { flex: 1; max-width: 520px; }
+.sc-services__header-right { flex: 1; max-width: 440px; padding-top: 1.5rem; }
+.sc-services__header-right p {
+    color: rgba(255,255,255,0.65);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin: 0;
+}
+.sc-services__label {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--brand, #A52A2A);
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 3px solid var(--brand, #A52A2A);
+}
+.sc-services__title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1.8rem, 2.5vw, 2.6rem);
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.15;
+    margin: 0;
+}
+
+/* Carousel */
+.sc-services__carousel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.sc-services__track-wrap {
+    flex: 1;
+    overflow: hidden;
+    border-radius: 12px;
+}
+.sc-services__track {
+    display: flex;
+    gap: 1.5rem;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Arrow buttons */
+.sc-services__arrow {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.3);
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
+}
+.sc-services__arrow:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: #fff;
+}
+
+/* Cards */
+.sc-services__card {
+    flex: 0 0 calc(33.333% - 1rem);
+    min-width: calc(33.333% - 1rem);
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+}
+.sc-services__card:hover { transform: translateY(-4px); }
+
+.sc-services__card-img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 0;
+}
+.sc-services__card-placeholder {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.4s ease;
+}
+.sc-services__card:hover .sc-services__card-placeholder { transform: scale(1.05); }
+.sc-services__card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+.sc-services__card:hover .sc-services__card-img img { transform: scale(1.05); }
+
+.sc-services__card-label {
+    display: block;
+    text-align: center;
+    padding: 1rem 0.75rem;
+    background: rgba(255,255,255,0.06);
+    border-radius: 0 0 10px 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.02em;
+    border-top: 2px solid rgba(255,255,255,0.08);
+}
+.sc-services__card:hover .sc-services__card-label {
+    background: rgba(165,42,42,0.15);
+    color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .sc-services__header { flex-direction: column; gap: 1rem; }
+    .sc-services__header-right { padding-top: 0; }
+    .sc-services__card { flex: 0 0 calc(50% - 0.75rem); min-width: calc(50% - 0.75rem); }
+}
+@media (max-width: 600px) {
+    .sc-services__card { flex: 0 0 85%; min-width: 85%; }
+    .sc-services__arrow { width: 36px; height: 36px; }
+}
+</style>
+
+<script>
+(function(){
+    var track = document.getElementById('svc-track');
+    if (!track) return;
+    var cards = track.children;
+    var idx = 0;
+    var visible = window.innerWidth > 900 ? 3 : window.innerWidth > 600 ? 2 : 1;
+    var maxIdx = Math.max(0, cards.length - visible);
+
+    function slide() {
+        var cardW = cards[0].offsetWidth + 24; /* 24 = gap */
+        track.style.transform = 'translateX(-' + (idx * cardW) + 'px)';
+    }
+
+    document.getElementById('svc-prev').addEventListener('click', function(){
+        idx = Math.max(0, idx - 1);
+        slide();
+    });
+    document.getElementById('svc-next').addEventListener('click', function(){
+        idx = Math.min(maxIdx, idx + 1);
+        slide();
+    });
+
+    window.addEventListener('resize', function(){
+        visible = window.innerWidth > 900 ? 3 : window.innerWidth > 600 ? 2 : 1;
+        maxIdx = Math.max(0, cards.length - visible);
+        idx = Math.min(idx, maxIdx);
+        slide();
+    });
+})();
+</script>
 
 <!-- ══════════════════════════════════════════════════════
      HOW IT WORKS — Dark navy, bold numbered steps

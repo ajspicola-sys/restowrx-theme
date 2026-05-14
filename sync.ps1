@@ -14,7 +14,8 @@ if ($args.Count -eq 0) {
     git -C $repo pull origin main
     Write-Host "[DONE] Up to date!" -ForegroundColor Green
     Write-Host ""
-} else {
+}
+else {
     $msg = $args[0]
     Write-Host ""
     Write-Host "[STAGE] Staging all changes..." -ForegroundColor Cyan
