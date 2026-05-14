@@ -251,9 +251,8 @@ get_header(); ?>
 .sc-services__card:hover .sc-services__card-placeholder{transform:scale(1.08)}
 .sc-services__card-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(193,51,51,.85) 100%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:1.5rem;opacity:0;transition:opacity .35s ease}
 .sc-services__card:hover .sc-services__card-overlay{opacity:1}
-.sc-services__card-cta{color:#fff;font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.5rem 1.25rem;border:1px solid rgba(255,255,255,.5);border-radius:6px;backdrop-filter:blur(6px);transition:transform .2s,background .2s}
-.sc-services__card:hover .sc-services__card-cta{transform:translateY(-4px)}
-.sc-services__card-cta:hover{background:rgba(255,255,255,.15)}
+.sc-services__card-cta{color:#fff;font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.6rem 1.5rem;background:transparent;border:2px solid rgba(255,255,255,.3);border-radius:8px;transition:all .35s ease}
+.sc-services__card:hover .sc-services__card-cta{transform:translateY(-4px);background:#C13333;border-color:#C13333;box-shadow:0 0 20px rgba(193,51,51,.5),0 0 50px rgba(193,51,51,.2);letter-spacing:.12em}
 .sc-services__card-body{padding:1.25rem 1.25rem 1.5rem;border-top:1px solid rgba(255,255,255,.06)}
 .sc-services__card-title{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:700;color:#fff;margin:0 0 .4rem;line-height:1.3;display:flex;align-items:center;gap:.4rem}
 .sc-services__card-arrow{opacity:.3;transition:opacity .3s,transform .3s;flex-shrink:0}
