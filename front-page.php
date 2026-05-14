@@ -251,7 +251,103 @@ get_header(); ?>
 @media(max-width:600px){.sc-services__card{flex:0 0 88%;min-width:88%}.sc-services__arrow{width:38px;height:38px}.sc-services__card-body{padding:1rem}}
 </style>
 <script>
-(function(){var t=document.getElementById('svc-track');if(!t)return;var c=t.children;if(!c.length)return;var i=0,dots=document.querySelectorAll('.sc-services__dot'),autoTimer;function gv(){return innerWidth>900?3:innerWidth>600?2:1}var v=gv(),m=Math.max(0,c.length-v);function hl(){var center=i+Math.floor(v/2);for(var j=0;j<c.length;j++){c[j].classList.remove('is-center','is-side');if(v>=3){if(j===center)c[j].classList.add('is-center');else if(j>=i&&j<i+v)c[j].classList.add('is-side')}}}function s(){var g=parseFloat(getComputedStyle(t).gap)||24,w=c[0].offsetWidth+g;t.style.transform='translateX(-'+i*w+'px)';dots.forEach(function(d,x){d.classList.toggle('active',x===i)});hl()}function next(){i=i<m?i+1:0;s()}function prev(){i=i>0?i-1:m;s()}function startAuto(){autoTimer=setInterval(next,4500)}function stopAuto(){clearInterval(autoTimer)}document.getElementById('svc-prev').onclick=function(){stopAuto();prev();startAuto()};document.getElementById('svc-next').onclick=function(){stopAuto();next();startAuto()};dots.forEach(function(d){d.onclick=function(){stopAuto();i=Math.min(m,+this.dataset.idx);s();startAuto()}});addEventListener('resize',function(){v=gv();m=Math.max(0,c.length-v);i=Math.min(i,m);s()});s();startAuto();var sx=0,df=0;t.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;stopAuto()},{passive:1});t.addEventListener('touchmove',function(e){df=sx-e.touches[0].clientX},{passive:1});t.addEventListener('touchend',function(){if(Math.abs(df)>40){df>0?next():prev();s()}df=0;startAuto()})})();
+(function(){
+    var t = document.getElementById('svc-track');
+    if (!t) return;
+    var origCards = Array.from(t.children);
+    var n = origCards.length;
+    if (!n) return;
+    var dots = document.querySelectorAll('.sc-services__dot');
+    var autoTimer;
+
+    function gv() { return innerWidth > 900 ? 3 : innerWidth > 600 ? 2 : 1; }
+    var v = gv();
+
+    // Clone cards for seamless wrap
+    for (var k = 0; k < v; k++) {
+        t.appendChild(origCards[k].cloneNode(true));           // append clones of first v cards
+        t.insertBefore(origCards[n - 1 - k].cloneNode(true), t.firstChild); // prepend clones of last v cards
+    }
+
+    var c = t.children;
+    var i = v; // start offset (past the prepended clones)
+
+    function getW() {
+        var g = parseFloat(getComputedStyle(t).gap) || 24;
+        return c[0].offsetWidth + g;
+    }
+
+    function jumpTo(pos) {
+        t.style.transition = 'none';
+        i = pos;
+        t.style.transform = 'translateX(-' + (i * getW()) + 'px)';
+        // force reflow
+        t.offsetHeight;
+        t.style.transition = 'transform .55s cubic-bezier(.22,1,.36,1)';
+    }
+
+    function hl() {
+        var center = i + Math.floor(v / 2);
+        for (var j = 0; j < c.length; j++) {
+            c[j].classList.remove('is-center', 'is-side');
+            if (v >= 3) {
+                if (j === center) c[j].classList.add('is-center');
+                else if (j >= i && j < i + v) c[j].classList.add('is-side');
+            }
+        }
+    }
+
+    function s() {
+        t.style.transform = 'translateX(-' + (i * getW()) + 'px)';
+        var real = ((i - v) % n + n) % n;
+        dots.forEach(function(d, x) { d.classList.toggle('active', x === real); });
+        hl();
+    }
+
+    function next() {
+        i++;
+        s();
+        // after transition, check if we need to reset
+        setTimeout(function() {
+            if (i >= n + v) { jumpTo(v); }
+        }, 600);
+    }
+
+    function prev() {
+        i--;
+        s();
+        setTimeout(function() {
+            if (i < v) { jumpTo(n + v - 1); }
+        }, 600);
+    }
+
+    function startAuto() { autoTimer = setInterval(next, 4500); }
+    function stopAuto() { clearInterval(autoTimer); }
+
+    document.getElementById('svc-prev').onclick = function() { stopAuto(); prev(); startAuto(); };
+    document.getElementById('svc-next').onclick = function() { stopAuto(); next(); startAuto(); };
+    dots.forEach(function(d) {
+        d.onclick = function() { stopAuto(); i = v + (+this.dataset.idx); s(); startAuto(); };
+    });
+
+    addEventListener('resize', function() {
+        v = gv();
+        s();
+    });
+
+    // Initial position (no animation)
+    jumpTo(v);
+    startAuto();
+
+    // Touch swipe
+    var sx = 0, df = 0;
+    t.addEventListener('touchstart', function(e) { sx = e.touches[0].clientX; stopAuto(); }, { passive: true });
+    t.addEventListener('touchmove', function(e) { df = sx - e.touches[0].clientX; }, { passive: true });
+    t.addEventListener('touchend', function() {
+        if (Math.abs(df) > 40) { df > 0 ? next() : prev(); }
+        df = 0; startAuto();
+    });
+})();
 </script>
 
 <!-- ══════════════════════════════════════════════════════
