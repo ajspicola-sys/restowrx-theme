@@ -115,15 +115,25 @@ get_header(); ?>
 <section class="sc-services" id="services" aria-label="Our construction services">
     <div class="sc-services__inner">
 
-        <!-- Split header -->
+        <!-- Section header -->
         <div class="sc-services__header">
             <div class="sc-services__header-left">
-                <span class="sc-services__label">OUR SERVICES</span>
-                <h2 class="sc-services__title">Commercial and Residential</h2>
+                <span class="sc-services__label">WHAT WE DO</span>
+                <h2 class="sc-services__title">Built for <em>Commercial</em><br>& <em>Residential</em></h2>
+                <p class="sc-services__subtitle">From concept to completion — every project backed by decades of Florida construction experience.</p>
             </div>
             <div class="sc-services__header-right">
-                <p>Explore our full range of construction services — from ground-up builds to complete renovations. Quality craftsmanship, transparent pricing, and results built to last.</p>
-                <a href="<?php echo esc_url(home_url('/services/')); ?>" class="sc-services__view-all">View All Services →</a>
+                <div class="sc-services__stats">
+                    <div class="sc-services__stat">
+                        <span class="sc-services__stat-num">250+</span>
+                        <span class="sc-services__stat-label">Projects Completed</span>
+                    </div>
+                    <div class="sc-services__stat">
+                        <span class="sc-services__stat-num">15+</span>
+                        <span class="sc-services__stat-label">Years Experience</span>
+                    </div>
+                </div>
+                <a href="<?php echo esc_url(home_url('/services/')); ?>" class="sc-services__view-all">Explore All Services <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></a>
             </div>
         </div>
 
@@ -198,16 +208,26 @@ get_header(); ?>
 .sc-services::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
 .sc-services::after{content:'';position:absolute;top:-120px;right:-80px;width:400px;height:400px;background:radial-gradient(circle,rgba(193,51,51,.08) 0%,transparent 70%);border-radius:50%;pointer-events:none}
 .sc-services__inner{max-width:1280px;margin:0 auto;padding:0 clamp(1.25rem,1rem + 2vw,3rem);position:relative;z-index:1}
-.sc-services__header{display:flex;justify-content:space-between;align-items:flex-start;gap:3rem;margin-bottom:clamp(2.5rem,4vw,3.5rem)}
-.sc-services__header-left{flex:1;max-width:520px}
-.sc-services__header-right{flex:1;max-width:440px;padding-top:1.5rem}
-.sc-services__header-right p{color:rgba(255,255,255,.6);font-size:.95rem;line-height:1.7;margin:0 0 1.25rem}
-.sc-services__label{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--brand,#C13333);margin-bottom:.75rem;padding-bottom:.6rem;position:relative}
+.sc-services__header{display:flex;justify-content:space-between;align-items:flex-start;gap:3rem;margin-bottom:clamp(3rem,5vw,4rem)}
+.sc-services__header-left{flex:1;max-width:540px}
+.sc-services__header-right{flex:0 0 auto;padding-top:.5rem;display:flex;flex-direction:column;align-items:flex-end;gap:2rem}
+.sc-services__label{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--brand,#C13333);margin-bottom:1rem;padding-bottom:.6rem;position:relative}
 .sc-services__label::after{content:'';position:absolute;bottom:0;left:0;height:3px;width:100%;background:linear-gradient(90deg,var(--brand,#C13333),rgba(193,51,51,.3));border-radius:2px;animation:sc-label-pulse 2.5s ease-in-out infinite}
 @keyframes sc-label-pulse{0%,100%{opacity:1;transform:scaleX(1)}50%{opacity:.6;transform:scaleX(.85)}}
-.sc-services__title{font-family:'Montserrat',sans-serif;font-size:clamp(1.8rem,2.5vw,2.6rem);font-weight:800;color:#fff;line-height:1.15;margin:0}
-.sc-services__view-all{display:inline-flex;align-items:center;color:var(--brand,#C13333);font-size:.85rem;font-weight:600;text-decoration:none;letter-spacing:.03em;transition:color .25s,gap .25s;gap:.25rem}
-.sc-services__view-all:hover{color:#fff;gap:.5rem}
+.sc-services__title{font-family:'Montserrat',sans-serif;font-size:clamp(2rem,3vw,3rem);font-weight:800;color:#fff;line-height:1.15;margin:0}
+.sc-services__title em{font-style:normal;color:var(--brand,#C13333)}
+.sc-services__subtitle{color:rgba(255,255,255,.5);font-size:.95rem;line-height:1.7;margin:.75rem 0 0;max-width:420px}
+/* Stats row */
+.sc-services__stats{display:flex;gap:2.5rem}
+.sc-services__stat{display:flex;flex-direction:column;align-items:center}
+.sc-services__stat-num{font-family:'Montserrat',sans-serif;font-size:1.8rem;font-weight:800;color:#fff;line-height:1}
+.sc-services__stat-label{font-size:.7rem;font-weight:600;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.1em;margin-top:.35rem}
+/* View all link */
+.sc-services__view-all{display:inline-flex;align-items:center;gap:.4rem;color:#fff;font-size:.82rem;font-weight:700;text-decoration:none;letter-spacing:.05em;text-transform:uppercase;padding:.65rem 1.5rem;border:2px solid var(--brand,#C13333);border-radius:8px;transition:all .3s ease;position:relative;overflow:hidden}
+.sc-services__view-all::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--brand,#C13333),#e04545);opacity:0;transition:opacity .3s}
+.sc-services__view-all:hover{box-shadow:0 6px 20px rgba(193,51,51,.35);transform:translateY(-2px)}
+.sc-services__view-all:hover::before{opacity:1}
+.sc-services__view-all svg,.sc-services__view-all span{position:relative;z-index:1}
 .sc-services__carousel{position:relative;display:flex;align-items:center;gap:1.25rem}
 .sc-services__track-wrap{flex:1;overflow:hidden;padding:1.5rem 0 2.5rem;margin:-1.5rem 0 -2.5rem}
 .sc-services__track{display:flex;gap:1.5rem;will-change:transform}
@@ -244,7 +264,7 @@ get_header(); ?>
 .sc-services__dot{width:10px;height:10px;border-radius:50%;border:none;background:rgba(255,255,255,.15);cursor:pointer;transition:all .3s ease;padding:0}
 .sc-services__dot:hover{background:rgba(255,255,255,.35)}
 .sc-services__dot.active{background:var(--brand,#C13333);width:28px;border-radius:5px;box-shadow:0 0 8px rgba(193,51,51,.4)}
-@media(max-width:900px){.sc-services__header{flex-direction:column;gap:1rem}.sc-services__header-right{padding-top:0}.sc-services__card{flex:0 0 calc(50% - .75rem);min-width:calc(50% - .75rem)}.sc-services__card-num{font-size:.65rem}}
+@media(max-width:900px){.sc-services__header{flex-direction:column;gap:1.5rem}.sc-services__header-right{align-items:flex-start;flex-direction:row;gap:1.5rem;width:100%}.sc-services__stats{gap:2rem}.sc-services__card{flex:0 0 calc(50% - .75rem);min-width:calc(50% - .75rem)}.sc-services__card-num{font-size:.65rem}}
 @media(max-width:600px){.sc-services__card{flex:0 0 88%;min-width:88%}.sc-services__arrow{width:38px;height:38px}.sc-services__card-body{padding:1rem}}
 </style>
 <script>
