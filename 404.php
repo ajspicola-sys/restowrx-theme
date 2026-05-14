@@ -1,7 +1,7 @@
 <?php
 /**
  * Spicola Construction — 404 Error Page
- * Plumbing theme: broken pipe with teardrop drops, ghost 404, dynamic services.
+ * Construction theme: blueprint grid, hard hat, dynamic services.
  */
 get_header();
 
@@ -11,18 +11,15 @@ $random_services = new WP_Query( [
     'post_status'    => 'publish',
     'posts_per_page' => 4,
     'orderby'        => 'rand',
-    'no_found_rows'  => true,   // skip COUNT(*) — we don't need pagination
+    'no_found_rows'  => true,
 ] );
-
-/* Fallback icon map if a service has no _service_icon meta */
-$fi = 0;
 ?>
 
 <main class="site-main" id="main-content">
 
     <section class="e404" aria-label="Page not found">
 
-        <!-- Animated background bubbles -->
+        <!-- Animated background elements -->
         <div class="e404__bg" aria-hidden="true">
             <span class="e404__bubble" style="--x:8%;  --size:220px; --delay:0s;   --dur:18s;"></span>
             <span class="e404__bubble" style="--x:78%; --size:300px; --delay:3s;   --dur:22s;"></span>
@@ -33,54 +30,54 @@ $fi = 0;
 
         <div class="section__inner e404__inner">
 
-            <!-- ── Pipe illustration ───────────────────────────── -->
+            <!-- ── Construction illustration ─────────────────── -->
             <div class="e404__art" aria-hidden="true">
-
-                <!-- Ghost "404" behind the pipe -->
                 <div class="e404__number">404</div>
 
-                <svg class="e404__pipe" viewBox="0 0 260 360" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Horizontal pipe body -->
-                    <rect x="10" y="100" width="240" height="48" rx="10" fill="#18375D"/>
-                    <rect x="10" y="100" width="240" height="14" rx="10" fill="#1E4A7A" opacity=".6"/>
-                    <!-- Left cap -->
-                    <rect x="0"  y="92"  width="30"  height="64" rx="8" fill="#0F2440"/>
-                    <!-- Right cap (broken end) -->
-                    <path d="M230 92 h30 a8 8 0 0 1 8 8 v48 a8 8 0 0 1-8 8 h-30 z" fill="#0F2440"/>
-                    <!-- Break crack lines -->
-                    <path d="M232 95 l14 22 M238 100 l10 30 M244 94 l8 34" stroke="#F22F3A" stroke-width="2.5" stroke-linecap="round" opacity=".9"/>
-                    <!-- Pipe shine -->
-                    <rect x="14" y="104" width="220" height="6" rx="3" fill="white" opacity=".08"/>
-                    <!-- Elbow going down -->
-                    <rect x="106" y="145" width="48" height="90" rx="10" fill="#18375D"/>
-                    <rect x="106" y="145" width="14" height="90" rx="4" fill="#1E4A7A" opacity=".5"/>
-                    <!-- Bottom ring -->
-                    <rect x="100" y="225" width="60" height="18" rx="6" fill="#0F2440"/>
-
-                    <!--
-                        Teardrop drops — path: circle bottom + pointed top
-                        M cx,top  C control points curving to the left...
-                        each translated down for the stagger
-                    -->
-                    <!-- Drop 1 -->
-                    <g class="e404__drop e404__drop--1">
-                        <path d="M130 248 C122 255 118 265 118 272 C118 281.9 123.4 290 130 290 C136.6 290 142 281.9 142 272 C142 265 138 255 130 248 Z"
-                              fill="#F22F3A"/>
+                <svg class="e404__crane" viewBox="0 0 280 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Base platform -->
+                    <rect x="80" y="300" width="120" height="20" rx="4" fill="#0F2440"/>
+                    <rect x="80" y="300" width="120" height="6" rx="3" fill="#1E4A7A" opacity=".4"/>
+                    <!-- Vertical beam -->
+                    <rect x="130" y="80" width="20" height="224" fill="#18375D"/>
+                    <rect x="130" y="80" width="6" height="224" fill="#1E4A7A" opacity=".5"/>
+                    <!-- Cross braces -->
+                    <line x1="130" y1="120" x2="150" y2="160" stroke="#0F2440" stroke-width="3"/>
+                    <line x1="150" y1="120" x2="130" y2="160" stroke="#0F2440" stroke-width="3"/>
+                    <line x1="130" y1="180" x2="150" y2="220" stroke="#0F2440" stroke-width="3"/>
+                    <line x1="150" y1="180" x2="130" y2="220" stroke="#0F2440" stroke-width="3"/>
+                    <line x1="130" y1="240" x2="150" y2="280" stroke="#0F2440" stroke-width="3"/>
+                    <line x1="150" y1="240" x2="130" y2="280" stroke="#0F2440" stroke-width="3"/>
+                    <!-- Horizontal boom -->
+                    <rect x="40" y="74" width="200" height="14" rx="4" fill="#18375D"/>
+                    <rect x="40" y="74" width="200" height="5" rx="2" fill="#1E4A7A" opacity=".5"/>
+                    <!-- Cabin -->
+                    <rect x="120" y="86" width="40" height="32" rx="4" fill="#0F2440"/>
+                    <rect x="126" y="92" width="28" height="14" rx="2" fill="#1E4A7A" opacity=".3"/>
+                    <!-- Cable -->
+                    <line x1="60" y1="88" x2="60" y2="240" stroke="#C13333" stroke-width="2" stroke-dasharray="6 4"/>
+                    <!-- Hook -->
+                    <circle cx="60" cy="248" r="10" stroke="#C13333" stroke-width="3" fill="none"/>
+                    <line x1="60" y1="238" x2="60" y2="244" stroke="#C13333" stroke-width="3"/>
+                    <!-- Hard hat on hook -->
+                    <g class="e404__hat">
+                        <ellipse cx="60" cy="272" rx="22" ry="8" fill="#E8A817"/>
+                        <path d="M42 272 C42 256 78 256 78 272" fill="#F5C518"/>
+                        <rect x="38" y="268" width="44" height="6" rx="3" fill="#E8A817"/>
                     </g>
-                    <!-- Drop 2 -->
-                    <g class="e404__drop e404__drop--2">
-                        <path d="M130 270 C122 277 118 287 118 294 C118 303.9 123.4 312 130 312 C136.6 312 142 303.9 142 294 C142 287 138 277 130 270 Z"
-                              fill="#F22F3A" opacity=".72"/>
+                    <!-- Warning stripes on base -->
+                    <g opacity=".6">
+                        <rect x="82" y="304" width="8" height="12" fill="#F5C518"/>
+                        <rect x="98" y="304" width="8" height="12" fill="#F5C518"/>
+                        <rect x="114" y="304" width="8" height="12" fill="#F5C518"/>
+                        <rect x="130" y="304" width="8" height="12" fill="#F5C518"/>
+                        <rect x="146" y="304" width="8" height="12" fill="#F5C518"/>
+                        <rect x="162" y="304" width="8" height="12" fill="#F5C518"/>
+                        <rect x="178" y="304" width="8" height="12" fill="#F5C518"/>
                     </g>
-                    <!-- Drop 3 -->
-                    <g class="e404__drop e404__drop--3">
-                        <path d="M130 302 C124 308 121 316 121 322 C121 329.7 125 336 130 336 C135 336 139 329.7 139 322 C139 316 136 308 130 302 Z"
-                              fill="#F22F3A" opacity=".5"/>
-                    </g>
-
-                    <!-- Floor ripple -->
-                    <ellipse cx="130" cy="352" rx="28" ry="5" fill="#F22F3A" opacity=".15"/>
-                    <ellipse cx="130" cy="352" rx="17" ry="3" fill="#F22F3A" opacity=".22"/>
+                    <!-- Counter-weight -->
+                    <rect x="210" y="88" width="24" height="24" rx="3" fill="#0F2440"/>
+                    <rect x="210" y="88" width="24" height="8" rx="3" fill="#C13333" opacity=".5"/>
                 </svg>
 
             </div><!-- /.e404__art -->
@@ -88,12 +85,12 @@ $fi = 0;
             <!-- ── Text content ────────────────────────────────── -->
             <div class="e404__content">
                 <div class="e404__badge">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                    We're on it
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    Under Construction
                 </div>
 
-                <h1 class="e404__title">Looks like this pipe burst.</h1>
-                <p class="e404__sub">The page you're looking for has gone down the drain. Our crew is on standby — let's get you back to flowing water fast.</p>
+                <h1 class="e404__title">This page is still<br>under construction.</h1>
+                <p class="e404__sub">The page you're looking for doesn't exist — or it's been moved. Don't worry, our crew can get you back on track.</p>
 
                 <!-- Primary CTAs -->
                 <div class="e404__actions">
@@ -102,7 +99,7 @@ $fi = 0;
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                     </a>
                     <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="btn btn--outline btn--lg">
-                        Call for Help
+                        Get a Quote
                     </a>
                 </div>
 
@@ -122,7 +119,7 @@ $fi = 0;
                 <?php else : ?>
                 <!-- Fallback static links when no services exist yet -->
                 <nav class="e404__links" aria-label="Quick links">
-                    <p class="e404__links-label">Or go somewhere useful:</p>
+                    <p class="e404__links-label">Or check out these pages:</p>
                     <div class="e404__links-grid">
                         <a href="<?php echo esc_url( home_url( '/services/' ) ); ?>" class="e404__link-card">
                             <span class="e404__link-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
@@ -134,11 +131,11 @@ $fi = 0;
                         </a>
                         <a href="<?php echo esc_url( home_url( '/about/' ) ); ?>" class="e404__link-card">
                             <span class="e404__link-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
-                            <span class="e404__link-name">About HWH</span>
+                            <span class="e404__link-name">About Us</span>
                         </a>
-                        <a href="tel:+18134275862" class="e404__link-card">
+                        <a href="tel:+18137326285" class="e404__link-card">
                             <span class="e404__link-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
-                            <span class="e404__link-name">Call Now</span>
+                            <span class="e404__link-name">Call (813) 732-6285</span>
                         </a>
                     </div>
                 </nav>
@@ -152,7 +149,7 @@ $fi = 0;
                             type="search"
                             name="s"
                             class="e404__search-input"
-                            placeholder="Search for a service or topic…"
+                            placeholder="Search for a service or project…"
                             aria-label="Search the site"
                         >
                         <button type="submit" class="btn btn--primary e404__search-btn">Go</button>
