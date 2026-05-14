@@ -160,7 +160,7 @@ $hwh_menu_services = hwh_get_menu_services();
                 <span class="hwh-topbar__sep" aria-hidden="true">|</span>
                 <span class="hwh-topbar__item">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                    Mon–Fri 7am–6pm &nbsp;·&nbsp; Sat 8am–4pm
+                    Mon–Fri 7:30am–4pm
                 </span>
                 <span class="hwh-topbar__sep" aria-hidden="true">|</span>
                 <span class="hwh-topbar__item">

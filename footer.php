@@ -103,7 +103,7 @@
                     </div>
                     <div class="hwh-foot__contact-item">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                        <span>Mon&ndash;Fri 7am&ndash;6pm &middot; Sat 8am&ndash;4pm</span>
+                        <span>Mon&ndash;Fri 7:30am&ndash;4pm</span>
                     </div>
                 </div>
                 <a href="/contact/" class="hwh-btn hwh-btn--red hwh-foot__cta-btn">Get a Free Quote</a>

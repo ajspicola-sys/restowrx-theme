@@ -394,8 +394,7 @@ function hwh_schema_markup() {
         ],
         'hasMap'           => 'https://maps.google.com/?q=9249+Lazy+Ln+Tampa+FL+33614',
         'openingHoursSpecification' => [
-            [ '@type' => 'OpeningHoursSpecification', 'dayOfWeek' => ['Monday','Tuesday','Wednesday','Thursday','Friday'], 'opens' => '07:00', 'closes' => '18:00' ],
-            [ '@type' => 'OpeningHoursSpecification', 'dayOfWeek' => ['Saturday'], 'opens' => '08:00', 'closes' => '16:00' ],
+            [ '@type' => 'OpeningHoursSpecification', 'dayOfWeek' => ['Monday','Tuesday','Wednesday','Thursday','Friday'], 'opens' => '07:30', 'closes' => '16:00' ],
         ],
         'priceRange'       => '$$-$$$',
         'currenciesAccepted' => 'USD',
@@ -2526,7 +2525,7 @@ function hwh_homepage_faq_schema() {
         ],
         [
             'q' => 'What are Spicola Construction\'s hours?',
-            'a' => 'Spicola Construction is open Monday through Friday 7am to 6pm and Saturday 8am to 4pm. Call (813) 732-6285 to schedule a consultation.',
+            'a' => 'Spicola Construction is open Monday through Friday 7:30am to 4pm. Call (813) 732-6285 to schedule a consultation.',
         ],
         [
             'q' => 'Does Spicola Construction handle permits?',
