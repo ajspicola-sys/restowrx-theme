@@ -113,6 +113,7 @@ $hwh_menu_services = hwh_get_menu_services();
         .hwh-topbar__inner { max-width: 1280px; margin: 0 auto; padding: 0 clamp(1.25rem,1rem + 2vw,3rem); display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 1.5rem; }
         .hwh-nav-bar { background: rgba(255,255,255,0.97); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); box-shadow: 0 2px 20px rgba(0,0,0,0.08); padding: 0.85rem 0; transition: padding .3s ease; }
         .hwh-nav-bar__inner { max-width: 1280px; margin: 0 auto; padding: 0 clamp(1.25rem,1rem + 2vw,3rem); display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
+        .hwh-nav__logo-img { display: block; height: auto; width: 200px; }
         @font-face {
             font-family: 'Montserrat';
             font-display: swap;
@@ -194,7 +195,7 @@ $hwh_menu_services = hwh_get_menu_services();
 
             <!-- Logo -->
             <a href="<?php echo esc_url(home_url('/')); ?>" class="hwh-nav__logo" aria-label="Spicola Construction — Home">
-                <span style="font-family:'Montserrat',sans-serif;font-size:1.5rem;font-weight:800;color:#222D3F;letter-spacing:0.04em;">SPICOLA <span style="color:#A52A2A;">CONSTRUCTION</span></span>
+                <img src="https://spicolaconstruction.com/wp-content/uploads/2022/05/Untitled-1-2-1024x236.png" alt="Spicola Construction" class="hwh-nav__logo-img" width="200" height="46" loading="eager" decoding="async">
             </a>
 
             <!-- Desktop nav -->
@@ -286,7 +287,7 @@ $hwh_menu_services = hwh_get_menu_services();
     <div class="mobile-menu__drawer">
         <div class="mobile-menu__header">
             <a href="<?php echo esc_url(home_url('/')); ?>" class="hwh-nav__logo">
-                <span style="font-family:'Montserrat',sans-serif;font-size:1.2rem;font-weight:800;color:#222D3F;">SPICOLA <span style="color:#A52A2A;">CONSTRUCTION</span></span>
+                <img src="https://spicolaconstruction.com/wp-content/uploads/2022/05/Untitled-1-2-1024x236.png" alt="Spicola Construction" class="hwh-nav__logo-img" width="160" height="37" loading="lazy" decoding="async">
             </a>
             <button class="mobile-menu__close" id="mobile-close" aria-label="Close navigation">×</button>
         </div>
