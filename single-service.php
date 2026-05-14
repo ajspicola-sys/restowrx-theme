@@ -1,7 +1,7 @@
 <?php
 /**
  * Spicola Construction — Single Service Template
- * Premium plumbing service page: hero with image, content + sidebar,
+ * Premium construction service page: hero with image, content + sidebar,
  * benefits, video, why-us trust section, related services, CTA.
  */
 get_header();
@@ -25,7 +25,7 @@ if ($video) {
 }
 
 $categories    = get_the_terms($post_id, 'service_category');
-$category_name = ($categories && !is_wp_error($categories)) ? $categories[0]->name : 'Plumbing';
+$category_name = ($categories && !is_wp_error($categories)) ? $categories[0]->name : 'Construction';
 $has_image     = has_post_thumbnail();
 ?>
 
@@ -91,7 +91,7 @@ $has_image     = has_post_thumbnail();
                     <?php endif; ?>
                     <?php if ($duration): ?>
                     <div class="service-hero__meta-item">
-                        <span class="service-hero__meta-label">Typical Duration</span>
+                        <span class="service-hero__meta-label">Typical Timeline</span>
                         <span class="service-hero__meta-value"><?php echo esc_html($duration); ?></span>
                     </div>
                     <?php endif; ?>
@@ -99,8 +99,8 @@ $has_image     = has_post_thumbnail();
                 <?php endif; ?>
 
                 <div class="service-hero__actions">
-                    <a href="/contact/" class="btn btn--primary btn--lg">Request This Service</a>
-                    <a href="tel:+18134275862" class="btn btn--outline btn--lg">Call (813) 732-6285 (75862)</a>
+                    <a href="/contact/" class="btn btn--primary btn--lg">Get a Free Quote</a>
+                    <a href="tel:+18137326285" class="btn btn--outline btn--lg">Call (813) 732-6285</a>
                 </div>
             </div>
 
@@ -147,7 +147,7 @@ $has_image     = has_post_thumbnail();
 
                         <?php if ($duration): ?>
                         <div class="service-sidebar__row">
-                            <span class="service-sidebar__label">Typical Duration</span>
+                            <span class="service-sidebar__label">Typical Timeline</span>
                             <span class="service-sidebar__value"><?php echo esc_html($duration); ?></span>
                         </div>
                         <?php endif; ?>
@@ -159,10 +159,10 @@ $has_image     = has_post_thumbnail();
 
                         <div class="service-sidebar__divider"></div>
 
-                        <a href="/contact/" class="btn btn--primary service-sidebar__book">Schedule Service</a>
-                        <a href="tel:+18134275862" class="service-sidebar__call">
+                        <a href="/contact/" class="btn btn--primary service-sidebar__book">Get a Free Quote</a>
+                        <a href="tel:+18137326285" class="service-sidebar__call">
                             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                            (813) 732-6285 (75862)
+                            (813) 732-6285
                         </a>
                         <p class="service-sidebar__fine">Free estimates · Licensed &amp; insured</p>
                     </div>
@@ -221,19 +221,19 @@ $has_image     = has_post_thumbnail();
     <?php endif; ?>
 
     <!-- ═══════════════════════════════════════════════════════
-         WHY CHOOSE HWH (Static trust section)
+         WHY CHOOSE SPICOLA (Static trust section)
          ═══════════════════════════════════════════════════════ -->
     <section class="svc-trust" aria-label="Why choose Spicola Construction">
         <div class="svc-trust__inner">
             <div class="svc-trust__left reveal">
-                <span class="section__label section__label--light">The HWH Difference</span>
+                <span class="section__label section__label--light">The Spicola Difference</span>
                 <h2 class="svc-trust__heading">Why Tampa<br><em>Trusts Us</em></h2>
-                <p class="svc-trust__desc">We've built our reputation one job at a time — honest work, fair prices, and no surprises. That's why Tampa Bay homeowners trust Spicola Construction.</p>
+                <p class="svc-trust__desc">We've built our reputation one project at a time — quality craftsmanship, transparent pricing, and results that speak for themselves. That's why Tampa Bay trusts Spicola Construction.</p>
                 <div class="svc-trust__stat">
                     <span class="svc-trust__stat-stars">★★★★★</span>
                     <div>
-                        <strong>4.9 / 5.0</strong>
-                        <span>Google Rating — 30+ Reviews</span>
+                        <strong>5.0 / 5.0</strong>
+                        <span>Google Rating — 50+ Reviews</span>
                     </div>
                 </div>
             </div>
@@ -245,7 +245,7 @@ $has_image     = has_post_thumbnail();
                     <div class="svc-trust__card-body">
                         <strong class="svc-trust__card-num">100%</strong>
                         <h3>Licensed &amp; Insured</h3>
-                        <p>Every tech is background-checked with full liability coverage. Your home is always protected.</p>
+                        <p>Fully licensed general contractor with comprehensive liability coverage. Your project is always protected.</p>
                     </div>
                 </div>
                 <div class="svc-trust__card">
@@ -255,7 +255,7 @@ $has_image     = has_post_thumbnail();
                     <div class="svc-trust__card-body">
                         <strong class="svc-trust__card-num">$0</strong>
                         <h3>Hidden Fees</h3>
-                        <p>You approve the price in writing before we turn a wrench. No "while we were in there" surprises.</p>
+                        <p>You approve the price in writing before we break ground. Detailed estimates, no change-order surprises.</p>
                     </div>
                 </div>
                 <div class="svc-trust__card">
@@ -263,9 +263,9 @@ $has_image     = has_post_thumbnail();
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                     </div>
                     <div class="svc-trust__card-body">
-                        <strong class="svc-trust__card-num">&lt;60<span>min</span></strong>
-                        <h3>Average Response</h3>
-                        <p>Most emergency calls get a tech dispatched within the hour. We're available 24/7, 365 days.</p>
+                        <strong class="svc-trust__card-num">15<span>+</span></strong>
+                        <h3>Years Experience</h3>
+                        <p>Over 15 years of hands-on construction experience across Tampa Bay. We know Florida building inside and out.</p>
                     </div>
                 </div>
 
@@ -347,15 +347,15 @@ $has_image     = has_post_thumbnail();
             <div class="svc-cta__text">
                 <span class="svc-cta__eyebrow">Ready to Get Started?</span>
                 <h2 class="svc-cta__title">Need <em><?php the_title(); ?></em>?</h2>
-                <p class="svc-cta__desc">Call us or book online — we'll have a licensed plumber at your door fast. Free estimates and upfront pricing on every job.</p>
+                <p class="svc-cta__desc">Call us or request a quote online — we'll provide a free estimate with transparent, upfront pricing before any work begins.</p>
             </div>
             <div class="svc-cta__actions">
-                <a href="tel:+18134275862" class="btn btn--primary btn--lg">
+                <a href="tel:+18137326285" class="btn btn--primary btn--lg">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L7.91 9.27a16 16 0 0 0 6.29 6.29l1.45-1.45a2 2 0 0 1 2.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z"/></svg>
-                    Call (813) 732-6285 (75862)
+                    Call (813) 732-6285
                 </a>
                 <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="btn btn--outline btn--lg">
-                    Schedule Online
+                    Get a Free Quote
                 </a>
             </div>
         </div>
