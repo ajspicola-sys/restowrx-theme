@@ -183,22 +183,13 @@ get_header(); ?>
             </div>
             <div class="about-certs__grid reveal">
                 <div class="about-certs__logo">
-                    <div class="about-certs__placeholder">Logo</div>
+                    <img src="https://spicolaconstruction.com/wp-content/uploads/2025/05/TBBN_Logo.png" alt="Tampa Bay Business Network" loading="lazy" decoding="async">
                 </div>
                 <div class="about-certs__logo">
-                    <div class="about-certs__placeholder">Logo</div>
+                    <img src="https://spicolaconstruction.com/wp-content/uploads/2025/05/images-480x104.png" alt="Certification" loading="lazy" decoding="async">
                 </div>
                 <div class="about-certs__logo">
-                    <div class="about-certs__placeholder">Logo</div>
-                </div>
-                <div class="about-certs__logo">
-                    <div class="about-certs__placeholder">Logo</div>
-                </div>
-                <div class="about-certs__logo">
-                    <div class="about-certs__placeholder">Logo</div>
-                </div>
-                <div class="about-certs__logo">
-                    <div class="about-certs__placeholder">Logo</div>
+                    <img src="https://spicolaconstruction.com/wp-content/uploads/2025/05/yellow-pages-logo-vector-760x184.png" alt="Yellow Pages" loading="lazy" decoding="async">
                 </div>
             </div>
         </div>
@@ -210,8 +201,9 @@ get_header(); ?>
     .about-certs .section__title{color:var(--brand-navy,#222D3F)}
     .about-certs .section__title em{font-style:normal;color:var(--brand,#C13333)}
     .about-certs .section__subtitle{color:rgba(34,45,63,.6)}
-    .about-certs__grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1.5rem;margin-top:3rem}
+    .about-certs__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem;max-width:900px;margin-left:auto;margin-right:auto}
     .about-certs__logo{background:#f8f7f5;border:1px solid rgba(34,45,63,.08);border-radius:14px;padding:2rem;display:flex;align-items:center;justify-content:center;aspect-ratio:3/2;transition:all .35s ease}
+    .about-certs__logo img{max-width:100%;max-height:100%;object-fit:contain}
     .about-certs__logo:hover{border-color:rgba(193,51,51,.2);background:#fff;transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.08)}
     .about-certs__placeholder{font-family:'Montserrat',sans-serif;font-size:.85rem;font-weight:700;color:rgba(34,45,63,.15);text-transform:uppercase;letter-spacing:.15em;border:2px dashed rgba(34,45,63,.08);border-radius:8px;width:100%;height:100%;display:flex;align-items:center;justify-content:center}
     @media(max-width:900px){.about-certs__grid{grid-template-columns:repeat(3,1fr)}}
