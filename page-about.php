@@ -197,6 +197,97 @@ get_header(); ?>
     </section>
 
     <!-- ════════════════════════════════════════════════════════════
+         CERTIFICATIONS & LICENSES
+         ════════════════════════════════════════════════════════════ -->
+    <section class="about-certs" aria-label="Certifications and licenses">
+        <div class="section__inner">
+            <div class="section__header reveal section__header--center">
+                <span class="section__label">Credentials</span>
+                <h2 class="section__title">Licensed, Insured &<br>Fully <em>Certified</em></h2>
+                <p class="section__subtitle section__subtitle--narrow">We hold every license and certification required to deliver safe, code-compliant construction across the state of Florida.</p>
+            </div>
+            <div class="about-certs__grid reveal">
+                <div class="about-certs__logo">
+                    <div class="about-certs__placeholder">Logo</div>
+                </div>
+                <div class="about-certs__logo">
+                    <div class="about-certs__placeholder">Logo</div>
+                </div>
+                <div class="about-certs__logo">
+                    <div class="about-certs__placeholder">Logo</div>
+                </div>
+                <div class="about-certs__logo">
+                    <div class="about-certs__placeholder">Logo</div>
+                </div>
+                <div class="about-certs__logo">
+                    <div class="about-certs__placeholder">Logo</div>
+                </div>
+                <div class="about-certs__logo">
+                    <div class="about-certs__placeholder">Logo</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════
+         TRUSTED PARTNERS
+         ════════════════════════════════════════════════════════════ -->
+    <section class="about-partners" aria-label="Trusted partners">
+        <div class="section__inner">
+            <div class="section__header reveal section__header--center">
+                <span class="section__label">Partners</span>
+                <h2 class="section__title">Brands We <em>Trust</em><br>& Work With</h2>
+                <p class="section__subtitle section__subtitle--narrow">We partner with industry-leading manufacturers and suppliers to deliver the highest quality materials on every project.</p>
+            </div>
+            <div class="about-partners__grid reveal">
+                <div class="about-partners__logo">
+                    <div class="about-partners__placeholder">Logo</div>
+                </div>
+                <div class="about-partners__logo">
+                    <div class="about-partners__placeholder">Logo</div>
+                </div>
+                <div class="about-partners__logo">
+                    <div class="about-partners__placeholder">Logo</div>
+                </div>
+                <div class="about-partners__logo">
+                    <div class="about-partners__placeholder">Logo</div>
+                </div>
+                <div class="about-partners__logo">
+                    <div class="about-partners__placeholder">Logo</div>
+                </div>
+                <div class="about-partners__logo">
+                    <div class="about-partners__placeholder">Logo</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+    /* Certifications */
+    .about-certs{padding:clamp(4rem,6vw,6rem) 0;background:var(--brand-navy,#222D3F);position:relative}
+    .about-certs .section__title em{font-style:normal;color:var(--brand,#C13333)}
+    .about-certs__grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1.5rem;margin-top:3rem}
+    .about-certs__logo{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:2rem;display:flex;align-items:center;justify-content:center;aspect-ratio:3/2;transition:all .35s ease}
+    .about-certs__logo:hover{border-color:rgba(193,51,51,.3);background:rgba(255,255,255,.06);transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.2)}
+    .about-certs__placeholder{font-family:'Montserrat',sans-serif;font-size:.85rem;font-weight:700;color:rgba(255,255,255,.2);text-transform:uppercase;letter-spacing:.15em;border:2px dashed rgba(255,255,255,.1);border-radius:8px;width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+    @media(max-width:900px){.about-certs__grid{grid-template-columns:repeat(3,1fr)}}
+    @media(max-width:600px){.about-certs__grid{grid-template-columns:repeat(2,1fr);gap:1rem}}
+
+    /* Partners */
+    .about-partners{padding:clamp(4rem,6vw,6rem) 0;background:#f8f7f5;position:relative}
+    .about-partners .section__label{color:var(--brand,#C13333)}
+    .about-partners .section__title{color:var(--brand-navy,#222D3F)}
+    .about-partners .section__title em{font-style:normal;color:var(--brand,#C13333)}
+    .about-partners .section__subtitle{color:rgba(34,45,63,.6)}
+    .about-partners__grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1.5rem;margin-top:3rem}
+    .about-partners__logo{background:#fff;border:1px solid rgba(34,45,63,.08);border-radius:14px;padding:2rem;display:flex;align-items:center;justify-content:center;aspect-ratio:3/2;transition:all .35s ease;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+    .about-partners__logo:hover{border-color:rgba(193,51,51,.2);transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.08)}
+    .about-partners__placeholder{font-family:'Montserrat',sans-serif;font-size:.85rem;font-weight:700;color:rgba(34,45,63,.15);text-transform:uppercase;letter-spacing:.15em;border:2px dashed rgba(34,45,63,.08);border-radius:8px;width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+    @media(max-width:900px){.about-partners__grid{grid-template-columns:repeat(3,1fr)}}
+    @media(max-width:600px){.about-partners__grid{grid-template-columns:repeat(2,1fr);gap:1rem}}
+    </style>
+
+    <!-- ════════════════════════════════════════════════════════════
          CTA
          ════════════════════════════════════════════════════════════ -->
     <section class="svc-cta" aria-label="Get in touch CTA">
