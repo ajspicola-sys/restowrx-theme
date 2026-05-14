@@ -19,14 +19,6 @@ $random_services = new WP_Query( [
 
     <section class="e404" aria-label="Page not found">
 
-        <!-- Animated background elements -->
-        <div class="e404__bg" aria-hidden="true">
-            <span class="e404__bubble" style="--x:8%;  --size:220px; --delay:0s;   --dur:18s;"></span>
-            <span class="e404__bubble" style="--x:78%; --size:300px; --delay:3s;   --dur:22s;"></span>
-            <span class="e404__bubble" style="--x:45%; --size:180px; --delay:6s;   --dur:16s;"></span>
-            <span class="e404__bubble" style="--x:20%; --size:120px; --delay:9s;   --dur:20s;"></span>
-            <span class="e404__bubble" style="--x:88%; --size:150px; --delay:1.5s; --dur:14s;"></span>
-        </div>
 
         <div class="section__inner e404__inner">
 
