@@ -31,83 +31,23 @@ get_header(); ?>
 </script>
 
 <!-- ══════════════════════════════════════════════════════
-     HERO — Dark navy, bold red, full impact
+     HERO — Slim white CTA bar
      ══════════════════════════════════════════════════════ -->
-<section class="hwh-hero" id="hero" aria-label="Spicola Construction">
-    <div class="hwh-hero__overlay" aria-hidden="true"></div>
-    <div class="hwh-hero__grid" aria-hidden="true"></div>
-
-    <div class="hwh-hero__inner">
-        <div class="hwh-hero__content">
-            <div class="hwh-hero__eyebrow">
-                <span class="hwh-hero__dot" aria-hidden="true"></span>
-                Licensed General Contractor · Tampa Bay, FL
-            </div>
-
-            <h1 class="hwh-hero__title">
-                Building Tampa Bay.<br>
-                <span class="hwh-hero__title-accent">One Project at a Time.</span>
-            </h1>
-
-            <p class="hwh-hero__sub">
-                Trusted general contractor serving Tampa Bay for residential &amp; commercial construction, remodeling, roofing, and renovations — quality craftsmanship, on time and on budget.
-            </p>
-
-            <div class="hwh-hero__actions">
-                <a href="tel:+18137326285" class="hwh-btn hwh-btn--red hwh-btn--lg">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                    (813) 732-6285
-                </a>
-                <a href="/contact/" class="hwh-btn hwh-btn--ghost hwh-btn--lg">
-                    Get a Free Quote →
-                </a>
-            </div>
-
-            <div class="hwh-hero__trust">
-                <div class="hwh-hero__trust-item">✔ Licensed &amp; Insured</div>
-                <div class="hwh-hero__trust-item">✔ Free Estimates</div>
-                <div class="hwh-hero__trust-item">✔ 5★ Google Rating</div>
-                <div class="hwh-hero__trust-item">✔ Family Owned</div>
-            </div>
-        </div>
-
-        <div class="hwh-hero__visual" aria-hidden="true">
-            <div class="hwh-hero__van-wrap">
-                <!-- Placeholder — will add real project photo later -->
-                <div style="width:680px;height:480px;background:linear-gradient(135deg,#222D3F,#A52A2A);border-radius:16px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Montserrat',sans-serif;font-size:2rem;font-weight:700;text-align:center;padding:2rem;">
-                    🏗️<br>SPICOLA<br>CONSTRUCTION
-                </div>
-            </div>
-        </div>
+<section class="sc-hero-slim" id="hero" aria-label="Spicola Construction">
+    <div class="sc-hero-slim__inner">
+        <p class="sc-hero-slim__text">Ready to start your next project?
+            <a href="tel:+18137326285" class="sc-hero-slim__highlight">Give us a call →</a>
+        </p>
     </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════
-     STATS BAR
-     ══════════════════════════════════════════════════════ -->
-<section class="hwh-stats" aria-label="Company stats">
-    <div class="hwh-stats__inner">
-        <div class="hwh-stat-item">
-            <span class="hwh-stat-item__num">500+</span>
-            <span class="hwh-stat-item__label">Projects Completed</span>
-        </div>
-        <div class="hwh-stat-item__div" aria-hidden="true"></div>
-        <div class="hwh-stat-item">
-            <span class="hwh-stat-item__num">20+</span>
-            <span class="hwh-stat-item__label">Years Experience</span>
-        </div>
-        <div class="hwh-stat-item__div" aria-hidden="true"></div>
-        <div class="hwh-stat-item">
-            <span class="hwh-stat-item__num">50+</span>
-            <span class="hwh-stat-item__label">5-Star Reviews</span>
-        </div>
-        <div class="hwh-stat-item__div" aria-hidden="true"></div>
-        <div class="hwh-stat-item">
-            <span class="hwh-stat-item__num">100%</span>
-            <span class="hwh-stat-item__label">Satisfaction Guaranteed</span>
-        </div>
-    </div>
-</section>
+<style>
+.sc-hero-slim{background:#fff;padding:1.5rem 0;border-bottom:1px solid rgba(34,45,63,.06)}
+.sc-hero-slim__inner{max-width:1280px;margin:0 auto;padding:0 clamp(1.25rem,1rem + 2vw,3rem);text-align:center}
+.sc-hero-slim__text{font-family:'Montserrat',sans-serif;font-size:clamp(1rem,1.2vw,1.15rem);font-weight:600;color:var(--brand-navy,#222D3F);margin:0;letter-spacing:.01em}
+.sc-hero-slim__highlight{color:#fff;background:var(--brand,#C13333);padding:.45rem 1.2rem;border-radius:8px;text-decoration:none;font-weight:700;margin-left:.5rem;display:inline-block;transition:all .3s ease;box-shadow:0 2px 12px rgba(193,51,51,.25)}
+.sc-hero-slim__highlight:hover{background:#a82a2a;box-shadow:0 4px 20px rgba(193,51,51,.45);transform:translateY(-1px)}
+</style>
 
 <!-- ══════════════════════════════════════════════════════
      SERVICES — Dark navy, image card carousel
