@@ -31,7 +31,7 @@
             <!-- Brand col -->
             <div class="hwh-foot__brand">
                 <a href="<?php echo esc_url(home_url('/')); ?>" class="hwh-foot__logo" aria-label="Spicola Construction &mdash; Home">
-                    <span style="font-family:'Montserrat',sans-serif;font-size:1.5rem;font-weight:800;color:#fff;">SPICOLA <span style="color:#C13333;">CONSTRUCTION</span></span>
+                    <img src="https://spicolaconstruction.com/wp-content/uploads/2022/06/White-Spicola-Logo.png" alt="Spicola Construction" width="220" height="51" loading="lazy" decoding="async" style="display:block;width:220px;height:auto;">
                 </a>
                 <p class="hwh-foot__brand-text">Tampa Bay's trusted general contractor &mdash; quality craftsmanship for residential and commercial construction, remodeling, roofing, and renovations.</p>
                 <div class="hwh-foot__social">
