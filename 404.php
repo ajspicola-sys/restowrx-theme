@@ -31,7 +31,7 @@ $random_services = new WP_Query( [
                     src="<?php echo esc_url( get_template_directory_uri() . '/assets/construction-site.json' ); ?>"
                     background="transparent"
                     speed="1"
-                    style="width:400px;height:400px;max-width:100%;"
+                    style="width:100%;max-width:500px;"
                     loop
                     autoplay
                 ></lottie-player>
