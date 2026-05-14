@@ -51,28 +51,10 @@ get_header(); ?>
                 <span class="section__label">Our Story</span>
                 <h2 class="section__title">Built from the Ground Up —<br>Just Like Our Projects</h2>
             </div>
-            <div class="about-story__content reveal">
-                <div class="about-story__block">
-                    <div class="about-story__year">The Foundation</div>
-                    <div class="about-story__detail">
-                        <h3>Where It All Started</h3>
-                        <p>Spicola Construction was born out of a passion for building things right. With over 15 years of hands-on experience in Florida's construction industry, our founder saw an opportunity to create a company that puts quality and integrity above everything else — no shortcuts, no excuses.</p>
-                    </div>
-                </div>
-                <div class="about-story__block">
-                    <div class="about-story__year">The Growth</div>
-                    <div class="about-story__detail">
-                        <h3>Earning Tampa's Trust</h3>
-                        <p>Word travels fast when you do great work. From custom home builds to large-scale commercial renovations, we've grown through referrals and repeat clients. Every project in our portfolio was earned through results — not advertising.</p>
-                    </div>
-                </div>
-                <div class="about-story__block">
-                    <div class="about-story__year">Today</div>
-                    <div class="about-story__detail">
-                        <h3>Tampa Bay's Go-To Contractor</h3>
-                        <p>Today, Spicola Construction is a full-service general contracting firm serving Hillsborough, Pinellas, and Pasco counties. From ground-up new builds to complete interior renovations, we handle every phase of construction with the same dedication to craftsmanship that started it all.</p>
-                    </div>
-                </div>
+            <div class="about-story__body reveal">
+                <p>Spicola Construction was born out of a passion for building things right. With over 15 years of hands-on experience in Florida's construction industry, our founder saw an opportunity to create a company that puts quality and integrity above everything else — no shortcuts, no excuses.</p>
+                <p>Word travels fast when you do great work. From custom home builds to large-scale commercial renovations, we've grown through referrals and repeat clients. Every project in our portfolio was earned through results — not advertising.</p>
+                <p>Today, Spicola Construction is a full-service general contracting firm serving Hillsborough, Pinellas, and Pasco counties. From ground-up new builds to complete interior renovations, we handle every phase of construction with the same dedication to craftsmanship that started it all.</p>
             </div>
         </div>
     </section>
@@ -222,62 +204,18 @@ get_header(); ?>
         </div>
     </section>
 
-    <!-- ════════════════════════════════════════════════════════════
-         TRUSTED PARTNERS
-         ════════════════════════════════════════════════════════════ -->
-    <section class="about-partners" aria-label="Trusted partners">
-        <div class="section__inner">
-            <div class="section__header reveal section__header--center">
-                <span class="section__label">Partners</span>
-                <h2 class="section__title">Brands We <em>Trust</em><br>& Work With</h2>
-                <p class="section__subtitle section__subtitle--narrow">We partner with industry-leading manufacturers and suppliers to deliver the highest quality materials on every project.</p>
-            </div>
-            <div class="about-partners__grid reveal">
-                <div class="about-partners__logo">
-                    <div class="about-partners__placeholder">Logo</div>
-                </div>
-                <div class="about-partners__logo">
-                    <div class="about-partners__placeholder">Logo</div>
-                </div>
-                <div class="about-partners__logo">
-                    <div class="about-partners__placeholder">Logo</div>
-                </div>
-                <div class="about-partners__logo">
-                    <div class="about-partners__placeholder">Logo</div>
-                </div>
-                <div class="about-partners__logo">
-                    <div class="about-partners__placeholder">Logo</div>
-                </div>
-                <div class="about-partners__logo">
-                    <div class="about-partners__placeholder">Logo</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <style>
     /* Certifications */
-    .about-certs{padding:clamp(4rem,6vw,6rem) 0;background:var(--brand-navy,#222D3F);position:relative}
+    .about-certs{padding:clamp(4rem,6vw,6rem) 0;background:#fff;position:relative}
+    .about-certs .section__title{color:var(--brand-navy,#222D3F)}
     .about-certs .section__title em{font-style:normal;color:var(--brand,#C13333)}
+    .about-certs .section__subtitle{color:rgba(34,45,63,.6)}
     .about-certs__grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1.5rem;margin-top:3rem}
-    .about-certs__logo{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:2rem;display:flex;align-items:center;justify-content:center;aspect-ratio:3/2;transition:all .35s ease}
-    .about-certs__logo:hover{border-color:rgba(193,51,51,.3);background:rgba(255,255,255,.06);transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.2)}
-    .about-certs__placeholder{font-family:'Montserrat',sans-serif;font-size:.85rem;font-weight:700;color:rgba(255,255,255,.2);text-transform:uppercase;letter-spacing:.15em;border:2px dashed rgba(255,255,255,.1);border-radius:8px;width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+    .about-certs__logo{background:#f8f7f5;border:1px solid rgba(34,45,63,.08);border-radius:14px;padding:2rem;display:flex;align-items:center;justify-content:center;aspect-ratio:3/2;transition:all .35s ease}
+    .about-certs__logo:hover{border-color:rgba(193,51,51,.2);background:#fff;transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.08)}
+    .about-certs__placeholder{font-family:'Montserrat',sans-serif;font-size:.85rem;font-weight:700;color:rgba(34,45,63,.15);text-transform:uppercase;letter-spacing:.15em;border:2px dashed rgba(34,45,63,.08);border-radius:8px;width:100%;height:100%;display:flex;align-items:center;justify-content:center}
     @media(max-width:900px){.about-certs__grid{grid-template-columns:repeat(3,1fr)}}
     @media(max-width:600px){.about-certs__grid{grid-template-columns:repeat(2,1fr);gap:1rem}}
-
-    /* Partners */
-    .about-partners{padding:clamp(4rem,6vw,6rem) 0;background:#f8f7f5;position:relative}
-    .about-partners .section__label{color:var(--brand,#C13333)}
-    .about-partners .section__title{color:var(--brand-navy,#222D3F)}
-    .about-partners .section__title em{font-style:normal;color:var(--brand,#C13333)}
-    .about-partners .section__subtitle{color:rgba(34,45,63,.6)}
-    .about-partners__grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1.5rem;margin-top:3rem}
-    .about-partners__logo{background:#fff;border:1px solid rgba(34,45,63,.08);border-radius:14px;padding:2rem;display:flex;align-items:center;justify-content:center;aspect-ratio:3/2;transition:all .35s ease;box-shadow:0 2px 8px rgba(0,0,0,.04)}
-    .about-partners__logo:hover{border-color:rgba(193,51,51,.2);transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.08)}
-    .about-partners__placeholder{font-family:'Montserrat',sans-serif;font-size:.85rem;font-weight:700;color:rgba(34,45,63,.15);text-transform:uppercase;letter-spacing:.15em;border:2px dashed rgba(34,45,63,.08);border-radius:8px;width:100%;height:100%;display:flex;align-items:center;justify-content:center}
-    @media(max-width:900px){.about-partners__grid{grid-template-columns:repeat(3,1fr)}}
-    @media(max-width:600px){.about-partners__grid{grid-template-columns:repeat(2,1fr);gap:1rem}}
     </style>
 
     <!-- ════════════════════════════════════════════════════════════
