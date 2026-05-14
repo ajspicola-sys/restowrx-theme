@@ -115,7 +115,7 @@ get_header(); ?>
 <section class="sc-services" id="services" aria-label="Our construction services">
     <div class="sc-services__inner">
 
-        <!-- Split header: title left, desc right -->
+        <!-- Split header -->
         <div class="sc-services__header">
             <div class="sc-services__header-left">
                 <span class="sc-services__label">OUR SERVICES</span>
@@ -123,227 +123,114 @@ get_header(); ?>
             </div>
             <div class="sc-services__header-right">
                 <p>Explore our full range of construction services — from ground-up builds to complete renovations. Quality craftsmanship, transparent pricing, and results built to last.</p>
+                <a href="<?php echo esc_url(home_url('/services/')); ?>" class="sc-services__view-all">View All Services →</a>
             </div>
         </div>
 
-        <!-- Image card carousel -->
-        <div class="sc-services__carousel" id="svc-carousel">
-            <button class="sc-services__arrow sc-services__arrow--prev" id="svc-prev" aria-label="Previous services">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg>
-            </button>
+        <?php
+        $services = new WP_Query([
+            'post_type'      => 'service',
+            'posts_per_page' => 8,
+            'orderby'        => 'menu_order',
+            'order'          => 'ASC',
+            'no_found_rows'  => true,
+        ]);
+        $fallback = [
+            ['title' => 'Commercial Services',      'desc' => 'Office build-outs, retail spaces, and commercial projects built to your specs.'],
+            ['title' => 'Residential',               'desc' => 'Custom homes and residential builds from foundation to finish.'],
+            ['title' => 'Hospitality Services',      'desc' => 'Restaurants, hotels, and venues crafted for guest experiences.'],
+            ['title' => 'Remodeling & Renovations',  'desc' => 'Kitchen, bath, and whole-home transformations with premium finishes.'],
+            ['title' => 'Roofing',                   'desc' => 'New roofs, repairs, and replacements for Florida weather.'],
+            ['title' => 'Concrete & Foundation',     'desc' => 'Driveways, patios, slabs, and structural foundations.'],
+        ];
+        $has_posts = $services->have_posts();
+        $card_count = $has_posts ? $services->post_count : count($fallback);
+        ?>
 
+        <div class="sc-services__carousel">
+            <button class="sc-services__arrow sc-services__arrow--prev" id="svc-prev" aria-label="Previous"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg></button>
             <div class="sc-services__track-wrap">
                 <div class="sc-services__track" id="svc-track">
-
-                    <?php
-                    $svc_cards = [
-                        ['title' => 'Commercial Services',       'slug' => 'commercial'],
-                        ['title' => 'Residential',               'slug' => 'residential'],
-                        ['title' => 'Hospitality Services',      'slug' => 'hospitality'],
-                        ['title' => 'Remodeling & Renovations',  'slug' => 'remodeling'],
-                        ['title' => 'Roofing',                   'slug' => 'roofing'],
-                        ['title' => 'Concrete & Foundation',     'slug' => 'concrete'],
-                    ];
-                    foreach ($svc_cards as $i => $card) :
-                    ?>
+                    <?php if ($has_posts) :
+                        $i = 0; while ($services->have_posts()) : $services->the_post();
+                        $thumb = get_the_post_thumbnail_url(get_the_ID(), 'medium_large');
+                        $excerpt = wp_trim_words(get_the_excerpt(), 12); ?>
+                    <a href="<?php the_permalink(); ?>" class="sc-services__card">
+                        <div class="sc-services__card-img">
+                            <?php if ($thumb) : ?><img src="<?php echo esc_url($thumb); ?>" alt="<?php the_title_attribute(); ?>" loading="lazy" decoding="async">
+                            <?php else : ?><div class="sc-services__card-placeholder" style="background:linear-gradient(135deg,hsl(<?php echo 215+$i*20;?>,35%,22%) 0%,hsl(<?php echo 215+$i*20;?>,25%,35%) 100%);"></div><?php endif; ?>
+                            <div class="sc-services__card-overlay"><span class="sc-services__card-cta">View Service →</span></div>
+                        </div>
+                        <div class="sc-services__card-body">
+                            <h3 class="sc-services__card-title"><?php the_title(); ?></h3>
+                            <p class="sc-services__card-desc"><?php echo esc_html($excerpt); ?></p>
+                        </div>
+                    </a>
+                    <?php $i++; endwhile; wp_reset_postdata(); else :
+                        foreach ($fallback as $i => $svc) : ?>
                     <a href="<?php echo esc_url(home_url('/services/')); ?>" class="sc-services__card">
                         <div class="sc-services__card-img">
-                            <!-- Placeholder gradient — replace with real photos -->
-                            <div class="sc-services__card-placeholder" style="background:linear-gradient(135deg, hsl(<?php echo (220 + $i * 25); ?>,30%,25%) 0%, hsl(<?php echo (220 + $i * 25); ?>,20%,40%) 100%);"></div>
+                            <div class="sc-services__card-placeholder" style="background:linear-gradient(135deg,hsl(<?php echo 215+$i*20;?>,35%,22%) 0%,hsl(<?php echo 215+$i*20;?>,25%,35%) 100%);"></div>
+                            <div class="sc-services__card-overlay"><span class="sc-services__card-cta">View Service →</span></div>
                         </div>
-                        <span class="sc-services__card-label"><?php echo esc_html($card['title']); ?></span>
+                        <div class="sc-services__card-body">
+                            <h3 class="sc-services__card-title"><?php echo esc_html($svc['title']); ?></h3>
+                            <p class="sc-services__card-desc"><?php echo esc_html($svc['desc']); ?></p>
+                        </div>
                     </a>
-                    <?php endforeach; ?>
-
+                    <?php endforeach; endif; ?>
                 </div>
             </div>
-
-            <button class="sc-services__arrow sc-services__arrow--next" id="svc-next" aria-label="Next services">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg>
-            </button>
+            <button class="sc-services__arrow sc-services__arrow--next" id="svc-next" aria-label="Next"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></button>
         </div>
 
+        <div class="sc-services__dots" id="svc-dots">
+            <?php for ($d = 0; $d < max(1, $card_count - 2); $d++) : ?>
+                <button class="sc-services__dot<?php echo $d === 0 ? ' active' : ''; ?>" data-idx="<?php echo $d; ?>" aria-label="Slide <?php echo $d+1; ?>"></button>
+            <?php endfor; ?>
+        </div>
     </div>
 </section>
-
 <style>
-/* ── Services Carousel Section ── */
-.sc-services {
-    background: var(--brand-navy, #222D3F);
-    padding: clamp(4rem, 6vw, 7rem) 0;
-}
-.sc-services__inner {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 clamp(1.25rem, 1rem + 2vw, 3rem);
-}
-
-/* Split header */
-.sc-services__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 3rem;
-    margin-bottom: clamp(2.5rem, 4vw, 4rem);
-}
-.sc-services__header-left { flex: 1; max-width: 520px; }
-.sc-services__header-right { flex: 1; max-width: 440px; padding-top: 1.5rem; }
-.sc-services__header-right p {
-    color: rgba(255,255,255,0.65);
-    font-size: 0.95rem;
-    line-height: 1.7;
-    margin: 0;
-}
-.sc-services__label {
-    display: inline-block;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--brand, #A52A2A);
-    margin-bottom: 0.75rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 3px solid var(--brand, #A52A2A);
-}
-.sc-services__title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1.8rem, 2.5vw, 2.6rem);
-    font-weight: 800;
-    color: #fff;
-    line-height: 1.15;
-    margin: 0;
-}
-
-/* Carousel */
-.sc-services__carousel {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-.sc-services__track-wrap {
-    flex: 1;
-    overflow: hidden;
-    border-radius: 12px;
-}
-.sc-services__track {
-    display: flex;
-    gap: 1.5rem;
-    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-/* Arrow buttons */
-.sc-services__arrow {
-    flex-shrink: 0;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    border: 2px solid rgba(255,255,255,0.3);
-    background: transparent;
-    color: #fff;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.25s ease;
-}
-.sc-services__arrow:hover {
-    background: rgba(255,255,255,0.1);
-    border-color: #fff;
-}
-
-/* Cards */
-.sc-services__card {
-    flex: 0 0 calc(33.333% - 1rem);
-    min-width: calc(33.333% - 1rem);
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.3s ease;
-}
-.sc-services__card:hover { transform: translateY(-4px); }
-
-.sc-services__card-img {
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    border-radius: 10px;
-    overflow: hidden;
-    margin-bottom: 0;
-}
-.sc-services__card-placeholder {
-    width: 100%;
-    height: 100%;
-    transition: transform 0.4s ease;
-}
-.sc-services__card:hover .sc-services__card-placeholder { transform: scale(1.05); }
-.sc-services__card-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s ease;
-}
-.sc-services__card:hover .sc-services__card-img img { transform: scale(1.05); }
-
-.sc-services__card-label {
-    display: block;
-    text-align: center;
-    padding: 1rem 0.75rem;
-    background: rgba(255,255,255,0.06);
-    border-radius: 0 0 10px 10px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #fff;
-    letter-spacing: 0.02em;
-    border-top: 2px solid rgba(255,255,255,0.08);
-}
-.sc-services__card:hover .sc-services__card-label {
-    background: rgba(165,42,42,0.15);
-    color: #fff;
-}
-
-/* Responsive */
-@media (max-width: 900px) {
-    .sc-services__header { flex-direction: column; gap: 1rem; }
-    .sc-services__header-right { padding-top: 0; }
-    .sc-services__card { flex: 0 0 calc(50% - 0.75rem); min-width: calc(50% - 0.75rem); }
-}
-@media (max-width: 600px) {
-    .sc-services__card { flex: 0 0 85%; min-width: 85%; }
-    .sc-services__arrow { width: 36px; height: 36px; }
-}
+.sc-services{background:var(--brand-navy,#222D3F);padding:clamp(4rem,6vw,7rem) 0;position:relative;overflow:hidden}
+.sc-services::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
+.sc-services__inner{max-width:1280px;margin:0 auto;padding:0 clamp(1.25rem,1rem + 2vw,3rem);position:relative;z-index:1}
+.sc-services__header{display:flex;justify-content:space-between;align-items:flex-start;gap:3rem;margin-bottom:clamp(2.5rem,4vw,3.5rem)}
+.sc-services__header-left{flex:1;max-width:520px}
+.sc-services__header-right{flex:1;max-width:440px;padding-top:1.5rem}
+.sc-services__header-right p{color:rgba(255,255,255,.6);font-size:.95rem;line-height:1.7;margin:0 0 1.25rem}
+.sc-services__label{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--brand,#C13333);margin-bottom:.75rem;padding-bottom:.6rem;border-bottom:3px solid var(--brand,#C13333)}
+.sc-services__title{font-family:'Montserrat',sans-serif;font-size:clamp(1.8rem,2.5vw,2.6rem);font-weight:800;color:#fff;line-height:1.15;margin:0}
+.sc-services__view-all{display:inline-flex;align-items:center;color:var(--brand,#C13333);font-size:.85rem;font-weight:600;text-decoration:none;letter-spacing:.03em;transition:color .25s,gap .25s;gap:.25rem}
+.sc-services__view-all:hover{color:#fff;gap:.5rem}
+.sc-services__carousel{position:relative;display:flex;align-items:center;gap:1.25rem}
+.sc-services__track-wrap{flex:1;overflow:hidden}
+.sc-services__track{display:flex;gap:1.5rem;transition:transform .55s cubic-bezier(.22,1,.36,1);will-change:transform}
+.sc-services__arrow{flex-shrink:0;width:48px;height:48px;border-radius:50%;border:2px solid rgba(255,255,255,.2);background:rgba(255,255,255,.04);color:rgba(255,255,255,.7);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s ease;backdrop-filter:blur(4px)}
+.sc-services__arrow:hover{background:var(--brand,#C13333);border-color:var(--brand,#C13333);color:#fff;transform:scale(1.08)}
+.sc-services__card{flex:0 0 calc(33.333% - 1rem);min-width:calc(33.333% - 1rem);text-decoration:none;display:flex;flex-direction:column;border-radius:14px;overflow:hidden;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);transition:transform .4s cubic-bezier(.22,1,.36,1),box-shadow .4s ease,border-color .3s}
+.sc-services__card:hover{transform:translateY(-8px);box-shadow:0 24px 48px rgba(0,0,0,.35);border-color:rgba(193,51,51,.3)}
+.sc-services__card-img{width:100%;aspect-ratio:16/11;overflow:hidden;position:relative}
+.sc-services__card-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.22,1,.36,1)}
+.sc-services__card:hover .sc-services__card-img img{transform:scale(1.08)}
+.sc-services__card-placeholder{width:100%;height:100%;transition:transform .6s cubic-bezier(.22,1,.36,1)}
+.sc-services__card:hover .sc-services__card-placeholder{transform:scale(1.08)}
+.sc-services__card-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(193,51,51,.85) 100%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:1.5rem;opacity:0;transition:opacity .35s ease}
+.sc-services__card:hover .sc-services__card-overlay{opacity:1}
+.sc-services__card-cta{color:#fff;font-size:.82rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.5rem 1.25rem;border:1px solid rgba(255,255,255,.5);border-radius:6px;backdrop-filter:blur(6px);transition:transform .2s}
+.sc-services__card:hover .sc-services__card-cta{transform:translateY(-4px)}
+.sc-services__card-body{padding:1.25rem 1.25rem 1.5rem}
+.sc-services__card-title{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:700;color:#fff;margin:0 0 .4rem;line-height:1.3}
+.sc-services__card-desc{font-size:.82rem;color:rgba(255,255,255,.5);line-height:1.55;margin:0}
+.sc-services__dots{display:flex;justify-content:center;gap:.5rem;margin-top:2rem}
+.sc-services__dot{width:10px;height:10px;border-radius:50%;border:none;background:rgba(255,255,255,.15);cursor:pointer;transition:all .3s ease;padding:0}
+.sc-services__dot:hover{background:rgba(255,255,255,.35)}
+.sc-services__dot.active{background:var(--brand,#C13333);width:28px;border-radius:5px}
+@media(max-width:900px){.sc-services__header{flex-direction:column;gap:1rem}.sc-services__header-right{padding-top:0}.sc-services__card{flex:0 0 calc(50% - .75rem);min-width:calc(50% - .75rem)}}
+@media(max-width:600px){.sc-services__card{flex:0 0 88%;min-width:88%}.sc-services__arrow{width:38px;height:38px}.sc-services__card-body{padding:1rem}}
 </style>
-
 <script>
-(function(){
-    var track = document.getElementById('svc-track');
-    if (!track) return;
-    var cards = track.children;
-    var idx = 0;
-    var visible = window.innerWidth > 900 ? 3 : window.innerWidth > 600 ? 2 : 1;
-    var maxIdx = Math.max(0, cards.length - visible);
-
-    function slide() {
-        var cardW = cards[0].offsetWidth + 24; /* 24 = gap */
-        track.style.transform = 'translateX(-' + (idx * cardW) + 'px)';
-    }
-
-    document.getElementById('svc-prev').addEventListener('click', function(){
-        idx = Math.max(0, idx - 1);
-        slide();
-    });
-    document.getElementById('svc-next').addEventListener('click', function(){
-        idx = Math.min(maxIdx, idx + 1);
-        slide();
-    });
-
-    window.addEventListener('resize', function(){
-        visible = window.innerWidth > 900 ? 3 : window.innerWidth > 600 ? 2 : 1;
-        maxIdx = Math.max(0, cards.length - visible);
-        idx = Math.min(idx, maxIdx);
-        slide();
-    });
-})();
+(function(){var t=document.getElementById('svc-track');if(!t)return;var c=t.children;if(!c.length)return;var i=0,dots=document.querySelectorAll('.sc-services__dot');function gv(){return innerWidth>900?3:innerWidth>600?2:1}var v=gv(),m=Math.max(0,c.length-v);function s(){var g=parseFloat(getComputedStyle(t).gap)||24,w=c[0].offsetWidth+g;t.style.transform='translateX(-'+i*w+'px)';dots.forEach(function(d,x){d.classList.toggle('active',x===i)})}document.getElementById('svc-prev').onclick=function(){i=Math.max(0,i-1);s()};document.getElementById('svc-next').onclick=function(){i=Math.min(m,i+1);s()};dots.forEach(function(d){d.onclick=function(){i=Math.min(m,+this.dataset.idx);s()}});addEventListener('resize',function(){v=gv();m=Math.max(0,c.length-v);i=Math.min(i,m);s()});var sx=0,df=0;t.addEventListener('touchstart',function(e){sx=e.touches[0].clientX},{passive:1});t.addEventListener('touchmove',function(e){df=sx-e.touches[0].clientX},{passive:1});t.addEventListener('touchend',function(){if(Math.abs(df)>40){df>0?i=Math.min(m,i+1):i=Math.max(0,i-1);s()}df=0})})();
 </script>
 
 <!-- ══════════════════════════════════════════════════════
