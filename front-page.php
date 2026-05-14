@@ -244,7 +244,7 @@ get_header(); ?>
 .sc-services__card.is-center:hover{transform:scale(1.08) translateY(-4px);box-shadow:0 14px 32px rgba(0,0,0,.3),0 0 50px rgba(193,51,51,.1)}
 .sc-services__card.is-side{opacity:.5;filter:brightness(.65);transform:scale(.93)}
 .sc-services__card.is-side:hover{opacity:.8;filter:brightness(.8);transform:scale(.95) translateY(-4px)}
-.sc-services__card-img{width:100%;aspect-ratio:16/11;overflow:hidden;position:relative}
+.sc-services__card-img{width:100%;aspect-ratio:3/4;overflow:hidden;position:relative}
 .sc-services__card-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.22,1,.36,1)}
 .sc-services__card:hover .sc-services__card-img img{transform:scale(1.08)}
 .sc-services__card-placeholder{width:100%;height:100%;transition:transform .6s cubic-bezier(.22,1,.36,1)}
