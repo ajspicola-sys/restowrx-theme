@@ -156,25 +156,27 @@ get_header(); ?>
                         $thumb = get_the_post_thumbnail_url(get_the_ID(), 'medium_large');
                         $excerpt = wp_trim_words(get_the_excerpt(), 12); ?>
                     <a href="<?php the_permalink(); ?>" class="sc-services__card">
+                        <span class="sc-services__card-num"><?php echo str_pad($i + 1, 2, '0', STR_PAD_LEFT); ?></span>
                         <div class="sc-services__card-img">
                             <?php if ($thumb) : ?><img src="<?php echo esc_url($thumb); ?>" alt="<?php the_title_attribute(); ?>" loading="lazy" decoding="async">
                             <?php else : ?><div class="sc-services__card-placeholder" style="background:linear-gradient(135deg,hsl(<?php echo 215+$i*20;?>,35%,22%) 0%,hsl(<?php echo 215+$i*20;?>,25%,35%) 100%);"></div><?php endif; ?>
                             <div class="sc-services__card-overlay"><span class="sc-services__card-cta">View Service →</span></div>
                         </div>
                         <div class="sc-services__card-body">
-                            <h3 class="sc-services__card-title"><?php the_title(); ?></h3>
+                            <h3 class="sc-services__card-title"><?php the_title(); ?> <svg class="sc-services__card-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></h3>
                             <p class="sc-services__card-desc"><?php echo esc_html($excerpt); ?></p>
                         </div>
                     </a>
                     <?php $i++; endwhile; wp_reset_postdata(); else :
                         foreach ($fallback as $i => $svc) : ?>
                     <a href="<?php echo esc_url(home_url('/services/')); ?>" class="sc-services__card">
+                        <span class="sc-services__card-num"><?php echo str_pad($i + 1, 2, '0', STR_PAD_LEFT); ?></span>
                         <div class="sc-services__card-img">
                             <div class="sc-services__card-placeholder" style="background:linear-gradient(135deg,hsl(<?php echo 215+$i*20;?>,35%,22%) 0%,hsl(<?php echo 215+$i*20;?>,25%,35%) 100%);"></div>
                             <div class="sc-services__card-overlay"><span class="sc-services__card-cta">View Service →</span></div>
                         </div>
                         <div class="sc-services__card-body">
-                            <h3 class="sc-services__card-title"><?php echo esc_html($svc['title']); ?></h3>
+                            <h3 class="sc-services__card-title"><?php echo esc_html($svc['title']); ?> <svg class="sc-services__card-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></h3>
                             <p class="sc-services__card-desc"><?php echo esc_html($svc['desc']); ?></p>
                         </div>
                     </a>
@@ -194,12 +196,17 @@ get_header(); ?>
 <style>
 .sc-services{background:var(--brand-navy,#222D3F);padding:clamp(4rem,6vw,7rem) 0;position:relative;overflow:hidden}
 .sc-services::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
+/* Decorative accent orb */
+.sc-services::after{content:'';position:absolute;top:-120px;right:-80px;width:400px;height:400px;background:radial-gradient(circle,rgba(193,51,51,.08) 0%,transparent 70%);border-radius:50%;pointer-events:none}
 .sc-services__inner{max-width:1280px;margin:0 auto;padding:0 clamp(1.25rem,1rem + 2vw,3rem);position:relative;z-index:1}
 .sc-services__header{display:flex;justify-content:space-between;align-items:flex-start;gap:3rem;margin-bottom:clamp(2.5rem,4vw,3.5rem)}
 .sc-services__header-left{flex:1;max-width:520px}
 .sc-services__header-right{flex:1;max-width:440px;padding-top:1.5rem}
 .sc-services__header-right p{color:rgba(255,255,255,.6);font-size:.95rem;line-height:1.7;margin:0 0 1.25rem}
-.sc-services__label{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--brand,#C13333);margin-bottom:.75rem;padding-bottom:.6rem;border-bottom:3px solid var(--brand,#C13333)}
+/* Animated underline label */
+.sc-services__label{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--brand,#C13333);margin-bottom:.75rem;padding-bottom:.6rem;position:relative}
+.sc-services__label::after{content:'';position:absolute;bottom:0;left:0;height:3px;width:100%;background:linear-gradient(90deg,var(--brand,#C13333),rgba(193,51,51,.3));border-radius:2px;animation:sc-label-pulse 2.5s ease-in-out infinite}
+@keyframes sc-label-pulse{0%,100%{opacity:1;transform:scaleX(1)}50%{opacity:.6;transform:scaleX(.85)}}
 .sc-services__title{font-family:'Montserrat',sans-serif;font-size:clamp(1.8rem,2.5vw,2.6rem);font-weight:800;color:#fff;line-height:1.15;margin:0}
 .sc-services__view-all{display:inline-flex;align-items:center;color:var(--brand,#C13333);font-size:.85rem;font-weight:600;text-decoration:none;letter-spacing:.03em;transition:color .25s,gap .25s;gap:.25rem}
 .sc-services__view-all:hover{color:#fff;gap:.5rem}
@@ -208,34 +215,43 @@ get_header(); ?>
 .sc-services__track{display:flex;gap:1.5rem;transition:transform .55s cubic-bezier(.22,1,.36,1);will-change:transform}
 .sc-services__arrow{flex-shrink:0;width:48px;height:48px;border-radius:50%;border:2px solid rgba(255,255,255,.2);background:rgba(255,255,255,.04);color:rgba(255,255,255,.7);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s ease;backdrop-filter:blur(4px)}
 .sc-services__arrow:hover{background:var(--brand,#C13333);border-color:var(--brand,#C13333);color:#fff;transform:scale(1.08)}
-.sc-services__card{flex:0 0 calc(33.333% - 1rem);min-width:calc(33.333% - 1rem);text-decoration:none;display:flex;flex-direction:column;border-radius:14px;overflow:hidden;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);transition:transform .5s cubic-bezier(.22,1,.36,1),box-shadow .5s ease,border-color .3s,opacity .5s ease,filter .5s ease}
+/* Cards */
+.sc-services__card{flex:0 0 calc(33.333% - 1rem);min-width:calc(33.333% - 1rem);text-decoration:none;display:flex;flex-direction:column;border-radius:14px;overflow:visible;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);transition:transform .5s cubic-bezier(.22,1,.36,1),box-shadow .5s ease,border-color .3s,opacity .5s ease,filter .5s ease;position:relative}
 .sc-services__card:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 12px 24px rgba(0,0,0,.25);border-color:rgba(193,51,51,.3)}
+/* Number badge */
+.sc-services__card-num{position:absolute;top:-10px;left:16px;z-index:5;font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:800;color:#fff;background:var(--brand,#C13333);padding:4px 10px;border-radius:6px;letter-spacing:.05em;box-shadow:0 4px 12px rgba(193,51,51,.35);transition:transform .3s ease}
+.sc-services__card:hover .sc-services__card-num{transform:translateY(-2px) scale(1.05)}
 /* Center card emphasis */
-.sc-services__card.is-center{transform:scale(1.06);box-shadow:0 10px 30px rgba(0,0,0,.3);border-color:rgba(193,51,51,.25);z-index:2;opacity:1}
-.sc-services__card.is-center:hover{transform:scale(1.08) translateY(-4px);box-shadow:0 14px 32px rgba(0,0,0,.3)}
+.sc-services__card.is-center{transform:scale(1.06);box-shadow:0 10px 30px rgba(0,0,0,.3),0 0 40px rgba(193,51,51,.08);border-color:rgba(193,51,51,.25);z-index:2;opacity:1}
+.sc-services__card.is-center:hover{transform:scale(1.08) translateY(-4px);box-shadow:0 14px 32px rgba(0,0,0,.3),0 0 50px rgba(193,51,51,.1)}
 .sc-services__card.is-side{opacity:.55;filter:brightness(.7);transform:scale(.94)}
 .sc-services__card.is-side:hover{opacity:.85;filter:brightness(.85);transform:scale(.96) translateY(-4px)}
-.sc-services__card-img{width:100%;aspect-ratio:16/11;overflow:hidden;position:relative}
+.sc-services__card-img{width:100%;aspect-ratio:16/11;overflow:hidden;position:relative;border-radius:14px 14px 0 0}
 .sc-services__card-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.22,1,.36,1)}
 .sc-services__card:hover .sc-services__card-img img{transform:scale(1.08)}
 .sc-services__card-placeholder{width:100%;height:100%;transition:transform .6s cubic-bezier(.22,1,.36,1)}
 .sc-services__card:hover .sc-services__card-placeholder{transform:scale(1.08)}
 .sc-services__card-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(193,51,51,.85) 100%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:1.5rem;opacity:0;transition:opacity .35s ease}
 .sc-services__card:hover .sc-services__card-overlay{opacity:1}
-.sc-services__card-cta{color:#fff;font-size:.82rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.5rem 1.25rem;border:1px solid rgba(255,255,255,.5);border-radius:6px;backdrop-filter:blur(6px);transition:transform .2s}
+.sc-services__card-cta{color:#fff;font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.5rem 1.25rem;border:1px solid rgba(255,255,255,.5);border-radius:6px;backdrop-filter:blur(6px);transition:transform .2s,background .2s}
 .sc-services__card:hover .sc-services__card-cta{transform:translateY(-4px)}
-.sc-services__card-body{padding:1.25rem 1.25rem 1.5rem}
-.sc-services__card-title{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:700;color:#fff;margin:0 0 .4rem;line-height:1.3}
-.sc-services__card-desc{font-size:.82rem;color:rgba(255,255,255,.5);line-height:1.55;margin:0}
+.sc-services__card-cta:hover{background:rgba(255,255,255,.15)}
+/* Card body */
+.sc-services__card-body{padding:1.25rem 1.25rem 1.5rem;border-top:1px solid rgba(255,255,255,.06)}
+.sc-services__card-title{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:700;color:#fff;margin:0 0 .4rem;line-height:1.3;display:flex;align-items:center;gap:.4rem}
+.sc-services__card-arrow{opacity:.3;transition:opacity .3s,transform .3s;flex-shrink:0}
+.sc-services__card:hover .sc-services__card-arrow{opacity:1;transform:translateX(3px);stroke:var(--brand,#C13333)}
+.sc-services__card-desc{font-size:.82rem;color:rgba(255,255,255,.45);line-height:1.55;margin:0}
+/* Dots */
 .sc-services__dots{display:flex;justify-content:center;gap:.5rem;margin-top:2rem}
 .sc-services__dot{width:10px;height:10px;border-radius:50%;border:none;background:rgba(255,255,255,.15);cursor:pointer;transition:all .3s ease;padding:0}
 .sc-services__dot:hover{background:rgba(255,255,255,.35)}
-.sc-services__dot.active{background:var(--brand,#C13333);width:28px;border-radius:5px}
-@media(max-width:900px){.sc-services__header{flex-direction:column;gap:1rem}.sc-services__header-right{padding-top:0}.sc-services__card{flex:0 0 calc(50% - .75rem);min-width:calc(50% - .75rem)}}
+.sc-services__dot.active{background:var(--brand,#C13333);width:28px;border-radius:5px;box-shadow:0 0 8px rgba(193,51,51,.4)}
+@media(max-width:900px){.sc-services__header{flex-direction:column;gap:1rem}.sc-services__header-right{padding-top:0}.sc-services__card{flex:0 0 calc(50% - .75rem);min-width:calc(50% - .75rem)}.sc-services__card-num{top:-8px;font-size:.65rem}}
 @media(max-width:600px){.sc-services__card{flex:0 0 88%;min-width:88%}.sc-services__arrow{width:38px;height:38px}.sc-services__card-body{padding:1rem}}
 </style>
 <script>
-(function(){var t=document.getElementById('svc-track');if(!t)return;var c=t.children;if(!c.length)return;var i=0,dots=document.querySelectorAll('.sc-services__dot');function gv(){return innerWidth>900?3:innerWidth>600?2:1}var v=gv(),m=Math.max(0,c.length-v);function hl(){var center=i+Math.floor(v/2);for(var j=0;j<c.length;j++){c[j].classList.remove('is-center','is-side');if(v>=3){if(j===center)c[j].classList.add('is-center');else if(j>=i&&j<i+v)c[j].classList.add('is-side')}}}function s(){var g=parseFloat(getComputedStyle(t).gap)||24,w=c[0].offsetWidth+g;t.style.transform='translateX(-'+i*w+'px)';dots.forEach(function(d,x){d.classList.toggle('active',x===i)});hl()}document.getElementById('svc-prev').onclick=function(){i=Math.max(0,i-1);s()};document.getElementById('svc-next').onclick=function(){i=Math.min(m,i+1);s()};dots.forEach(function(d){d.onclick=function(){i=Math.min(m,+this.dataset.idx);s()}});addEventListener('resize',function(){v=gv();m=Math.max(0,c.length-v);i=Math.min(i,m);s()});s();var sx=0,df=0;t.addEventListener('touchstart',function(e){sx=e.touches[0].clientX},{passive:1});t.addEventListener('touchmove',function(e){df=sx-e.touches[0].clientX},{passive:1});t.addEventListener('touchend',function(){if(Math.abs(df)>40){df>0?i=Math.min(m,i+1):i=Math.max(0,i-1);s()}df=0})})();
+(function(){var t=document.getElementById('svc-track');if(!t)return;var c=t.children;if(!c.length)return;var i=0,dots=document.querySelectorAll('.sc-services__dot'),autoTimer;function gv(){return innerWidth>900?3:innerWidth>600?2:1}var v=gv(),m=Math.max(0,c.length-v);function hl(){var center=i+Math.floor(v/2);for(var j=0;j<c.length;j++){c[j].classList.remove('is-center','is-side');if(v>=3){if(j===center)c[j].classList.add('is-center');else if(j>=i&&j<i+v)c[j].classList.add('is-side')}}}function s(){var g=parseFloat(getComputedStyle(t).gap)||24,w=c[0].offsetWidth+g;t.style.transform='translateX(-'+i*w+'px)';dots.forEach(function(d,x){d.classList.toggle('active',x===i)});hl()}function next(){i=i<m?i+1:0;s()}function startAuto(){autoTimer=setInterval(next,4500)}function stopAuto(){clearInterval(autoTimer)}document.getElementById('svc-prev').onclick=function(){stopAuto();i=Math.max(0,i-1);s();startAuto()};document.getElementById('svc-next').onclick=function(){stopAuto();next();startAuto()};dots.forEach(function(d){d.onclick=function(){stopAuto();i=Math.min(m,+this.dataset.idx);s();startAuto()}});addEventListener('resize',function(){v=gv();m=Math.max(0,c.length-v);i=Math.min(i,m);s()});s();startAuto();var sx=0,df=0;t.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;stopAuto()},{passive:1});t.addEventListener('touchmove',function(e){df=sx-e.touches[0].clientX},{passive:1});t.addEventListener('touchend',function(){if(Math.abs(df)>40){df>0?i=Math.min(m,i+1):i=Math.max(0,i-1);s()}df=0;startAuto()})})();
 </script>
 
 <!-- ══════════════════════════════════════════════════════
