@@ -174,12 +174,12 @@ get_header(); ?>
     <!-- ════════════════════════════════════════════════════════════
          CERTIFICATIONS & LICENSES
          ════════════════════════════════════════════════════════════ -->
-    <section class="about-certs" aria-label="Certifications and licenses">
+    <section class="about-certs" aria-label="Trusted by these brands">
         <div class="section__inner">
             <div class="section__header reveal section__header--center">
-                <span class="section__label">Credentials</span>
-                <h2 class="section__title">Licensed, Insured &<br>Fully <em>Certified</em></h2>
-                <p class="section__subtitle section__subtitle--narrow">We hold every license and certification required to deliver safe, code-compliant construction across the state of Florida.</p>
+                <span class="section__label">Trusted By</span>
+                <h2 class="section__title">Recognized by Brands<br>That <em>Matter</em></h2>
+                <p class="section__subtitle section__subtitle--narrow">We're proud to be recognized and trusted by leading industry networks and directories across Tampa Bay.</p>
             </div>
             <div class="about-certs__grid reveal">
                 <div class="about-certs__logo">
