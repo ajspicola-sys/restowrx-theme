@@ -15,6 +15,8 @@ $random_services = new WP_Query( [
 ] );
 ?>
 
+<script src="https://unpkg.com/@lottiefiles/lottie-player@2.0.8/dist/lottie-player.js" defer></script>
+
 <main class="site-main" id="main-content">
 
     <section class="e404" aria-label="Page not found">
@@ -25,53 +27,14 @@ $random_services = new WP_Query( [
             <!-- ── Construction illustration ─────────────────── -->
             <div class="e404__art" aria-hidden="true">
                 <div class="e404__number">404</div>
-
-                <svg class="e404__crane" viewBox="0 0 280 360" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Base platform -->
-                    <rect x="80" y="300" width="120" height="20" rx="4" fill="#0F2440"/>
-                    <rect x="80" y="300" width="120" height="6" rx="3" fill="#1E4A7A" opacity=".4"/>
-                    <!-- Vertical beam -->
-                    <rect x="130" y="80" width="20" height="224" fill="#18375D"/>
-                    <rect x="130" y="80" width="6" height="224" fill="#1E4A7A" opacity=".5"/>
-                    <!-- Cross braces -->
-                    <line x1="130" y1="120" x2="150" y2="160" stroke="#0F2440" stroke-width="3"/>
-                    <line x1="150" y1="120" x2="130" y2="160" stroke="#0F2440" stroke-width="3"/>
-                    <line x1="130" y1="180" x2="150" y2="220" stroke="#0F2440" stroke-width="3"/>
-                    <line x1="150" y1="180" x2="130" y2="220" stroke="#0F2440" stroke-width="3"/>
-                    <line x1="130" y1="240" x2="150" y2="280" stroke="#0F2440" stroke-width="3"/>
-                    <line x1="150" y1="240" x2="130" y2="280" stroke="#0F2440" stroke-width="3"/>
-                    <!-- Horizontal boom -->
-                    <rect x="40" y="74" width="200" height="14" rx="4" fill="#18375D"/>
-                    <rect x="40" y="74" width="200" height="5" rx="2" fill="#1E4A7A" opacity=".5"/>
-                    <!-- Cabin -->
-                    <rect x="120" y="86" width="40" height="32" rx="4" fill="#0F2440"/>
-                    <rect x="126" y="92" width="28" height="14" rx="2" fill="#1E4A7A" opacity=".3"/>
-                    <!-- Cable -->
-                    <line x1="60" y1="88" x2="60" y2="240" stroke="#C13333" stroke-width="2" stroke-dasharray="6 4"/>
-                    <!-- Hook -->
-                    <circle cx="60" cy="248" r="10" stroke="#C13333" stroke-width="3" fill="none"/>
-                    <line x1="60" y1="238" x2="60" y2="244" stroke="#C13333" stroke-width="3"/>
-                    <!-- Hard hat on hook -->
-                    <g class="e404__hat">
-                        <ellipse cx="60" cy="272" rx="22" ry="8" fill="#E8A817"/>
-                        <path d="M42 272 C42 256 78 256 78 272" fill="#F5C518"/>
-                        <rect x="38" y="268" width="44" height="6" rx="3" fill="#E8A817"/>
-                    </g>
-                    <!-- Warning stripes on base -->
-                    <g opacity=".6">
-                        <rect x="82" y="304" width="8" height="12" fill="#F5C518"/>
-                        <rect x="98" y="304" width="8" height="12" fill="#F5C518"/>
-                        <rect x="114" y="304" width="8" height="12" fill="#F5C518"/>
-                        <rect x="130" y="304" width="8" height="12" fill="#F5C518"/>
-                        <rect x="146" y="304" width="8" height="12" fill="#F5C518"/>
-                        <rect x="162" y="304" width="8" height="12" fill="#F5C518"/>
-                        <rect x="178" y="304" width="8" height="12" fill="#F5C518"/>
-                    </g>
-                    <!-- Counter-weight -->
-                    <rect x="210" y="88" width="24" height="24" rx="3" fill="#0F2440"/>
-                    <rect x="210" y="88" width="24" height="8" rx="3" fill="#C13333" opacity=".5"/>
-                </svg>
-
+                <lottie-player
+                    src="<?php echo esc_url( get_template_directory_uri() . '/assets/construction-site.json' ); ?>"
+                    background="transparent"
+                    speed="1"
+                    style="width:400px;height:400px;max-width:100%;"
+                    loop
+                    autoplay
+                ></lottie-player>
             </div><!-- /.e404__art -->
 
             <!-- ── Text content ────────────────────────────────── -->
