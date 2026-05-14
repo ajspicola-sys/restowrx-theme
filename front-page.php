@@ -193,11 +193,11 @@ get_header(); ?>
 .sc-services__card:hover .sc-services__card-overlay{opacity:1}
 .sc-services__card-cta{color:#fff;font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.6rem 1.5rem;background:transparent;border:2px solid rgba(255,255,255,.3);border-radius:8px;transition:all .35s ease}
 .sc-services__card:hover .sc-services__card-cta{transform:translateY(-4px);background:#C13333;border-color:#C13333;box-shadow:0 0 20px rgba(193,51,51,.5),0 0 50px rgba(193,51,51,.2);letter-spacing:.12em}
-.sc-services__card-body{padding:1.25rem 1.25rem 1.5rem;border-top:1px solid rgba(255,255,255,.06)}
-.sc-services__card-title{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:700;color:#fff;margin:0 0 .4rem;line-height:1.3;display:flex;align-items:center;gap:.4rem}
-.sc-services__card-arrow{opacity:.3;transition:opacity .3s,transform .3s;flex-shrink:0}
+.sc-services__card-body{padding:1.25rem 1.25rem 1.5rem;background:#fff;border-top:none}
+.sc-services__card-title{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:700;color:var(--brand-navy,#222D3F);margin:0 0 .4rem;line-height:1.3;display:flex;align-items:center;gap:.4rem}
+.sc-services__card-arrow{opacity:.3;transition:opacity .3s,transform .3s;flex-shrink:0;stroke:var(--brand-navy,#222D3F)}
 .sc-services__card:hover .sc-services__card-arrow{opacity:1;transform:translateX(3px);stroke:var(--brand,#C13333)}
-.sc-services__card-desc{font-size:.82rem;color:rgba(255,255,255,.45);line-height:1.55;margin:0}
+.sc-services__card-desc{font-size:.82rem;color:rgba(34,45,63,.55);line-height:1.55;margin:0}
 .sc-services__dots{display:flex;justify-content:center;gap:.5rem;margin-top:3.5rem}
 .sc-services__dot{width:10px;height:10px;border-radius:50%;border:none;background:rgba(255,255,255,.15);cursor:pointer;transition:all .3s ease;padding:0}
 .sc-services__dot:hover{background:rgba(255,255,255,.35)}
