@@ -355,6 +355,92 @@ get_header(); ?>
 </section>
 
 <!-- ══════════════════════════════════════════════════════
+     RECENT WORKS — Portfolio showcase, gradient bg
+     ══════════════════════════════════════════════════════ -->
+<?php
+$portfolio = new WP_Query([
+    'post_type'      => 'portfolio',
+    'posts_per_page' => 6,
+    'post_status'    => 'publish',
+    'orderby'        => 'date',
+    'order'          => 'DESC',
+    'no_found_rows'  => true,
+]);
+if ($portfolio->have_posts()): ?>
+<section class="sc-works" id="recent-works" aria-label="Recent projects">
+    <div class="sc-works__glow" aria-hidden="true"></div>
+    <div class="sc-works__grid-bg" aria-hidden="true"></div>
+    <div class="sc-works__inner">
+        <div class="sc-works__header">
+            <div>
+                <span class="sc-works__label">Our Work</span>
+                <h2 class="sc-works__title">Recent <em>Projects</em></h2>
+            </div>
+            <a href="<?php echo esc_url(home_url('/portfolio/')); ?>" class="sc-works__view-all">View All Projects <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></a>
+        </div>
+        <div class="sc-works__grid">
+            <?php while ($portfolio->have_posts()): $portfolio->the_post();
+                $types = get_the_terms(get_the_ID(), 'project_type');
+                $type  = ($types && !is_wp_error($types)) ? $types[0]->name : '';
+                $year  = get_post_meta(get_the_ID(), '_portfolio_year', true);
+            ?>
+            <a href="<?php the_permalink(); ?>" class="sc-works__card reveal">
+                <div class="sc-works__card-img">
+                    <?php if (has_post_thumbnail()):
+                        the_post_thumbnail('medium_large', ['loading' => 'lazy', 'decoding' => 'async']);
+                    else: ?>
+                        <div class="sc-works__card-placeholder"></div>
+                    <?php endif; ?>
+                    <div class="sc-works__card-overlay">
+                        <span class="sc-works__card-cta">View Project →</span>
+                    </div>
+                </div>
+                <div class="sc-works__card-body">
+                    <h3 class="sc-works__card-title"><?php the_title(); ?></h3>
+                    <?php if ($type || $year): ?>
+                    <span class="sc-works__card-meta">
+                        <?php echo esc_html($type); ?><?php if ($type && $year) echo ' · '; ?><?php echo esc_html($year); ?>
+                    </span>
+                    <?php endif; ?>
+                </div>
+            </a>
+            <?php endwhile; wp_reset_postdata(); ?>
+        </div>
+    </div>
+</section>
+<style>
+.sc-works{background:radial-gradient(ellipse at 50% 50%,#1a2d45 0%,#0A1628 70%);padding:clamp(4rem,6vw,7rem) 0;position:relative;overflow:hidden}
+.sc-works__glow{position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(24,55,93,.4) 0%,transparent 65%);pointer-events:none}
+.sc-works__grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
+.sc-works__inner{max-width:1280px;margin:0 auto;padding:0 clamp(1.25rem,1rem + 2vw,3rem);position:relative;z-index:1}
+.sc-works__header{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;margin-bottom:clamp(2.5rem,4vw,3.5rem)}
+.sc-works__label{display:inline-block;font-family:'Inter',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--brand,#C13333);padding-bottom:.5rem;position:relative}
+.sc-works__label::after{content:'';position:absolute;bottom:0;left:0;height:3px;width:100%;background:linear-gradient(90deg,var(--brand,#C13333),rgba(193,51,51,.3));border-radius:2px}
+.sc-works__title{font-family:'Montserrat',sans-serif;font-size:clamp(2rem,3vw,3rem);font-weight:800;color:#fff;line-height:1.15;margin:.5rem 0 0}
+.sc-works__title em{font-style:normal;color:var(--brand,#C13333)}
+.sc-works__view-all{display:inline-flex;align-items:center;gap:.5rem;color:rgba(255,255,255,.9);font-size:.8rem;font-weight:700;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;padding:.75rem 1.75rem;background:transparent;border:2px solid rgba(255,255,255,.2);border-radius:8px;transition:all .35s ease}
+.sc-works__view-all:hover{background:#C13333;border-color:#C13333;color:#fff;box-shadow:0 0 25px rgba(193,51,51,.5);transform:translateY(-2px)}
+/* Grid */
+.sc-works__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.sc-works__card{text-decoration:none;border-radius:14px;overflow:hidden;background:#fff;transition:transform .5s cubic-bezier(.22,1,.36,1),box-shadow .5s ease}
+.sc-works__card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(0,0,0,.3)}
+.sc-works__card-img{position:relative;aspect-ratio:16/10;overflow:hidden}
+.sc-works__card-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.22,1,.36,1)}
+.sc-works__card:hover .sc-works__card-img img{transform:scale(1.06)}
+.sc-works__card-placeholder{width:100%;height:100%;background:linear-gradient(135deg,#222D3F,#3D6491)}
+.sc-works__card-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(193,51,51,.8) 100%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:1.5rem;opacity:0;transition:opacity .35s ease}
+.sc-works__card:hover .sc-works__card-overlay{opacity:1}
+.sc-works__card-cta{color:#fff;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.5rem 1.25rem;border:2px solid rgba(255,255,255,.3);border-radius:8px;transition:all .3s}
+.sc-works__card:hover .sc-works__card-cta{background:#C13333;border-color:#C13333;box-shadow:0 0 20px rgba(193,51,51,.5)}
+.sc-works__card-body{padding:1.25rem 1.25rem 1.5rem}
+.sc-works__card-title{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:700;color:var(--brand-navy,#222D3F);margin:0 0 .3rem;line-height:1.3}
+.sc-works__card-meta{font-size:.78rem;color:rgba(34,45,63,.45);font-weight:500}
+@media(max-width:900px){.sc-works__grid{grid-template-columns:repeat(2,1fr)}.sc-works__header{flex-direction:column;align-items:flex-start}}
+@media(max-width:600px){.sc-works__grid{grid-template-columns:1fr}}
+</style>
+<?php endif; ?>
+
+<!-- ══════════════════════════════════════════════════════
      HOW IT WORKS — Dark navy, bold numbered steps
      ══════════════════════════════════════════════════════ -->
 <section class="hwh-process" aria-label="How our service works">

@@ -954,6 +954,162 @@ function hwh_register_services() {
 }
 add_action('init', 'hwh_register_services');
 
+// ═══════════════════════════════════════════════════════════════════
+// PORTFOLIO — Custom Post Type + Image Gallery Metabox
+// ═══════════════════════════════════════════════════════════════════
+function sc_register_portfolio() {
+    register_post_type('portfolio', [
+        'labels' => [
+            'name'               => 'Portfolio',
+            'singular_name'      => 'Project',
+            'add_new'            => 'Add Project',
+            'add_new_item'       => 'Add New Project',
+            'edit_item'          => 'Edit Project',
+            'new_item'           => 'New Project',
+            'view_item'          => 'View Project',
+            'search_items'       => 'Search Projects',
+            'not_found'          => 'No projects found',
+            'menu_name'          => '🏗️ Portfolio',
+        ],
+        'public'              => true,
+        'exclude_from_search' => false,
+        'has_archive'         => true,
+        'rewrite'             => ['slug' => 'portfolio'],
+        'menu_icon'           => 'dashicons-images-alt2',
+        'menu_position'       => 6,
+        'supports'            => ['title', 'editor', 'thumbnail', 'excerpt'],
+        'show_in_rest'        => true,
+    ]);
+
+    register_taxonomy('project_type', 'portfolio', [
+        'labels' => [
+            'name'          => 'Project Types',
+            'singular_name' => 'Project Type',
+            'add_new_item'  => 'Add Project Type',
+            'menu_name'     => 'Project Types',
+        ],
+        'public'       => true,
+        'hierarchical' => true,
+        'rewrite'      => ['slug' => 'project-type'],
+        'show_in_rest' => true,
+    ]);
+}
+add_action('init', 'sc_register_portfolio');
+
+// -- Portfolio Gallery Metabox ----------------------------------------
+function sc_portfolio_gallery_metabox() {
+    add_meta_box(
+        'sc_portfolio_gallery',
+        'Project Gallery',
+        'sc_portfolio_gallery_html',
+        'portfolio',
+        'normal',
+        'high'
+    );
+    add_meta_box(
+        'sc_portfolio_details',
+        'Project Details',
+        'sc_portfolio_details_html',
+        'portfolio',
+        'side',
+        'default'
+    );
+}
+add_action('add_meta_boxes', 'sc_portfolio_gallery_metabox');
+
+function sc_portfolio_details_html($post) {
+    $location = get_post_meta($post->ID, '_portfolio_location', true);
+    $duration = get_post_meta($post->ID, '_portfolio_duration', true);
+    $year     = get_post_meta($post->ID, '_portfolio_year', true);
+    wp_nonce_field('sc_portfolio_details_nonce', 'sc_portfolio_details_nonce_field');
+    ?>
+    <p><label><strong>Location</strong></label><br>
+    <input type="text" name="portfolio_location" value="<?php echo esc_attr($location); ?>" style="width:100%" placeholder="Tampa, FL"></p>
+    <p><label><strong>Duration</strong></label><br>
+    <input type="text" name="portfolio_duration" value="<?php echo esc_attr($duration); ?>" style="width:100%" placeholder="6 weeks"></p>
+    <p><label><strong>Year</strong></label><br>
+    <input type="text" name="portfolio_year" value="<?php echo esc_attr($year); ?>" style="width:100%" placeholder="2024"></p>
+    <?php
+}
+
+function sc_portfolio_gallery_html($post) {
+    $gallery_ids = get_post_meta($post->ID, '_portfolio_gallery', true);
+    $gallery_ids = $gallery_ids ? explode(',', $gallery_ids) : [];
+    wp_nonce_field('sc_portfolio_gallery_nonce', 'sc_portfolio_gallery_nonce_field');
+    ?>
+    <style>
+        .sc-gallery-wrap{display:flex;flex-wrap:wrap;gap:10px;padding:10px 0}
+        .sc-gallery-wrap .sc-gallery-thumb{position:relative;width:120px;height:120px;border-radius:8px;overflow:hidden;cursor:move;border:2px solid #ddd}
+        .sc-gallery-wrap .sc-gallery-thumb img{width:100%;height:100%;object-fit:cover}
+        .sc-gallery-wrap .sc-gallery-thumb .sc-gallery-remove{position:absolute;top:4px;right:4px;background:#C13333;color:#fff;border:none;border-radius:50%;width:22px;height:22px;cursor:pointer;font-size:14px;line-height:20px;text-align:center}
+    </style>
+    <input type="hidden" name="portfolio_gallery" id="sc-gallery-ids" value="<?php echo esc_attr(implode(',', $gallery_ids)); ?>">
+    <div class="sc-gallery-wrap" id="sc-gallery-wrap">
+        <?php foreach ($gallery_ids as $id):
+            $img = wp_get_attachment_image_src($id, 'thumbnail');
+            if ($img): ?>
+            <div class="sc-gallery-thumb" data-id="<?php echo esc_attr($id); ?>">
+                <img src="<?php echo esc_url($img[0]); ?>" alt="">
+                <button type="button" class="sc-gallery-remove" title="Remove">&times;</button>
+            </div>
+        <?php endif; endforeach; ?>
+    </div>
+    <p><button type="button" class="button button-primary" id="sc-gallery-add">Add Images</button></p>
+    <script>
+    jQuery(function($){
+        var wrap   = $('#sc-gallery-wrap'),
+            input  = $('#sc-gallery-ids');
+
+        // Sortable
+        wrap.sortable({ items:'.sc-gallery-thumb', update: syncIds });
+
+        // Add images
+        $('#sc-gallery-add').on('click', function(e){
+            e.preventDefault();
+            var frame = wp.media({ multiple:'add', library:{type:'image'} });
+            frame.on('select', function(){
+                frame.state().get('selection').each(function(att){
+                    var url = att.attributes.sizes.thumbnail ? att.attributes.sizes.thumbnail.url : att.attributes.url;
+                    wrap.append('<div class="sc-gallery-thumb" data-id="'+att.id+'"><img src="'+url+'"><button type="button" class="sc-gallery-remove" title="Remove">&times;</button></div>');
+                });
+                syncIds();
+            });
+            frame.open();
+        });
+
+        // Remove
+        wrap.on('click', '.sc-gallery-remove', function(){ $(this).closest('.sc-gallery-thumb').remove(); syncIds(); });
+
+        function syncIds(){ input.val( wrap.find('.sc-gallery-thumb').map(function(){ return $(this).data('id'); }).get().join(',') ); }
+    });
+    </script>
+    <?php
+}
+
+function sc_portfolio_save($post_id) {
+    // Gallery
+    if (isset($_POST['sc_portfolio_gallery_nonce_field']) && wp_verify_nonce($_POST['sc_portfolio_gallery_nonce_field'], 'sc_portfolio_gallery_nonce')) {
+        update_post_meta($post_id, '_portfolio_gallery', sanitize_text_field($_POST['portfolio_gallery'] ?? ''));
+    }
+    // Details
+    if (isset($_POST['sc_portfolio_details_nonce_field']) && wp_verify_nonce($_POST['sc_portfolio_details_nonce_field'], 'sc_portfolio_details_nonce')) {
+        update_post_meta($post_id, '_portfolio_location', sanitize_text_field($_POST['portfolio_location'] ?? ''));
+        update_post_meta($post_id, '_portfolio_duration', sanitize_text_field($_POST['portfolio_duration'] ?? ''));
+        update_post_meta($post_id, '_portfolio_year', sanitize_text_field($_POST['portfolio_year'] ?? ''));
+    }
+}
+add_action('save_post_portfolio', 'sc_portfolio_save');
+
+// Enqueue media uploader on portfolio edit screen
+function sc_portfolio_admin_scripts($hook) {
+    global $post_type;
+    if ($post_type === 'portfolio' && in_array($hook, ['post.php', 'post-new.php'])) {
+        wp_enqueue_media();
+        wp_enqueue_script('jquery-ui-sortable');
+    }
+}
+add_action('admin_enqueue_scripts', 'sc_portfolio_admin_scripts');
+
 // -- Redirect /service/ (singular) → /services/ (plural) -----------
 // Safety net for external links and bookmarks pointing to old URLs.
 function hwh_redirect_singular_service() {
