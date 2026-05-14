@@ -107,9 +107,9 @@ $hwh_menu_services = hwh_get_menu_services();
     <style id="sc-critical-css">
         html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
         body { margin: 0; font-family: 'Inter','Helvetica Neue',Arial,sans-serif; background: #F8F8F6; overflow-x: hidden; }
-        .site-main { padding-top: 115px; }
+        .site-main { padding-top: 123px; }
         .hwh-header { position: fixed; top: 0; left: 0; right: 0; z-index: 200; }
-        .hwh-topbar { background: #222D3F; height: 40px; display: flex; align-items: center; }
+        .hwh-topbar { background: #222D3F; height: 48px; display: flex; align-items: center; }
         .hwh-topbar__inner { max-width: 1280px; margin: 0 auto; padding: 0 clamp(1.25rem,1rem + 2vw,3rem); display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 1.5rem; }
         .hwh-nav-bar { background: rgba(255,255,255,0.97); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); box-shadow: 0 2px 20px rgba(0,0,0,0.08); padding: 0.85rem 0; transition: padding .3s ease; }
         .hwh-nav-bar__inner { max-width: 1280px; margin: 0 auto; padding: 0 clamp(1.25rem,1rem + 2vw,3rem); display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
