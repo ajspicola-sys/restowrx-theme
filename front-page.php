@@ -168,7 +168,7 @@ get_header(); ?>
 .sc-services__view-all svg{transition:transform .3s}
 .sc-services__view-all:hover svg{transform:translateX(3px)}
 .sc-services__carousel{position:relative;display:flex;align-items:center;gap:1.25rem}
-.sc-services__track-wrap{flex:1;overflow:hidden;padding:1.5rem 0 2.5rem;margin:-1.5rem 0 -2.5rem}
+.sc-services__track-wrap{flex:1;overflow:hidden;padding:2.5rem 0 3rem;margin:-2.5rem 0 -3rem}
 .sc-services__track{display:flex;gap:1.5rem;will-change:transform}
 .sc-services__track.is-sliding{transition:transform .55s cubic-bezier(.22,1,.36,1)}
 .sc-services__arrow{flex-shrink:0;width:48px;height:48px;border-radius:50%;border:2px solid rgba(255,255,255,.2);background:rgba(255,255,255,.04);color:rgba(255,255,255,.7);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s ease;backdrop-filter:blur(4px);position:relative;overflow:hidden}
