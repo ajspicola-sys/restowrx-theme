@@ -291,48 +291,6 @@ get_header(); ?>
 </script>
 
 <!-- ══════════════════════════════════════════════════════
-     HOW IT WORKS — Dark navy, bold numbered steps
-     ══════════════════════════════════════════════════════ -->
-<section class="hwh-process" aria-label="How our service works">
-    <div class="hwh-section-inner">
-        <div class="hwh-section-header hwh-section-header--light">
-            <span class="hwh-label hwh-label--red">How It Works</span>
-            <h2 class="hwh-section-title hwh-section-title--white">Your Project in 4 Steps</h2>
-            <p class="hwh-section-desc hwh-section-desc--muted">We make construction simple — transparent pricing, clear timelines, and quality you can trust.</p>
-        </div>
-        <div class="hwh-process-steps">
-            <div class="hwh-process-step">
-                <div class="hwh-process-step__num">01</div>
-                <div class="hwh-process-step__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-                <h3 class="hwh-process-step__title">Free Consultation</h3>
-                <p class="hwh-process-step__text">Call us or request a quote online. We schedule a free on-site consultation to understand your vision.</p>
-            </div>
-            <div class="hwh-process-connector" aria-hidden="true"></div>
-            <div class="hwh-process-step">
-                <div class="hwh-process-step__num">02</div>
-                <div class="hwh-process-step__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
-                <h3 class="hwh-process-step__title">Design & Planning</h3>
-                <p class="hwh-process-step__text">Our team creates a detailed plan with blueprints, materials, and a transparent project estimate.</p>
-            </div>
-            <div class="hwh-process-connector" aria-hidden="true"></div>
-            <div class="hwh-process-step">
-                <div class="hwh-process-step__num">03</div>
-                <div class="hwh-process-step__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
-                <h3 class="hwh-process-step__title">Build &amp; Execute</h3>
-                <p class="hwh-process-step__text">Licensed crews get to work on schedule. We keep you updated with regular progress reports.</p>
-            </div>
-            <div class="hwh-process-connector" aria-hidden="true"></div>
-            <div class="hwh-process-step">
-                <div class="hwh-process-step__num">04</div>
-                <div class="hwh-process-step__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
-                <h3 class="hwh-process-step__title">Final Walkthrough</h3>
-                <p class="hwh-process-step__text">We walk every detail with you to ensure 100% satisfaction. Your project is backed by our quality guarantee.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ══════════════════════════════════════════════════════
      WHY CHOOSE US — Light bg, bold trust signals
      ══════════════════════════════════════════════════════ -->
 <section class="hwh-why" aria-label="Why choose Spicola Construction">
@@ -391,6 +349,48 @@ get_header(); ?>
                     <span class="hwh-why__stat-num">100%</span>
                     <span class="hwh-why__stat-lbl">Satisfaction Guaranteed</span>
                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     HOW IT WORKS — Dark navy, bold numbered steps
+     ══════════════════════════════════════════════════════ -->
+<section class="hwh-process" aria-label="How our service works">
+    <div class="hwh-section-inner">
+        <div class="hwh-section-header hwh-section-header--light">
+            <span class="hwh-label hwh-label--red">How It Works</span>
+            <h2 class="hwh-section-title hwh-section-title--white">Your Project in 4 Steps</h2>
+            <p class="hwh-section-desc hwh-section-desc--muted">We make construction simple — transparent pricing, clear timelines, and quality you can trust.</p>
+        </div>
+        <div class="hwh-process-steps">
+            <div class="hwh-process-step">
+                <div class="hwh-process-step__num">01</div>
+                <div class="hwh-process-step__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+                <h3 class="hwh-process-step__title">Free Consultation</h3>
+                <p class="hwh-process-step__text">Call us or request a quote online. We schedule a free on-site consultation to understand your vision.</p>
+            </div>
+            <div class="hwh-process-connector" aria-hidden="true"></div>
+            <div class="hwh-process-step">
+                <div class="hwh-process-step__num">02</div>
+                <div class="hwh-process-step__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+                <h3 class="hwh-process-step__title">Design & Planning</h3>
+                <p class="hwh-process-step__text">Our team creates a detailed plan with blueprints, materials, and a transparent project estimate.</p>
+            </div>
+            <div class="hwh-process-connector" aria-hidden="true"></div>
+            <div class="hwh-process-step">
+                <div class="hwh-process-step__num">03</div>
+                <div class="hwh-process-step__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+                <h3 class="hwh-process-step__title">Build &amp; Execute</h3>
+                <p class="hwh-process-step__text">Licensed crews get to work on schedule. We keep you updated with regular progress reports.</p>
+            </div>
+            <div class="hwh-process-connector" aria-hidden="true"></div>
+            <div class="hwh-process-step">
+                <div class="hwh-process-step__num">04</div>
+                <div class="hwh-process-step__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <h3 class="hwh-process-step__title">Final Walkthrough</h3>
+                <p class="hwh-process-step__text">We walk every detail with you to ensure 100% satisfaction. Your project is backed by our quality guarantee.</p>
             </div>
         </div>
     </div>
