@@ -1,6 +1,6 @@
 <?php
 /**
- * Hot Water Heroes — Category Archive Template
+ * Spicola Construction — Category Archive Template
  * Shows posts filtered by a specific category.
  * Uses the native WP loop since category archives only contain posts.
  */
@@ -132,7 +132,7 @@ $current_cat = get_queried_object();
             <p class="cta-section__text">Call us or book online &mdash; fast, reliable plumbing service across Tampa Bay.</p>
             <div class="cta-section__actions">
                 <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="hwh-btn hwh-btn--red hwh-btn--lg">Request Service</a>
-                <a href="tel:+18134275862" class="hwh-btn hwh-btn--ghost hwh-btn--lg">Call 813-42-PLUMB (75862)</a>
+                <a href="tel:+18134275862" class="hwh-btn hwh-btn--ghost hwh-btn--lg">Call (813) 732-6285 (75862)</a>
             </div>
         </div>
     </section>

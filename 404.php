@@ -1,6 +1,6 @@
 <?php
 /**
- * Hot Water Heroes Plumbing — 404 Error Page
+ * Spicola Construction — 404 Error Page
  * Plumbing theme: broken pipe with teardrop drops, ghost 404, dynamic services.
  */
 get_header();

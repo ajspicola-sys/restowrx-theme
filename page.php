@@ -1,6 +1,6 @@
 <?php
 /**
- * Hot Water Heroes Plumbing — Generic Page Template
+ * Spicola Construction — Generic Page Template
  * Auto-routes to custom templates based on page slug
  */
 

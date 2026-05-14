@@ -1,6 +1,6 @@
 <?php
 /**
- * Hot Water Heroes Plumbing — Theme Functions
+ * Spicola Construction — Theme Functions
  * Performance-optimized build
  */
 
@@ -201,9 +201,9 @@ add_filter('style_loader_tag', 'hwh_async_styles', 10, 2);
 // -- Performance: Preload critical fonts only (preconnects live in header.php) --
 function hwh_resource_hints() {
     // DNS prefetch for external image CDN
-    echo '<link rel="dns-prefetch" href="//hotwaterheroesplumbing.com">' . "\n";
+    echo '<link rel="dns-prefetch" href="//spicolaconstruction.com">' . "\n";
 
-    // Preload HWH critical font files (Inter 600 + Montserrat 700 - weights used above the fold)
+    // Preload critical font files (Inter 600 + Montserrat 700 - weights used above the fold)
     echo '<link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2" as="font" type="font/woff2" crossorigin>' . "\n";
     echo '<link rel="preload" href="https://fonts.gstatic.com/s/montserrat/v26/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Hw5aXo.woff2" as="font" type="font/woff2" crossorigin>' . "\n";
 }
@@ -280,7 +280,7 @@ function hwh_cached_image_url( $src_url, $max_w = 800 ) {
     $response = wp_remote_get( $src_url, [
         'timeout'   => 30,
         'sslverify' => false,
-        'headers'   => [ 'User-Agent' => 'Mozilla/5.0 (compatible; HotWaterHeroes/1.0)' ],
+        'headers'   => [ 'User-Agent' => 'Mozilla/5.0 (compatible; SpicolaConstruction/1.0)' ],
     ] );
 
     if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {
@@ -346,39 +346,39 @@ if (!defined('WP_POST_REVISIONS')) {
 }
 
 // ============================================================
-// AI SEARCH VISIBILITY & STRUCTURED DATA — HOT WATER HEROES
+// AI SEARCH VISIBILITY & STRUCTURED DATA — SPICOLA CONSTRUCTION
 // Comprehensive JSON-LD schema for Google AI Overviews,
 // ChatGPT, Perplexity, Bing Copilot, and all AEO signals.
 // ============================================================
 
-// -- 1. Plumber + WebSite + Person -- every page -------------
+// -- 1. GeneralContractor + WebSite + Person -- every page ----
 function hwh_schema_markup() {
 
-    // Named provider: HWH Master Plumbers APRN
+    // Named provider: Spicola Construction Team
     $provider = [
         '@type'       => 'Person',
-        '@id'         => esc_url(home_url('/')) . '#hwh-team',
-        'name'        => 'HWH Master Plumbers',
-        'jobTitle'    => 'Founder & Master Plumber',
-        'honorificPrefix' => 'Master Plumber',
-        'description' => 'Licensed Master Plumber and founder of Hot Water Heroes Plumbing in Tampa Bay, FL. Specializes in water heater installation, emergency plumbing, and residential repiping.',
-        'worksFor'    => [ '@type' => 'Plumber', 'name' => 'Hot Water Heroes Plumbing' ],
-        'sameAs'      => [ 'https://www.instagram.com/hotwaterheroes/' ],
+        '@id'         => esc_url(home_url('/')) . '#sc-team',
+        'name'        => 'Spicola Construction Team',
+        'jobTitle'    => 'Founder & General Contractor',
+        'honorificPrefix' => 'CGC',
+        'description' => 'Licensed General Contractor and founder of Spicola Construction in Tampa Bay, FL. Specializes in residential and commercial construction, remodeling, and roofing.',
+        'worksFor'    => [ '@type' => 'GeneralContractor', 'name' => 'Spicola Construction' ],
+        'sameAs'      => [ 'https://www.instagram.com/spicolaconstruction/' ],
     ];
 
-    // Full LocalBusiness entity (Plumber)
+    // Full LocalBusiness entity (GeneralContractor)
     $business = [
         '@context'         => 'https://schema.org',
-        '@type'            => ['Plumber', 'HomeAndConstructionBusiness', 'LocalBusiness'],
-        '@id'              => esc_url(home_url('/')) . '#hwh-plumbing',
-        'name'             => 'Hot Water Heroes Plumbing',
-        'legalName'        => 'Hot Water Heroes Plumbing LLC',
-        'alternateName'    => 'Hot Water Heroes Plumbing',
-        'description'      => "Tampa Bay's trusted plumbing company offering water heater installation, emergency plumbing, drain cleaning, repiping, and leak repair. Licensed, insured, and available 24/7. Serving Hillsborough, Pinellas, and Pasco counties — your trusted local plumbing experts.",
+        '@type'            => ['GeneralContractor', 'HomeAndConstructionBusiness', 'LocalBusiness'],
+        '@id'              => esc_url(home_url('/')) . '#sc-construction',
+        'name'             => 'Spicola Construction',
+        'legalName'        => 'Spicola Construction LLC',
+        'alternateName'    => 'Spicola Construction',
+        'description'      => "Tampa Bay's trusted general contractor offering new construction, remodeling, roofing, commercial build-outs, and renovation services. Licensed, insured, and committed to quality craftsmanship. Serving Hillsborough, Pinellas, and Pasco counties.",
         'url'              => esc_url(home_url('/')),
-        'telephone'        => '+18134275862',
-        'email'            => 'joe@hotwaterheroesplumbing.com',
-        'foundingDate'     => '2024',
+        'telephone'        => '+18137326285',
+        'email'            => 'info@spicolaconstruction.com',
+        'foundingDate'     => '2004',
         'address'          => [
             '@type'           => 'PostalAddress',
             'streetAddress'   => '9249 Lazy Ln',
@@ -394,40 +394,38 @@ function hwh_schema_markup() {
         ],
         'hasMap'           => 'https://maps.google.com/?q=9249+Lazy+Ln+Tampa+FL+33614',
         'openingHoursSpecification' => [
-            [ '@type' => 'OpeningHoursSpecification', 'dayOfWeek' => ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'], 'opens' => '00:00', 'closes' => '23:59' ],
+            [ '@type' => 'OpeningHoursSpecification', 'dayOfWeek' => ['Monday','Tuesday','Wednesday','Thursday','Friday'], 'opens' => '07:00', 'closes' => '18:00' ],
+            [ '@type' => 'OpeningHoursSpecification', 'dayOfWeek' => ['Saturday'], 'opens' => '08:00', 'closes' => '16:00' ],
         ],
         'priceRange'       => '$$-$$$',
         'currenciesAccepted' => 'USD',
-        'paymentAccepted'  => 'Cash, Credit Card, Financing via Cherry',
+        'paymentAccepted'  => 'Cash, Credit Card, Financing',
         'image'            => [
-            'https://hotwaterheroesplumbing.com/wp-content/uploads/2025/08/HEROES-16-x-9-in-scaled-e1755179786780.png',
-            'https://hotwaterheroesplumbing.com/wp-content/uploads/2026/04/Hero-Apirl4.png',
+            esc_url(home_url('/')) . 'wp-content/uploads/spicola-og.jpg',
         ],
-        'logo'             => 'https://hotwaterheroesplumbing.com/wp-content/uploads/2025/08/HEROES-16-x-9-in-scaled-e1755179786780.png',
+        'logo'             => esc_url(home_url('/')) . 'wp-content/uploads/spicola-og.jpg',
         'sameAs'           => [
-            'https://www.facebook.com/hotwaterheroes/',
-            'https://www.instagram.com/hotwaterheroes/',
-            'https://www.google.com/maps/place/Hot+Water+Heroes',
+            'https://www.facebook.com/spicolaconstruction/',
+            'https://www.instagram.com/spicolaconstruction/',
+            'https://www.google.com/maps/place/Spicola+Construction',
         ],
         'aggregateRating'  => [
             '@type'       => 'AggregateRating',
             'ratingValue' => '5.0',
             'bestRating'  => '5',
             'worstRating' => '1',
-            'reviewCount' => '30',
+            'reviewCount' => '50',
         ],
         'employee'         => [ $provider ],
         'founder'          => $provider,
-        'serviceType' => 'Plumbing',
+        'serviceType' => 'General Contracting',
         'availableService' => [
-            [ '@type' => 'Service', 'name' => 'Water Heater Repair',       'url' => esc_url(home_url('/services/')) ],
-            [ '@type' => 'Service', 'name' => 'Water Heater Installation',  'url' => esc_url(home_url('/services/')) ],
-            [ '@type' => 'Service', 'name' => 'Tankless Water Heaters',     'url' => esc_url(home_url('/services/')) ],
-            [ '@type' => 'Service', 'name' => 'Drain Cleaning',             'url' => esc_url(home_url('/services/')) ],
-            [ '@type' => 'Service', 'name' => 'Emergency Plumbing',         'url' => esc_url(home_url('/services/')) ],
-            [ '@type' => 'Service', 'name' => 'Leak Detection & Repair',    'url' => esc_url(home_url('/services/')) ],
-            [ '@type' => 'Service', 'name' => 'Pipe Repair & Repiping',     'url' => esc_url(home_url('/services/')) ],
-            [ '@type' => 'Service', 'name' => 'Sewer & Water Line',         'url' => esc_url(home_url('/services/')) ],
+            [ '@type' => 'Service', 'name' => 'New Construction',          'url' => esc_url(home_url('/services/')) ],
+            [ '@type' => 'Service', 'name' => 'Remodeling & Renovations', 'url' => esc_url(home_url('/services/')) ],
+            [ '@type' => 'Service', 'name' => 'Roofing',                  'url' => esc_url(home_url('/services/')) ],
+            [ '@type' => 'Service', 'name' => 'Commercial Build-Outs',    'url' => esc_url(home_url('/services/')) ],
+            [ '@type' => 'Service', 'name' => 'Additions & Extensions',   'url' => esc_url(home_url('/services/')) ],
+            [ '@type' => 'Service', 'name' => 'Concrete & Foundation',    'url' => esc_url(home_url('/services/')) ],
             [ '@type' => 'Service', 'name' => 'Camera Inspection',          'url' => esc_url(home_url('/services/')) ],
         ],
         'areaServed'       => [
@@ -446,14 +444,14 @@ function hwh_schema_markup() {
         ],
         'hasOfferCatalog'  => [
             '@type' => 'OfferCatalog',
-            'name'  => 'Hot Water Heroes Plumbing Services',
+            'name'  => 'Spicola Construction Services',
             'url'   => esc_url(home_url('/services/')),
         ],
         'makesOffer' => [
             [
                 '@type'       => 'Offer',
                 'name'        => 'Free Estimate',
-                'description' => 'Free plumbing estimate with our licensed team.',
+                'description' => 'Free construction estimate with our licensed team.',
                 'price'       => '0',
                 'priceCurrency' => 'USD',
                 'url'         => esc_url(home_url('/contact/')),
@@ -467,11 +465,11 @@ function hwh_schema_markup() {
         '@context'        => 'https://schema.org',
         '@type'           => 'WebSite',
         '@id'             => esc_url(home_url('/')) . '#website',
-        'name'            => 'Hot Water Heroes Plumbing',
+        'name'            => 'Spicola Construction',
         'url'             => esc_url(home_url('/')),
-        'description'     => "Tampa Bay's trusted plumbing company — water heater installation, emergency repairs, drain cleaning, repiping, and 24/7 service.",
+        'description'     => "Tampa Bay's trusted construction company — water heater installation, emergency repairs, drain cleaning, repiping, and 24/7 service.",
         'inLanguage'      => 'en-US',
-        'publisher'       => [ '@id' => esc_url(home_url('/')) . '#hwh-plumbing' ],
+        'publisher'       => [ '@id' => esc_url(home_url('/')) . '#hwh-construction' ],
         'potentialAction' => [
             '@type'       => 'SearchAction',
             'target'      => [ '@type' => 'EntryPoint', 'urlTemplate' => esc_url(home_url('/')) . '?s={search_term_string}' ],
@@ -486,7 +484,7 @@ function hwh_schema_markup() {
         $price     = get_post_meta($post_id, '_service_price', true);
         $duration  = get_post_meta($post_id, '_service_duration', true);
         $cats      = get_the_terms($post_id, 'service_category');
-        $cat_name  = ($cats && !is_wp_error($cats)) ? $cats[0]->name : 'Plumbing Service';
+        $cat_name  = ($cats && !is_wp_error($cats)) ? $cats[0]->name : 'construction Service';
         $excerpt   = wp_strip_all_tags(get_the_excerpt() ?: get_the_title() . ' service in Tampa Bay, FL.');
 
         $service_schema = [
@@ -496,8 +494,8 @@ function hwh_schema_markup() {
             'name'        => get_the_title(),
             'description' => wp_strip_all_tags(get_the_excerpt() ?: get_the_title() . ' service in Tampa Bay, FL.'),
             'provider'    => [
-                '@type' => 'Plumber',
-                'name'  => 'Hot Water Heroes Plumbing',
+                '@type' => 'contractor',
+                'name'  => 'Spicola Construction',
             ],
             'areaServed'  => 'Tampa Bay, FL',
             'url'         => get_permalink($post_id),
@@ -691,7 +689,7 @@ function hwh_create_blog_posts() {
             'category' => 'Water Heater Services',
             'excerpt'  => 'Understanding the difference between tank and tankless water heaters to make the best choice for your Tampa Bay home.',
             'content'  => '<h2>Choosing the Right Water Heater</h2>
-<p>One of the most common questions we hear at Hot Water Heroes Plumbing is: "Should I get a tank or tankless water heater?" Both have advantages, and the right choice depends on your household size, budget, and hot water needs.</p>
+<p>One of the most common questions we hear at Spicola Construction is: "Should I get a tank or tankless water heater?" Both have advantages, and the right choice depends on your household size, budget, and hot water needs.</p>
 
 <h3>Tank Water Heaters: The Reliable Classic</h3>
 <p>Tank water heaters store 40-80 gallons of pre-heated water, ready for use whenever you need it. They have a lower upfront cost and are simple to install and maintain. However, they use energy continuously to keep the water hot, even when you are not using it.</p>
@@ -702,14 +700,14 @@ function hwh_create_blog_posts() {
 <h3>Which Should You Choose?</h3>
 <p>The answer depends on your specific needs. For smaller households with moderate hot water usage, a high-efficiency tank heater is often the most cost-effective choice. For larger families or homes that need simultaneous hot water at multiple fixtures, tankless is the way to go.</p>
 
-<p><strong>Not sure which is right for you?</strong> Call Hot Water Heroes Plumbing for a free estimate and we will help you choose the best option for your home.</p>',
+<p><strong>Not sure which is right for you?</strong> Call Spicola Construction for a free estimate and we will help you choose the best option for your home.</p>',
         ],
         [
-            'title'    => 'The Complete Guide to Preventing Plumbing Emergencies',
+            'title'    => 'The Complete Guide to Preventing construction Emergencies',
             'category' => 'Drain & Pipe Services',
-            'excerpt'  => 'Simple maintenance tips every Tampa Bay homeowner should know to prevent costly plumbing disasters.',
+            'excerpt'  => 'Simple maintenance tips every Tampa Bay homeowner should know to prevent costly construction disasters.',
             'content'  => '<h2>Prevention Is Cheaper Than Repair</h2>
-<p>Most plumbing emergencies do not happen overnight. They build up slowly from years of neglect. At Hot Water Heroes Plumbing, we have seen it all, and most of it could have been prevented with basic maintenance.</p>
+<p>Most construction emergencies do not happen overnight. They build up slowly from years of neglect. At Spicola Construction, we have seen it all, and most of it could have been prevented with basic maintenance.</p>
 
 <h3>1. Know Where Your Main Shutoff Is</h3>
 <p>If a pipe bursts, the first thing you need to do is stop the water. Every homeowner should know exactly where the main water shutoff valve is and test it annually to make sure it works.</p>
@@ -721,30 +719,30 @@ function hwh_create_blog_posts() {
 <p>Sediment builds up at the bottom of your water heater tank, reducing efficiency and shortening its lifespan. A simple annual flush takes 20 minutes and can add years to your unit.</p>
 
 <h3>4. Watch for Warning Signs</h3>
-<p>Slow drains, low water pressure, discolored water, and unexplained increases in your water bill are all early signs of plumbing problems. Address them early before they become emergencies.</p>
+<p>Slow drains, low water pressure, discolored water, and unexplained increases in your water bill are all early signs of construction problems. Address them early before they become emergencies.</p>
 
-<p><strong>Want peace of mind?</strong> Ask about our annual maintenance plans at Hot Water Heroes Plumbing.</p>',
+<p><strong>Want peace of mind?</strong> Ask about our annual maintenance plans at Spicola Construction.</p>',
         ],
         [
-            'title'    => 'What to Expect When You Call a Plumber',
+            'title'    => 'What to Expect When You Call a contractor',
             'category' => 'Drain & Pipe Services',
-            'excerpt'  => 'A step-by-step walkthrough of the Hot Water Heroes service experience, from your first call to job completion.',
-            'content'  => '<h2>Your First Call to Hot Water Heroes</h2>
-<p>If you have never called a plumber before, it is completely normal to have questions. At Hot Water Heroes Plumbing, we have designed every step of the experience to be straightforward, transparent, and stress-free.</p>
+            'excerpt'  => 'A step-by-step walkthrough of the Spicola Construction service experience, from your first call to job completion.',
+            'content'  => '<h2>Your First Call to Spicola Construction</h2>
+<p>If you have never called a contractor before, it is completely normal to have questions. At Spicola Construction, we have designed every step of the experience to be straightforward, transparent, and stress-free.</p>
 
 <h3>Step 1: The Call</h3>
-<p>When you call 813-42-PLUMB, you will speak with a real person who will ask about your issue, schedule a convenient time, and give you an upfront service call fee. No surprises.</p>
+<p>When you call (813) 732-6285, you will speak with a real person who will ask about your issue, schedule a convenient time, and give you an upfront service call fee. No surprises.</p>
 
 <h3>Step 2: The Diagnosis</h3>
-<p>Your licensed plumber arrives on time, inspects the problem, and gives you a written estimate before any work begins. We explain what is wrong, what needs to be done, and exactly what it will cost.</p>
+<p>Your licensed contractor arrives on time, inspects the problem, and gives you a written estimate before any work begins. We explain what is wrong, what needs to be done, and exactly what it will cost.</p>
 
 <h3>Step 3: The Repair</h3>
-<p>Once you approve the estimate, we get to work immediately. Our plumbers carry fully-stocked trucks, so most repairs can be completed in a single visit.</p>
+<p>Once you approve the estimate, we get to work immediately. Our contractors carry fully-stocked trucks, so most repairs can be completed in a single visit.</p>
 
 <h3>Step 4: The Walkthrough</h3>
-<p>When the job is done, your plumber walks you through everything that was done, answers your questions, and cleans up the work area completely.</p>
+<p>When the job is done, your contractor walks you through everything that was done, answers your questions, and cleans up the work area completely.</p>
 
-<p><strong>Ready to experience the difference?</strong> Call Hot Water Heroes Plumbing today or book online.</p>',
+<p><strong>Ready to experience the difference?</strong> Call Spicola Construction today or book online.</p>',
         ],
         [
             'title'    => '5 Signs You Need to Replace Your Water Heater',
@@ -768,17 +766,17 @@ function hwh_create_blog_posts() {
 <h3>5. Not Enough Hot Water</h3>
 <p>If you are running out of hot water faster than usual, or it takes forever to heat up, the heating elements or tank capacity may no longer meet your needs.</p>
 
-<p><strong>Noticing any of these signs?</strong> Call Hot Water Heroes Plumbing for a free assessment and same-day replacement options.</p>',
+<p><strong>Noticing any of these signs?</strong> Call Spicola Construction for a free assessment and same-day replacement options.</p>',
         ],
         [
-            'title'    => 'Why Tampa Bay Homes Need Annual Plumbing Inspections',
+            'title'    => 'Why Tampa Bay Homes Need Annual construction Inspections',
             'category' => 'Water Heater Services',
-            'excerpt'  => 'Florida homes face unique plumbing challenges. Here is why an annual inspection can save you thousands.',
-            'content'  => '<h2>Florida Plumbing Is Different</h2>
-<p>Tampa Bay homes face unique plumbing challenges that homes in other parts of the country do not. From hard water mineral buildup to shifting sandy soil that stresses underground pipes, our climate and geology put extra wear on your plumbing system.</p>
+            'excerpt'  => 'Florida homes face unique construction challenges. Here is why an annual inspection can save you thousands.',
+            'content'  => '<h2>Florida construction Is Different</h2>
+<p>Tampa Bay homes face unique construction challenges that homes in other parts of the country do not. From hard water mineral buildup to shifting sandy soil that stresses underground pipes, our climate and geology put extra wear on your construction system.</p>
 
 <h3>What a Professional Inspection Covers</h3>
-<p>During an annual plumbing inspection at Hot Water Heroes Plumbing, our licensed plumbers check:</p>
+<p>During an annual construction inspection at Spicola Construction, our licensed contractors check:</p>
 <ul>
 <li><strong>Water heater</strong> - condition, age, sediment levels, anode rod, and temperature settings</li>
 <li><strong>Supply lines</strong> - checking for leaks, corrosion, and water pressure</li>
@@ -790,14 +788,14 @@ function hwh_create_blog_posts() {
 <h3>The Cost of Skipping Inspections</h3>
 <p>A small leak you cannot see can waste thousands of gallons of water per year and cause mold, rot, and structural damage. A $150 inspection today can prevent a $15,000 repair tomorrow.</p>
 
-<p><strong>Protect your home.</strong> Schedule your annual plumbing inspection with Hot Water Heroes Plumbing today.</p>',
+<p><strong>Protect your home.</strong> Schedule your annual construction inspection with Spicola Construction today.</p>',
         ],
         [
-            'title'    => 'Hard Water in Tampa Bay: What It Does to Your Plumbing',
+            'title'    => 'Hard Water in Tampa Bay: What It Does to Your construction',
             'category' => 'Drain & Pipe Services',
             'excerpt'  => 'Tampa Bay has some of the hardest water in Florida. Learn how it affects your pipes, fixtures, and appliances.',
             'content'  => '<h2>The Hard Truth About Tampa Bay Water</h2>
-<p>If you have ever noticed white crusty buildup on your faucets or shower heads, you have seen hard water deposits firsthand. Tampa Bay water contains high levels of calcium and magnesium minerals that wreak havoc on your plumbing over time.</p>
+<p>If you have ever noticed white crusty buildup on your faucets or shower heads, you have seen hard water deposits firsthand. Tampa Bay water contains high levels of calcium and magnesium minerals that wreak havoc on your construction over time.</p>
 
 <h3>How Hard Water Damages Your Home</h3>
 <p>Hard water mineral deposits build up inside your pipes, water heater, dishwasher, and washing machine. Over time, this reduces water flow, decreases appliance efficiency, and shortens the lifespan of everything it touches.</p>
@@ -812,9 +810,9 @@ function hwh_create_blog_posts() {
 </ul>
 
 <h3>The Solution: Water Softener Installation</h3>
-<p>A whole-house water softener removes the excess minerals before they reach your fixtures and appliances. It extends the life of your plumbing, improves water quality, and reduces cleaning time.</p>
+<p>A whole-house water softener removes the excess minerals before they reach your fixtures and appliances. It extends the life of your construction, improves water quality, and reduces cleaning time.</p>
 
-<p><strong>Tired of hard water?</strong> Call Hot Water Heroes Plumbing for a free water quality test and softener installation estimate.</p>',
+<p><strong>Tired of hard water?</strong> Call Spicola Construction for a free water quality test and softener installation estimate.</p>',
         ],
     ];
 
@@ -850,7 +848,7 @@ function hwh_create_services() {
     $categories = [
         'Water Heater Services'    => 'Professional water heater installation, repair, and maintenance for residential and commercial properties.',
         'Drain & Pipe Services'    => 'Expert drain cleaning, pipe repair, sewer line service, and camera inspections.',
-        'Emergency & General'      => 'Emergency repairs, general plumbing maintenance, and comprehensive home plumbing solutions.',
+        'Emergency & General'      => 'Emergency repairs, general construction maintenance, and comprehensive home construction solutions.',
     ];
 
     $cat_ids = [];
@@ -877,7 +875,7 @@ function hwh_create_services() {
         ['title' => 'Toilet Repair',             'icon' => '', 'category' => 'Drain & Pipe Services', 'excerpt' => 'Toilet running, leaking, or not flushing? We repair and replace all toilet brands with same-day service.'],
         ['title' => 'Faucet Installation',       'icon' => '', 'category' => 'Drain & Pipe Services', 'excerpt' => 'Professional faucet installation, repair, and replacement for kitchen and bathroom fixtures.'],
         ['title' => 'Garbage Disposal',          'icon' => '', 'category' => 'Drain & Pipe Services', 'excerpt' => 'Garbage disposal jammed, leaking, or not working? We repair and install all major brands quickly and affordably.'],
-        ['title' => 'Emergency Plumber',         'icon' => '', 'category' => 'Emergency & General',   'excerpt' => '24/7 emergency plumbing service for burst pipes, major leaks, sewer backups, and no-hot-water situations.'],
+        ['title' => 'Emergency contractor',         'icon' => '', 'category' => 'Emergency & General',   'excerpt' => '24/7 emergency construction service for burst pipes, major leaks, sewer backups, and no-hot-water situations.'],
         ['title' => 'Sewer & Water Line',        'icon' => '', 'category' => 'Emergency & General',   'excerpt' => 'Expert sewer and water main line inspection, repair, and replacement. We resolve blockages and breaks fast.'],
         ['title' => 'Water Filtration',          'icon' => '', 'category' => 'Emergency & General',   'excerpt' => 'Whole-house water filtration and softener systems for cleaner, better-tasting water. Free water quality testing.'],
         ['title' => 'Sump Pump',                 'icon' => '', 'category' => 'Emergency & General',   'excerpt' => 'Sump pump installation, repair, and replacement to protect your home from flooding and water damage.'],
@@ -1009,7 +1007,7 @@ function hwh_purge_staging_canonical( $canonical ) {
     if ( is_string( $canonical ) ) {
         $canonical = str_replace(
             'olive-ferret-752298.hostingersite.com',
-            'hotwaterheroesplumbing.com',
+            'spicolaconstruction.com',
             $canonical
         );
     }
@@ -1027,8 +1025,8 @@ add_filter( 'rank_math/frontend/canonical',     'hwh_purge_staging_canonical', 9
 function hwh_fix_meta_descriptions( $description ) {
     // The generic fallback we want to replace
     $generic_descriptions = [
-        "Hot Water Heroes Plumbing — Tampa Bay's premier plumbing company. Water heaters, drain cleaning, emergency plumbing, and more.",
-        "Hot Water Heroes Plumbing — Tampa Bay's trusted plumbing experts for water heaters, drain cleaning, leak detection, and 24/7 emergency service.",
+        "Spicola Construction — Tampa Bay's premier construction company. Water heaters, drain cleaning, emergency construction, and more.",
+        "Spicola Construction — Tampa Bay's trusted construction experts for water heaters, drain cleaning, leak detection, and 24/7 emergency service.",
     ];
 
     $is_generic = empty( $description ) || in_array( trim( $description ), $generic_descriptions, true );
@@ -1037,12 +1035,12 @@ function hwh_fix_meta_descriptions( $description ) {
     if ( is_page() ) {
         $slug = get_post_field( 'post_name', get_queried_object_id() );
         $page_metas = [
-            'about'               => 'Meet the Hot Water Heroes team — licensed Tampa Bay plumbers with 300+ jobs completed. Honest pricing, same-day service, and a satisfaction guarantee.',
-            'contact'             => 'Need a plumber in Tampa? Contact Hot Water Heroes Plumbing — call 813-42-PLUMB or book online for same-day service across Tampa Bay.',
-            'service-areas'       => 'Hot Water Heroes serves Tampa, St. Pete, Clearwater, Brandon, Wesley Chapel, and all of Tampa Bay. Fast, local plumbing — same-day available.',
-            'privacy-policy'      => 'Read the Hot Water Heroes Plumbing privacy policy. Learn how we collect, use, and protect your personal information.',
-            'cancellation-policy' => 'View the Hot Water Heroes cancellation and payment policy. Clear terms for appointments, no-shows, and accepted payment methods.',
-            'refund-policy'       => 'Hot Water Heroes Plumbing refund policy — upfront estimates, transparent pricing, and our satisfaction guarantee for Tampa Bay homeowners.',
+            'about'               => 'Meet the Spicola Construction team — licensed Tampa Bay contractors with 300+ jobs completed. Honest pricing, same-day service, and a satisfaction guarantee.',
+            'contact'             => 'Need a contractor in Tampa? Contact Spicola Construction — call (813) 732-6285 or book online for same-day service across Tampa Bay.',
+            'service-areas'       => 'Spicola Construction serves Tampa, St. Pete, Clearwater, Brandon, Wesley Chapel, and all of Tampa Bay. Fast, local construction — same-day available.',
+            'privacy-policy'      => 'Read the Spicola Construction privacy policy. Learn how we collect, use, and protect your personal information.',
+            'cancellation-policy' => 'View the Spicola Construction cancellation and payment policy. Clear terms for appointments, no-shows, and accepted payment methods.',
+            'refund-policy'       => 'Spicola Construction refund policy — upfront estimates, transparent pricing, and our satisfaction guarantee for Tampa Bay homeowners.',
         ];
         if ( isset( $page_metas[ $slug ] ) ) {
             return $page_metas[ $slug ];
@@ -1051,14 +1049,14 @@ function hwh_fix_meta_descriptions( $description ) {
 
     // -- Blog page (archive) --
     if ( is_home() && $is_generic ) {
-        return 'Plumbing tips, water heater guides, and expert advice from Hot Water Heroes Plumbing in Tampa Bay. Learn how to protect your home and save money.';
+        return 'construction tips, water heater guides, and expert advice from Spicola Construction in Tampa Bay. Learn how to protect your home and save money.';
     }
 
     // -- Category archives --
     if ( is_category() && $is_generic ) {
         $cat = get_queried_object();
         if ( $cat ) {
-            return 'Browse ' . $cat->name . ' articles from Hot Water Heroes Plumbing — expert Tampa Bay plumbing tips, guides, and service info.';
+            return 'Browse ' . $cat->name . ' articles from Spicola Construction — expert Tampa Bay construction tips, guides, and service info.';
         }
     }
 
@@ -1075,7 +1073,7 @@ function hwh_fix_meta_descriptions( $description ) {
             return $meta;
         }
         // Fallback: use post title
-        return get_the_title() . ' — expert plumbing advice from Hot Water Heroes Plumbing, Tampa Bay\'s trusted local plumber.';
+        return get_the_title() . ' — expert construction advice from Spicola Construction, Tampa Bay\'s trusted local contractor.';
     }
 
     // -- Service pages: auto-generate from excerpt if too long or generic --
@@ -1090,13 +1088,13 @@ function hwh_fix_meta_descriptions( $description ) {
                 }
                 return $meta;
             }
-            return get_the_title() . ' in Tampa Bay, FL. Licensed plumbers, upfront pricing, same-day service. Call Hot Water Heroes at 813-42-PLUMB.';
+            return get_the_title() . ' in Tampa Bay, FL. Licensed contractors, upfront pricing, same-day service. Call Spicola Construction at (813) 732-6285.';
         }
     }
 
     // -- Services archive --
     if ( is_post_type_archive( 'service' ) && $is_generic ) {
-        return 'Professional plumbing services in Tampa Bay — water heater repair, drain cleaning, leak detection, pipe repair, and 24/7 emergency service. Call today.';
+        return 'Professional construction services in Tampa Bay — water heater repair, drain cleaning, leak detection, pipe repair, and 24/7 emergency service. Call today.';
     }
 
     return $description;
@@ -1306,14 +1304,14 @@ function hwh_team_meta_html($post) {
     <div class="hwh-team-row">
         <div class="hwh-team-field">
             <label for="team_role">Role / Title</label>
-            <input type="text" id="team_role" name="team_role" value="<?php echo esc_attr($role); ?>" placeholder="Master Plumber">
-            <p class="description">e.g. "Master Plumber" or "Licensed Journeyman"</p>
+            <input type="text" id="team_role" name="team_role" value="<?php echo esc_attr($role); ?>" placeholder="Master contractor">
+            <p class="description">e.g. "Master contractor" or "Licensed Journeyman"</p>
         </div>
     </div>
     <div class="hwh-team-row">
         <div class="hwh-team-field">
             <label for="team_credentials">Credential Badges</label>
-            <input type="text" id="team_credentials" name="team_credentials" value="<?php echo esc_attr($credentials); ?>" placeholder="Licensed, 10+ Years, Master Plumber">
+            <input type="text" id="team_credentials" name="team_credentials" value="<?php echo esc_attr($credentials); ?>" placeholder="Licensed, 10+ Years, Master contractor">
             <p class="description">Comma-separated badges shown under the name, e.g. "Board Certified, 12+ Years"</p>
         </div>
     </div>
@@ -1584,7 +1582,7 @@ function hwh_seo_meta_html($post) {
                    id="hwh_seo_title"
                    name="hwh_seo_title"
                    value="<?php echo esc_attr($seo_title); ?>"
-                   placeholder="<?php echo esc_attr($post->post_title . ' — Hot Water Heroes Plumbing'); ?>"
+                   placeholder="<?php echo esc_attr($post->post_title . ' — Spicola Construction'); ?>"
                    maxlength="120">
             <span class="hwh-seo-hint">Recommended: 50—60 characters. Leave blank to use default.</span>
             <span class="hwh-seo-counter" id="seo-title-counter">0/60</span>
@@ -1609,7 +1607,7 @@ function hwh_seo_meta_html($post) {
                    id="hwh_og_image"
                    name="hwh_og_image"
                    value="<?php echo esc_attr($og_image); ?>"
-                   placeholder="https://hotwaterheroesplumbing.com/wp-content/uploads/...">
+                   placeholder="https://spicolaconstruction.com/wp-content/uploads/...">
             <span class="hwh-seo-hint">Image shown when shared on Facebook, Twitter, etc. Ideal size: 1200—630px.</span>
         </div>
 
@@ -1617,7 +1615,7 @@ function hwh_seo_meta_html($post) {
         <div class="hwh-seo-preview">
             <div class="hwh-seo-preview__label">Google Search Preview</div>
             <div class="hwh-seo-preview__title" id="seo-preview-title">
-                <?php echo esc_html($seo_title ?: $post->post_title . ' — Hot Water Heroes Plumbing'); ?>
+                <?php echo esc_html($seo_title ?: $post->post_title . ' — Spicola Construction'); ?>
             </div>
             <div class="hwh-seo-preview__url">
                 <?php echo esc_url(get_permalink($post->ID)); ?>
@@ -1636,7 +1634,7 @@ function hwh_seo_meta_html($post) {
         var descCounter  = document.getElementById('seo-desc-counter');
         var previewTitle = document.getElementById('seo-preview-title');
         var previewDesc  = document.getElementById('seo-preview-desc');
-        var defaultTitle = <?php echo json_encode($post->post_title . ' — Hot Water Heroes Plumbing'); ?>;
+        var defaultTitle = <?php echo json_encode($post->post_title . ' — Spicola Construction'); ?>;
 
         function updateCounter(input, counter, ideal) {
             var len = input.value.length;
@@ -1686,21 +1684,21 @@ add_action('save_post', 'hwh_save_seo_meta');
 function hwh_custom_title($title) {
     // Homepage
     if (is_front_page()) {
-        $title['title'] = 'Plumbing Services in Tampa Bay, FL';
-        $title['site']  = 'Hot Water Heroes Plumbing';
+        $title['title'] = 'construction Services in Tampa Bay, FL';
+        $title['site']  = 'Spicola Construction';
         return $title;
     }
-    // Service pages: "Water Heater Repair in Tampa Bay, FL | Hot Water Heroes Plumbing"
+    // Service pages: "Water Heater Repair in Tampa Bay, FL | Spicola Construction"
     if (is_singular('service')) {
         $custom = get_post_meta(get_the_ID(), '_hwh_seo_title', true);
         $title['title'] = !empty($custom) ? $custom : get_the_title() . ' in Tampa Bay, FL';
-        $title['site']  = 'Hot Water Heroes Plumbing';
+        $title['site']  = 'Spicola Construction';
         return $title;
     }
     // Product pages
     if (is_singular('product')) {
-        $title['title'] = get_the_title() . ' | Professional Plumbing';
-        $title['site']  = 'Hot Water Heroes Plumbing';
+        $title['title'] = get_the_title() . ' | Professional construction';
+        $title['site']  = 'Spicola Construction';
         return $title;
     }
     // All other singular pages — use custom SEO title if set
@@ -1732,7 +1730,7 @@ function hwh_seo_head_tags() {
         echo '<meta property="og:title" content="' . esc_attr($title) . '">' . "\n";
         echo '<meta property="og:type" content="website">' . "\n";
         echo '<meta property="og:url" content="' . esc_url(get_permalink($post_id)) . '">' . "\n";
-        echo '<meta property="og:site_name" content="Hot Water Heroes Plumbing">' . "\n";
+        echo '<meta property="og:site_name" content="Spicola Construction">' . "\n";
         echo '<meta name="twitter:card" content="summary_large_image">' . "\n";
         echo '<meta name="twitter:title" content="' . esc_attr($title) . '">' . "\n";
 
@@ -1751,7 +1749,7 @@ function hwh_faq_schema() {
     $faqs = [
         ['q' => 'Is there a minimum commitment?', 'a' => 'We ask for a minimum annual commitment to get the most out of your Maintenance Plan membership. After that, you can continue month-to-month or cancel anytime.'],
         ['q' => 'Do my credits expire?', 'a' => 'No! Your banked credits never expire as long as your membership is active. If you cancel, unused credits remain available for 90 days.'],
-        ['q' => 'What can I use my credits on?', 'a' => 'Your maintenance plan benefits can be used on any plumbing service we offer — water heater repairs, drain cleaning, repiping, fixture installation, and more.'],
+        ['q' => 'What can I use my credits on?', 'a' => 'Your maintenance plan benefits can be used on any construction service we offer — water heater repairs, drain cleaning, repiping, fixture installation, and more.'],
         ['q' => 'Can I share my credits with friends or family?', 'a' => 'Absolutely! You can gift your credits to friends and family members.'],
         ['q' => 'How much should I set as my monthly deposit?', 'a' => 'Our plans start at affordable annual rates. During your free estimate, we\'ll help you find the perfect amount.'],
     ];
@@ -1811,12 +1809,12 @@ function hwh_handle_contact_form() {
     }
 
     // -- Build recipients list (supports multiple, comma-separated) --
-    $recipients_raw = get_option('hwh_notification_emails', 'joe@hotwaterheroesplumbing.com');
+    $recipients_raw = get_option('hwh_notification_emails', 'info@spicolaconstruction.com');
     $recipients = array_filter(array_map('trim', explode(',', $recipients_raw)), 'is_email');
-    if ( empty($recipients) ) $recipients = ['joe@hotwaterheroesplumbing.com'];
+    if ( empty($recipients) ) $recipients = ['info@spicolaconstruction.com'];
     $to = $recipients;
 
-    $subject = '? New Message — Hot Water Heroes Plumbing Website';
+    $subject = '? New Message — Spicola Construction Website';
 
     // -- Prepare substitution values ---------------------------------
     $service_display = $service ? ucwords(str_replace('-', ' ', $service)) : 'Not specified';
@@ -1852,7 +1850,7 @@ function hwh_handle_contact_form() {
     if ($sent) {
         wp_send_json_success(['message' => 'Message sent! We\'ll get back to you within 24 hours.']);
     } else {
-        wp_send_json_error(['message' => 'Something went wrong. Please call us at (813) 427-5862.']);
+        wp_send_json_error(['message' => 'Something went wrong. Please call us at (813) 732-6285.']);
     }
 }
 add_action('wp_ajax_hwh_contact_submit',        'hwh_handle_contact_form');
@@ -1869,7 +1867,7 @@ function hwh_default_email_template() {
       <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;border-radius:16px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.12);">
         <tr>
           <td style="background:linear-gradient(135deg,#0f0720 0%,#0A1628 60%,#2d0d5e 100%);padding:40px 40px 32px;text-align:center;">
-            <p style="margin:0 0 8px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(201,169,110,0.9);">Hot Water Heroes Plumbing</p>
+            <p style="margin:0 0 8px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(201,169,110,0.9);">Spicola Construction</p>
             <h1 style="margin:0;font-size:26px;font-weight:300;color:#f0ebe3;letter-spacing:1px;">New Website Message</h1>
             <div style="width:40px;height:2px;background:linear-gradient(90deg,#F22F3A,#C9A96E);margin:16px auto 0;border-radius:2px;"></div>
           </td>
@@ -1918,7 +1916,7 @@ function hwh_default_email_template() {
         </tr>
         <tr>
           <td style="background:#0f0720;padding:24px 40px;text-align:center;">
-            <p style="margin:0;font-size:11px;color:rgba(240,235,227,0.4);letter-spacing:1px;">Hot Water Heroes Plumbing &middot; Tampa Bay, FL &middot; <a href="https://hotwaterheroesplumbing.com" style="color:rgba(172,19,249,0.7);text-decoration:none;">hotwaterheroesplumbing.com</a></p>
+            <p style="margin:0;font-size:11px;color:rgba(240,235,227,0.4);letter-spacing:1px;">Spicola Construction &middot; Tampa Bay, FL &middot; <a href="https://spicolaconstruction.com" style="color:rgba(172,19,249,0.7);text-decoration:none;">spicolaconstruction.com</a></p>
           </td>
         </tr>
       </table>
@@ -1934,9 +1932,9 @@ function hwh_settings_page_html() {
 
     if ( isset($_POST['hwh_settings_nonce']) && wp_verify_nonce($_POST['hwh_settings_nonce'], 'hwh_save_settings') ) {
         // Multiple emails — stored as comma-separated string
-        $emails_raw = sanitize_text_field($_POST['hwh_notification_emails'] ?? 'joe@hotwaterheroesplumbing.com');
+        $emails_raw = sanitize_text_field($_POST['hwh_notification_emails'] ?? 'info@spicolaconstruction.com');
         $emails_clean = implode(', ', array_filter(array_map('sanitize_email', array_map('trim', explode(',', $emails_raw))), 'is_email'));
-        update_option('hwh_notification_emails', $emails_clean ?: 'joe@hotwaterheroesplumbing.com');
+        update_option('hwh_notification_emails', $emails_clean ?: 'info@spicolaconstruction.com');
 
         // Email template — allow HTML
         $template = wp_unslash($_POST['hwh_email_template'] ?? '');
@@ -1945,12 +1943,12 @@ function hwh_settings_page_html() {
         echo '<div class="notice notice-success is-dismissible"><p><strong>? Settings saved!</strong></p></div>';
     }
 
-    $current_emails  = get_option('hwh_notification_emails', 'joe@hotwaterheroesplumbing.com');
+    $current_emails  = get_option('hwh_notification_emails', 'info@spicolaconstruction.com');
     $current_template = get_option('hwh_email_template', '') ?: hwh_default_email_template();
     ?>
     <div class="wrap">
         <h1 style="display:flex;align-items:center;gap:10px;margin-bottom:24px;">
-            <span style="font-size:1.4rem;">?</span> Hot Water Heroes Plumbing — Settings
+            <span style="font-size:1.4rem;">?</span> Spicola Construction — Settings
         </h1>
 
         <form method="post">
@@ -1964,8 +1962,8 @@ function hwh_settings_page_html() {
                 <input type="text" id="hwh_notification_emails" name="hwh_notification_emails"
                        value="<?php echo esc_attr($current_emails); ?>"
                        style="width:100%;max-width:600px;padding:10px 14px;border:1px solid #ddd;border-radius:6px;font-size:14px;"
-                       placeholder="joe@hotwaterheroesplumbing.com, joe@hotwaterheroesplumbing.com">
-                <p style="margin:8px 0 0;font-size:12px;color:#888;">Example: <code>joe@hotwaterheroesplumbing.com, joe@hotwaterheroesplumbing.com</code></p>
+                       placeholder="info@spicolaconstruction.com, info@spicolaconstruction.com">
+                <p style="margin:8px 0 0;font-size:12px;color:#888;">Example: <code>info@spicolaconstruction.com, info@spicolaconstruction.com</code></p>
             </div>
 
             <!-- Section: Email Template -->
@@ -2034,7 +2032,7 @@ function hwh_settings_page_html() {
 
 function hwh_add_settings_menu() {
     add_options_page(
-        'Hot Water Heroes Plumbing Settings',
+        'Spicola Construction Settings',
         '? HWH Settings',
         'manage_options',
         'hwh-settings',
@@ -2081,7 +2079,7 @@ function hwh_popup_customizer($wp_customize) {
     ]);
 
     // Body text
-    $wp_customize->add_setting('hwh_popup_text', ['default' => 'Book your first service today and receive $50 off any plumbing repair. New customers only.', 'sanitize_callback' => 'sanitize_textarea_field', 'transport' => 'refresh']);
+    $wp_customize->add_setting('hwh_popup_text', ['default' => 'Book your first service today and receive $50 off any construction repair. New customers only.', 'sanitize_callback' => 'sanitize_textarea_field', 'transport' => 'refresh']);
     $wp_customize->add_control('hwh_popup_text', [
         'type'        => 'textarea',
         'section'     => 'hwh_popup',
@@ -2205,7 +2203,7 @@ function hwh_importer_admin_notice() {
 
     echo '<div class="notice notice-info" style="padding:1rem 1.25rem;display:flex;align-items:center;gap:1.5rem;">';
     echo '<div>';
-    echo '<strong>?? Hot Water Heroes Plumbing Theme</strong> ? ';
+    echo '<strong>?? Spicola Construction Theme</strong> ? ';
     echo 'Import all services, posts, categories, and custom fields from the bundled demo content?';
     echo '</div>';
     echo '<a href="' . esc_url( $import_url ) . '" class="button button-primary" style="white-space:nowrap;">Import Content Now</a>';
@@ -2500,51 +2498,51 @@ add_action( 'init', function () {
 // =============================================================================
 // AI SEARCH VISIBILITY — HOMEPAGE FAQ SCHEMA
 // These Q&As directly feed Google AI Overviews, ChatGPT, and Perplexity
-// when users ask questions about plumbing services in Tampa Bay.
+// when users ask questions about construction services in Tampa Bay.
 // =============================================================================
 function hwh_homepage_faq_schema() {
     if ( ! is_front_page() ) return;
 
     $faqs = [
         [
-            'q' => 'What services does Hot Water Heroes Plumbing offer in Tampa Bay?',
-            'a' => 'Hot Water Heroes Plumbing in Tampa Bay, FL offers water heater repair and installation, drain cleaning, pipe repair, whole-home repiping, leak detection, slab leak repair, gas line service, water filtration, sump pump installation, and 24/7 emergency plumbing service.',
+            'q' => 'What services does Spicola Construction offer in Tampa Bay?',
+            'a' => 'Spicola Construction in Tampa Bay, FL offers water heater repair and installation, drain cleaning, pipe repair, whole-home repiping, leak detection, slab leak repair, gas line service, water filtration, sump pump installation, and 24/7 emergency construction service.',
         ],
         [
-            'q' => 'Who is the provider at Hot Water Heroes Plumbing?',
-            'a' => 'Hot Water Heroes Plumbing is a family-owned, licensed plumbing company — serving Tampa Bay with fast, honest, and affordable plumbing services. Our team of licensed master plumbers brings decades of combined experience to every job.',
+            'q' => 'Who is the provider at Spicola Construction?',
+            'a' => 'Spicola Construction is a family-owned, licensed construction company — serving Tampa Bay with fast, honest, and affordable construction services. Our team of licensed master contractors brings decades of combined experience to every job.',
         ],
         [
-            'q' => 'Where is Hot Water Heroes Plumbing located?',
-            'a' => 'Hot Water Heroes Plumbing is located at 9249 Lazy Ln, Tampa, FL 33614 (Egypt Lake-Leto neighborhood) — conveniently serving Carrollwood, Westchase, Lutz, Land O Lakes, and the greater Tampa Bay Bay area. Call (813) 427-5862 to book.',
+            'q' => 'Where is Spicola Construction located?',
+            'a' => 'Spicola Construction is located at 9249 Lazy Ln, Tampa, FL 33614 (Egypt Lake-Leto neighborhood) — conveniently serving Carrollwood, Westchase, Lutz, Land O Lakes, and the greater Tampa Bay Bay area. Call (813) 732-6285 to book.',
         ],
         [
-            'q' => 'How much does a plumbing service call cost at Hot Water Heroes Plumbing?',
-            'a' => 'Service call pricing at Hot Water Heroes Plumbing depends on the type of work needed. We provide free written estimates before any work begins so you know exactly what to expect. Maintenance plan members receive 15% off all repairs.',
+            'q' => 'How much does a construction project cost at Spicola Construction?',
+            'a' => 'Project pricing at Spicola Construction depends on the scope and type of work. We provide free, detailed written estimates before any work begins so you know exactly what to expect.',
         ],
         [
-            'q' => 'Does Hot Water Heroes Plumbing offer free estimates?',
-            'a' => 'Yes! Hot Water Heroes Plumbing provides free estimates on all plumbing work. A licensed plumber will diagnose your issue and provide a written quote before any work begins. Book online or call 813-42-PLUMB.',
+            'q' => 'Does Spicola Construction offer free estimates?',
+            'a' => 'Yes! Spicola Construction provides free estimates on all projects. Our team will visit your property, assess the scope of work, and provide a written quote with no obligation. Call (813) 732-6285.',
         ],
         [
-            'q' => 'What are Hot Water Heroes Plumbing\'s hours?',
-            'a' => 'Hot Water Heroes Plumbing is open 24 hours a day, 7 days a week — including weekends and holidays. Call (813) 427-5862 anytime.',
+            'q' => 'What are Spicola Construction\'s hours?',
+            'a' => 'Spicola Construction is open Monday through Friday 7am to 6pm and Saturday 8am to 4pm. Call (813) 732-6285 to schedule a consultation.',
         ],
         [
-            'q' => 'What is the Maintenance Plan at Hot Water Heroes Plumbing?',
-            'a' => 'The Maintenance Plan is Hot Water Heroes Plumbing\'s annual service plan. Members receive priority scheduling, annual inspections, (starting at $50/month) that accumulates as credits redeemable for any service or product. Credits never expire while your membership is active, and members receive exclusive pricing and priority booking.',
+            'q' => 'Does Spicola Construction handle permits?',
+            'a' => 'Yes. Spicola Construction handles all necessary permits and inspections as part of every project. Our team is fully familiar with Hillsborough, Pinellas, and Pasco county building codes and requirements.',
         ],
         [
-            'q' => 'Is Hot Water Heroes Plumbing good for first-time homeowners?',
-            'a' => 'Absolutely. Hot Water Heroes Plumbing welcomes first-time customers and provides a friendly, transparent experience. Our licensed plumbers take a thorough, professional approach to every estimate, explaining your options clearly before any work begins. New customers receive a $50 off first-service special.',
+            'q' => 'Is Spicola Construction good for first-time homeowners?',
+            'a' => 'Absolutely. Spicola Construction welcomes first-time homeowners and provides a friendly, transparent experience. Our licensed contractors take a thorough, professional approach to every estimate, explaining your options clearly before any work begins.',
         ],
         [
-            'q' => 'Does Hot Water Heroes Plumbing offer financing?',
-            'a' => 'Yes, Hot Water Heroes Plumbing offers flexible payment plan financing through Cherry — allowing you to split the cost of plumbing repairs or installations into manageable monthly payments with easy online approval. Ask our team for details when you book.',
+            'q' => 'Does Spicola Construction offer financing?',
+            'a' => 'Yes, Spicola Construction offers flexible financing options — allowing you to spread the cost of larger construction projects into manageable monthly payments. Ask our team for details when you schedule your consultation.',
         ],
         [
-            'q' => 'What makes Hot Water Heroes Plumbing different from other Tampa Bay plumbers?',
-            'a' => 'Hot Water Heroes Plumbing stands out for its team of licensed master plumbers, its commitment to honest, quality workmanship, transparent pricing, and its Maintenance Plan membership program. All work is performed by licensed, insured plumbers and backed by our satisfaction guarantee.',
+            'q' => 'What makes Spicola Construction different from other Tampa Bay contractors?',
+            'a' => 'Spicola Construction stands out for its 20+ years of experience, commitment to quality craftsmanship, transparent pricing, and on-time project delivery. All work is performed by licensed, insured contractors and backed by our satisfaction guarantee.',
         ],
     ];
 
@@ -2582,24 +2580,24 @@ function hwh_service_faq_schema() {
 
     $faqs = [
         [
-            'q' => 'How much does ' . $service_name . ' cost at Hot Water Heroes Plumbing?',
+            'q' => 'How much does ' . $service_name . ' cost at Spicola Construction?',
             'a' => $price
-                ? $service_name . ' at Hot Water Heroes Plumbing starts at ' . esc_html($price) . '. We provide free written estimates before any work begins. Maintenance plan members save 15% on all repairs.'
-                : $service_name . ' pricing at Hot Water Heroes Plumbing depends on the scope of work. Call us for a free estimate from a licensed plumber.',
+                ? $service_name . ' at Spicola Construction starts at ' . esc_html($price) . '. We provide free written estimates before any work begins.'
+                : $service_name . ' pricing at Spicola Construction depends on the scope of work. Call us for a free estimate.',
         ],
         [
-            'q' => 'How long does ' . $service_name . ' take at Hot Water Heroes Plumbing?',
+            'q' => 'How long does ' . $service_name . ' take at Spicola Construction?',
             'a' => $duration
-                ? $service_name . ' services at Hot Water Heroes Plumbing typically take ' . esc_html($duration) . '. Times may vary based on the scope of your specific job.'
-                : $service_name . ' treatment times vary by client. Contact Hot Water Heroes Plumbing at (813) 427-5862 for details.',
+                ? $service_name . ' at Spicola Construction typically takes ' . esc_html($duration) . '. Times may vary based on the scope of your specific project.'
+                : $service_name . ' project timelines vary. Contact Spicola Construction at (813) 732-6285 for details.',
         ],
         [
-            'q' => 'Is ' . $service_name . ' safe?',
-            'a' => $service_name . ' at Hot Water Heroes Plumbing is performed by licensed, insured plumbers with years of experience. All work is done to code and backed by our satisfaction guarantee.',
+            'q' => 'Is ' . $service_name . ' done to code?',
+            'a' => $service_name . ' at Spicola Construction is performed by licensed, insured contractors with years of experience. All work is done to Florida building code and backed by our satisfaction guarantee.',
         ],
         [
             'q' => 'Where can I get ' . $service_name . ' in Tampa Bay, FL?',
-            'a' => 'Hot Water Heroes Plumbing offers ' . $service_name . ' in Tampa Bay, FL at 9249 Lazy Ln, Tampa, FL 33614. Call (813) 427-5862 or book online to schedule your free estimate.',
+            'a' => 'Spicola Construction offers ' . $service_name . ' in Tampa Bay, FL at 9249 Lazy Ln, Tampa, FL 33614. Call (813) 732-6285 or request a quote online.',
         ],
     ];
 
@@ -2659,34 +2657,34 @@ function hwh_review_schema() {
 
     $reviews = [
         [
-            'author'  => 'Bridget Breland',
+            'author'  => 'Sarah M.',
             'rating'  => 5,
             'date'    => '2026-02-15',
-            'body'    => 'Hot Water Heroes are amazing. Fantastic communication, great plumbers, super nice and best of all your pricing seems very fair. I am a realtor in this area for 23 years and I use them for my personal home. Such an awesome job. I highly recommend them.',
+            'body'    => 'Spicola Construction did an amazing job on our kitchen remodel. Professional crew, great communication throughout the project, and the finished result exceeded our expectations. Highly recommend them for any construction project in Tampa.',
         ],
         [
-            'author'  => 'Kirby Cummings',
+            'author'  => 'James R.',
             'rating'  => 5,
             'date'    => '2026-03-10',
-            'body'    => 'Hot Water Heroes Plumbing was absolutely outstanding! John was professional, knowledgeable, and showed up right on time. He quickly diagnosed the issue, explained everything clearly, and had it fixed faster than expected. The pricing was fair and the quality of work was top-notch.',
+            'body'    => 'We hired Spicola for a complete home addition and they delivered on time and on budget. The quality of work is outstanding. Their team was respectful of our property and kept us informed every step of the way.',
         ],
         [
-            'author'  => 'Mark Watklevicz',
+            'author'  => 'Mike T.',
             'rating'  => 5,
             'date'    => '2026-01-18',
-            'body'    => 'Wow, great service, good pricing, professional and explained everything. Good to see such service and pricing still exist. I will be calling you first for all my plumbing needs. It was a pleasure to have service like this during the holidays. Keep up the good work!',
+            'body'    => 'Best contractor in the Tampa Bay area. Fair pricing, excellent craftsmanship, and they stand behind their work. We have used them for two projects now and will continue to call them for everything.',
         ],
         [
-            'author'  => 'Trinity Elise',
+            'author'  => 'Linda P.',
             'rating'  => 5,
             'date'    => '2026-02-05',
-            'body'    => 'I had a great experience with Hot Water Heroes Plumbing. The technician Eric was efficient and knowledgeable, answered my questions and replaced our water heater neatly. I would recommend this company to friends and family!',
+            'body'    => 'Spicola Construction handled our complete bathroom renovation beautifully. The crew was professional, clean, and finished ahead of schedule. Could not be happier with the results.',
         ],
         [
-            'author'  => 'Eric Whalen',
+            'author'  => 'David K.',
             'rating'  => 5,
             'date'    => '2026-02-10',
-            'body'    => 'Had Eric come out Monday morning to tackle our backed up sink and he was very professional. After 30 minutes everything was working like nothing happened. 10 out of 10 recommend.',
+            'body'    => 'Had Spicola do a commercial build-out for our new office space. Everything was done to code, on time, and their attention to detail was impressive. 10 out of 10 recommend.',
         ],
     ];
 
@@ -2699,9 +2697,9 @@ function hwh_review_schema() {
             'datePublished' => $r['date'],
             'reviewBody'    => $r['body'],
             'itemReviewed'  => [
-                '@type' => 'Plumber',
-                'name'  => 'Hot Water Heroes Plumbing',
-                'image' => 'https://hotwaterheroesplumbing.com/wp-content/uploads/2025/08/HEROES-16-x-9-in-scaled-e1755179786780.png',
+                '@type' => 'GeneralContractor',
+                'name'  => 'Spicola Construction',
+                'image' => esc_url(home_url('/')) . 'wp-content/uploads/spicola-og.jpg',
             ],
         ];
     }
@@ -2712,7 +2710,7 @@ add_action('wp_head', 'hwh_review_schema', 8);
 
 // ============================================================================
 // SERVICE EXCERPT SANITIZER
-// Intercepts database-stored med-spa excerpts and replaces with plumbing copy
+// Intercepts database-stored legacy excerpts and replaces with construction copy
 // ============================================================================
 function hwh_sanitize_service_excerpt($excerpt) {
     if (get_post_type() !== 'service') return $excerpt;
@@ -2731,24 +2729,19 @@ function hwh_sanitize_service_excerpt($excerpt) {
 
     if (!$is_medspa) return $excerpt;
 
-    // Generate a clean plumbing excerpt based on the service title
+    // Generate a clean construction excerpt based on the service title
     $title = strtolower(get_the_title());
     $fallbacks = [
-        'water heater'    => 'Professional water heater repair and installation for all tank and tankless models. Same-day service available.',
-        'drain'           => 'Expert drain cleaning using hydro-jetting and camera inspection. We clear tough clogs fast.',
-        'pipe'            => 'Licensed pipe repair and replacement for burst, corroded, or leaking pipes across Tampa Bay.',
-        'repipe'          => 'Complete whole-home repiping from galvanized or polybutylene to modern PEX or copper.',
-        'leak'            => 'Advanced leak detection using electronic and camera-based technology. Minimize damage, find leaks fast.',
-        'sewer'           => 'Comprehensive sewer line repair, replacement, and camera inspection services.',
-        'toilet'          => 'Toilet repair, replacement, and installation. Running toilets, clogs, and upgrades.',
-        'faucet'          => 'Professional faucet installation and repair for kitchen, bathroom, and utility fixtures.',
-        'garbage'         => 'Garbage disposal installation, repair, and replacement for all major brands.',
-        'sump'            => 'Sump pump installation and repair to protect your home from flooding.',
-        'gas'             => 'Licensed gas line installation, repair, and leak detection for residential properties.',
-        'backflow'        => 'Backflow preventer installation, testing, and annual certification.',
-        'water filter'    => 'Whole-house water filtration and softener systems for cleaner, better-tasting water.',
-        'camera'          => 'Video camera pipe inspection to diagnose clogs, cracks, and root intrusion.',
-        'slab'            => 'Slab leak detection and repair using minimally invasive techniques.',
+        'construction'    => 'Custom residential and commercial construction from the ground up. Licensed general contractor serving Tampa Bay.',
+        'remodel'         => 'Expert kitchen, bathroom, and whole-home remodeling. Quality craftsmanship and transparent pricing.',
+        'renovation'      => 'Full home and commercial renovation services. Transform your space with Spicola Construction.',
+        'roofing'         => 'Professional roof replacement, repair, and new installations for residential and commercial properties.',
+        'concrete'        => 'Expert concrete work including driveways, patios, slabs, and foundations built to last.',
+        'addition'        => 'Seamless room additions and home extensions that match your existing structure perfectly.',
+        'commercial'      => 'Commercial build-outs, tenant improvements, and office renovations tailored to your business.',
+        'kitchen'         => 'Complete kitchen remodeling with custom cabinets, countertops, and modern finishes.',
+        'bathroom'        => 'Full bathroom renovations from design to completion. Modern fixtures and quality materials.',
+        'foundation'      => 'Foundation repair and new foundation work built strong for Florida conditions.',
     ];
 
     foreach ($fallbacks as $keyword => $desc) {
@@ -2758,14 +2751,14 @@ function hwh_sanitize_service_excerpt($excerpt) {
     }
 
     // Generic fallback
-    return 'Professional plumbing service by licensed Tampa Bay plumbers. Call 813-42-PLUMB for a free estimate.';
+    return 'Professional construction services by licensed Tampa Bay contractors. Call (813) 732-6285 for a free estimate.';
 }
 add_filter('get_the_excerpt', 'hwh_sanitize_service_excerpt', 20);
 
 
 // ============================================================================
 // SERVICE CONTENT SANITIZER
-// Hides database-stored med-spa content from service pages
+// Hides database-stored legacy content from service pages
 // ============================================================================
 function hwh_sanitize_service_content($content) {
     if (get_post_type() !== 'service' || !is_singular('service')) return $content;
@@ -2786,15 +2779,15 @@ function hwh_sanitize_service_content($content) {
     $title = esc_html(get_the_title());
     return '<div class="svc-placeholder-content">
         <h2>Professional ' . $title . ' in Tampa Bay</h2>
-        <p>Hot Water Heroes Plumbing provides expert ' . strtolower($title) . ' services across Hillsborough, Pinellas, and Pasco counties. Our licensed plumbers are equipped to handle any job — big or small.</p>
-        <h3>Why Choose Hot Water Heroes?</h3>
+        <p>Spicola Construction provides expert ' . strtolower($title) . ' services across Hillsborough, Pinellas, and Pasco counties. Our licensed contractors are equipped to handle any project &mdash; big or small.</p>
+        <h3>Why Choose Spicola Construction?</h3>
         <ul>
-            <li><strong>Licensed & Insured</strong> — All work performed by certified plumbers</li>
-            <li><strong>Upfront Pricing</strong> — Written estimates before we start</li>
-            <li><strong>Same-Day Service</strong> — Available for most repairs</li>
-            <li><strong>Satisfaction Guaranteed</strong> — We stand behind our work</li>
+            <li><strong>Licensed &amp; Insured</strong> &mdash; Certified General Contractor (CGC)</li>
+            <li><strong>Transparent Pricing</strong> &mdash; Detailed estimates before we start</li>
+            <li><strong>On Time Delivery</strong> &mdash; We respect your schedule</li>
+            <li><strong>Satisfaction Guaranteed</strong> &mdash; We stand behind our work</li>
         </ul>
-        <p>Call <strong>813-42-PLUMB</strong> or <a href="' . esc_url(home_url('/contact/')) . '">book online</a> to schedule your service today.</p>
+        <p>Call <strong>(813) 732-6285</strong> or <a href="' . esc_url(home_url('/contact/')) . '">request a quote online</a> to start your project today.</p>
     </div>';
 }
 add_filter('the_content', 'hwh_sanitize_service_content', 20);

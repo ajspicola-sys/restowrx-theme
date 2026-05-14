@@ -1,6 +1,6 @@
 <?php
 /**
- * Hot Water Heroes Plumbing — Cancellation & Financial Policy Page
+ * Spicola Construction — Cancellation & Financial Policy Page
  */
 get_header(); ?>
 
@@ -93,7 +93,7 @@ get_header(); ?>
                     <p>We are committed to serving you with the highest quality workmanship at a fair price. If you have questions regarding these policies, please reach out at any time.</p>
                     <blockquote class="legal-quote">
                         <strong>I have read and understand this Financial Policy and Agreement.</strong><br><br>
-                        I authorize <strong>Hot Water Heroes Plumbing</strong> to charge my credit card for no-show appointments, late cancellation fees, and outstanding service balances.
+                        I authorize <strong>Spicola Construction</strong> to charge my credit card for no-show appointments, late cancellation fees, and outstanding service balances.
                     </blockquote>
                     <div class="legal-cta">
                         <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary">Questions? Contact Us</a>

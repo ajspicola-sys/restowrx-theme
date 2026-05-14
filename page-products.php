@@ -1,7 +1,7 @@
 <?php
 /**
  * Template Name: Products
- * Hot Water Heroes Plumbing — Products Page (Dynamic)
+ * Spicola Construction — Products Page (Dynamic)
  * Pulls products from the product custom post type
  */
 get_header(); ?>

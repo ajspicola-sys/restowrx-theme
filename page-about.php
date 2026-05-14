@@ -1,7 +1,7 @@
 <?php
 /**
  * Template Name: About
- * Hot Water Heroes Plumbing — About Page
+ * Spicola Construction — About Page
  * Our story, values, and why Tampa trusts us
  */
 get_header(); ?>
@@ -11,7 +11,7 @@ get_header(); ?>
     <!-- ════════════════════════════════════════════════════════════
          HERO
          ════════════════════════════════════════════════════════════ -->
-    <section class="about-hero" aria-label="About Hot Water Heroes Plumbing">
+    <section class="about-hero" aria-label="About Spicola Construction">
         <div class="about-hero__bg" aria-hidden="true">
             <div class="about-hero__stripe"></div>
         </div>
@@ -22,7 +22,7 @@ get_header(); ?>
                     Serving Tampa Bay Since 2025
                 </span>
                 <h1 class="about-hero__title">We're Not Just<br><em>Plumbers.</em></h1>
-                <p class="about-hero__desc">We're your neighbors, your emergency lifeline at 2 AM, and the team that treats your home like it's our own. Hot Water Heroes was built on one promise: honest work, fair prices, and no surprises.</p>
+                <p class="about-hero__desc">We're your neighbors, your emergency lifeline at 2 AM, and the team that treats your home like it's our own. Spicola Construction was built on one promise: honest work, fair prices, and no surprises.</p>
                 <div class="about-hero__actions">
                     <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="btn btn--primary btn--lg">Get In Touch</a>
                     <a href="<?php echo esc_url( home_url( '/services/' ) ); ?>" class="btn btn--outline btn--lg">Our Services</a>
@@ -31,8 +31,8 @@ get_header(); ?>
             <div class="about-hero__visual">
                 <div class="about-hero__mascot-glow" aria-hidden="true"></div>
                 <img
-                    src="https://hotwaterheroesplumbing.com/wp-content/uploads/2026/05/Heaty-Normal.png"
-                    alt="Heaty — Hot Water Heroes mascot"
+                    src="https://spicolaconstruction.com/wp-content/uploads/2026/05/Heaty-Normal.png"
+                    alt="Heaty — Spicola Construction mascot"
                     class="about-hero__mascot"
                     width="380" height="440"
                     loading="eager" decoding="async"
@@ -63,7 +63,7 @@ get_header(); ?>
                     <div class="about-story__year">Late 2025</div>
                     <div class="about-story__detail">
                         <h3>The Beginning</h3>
-                        <p>Hot Water Heroes launched in late 2025 with a simple mission: give Tampa Bay homeowners honest plumbing service at fair prices. Our founder saw too many families getting overcharged for sloppy work — and decided it was time for something better.</p>
+                        <p>Spicola Construction launched in late 2025 with a simple mission: give Tampa Bay homeowners honest plumbing service at fair prices. Our founder saw too many families getting overcharged for sloppy work — and decided it was time for something better.</p>
                     </div>
                 </div>
                 <div class="about-story__block">
@@ -165,14 +165,14 @@ get_header(); ?>
             <div class="section__header reveal section__header--center">
                 <span class="section__label">Stronger Together</span>
                 <h2 class="section__title">A Complete Home<br>Recovery Team</h2>
-                <p class="section__subtitle section__subtitle--narrow">Our family of companies — Hot Water Heroes Plumbing, RestoWrx, and Spicola Construction — covers every stage of your home's needs. We stop leaks, restore damage, and rebuild better than before, all with the same dedication to quality and care.</p>
+                <p class="section__subtitle section__subtitle--narrow">Our family of companies — Spicola Construction, RestoWrx, and Spicola Construction — covers every stage of your home's needs. We stop leaks, restore damage, and rebuild better than before, all with the same dedication to quality and care.</p>
             </div>
             <div class="about-family__grid reveal">
                 <article class="about-family__card">
                     <div class="about-family__icon">
                         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
                     </div>
-                    <h3 class="about-family__name">Hot Water Heroes Plumbing</h3>
+                    <h3 class="about-family__name">Spicola Construction</h3>
                     <p class="about-family__desc">We stop the leak. Emergency plumbing, water heater repair &amp; installation, drain cleaning, and full repiping — fast, honest, and available 24/7.</p>
                     <span class="about-family__tag">Plumbing &amp; Water Heaters</span>
                 </article>
@@ -210,7 +210,7 @@ get_header(); ?>
             <div class="svc-cta__actions">
                 <a href="tel:+18134275862" class="btn btn--primary btn--lg">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L7.91 9.27a16 16 0 0 0 6.29 6.29l1.45-1.45a2 2 0 0 1 2.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z"/></svg>
-                    Call 813-42-PLUMB (75862)
+                    Call (813) 732-6285 (75862)
                 </a>
                 <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="btn btn--outline btn--lg">
                     Schedule Online

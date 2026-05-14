@@ -1,6 +1,6 @@
 <?php
 /**
- * Hot Water Heroes Plumbing — Single Post Template
+ * Spicola Construction — Single Post Template
  * Performance-optimized: lazy loading, optimized WP_Query, semantic HTML
  */
 get_header(); ?>

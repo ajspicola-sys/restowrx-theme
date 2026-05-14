@@ -1,6 +1,6 @@
 <?php
 /**
- * Hot Water Heroes — Header Template v2
+ * Spicola Construction — Header Template v1
  * Two-layer: dark top bar + white nav bar
  */
 
@@ -36,7 +36,7 @@ $hwh_menu_services = hwh_get_menu_services();
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="theme-color" content="#0F2440">
+    <meta name="theme-color" content="#222D3F">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-capable" content="yes">
 
@@ -50,18 +50,18 @@ $hwh_menu_services = hwh_get_menu_services();
     }
     if ( empty( $meta_desc ) ) {
         if ( is_front_page() ) {
-            $meta_desc = 'Hot Water Heroes is a trusted Tampa plumbing company specializing in water heater repair, replacement, and same-day service. Call 813-42-PLUMB.';
+            $meta_desc = 'Spicola Construction is a trusted Tampa Bay general contractor specializing in residential and commercial construction, remodeling, and renovation. Call (813) 732-6285.';
         } elseif ( is_singular() ) {
             $meta_desc = wp_strip_all_tags( get_the_excerpt() );
         } else {
-            $meta_desc = 'Hot Water Heroes Plumbing — Tampa Bay\'s trusted plumbing experts for water heaters, drain cleaning, leak detection, and same-day service.';
+            $meta_desc = 'Spicola Construction — Tampa Bay\'s trusted general contractor for new construction, remodeling, roofing, and commercial build-outs.';
         }
     }
     ?>
 
     <?php
-    $og_img    = 'https://hotwaterheroesplumbing.com/wp-content/uploads/2026/04/Hero-Apirl4.png';
-    $og_title  = is_front_page() ? 'Hot Water Heroes Plumbing | Trusted Plumbers in Tampa Bay, FL' : wp_get_document_title();
+    $og_img    = 'https://spicolaconstruction.com/wp-content/uploads/spicola-og.jpg';
+    $og_title  = is_front_page() ? 'Spicola Construction | Trusted General Contractor in Tampa Bay, FL' : wp_get_document_title();
     $og_desc   = $meta_desc;
     $og_url    = is_singular() ? get_permalink() : ( is_front_page() ? home_url('/') : ( is_archive() ? get_term_link( get_queried_object() ) : home_url('/') ) );
     $og_url    = is_wp_error( $og_url ) ? home_url('/') : $og_url;
@@ -72,7 +72,7 @@ $hwh_menu_services = hwh_get_menu_services();
     }
     ?>
     <meta property="og:locale"       content="en_US">
-    <meta property="og:site_name"   content="Hot Water Heroes Plumbing">
+    <meta property="og:site_name"   content="Spicola Construction">
     <meta property="og:type"        content="<?php echo esc_attr($og_type); ?>">
     <meta property="og:url"         content="<?php echo esc_url($og_url); ?>">
     <meta property="og:title"       content="<?php echo esc_attr($og_title); ?>">
@@ -80,21 +80,14 @@ $hwh_menu_services = hwh_get_menu_services();
     <meta property="og:image"       content="<?php echo esc_url($og_img); ?>">
     <meta property="og:image:width"  content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt"    content="Hot Water Heroes Plumbing - Tampa Bay Plumbers">
+    <meta property="og:image:alt"    content="Spicola Construction - Tampa Bay General Contractor">
     <meta name="twitter:card"        content="summary_large_image">
-    <meta name="twitter:site"        content="@HotWaterHeroes">
     <meta name="twitter:title"       content="<?php echo esc_attr($og_title); ?>">
     <meta name="twitter:description" content="<?php echo esc_attr($og_desc); ?>">
     <meta name="twitter:image"       content="<?php echo esc_url($og_img); ?>">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://hotwaterheroesplumbing.com" crossorigin>
-
-    <!-- Preload LCP hero image (desktop) -->
-    <link rel="preload" as="image"
-          href="https://hotwaterheroesplumbing.com/wp-content/uploads/2025/12/HWH-HERO-VAN.png"
-          fetchpriority="high">
 
     <!-- Google Fonts: non-render-blocking via print→all swap trick -->
     <link rel="preload" as="style"
@@ -111,16 +104,15 @@ $hwh_menu_services = hwh_get_menu_services();
 
     <?php wp_head(); ?>
 
-    <style id="hwh-critical-css">
+    <style id="sc-critical-css">
         html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
-        body { margin: 0; font-family: 'Inter','Helvetica Neue',Arial,sans-serif; background: #F8F9FB; overflow-x: hidden; }
+        body { margin: 0; font-family: 'Inter','Helvetica Neue',Arial,sans-serif; background: #F8F8F6; overflow-x: hidden; }
         .site-main { padding-top: 115px; }
         .hwh-header { position: fixed; top: 0; left: 0; right: 0; z-index: 200; }
-        .hwh-topbar { background: #0F2440; height: 40px; display: flex; align-items: center; }
+        .hwh-topbar { background: #222D3F; height: 40px; display: flex; align-items: center; }
         .hwh-topbar__inner { max-width: 1280px; margin: 0 auto; padding: 0 clamp(1.25rem,1rem + 2vw,3rem); display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 1.5rem; }
         .hwh-nav-bar { background: rgba(255,255,255,0.97); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); box-shadow: 0 2px 20px rgba(0,0,0,0.08); padding: 0.85rem 0; transition: padding .3s ease; }
         .hwh-nav-bar__inner { max-width: 1280px; margin: 0 auto; padding: 0 clamp(1.25rem,1rem + 2vw,3rem); display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
-        /* Montserrat fallback — size-adjust prevents CLS when font swaps in */
         @font-face {
             font-family: 'Montserrat';
             font-display: swap;
@@ -131,7 +123,6 @@ $hwh_menu_services = hwh_get_menu_services();
             descent-override: 22%;
             line-gap-override: 0%;
         }
-        /* Inter fallback — tighter metrics than Helvetica Neue */
         @font-face {
             font-family: 'Inter';
             font-display: swap;
@@ -161,19 +152,18 @@ $hwh_menu_services = hwh_get_menu_services();
 
             <!-- Left: quick info -->
             <div class="hwh-topbar__left">
-                <a href="tel:+18134275862" class="hwh-topbar__item hwh-topbar__item--phone">
+                <a href="tel:+18137326285" class="hwh-topbar__item hwh-topbar__item--phone">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                    813-42-PLUMB (75862)
+                    (813) 732-6285
                 </a>
                 <span class="hwh-topbar__sep" aria-hidden="true">|</span>
                 <span class="hwh-topbar__item">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                    Open 24 Hours &nbsp;·&nbsp; 7 Days a Week
+                    Mon–Fri 7am–6pm &nbsp;·&nbsp; Sat 8am–4pm
                 </span>
                 <span class="hwh-topbar__sep" aria-hidden="true">|</span>
-                <span class="hwh-topbar__item hwh-topbar__item--live">
-                    <span class="hwh-topbar__dot" aria-hidden="true"></span>
-                    Available Now
+                <span class="hwh-topbar__item">
+                    Licensed &amp; Insured · CGC #123456
                 </span>
             </div>
 
@@ -187,10 +177,10 @@ $hwh_menu_services = hwh_get_menu_services();
                     </button>
                 </form>
                 <!-- Social -->
-                <a href="https://www.facebook.com/hotwaterheroes/" class="hwh-topbar__social" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.facebook.com/spicolaconstruction/" class="hwh-topbar__social" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
                 </a>
-                <a href="https://www.instagram.com/hotwaterheroes/" class="hwh-topbar__social" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.instagram.com/spicolaconstruction/" class="hwh-topbar__social" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
                 </a>
             </div>
@@ -203,10 +193,8 @@ $hwh_menu_services = hwh_get_menu_services();
         <div class="hwh-nav-bar__inner">
 
             <!-- Logo -->
-            <a href="<?php echo esc_url(home_url('/')); ?>" class="hwh-nav__logo" aria-label="Hot Water Heroes Plumbing — Home">
-                <img src="https://hotwaterheroesplumbing.com/wp-content/uploads/2025/08/HEROES-16-x-9-in-scaled-e1755179786780.png"
-                     alt="Hot Water Heroes Plumbing" width="260" height="65"
-                     loading="eager" decoding="async" class="hwh-nav__logo-img">
+            <a href="<?php echo esc_url(home_url('/')); ?>" class="hwh-nav__logo" aria-label="Spicola Construction — Home">
+                <span style="font-family:'Montserrat',sans-serif;font-size:1.5rem;font-weight:800;color:#222D3F;letter-spacing:0.04em;">SPICOLA <span style="color:#A52A2A;">CONSTRUCTION</span></span>
             </a>
 
             <!-- Desktop nav -->
@@ -245,9 +233,9 @@ $hwh_menu_services = hwh_get_menu_services();
                                 <?php else : ?>
                                 <!-- Fallback: no services in WP yet -->
                                 <div class="hwh-drop__col">
-                                    <span class="hwh-drop__heading">Popular Services</span>
+                                    <span class="hwh-drop__heading">Our Services</span>
                                     <a href="<?php echo esc_url(home_url('/services/')); ?>" class="hwh-drop__item">
-                                        <span class="hwh-drop__icon"></span>
+                                        <span class="hwh-drop__icon">🏗️</span>
                                         <span><strong>Browse All Services</strong></span>
                                     </a>
                                 </div>
@@ -265,7 +253,9 @@ $hwh_menu_services = hwh_get_menu_services();
                     <li class="hwh-nav__item<?php if (is_page('about')) echo ' hwh-nav__item--active'; ?>">
                         <a href="<?php echo esc_url(home_url('/about/')); ?>" class="hwh-nav__link">About</a>
                     </li>
-
+                    <li class="hwh-nav__item<?php if (is_page('projects')) echo ' hwh-nav__item--active'; ?>">
+                        <a href="<?php echo esc_url(home_url('/projects/')); ?>" class="hwh-nav__link">Projects</a>
+                    </li>
                     <li class="hwh-nav__item<?php if (is_page('contact')) echo ' hwh-nav__item--active'; ?>">
                         <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="hwh-nav__link">Contact</a>
                     </li>
@@ -274,10 +264,10 @@ $hwh_menu_services = hwh_get_menu_services();
 
             <!-- Actions -->
             <div class="hwh-nav__actions">
-                <a href="tel:+18134275862" class="hwh-nav__call" aria-label="Call 813-42-PLUMB">
+                <a href="tel:+18137326285" class="hwh-nav__call" aria-label="Call (813) 732-6285">
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
                 </a>
-                <a href="/contact/" class="hwh-btn hwh-btn--red hwh-btn--sm">Book Service</a>
+                <a href="/contact/" class="hwh-btn hwh-btn--red hwh-btn--sm">Get a Quote</a>
                 <button class="hwh-nav__hamburger" id="mobile-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-menu">
                     <span class="hamburger"><span class="hamburger__line"></span><span class="hamburger__line"></span><span class="hamburger__line"></span></span>
                 </button>
@@ -296,7 +286,7 @@ $hwh_menu_services = hwh_get_menu_services();
     <div class="mobile-menu__drawer">
         <div class="mobile-menu__header">
             <a href="<?php echo esc_url(home_url('/')); ?>" class="hwh-nav__logo">
-                <img src="https://hotwaterheroesplumbing.com/wp-content/uploads/2025/08/HEROES-16-x-9-in-scaled-e1755179786780.png" alt="Hot Water Heroes" width="180" height="45">
+                <span style="font-family:'Montserrat',sans-serif;font-size:1.2rem;font-weight:800;color:#222D3F;">SPICOLA <span style="color:#A52A2A;">CONSTRUCTION</span></span>
             </a>
             <button class="mobile-menu__close" id="mobile-close" aria-label="Close navigation">×</button>
         </div>
@@ -314,7 +304,7 @@ $hwh_menu_services = hwh_get_menu_services();
                 <li><a href="<?php echo esc_url(home_url('/')); ?>">Home</a></li>
                 <li><a href="<?php echo esc_url(home_url('/services/')); ?>">All Services</a></li>
                 <?php
-                // Dynamic mobile service sub-links (up to 6 total)
+                // Dynamic mobile service sub-links
                 $mobile_svcs = get_posts( [
                     'post_type'      => 'service',
                     'post_status'    => 'publish',
@@ -329,20 +319,20 @@ $hwh_menu_services = hwh_get_menu_services();
                 <li><a href="<?php echo esc_url( get_permalink( $ms->ID ) ); ?>">↳ <?php echo esc_html( $ms->post_title ); ?></a></li>
                 <?php endforeach; wp_reset_postdata(); ?>
                 <li><a href="<?php echo esc_url(home_url('/about/')); ?>">About Us</a></li>
-
+                <li><a href="<?php echo esc_url(home_url('/projects/')); ?>">Projects</a></li>
                 <li><a href="<?php echo esc_url(home_url('/contact/')); ?>">Contact</a></li>
             </ul>
         </nav>
 
         <div class="mobile-menu__footer">
-            <a href="/contact/" class="hwh-btn hwh-btn--red hwh-btn--full">Book a Service</a>
-            <a href="tel:+18134275862" class="mobile-menu__contact-item">
+            <a href="/contact/" class="hwh-btn hwh-btn--red hwh-btn--full">Get a Free Quote</a>
+            <a href="tel:+18137326285" class="mobile-menu__contact-item">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                813-42-PLUMB (75862) — 24/7 Emergency
+                (813) 732-6285
             </a>
-            <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#106;&#111;&#101;&#64;&#104;&#111;&#116;&#119;&#97;&#116;&#101;&#114;&#104;&#101;&#114;&#111;&#101;&#115;&#112;&#108;&#117;&#109;&#98;&#105;&#110;&#103;&#46;&#99;&#111;&#109;" class="mobile-menu__contact-item">
+            <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#105;&#110;&#102;&#111;&#64;&#115;&#112;&#105;&#99;&#111;&#108;&#97;&#99;&#111;&#110;&#115;&#116;&#114;&#117;&#99;&#116;&#105;&#111;&#110;&#46;&#99;&#111;&#109;" class="mobile-menu__contact-item">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                &#106;&#111;&#101;&#64;&#104;&#111;&#116;&#119;&#97;&#116;&#101;&#114;&#104;&#101;&#114;&#111;&#101;&#115;&#112;&#108;&#117;&#109;&#98;&#105;&#110;&#103;&#46;&#99;&#111;&#109;
+                &#105;&#110;&#102;&#111;&#64;&#115;&#112;&#105;&#99;&#111;&#108;&#97;&#99;&#111;&#110;&#115;&#116;&#114;&#117;&#99;&#116;&#105;&#111;&#110;&#46;&#99;&#111;&#109;
             </a>
         </div>
     </div>

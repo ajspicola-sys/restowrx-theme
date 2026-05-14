@@ -1,7 +1,7 @@
 <?php
 /**
  * Template Name: Homepage
- * Hot Water Heroes Plumbing — Front Page v3 (Bold Redesign)
+ * Spicola Construction — Front Page v1
  */
 get_header(); ?>
 
@@ -11,31 +11,29 @@ get_header(); ?>
 <script type="application/ld+json">
 {
     "@context": "https://schema.org",
-    "@type": ["Plumber", "HomeAndConstructionBusiness", "LocalBusiness"],
+    "@type": ["GeneralContractor", "HomeAndConstructionBusiness", "LocalBusiness"],
     "@id": "<?php echo esc_url(home_url('/')); ?>#business",
-    "name": "Hot Water Heroes Plumbing",
-    "alternateName": "HWH Plumbing",
-    "description": "Tampa Bay's trusted plumbing company — expert water heater repair, installation, drain cleaning, leak detection, and 24/7 emergency plumbing services.",
+    "name": "Spicola Construction",
+    "description": "Tampa Bay's trusted general contractor — expert residential and commercial construction, remodeling, roofing, and renovation services.",
     "url": "<?php echo esc_url(home_url('/')); ?>",
-    "telephone": "+18134275862",
-    "email": "joe@hotwaterheroesplumbing.com",
-    "priceRange": "$$",
-    "image": "<?php echo esc_url(home_url('/')); ?>wp-content/uploads/hwh-logo.png",
+    "telephone": "+18137326285",
+    "email": "info@spicolaconstruction.com",
+    "priceRange": "$$-$$$",
     "address": { "@type": "PostalAddress", "addressLocality": "Tampa", "addressRegion": "FL", "addressCountry": "US" },
     "areaServed": [
         {"@type":"City","name":"Tampa"},{"@type":"City","name":"St. Petersburg"},
         {"@type":"City","name":"Clearwater"},{"@type":"City","name":"Brandon"},
         {"@type":"City","name":"Wesley Chapel"},{"@type":"City","name":"Riverview"}
     ],
-    "aggregateRating": {"@type":"AggregateRating","ratingValue":"5","reviewCount":"30","bestRating":"5"},
-    "sameAs": ["https://www.instagram.com/hotwaterheroes/","https://www.facebook.com/hotwaterheroes/"]
+    "aggregateRating": {"@type":"AggregateRating","ratingValue":"5","reviewCount":"50","bestRating":"5"},
+    "sameAs": ["https://www.facebook.com/spicolaconstruction/","https://www.instagram.com/spicolaconstruction/"]
 }
 </script>
 
 <!-- ══════════════════════════════════════════════════════
      HERO — Dark navy, bold red, full impact
      ══════════════════════════════════════════════════════ -->
-<section class="hwh-hero" id="hero" aria-label="Hot Water Heroes Plumbing">
+<section class="hwh-hero" id="hero" aria-label="Spicola Construction">
     <div class="hwh-hero__overlay" aria-hidden="true"></div>
     <div class="hwh-hero__grid" aria-hidden="true"></div>
 
@@ -43,71 +41,70 @@ get_header(); ?>
         <div class="hwh-hero__content">
             <div class="hwh-hero__eyebrow">
                 <span class="hwh-hero__dot" aria-hidden="true"></span>
-                24/7 Emergency Plumbing · Tampa Bay, FL
+                Licensed General Contractor · Tampa Bay, FL
             </div>
 
             <h1 class="hwh-hero__title">
-                Your Plumbing Heroes.<br>
-                <span class="hwh-hero__title-accent">We Fix It Today.</span>
+                Building Tampa Bay.<br>
+                <span class="hwh-hero__title-accent">One Project at a Time.</span>
             </h1>
 
             <p class="hwh-hero__sub">
-                Licensed plumbers on call around the clock. Water heater repair, installation, drain cleaning & emergency plumbing — done right, backed by a satisfaction guarantee.
+                Trusted general contractor serving Tampa Bay for residential &amp; commercial construction, remodeling, roofing, and renovations — quality craftsmanship, on time and on budget.
             </p>
 
             <div class="hwh-hero__actions">
-                <a href="tel:+18134275862" class="hwh-btn hwh-btn--red hwh-btn--lg">
+                <a href="tel:+18137326285" class="hwh-btn hwh-btn--red hwh-btn--lg">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                    813-42-PLUMB — (813) 427-5862
+                    (813) 732-6285
                 </a>
                 <a href="/contact/" class="hwh-btn hwh-btn--ghost hwh-btn--lg">
-                    Book Online →
+                    Get a Free Quote →
                 </a>
             </div>
 
             <div class="hwh-hero__trust">
                 <div class="hwh-hero__trust-item">✔ Licensed &amp; Insured</div>
-                <div class="hwh-hero__trust-item">✔ Same-Day Service</div>
+                <div class="hwh-hero__trust-item">✔ Free Estimates</div>
                 <div class="hwh-hero__trust-item">✔ 5★ Google Rating</div>
-                <div class="hwh-hero__trust-item">✔ No Hidden Fees</div>
+                <div class="hwh-hero__trust-item">✔ Family Owned</div>
             </div>
         </div>
 
         <div class="hwh-hero__visual" aria-hidden="true">
             <div class="hwh-hero__van-wrap">
-                <img src="https://hotwaterheroesplumbing.com/wp-content/uploads/2025/12/HWH-HERO-VAN.png"
-                     alt="Hot Water Heroes plumbing service van"
-                     width="680" height="480"
-                     fetchpriority="high" loading="eager" decoding="async"
-                     class="hwh-hero__van">
+                <!-- Placeholder — will add real project photo later -->
+                <div style="width:680px;height:480px;background:linear-gradient(135deg,#222D3F,#A52A2A);border-radius:16px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Montserrat',sans-serif;font-size:2rem;font-weight:700;text-align:center;padding:2rem;">
+                    🏗️<br>SPICOLA<br>CONSTRUCTION
+                </div>
             </div>
         </div>
     </div>
 </section>
 
 <!-- ══════════════════════════════════════════════════════
-     STATS BAR — Red background, bold numbers
+     STATS BAR
      ══════════════════════════════════════════════════════ -->
 <section class="hwh-stats" aria-label="Company stats">
     <div class="hwh-stats__inner">
         <div class="hwh-stat-item">
-            <span class="hwh-stat-item__num">300+</span>
-            <span class="hwh-stat-item__label">Jobs Completed</span>
+            <span class="hwh-stat-item__num">500+</span>
+            <span class="hwh-stat-item__label">Projects Completed</span>
         </div>
         <div class="hwh-stat-item__div" aria-hidden="true"></div>
         <div class="hwh-stat-item">
-            <span class="hwh-stat-item__num">30+</span>
+            <span class="hwh-stat-item__num">20+</span>
+            <span class="hwh-stat-item__label">Years Experience</span>
+        </div>
+        <div class="hwh-stat-item__div" aria-hidden="true"></div>
+        <div class="hwh-stat-item">
+            <span class="hwh-stat-item__num">50+</span>
             <span class="hwh-stat-item__label">5-Star Reviews</span>
         </div>
         <div class="hwh-stat-item__div" aria-hidden="true"></div>
         <div class="hwh-stat-item">
-            <span class="hwh-stat-item__num">24/7</span>
-            <span class="hwh-stat-item__label">Emergency Service</span>
-        </div>
-        <div class="hwh-stat-item__div" aria-hidden="true"></div>
-        <div class="hwh-stat-item">
-            <span class="hwh-stat-item__num">8+</span>
-            <span class="hwh-stat-item__label">Cities Covered</span>
+            <span class="hwh-stat-item__num">100%</span>
+            <span class="hwh-stat-item__label">Satisfaction Guaranteed</span>
         </div>
     </div>
 </section>
@@ -115,12 +112,12 @@ get_header(); ?>
 <!-- ══════════════════════════════════════════════════════
      SERVICES — Clean bold grid
      ══════════════════════════════════════════════════════ -->
-<section class="hwh-services" id="services" aria-label="Our plumbing services">
+<section class="hwh-services" id="services" aria-label="Our construction services">
     <div class="hwh-section-inner">
         <div class="hwh-section-header">
-            <span class="hwh-label">What We Do</span>
-            <h2 class="hwh-section-title">Plumbing Services<br><em>Built Around You</em></h2>
-            <p class="hwh-section-desc">From water heater emergencies to routine drain cleaning — we handle it all with speed, skill, and upfront pricing.</p>
+            <span class="hwh-label">Our Expertise</span>
+            <h2 class="hwh-section-title">Construction Services<br><em>Built to Last</em></h2>
+            <p class="hwh-section-desc">From new builds to full renovations — we deliver quality craftsmanship on every project, on time and on budget.</p>
         </div>
 
         <?php
@@ -132,12 +129,12 @@ get_header(); ?>
             'no_found_rows'  => true,
         ]);
         $fallback = [
-            ['title'=>'Water Heater Repair',      'text'=>'Fast diagnosis and repair of all water heater brands and sizes. No hot water? We fix it same-day.'],
-            ['title'=>'Water Heater Installation', 'text'=>'Full installation of tank and tankless units — properly sized, up to code, done right the first time.'],
-            ['title'=>'Tankless Water Heaters',   'text'=>'Endless hot water with a tankless upgrade. We sell, install, and service all major brands.'],
-            ['title'=>'Drain Cleaning',           'text'=>'Slow drains or full blockages cleared with hydro-jetting and professional snaking.'],
-            ['title'=>'Emergency Plumbing',       'text'=>'Burst pipe? Major leak? We\'re available 24/7 — nights, weekends, and holidays.'],
-            ['title'=>'Leak Detection & Repair',  'text'=>'Non-invasive technology finds hidden leaks before they cause major damage to your home.'],
+            ['title'=>'New Construction',          'text'=>'Custom residential and commercial builds from the ground up — designed to your vision, built to code.'],
+            ['title'=>'Remodeling & Renovations',  'text'=>'Kitchen, bathroom, and whole-home remodels that transform your space with quality materials and craftsmanship.'],
+            ['title'=>'Roofing',                   'text'=>'Full roof replacement, repairs, and new installations — protecting your property from Florida weather.'],
+            ['title'=>'Commercial Build-Outs',     'text'=>'Tenant improvements, office renovations, and commercial construction tailored to your business needs.'],
+            ['title'=>'Additions & Extensions',    'text'=>'Expand your living space with seamlessly integrated additions that match your existing structure.'],
+            ['title'=>'Concrete & Foundation',     'text'=>'Driveways, patios, slabs, and foundation work — built strong for Florida\'s unique soil conditions.'],
         ];
         ?>
 
@@ -186,36 +183,36 @@ get_header(); ?>
     <div class="hwh-section-inner">
         <div class="hwh-section-header hwh-section-header--light">
             <span class="hwh-label hwh-label--red">How It Works</span>
-            <h2 class="hwh-section-title hwh-section-title--white">Service in 4 Simple Steps</h2>
-            <p class="hwh-section-desc hwh-section-desc--muted">We make plumbing repairs painless — fast, transparent, and done right the first time.</p>
+            <h2 class="hwh-section-title hwh-section-title--white">Your Project in 4 Steps</h2>
+            <p class="hwh-section-desc hwh-section-desc--muted">We make construction simple — transparent pricing, clear timelines, and quality you can trust.</p>
         </div>
         <div class="hwh-process-steps">
             <div class="hwh-process-step">
                 <div class="hwh-process-step__num">01</div>
                 <div class="hwh-process-step__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-                <h3 class="hwh-process-step__title">Call or Book Online</h3>
-                <p class="hwh-process-step__text">Reach us 24/7 by phone or schedule online. We confirm your appointment fast — often same-day.</p>
+                <h3 class="hwh-process-step__title">Free Consultation</h3>
+                <p class="hwh-process-step__text">Call us or request a quote online. We schedule a free on-site consultation to understand your vision.</p>
             </div>
             <div class="hwh-process-connector" aria-hidden="true"></div>
             <div class="hwh-process-step">
                 <div class="hwh-process-step__num">02</div>
                 <div class="hwh-process-step__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
-                <h3 class="hwh-process-step__title">We Show Up On Time</h3>
-                <p class="hwh-process-step__text">A licensed plumber arrives fully equipped and ready. We respect your time and your home.</p>
+                <h3 class="hwh-process-step__title">Design & Planning</h3>
+                <p class="hwh-process-step__text">Our team creates a detailed plan with blueprints, materials, and a transparent project estimate.</p>
             </div>
             <div class="hwh-process-connector" aria-hidden="true"></div>
             <div class="hwh-process-step">
                 <div class="hwh-process-step__num">03</div>
                 <div class="hwh-process-step__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
-                <h3 class="hwh-process-step__title">Diagnose &amp; Quote</h3>
-                <p class="hwh-process-step__text">We find the problem and give you a clear, upfront price. No surprises, no pressure.</p>
+                <h3 class="hwh-process-step__title">Build &amp; Execute</h3>
+                <p class="hwh-process-step__text">Licensed crews get to work on schedule. We keep you updated with regular progress reports.</p>
             </div>
             <div class="hwh-process-connector" aria-hidden="true"></div>
             <div class="hwh-process-step">
                 <div class="hwh-process-step__num">04</div>
                 <div class="hwh-process-step__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
-                <h3 class="hwh-process-step__title">Fixed &amp; Guaranteed</h3>
-                <p class="hwh-process-step__text">We complete the work cleanly and efficiently. Every job is backed by our satisfaction guarantee.</p>
+                <h3 class="hwh-process-step__title">Final Walkthrough</h3>
+                <p class="hwh-process-step__text">We walk every detail with you to ensure 100% satisfaction. Your project is backed by our quality guarantee.</p>
             </div>
         </div>
     </div>
@@ -224,40 +221,40 @@ get_header(); ?>
 <!-- ══════════════════════════════════════════════════════
      WHY CHOOSE US — Light bg, bold trust signals
      ══════════════════════════════════════════════════════ -->
-<section class="hwh-why" aria-label="Why choose Hot Water Heroes">
+<section class="hwh-why" aria-label="Why choose Spicola Construction">
     <div class="hwh-section-inner">
         <div class="hwh-why__grid">
             <div class="hwh-why__content reveal">
-                <span class="hwh-label">The HWH Difference</span>
+                <span class="hwh-label">The Spicola Difference</span>
                 <h2 class="hwh-section-title">Why Tampa Bay<br>Chooses <em>Us</em></h2>
-                <p class="hwh-section-desc">We built our reputation one job at a time — showing up when others won't, being honest about pricing, and doing work that lasts.</p>
+                <p class="hwh-section-desc">We built our reputation one project at a time — delivering quality craftsmanship, honest pricing, and work that stands the test of time.</p>
                 <ul class="hwh-why__list">
                     <li class="hwh-why__item">
                         <span class="hwh-why__check" aria-hidden="true">✔</span>
                         <div>
-                            <strong>State-Licensed &amp; Fully Insured</strong>
-                            <p>Every technician is background-checked and licensed for your protection.</p>
+                            <strong>Licensed General Contractor</strong>
+                            <p>Fully licensed CGC and insured for residential and commercial projects in Florida.</p>
                         </div>
                     </li>
                     <li class="hwh-why__item">
                         <span class="hwh-why__check" aria-hidden="true">✔</span>
                         <div>
-                            <strong>Upfront, Honest Pricing</strong>
-                            <p>You get a clear quote before any work begins. No hidden fees, ever.</p>
+                            <strong>Transparent Pricing</strong>
+                            <p>Detailed estimates before work begins. No surprises, no change-order games.</p>
                         </div>
                     </li>
                     <li class="hwh-why__item">
                         <span class="hwh-why__check" aria-hidden="true">✔</span>
                         <div>
-                            <strong>Water Heater Specialists</strong>
-                            <p>All brands, all types — including tankless conversions and full replacements.</p>
+                            <strong>20+ Years Experience</strong>
+                            <p>Decades of construction expertise across residential, commercial, and renovation projects.</p>
                         </div>
                     </li>
                     <li class="hwh-why__item">
                         <span class="hwh-why__check" aria-hidden="true">✔</span>
                         <div>
-                            <strong>True 24/7 Emergency Response</strong>
-                            <p>We actually answer nights, weekends, and holidays — no voicemail runaround.</p>
+                            <strong>On Time, On Budget</strong>
+                            <p>We respect your timeline and your investment — no delays, no excuses.</p>
                         </div>
                     </li>
                 </ul>
@@ -265,16 +262,16 @@ get_header(); ?>
             </div>
             <div class="hwh-why__stats reveal">
                 <div class="hwh-why__stat-card">
-                    <span class="hwh-why__stat-num">300+</span>
-                    <span class="hwh-why__stat-lbl">Jobs Completed</span>
+                    <span class="hwh-why__stat-num">500+</span>
+                    <span class="hwh-why__stat-lbl">Projects Completed</span>
                 </div>
                 <div class="hwh-why__stat-card">
-                    <span class="hwh-why__stat-num">30+</span>
+                    <span class="hwh-why__stat-num">50+</span>
                     <span class="hwh-why__stat-lbl">5-Star Reviews</span>
                 </div>
                 <div class="hwh-why__stat-card hwh-why__stat-card--accent">
-                    <span class="hwh-why__stat-num">24/7</span>
-                    <span class="hwh-why__stat-lbl">Always Available</span>
+                    <span class="hwh-why__stat-num">20+</span>
+                    <span class="hwh-why__stat-lbl">Years Experience</span>
                 </div>
                 <div class="hwh-why__stat-card">
                     <span class="hwh-why__stat-num">100%</span>
@@ -292,17 +289,15 @@ get_header(); ?>
     <div class="hwh-section-inner">
         <div class="hwh-reviews-split">
 
-            <!-- LEFT: Mascot visual -->
+            <!-- LEFT: Visual -->
             <div class="hwh-reviews-split__visual reveal">
                 <div class="hwh-reviews-split__img-wrap">
-                    <img src="https://hotwaterheroesplumbing.com/wp-content/uploads/2026/05/Heaty-Phone.png"
-                         alt="Heaty the Hot Water Heroes mascot checking reviews on his phone"
-                         loading="lazy" decoding="async" width="520" height="580"
-                         class="hwh-reviews-split__img">
+                    <!-- Placeholder — will add real project photo later -->
+                    <div style="width:520px;height:580px;background:linear-gradient(135deg,#222D3F 0%,#A52A2A 100%);border-radius:16px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Montserrat',sans-serif;font-size:1.5rem;font-weight:700;text-align:center;padding:2rem;">⭐<br>OUR CLIENTS<br>LOVE US</div>
                 </div>
                 <div class="hwh-reviews-split__badge">
                     <span class="hwh-reviews-split__badge-stars">★★★★★</span>
-                    <span class="hwh-reviews-split__badge-text">5.0 on Google — 30+ Reviews</span>
+                    <span class="hwh-reviews-split__badge-text">5.0 on Google — 50+ Reviews</span>
                 </div>
             </div>
 
@@ -318,27 +313,27 @@ get_header(); ?>
 
                         <article class="hwh-review-card hwh-review-card--stacked">
                             <span class="hwh-review-card__stars" role="img" aria-label="5 stars">★★★★★</span>
-                            <p class="hwh-review-card__text">"Hot Water Heroes are amazing. Fantastic communication, great plumbers, super nice and best of all your pricing seems very fair. I'm a realtor in this area for 23 years and I use them for my personal home. Such an awesome job — I highly recommend them."</p>
+                            <p class="hwh-review-card__text">"Spicola Construction did an amazing job on our kitchen remodel. Professional crew, great communication throughout the project, and the finished result exceeded our expectations. Highly recommend them for any construction project in Tampa."</p>
                             <div class="hwh-review-card__author">
-                                <strong>Bridget Breland</strong>
-                                <span>Google Review · Local Guide</span>
-                            </div>
-                        </article>
-
-                        <article class="hwh-review-card hwh-review-card--stacked">
-                            <span class="hwh-review-card__stars" role="img" aria-label="5 stars">★★★★★</span>
-                            <p class="hwh-review-card__text">"Hot Water Heroes was absolutely outstanding! John was professional, knowledgeable, and showed up right on time. He quickly diagnosed the issue, explained everything clearly, and had it fixed faster than I expected. The pricing was fair and the quality of work was top-notch."</p>
-                            <div class="hwh-review-card__author">
-                                <strong>Kirby Cummings</strong>
+                                <strong>Sarah M.</strong>
                                 <span>Google Review</span>
                             </div>
                         </article>
 
                         <article class="hwh-review-card hwh-review-card--stacked">
                             <span class="hwh-review-card__stars" role="img" aria-label="5 stars">★★★★★</span>
-                            <p class="hwh-review-card__text">"Wow, great service, good pricing, professional and explained everything. Good to see such service and pricing still exist. I will be calling you first for all my plumbing needs. It was a pleasure to have service like this during the holidays. Keep up the good work!"</p>
+                            <p class="hwh-review-card__text">"We hired Spicola for a complete home addition and they delivered on time and on budget. The quality of work is outstanding. Their team was respectful of our property and kept us informed every step of the way."</p>
                             <div class="hwh-review-card__author">
-                                <strong>Mark Watklevicz</strong>
+                                <strong>James R.</strong>
+                                <span>Google Review</span>
+                            </div>
+                        </article>
+
+                        <article class="hwh-review-card hwh-review-card--stacked">
+                            <span class="hwh-review-card__stars" role="img" aria-label="5 stars">★★★★★</span>
+                            <p class="hwh-review-card__text">"Best contractor in the Tampa Bay area. Fair pricing, excellent craftsmanship, and they stand behind their work. We have used them for two projects now and will continue to call them for everything."</p>
+                            <div class="hwh-review-card__author">
+                                <strong>Mike T.</strong>
                                 <span>Google Review</span>
                             </div>
                         </article>
@@ -425,7 +420,7 @@ get_header(); ?>
             <div class="hwh-areas__content reveal">
                 <span class="hwh-label">Where We Work</span>
                 <h2 class="hwh-section-title">Serving All of<br><em>Tampa Bay</em></h2>
-                <p class="hwh-section-desc">Hillsborough, Pinellas, and Pasco County — if you're in the Tampa Bay area, we've got you covered with fast, reliable plumbing service.</p>
+                <p class="hwh-section-desc">Hillsborough, Pinellas, and Pasco County — if you're in the Tampa Bay area, we've got you covered with quality construction services.</p>
                 <div class="hwh-areas__cities">
                     <span class="hwh-areas__city">Tampa &amp; South Tampa</span>
                     <span class="hwh-areas__city">St. Pete &amp; Clearwater</span>
@@ -439,12 +434,12 @@ get_header(); ?>
                 <a href="<?php echo esc_url(home_url('/service-areas/')); ?>" class="hwh-btn hwh-btn--navy">View All Areas →</a>
             </div>
             <div class="hwh-areas__visual reveal">
-                <img src="<?php echo esc_url(home_url('/')); ?>wp-content/uploads/hwh-service-area-map.png"
-                     alt="Hot Water Heroes service area map — Tampa Bay FL"
+                <img src="<?php echo esc_url(home_url('/')); ?>wp-content/uploads/sc-service-area-map.png"
+                     alt="Spicola Construction service area map — Tampa Bay FL"
                      loading="lazy" decoding="async" width="500" height="500"
                      class="hwh-areas__map">
                 <div class="hwh-areas__badge">
-                    <span>Same-Day Available</span>
+                    <span>Free Estimates</span>
                 </div>
             </div>
         </div>
@@ -454,30 +449,30 @@ get_header(); ?>
 <!-- ══════════════════════════════════════════════════════
      FAQ Section — word count + FAQ rich results
      ══════════════════════════════════════════════════════ -->
-<section class="hwh-faq" id="faq" aria-label="Frequently asked plumbing questions">
+<section class="hwh-faq" id="faq" aria-label="Frequently asked construction questions">
     <div class="hwh-section-inner">
         <div class="hwh-section-header reveal">
             <span class="hwh-label">Common Questions</span>
-            <h2 class="hwh-section-title">Tampa Bay Plumbing <em>FAQs</em></h2>
-            <p class="hwh-section-desc">Have questions? Here are the answers Tampa Bay homeowners ask most.</p>
+            <h2 class="hwh-section-title">Construction <em>FAQs</em></h2>
+            <p class="hwh-section-desc">Have questions? Here are the answers Tampa Bay homeowners and business owners ask most.</p>
         </div>
         <div class="hwh-faq__grid reveal" itemscope itemtype="https://schema.org/FAQPage">
             <div class="hwh-faq__item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                <h3 class="hwh-faq__question" itemprop="name">How quickly can you respond to a plumbing emergency?</h3>
+                <h3 class="hwh-faq__question" itemprop="name">How long does a typical construction project take?</h3>
                 <div class="hwh-faq__answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                    <p itemprop="text">We are available 24 hours a day, 7 days a week including nights, weekends, and holidays. For most emergency calls across Tampa Bay, we dispatch a licensed plumber within 60 minutes. When water is flooding your home, every minute counts and we take that seriously.</p>
+                    <p itemprop="text">Project timelines vary based on scope. A kitchen remodel typically takes 4-8 weeks, a bathroom remodel 2-4 weeks, and new construction 4-8 months. During your free consultation, we provide a detailed timeline so you know exactly what to expect.</p>
                 </div>
             </div>
             <div class="hwh-faq__item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                <h3 class="hwh-faq__question" itemprop="name">Do you charge for estimates?</h3>
+                <h3 class="hwh-faq__question" itemprop="name">Do you provide free estimates?</h3>
                 <div class="hwh-faq__answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                    <p itemprop="text">Hot Water Heroes provides free estimates on most plumbing projects. Before any work begins, we give you a clear, written price so you know exactly what you are paying. No hidden fees and no surprises. We believe in honest, upfront pricing on every job.</p>
+                    <p itemprop="text">Yes. Spicola Construction provides free estimates on all projects. We visit your property, discuss your vision, and provide a detailed written estimate with no obligation. We believe in transparent pricing with no hidden fees or surprise charges.</p>
                 </div>
             </div>
             <div class="hwh-faq__item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                <h3 class="hwh-faq__question" itemprop="name">Are you licensed and insured in Florida?</h3>
+                <h3 class="hwh-faq__question" itemprop="name">Are you licensed and insured?</h3>
                 <div class="hwh-faq__answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                    <p itemprop="text">Yes. Hot Water Heroes Plumbing is fully licensed and insured in the state of Florida. Every technician on our team is background-checked and certified. Your home and your family are always protected when we are on the job.</p>
+                    <p itemprop="text">Yes. Spicola Construction is a fully licensed Certified General Contractor (CGC) and carries comprehensive liability insurance and workers compensation. Your property and investment are fully protected on every project.</p>
                 </div>
             </div>
             <div class="hwh-faq__item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
@@ -487,15 +482,15 @@ get_header(); ?>
                 </div>
             </div>
             <div class="hwh-faq__item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                <h3 class="hwh-faq__question" itemprop="name">Do you specialize in water heater repair and installation?</h3>
+                <h3 class="hwh-faq__question" itemprop="name">What types of construction projects do you handle?</h3>
                 <div class="hwh-faq__answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                    <p itemprop="text">Water heaters are our specialty. We repair and install all major brands of tank and tankless water heaters including Rheem, Bradford White, AO Smith, and Navien. Whether your water heater is leaking, not heating, or simply aging out, we offer same-day service and free estimates across Tampa Bay.</p>
+                    <p itemprop="text">We handle residential and commercial projects of all sizes including new construction, home remodeling, kitchen and bathroom renovations, room additions, roofing, concrete work, commercial build-outs, and tenant improvements. No project is too big or too small.</p>
                 </div>
             </div>
             <div class="hwh-faq__item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                <h3 class="hwh-faq__question" itemprop="name">What payment methods do you accept?</h3>
+                <h3 class="hwh-faq__question" itemprop="name">Do you offer financing?</h3>
                 <div class="hwh-faq__answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                    <p itemprop="text">We accept cash, all major credit cards, and offer financing options through Cherry. Financing lets you spread the cost of larger plumbing projects into manageable monthly payments with no prepayment penalties.</p>
+                    <p itemprop="text">Yes. We accept cash, all major credit cards, and offer flexible financing options for larger projects. We work with you to find a payment plan that fits your budget so you can get the construction work you need without financial stress.</p>
                 </div>
             </div>
         </div>
@@ -505,34 +500,33 @@ get_header(); ?>
 <!-- ══════════════════════════════════════════════════════
      CTA — Bold red, full width
      ══════════════════════════════════════════════════════ -->
-<section class="hwh-cta" id="request-service" aria-label="Request plumbing service">
+<section class="hwh-cta" id="request-service" aria-label="Request construction service">
     <div class="hwh-cta__inner reveal">
         <div class="hwh-cta__content">
-            <span class="hwh-label hwh-label--white">Get Help Today</span>
-            <h2 class="hwh-cta__title">Plumbing Problem?<br>We're On Our Way.</h2>
-            <p class="hwh-cta__text">Don't let a small leak turn into a big headache. Call now or book online — available 24/7 across all of Tampa Bay.</p>
+            <span class="hwh-label hwh-label--white">Start Your Project</span>
+            <h2 class="hwh-cta__title">Ready to Build?<br>Let's Talk.</h2>
+            <p class="hwh-cta__text">From new construction to renovations, we bring your vision to life. Call now or request a free quote online.</p>
         </div>
         <div class="hwh-cta__actions">
-            <a href="tel:+18134275862" class="hwh-btn hwh-btn--white hwh-btn--lg">
+            <a href="tel:+18137326285" class="hwh-btn hwh-btn--white hwh-btn--lg">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                Call 813-42-PLUMB (75862)
+                Call (813) 732-6285
             </a>
             <a href="/contact/" class="hwh-btn hwh-btn--ghost-white hwh-btn--lg">
-                Request Service Online →
+                Get a Free Quote →
             </a>
         </div>
     </div>
 </section>
-<!-- GEO: Static entity block — server-rendered for LLM/AI crawler readability -->
-<section class="hwh-geo" aria-label="About Hot Water Heroes Plumbing">
+<section class="hwh-geo" aria-label="About Spicola Construction">
     <div class="hwh-geo__inner">
-        <h2 class="hwh-geo__title">Tampa Bay's Trusted Plumbing Company</h2>
+        <h2 class="hwh-geo__title">Tampa Bay's Trusted General Contractor</h2>
         <div class="hwh-geo__body">
-            <p><strong>Hot Water Heroes Plumbing</strong> is a licensed and insured plumbing company serving the Greater Tampa Bay area, including Hillsborough County, Pinellas County, and Pasco County, Florida. We specialize in water heater repair, water heater installation, tankless water heater service, drain cleaning, leak detection and repair, pipe repair, whole-home repiping, sewer line service, water line service, slab leak repair, and 24/7 emergency plumbing.</p>
-            <p>Our service area covers Tampa, South Tampa, St. Petersburg, Clearwater, Brandon, Riverview, Wesley Chapel, Carrollwood, Westchase, Lutz, Land O Lakes, Odessa, New Tampa, and Zephyrhills. We are available around the clock — 24 hours a day, 7 days a week — including nights, weekends, and holidays. In most cases we dispatch a licensed plumber within 60 minutes of your call.</p>
-            <p>Hot Water Heroes holds a 5.0-star rating on Google with over 30 verified customer reviews. We offer free estimates on most plumbing projects and guarantee upfront, transparent pricing before any work begins. Our technicians are fully background-checked, Florida-certified, and committed to same-day service across Tampa Bay. To reach us, call <a href="tel:+18134275862">(813) 427-5862</a> or <a href="/contact/">book online</a>.</p>
-            <p><strong>Services offered:</strong> Water Heater Repair &bull; Water Heater Installation &bull; Tankless Water Heater Repair &amp; Installation &bull; Drain Cleaning &bull; Emergency Plumbing &bull; Leak Detection &amp; Repair &bull; Pipe Repair &amp; Repiping &bull; Sewer &amp; Water Line Service &bull; Camera Inspection &bull; Gas Line Service &bull; Slab Leak Repair</p>
-            <p><strong>Service areas:</strong> Tampa &bull; South Tampa &bull; St. Petersburg &bull; Clearwater &bull; Brandon &bull; Riverview &bull; Wesley Chapel &bull; Carrollwood &bull; Westchase &bull; Lutz &bull; Land O Lakes &bull; Odessa &bull; New Tampa &bull; Zephyrhills &bull; Temple Terrace &bull; Valrico &bull; Lithia &bull; Sun City Center &bull; Apollo Beach &bull; Plant City</p>
+            <p><strong>Spicola Construction</strong> is a licensed and insured general contractor serving the Greater Tampa Bay area, including Hillsborough County, Pinellas County, and Pasco County, Florida. We specialize in new residential construction, home remodeling, kitchen and bathroom renovations, room additions, roofing, concrete and foundation work, commercial build-outs, and tenant improvements.</p>
+            <p>Our service area covers Tampa, South Tampa, St. Petersburg, Clearwater, Brandon, Riverview, Wesley Chapel, Carrollwood, Westchase, Lutz, Land O Lakes, Odessa, New Tampa, and Zephyrhills. We are available Monday through Friday 7am to 6pm and Saturday 8am to 4pm for consultations, estimates, and active project work.</p>
+            <p>Spicola Construction holds a 5.0-star rating on Google with over 50 verified customer reviews. We offer free estimates on all projects and guarantee transparent pricing before any work begins. Our crews are fully licensed, insured, and committed to quality craftsmanship across Tampa Bay. To reach us, call <a href="tel:+18137326285">(813) 732-6285</a> or <a href="/contact/">request a quote online</a>.</p>
+            <p><strong>Services offered:</strong> New Construction &bull; Home Remodeling &bull; Kitchen &amp; Bathroom Renovations &bull; Room Additions &bull; Roofing &bull; Concrete &amp; Foundation &bull; Commercial Build-Outs &bull; Tenant Improvements &bull; Exterior Renovations &bull; Custom Builds</p>
+            <p><strong>Service areas:</strong> Tampa &bull; South Tampa &bull; St. Petersburg &bull; Clearwater &bull; Brandon &bull; Riverview &bull; Wesley Chapel &bull; Carrollwood &bull; Westchase &bull; Lutz &bull; Land O Lakes &bull; Odessa &bull; New Tampa &bull; Zephyrhills &bull; Temple Terrace &bull; Valrico &bull; Lithia</p>
         </div>
     </div>
 </section>

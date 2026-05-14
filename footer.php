@@ -1,6 +1,6 @@
 <?php
 /**
- * Hot Water Heroes &mdash; Footer v3
+ * Spicola Construction &mdash; Footer v3
  * Clean dark navy footer, no emergency bar
  */
 ?>
@@ -9,9 +9,9 @@
 <div class="floating-cta" id="floating-cta" role="navigation" aria-label="Quick actions">
     <a href="/contact/" class="floating-cta__btn floating-cta__btn--book">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg>
-        Book Now
+        Get Quote
     </a>
-    <a href="tel:+18134275862" class="floating-cta__btn floating-cta__btn--call">
+    <a href="tel:+18137326285" class="floating-cta__btn floating-cta__btn--call">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         Call
     </a>
@@ -30,26 +30,24 @@
 
             <!-- Brand col -->
             <div class="hwh-foot__brand">
-                <a href="<?php echo esc_url(home_url('/')); ?>" class="hwh-foot__logo" aria-label="Hot Water Heroes &mdash; Home">
-                    <img src="https://hotwaterheroesplumbing.com/wp-content/uploads/2024/11/Untitled-design-12-scaled.png"
-                         alt="Hot Water Heroes Plumbing" width="300" height="144"
-                         loading="lazy" decoding="async">
+                <a href="<?php echo esc_url(home_url('/')); ?>" class="hwh-foot__logo" aria-label="Spicola Construction &mdash; Home">
+                    <span style="font-family:'Montserrat',sans-serif;font-size:1.5rem;font-weight:800;color:#fff;">SPICOLA <span style="color:#C13333;">CONSTRUCTION</span></span>
                 </a>
-                <p class="hwh-foot__brand-text">Tampa Bay's trusted plumbing team &mdash; fast, honest, and available around the clock for water heater repair, installation, and emergency plumbing.</p>
+                <p class="hwh-foot__brand-text">Tampa Bay's trusted general contractor &mdash; quality craftsmanship for residential and commercial construction, remodeling, roofing, and renovations.</p>
                 <div class="hwh-foot__social">
-                    <a href="https://www.facebook.com/hotwaterheroes/" class="hwh-foot__social-link" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+                    <a href="https://www.facebook.com/spicolaconstruction/" class="hwh-foot__social-link" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
                     </a>
-                    <a href="https://www.instagram.com/hotwaterheroes/" class="hwh-foot__social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+                    <a href="https://www.instagram.com/spicolaconstruction/" class="hwh-foot__social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
                     </a>
-                    <a href="https://g.co/hotwaterheroes" class="hwh-foot__social-link" aria-label="Google Reviews" target="_blank" rel="noopener noreferrer">
+                    <a href="https://g.co/spicolaconstruction" class="hwh-foot__social-link" aria-label="Google Reviews" target="_blank" rel="noopener noreferrer">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
                     </a>
                 </div>
                 <div class="hwh-foot__rating">
                     <span class="hwh-foot__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-                    <span>5.0 &middot; 30+ Google Reviews</span>
+                    <span>5.0 &middot; 50+ Google Reviews</span>
                 </div>
             </div>
 
@@ -57,12 +55,12 @@
             <div class="hwh-foot__col">
                 <h3 class="hwh-foot__heading">Our Services</h3>
                 <ul class="hwh-foot__links">
-                    <li><a href="<?php echo esc_url(home_url('/services/expert-water-heater-repair-services-in-tampa/')); ?>">Water Heater Repair</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/services/water-heater-installation/')); ?>">Water Heater Installation</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/services/tankless-water-heater-repair/')); ?>">Tankless Water Heaters</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/services/drain-cleaning/')); ?>">Drain Cleaning</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/contact/')); ?>">Emergency Plumbing</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/services/leak-detection-repair/')); ?>">Leak Detection &amp; Repair</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/services/')); ?>">New Construction</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/services/')); ?>">Remodeling &amp; Renovations</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/services/')); ?>">Roofing</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/services/')); ?>">Commercial Build-Outs</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/services/')); ?>">Additions &amp; Extensions</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/services/')); ?>">Concrete &amp; Foundation</a></li>
                     <li><a href="<?php echo esc_url(home_url('/services/')); ?>">All Services &rarr;</a></li>
                 </ul>
             </div>
@@ -72,7 +70,8 @@
                 <h3 class="hwh-foot__heading">Company</h3>
                 <ul class="hwh-foot__links">
                     <li><a href="<?php echo esc_url(home_url('/about/')); ?>">About Us</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/blog/')); ?>">Plumbing Tips Blog</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/projects/')); ?>">Our Projects</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/blog/')); ?>">Blog</a></li>
                     <li><a href="<?php echo esc_url(home_url('/contact/')); ?>">Contact Us</a></li>
                 </ul>
             </div>
@@ -83,15 +82,15 @@
                 <div class="hwh-foot__contact">
                     <div class="hwh-foot__contact-item">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                        <a href="tel:+18134275862">813-42-PLUMB (75862)</a>
+                        <a href="tel:+18137326285">(813) 732-6285</a>
                     </div>
                     <div class="hwh-foot__contact-item">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                        <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#106;&#111;&#101;&#64;&#104;&#111;&#116;&#119;&#97;&#116;&#101;&#114;&#104;&#101;&#114;&#111;&#101;&#115;&#112;&#108;&#117;&#109;&#98;&#105;&#110;&#103;&#46;&#99;&#111;&#109;" class="hwh-foot__email-link">&#106;&#111;&#101;&#64;&#104;&#111;&#116;&#119;&#97;&#116;&#101;&#114;&#104;&#101;&#114;&#111;&#101;&#115;&#112;&#108;&#117;&#109;&#98;&#105;&#110;&#103;&#46;&#99;&#111;&#109;</a>
+                        <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#105;&#110;&#102;&#111;&#64;&#115;&#112;&#105;&#99;&#111;&#108;&#97;&#99;&#111;&#110;&#115;&#116;&#114;&#117;&#99;&#116;&#105;&#111;&#110;&#46;&#99;&#111;&#109;" class="hwh-foot__email-link">&#105;&#110;&#102;&#111;&#64;&#115;&#112;&#105;&#99;&#111;&#108;&#97;&#99;&#111;&#110;&#115;&#116;&#114;&#117;&#99;&#116;&#105;&#111;&#110;&#46;&#99;&#111;&#109;</a>
                     </div>
                     <div class="hwh-foot__contact-item">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                        <a href="https://hotwaterheroesplumbing.com" target="_blank" rel="noopener noreferrer">hotwaterheroesplumbing.com</a>
+                        <a href="https://spicolaconstruction.com" target="_blank" rel="noopener noreferrer">spicolaconstruction.com</a>
                     </div>
                     <div class="hwh-foot__contact-item" itemscope itemtype="https://schema.org/PostalAddress">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -104,10 +103,10 @@
                     </div>
                     <div class="hwh-foot__contact-item">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                        <span>Open 24 Hours &middot; 7 Days a Week</span>
+                        <span>Mon&ndash;Fri 7am&ndash;6pm &middot; Sat 8am&ndash;4pm</span>
                     </div>
                 </div>
-                <a href="/contact/" class="hwh-btn hwh-btn--red hwh-foot__cta-btn">Request Service</a>
+                <a href="/contact/" class="hwh-btn hwh-btn--red hwh-foot__cta-btn">Get a Free Quote</a>
             </div>
 
         </div>
@@ -116,7 +115,7 @@
     <!-- Bottom bar -->
     <div class="hwh-foot__bottom">
         <div class="hwh-foot__bottom-inner">
-            <p class="hwh-foot__copyright">&copy; <?php echo date('Y'); ?> Hot Water Heroes Plumbing. All rights reserved. &middot; Licensed &amp; Insured &middot; Tampa Bay, FL</p>
+            <p class="hwh-foot__copyright">&copy; <?php echo date('Y'); ?> Spicola Construction. All rights reserved. &middot; Licensed &amp; Insured &middot; Tampa Bay, FL</p>
             <div class="hwh-foot__legal">
                 <a href="<?php echo esc_url(home_url('/privacy-policy/')); ?>">Privacy Policy</a>
                 <a href="<?php echo esc_url(home_url('/cancellation-policy/')); ?>">Cancellation Policy</a>
@@ -235,7 +234,7 @@
                 fetch('<?php echo esc_url(admin_url('admin-ajax.php')); ?>', { method:'POST', body:data, credentials:'same-origin' })
                     .then(function(r){ return r.json(); })
                     .then(function(res){ if(res.success){ contactForm.style.display='none'; formSuccess.classList.add('is-visible'); formSuccess.scrollIntoView({behavior:'smooth',block:'center'}); } else { if(btn){ btn.innerHTML=orig; btn.disabled=false; } alert((res.data&&res.data.message)?res.data.message:'Something went wrong.'); } })
-                    .catch(function(){ if(btn){ btn.innerHTML=orig; btn.disabled=false; } alert('Connection error. Please call us at 813-42-PLUMB.'); });
+                    .catch(function(){ if(btn){ btn.innerHTML=orig; btn.disabled=false; } alert('Connection error. Please call us at (813) 732-6285.'); });
             });
         }
         var phoneInput = document.getElementById('cf-phone');

@@ -1,7 +1,7 @@
 <?php
 /**
  * Template Name: Values
- * Hot Water Heroes Plumbing — Our Mission & Values Page
+ * Spicola Construction — Our Mission & Values Page
  */
 get_header(); ?>
 
@@ -22,7 +22,7 @@ get_header(); ?>
                 <div class="mission-statement__quote">
                     "We believe every homeowner deserves a plumber they can trust — someone who shows up on time, does the job right the first time, and treats your home like their own."
                 </div>
-                <span class="mission-statement__author">— The Hot Water Heroes Team</span>
+                <span class="mission-statement__author">— The Spicola Construction Team</span>
             </div>
 
             <div class="mission-pillars reveal">
@@ -58,7 +58,7 @@ get_header(); ?>
             <div class="section__header reveal">
                 <span class="section__label">What We Believe</span>
                 <h2 class="section__title">Our Values</h2>
-                <p class="section__desc">The principles that guide every job, every estimate, and every interaction at Hot Water Heroes.</p>
+                <p class="section__desc">The principles that guide every job, every estimate, and every interaction at Spicola Construction.</p>
             </div>
             <div class="values-detailed">
 

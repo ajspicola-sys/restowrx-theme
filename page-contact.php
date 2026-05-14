@@ -1,7 +1,7 @@
 <?php
 /**
  * Template Name: Contact
- * Hot Water Heroes Plumbing — Contact Page
+ * Spicola Construction — Contact Page
  * Performance-optimized with form validation
  */
 get_header(); ?>
@@ -94,7 +94,7 @@ get_header(); ?>
                             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                         </div>
                         <h3 class="contact-card__title">Phone</h3>
-                        <a href="tel:+18134275862" class="contact-card__text">813-42-PLUMB (75862)</a>
+                        <a href="tel:+18134275862" class="contact-card__text">(813) 732-6285 (75862)</a>
                     </div>
 
                     <div class="contact-card">
@@ -118,7 +118,7 @@ get_header(); ?>
                             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                         </div>
                         <h3 class="contact-card__title">Hours</h3>
-                        <div class="contact-card__hours"><div class="contact-card__hour-row"><span>Every Day</span><span>Open 24 Hours</span></div><div class="contact-card__hour-row"><span>Emergency Line</span><span>(813) 427-5862</span></div></div>
+                        <div class="contact-card__hours"><div class="contact-card__hour-row"><span>Every Day</span><span>Open 24 Hours</span></div><div class="contact-card__hour-row"><span>Emergency Line</span><span>(813) 732-6285</span></div></div>
                         </div>
 
                     </div>
@@ -126,10 +126,10 @@ get_header(); ?>
                     <div class="contact-social">
                         <span class="contact-social__label">Follow Us</span>
                         <div class="contact-social__links">
-                            <a href="https://www.instagram.com/hotwaterheroes/" class="footer__social-link" aria-label="Follow us on Instagram" target="_blank" rel="noopener noreferrer">
+                            <a href="https://www.instagram.com/spicolaconstruction/" class="footer__social-link" aria-label="Follow us on Instagram" target="_blank" rel="noopener noreferrer">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
                             </a>
-                            <a href="https://www.facebook.com/hotwaterheroes/" class="footer__social-link" aria-label="Follow us on Facebook" target="_blank" rel="noopener noreferrer">
+                            <a href="https://www.facebook.com/spicolaconstruction/" class="footer__social-link" aria-label="Follow us on Facebook" target="_blank" rel="noopener noreferrer">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
                             </a>
                         </div>
@@ -150,7 +150,7 @@ get_header(); ?>
                 allowfullscreen=""
                 loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"
-                title="Hot Water Heroes Plumbing - 9249 Lazy Ln, Tampa, FL 33614">
+                title="Spicola Construction - 9249 Lazy Ln, Tampa, FL 33614">
             </iframe>
         </div>
     </section>
@@ -162,7 +162,7 @@ get_header(); ?>
             <h2 class="cta-section__title">Have Questions?<br>We Have Answers</h2>
             <p class="cta-section__text">Our team is ready to help with any plumbing question. Don't hesitate to reach out.</p>
             <div class="cta-section__actions">
-                <a href="tel:+18134275862" class="btn btn--primary btn--lg">Call 813-42-PLUMB (75862)</a>
+                <a href="tel:+18134275862" class="btn btn--primary btn--lg">Call (813) 732-6285 (75862)</a>
                 <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#106;&#111;&#101;&#64;&#104;&#111;&#116;&#119;&#97;&#116;&#101;&#114;&#104;&#101;&#114;&#111;&#101;&#115;&#112;&#108;&#117;&#109;&#98;&#105;&#110;&#103;&#46;&#99;&#111;&#109;" class="btn btn--outline btn--lg">Email Us</a>
             </div>
         </div>

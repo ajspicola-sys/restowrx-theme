@@ -1,7 +1,7 @@
 <?php
 /**
  * Template Name: Before After
- * Hot Water Heroes Plumbing — Before & After Gallery
+ * Spicola Construction — Before & After Gallery
  */
 get_header(); ?>
 
@@ -11,7 +11,7 @@ get_header(); ?>
         <div class="page-hero__inner">
             <span class="section__label">Real Results</span>
             <h1 class="page-hero__title">Before & After</h1>
-            <p class="page-hero__desc">See the quality of our work. All photos are from actual Hot Water Heroes plumbing projects across Tampa Bay.</p>
+            <p class="page-hero__desc">See the quality of our work. All photos are from actual Spicola Construction projects across Tampa Bay.</p>
         </div>
     </section>
 
@@ -132,7 +132,7 @@ get_header(); ?>
             </div>
 
             <div class="gallery-disclaimer reveal">
-                <p>* All photos are from actual Hot Water Heroes projects. Results may vary based on property conditions.</p>
+                <p>* All photos are from actual Spicola Construction projects. Results may vary based on property conditions.</p>
             </div>
         </div>
     </section>

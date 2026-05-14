@@ -1,7 +1,7 @@
 <?php
 /**
  * Template Name: Service Areas
- * Hot Water Heroes Plumbing — Service Area Coverage Page
+ * Spicola Construction — Service Area Coverage Page
  */
 get_header(); ?>
 
@@ -15,7 +15,7 @@ get_header(); ?>
             <p class="page-hero__desc">From South Tampa to Wesley Chapel, we provide fast, reliable plumbing service across Hillsborough, Pinellas, and Pasco counties.</p>
             <div class="hero__actions hero__actions--center">
                 <a href="/contact/" class="btn btn--primary btn--lg">Request Service</a>
-                <a href="tel:+18134275862" class="btn btn--outline btn--lg">Call 813-42-PLUMB (75862)</a>
+                <a href="tel:+18134275862" class="btn btn--outline btn--lg">Call (813) 732-6285 (75862)</a>
             </div>
         </div>
     </section>
@@ -56,7 +56,7 @@ get_header(); ?>
         <div class="section__inner">
             <div class="section__header reveal">
                 <span class="section__label">Why Local Matters</span>
-                <h2 class="section__title">The Hot Water Heroes Advantage</h2>
+                <h2 class="section__title">The Spicola Construction Advantage</h2>
             </div>
             <div class="party-steps reveal">
                 <div class="party-step">
@@ -109,7 +109,7 @@ get_header(); ?>
                 <details class="faq-item">
                     <summary class="faq-item__question">Do you offer emergency service on weekends?</summary>
                     <div class="faq-item__answer">
-                        <p>Yes! Our emergency plumbing service is available 24/7, 365 days a year — including weekends and holidays. Call 813-42-PLUMB anytime.</p>
+                        <p>Yes! Our emergency plumbing service is available 24/7, 365 days a year — including weekends and holidays. Call (813) 732-6285 anytime.</p>
                     </div>
                 </details>
             </div>
@@ -124,7 +124,7 @@ get_header(); ?>
             <p class="cta-section__text">Fast, local, and always available. Call now or book online.</p>
             <div class="cta-section__actions">
                 <a href="/contact/" class="btn btn--primary btn--lg">Request Service</a>
-                <a href="tel:+18134275862" class="btn btn--outline btn--lg">Call 813-42-PLUMB (75862)</a>
+                <a href="tel:+18134275862" class="btn btn--outline btn--lg">Call (813) 732-6285 (75862)</a>
             </div>
         </div>
     </section>

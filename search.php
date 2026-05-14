@@ -1,6 +1,6 @@
 <?php
 /**
- * Hot Water Heroes Plumbing — Search Results Template
+ * Spicola Construction — Search Results Template
  */
 get_header(); ?>
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * Hot Water Heroes Plumbing — Refund Policy Page
+ * Spicola Construction — Refund Policy Page
  */
 get_header(); ?>
 
@@ -26,7 +26,7 @@ get_header(); ?>
 
                 <section id="services">
                     <h2>Plumbing Services</h2>
-                    <p>At Hot Water Heroes Plumbing, we strive to ensure every customer receives quality workmanship. Before services are performed, we provide clear estimates and explain the scope of work so you can make informed decisions.</p>
+                    <p>At Spicola Construction, we strive to ensure every customer receives quality workmanship. Before services are performed, we provide clear estimates and explain the scope of work so you can make informed decisions.</p>
 
                     <div class="refund-policy-cards">
                         <div class="refund-policy-card">

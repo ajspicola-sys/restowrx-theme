@@ -1,7 +1,7 @@
 <?php
 /**
  * Template Name: Team
- * Hot Water Heroes Plumbing — Meet the Team Page (Dynamic)
+ * Spicola Construction — Meet the Team Page (Dynamic)
  * Pulls team members from the team_member custom post type
  */
 get_header(); ?>
