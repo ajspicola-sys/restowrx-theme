@@ -176,7 +176,7 @@ get_header(); ?>
 .sc-services__arrow:hover{border-color:var(--brand,#C13333);color:#fff;transform:scale(1.1);box-shadow:0 6px 20px rgba(193,51,51,.35)}
 .sc-services__arrow:hover::before{opacity:1}
 .sc-services__arrow svg{position:relative;z-index:1}
-.sc-services__card{flex:0 0 calc(33.333% - 1rem);min-width:calc(33.333% - 1rem);text-decoration:none;display:flex;flex-direction:column;border-radius:14px;overflow:hidden;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);position:relative;transition:transform .5s cubic-bezier(.22,1,.36,1),box-shadow .5s ease,border-color .3s,opacity .4s ease,filter .4s ease}
+.sc-services__card{flex:0 0 calc(33.333% - 1rem);min-width:calc(33.333% - 1rem);text-decoration:none;display:flex;flex-direction:column;border-radius:14px;overflow:hidden;background:#fff;border:1px solid rgba(255,255,255,.06);position:relative;transition:transform .5s cubic-bezier(.22,1,.36,1),box-shadow .5s ease,border-color .3s,opacity .4s ease,filter .4s ease}
 .sc-services__card:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 12px 24px rgba(0,0,0,.25);border-color:rgba(193,51,51,.3)}
 .sc-services__card-num{position:absolute;top:12px;left:16px;z-index:5;font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:800;color:#fff;background:var(--brand,#C13333);padding:4px 10px;border-radius:6px;letter-spacing:.05em;box-shadow:0 4px 12px rgba(193,51,51,.35);transition:transform .3s ease}
 .sc-services__card:hover .sc-services__card-num{transform:translateY(-2px) scale(1.05)}
