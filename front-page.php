@@ -594,6 +594,85 @@ if ($portfolio->have_posts()): ?>
 </section>
 
 <!-- ══════════════════════════════════════════════════════
+     FROM THE BLOG — Fresh content signal for SEO
+     ══════════════════════════════════════════════════════ -->
+<?php
+$blog_query = new WP_Query([
+    'post_type'      => 'post',
+    'post_status'    => 'publish',
+    'posts_per_page' => 3,
+    'orderby'        => 'date',
+    'order'          => 'DESC',
+    'no_found_rows'  => true,
+]);
+if ( $blog_query->have_posts() ) : ?>
+<section class="sc-blog" aria-label="Latest construction tips and news">
+    <div class="hwh-section-inner">
+        <div class="hwh-section-header reveal">
+            <span class="hwh-label">Construction Tips &amp; News</span>
+            <h2 class="hwh-section-title">From <em>The Blog</em></h2>
+            <p class="hwh-section-desc">Helpful guides, project spotlights, and construction advice from the Spicola team.</p>
+        </div>
+        <div class="sc-blog__grid reveal">
+            <?php while ( $blog_query->have_posts() ) : $blog_query->the_post();
+                $cats = get_the_category();
+                $cat_name = $cats ? esc_html( $cats[0]->name ) : 'Construction';
+            ?>
+            <article class="sc-blog__card">
+                <?php if ( has_post_thumbnail() ) : ?>
+                <a href="<?php the_permalink(); ?>" class="sc-blog__thumb" tabindex="-1" aria-hidden="true">
+                    <?php the_post_thumbnail( 'medium', [ 'loading' => 'lazy', 'decoding' => 'async', 'alt' => esc_attr( get_the_title() ) ] ); ?>
+                </a>
+                <?php endif; ?>
+                <div class="sc-blog__body">
+                    <span class="sc-blog__cat"><?php echo $cat_name; ?></span>
+                    <h3 class="sc-blog__title">
+                        <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                    </h3>
+                    <p class="sc-blog__excerpt"><?php echo wp_trim_words( get_the_excerpt(), 18 ); ?></p>
+                    <div class="sc-blog__footer">
+                        <time class="sc-blog__date" datetime="<?php echo get_the_date('c'); ?>"><?php echo get_the_date('M j, Y'); ?></time>
+                        <a href="<?php the_permalink(); ?>" class="sc-blog__read">Read More →</a>
+                    </div>
+                </div>
+            </article>
+            <?php endwhile; wp_reset_postdata(); ?>
+        </div>
+        <div class="sc-blog__cta reveal">
+            <a href="<?php echo esc_url( home_url('/blog/') ); ?>" class="hwh-btn hwh-btn--outline-navy">View All Articles →</a>
+        </div>
+    </div>
+</section>
+
+<style>
+.sc-blog{padding:clamp(4rem,6vw,7rem) 0;background:#F8F8F6}
+.sc-blog .hwh-section-title em{color:var(--brand,#C13333);font-style:normal}
+.sc-blog__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:clamp(2rem,3vw,3rem)}
+.sc-blog__card{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,.06);display:flex;flex-direction:column;transition:transform .3s ease,box-shadow .3s ease}
+.sc-blog__card:hover{transform:translateY(-5px);box-shadow:0 12px 40px rgba(0,0,0,.1)}
+.sc-blog__thumb{display:block;aspect-ratio:16/9;overflow:hidden}
+.sc-blog__thumb img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+.sc-blog__card:hover .sc-blog__thumb img{transform:scale(1.04)}
+.sc-blog__body{padding:1.5rem;display:flex;flex-direction:column;flex:1}
+.sc-blog__cat{font-family:'Montserrat',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--brand,#C13333);background:rgba(193,51,51,.08);border-radius:30px;padding:.3rem .8rem;display:inline-block;margin-bottom:.85rem}
+.sc-blog__title{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:700;color:var(--brand-navy,#222D3F);line-height:1.4;margin:0 0 .75rem}
+.sc-blog__title a{color:inherit;text-decoration:none}
+.sc-blog__title a:hover{color:var(--brand,#C13333)}
+.sc-blog__excerpt{font-size:.88rem;line-height:1.7;color:rgba(34,45,63,.65);margin:0 0 1rem;flex:1}
+.sc-blog__footer{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:.75rem;border-top:1px solid rgba(34,45,63,.07)}
+.sc-blog__date{font-size:.75rem;color:rgba(34,45,63,.4)}
+.sc-blog__read{font-family:'Montserrat',sans-serif;font-size:.75rem;font-weight:700;color:var(--brand,#C13333);text-decoration:none;letter-spacing:.03em}
+.sc-blog__read:hover{text-decoration:underline}
+.sc-blog__cta{text-align:center;margin-top:2.5rem}
+.hwh-btn--outline-navy{display:inline-flex;align-items:center;gap:.5rem;font-family:'Montserrat',sans-serif;font-size:.875rem;font-weight:700;letter-spacing:.04em;padding:.85rem 2rem;border-radius:10px;border:2px solid var(--brand-navy,#222D3F);color:var(--brand-navy,#222D3F);background:transparent;text-decoration:none;transition:background .25s ease,color .25s ease}
+.hwh-btn--outline-navy:hover{background:var(--brand-navy,#222D3F);color:#fff}
+@media(max-width:900px){.sc-blog__grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:580px){.sc-blog__grid{grid-template-columns:1fr}}
+</style>
+
+<?php endif; ?>
+
+<!-- ══════════════════════════════════════════════════════
      CTA — Bold red, full width
      ══════════════════════════════════════════════════════ -->
 <section class="hwh-cta" id="request-service" aria-label="Request construction service">
