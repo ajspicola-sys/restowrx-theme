@@ -31,22 +31,62 @@ get_header(); ?>
 </script>
 
 <!-- ══════════════════════════════════════════════════════
-     HERO — Slim white CTA bar
+     HERO — Full-screen brand hero
      ══════════════════════════════════════════════════════ -->
-<section class="sc-hero-slim" id="hero" aria-label="Spicola Construction">
-    <div class="sc-hero-slim__inner">
-        <p class="sc-hero-slim__text">Ready to start your next project?
-            <a href="tel:+18137326285" class="sc-hero-slim__highlight">Give us a call →</a>
+<section class="sc-hero" id="hero" aria-label="Spicola Construction — Tampa Bay's trusted general contractor">
+    <div class="sc-hero__glow"     aria-hidden="true"></div>
+    <div class="sc-hero__grid-bg" aria-hidden="true"></div>
+    <div class="sc-hero__inner">
+        <span class="sc-hero__label">Tampa Bay's Trusted General Contractor</span>
+        <h1 class="sc-hero__title">
+            Building Tampa Bay's<br>
+            <em>Future</em>, One Project<br>
+            at a Time.
+        </h1>
+        <p class="sc-hero__sub">
+            Licensed &amp; insured residential and commercial construction,
+            remodeling, roofing, and renovation services across
+            Hillsborough, Pinellas &amp; Pasco counties.
         </p>
+        <div class="sc-hero__actions">
+            <a href="tel:+18137326285" class="sc-hero__btn sc-hero__btn--primary">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                Call (813) 732-6285
+            </a>
+            <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="sc-hero__btn sc-hero__btn--ghost">
+                Get a Free Quote →
+            </a>
+        </div>
+        <div class="sc-hero__badges">
+            <span class="sc-hero__badge">✔ Licensed CGC</span>
+            <span class="sc-hero__badge">✔ Fully Insured</span>
+            <span class="sc-hero__badge">✔ 20+ Years Experience</span>
+            <span class="sc-hero__badge">✔ Free Estimates</span>
+        </div>
     </div>
 </section>
 
 <style>
-.sc-hero-slim{background:#fff;padding:1.5rem 0;border-bottom:1px solid rgba(34,45,63,.06)}
-.sc-hero-slim__inner{max-width:1280px;margin:0 auto;padding:0 clamp(1.25rem,1rem + 2vw,3rem);text-align:center}
-.sc-hero-slim__text{font-family:'Montserrat',sans-serif;font-size:clamp(1rem,1.2vw,1.15rem);font-weight:600;color:var(--brand-navy,#222D3F);margin:0;letter-spacing:.01em}
-.sc-hero-slim__highlight{color:#fff;background:var(--brand,#C13333);padding:.45rem 1.2rem;border-radius:8px;text-decoration:none;font-weight:700;margin-left:.5rem;display:inline-block;transition:all .3s ease;box-shadow:0 2px 12px rgba(193,51,51,.25)}
-.sc-hero-slim__highlight:hover{background:#a82a2a;box-shadow:0 4px 20px rgba(193,51,51,.45);transform:translateY(-1px)}
+/* ── Hero ── */
+.sc-hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 50%,#1a2d45 0%,#0A1628 70%);overflow:hidden;padding:clamp(6rem,10vw,10rem) 0 clamp(4rem,6vw,7rem)}
+.sc-hero__glow{position:absolute;inset:0;background:radial-gradient(circle at 50% 40%,rgba(193,51,51,.18) 0%,transparent 60%);pointer-events:none}
+.sc-hero__grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
+.sc-hero__inner{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:0 clamp(1.25rem,1rem + 2vw,3rem);text-align:center}
+.sc-hero__label{display:inline-block;font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--brand,#C13333);margin-bottom:1.5rem;padding-bottom:.6rem;position:relative}
+.sc-hero__label::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);height:3px;width:100%;background:linear-gradient(90deg,transparent,var(--brand,#C13333),transparent);border-radius:2px}
+.sc-hero__title{font-family:'Montserrat',sans-serif;font-size:clamp(2.6rem,5.5vw,5rem);font-weight:900;color:#fff;line-height:1.1;margin:0 0 1.5rem;letter-spacing:-.02em}
+.sc-hero__title em{font-style:normal;color:var(--brand,#C13333)}
+.sc-hero__sub{font-size:clamp(1rem,1.4vw,1.2rem);color:rgba(255,255,255,.55);line-height:1.75;max-width:620px;margin:0 auto 2.5rem}
+.sc-hero__actions{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:2.5rem}
+.sc-hero__btn{display:inline-flex;align-items:center;gap:.6rem;font-family:'Montserrat',sans-serif;font-size:.95rem;font-weight:700;letter-spacing:.04em;text-decoration:none;padding:.9rem 2rem;border-radius:10px;transition:all .35s ease}
+.sc-hero__btn--primary{background:var(--brand,#C13333);color:#fff;border:2px solid var(--brand,#C13333);box-shadow:0 4px 20px rgba(193,51,51,.35)}
+.sc-hero__btn--primary:hover{background:#a82a2a;border-color:#a82a2a;box-shadow:0 8px 32px rgba(193,51,51,.55);transform:translateY(-2px)}
+.sc-hero__btn--ghost{background:transparent;color:rgba(255,255,255,.9);border:2px solid rgba(255,255,255,.25)}
+.sc-hero__btn--ghost:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.5);color:#fff;transform:translateY(-2px)}
+.sc-hero__badges{display:flex;flex-wrap:wrap;justify-content:center;gap:.75rem}
+.sc-hero__badge{font-size:.72rem;font-weight:600;color:rgba(255,255,255,.55);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:30px;padding:.4rem 1rem;letter-spacing:.04em;transition:color .3s,border-color .3s}
+.sc-hero__badge:hover{color:rgba(255,255,255,.85);border-color:rgba(255,255,255,.25)}
+@media(max-width:600px){.sc-hero__title{font-size:clamp(2.2rem,9vw,3.2rem)}.sc-hero__actions{flex-direction:column;align-items:center}}
 </style>
 
 <!-- ══════════════════════════════════════════════════════
