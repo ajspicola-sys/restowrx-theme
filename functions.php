@@ -923,15 +923,17 @@ function hwh_register_services() {
             'view_item'          => 'View Service',
             'search_items'       => 'Search Services',
             'not_found'          => 'No services found',
-            'menu_name'          => '?? Services',
+            'menu_name'          => 'Services',
         ],
         'public'              => true,
         'exclude_from_search' => false,
         'has_archive'         => true,
         'rewrite'             => ['slug' => 'services'],
-        'menu_icon'           => 'dashicons-heart',
+        'menu_icon'           => 'dashicons-hammer',
         'menu_position'       => 5,
-        'supports'            => ['title', 'editor', 'thumbnail', 'excerpt'],
+        // 'custom-fields' allows Yoast to read/write post meta (required for full Yoast panel).
+        // 'page-attributes' adds the Order field for carousel sorting.
+        'supports'            => ['title', 'editor', 'thumbnail', 'excerpt', 'custom-fields', 'page-attributes'],
         'show_in_rest'        => true,
     ]);
 
@@ -1344,62 +1346,13 @@ function hwh_ajax_blog_posts() {
 add_action( 'wp_ajax_hwh_load_posts', 'hwh_ajax_blog_posts' );
 add_action( 'wp_ajax_nopriv_hwh_load_posts', 'hwh_ajax_blog_posts' );
 
-// -- Service custom fields (meta box) -------------------------------
-function hwh_service_meta_boxes() {
-    add_meta_box(
-        'hwh_service_details',
-        'Service Details',
-        'hwh_service_meta_html',
-        'service',
-        'normal',
-        'high'
-    );
-}
-add_action('add_meta_boxes', 'hwh_service_meta_boxes');
-
-function hwh_service_meta_html($post) {
-    wp_nonce_field('hwh_service_meta', 'hwh_service_nonce');
-    $icon     = get_post_meta($post->ID, '_service_icon', true);
-    $price    = get_post_meta($post->ID, '_service_price', true);
-    $duration = get_post_meta($post->ID, '_service_duration', true);
-    ?>
-    <style>
-        .hwh-meta-row { display:flex; gap:1.5rem; margin-bottom:1rem; }
-        .hwh-meta-field { flex:1; }
-        .hwh-meta-field label { display:block; font-weight:600; margin-bottom:4px; }
-        .hwh-meta-field input { width:100%; padding:8px 10px; border:1px solid #ddd; border-radius:6px; }
-    </style>
-    <div class="hwh-meta-row">
-        <div class="hwh-meta-field">
-            <label for="service_icon">Icon (emoji)</label>
-            <input type="text" id="service_icon" name="service_icon" value="<?php echo esc_attr($icon); ?>" placeholder="??">
-            <p class="description">Paste an emoji like ?? ? ?? ?? ? ??</p>
-        </div>
-        <div class="hwh-meta-field">
-            <label for="service_price">Starting Price</label>
-            <input type="text" id="service_price" name="service_price" value="<?php echo esc_attr($price); ?>" placeholder="$250+">
-        </div>
-        <div class="hwh-meta-field">
-            <label for="service_duration">Duration</label>
-            <input type="text" id="service_duration" name="service_duration" value="<?php echo esc_attr($duration); ?>" placeholder="30 min">
-        </div>
-    </div>
-    <?php
-}
-
-function hwh_save_service_meta($post_id) {
-    if (!isset($_POST['hwh_service_nonce']) || !wp_verify_nonce($_POST['hwh_service_nonce'], 'hwh_service_meta')) return;
-    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
-    if (!current_user_can('edit_post', $post_id)) return;
-
-    $fields = ['service_icon', 'service_price', 'service_duration'];
-    foreach ($fields as $field) {
-        if (isset($_POST[$field])) {
-            update_post_meta($post_id, '_' . $field, sanitize_text_field($_POST[$field]));
-        }
-    }
-}
-add_action('save_post_service', 'hwh_save_service_meta');
+// NOTE: The old 'Service Details' custom metabox (Icon / Price / Duration) has been
+// intentionally removed. It was registered at context='normal' priority='high', which
+// pushed Yoast SEO's meta panel off-screen and hid the Meta Title / Meta Description
+// fields. Use the standard WordPress Excerpt field for the service summary, and Yoast
+// SEO's own panel for all SEO metadata. Any previously saved _service_icon / _service_price
+// / _service_duration values are preserved in the database — they can be accessed via
+// the built-in Custom Fields panel if needed (enabled above via 'custom-fields' support).
 
 // -- Team Member Custom Post Type -----------------------------------
 function hwh_register_team() {
