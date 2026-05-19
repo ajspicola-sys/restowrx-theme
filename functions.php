@@ -910,6 +910,80 @@ function hwh_create_services() {
 }
 add_action('after_switch_theme', 'hwh_create_services');
 
+// -- Auto-create New Construction Services (v3) ---------------------
+// Adds 19 SEO-targeted service pages for Spicola Construction.
+// Uses a separate option key so it runs independently of v2.
+function hwh_create_services_v3() {
+    if ( get_option('hwh_services_created_v3') ) return;
+
+    $categories = [
+        'Residential Services' => 'Custom home building, remodeling, additions, roofing, and specialty residential construction across Tampa Bay.',
+        'Commercial Services'  => 'Commercial build-outs, office construction, restaurant builds, retail storefronts, and tenant improvements in Tampa Bay.',
+        'Specialty Services'   => 'Concrete, flooring, painting, fencing, decks, permits, demolition, and storm damage repair across Tampa Bay.',
+    ];
+
+    $cat_ids = [];
+    foreach ( $categories as $name => $desc ) {
+        $existing = term_exists( $name, 'service_category' );
+        if ( $existing ) {
+            $cat_ids[ $name ] = $existing['term_id'];
+        } else {
+            $term = wp_insert_term( $name, 'service_category', [ 'description' => $desc ] );
+            if ( ! is_wp_error( $term ) ) {
+                $cat_ids[ $name ] = $term['term_id'];
+            }
+        }
+    }
+
+    $services = [
+        // Residential
+        [ 'title' => 'Kitchen Remodeling',            'category' => 'Residential Services', 'excerpt' => 'Tampa Bay\'s trusted kitchen remodeling contractor. Custom cabinets, countertops, and full gut renovations — licensed, insured, and built to last.' ],
+        [ 'title' => 'Bathroom Remodeling',            'category' => 'Residential Services', 'excerpt' => 'Expert bathroom remodeling in Tampa Bay. Walk-in showers, custom tile, vanities, and full bath renovations completed on time by licensed general contractors.' ],
+        [ 'title' => 'Home Additions & Room Extensions','category' => 'Residential Services', 'excerpt' => 'Need more space? Spicola Construction builds seamless home additions and room extensions across Tampa Bay — permitted, engineered, and delivered on budget.' ],
+        [ 'title' => 'Roofing Services',               'category' => 'Residential Services', 'excerpt' => 'Full-service roofing contractor in Tampa Bay. New roofs, repairs, inspections, and replacements for residential and commercial properties — licensed & insured.' ],
+        [ 'title' => 'Roof Replacement',               'category' => 'Residential Services', 'excerpt' => 'Complete roof replacement in Tampa, FL. Shingles, tile, flat, and metal roofing installed by licensed crews with manufacturer warranties and free estimates.' ],
+        [ 'title' => 'Concrete & Flatwork',            'category' => 'Residential Services', 'excerpt' => 'Professional concrete flatwork in Tampa Bay. Driveways, patios, slabs, sidewalks, and foundations poured by licensed concrete contractors. Free estimates.' ],
+        [ 'title' => 'Flooring Installation',          'category' => 'Residential Services', 'excerpt' => 'Expert flooring installation across Tampa Bay. Tile, hardwood, LVP, and more — installed by licensed contractors with meticulous attention to every detail.' ],
+        // Commercial
+        [ 'title' => 'Office Build-Outs',              'category' => 'Commercial Services',  'excerpt' => 'Custom office build-outs in Tampa Bay. From open-plan offices to private suites — Spicola Construction delivers permit-ready, code-compliant commercial spaces.' ],
+        [ 'title' => 'Restaurant Construction',        'category' => 'Commercial Services',  'excerpt' => 'Restaurant construction and renovation in Tampa, FL. We build commercial kitchens, dining rooms, and full restaurant spaces from the ground up.' ],
+        [ 'title' => 'Retail Storefront Construction', 'category' => 'Commercial Services',  'excerpt' => 'Retail storefront construction and build-outs in Tampa Bay. Custom storefronts and retail interiors built to your brand standards and delivered on schedule.' ],
+        [ 'title' => 'Medical Office Construction',    'category' => 'Commercial Services',  'excerpt' => 'Specialized medical office construction in Tampa Bay. ADA-compliant exam rooms, waiting areas, and healthcare facilities built to Florida code.' ],
+        [ 'title' => 'Tenant Improvements',            'category' => 'Commercial Services',  'excerpt' => 'Tenant improvement contractor in Tampa Bay. We transform leased commercial spaces to fit your business — on time, within budget, and permit-ready.' ],
+        // Specialty
+        [ 'title' => 'Interior Demolition',            'category' => 'Specialty Services',   'excerpt' => 'Safe, efficient interior demolition in Tampa Bay. Selective demo, full gut-outs, and debris removal by licensed contractors — ready for your next renovation.' ],
+        [ 'title' => 'Exterior Painting & Stucco',     'category' => 'Specialty Services',   'excerpt' => 'Exterior painting and stucco services in Tampa Bay. Repair, refinish, and repaint your home or business with weather-resistant finishes built for Florida.' ],
+        [ 'title' => 'Fence Installation',             'category' => 'Specialty Services',   'excerpt' => 'Fence installation across Tampa Bay. Wood, vinyl, aluminum, and chain-link fencing installed by licensed contractors — permitted and built to last.' ],
+        [ 'title' => 'Deck & Patio Construction',      'category' => 'Specialty Services',   'excerpt' => 'Custom deck and patio construction in Tampa, FL. Wood, composite, and pavers — outdoor living spaces that add real value and curb appeal to your home.' ],
+        [ 'title' => 'Permit Pulling & Management',    'category' => 'Specialty Services',   'excerpt' => 'Licensed permit management in Tampa Bay. We handle every permit application, inspection, and approval so your project stays legal and on schedule.' ],
+        [ 'title' => 'Pre-Construction Consulting',    'category' => 'Specialty Services',   'excerpt' => 'Pre-construction consulting from Spicola Construction in Tampa Bay. Budget planning, site analysis, and scope development before a single nail is driven.' ],
+        [ 'title' => 'Storm Damage Repair',            'category' => 'Specialty Services',   'excerpt' => 'Storm damage repair contractor in Tampa Bay. We assess, restore, and rebuild after hurricane and severe weather damage — licensed, insured, Florida-experienced.' ],
+    ];
+
+    foreach ( $services as $service ) {
+        $existing = get_page_by_title( $service['title'], OBJECT, 'service' );
+        if ( $existing ) {
+            if ( isset( $cat_ids[ $service['category'] ] ) ) {
+                wp_set_object_terms( $existing->ID, (int) $cat_ids[ $service['category'] ], 'service_category' );
+            }
+            continue;
+        }
+        $post_id = wp_insert_post( [
+            'post_title'   => $service['title'],
+            'post_excerpt' => $service['excerpt'],
+            'post_content' => '',
+            'post_status'  => 'publish',
+            'post_type'    => 'service',
+        ] );
+        if ( $post_id && ! is_wp_error( $post_id ) && isset( $cat_ids[ $service['category'] ] ) ) {
+            wp_set_object_terms( $post_id, (int) $cat_ids[ $service['category'] ], 'service_category' );
+        }
+    }
+
+    update_option( 'hwh_services_created_v3', true );
+}
+add_action( 'init', 'hwh_create_services_v3' );
+
 // -- Services Custom Post Type --------------------------------------
 function hwh_register_services() {
     register_post_type('service', [
