@@ -340,6 +340,108 @@ add_filter('script_loader_tag', 'hwh_script_loader_tag', 10, 2);
 // NOTE: Version query strings (ver=) are kept intentionally for cache busting.
 // They ensure the browser loads the latest CSS when the theme is updated.
 
+// ── Contact Form Handler ──────────────────────────────────────────────────────
+// Handles the #contact-form submission via WP AJAX (logged-in and logged-out).
+// Sends email to joe@spicolaconstruction.com + aj@spicolaconstruction.com.
+// ─────────────────────────────────────────────────────────────────────────────
+function hwh_handle_contact_form() {
+    // Verify nonce
+    if ( ! isset( $_POST['hwh_contact_nonce'] ) ||
+         ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['hwh_contact_nonce'] ) ), 'hwh_contact_form' ) ) {
+        wp_send_json_error( [ 'message' => 'Security check failed. Please refresh the page and try again.' ] );
+    }
+
+    // Sanitize inputs
+    $first   = sanitize_text_field( wp_unslash( $_POST['first_name'] ?? '' ) );
+    $last    = sanitize_text_field( wp_unslash( $_POST['last_name']  ?? '' ) );
+    $email   = sanitize_email( wp_unslash( $_POST['email']    ?? '' ) );
+    $phone   = sanitize_text_field( wp_unslash( $_POST['phone']   ?? '' ) );
+    $service = sanitize_text_field( wp_unslash( $_POST['service']  ?? '' ) );
+    $message = sanitize_textarea_field( wp_unslash( $_POST['message'] ?? '' ) );
+
+    // Basic validation
+    if ( empty( $first ) || empty( $last ) || ! is_email( $email ) ) {
+        wp_send_json_error( [ 'message' => 'Please fill in all required fields with a valid email address.' ] );
+    }
+
+    $name         = "$first $last";
+    $to           = [ 'joe@spicolaconstruction.com', 'aj@spicolaconstruction.com' ];
+    $subject      = "New Quote Request from $name — Spicola Construction";
+    $service_line = $service ? "Service Interest: $service\n" : '';
+    $phone_line   = $phone   ? "Phone: $phone\n"             : '';
+
+    $body = "You have a new contact form submission from the Spicola Construction website.\n\n"
+          . "Name:    $name\n"
+          . "Email:   $email\n"
+          . $phone_line
+          . $service_line
+          . "\nMessage:\n$message\n\n"
+          . "---\nSent via spicolaconstruction.com";
+
+    $headers = [
+        'Content-Type: text/plain; charset=UTF-8',
+        "Reply-To: $name <$email>",
+        'From: Spicola Construction Website <no-reply@spicolaconstruction.com>',
+    ];
+
+    $sent = wp_mail( $to, $subject, $body, $headers );
+
+    if ( $sent ) {
+        wp_send_json_success( [ 'message' => 'Thanks! We\'ll be in touch within 24 hours.' ] );
+    } else {
+        wp_send_json_error( [ 'message' => 'Sorry, there was a problem sending your message. Please call us directly at (813) 732-6285.' ] );
+    }
+}
+add_action( 'wp_ajax_hwh_contact_submit',        'hwh_handle_contact_form' );
+add_action( 'wp_ajax_nopriv_hwh_contact_submit', 'hwh_handle_contact_form' );
+
+// Enqueue the contact form JS only on the contact page
+function hwh_contact_form_scripts() {
+    if ( ! is_page( 'contact' ) ) return;
+    ?>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var form    = document.getElementById('contact-form');
+        var success = document.getElementById('form-success');
+        if (!form) return;
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            var btn = form.querySelector('[type="submit"]');
+            btn.disabled = true;
+            btn.textContent = 'Sending…';
+
+            var data = new FormData(form);
+            data.set('action', 'hwh_contact_submit');
+
+            fetch('<?php echo esc_url( admin_url("admin-ajax.php") ); ?>', {
+                method: 'POST',
+                body: data,
+                credentials: 'same-origin',
+            })
+            .then(function(r){ return r.json(); })
+            .then(function(res){
+                if (res.success) {
+                    form.style.display = 'none';
+                    if (success) success.style.display = 'block';
+                } else {
+                    alert(res.data ? res.data.message : 'Something went wrong. Please try again.');
+                    btn.disabled = false;
+                    btn.textContent = 'Send Message';
+                }
+            })
+            .catch(function(){
+                alert('Network error. Please call us at (813) 732-6285.');
+                btn.disabled = false;
+                btn.textContent = 'Send Message';
+            });
+        });
+    });
+    </script>
+    <?php
+}
+add_action( 'wp_footer', 'hwh_contact_form_scripts' );
+
 // -- Performance: Limit post revisions ------------------------------
 if (!defined('WP_POST_REVISIONS')) {
     define('WP_POST_REVISIONS', 5);
