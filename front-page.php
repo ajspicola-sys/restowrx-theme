@@ -90,6 +90,25 @@ get_header(); ?>
 </style>
 
 <!-- ══════════════════════════════════════════════════════
+     SLIM CTA BAR — White strip above services
+     ══════════════════════════════════════════════════════ -->
+<section class="sc-hero-slim" aria-label="Quick call to action">
+    <div class="sc-hero-slim__inner">
+        <p class="sc-hero-slim__text">Ready to start your next project?
+            <a href="tel:+18137326285" class="sc-hero-slim__highlight">Give us a call →</a>
+        </p>
+    </div>
+</section>
+
+<style>
+.sc-hero-slim{background:#fff;padding:1.5rem 0;border-bottom:1px solid rgba(34,45,63,.06)}
+.sc-hero-slim__inner{max-width:1280px;margin:0 auto;padding:0 clamp(1.25rem,1rem + 2vw,3rem);text-align:center}
+.sc-hero-slim__text{font-family:'Montserrat',sans-serif;font-size:clamp(1rem,1.2vw,1.15rem);font-weight:600;color:var(--brand-navy,#222D3F);margin:0;letter-spacing:.01em}
+.sc-hero-slim__highlight{color:#fff;background:var(--brand,#C13333);padding:.45rem 1.2rem;border-radius:8px;text-decoration:none;font-weight:700;margin-left:.5rem;display:inline-block;transition:all .3s ease;box-shadow:0 2px 12px rgba(193,51,51,.25)}
+.sc-hero-slim__highlight:hover{background:#a82a2a;box-shadow:0 4px 20px rgba(193,51,51,.45);transform:translateY(-1px)}
+</style>
+
+<!-- ══════════════════════════════════════════════════════
      SERVICES — Dark navy, image card carousel
      ══════════════════════════════════════════════════════ -->
 <section class="sc-services" id="services" aria-label="Our construction services">
