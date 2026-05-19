@@ -128,7 +128,7 @@ get_header(); ?>
                         <span class="sc-services__stat-label">Projects Completed</span>
                     </div>
                     <div class="sc-services__stat">
-                        <span class="sc-services__stat-num">15+</span>
+                        <span class="sc-services__stat-num">10+</span>
                         <span class="sc-services__stat-label">Years Experience</span>
                     </div>
                 </div>
@@ -378,7 +378,7 @@ get_header(); ?>
                         <span class="hwh-why__check" aria-hidden="true">✔</span>
                         <div>
                             <strong>10+ Years Experience</strong>
-                            <p>Decades of construction expertise across residential, commercial, and renovation projects.</p>
+                            <p>10+ years of construction expertise across residential, commercial, and renovation projects.</p>
                         </div>
                     </li>
                     <li class="hwh-why__item">
@@ -401,7 +401,7 @@ get_header(); ?>
                     <span class="hwh-why__stat-lbl">5-Star Reviews</span>
                 </div>
                 <div class="hwh-why__stat-card hwh-why__stat-card--accent">
-                    <span class="hwh-why__stat-num">20+</span>
+                    <span class="hwh-why__stat-num">10+</span>
                     <span class="hwh-why__stat-lbl">Years Experience</span>
                 </div>
                 <div class="hwh-why__stat-card">
