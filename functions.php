@@ -480,10 +480,6 @@ function hwh_schema_markup() {
     // -- Enhanced Service schema — singular service pages only -----------------
     if (is_singular('service')) {
         $post_id   = get_the_ID();
-        $price     = get_post_meta($post_id, '_service_price', true);
-        $duration  = get_post_meta($post_id, '_service_duration', true);
-        $cats      = get_the_terms($post_id, 'service_category');
-        $cat_name  = ($cats && !is_wp_error($cats)) ? $cats[0]->name : 'construction Service';
         $excerpt   = wp_strip_all_tags(get_the_excerpt() ?: get_the_title() . ' service in Tampa Bay, FL.');
 
         $service_schema = [
@@ -491,10 +487,11 @@ function hwh_schema_markup() {
             '@type'       => 'Service',
             '@id'         => get_permalink($post_id) . '#service',
             'name'        => get_the_title(),
-            'description' => wp_strip_all_tags(get_the_excerpt() ?: get_the_title() . ' service in Tampa Bay, FL.'),
+            'description' => $excerpt,
             'provider'    => [
-                '@type' => 'contractor',
+                '@type' => 'GeneralContractor',
                 'name'  => 'Spicola Construction',
+                '@id'   => esc_url(home_url('/')) . '#sc-construction',
             ],
             'areaServed'  => 'Tampa Bay, FL',
             'url'         => get_permalink($post_id),

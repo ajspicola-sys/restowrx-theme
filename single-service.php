@@ -1,32 +1,13 @@
 <?php
 /**
  * Spicola Construction — Single Service Template
- * Premium construction service page: hero with image, content + sidebar,
- * benefits, video, why-us trust section, related services, CTA.
+ * Hero with featured image, body content, trust section, related services, CTA.
+ * SEO: title + meta description managed by Yoast SEO.
  */
 get_header();
 
-$post_id      = get_the_ID();
-$icon         = get_post_meta($post_id, '_service_icon', true)     ?: '';
-$price        = get_post_meta($post_id, '_service_price', true);
-$duration     = get_post_meta($post_id, '_service_duration', true);
-$video        = get_post_meta($post_id, '_service_video', true);
-$benefits_raw = get_post_meta($post_id, '_service_benefits', true);
-$benefits     = $benefits_raw ? array_filter(array_map('trim', explode("\n", $benefits_raw))) : [];
-
-// Convert YouTube / Vimeo URL → embed URL
-$video_embed = '';
-if ($video) {
-    if (preg_match('/(?:youtube\.com\/(?:watch\?v=|embed\/|v\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/', $video, $m)) {
-        $video_embed = 'https://www.youtube.com/embed/' . $m[1] . '?rel=0&modestbranding=1&iv_load_policy=3&color=white&playsinline=1&autoplay=1&mute=1&loop=1&playlist=' . $m[1];
-    } elseif (preg_match('/vimeo\.com\/(\d+)/', $video, $m)) {
-        $video_embed = 'https://player.vimeo.com/video/' . $m[1] . '?title=0&byline=0&portrait=0';
-    }
-}
-
-$categories    = get_the_terms($post_id, 'service_category');
-$category_name = ($categories && !is_wp_error($categories)) ? $categories[0]->name : 'Construction';
-$has_image     = has_post_thumbnail();
+$post_id   = get_the_ID();
+$has_image = has_post_thumbnail();
 ?>
 
 <main class="site-main" id="main-content">
@@ -38,7 +19,6 @@ $has_image     = has_post_thumbnail();
              aria-label="Service details"
              itemscope itemtype="https://schema.org/Service">
         <meta itemprop="name" content="<?php the_title_attribute(); ?>">
-        <meta itemprop="serviceType" content="<?php echo esc_attr($category_name); ?>">
         <meta itemprop="areaServed" content="Tampa Bay, FL">
         <span class="service-hero__glow" aria-hidden="true"></span>
 
@@ -67,9 +47,7 @@ $has_image     = has_post_thumbnail();
                     </ol>
                 </nav>
 
-                <span class="section__label service-hero__cat">
-                    <?php echo esc_html($category_name); ?>
-                </span>
+                <span class="section__label service-hero__cat">Construction Service</span>
 
                 <h1 class="service-hero__title">
                     <?php the_title(); ?><br>
@@ -78,24 +56,6 @@ $has_image     = has_post_thumbnail();
 
                 <?php if (has_excerpt()): ?>
                     <p class="service-hero__desc"><?php echo get_the_excerpt(); ?></p>
-                <?php endif; ?>
-
-                <?php if ($price || $duration): ?>
-                <div class="service-hero__meta">
-                    <?php if ($price): ?>
-                    <div class="service-hero__meta-item" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-                        <meta itemprop="priceCurrency" content="USD">
-                        <span class="service-hero__meta-label">Starting at</span>
-                        <span class="service-hero__meta-value" itemprop="price"><?php echo esc_html($price); ?></span>
-                    </div>
-                    <?php endif; ?>
-                    <?php if ($duration): ?>
-                    <div class="service-hero__meta-item">
-                        <span class="service-hero__meta-label">Typical Timeline</span>
-                        <span class="service-hero__meta-value"><?php echo esc_html($duration); ?></span>
-                    </div>
-                    <?php endif; ?>
-                </div>
                 <?php endif; ?>
 
                 <div class="service-hero__actions">
@@ -172,53 +132,7 @@ $has_image     = has_post_thumbnail();
         </div>
     </section>
 
-    <!-- ═══════════════════════════════════════════════════════
-         BENEFITS GRID — only renders when meta field has content
-         ═══════════════════════════════════════════════════════ -->
-    <?php if (!empty($benefits)): ?>
-    <section class="service-benefits" aria-label="Service benefits">
-        <div class="section__inner">
-            <div class="section__header reveal">
-                <span class="section__label">Why This Matters</span>
-                <h2 class="section__title">Benefits of <?php the_title(); ?></h2>
-            </div>
-            <ul class="service-benefits__grid reveal" role="list">
-                <?php foreach ($benefits as $benefit): ?>
-                <li class="service-benefits__item">
-                    <span class="service-benefits__check" aria-hidden="true">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                    </span>
-                    <?php echo esc_html($benefit); ?>
-                </li>
-                <?php endforeach; ?>
-            </ul>
-        </div>
-    </section>
-    <?php endif; ?>
 
-    <!-- ═══════════════════════════════════════════════════════
-         VIDEO SECTION — only renders when _service_video meta set
-         ═══════════════════════════════════════════════════════ -->
-    <?php if ($video_embed): ?>
-    <section class="service-video" aria-label="Service video">
-        <div class="section__inner">
-            <div class="section__header reveal">
-                <span class="section__label">See It In Action</span>
-                <h2 class="section__title"><?php the_title(); ?> — How We Do It</h2>
-            </div>
-            <div class="service-video__wrap reveal">
-                <iframe
-                    src="<?php echo esc_url($video_embed); ?>"
-                    title="<?php the_title_attribute(); ?> — Spicola Construction Tampa"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen
-                    loading="lazy"
-                ></iframe>
-            </div>
-        </div>
-    </section>
-    <?php endif; ?>
 
     <!-- ═══════════════════════════════════════════════════════
          WHY CHOOSE SPICOLA (Static trust section)

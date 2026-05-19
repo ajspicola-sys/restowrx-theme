@@ -41,34 +41,25 @@ $hwh_menu_services = hwh_get_menu_services();
     <meta name="apple-mobile-web-app-capable" content="yes">
 
     <?php
-    // NOTE: <meta name="description"> and <link rel="canonical"> are output by
-    // Yoast SEO via wp_head() below. Do NOT add them here — doing so causes
-    // duplicate tags detected by crawlers. We only build $meta_desc for OG use.
+    // NOTE: <meta name="description"> and <link rel="canonical"> are handled
+    // entirely by Yoast SEO via wp_head(). Do NOT add them here.
+    // We only build OG/Twitter tags below using Yoast's values.
+    $og_img   = 'https://spicolaconstruction.com/wp-content/uploads/spicola-og.jpg';
+    $og_title = is_front_page() ? 'Spicola Construction | Trusted General Contractor in Tampa Bay, FL' : wp_get_document_title();
+    $og_desc  = '';
     if ( function_exists('YoastSEO') ) {
         $yoast_meta = YoastSEO()->meta->for_current_page();
-        $meta_desc  = $yoast_meta ? $yoast_meta->description : '';
+        $og_desc    = $yoast_meta ? $yoast_meta->description : '';
     }
-    if ( empty( $meta_desc ) ) {
-        if ( is_front_page() ) {
-            $meta_desc = 'Spicola Construction is a trusted Tampa Bay general contractor specializing in residential and commercial construction, remodeling, and renovation. Call (813) 732-6285.';
-        } elseif ( is_singular() ) {
-            $meta_desc = wp_strip_all_tags( get_the_excerpt() );
-        } else {
-            $meta_desc = 'Spicola Construction — Tampa Bay\'s trusted general contractor for new construction, remodeling, roofing, and commercial build-outs.';
-        }
+    if ( empty( $og_desc ) ) {
+        $og_desc = is_singular() ? wp_strip_all_tags( get_the_excerpt() ) : 'Licensed general contractor serving Tampa Bay — construction, remodeling, roofing, and commercial build-outs.';
     }
-    ?>
-
-    <?php
-    $og_img    = 'https://spicolaconstruction.com/wp-content/uploads/spicola-og.jpg';
-    $og_title  = is_front_page() ? 'Spicola Construction | Trusted General Contractor in Tampa Bay, FL' : wp_get_document_title();
-    $og_desc   = $meta_desc;
-    $og_url    = is_singular() ? get_permalink() : ( is_front_page() ? home_url('/') : ( is_archive() ? get_term_link( get_queried_object() ) : home_url('/') ) );
-    $og_url    = is_wp_error( $og_url ) ? home_url('/') : $og_url;
-    $og_type   = 'website';
-    if (has_post_thumbnail()) {
-        $td = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
-        if ($td) $og_img = esc_url($td[0]);
+    $og_url  = is_singular() ? get_permalink() : ( is_front_page() ? home_url('/') : ( is_archive() ? get_term_link( get_queried_object() ) : home_url('/') ) );
+    $og_url  = is_wp_error( $og_url ) ? home_url('/') : $og_url;
+    $og_type = 'website';
+    if ( has_post_thumbnail() ) {
+        $td = wp_get_attachment_image_src( get_post_thumbnail_id(), 'full' );
+        if ( $td ) $og_img = esc_url( $td[0] );
     }
     ?>
     <meta property="og:locale"       content="en_US">
@@ -217,11 +208,9 @@ $hwh_menu_services = hwh_get_menu_services();
                                 <div class="hwh-drop__col">
                                     <span class="hwh-drop__heading"><?php echo esc_html( $cat_name ); ?></span>
                                     <?php foreach ( array_slice( $posts, 0, 8 ) as $s ) :
-                                        $icon    = get_post_meta( $s->ID, '_service_icon', true ) ?: '';
                                         $excerpt = wp_trim_words( get_post_field( 'post_excerpt', $s->ID ) ?: get_post_field( 'post_content', $s->ID ), 7, '' );
                                     ?>
                                     <a href="<?php echo esc_url( get_permalink( $s->ID ) ); ?>" class="hwh-drop__item">
-                                        <?php if ($icon && strlen($icon) > 4) : ?><span class="hwh-drop__icon"><?php echo esc_html( $icon ); ?></span><?php endif; ?>
                                         <span>
                                             <strong><?php echo esc_html( $s->post_title ); ?></strong>
                                             <?php if ( $excerpt ) : ?><em><?php echo esc_html( $excerpt ); ?></em><?php endif; ?>
@@ -315,7 +304,6 @@ $hwh_menu_services = hwh_get_menu_services();
                     'no_found_rows'  => true,
                 ] );
                 foreach ( $mobile_svcs as $ms ) :
-                    $ms_icon = get_post_meta( $ms->ID, '_service_icon', true ) ?: '';
                 ?>
                 <li><a href="<?php echo esc_url( get_permalink( $ms->ID ) ); ?>">↳ <?php echo esc_html( $ms->post_title ); ?></a></li>
                 <?php endforeach; wp_reset_postdata(); ?>
