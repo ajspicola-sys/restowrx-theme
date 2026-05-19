@@ -378,7 +378,7 @@ function hwh_schema_markup() {
         'url'              => esc_url(home_url('/')),
         'telephone'        => '+18137326285',
         'email'            => 'info@spicolaconstruction.com',
-        'foundingDate'     => '2004',
+        'foundingDate'     => '2014',
         'address'          => [
             '@type'           => 'PostalAddress',
             'streetAddress'   => '9249 Lazy Ln',
@@ -2694,7 +2694,7 @@ function hwh_homepage_faq_schema() {
         ],
         [
             'q' => 'What makes Spicola Construction different from other Tampa Bay contractors?',
-            'a' => 'Spicola Construction stands out for its 20+ years of experience, commitment to quality craftsmanship, transparent pricing, and on-time project delivery. All work is performed by licensed, insured contractors and backed by our satisfaction guarantee.',
+            'a' => 'Spicola Construction stands out for its 10+ years of experience, commitment to quality craftsmanship, transparent pricing, and on-time project delivery. All work is performed by licensed, insured contractors and backed by our satisfaction guarantee.',
         ],
     ];
 

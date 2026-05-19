@@ -60,7 +60,7 @@ get_header(); ?>
         <div class="sc-hero__badges">
             <span class="sc-hero__badge">✔ Licensed CGC</span>
             <span class="sc-hero__badge">✔ Fully Insured</span>
-            <span class="sc-hero__badge">✔ 20+ Years Experience</span>
+            <span class="sc-hero__badge">✔ 10+ Years Experience</span>
             <span class="sc-hero__badge">✔ Free Estimates</span>
         </div>
     </div>
@@ -377,7 +377,7 @@ get_header(); ?>
                     <li class="hwh-why__item">
                         <span class="hwh-why__check" aria-hidden="true">✔</span>
                         <div>
-                            <strong>20+ Years Experience</strong>
+                            <strong>10+ Years Experience</strong>
                             <p>Decades of construction expertise across residential, commercial, and renovation projects.</p>
                         </div>
                     </li>

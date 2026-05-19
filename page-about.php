@@ -35,7 +35,7 @@ get_header(); ?>
                     <span>Projects Completed</span>
                 </div>
                 <div class="svc-hero__float svc-hero__float--2">
-                    <strong>15+</strong>
+                    <strong>10+</strong>
                     <span>Years Experience</span>
                 </div>
             </div>
@@ -51,13 +51,57 @@ get_header(); ?>
                 <span class="section__label">Our Story</span>
                 <h2 class="section__title">Built from the Ground Up —<br>Just Like Our Projects</h2>
             </div>
-            <div class="about-story__body reveal">
-                <p>Spicola Construction was born out of a passion for building things right. With over 15 years of hands-on experience in Florida's construction industry, our founder saw an opportunity to create a company that puts quality and integrity above everything else — no shortcuts, no excuses.</p>
-                <p>Word travels fast when you do great work. From custom home builds to large-scale commercial renovations, we've grown through referrals and repeat clients. Every project in our portfolio was earned through results — not advertising.</p>
-                <p>Today, Spicola Construction is a full-service general contracting firm serving Hillsborough, Pinellas, and Pasco counties. From ground-up new builds to complete interior renovations, we handle every phase of construction with the same dedication to craftsmanship that started it all.</p>
+            <div class="about-story__layout reveal">
+                <div class="about-story__left">
+                    <div class="about-story__accent-bar" aria-hidden="true"></div>
+                    <div class="about-story__chips">
+                        <span class="about-story__chip">Est. 2014</span>
+                        <span class="about-story__chip">Tampa Bay, FL</span>
+                        <span class="about-story__chip">CGC Licensed</span>
+                    </div>
+                    <blockquote class="about-story__quote">
+                        &ldquo;Quality and integrity above everything else &mdash; no shortcuts, no excuses.&rdquo;
+                    </blockquote>
+                    <div class="about-story__stat-row">
+                        <div class="about-story__stat">
+                            <strong>10+</strong>
+                            <span>Years in Business</span>
+                        </div>
+                        <div class="about-story__stat">
+                            <strong>250+</strong>
+                            <span>Projects Delivered</span>
+                        </div>
+                        <div class="about-story__stat">
+                            <strong>3</strong>
+                            <span>Counties Served</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-story__right">
+                    <p>Spicola Construction was born out of a passion for building things right. With over 10 years of hands-on experience in Florida's construction industry, our founder saw an opportunity to create a company that puts quality and integrity above everything else &mdash; no shortcuts, no excuses.</p>
+                    <p>Word travels fast when you do great work. From custom home builds to large-scale commercial renovations, we've grown through referrals and repeat clients. Every project in our portfolio was earned through results &mdash; not advertising.</p>
+                    <p>Today, Spicola Construction is a full-service general contracting firm serving Hillsborough, Pinellas, and Pasco counties. From ground-up new builds to complete interior renovations, we handle every phase of construction with the same dedication to craftsmanship that started it all.</p>
+                </div>
             </div>
         </div>
     </section>
+
+    <style>
+    .about-story{padding:clamp(4rem,6vw,7rem) 0;background:#fff}
+    .about-story__layout{display:grid;grid-template-columns:1fr 1.6fr;gap:clamp(3rem,5vw,6rem);margin-top:clamp(2.5rem,4vw,4rem);align-items:start}
+    .about-story__left{position:relative;padding-left:1.75rem}
+    .about-story__accent-bar{position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--brand,#C13333) 0%,rgba(193,51,51,.15) 100%);border-radius:4px}
+    .about-story__chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.75rem}
+    .about-story__chip{font-family:'Montserrat',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--brand,#C13333);background:rgba(193,51,51,.07);border:1px solid rgba(193,51,51,.2);border-radius:30px;padding:.35rem .9rem}
+    .about-story__quote{font-family:'Montserrat',sans-serif;font-size:1.05rem;font-weight:700;font-style:italic;color:var(--brand-navy,#222D3F);line-height:1.6;margin:0 0 2rem;border:none;padding:0}
+    .about-story__stat-row{display:flex;gap:2rem;flex-wrap:wrap}
+    .about-story__stat{display:flex;flex-direction:column}
+    .about-story__stat strong{font-family:'Montserrat',sans-serif;font-size:1.8rem;font-weight:900;color:var(--brand,#C13333);line-height:1}
+    .about-story__stat span{font-size:.68rem;font-weight:600;color:rgba(34,45,63,.5);text-transform:uppercase;letter-spacing:.08em;margin-top:.3rem}
+    .about-story__right p{font-size:1rem;line-height:1.85;color:rgba(34,45,63,.75);margin:0 0 1.25rem}
+    .about-story__right p:last-child{margin-bottom:0}
+    @media(max-width:800px){.about-story__layout{grid-template-columns:1fr}.about-story__left{margin-bottom:2.5rem}}
+    </style>
 
     <!-- ════════════════════════════════════════════════════════════
          CORE VALUES
@@ -116,7 +160,7 @@ get_header(); ?>
             </div>
             <div class="svc-stat__divider" aria-hidden="true"></div>
             <div class="svc-stat">
-                <strong class="svc-stat__num">15<span>+</span></strong>
+                <strong class="svc-stat__num">10<span>+</span></strong>
                 <span class="svc-stat__label">Years Experience</span>
             </div>
             <div class="svc-stat__divider" aria-hidden="true"></div>
