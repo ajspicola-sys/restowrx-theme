@@ -647,6 +647,7 @@ if ( $blog_query->have_posts() ) : ?>
 <style>
 .sc-blog{padding:clamp(4rem,6vw,7rem) 0;background:#F8F8F6}
 .sc-blog .hwh-section-title em{color:var(--brand,#C13333);font-style:normal}
+.sc-blog .hwh-section-desc{color:rgba(34,45,63,.6)}
 .sc-blog__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:clamp(2rem,3vw,3rem)}
 .sc-blog__card{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,.06);display:flex;flex-direction:column;transition:transform .3s ease,box-shadow .3s ease}
 .sc-blog__card:hover{transform:translateY(-5px);box-shadow:0 12px 40px rgba(0,0,0,.1)}
