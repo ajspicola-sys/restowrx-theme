@@ -52,10 +52,15 @@ get_header(); ?>
                 <h2 class="section__title">Built from the Ground Up —<br>Just Like Our Projects</h2>
             </div>
             <div class="about-story__layout reveal">
+                <div class="about-story__right">
+                    <p>Spicola Construction was born out of a passion for building things right. With over 10 years of hands-on experience in Florida's construction industry, our founder saw an opportunity to create a company that puts quality and integrity above everything else &mdash; no shortcuts, no excuses.</p>
+                    <p>Word travels fast when you do great work. From custom home builds to large-scale commercial renovations, we've grown through referrals and repeat clients. Every project in our portfolio was earned through results &mdash; not advertising.</p>
+                    <p>Today, Spicola Construction is a full-service general contracting firm serving Hillsborough, Pinellas, and Pasco counties. From ground-up new builds to complete interior renovations, we handle every phase of construction with the same dedication to craftsmanship that started it all.</p>
+                </div>
                 <div class="about-story__left">
                     <div class="about-story__accent-bar" aria-hidden="true"></div>
                     <div class="about-story__chips">
-                        <span class="about-story__chip">Est. 2014</span>
+                        <span class="about-story__chip">Est. 2020</span>
                         <span class="about-story__chip">Tampa Bay, FL</span>
                         <span class="about-story__chip">CGC Licensed</span>
                     </div>
@@ -76,11 +81,6 @@ get_header(); ?>
                             <span>Counties Served</span>
                         </div>
                     </div>
-                </div>
-                <div class="about-story__right">
-                    <p>Spicola Construction was born out of a passion for building things right. With over 10 years of hands-on experience in Florida's construction industry, our founder saw an opportunity to create a company that puts quality and integrity above everything else &mdash; no shortcuts, no excuses.</p>
-                    <p>Word travels fast when you do great work. From custom home builds to large-scale commercial renovations, we've grown through referrals and repeat clients. Every project in our portfolio was earned through results &mdash; not advertising.</p>
-                    <p>Today, Spicola Construction is a full-service general contracting firm serving Hillsborough, Pinellas, and Pasco counties. From ground-up new builds to complete interior renovations, we handle every phase of construction with the same dedication to craftsmanship that started it all.</p>
                 </div>
             </div>
         </div>

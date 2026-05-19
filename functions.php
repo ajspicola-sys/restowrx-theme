@@ -378,7 +378,7 @@ function hwh_schema_markup() {
         'url'              => esc_url(home_url('/')),
         'telephone'        => '+18137326285',
         'email'            => 'info@spicolaconstruction.com',
-        'foundingDate'     => '2014',
+        'foundingDate'     => '2020',
         'address'          => [
             '@type'           => 'PostalAddress',
             'streetAddress'   => '9249 Lazy Ln',
