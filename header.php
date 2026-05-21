@@ -109,8 +109,8 @@
             background: #ffffff;
             padding: 10px 0;
             min-height: 55px;
-            border-bottom: 3px solid var(--color-red);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
         }
 
         .top-bar-inner, .nav-bar-inner {
@@ -144,7 +144,7 @@
 
         /* --- NAV BAR ELEMENTS --- */
         .rwx-logo {
-            height: 30px;
+            height: 22px;
             display: flex; align-items: center;
             flex: 0 0 auto;
             transition: transform 0.3s ease;
