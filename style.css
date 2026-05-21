@@ -91,7 +91,7 @@ Text Domain:      spicola-construction
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: clamp(80px, 8vw, 120px);
+  scroll-padding-top: clamp(130px, 12vw, 160px);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -225,6 +225,16 @@ h6 {
 
 :focus:not(:focus-visible) {
   outline: none;
+}
+
+/* Sticky header focus protection - offset all interactive/focusable elements when focused or scrolled to */
+a,
+button,
+input,
+select,
+textarea,
+[tabindex] {
+  scroll-margin-top: clamp(130px, 12vw, 160px);
 }
 
 /* Staggered children animation */

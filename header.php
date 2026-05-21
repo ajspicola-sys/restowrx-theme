@@ -96,7 +96,7 @@ $hwh_menu_services = hwh_get_menu_services();
     <?php wp_head(); ?>
 
     <style id="sc-critical-css">
-        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+        html { scroll-behavior: smooth; scroll-padding-top: clamp(130px, 12vw, 160px); -webkit-font-smoothing: antialiased; }
         body { margin: 0; font-family: 'Inter','Helvetica Neue',Arial,sans-serif; background: #F8F8F6; overflow-x: hidden; }
         .site-main { padding-top: 123px; }
         .hwh-header { position: fixed; top: 0; left: 0; right: 0; z-index: 200; }
