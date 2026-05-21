@@ -435,7 +435,7 @@ if ($portfolio->have_posts()): ?>
                 <span class="sc-works__label">Our Work</span>
                 <h2 class="sc-works__title">Recent <em>Projects</em></h2>
             </div>
-            <a href="<?php echo esc_url(home_url('/portfolio/')); ?>" class="sc-works__view-all">View All Projects <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></a>
+            <a href="<?php echo esc_url(get_post_type_archive_link('portfolio')); ?>" class="sc-works__view-all">View All Projects <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></a>
         </div>
         <div class="sc-works__grid">
             <?php while ($portfolio->have_posts()): $portfolio->the_post();

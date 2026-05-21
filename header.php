@@ -243,7 +243,7 @@ $hwh_menu_services = hwh_get_menu_services();
                     <li class="hwh-nav__item<?php if (is_page('about')) echo ' hwh-nav__item--active'; ?>">
                         <a href="<?php echo esc_url(home_url('/about/')); ?>" class="hwh-nav__link">About</a>
                     </li>
-                    <li class="hwh-nav__item<?php if (is_page('projects')) echo ' hwh-nav__item--active'; ?>">
+                    <li class="hwh-nav__item<?php if (is_post_type_archive('portfolio') || is_singular('portfolio')) echo ' hwh-nav__item--active'; ?>">
                         <a href="<?php echo esc_url(home_url('/projects/')); ?>" class="hwh-nav__link">Projects</a>
                     </li>
                     <li class="hwh-nav__item<?php if (is_page('contact')) echo ' hwh-nav__item--active'; ?>">

@@ -957,7 +957,7 @@ add_action('init', 'hwh_register_services');
 function sc_register_portfolio() {
     register_post_type('portfolio', [
         'labels' => [
-            'name'               => 'Portfolio',
+            'name'               => 'Projects',
             'singular_name'      => 'Project',
             'add_new'            => 'Add Project',
             'add_new_item'       => 'Add New Project',
@@ -966,12 +966,12 @@ function sc_register_portfolio() {
             'view_item'          => 'View Project',
             'search_items'       => 'Search Projects',
             'not_found'          => 'No projects found',
-            'menu_name'          => '🏗️ Portfolio',
+            'menu_name'          => '🏗️ Projects',
         ],
         'public'              => true,
         'exclude_from_search' => false,
         'has_archive'         => true,
-        'rewrite'             => ['slug' => 'portfolio'],
+        'rewrite'             => ['slug' => 'projects'],
         'menu_icon'           => 'dashicons-images-alt2',
         'menu_position'       => 6,
         'supports'            => ['title', 'editor', 'thumbnail', 'excerpt'],
@@ -1003,31 +1003,8 @@ function sc_portfolio_gallery_metabox() {
         'normal',
         'high'
     );
-    add_meta_box(
-        'sc_portfolio_details',
-        'Project Details',
-        'sc_portfolio_details_html',
-        'portfolio',
-        'side',
-        'default'
-    );
 }
 add_action('add_meta_boxes', 'sc_portfolio_gallery_metabox');
-
-function sc_portfolio_details_html($post) {
-    $location = get_post_meta($post->ID, '_portfolio_location', true);
-    $duration = get_post_meta($post->ID, '_portfolio_duration', true);
-    $year     = get_post_meta($post->ID, '_portfolio_year', true);
-    wp_nonce_field('sc_portfolio_details_nonce', 'sc_portfolio_details_nonce_field');
-    ?>
-    <p><label><strong>Location</strong></label><br>
-    <input type="text" name="portfolio_location" value="<?php echo esc_attr($location); ?>" style="width:100%" placeholder="Tampa, FL"></p>
-    <p><label><strong>Duration</strong></label><br>
-    <input type="text" name="portfolio_duration" value="<?php echo esc_attr($duration); ?>" style="width:100%" placeholder="6 weeks"></p>
-    <p><label><strong>Year</strong></label><br>
-    <input type="text" name="portfolio_year" value="<?php echo esc_attr($year); ?>" style="width:100%" placeholder="2024"></p>
-    <?php
-}
 
 function sc_portfolio_gallery_html($post) {
     $gallery_ids = get_post_meta($post->ID, '_portfolio_gallery', true);
@@ -1084,15 +1061,9 @@ function sc_portfolio_gallery_html($post) {
 }
 
 function sc_portfolio_save($post_id) {
-    // Gallery
+    // Gallery Only
     if (isset($_POST['sc_portfolio_gallery_nonce_field']) && wp_verify_nonce($_POST['sc_portfolio_gallery_nonce_field'], 'sc_portfolio_gallery_nonce')) {
         update_post_meta($post_id, '_portfolio_gallery', sanitize_text_field($_POST['portfolio_gallery'] ?? ''));
-    }
-    // Details
-    if (isset($_POST['sc_portfolio_details_nonce_field']) && wp_verify_nonce($_POST['sc_portfolio_details_nonce_field'], 'sc_portfolio_details_nonce')) {
-        update_post_meta($post_id, '_portfolio_location', sanitize_text_field($_POST['portfolio_location'] ?? ''));
-        update_post_meta($post_id, '_portfolio_duration', sanitize_text_field($_POST['portfolio_duration'] ?? ''));
-        update_post_meta($post_id, '_portfolio_year', sanitize_text_field($_POST['portfolio_year'] ?? ''));
     }
 }
 add_action('save_post_portfolio', 'sc_portfolio_save');
@@ -1121,6 +1092,49 @@ function hwh_redirect_singular_service() {
     }
 }
 add_action( 'template_redirect', 'hwh_redirect_singular_service', 1 );
+
+// -- Redirect /portfolio/ (old) → /projects/ (new) ------------------
+function sc_redirect_portfolio_to_projects() {
+    if ( is_admin() || wp_doing_ajax() || wp_doing_cron() ) return;
+
+    // 1. If it's a static Page with slug 'portfolio', redirect to /projects/
+    if ( is_page( 'portfolio' ) ) {
+        wp_redirect( home_url( '/projects/' ), 301 );
+        exit;
+    }
+
+    // 2. Get relative request path from $wp->request
+    global $wp;
+    $request = isset( $wp->request ) ? trim( $wp->request, '/' ) : '';
+
+    if ( $request === 'portfolio' ) {
+        wp_redirect( home_url( '/projects/' ), 301 );
+        exit;
+    } elseif ( preg_match( '#^portfolio/(.+)#', $request, $m ) ) {
+        wp_redirect( home_url( '/projects/' . $m[1] ), 301 );
+        exit;
+    }
+
+    // 3. Fallback: Parse REQUEST_URI and remove the site's base path for subdirectory support
+    $home_path = parse_url( home_url(), PHP_URL_PATH );
+    $home_path = $home_path ? trim( $home_path, '/' ) : '';
+    
+    $uri_path = parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH );
+    $uri_path = $uri_path ? trim( $uri_path, '/' ) : '';
+
+    if ( $home_path && strpos( $uri_path, $home_path ) === 0 ) {
+        $uri_path = trim( substr( $uri_path, strlen( $home_path ) ), '/' );
+    }
+
+    if ( $uri_path === 'portfolio' ) {
+        wp_redirect( home_url( '/projects/' ), 301 );
+        exit;
+    } elseif ( preg_match( '#^portfolio/(.+)#', $uri_path, $m ) ) {
+        wp_redirect( home_url( '/projects/' . $m[1] ), 301 );
+        exit;
+    }
+}
+add_action( 'template_redirect', 'sc_redirect_portfolio_to_projects', 1 );
 
 // -- FIX: Force correct canonical URL for service pages ----------------
 // WordPress generates a canonical based on the post type name ('service')

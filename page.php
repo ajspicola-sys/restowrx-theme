@@ -11,6 +11,24 @@ if ($post) {
     $slug = $post->post_name;
 }
 
+// Safety net: Intercept portfolio/projects slugs to directly load the dynamic projects archive
+if ($slug === 'projects' || $slug === 'portfolio' || $slug === 'our-work' || $slug === 'work') {
+    $archive_template = get_template_directory() . '/archive-portfolio.php';
+    if (file_exists($archive_template)) {
+        include($archive_template);
+        return;
+    }
+}
+
+$title_slug = sanitize_title(get_the_title());
+if ($title_slug === 'projects' || $title_slug === 'portfolio' || $title_slug === 'our-work' || $title_slug === 'work') {
+    $archive_template = get_template_directory() . '/archive-portfolio.php';
+    if (file_exists($archive_template)) {
+        include($archive_template);
+        return;
+    }
+}
+
 $custom_templates = [
     'team'         => 'page-team.php',
     'meet-the-team'=> 'page-team.php',

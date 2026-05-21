@@ -34,7 +34,7 @@ $has_image   = has_post_thumbnail();
                 <ol class="breadcrumbs__list">
                     <li class="breadcrumbs__item"><a href="<?php echo esc_url(home_url('/')); ?>">Home</a></li>
                     <li class="breadcrumbs__sep" aria-hidden="true">›</li>
-                    <li class="breadcrumbs__item"><a href="<?php echo esc_url(home_url('/portfolio/')); ?>">Portfolio</a></li>
+                    <li class="breadcrumbs__item"><a href="<?php echo esc_url(get_post_type_archive_link('portfolio')); ?>">Projects</a></li>
                     <li class="breadcrumbs__sep" aria-hidden="true">›</li>
                     <li class="breadcrumbs__item breadcrumbs__item--current" aria-current="page"><?php the_title(); ?></li>
                 </ol>
