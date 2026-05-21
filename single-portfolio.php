@@ -94,7 +94,7 @@ $has_image   = has_post_thumbnail();
     <?php endif; ?>
 
     <!-- Lightbox -->
-    <div class="pf-lightbox" id="pf-lightbox" role="dialog" aria-label="Image viewer" hidden>
+    <div class="pf-lightbox" id="pf-lightbox" role="dialog" aria-label="Image viewer" style="display: none;">
         <button class="pf-lightbox__close" aria-label="Close">&times;</button>
         <button class="pf-lightbox__prev" aria-label="Previous">‹</button>
         <button class="pf-lightbox__next" aria-label="Next">›</button>
@@ -162,19 +162,44 @@ $has_image   = has_post_thumbnail();
     var items = document.querySelectorAll('.pf-gallery__item[data-lightbox]');
     var urls  = []; var cur = 0;
 
-    items.forEach(function(el, i){ urls.push(el.href); el.addEventListener('click', function(e){ e.preventDefault(); cur = i; open(); }); });
+    items.forEach(function(el, i){
+        urls.push(el.href);
+        el.addEventListener('click', function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            e.stopImmediatePropagation();
+            cur = i;
+            open();
+        });
+    });
 
-    function open(){ lb.hidden = false; img.src = urls[cur]; document.body.style.overflow = 'hidden'; }
-    function close(){ lb.hidden = true; img.src = ''; document.body.style.overflow = ''; }
-    function prev(){ cur = (cur - 1 + urls.length) % urls.length; img.src = urls[cur]; }
-    function next(){ cur = (cur + 1) % urls.length; img.src = urls[cur]; }
+    function open(){
+        lb.style.display = 'flex';
+        img.src = urls[cur];
+        document.body.style.overflow = 'hidden';
+    }
+    function close(){
+        lb.style.display = 'none';
+        img.src = '';
+        document.body.style.overflow = '';
+    }
+    function prev(){
+        cur = (cur - 1 + urls.length) % urls.length;
+        img.src = urls[cur];
+    }
+    function next(){
+        cur = (cur + 1) % urls.length;
+        img.src = urls[cur];
+    }
 
     lb.querySelector('.pf-lightbox__close').addEventListener('click', close);
     lb.querySelector('.pf-lightbox__prev').addEventListener('click', prev);
     lb.querySelector('.pf-lightbox__next').addEventListener('click', next);
-    lb.addEventListener('click', function(e){ if (e.target === lb) close(); });
+    lb.addEventListener('click', function(e){
+        if (e.target === lb) close();
+    });
     document.addEventListener('keydown', function(e){
-        if (lb.hidden) return;
+        if (lb.style.display === 'none') return;
         if (e.key === 'Escape') close();
         if (e.key === 'ArrowLeft') prev();
         if (e.key === 'ArrowRight') next();
