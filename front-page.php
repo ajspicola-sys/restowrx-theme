@@ -898,6 +898,176 @@ get_header(); ?>
     </div>
 </section>
 
+<!-- ══════════════════════════════════════════════════════
+     SECTION: ABOUT US (OUR STORY) - Adapted for tactical dark mode
+     ══════════════════════════════════════════════════════ -->
+<section class="about-story" aria-label="Our story">
+    <div class="rwx-container">
+        <div class="rwx-header reveal">
+            <span class="eyebrow">Strategic Foundations</span>
+            <h2>Built from the Ground Up</h2>
+        </div>
+        <div class="about-story__layout reveal">
+            <div class="about-story__left">
+                <div class="about-story__accent-bar" aria-hidden="true"></div>
+                <div class="about-story__chips">
+                    <span class="about-story__chip">Est. 2020</span>
+                    <span class="about-story__chip">Tampa Bay, FL</span>
+                    <span class="about-story__chip">CGC Licensed</span>
+                </div>
+                <blockquote class="about-story__quote">
+                    &ldquo;Quality and integrity above everything else &mdash; no shortcuts, no excuses.&rdquo;
+                </blockquote>
+                <div class="about-story__stat-row">
+                    <div class="about-story__stat">
+                        <strong>10+</strong>
+                        <span>Years in Business</span>
+                    </div>
+                    <div class="about-story__stat">
+                        <strong>250+</strong>
+                        <span>Projects Delivered</span>
+                    </div>
+                    <div class="about-story__stat">
+                        <strong>3</strong>
+                        <span>Counties Served</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-story__right">
+                <p>Spicola Construction was born out of a passion for building things right. With over 10 years of hands-on experience in Florida's construction industry, our founder saw an opportunity to create a company that puts quality and integrity above everything else &mdash; no shortcuts, no excuses.</p>
+                <p>Word travels fast when you do great work. From custom home builds to large-scale commercial renovations, we've grown through referrals and repeat clients. Every project in our portfolio was earned through results &mdash; not advertising.</p>
+                <p>Today, Spicola Construction is a full-service general contracting firm serving Hillsborough, Pinellas, and Pasco counties. From ground-up new builds to complete interior renovations, we handle every phase of construction with the same dedication to craftsmanship that started it all.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.about-story {
+    position: relative;
+    padding: clamp(60px, 8vw, 100px) 0;
+    background-color: #070707;
+    color: white;
+    font-family: var(--font-main, 'Inter', sans-serif);
+    overflow: hidden;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+.about-story::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: 
+        linear-gradient(to right, rgba(255,255,255,0.01) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.01) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+}
+.about-story__layout {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: clamp(30px, 5vw, 60px);
+    margin-top: clamp(40px, 6vw, 80px);
+    align-items: start;
+}
+.about-story__left {
+    position: relative;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 40px 30px 40px 45px;
+    backdrop-filter: blur(10px);
+}
+.about-story__accent-bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, var(--brand, #ff0000) 0%, rgba(255, 0, 0, 0.1) 100%);
+}
+.about-story__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+.about-story__chip {
+    font-family: var(--font-mono, 'Space Mono', monospace);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--brand, #ff0000);
+    background: rgba(255, 0, 0, 0.05);
+    border: 1px solid rgba(255, 0, 0, 0.2);
+    border-radius: 4px;
+    padding: 6px 14px;
+}
+.about-story__quote {
+    font-family: var(--font-main, 'Inter', sans-serif);
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    font-weight: 700;
+    font-style: italic;
+    color: #ffffff;
+    line-height: 1.5;
+    margin: 0 0 35px;
+    border: none;
+    padding: 0;
+    letter-spacing: -0.5px;
+}
+.about-story__stat-row {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 30px;
+}
+.about-story__stat {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 100px;
+}
+.about-story__stat strong {
+    font-family: var(--font-accent, 'Bebas Neue', sans-serif);
+    font-size: 2.8rem;
+    font-weight: 400;
+    color: var(--brand, #ff0000);
+    line-height: 1;
+    letter-spacing: 1px;
+}
+.about-story__stat span {
+    font-family: var(--font-mono, 'Space Mono', monospace);
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-top: 8px;
+}
+.about-story__right p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #e5e5e5;
+    margin: 0 0 25px;
+    font-weight: 400;
+}
+.about-story__right p:last-child {
+    margin-bottom: 0;
+}
+@media(max-width:991px) {
+    .about-story__layout {
+        grid-template-columns: 1fr;
+    }
+    .about-story__left {
+        order: 2;
+    }
+    .about-story__right {
+        order: 1;
+        margin-bottom: 20px;
+    }
+}
+</style>
+
 
 <!-- ══════════════════════════════════════════════════════
      SECTION 4 — WHY CHOOSE US: Tactical grid features
@@ -1533,6 +1703,221 @@ get_header(); ?>
         startInterval();
     });
 </script>
+
+<!-- ══════════════════════════════════════════════════════
+     SECTION: FROM THE BLOG — Premium Dark Tactical Redesign
+     ══════════════════════════════════════════════════════ -->
+<?php
+$blog_query = new WP_Query([
+    'post_type'      => 'post',
+    'post_status'    => 'publish',
+    'posts_per_page' => 3,
+    'orderby'        => 'date',
+    'order'          => 'DESC',
+    'no_found_rows'  => true,
+]);
+if ( $blog_query->have_posts() ) : ?>
+<section class="sc-blog" aria-label="Latest construction tips and news">
+    <div class="rwx-container">
+        <div class="rwx-header reveal">
+            <span class="eyebrow">INTELLIGENCE BRIEFINGS</span>
+            <h2>From <em>The Blog</em></h2>
+        </div>
+        <div class="sc-blog__grid reveal">
+            <?php while ( $blog_query->have_posts() ) : $blog_query->the_post();
+                $cats = get_the_category();
+                $cat_name = $cats ? esc_html( $cats[0]->name ) : 'Construction';
+            ?>
+            <article class="sc-blog__card">
+                <?php if ( has_post_thumbnail() ) : ?>
+                <a href="<?php the_permalink(); ?>" class="sc-blog__thumb" tabindex="-1" aria-hidden="true">
+                    <?php the_post_thumbnail( 'medium', [ 'loading' => 'lazy', 'decoding' => 'async', 'alt' => esc_attr( get_the_title() ) ] ); ?>
+                </a>
+                <?php else : ?>
+                <a href="<?php the_permalink(); ?>" class="sc-blog__thumb sc-blog__thumb--placeholder" tabindex="-1" aria-hidden="true">
+                    <i data-lucide="newspaper" size="32"></i>
+                </a>
+                <?php endif; ?>
+                <div class="sc-blog__body">
+                    <div class="sc-blog__meta">
+                        <span class="sc-blog__cat"><?php echo $cat_name; ?></span>
+                        <time class="sc-blog__date" datetime="<?php echo get_the_date('c'); ?>"><?php echo get_the_date('M j, Y'); ?></time>
+                    </div>
+                    <h3 class="sc-blog__title">
+                        <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                    </h3>
+                    <p class="sc-blog__excerpt"><?php echo wp_trim_words( get_the_excerpt(), 18 ); ?></p>
+                    <div class="sc-blog__footer">
+                        <a href="<?php the_permalink(); ?>" class="sc-blog__read">ACCESS FIELD FILE <i data-lucide="arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+            <?php endwhile; wp_reset_postdata(); ?>
+        </div>
+        <div class="sc-blog__cta reveal">
+            <a href="<?php echo esc_url( home_url('/blog/') ); ?>" class="btn btn--outline">View All Briefings →</a>
+        </div>
+    </div>
+</section>
+
+<style>
+.sc-blog {
+    position: relative;
+    padding: clamp(60px, 8vw, 100px) 0;
+    background-color: #050505;
+    color: white;
+    font-family: var(--font-main, 'Inter', sans-serif);
+    overflow: hidden;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+.sc-blog::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: 
+        linear-gradient(to right, rgba(255,255,255,0.01) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.01) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+}
+.sc-blog .rwx-header h2 em {
+    color: var(--brand, #ff0000);
+    font-style: normal;
+}
+.sc-blog__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: clamp(40px, 6vw, 80px);
+}
+.sc-blog__card {
+    background: rgba(15, 15, 15, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: blur(10px);
+    transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.sc-blog__card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(255, 0, 0, 0.3);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+}
+.sc-blog__thumb {
+    display: block;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    position: relative;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.sc-blog__thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.sc-blog__thumb--placeholder {
+    background: linear-gradient(135deg, #0a0a0a 0%, #151515 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.15);
+}
+.sc-blog__card:hover .sc-blog__thumb img {
+    transform: scale(1.06);
+}
+.sc-blog__body {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.sc-blog__meta {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+.sc-blog__cat {
+    font-family: var(--font-mono, 'Space Mono', monospace);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--brand, #ff0000);
+    background: rgba(255, 0, 0, 0.07);
+    border: 1px solid rgba(255, 0, 0, 0.2);
+    border-radius: 2px;
+    padding: 3px 10px;
+    display: inline-block;
+}
+.sc-blog__date {
+    font-family: var(--font-mono, 'Space Mono', monospace);
+    font-size: 0.7rem;
+    color: #666;
+}
+.sc-blog__title {
+    font-family: var(--font-accent, 'Bebas Neue', sans-serif);
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+    margin: 0 0 15px;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+.sc-blog__title a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+.sc-blog__title a:hover {
+    color: var(--brand, #ff0000);
+}
+.sc-blog__excerpt {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: #888;
+    margin: 0 0 25px;
+    flex: 1;
+}
+.sc-blog__footer {
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 20px;
+}
+.sc-blog__read {
+    font-family: var(--font-mono, 'Space Mono', monospace);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--brand, #ff0000);
+    text-decoration: none;
+    letter-spacing: 1.5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: gap 0.3s;
+}
+.sc-blog__read i {
+    transition: transform 0.3s;
+}
+.sc-blog__card:hover .sc-blog__read i {
+    transform: translateX(4px);
+}
+.sc-blog__cta {
+    text-align: center;
+    margin-top: 50px;
+}
+@media(max-width:991px){
+    .sc-blog__grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:650px){
+    .sc-blog__grid{grid-template-columns:1fr;}
+}
+</style>
+<?php endif; ?>
 
 
 <!-- ══════════════════════════════════════════════════════
