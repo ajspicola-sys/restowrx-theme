@@ -234,7 +234,7 @@ $has_image = has_post_thumbnail();
                 <?php while ($related->have_posts()): $related->the_post();
                     $r_icon = get_post_meta(get_the_ID(), '_service_icon', true) ?: '';
                 ?>
-                <a href="<?php the_permalink(); ?>" class="service-card" aria-label="Learn more about <?php the_title_attribute(); ?>">
+                <a href="<?php the_permalink(); ?>" class="service-card">
                     <?php if (has_post_thumbnail()): ?>
                     <div class="service-card__thumb">
                         <?php the_post_thumbnail('medium', ['loading' => 'lazy', 'decoding' => 'async']); ?>

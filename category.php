@@ -60,7 +60,7 @@ $current_cat = get_queried_object();
             <div class="blog-grid">
                 <?php while ( have_posts() ) : the_post(); ?>
                     <article class="blog-card reveal" itemscope itemtype="https://schema.org/BlogPosting">
-                        <a href="<?php the_permalink(); ?>" class="blog-card__link" aria-label="Read: <?php the_title_attribute(); ?>">
+                        <a href="<?php the_permalink(); ?>" class="blog-card__link">
                             <?php
                             $card_img = get_the_post_thumbnail_url( get_the_ID(), 'medium_large' );
                             if ( $card_img ) :

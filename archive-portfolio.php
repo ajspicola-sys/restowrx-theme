@@ -255,8 +255,8 @@ get_header();
                             $desc = 'Explore the full image gallery and before & after highlights for this project.';
                         }
                     ?>
-                        <div class="sc-projects-card reveal">
-                            <a href="<?php the_permalink(); ?>" class="sc-projects-card-img" aria-label="View <?php the_title_attribute(); ?> project details">
+                        <a href="<?php the_permalink(); ?>" class="sc-projects-card reveal">
+                            <div class="sc-projects-card-img">
                                 <?php if (has_post_thumbnail()): ?>
                                     <?php the_post_thumbnail('medium_large', [
                                         'loading'  => 'lazy',
@@ -273,9 +273,9 @@ get_header();
                                 <div class="sc-projects-card-overlay" aria-hidden="true">
                                     <span class="sc-projects-card-cta">View Gallery →</span>
                                 </div>
-                            </a>
+                            </div>
 
-                            <div class="sc-projects-card-body" aria-hidden="true">
+                            <div class="sc-projects-card-body">
                                 <div>
                                     <h2 class="sc-projects-card-title"><?php the_title(); ?></h2>
                                     <p class="sc-projects-card-desc"><?php echo esc_html($desc); ?></p>
@@ -287,7 +287,7 @@ get_header();
                                     </svg>
                                 </span>
                             </div>
-                        </div>
+                        </a>
                     <?php endwhile; wp_reset_postdata(); ?>
                 </div>
 

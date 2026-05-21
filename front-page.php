@@ -164,29 +164,29 @@ get_header(); ?>
                         $i = 0; while ($services->have_posts()) : $services->the_post();
                         $thumb = get_the_post_thumbnail_url(get_the_ID(), 'medium_large');
                         $excerpt = wp_trim_words(get_the_excerpt(), 12); ?>
-                    <a href="<?php the_permalink(); ?>" class="sc-services__card" aria-label="View <?php the_title_attribute(); ?> service details">
-                        <span class="sc-services__card-num" aria-hidden="true"><?php echo str_pad($i + 1, 2, '0', STR_PAD_LEFT); ?></span>
+                    <a href="<?php the_permalink(); ?>" class="sc-services__card">
+                        <span class="sc-services__card-num"><?php echo str_pad($i + 1, 2, '0', STR_PAD_LEFT); ?></span>
                         <div class="sc-services__card-img">
                             <?php if ($thumb) : ?><img src="<?php echo esc_url($thumb); ?>" alt="<?php the_title_attribute(); ?>" loading="lazy" decoding="async">
                             <?php else : ?><div class="sc-services__card-placeholder" style="background:linear-gradient(135deg,hsl(<?php echo 215+$i*20;?>,35%,22%) 0%,hsl(<?php echo 215+$i*20;?>,25%,35%) 100%);"></div><?php endif; ?>
                             <div class="sc-services__card-overlay" aria-hidden="true"><span class="sc-services__card-cta">View Service →</span></div>
                         </div>
                         <div class="sc-services__card-body">
-                            <h3 class="sc-services__card-title" aria-hidden="true"><?php the_title(); ?> <svg class="sc-services__card-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></h3>
-                            <p class="sc-services__card-desc" aria-hidden="true"><?php echo esc_html($excerpt); ?></p>
+                            <h3 class="sc-services__card-title"><?php the_title(); ?> <svg class="sc-services__card-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></h3>
+                            <p class="sc-services__card-desc"><?php echo esc_html($excerpt); ?></p>
                         </div>
                     </a>
                     <?php $i++; endwhile; wp_reset_postdata(); else :
                         foreach ($fallback as $i => $svc) : ?>
-                    <a href="<?php echo esc_url(home_url('/services/')); ?>" class="sc-services__card" aria-label="View <?php echo esc_attr($svc['title']); ?> service details">
-                        <span class="sc-services__card-num" aria-hidden="true"><?php echo str_pad($i + 1, 2, '0', STR_PAD_LEFT); ?></span>
+                    <a href="<?php echo esc_url(home_url('/services/')); ?>" class="sc-services__card">
+                        <span class="sc-services__card-num"><?php echo str_pad($i + 1, 2, '0', STR_PAD_LEFT); ?></span>
                         <div class="sc-services__card-img">
                             <div class="sc-services__card-placeholder" style="background:linear-gradient(135deg,hsl(<?php echo 215+$i*20;?>,35%,22%) 0%,hsl(<?php echo 215+$i*20;?>,25%,35%) 100%);"></div>
                             <div class="sc-services__card-overlay" aria-hidden="true"><span class="sc-services__card-cta">View Service →</span></div>
                         </div>
                         <div class="sc-services__card-body">
-                            <h3 class="sc-services__card-title" aria-hidden="true"><?php echo esc_html($svc['title']); ?> <svg class="sc-services__card-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></h3>
-                            <p class="sc-services__card-desc" aria-hidden="true"><?php echo esc_html($svc['desc']); ?></p>
+                            <h3 class="sc-services__card-title"><?php echo esc_html($svc['title']); ?> <svg class="sc-services__card-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></h3>
+                            <p class="sc-services__card-desc"><?php echo esc_html($svc['desc']); ?></p>
                         </div>
                     </a>
                     <?php endforeach; endif; ?>
@@ -437,7 +437,7 @@ if ($portfolio->have_posts()): ?>
                 <span class="sc-works__label">Our Work</span>
                 <h2 class="sc-works__title">Recent <em>Projects</em></h2>
             </div>
-            <a href="<?php echo esc_url(get_post_type_archive_link('portfolio')); ?>" class="sc-works__view-all" aria-label="View all construction projects">View All Projects <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a>
+            <a href="<?php echo esc_url(get_post_type_archive_link('portfolio')); ?>" class="sc-works__view-all">View All Projects <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a>
         </div>
         <div class="sc-works__grid">
             <?php while ($portfolio->have_posts()): $portfolio->the_post();
@@ -445,7 +445,7 @@ if ($portfolio->have_posts()): ?>
                 $type  = ($types && !is_wp_error($types)) ? $types[0]->name : '';
                 $year  = get_post_meta(get_the_ID(), '_portfolio_year', true);
             ?>
-            <a href="<?php the_permalink(); ?>" class="sc-works__card reveal" aria-label="View <?php the_title_attribute(); ?> project details">
+            <a href="<?php the_permalink(); ?>" class="sc-works__card reveal">
                 <div class="sc-works__card-img">
                     <?php if (has_post_thumbnail()):
                         the_post_thumbnail('medium_large', ['loading' => 'lazy', 'decoding' => 'async', 'alt' => esc_attr(get_the_title())]);
@@ -456,7 +456,7 @@ if ($portfolio->have_posts()): ?>
                         <span class="sc-works__card-cta">View Project →</span>
                     </div>
                 </div>
-                <div class="sc-works__card-body" aria-hidden="true">
+                <div class="sc-works__card-body">
                     <h3 class="sc-works__card-title"><?php the_title(); ?></h3>
                     <?php if ($type || $year): ?>
                     <span class="sc-works__card-meta">
@@ -634,14 +634,14 @@ if ( $blog_query->have_posts() ) : ?>
                     <p class="sc-blog__excerpt"><?php echo wp_trim_words( get_the_excerpt(), 18 ); ?></p>
                     <div class="sc-blog__footer">
                         <time class="sc-blog__date" datetime="<?php echo get_the_date('c'); ?>"><?php echo get_the_date('M j, Y'); ?></time>
-                        <a href="<?php the_permalink(); ?>" class="sc-blog__read" aria-label="Read more about <?php the_title_attribute(); ?>">Read More →</a>
+                        <a href="<?php the_permalink(); ?>" class="sc-blog__read" aria-label="Read More about <?php the_title_attribute(); ?>">Read More →</a>
                     </div>
                 </div>
             </div>
             <?php endwhile; wp_reset_postdata(); ?>
         </div>
         <div class="sc-blog__cta reveal">
-            <a href="<?php echo esc_url( home_url('/blog/') ); ?>" class="hwh-btn hwh-btn--outline-navy" aria-label="View all blog articles">View All Articles →</a>
+            <a href="<?php echo esc_url( home_url('/blog/') ); ?>" class="hwh-btn hwh-btn--outline-navy">View All Articles →</a>
         </div>
     </div>
 </section>

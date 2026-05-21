@@ -1384,7 +1384,7 @@ function hwh_ajax_blog_posts() {
             $card_img = get_the_post_thumbnail_url( get_the_ID(), 'medium_large' );
             ?>
             <article class="blog-card reveal" itemscope itemtype="https://schema.org/BlogPosting">
-                <a href="<?php the_permalink(); ?>" class="blog-card__link" aria-label="Read: <?php the_title_attribute(); ?>">
+                <a href="<?php the_permalink(); ?>" class="blog-card__link">
                     <?php if ( $card_img ) : ?>
                         <div class="blog-card__img">
                             <img src="<?php echo esc_url( $card_img ); ?>" alt="<?php the_title_attribute(); ?>" loading="lazy" decoding="async">

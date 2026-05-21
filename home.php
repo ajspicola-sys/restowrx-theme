@@ -67,7 +67,7 @@ $blog_query = new WP_Query( array(
                 $blog_query->the_post();
             ?>
             <article class="blog-featured reveal" itemscope itemtype="https://schema.org/BlogPosting">
-                <a href="<?php the_permalink(); ?>" class="blog-featured__link" aria-label="Read: <?php the_title_attribute(); ?>">
+                <a href="<?php the_permalink(); ?>" class="blog-featured__link">
                     <div class="blog-featured__img">
                         <?php
                         $feat_img = get_the_post_thumbnail_url( get_the_ID(), 'large' );
@@ -113,7 +113,7 @@ $blog_query = new WP_Query( array(
             <div class="blog-grid">
                 <?php while ( $blog_query->have_posts() ) : $blog_query->the_post(); ?>
                     <article class="blog-card reveal" itemscope itemtype="https://schema.org/BlogPosting">
-                        <a href="<?php the_permalink(); ?>" class="blog-card__link" aria-label="Read: <?php the_title_attribute(); ?>">
+                        <a href="<?php the_permalink(); ?>" class="blog-card__link">
                             <?php
                             $card_img = get_the_post_thumbnail_url( get_the_ID(), 'medium_large' );
                             if ( $card_img ) :
