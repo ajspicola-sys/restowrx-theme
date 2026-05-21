@@ -1,72 +1,556 @@
 <?php
 /**
- * Spicola Construction — Services Archive
- * Uses an explicit WP_Query (same as homepage) so it
- * is never affected by Reading Settings or pre_get_posts.
+ * Restowrx Elite — Services Archive Template
+ * Premium dark tactical grid, surgical recovery services, explicit WP_Query.
+ * SEO: title + meta description managed by Yoast SEO.
  */
 get_header();
 ?>
 
 <style>
-    /* Services archive — full-width card images */
-    .hwh-services .hwh-service-card__img {
-        margin: -2.2rem -2rem 1rem -2rem;
-        border-radius: 18px 18px 0 0;
-        aspect-ratio: 16 / 9;
+    /* Service Archive Page Custom Styling */
+    .rwx-services-archive {
+        background-color: #050505;
+        color: #ffffff;
+        font-family: var(--font-main, 'Inter', sans-serif);
+        overflow-x: hidden;
     }
 
-    .hwh-services .hwh-service-card__img img {
-        border-radius: 0;
+    /* --- HERO --- */
+    .rwx-hero {
+        position: relative;
+        padding: clamp(140px, 12vw, 220px) 0 clamp(80px, 8vw, 120px) 0;
+        background-color: #000000;
+        overflow: hidden;
+        border-bottom: 1px solid rgba(255, 0, 0, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .rwx-hero__canvas {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background-size: cover;
+        background-position: center;
+        opacity: 0.18;
+        filter: grayscale(1) brightness(0.3);
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    .rwx-hero__overlay {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: radial-gradient(circle at 50% 50%, rgba(18, 3, 3, 0.4) 0%, #050505 100%);
+        z-index: 2;
+        pointer-events: none;
+    }
+
+    .rwx-hero__scanline {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: linear-gradient(to bottom, transparent 50%, rgba(255, 0, 0, 0.03) 50%);
+        background-size: 100% 4px;
+        z-index: 3;
+        pointer-events: none;
+    }
+
+    .rwx-hero__inner {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 clamp(20px, 5vw, 40px);
+        position: relative;
+        z-index: 10;
+    }
+
+    .rwx-breadcrumb {
+        font-family: var(--font-mono, 'Space Mono', monospace);
+        color: var(--brand, #ff0000);
+        font-size: 0.75rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .rwx-breadcrumb a {
+        color: #888;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+    .rwx-breadcrumb a:hover {
+        color: var(--brand, #ff0000);
+    }
+
+    .rwx-hero__title {
+        font-family: var(--font-accent, 'Bebas Neue', sans-serif);
+        font-size: clamp(3.5rem, 6vw, 6.5rem);
+        line-height: 0.9;
+        margin: 0 0 25px 0;
+        text-transform: uppercase;
+        letter-spacing: -1px;
+    }
+
+    .rwx-hero__title b {
+        display: block;
+        color: white;
+    }
+
+    .rwx-hero__title span {
+        display: block;
+        color: transparent;
+        -webkit-text-stroke: 1.5px var(--brand, #ff0000);
+    }
+
+    .rwx-hero__desc {
+        color: #aaa;
+        font-size: clamp(1rem, 1.2vw, 1.25rem);
+        line-height: 1.7;
+        margin: 0 0 35px 0;
+        max-width: 650px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .rwx-hero__actions {
+        display: flex;
+        gap: clamp(15px, 2vw, 25px);
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    /* --- SERVICES SECTION --- */
+    .services-grid-section {
+        width: 100%;
+        background-color: #050505;
+        padding: clamp(60px, 8vw, 120px) 0;
+        position: relative;
+    }
+
+    .grid-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 clamp(20px, 5vw, 40px);
+    }
+
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 30px;
+    }
+
+    .service-card {
+        background: #0a0a0a;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        padding: clamp(35px, 4vw, 50px) clamp(25px, 3vw, 30px);
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+        text-decoration: none;
+        color: #ffffff !important;
+        overflow: hidden;
+        height: 100%;
+        border-radius: 4px;
+    }
+
+    /* Forensic Numbering */
+    .card-number {
+        position: absolute;
+        top: 30px;
+        right: 35px;
+        font-family: var(--font-accent, 'Bebas Neue', sans-serif);
+        font-size: 4rem;
+        color: rgba(255, 255, 255, 0.02);
+        transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+        line-height: 1;
+        pointer-events: none;
+    }
+
+    .service-card:hover .card-number {
+        color: rgba(255, 0, 0, 0.12);
+        transform: scale(1.1);
+    }
+
+    .service-card:hover {
+        background: #111;
+        transform: translateY(-10px);
+        border-color: var(--brand, #ff0000);
+        box-shadow: 0 40px 80px rgba(0,0,0,0.8);
+    }
+
+    /* Red Top Line Animation */
+    .service-card::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 2px;
+        background: var(--brand, #ff0000);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    .service-card:hover::before {
+        transform: scaleX(1);
+    }
+
+    .card-icon {
+        color: var(--brand, #ff0000);
+        margin-bottom: 35px;
+        filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.4));
+        transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+        display: flex;
+        align-items: center;
+    }
+
+    .service-card:hover .card-icon {
+        transform: scale(1.1) rotate(-5deg);
+    }
+
+    .service-card h3 {
+        font-family: var(--font-accent, 'Bebas Neue', sans-serif);
+        font-size: clamp(2rem, 3vw, 2.5rem);
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        letter-spacing: 1px;
+        line-height: 1;
+        color: #ffffff;
+    }
+
+    .service-card h3 b { display: block; font-weight: normal; }
+    .service-card h3 span { color: var(--brand, #ff0000); }
+
+    .service-card p {
+        color: #888;
+        line-height: 1.6;
+        margin-bottom: 35px;
+        font-size: 0.95rem;
+        flex-grow: 1;
+    }
+
+    .card-list {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 35px;
+    }
+
+    .card-list li {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 12px;
+        font-size: 0.8rem;
+        color: #666;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-family: var(--font-mono, 'Space Mono', monospace);
+    }
+
+    .card-list li svg {
+        color: var(--brand, #ff0000);
+        width: 14px;
+        height: 14px;
+    }
+
+    .card-brief-link {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        font-family: var(--font-accent, 'Bebas Neue', sans-serif);
+        font-size: 1.4rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        transition: 0.3s;
+        color: white;
+    }
+
+    .card-brief-link svg {
+        width: 18px;
+        height: 18px;
+        transition: transform 0.3s;
+    }
+
+    .service-card:hover .card-brief-link {
+        color: var(--brand, #ff0000);
+        gap: 25px;
+    }
+
+    .service-card:hover .card-brief-link svg {
+        transform: translateX(5px);
+    }
+
+    /* --- THE PROCESS --- */
+    .process-section {
+        padding: clamp(80px, 12vw, 150px) 0;
+        background: #000000;
+        position: relative;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .process-header {
+        text-align: center;
+        margin-bottom: 70px;
+    }
+
+    .process-header .section-label {
+        font-family: var(--font-mono, 'Space Mono', monospace);
+        color: var(--brand, #ff0000);
+        font-size: 0.75rem;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: 15px;
+        font-weight: 700;
+    }
+
+    .process-header h2 {
+        font-family: var(--font-accent, 'Bebas Neue', sans-serif);
+        font-size: clamp(2.5rem, 5vw, 4.5rem);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: white;
+        line-height: 0.95;
+    }
+
+    .process-header h2 em {
+        color: transparent;
+        -webkit-text-stroke: 1.5px white;
+        font-style: normal;
+    }
+
+    .process-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: clamp(20px, 3vw, 40px);
+    }
+
+    .process-step {
+        position: relative;
+        text-align: center;
+    }
+
+    .step-number {
+        font-family: var(--font-accent, 'Bebas Neue', sans-serif);
+        font-size: 8rem;
+        color: rgba(255, 0, 0, 0.03);
+        line-height: 1;
+        position: absolute;
+        top: -40px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    .step-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    .step-icon-wrap {
+        width: 80px;
+        height: 80px;
+        background: var(--brand, #ff0000);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 30px;
+        box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
+        color: white;
+    }
+
+    .step-icon-wrap svg {
+        width: 32px;
+        height: 32px;
+    }
+
+    .step-content h4 {
+        font-family: var(--font-accent, 'Bebas Neue', sans-serif);
+        font-size: 1.8rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin: 0 0 15px 0;
+        color: white;
+    }
+
+    .step-content p {
+        color: #888;
+        font-size: 0.9rem;
+        line-height: 1.6;
+        margin: 0;
+    }
+
+    /* --- CTA BOTTOM --- */
+    .rwx-cta-block {
+        background: radial-gradient(circle at 50% 50%, #200202 0%, #000000 100%);
+        padding: clamp(80px, 12vw, 150px) 0;
+        text-align: center;
+        border-top: 1px solid rgba(255, 0, 0, 0.2);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .rwx-cta-block__pulse {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(circle, rgba(255, 0, 0, 0.12) 0%, transparent 70%);
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        pointer-events: none;
+        animation: rwx-pulse-radar 4s infinite linear;
+        border-radius: 50%;
+    }
+
+    @keyframes rwx-pulse-radar {
+        0% { transform: translate(-50%, -50%) scale(0.6); opacity: 0; }
+        50% { opacity: 1; }
+        100% { transform: translate(-50%, -50%) scale(1.4); opacity: 0; }
+    }
+
+    .rwx-cta-block__inner {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 clamp(20px, 5vw, 40px);
+        position: relative;
+        z-index: 5;
+    }
+
+    .rwx-cta-block__eyebrow {
+        font-family: var(--font-mono, 'Space Mono', monospace);
+        color: var(--brand, #ff0000);
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        display: block;
+        margin-bottom: 25px;
+        font-weight: 700;
+    }
+
+    .rwx-cta-block__title {
+        font-family: var(--font-accent, 'Bebas Neue', sans-serif);
+        font-size: clamp(3rem, 6vw, 5.5rem);
+        margin: 0 0 25px 0;
+        line-height: 0.9;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: white;
+    }
+
+    .rwx-cta-block__title em {
+        color: transparent;
+        -webkit-text-stroke: 1.5px white;
+        font-style: normal;
+    }
+
+    .rwx-cta-block__desc {
+        color: #aaa;
+        font-size: 1.15rem;
+        line-height: 1.7;
+        margin-bottom: 40px;
+    }
+
+    .rwx-cta-block__actions {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    /* Responsive Overrides */
+    @media (max-width: 1100px) {
+        .process-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .process-grid {
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+        .services-grid {
+            grid-template-columns: 1fr;
+        }
     }
 </style>
 
-<main class="site-main" id="main-content">
+<main class="site-main rwx-services-archive" id="main-content">
 
     <!-- ── Page Hero ─────────────────────────────────────────────── -->
-    <section class="hwh-hero hwh-hero--inner" aria-label="Our construction services">
-        <div class="hwh-hero__overlay" aria-hidden="true"></div>
-        <div class="hwh-hero__grid" aria-hidden="true"></div>
-        <div class="hwh-section-inner"
-            style="position:relative;z-index:2;text-align:center;padding-top:2rem;padding-bottom:2rem;">
-            <span class="hwh-label hwh-label--white">What We Do</span>
-            <h1 class="hwh-section-title hwh-section-title--white" style="margin-bottom:1rem;">
-                All Construction Services<br><em>Tampa Bay Trusts</em>
+    <section class="rwx-hero" aria-label="Our recovery services">
+        <div class="rwx-hero__canvas" style="background-image: url('https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?q=80&w=1600');"></div>
+        <div class="rwx-hero__overlay"></div>
+        <div class="rwx-hero__scanline"></div>
+        <div class="rwx-hero__inner">
+            <div class="rwx-breadcrumb">
+                <a href="<?php echo esc_url(home_url('/')); ?>">Home</a>
+                <svg viewBox="0 0 24 24" width="10" height="10" stroke="currentColor" stroke-width="3" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                <span>Services</span>
+            </div>
+            <h1 class="rwx-hero__title">
+                <span>Intelligence Driven</span>
+                <b>Restoration Specializations</b>
             </h1>
-            <p class="hwh-section-desc hwh-section-desc--muted">
-                Licensed general contractor for new builds, remodels, roofing, and commercial projects.
+            <p class="rwx-hero__desc">
+                Surgical precision in structural property recovery. Our elite rapid response units deploy 24/7/365 to stabilize and mitigate property damage.
             </p>
-            <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:2rem;">
-                <a href="<?php echo esc_url(home_url('/contact/')); ?>"
-                    class="hwh-btn hwh-btn--red hwh-btn--lg">Get a Free Quote</a>
-                <a href="tel:+18137326285" class="hwh-btn hwh-btn--ghost hwh-btn--lg">Call (813) 732-6285</a>
+            <div class="rwx-hero__actions">
+                <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="rwx-btn rwx-btn--red">Dispatch Tactical Unit</a>
+                <a href="tel:+18136994009" class="rwx-btn rwx-btn--outline">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" style="margin-right:5px; vertical-align:-3px;">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L7.91 9.27a16 16 0 0 0 6.29 6.29l1.45-1.45a2 2 0 0 1 2.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z" />
+                    </svg>
+                    813.699.4009
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- ── Services Grid — explicit WP_Query, same as homepage ───── -->
-    <section class="hwh-services" aria-label="All construction services" style="padding-top:5rem;padding-bottom:5rem;">
-        <div class="hwh-section-inner">
-
+    <!-- ── Services Grid ─────────────────────────────────────────── -->
+    <section class="services-grid-section" aria-label="Tactical services overview">
+        <div class="grid-container">
             <?php
             // Explicit query — not affected by Reading Settings or pre_get_posts
             $services_query = new WP_Query([
-                'post_type' => 'service',
-                'post_status' => 'publish',
-                'posts_per_page' => -1,          // all services
-                'orderby' => 'menu_order',
-                'order' => 'ASC',
-                'no_found_rows' => true,
+                'post_type'      => 'service',
+                'post_status'    => 'publish',
+                'posts_per_page' => -1,          // retrieve all services
+                'orderby'        => 'menu_order',
+                'order'          => 'ASC',
+                'no_found_rows'  => true,
             ]);
 
             if ($services_query->have_posts()): ?>
 
-                <div class="hwh-services-grid">
-                    <?php while ($services_query->have_posts()):
+                <div class="services-grid">
+                    <?php 
+                    $index = 1;
+                    while ($services_query->have_posts()):
                         $services_query->the_post();
-                        $icon = get_post_meta(get_the_ID(), '_service_icon', true) ?: '';
+                        $title = get_the_title();
                         $price = get_post_meta(get_the_ID(), '_service_price', true);
+                        
+                        // Smart Title splitting for red brand spans
+                        $words = explode(' ', $title, 2);
+                        if (count($words) > 1) {
+                            $formatted_title = esc_html($words[0]) . ' <span>' . esc_html($words[1]) . '</span>';
+                        } else {
+                            $formatted_title = '<span>' . esc_html($title) . '</span>';
+                        }
 
-                        // Excerpt → content → generic fallback (never blank)
+                        // Parse excerpt or content fallback
                         $excerpt = get_post_field('post_excerpt', get_the_ID());
                         $content = get_post_field('post_content', get_the_ID());
                         if ($excerpt) {
@@ -74,73 +558,172 @@ get_header();
                         } elseif ($content) {
                             $desc = wp_trim_words(strip_shortcodes(wp_strip_all_tags($content)), 20);
                         } else {
-                            $desc = 'Professional construction service from Tampa Bay\'s trusted general contractor. Licensed and insured.';
+                            $desc = 'Strategic recovery operations conducted with technical surgical precision to restore structural safety and property equity.';
+                        }
+
+                        // Determine Lucide Icon based on Meta or Title
+                        $meta_icon = get_post_meta(get_the_ID(), '_service_icon', true);
+                        $has_lucide = false;
+                        $lucide_name = '';
+
+                        if ($meta_icon) {
+                            if (in_array(strtolower($meta_icon), ['droplets', 'flame', 'shield-alert', 'cloud-lightning', 'hammer', 'zap', 'shield', 'activity'])) {
+                                $has_lucide = true;
+                                $lucide_name = strtolower($meta_icon);
+                            }
+                        }
+
+                        if (!$has_lucide) {
+                            $title_lower = strtolower($title);
+                            if (strpos($title_lower, 'water') !== false || strpos($title_lower, 'flood') !== false || strpos($title_lower, 'extract') !== false) {
+                                $lucide_name = 'droplets';
+                            } elseif (strpos($title_lower, 'fire') !== false || strpos($title_lower, 'soot') !== false || strpos($title_lower, 'smoke') !== false) {
+                                $lucide_name = 'flame';
+                            } elseif (strpos($title_lower, 'mold') !== false || strpos($title_lower, 'spore') !== false) {
+                                $lucide_name = 'shield-alert';
+                            } elseif (strpos($title_lower, 'storm') !== false || strpos($title_lower, 'wind') !== false || strpos($title_lower, 'weather') !== false || strpos($title_lower, 'lightning') !== false) {
+                                $lucide_name = 'cloud-lightning';
+                            } elseif (strpos($title_lower, 'build') !== false || strpos($title_lower, 'reconstruct') !== false || strpos($title_lower, 'repair') !== false || strpos($title_lower, 'contract') !== false) {
+                                $lucide_name = 'hammer';
+                            } else {
+                                $lucide_name = 'activity';
+                            }
+                        }
+
+                        // Dynamically map features
+                        $features_meta = get_post_meta(get_the_ID(), '_service_features', true);
+                        $features = [];
+                        if (!empty($features_meta)) {
+                            if (is_array($features_meta)) {
+                                $features = $features_meta;
+                            } else {
+                                $features = array_filter(array_map('trim', explode("\n", $features_meta)));
+                            }
+                        }
+                        if (empty($features)) {
+                            $title_lower = strtolower($title);
+                            if (strpos($title_lower, 'water') !== false || strpos($title_lower, 'flood') !== false || strpos($title_lower, 'extract') !== false) {
+                                $features = ['Rapid Extraction', 'Structural Drying', 'Humidity Control'];
+                            } elseif (strpos($title_lower, 'fire') !== false || strpos($title_lower, 'soot') !== false || strpos($title_lower, 'smoke') !== false) {
+                                $features = ['Char Removal', 'Air Purification', 'Debris Recovery'];
+                            } elseif (strpos($title_lower, 'mold') !== false || strpos($title_lower, 'spore') !== false) {
+                                $features = ['Containment', 'HEPA Filtration', 'Anti-Microbial'];
+                            } elseif (strpos($title_lower, 'storm') !== false || strpos($title_lower, 'wind') !== false || strpos($title_lower, 'weather') !== false || strpos($title_lower, 'lightning') !== false) {
+                                $features = ['Board Up', 'Tarping', 'Tree Removal'];
+                            } else {
+                                $features = ['Surgical Mitigation', 'Direct Insurance Billing', '60-Min Deployment'];
+                            }
                         }
                         ?>
-                        <div class="hwh-service-card reveal">
-
-                            <?php if (has_post_thumbnail()): ?>
-                                <div class="hwh-service-card__img">
-                                    <?php the_post_thumbnail('medium', [
-                                        'loading' => 'lazy',
-                                        'decoding' => 'async',
-                                        'alt' => esc_attr(get_the_title()),
-                                    ]); ?>
-                                </div>
-                            <?php elseif ($icon): ?>
-                                <div class="hwh-service-card__icon"><?php echo esc_html($icon); ?></div>
-                            <?php else: ?>
-                                <div class="hwh-service-card__icon">🏗️</div>
-                            <?php endif; ?>
-
-                            <h2 class="hwh-service-card__title"><?php the_title(); ?></h2>
-                            <p class="hwh-service-card__text"><?php echo esc_html($desc); ?></p>
-
-                            <?php if ($price): ?>
-                                <span class="hwh-service-card__price">From <?php echo esc_html($price); ?></span>
-                            <?php endif; ?>
-
-                            <a href="<?php the_permalink(); ?>" class="hwh-service-card__link" aria-label="Learn More about <?php the_title_attribute(); ?>">Learn More →</a>
-
-                        </div>
+                        <a href="<?php the_permalink(); ?>" class="service-card reveal">
+                            <div class="card-number"><?php echo sprintf('%02d', $index++); ?></div>
+                            <div class="card-icon"><i data-lucide="<?php echo esc_attr($lucide_name); ?>" size="56"></i></div>
+                            <h3><?php echo $formatted_title; ?></h3>
+                            <p><?php echo esc_html($desc); ?></p>
+                            
+                            <ul class="card-list">
+                                <?php foreach (array_slice($features, 0, 3) as $feature): ?>
+                                    <li>
+                                        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="3" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                        <?php echo esc_html($feature); ?>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
+                            
+                            <div class="card-brief-link">
+                                Access Briefing 
+                                <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="3" fill="none"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                            </div>
+                        </a>
                     <?php endwhile;
                     wp_reset_postdata(); ?>
                 </div>
 
             <?php else: ?>
-                <p style="text-align:center;padding:4rem 0;font-size:1.1rem;color:#3D6491;">
-                    No services found. <a href="<?php echo esc_url(home_url('/contact/')); ?>">Contact us directly.</a>
+                <p style="text-align:center;padding:4rem 0;font-family:var(--font-mono, 'Space Mono', monospace);font-size:1.1rem;color:var(--brand, #ff0000);">
+                    NO ACTIVE PROTOCOLS FOUND. <a href="<?php echo esc_url(home_url('/contact/')); ?>" style="color:white; text-decoration:underline;">INITIATE MANUAL EMERGENCY DISPATCH.</a>
                 </p>
             <?php endif; ?>
-
         </div>
     </section>
 
-    <!-- ── Bottom CTA ────────────────────────────────────────────── -->
-    <section class="hwh-cta" aria-label="Construction services CTA">
-        <div class="hwh-cta__inner">
-            <div>
-                <h2 class="hwh-cta__title">Ready to Start<br>
-                    <span style="opacity:.85;font-size:.85em;">Your Next Project?</span>
-                </h2>
-                <p class="hwh-cta__text">
-                    From new builds to renovations, our crew is ready to bring your vision to life.
-                    Get a free estimate with transparent, upfront pricing.
-                </p>
+    <!-- ── The Deployment Protocol (Process) ────────────────────────── -->
+    <section class="process-section" id="process" aria-label="Deployment steps">
+        <div class="grid-container">
+            <div class="process-header">
+                <span class="section-label">Incident Command</span>
+                <h2>Our Tactical <em>Response Protocol</em></h2>
             </div>
-            <div class="hwh-cta__actions">
-                <a href="tel:+18137326285" class="hwh-btn hwh-btn--white hwh-btn--lg">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                        aria-hidden="true">
-                        <path
-                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L7.91 9.27a16 16 0 0 0 6.29 6.29l1.45-1.45a2 2 0 0 1 2.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z" />
+            
+            <div class="process-grid">
+                <!-- Step 01 -->
+                <div class="process-step">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <div class="step-icon-wrap">
+                            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L7.91 9.27a16 16 0 0 0 6.29 6.29l1.45-1.45a2 2 0 0 1 2.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z"></path></svg>
+                        </div>
+                        <h4>01. Dispatch</h4>
+                        <p>24/7 Emergency Command Center gathers intelligence and activates local mitigation strike teams within 15 minutes.</p>
+                    </div>
+                </div>
+
+                <!-- Step 02 -->
+                <div class="process-step">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <div class="step-icon-wrap">
+                            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"></polygon><line x1="9" y1="3" x2="9" y2="18"></line><line x1="15" y1="6" x2="15" y2="21"></line></svg>
+                        </div>
+                        <h4>02. Recon</h4>
+                        <p>Rapid deployment on-site within 60 minutes for moisture telemetry mapping, hazard appraisal, and structural scanning.</p>
+                    </div>
+                </div>
+
+                <!-- Step 03 -->
+                <div class="process-step">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <div class="step-icon-wrap">
+                            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        </div>
+                        <h4>03. Mitigation</h4>
+                        <p>Execute containment barriers, start thermal water extraction, air filtration, and secure absolute stabilization.</p>
+                    </div>
+                </div>
+
+                <!-- Step 04 -->
+                <div class="process-step">
+                    <div class="step-number">04</div>
+                    <div class="step-content">
+                        <div class="step-icon-wrap">
+                            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+                        </div>
+                        <h4>04. Build Back</h4>
+                        <p>Complete turnkey general contracting reconstructive repairs back to absolute pre-loss structural perfection.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Bottom Command CTA ────────────────────────────────────── -->
+    <section class="rwx-cta-block" aria-label="Mitigation request call to action">
+        <div class="rwx-cta-block__pulse"></div>
+        <div class="rwx-cta-block__inner">
+            <span class="rwx-cta-block__eyebrow">Active Radar Response</span>
+            <h2 class="rwx-cta-block__title">Catastrophic Loss?<br><em>Initiate Tactical Stabilization</em></h2>
+            <p class="rwx-cta-block__desc">
+                Do not wait for property destruction to become permanent. Our operators stand ready to authorize insurance claims integration and deploy critical recovery systems immediately.
+            </p>
+            <div class="rwx-cta-block__actions">
+                <a href="tel:+18136994009" class="rwx-btn rwx-btn--red">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" style="margin-right:5px; vertical-align:-3px;">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L7.91 9.27a16 16 0 0 0 6.29 6.29l1.45-1.45a2 2 0 0 1 2.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z" />
                     </svg>
-                    Call (813) 732-6285
+                    Dispatch: 813.699.4009
                 </a>
-                <a href="<?php echo esc_url(home_url('/contact/')); ?>"
-                    class="hwh-btn hwh-btn--ghost-white hwh-btn--lg">
-                    Get a Free Quote
-                </a>
+                <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="rwx-btn rwx-btn--outline">Get a Free Telemetry Estimate</a>
             </div>
         </div>
     </section>

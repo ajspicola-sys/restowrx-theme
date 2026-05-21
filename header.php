@@ -1,58 +1,28 @@
 <?php
 /**
- * Spicola Construction — Header Template v1
- * Two-layer: dark top bar + white nav bar
+ * Restowrx Elite Theme — Header Template
+ * Premium tactical theme header with scroll locks recovery
  */
-
-/* ── Mega-menu: services grouped by category ──────────────────────
-   Pull all published services, bucket them by their first
-   service_category term. Cached per request via a static var.
-   ----------------------------------------------------------------- */
-function hwh_get_menu_services() {
-    static $cols = null;
-    if ( $cols !== null ) return $cols;
-
-    $services = get_posts( [
-        'post_type'      => 'service',
-        'post_status'    => 'publish',
-        'posts_per_page' => 30,
-        'orderby'        => 'menu_order',
-        'order'          => 'ASC',
-        'no_found_rows'  => true,
-    ] );
-
-    $cols = [];   // [ 'Category Name' => [ post, ... ] ]
-    foreach ( $services as $s ) {
-        $terms = get_the_terms( $s->ID, 'service_category' );
-        $cat   = ( $terms && ! is_wp_error( $terms ) ) ? $terms[0]->name : 'Services';
-        $cols[ $cat ][] = $s;
-    }
-    return $cols;
-}
-$hwh_menu_services = hwh_get_menu_services();
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="theme-color" content="#222D3F">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#120303">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-capable" content="yes">
 
     <?php
-    // NOTE: <meta name="description"> and <link rel="canonical"> are handled
-    // entirely by Yoast SEO via wp_head(). Do NOT add them here.
-    // We only build OG/Twitter tags below using Yoast's values.
-    $og_img   = 'https://spicolaconstruction.com/wp-content/uploads/spicola-og.jpg';
-    $og_title = is_front_page() ? 'Spicola Construction | Trusted General Contractor in Tampa Bay, FL' : wp_get_document_title();
+    $og_img   = 'https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?q=80&w=1200';
+    $og_title = is_front_page() ? 'Restowrx Elite | Command Center for Property Recovery' : wp_get_document_title();
     $og_desc  = '';
     if ( function_exists('YoastSEO') ) {
         $yoast_meta = YoastSEO()->meta->for_current_page();
         $og_desc    = $yoast_meta ? $yoast_meta->description : '';
     }
     if ( empty( $og_desc ) ) {
-        $og_desc = is_singular() ? wp_strip_all_tags( get_the_excerpt() ) : 'Licensed general contractor serving Tampa Bay — construction, remodeling, roofing, and commercial build-outs.';
+        $og_desc = is_singular() ? wp_strip_all_tags( get_the_excerpt() ) : 'Tampa Bay\'s command center for property recovery. Surgical precision. Elite response. 24/7 active radar.';
     }
     $og_url  = is_singular() ? get_permalink() : ( is_front_page() ? home_url('/') : ( is_archive() ? get_term_link( get_queried_object() ) : home_url('/') ) );
     $og_url  = is_wp_error( $og_url ) ? home_url('/') : $og_url;
@@ -63,7 +33,7 @@ $hwh_menu_services = hwh_get_menu_services();
     }
     ?>
     <meta property="og:locale"       content="en_US">
-    <meta property="og:site_name"   content="Spicola Construction">
+    <meta property="og:site_name"   content="Restowrx Elite">
     <meta property="og:type"        content="<?php echo esc_attr($og_type); ?>">
     <meta property="og:url"         content="<?php echo esc_url($og_url); ?>">
     <meta property="og:title"       content="<?php echo esc_attr($og_title); ?>">
@@ -71,22 +41,13 @@ $hwh_menu_services = hwh_get_menu_services();
     <meta property="og:image"       content="<?php echo esc_url($og_img); ?>">
     <meta property="og:image:width"  content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt"    content="Spicola Construction - Tampa Bay General Contractor">
+    <meta property="og:image:alt"    content="Restowrx Elite - Tactical Command">
     <meta name="twitter:card"        content="summary_large_image">
     <meta name="twitter:title"       content="<?php echo esc_attr($og_title); ?>">
     <meta name="twitter:description" content="<?php echo esc_attr($og_desc); ?>">
     <meta name="twitter:image"       content="<?php echo esc_url($og_img); ?>">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <!-- Google Fonts: non-render-blocking via print→all swap trick -->
-    <link rel="preload" as="style"
-          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600&display=swap"
-          onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600&display=swap">
-    </noscript>
+    <script src="https://unpkg.com/lucide@latest"></script>
 
     <?php
     $theme_ver = filemtime(get_stylesheet_directory() . '/style.css');
@@ -95,234 +56,428 @@ $hwh_menu_services = hwh_get_menu_services();
 
     <?php wp_head(); ?>
 
-    <style id="sc-critical-css">
-        html { scroll-behavior: smooth; scroll-padding-top: clamp(130px, 12vw, 160px); -webkit-font-smoothing: antialiased; }
-        body { margin: 0; font-family: 'Inter','Helvetica Neue',Arial,sans-serif; background: #F8F8F6; overflow-x: hidden; }
-        .site-main { padding-top: 123px; }
-        .hwh-header { position: fixed; top: 0; left: 0; right: 0; z-index: 200; }
-        .hwh-topbar { background: #222D3F; height: 48px; display: flex; align-items: center; }
-        .hwh-topbar__inner { max-width: 1280px; margin: 0 auto; padding: 0 clamp(1.25rem,1rem + 2vw,3rem); display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 1.5rem; }
-        .hwh-nav-bar { background: rgba(255,255,255,0.97); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); box-shadow: 0 2px 20px rgba(0,0,0,0.08); padding: 0.85rem 0; transition: padding .3s ease; }
-        .hwh-nav-bar__inner { max-width: 1280px; margin: 0 auto; padding: 0 clamp(1.25rem,1rem + 2vw,3rem); display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
-        .hwh-nav__logo-img { display: block; height: auto; width: 200px; }
-        @font-face {
-            font-family: 'Montserrat';
-            font-display: swap;
-            src: local('Montserrat Bold'), local('Montserrat-Bold');
-            font-weight: 700 800;
-            size-adjust: 108%;
-            ascent-override: 85%;
-            descent-override: 22%;
-            line-gap-override: 0%;
+    <style id="rwx-critical-css">
+        html { 
+            scroll-behavior: smooth; 
+            scroll-padding-top: clamp(80px, 10vw, 110px); 
+            -webkit-font-smoothing: antialiased; 
         }
-        @font-face {
-            font-family: 'Inter';
-            font-display: swap;
-            src: local('Inter'), local('Inter-Regular');
-            font-weight: 400 600;
-            size-adjust: 100%;
-            ascent-override: 90%;
-            descent-override: 22%;
-            line-gap-override: 0%;
+        body { 
+            margin: 0; 
+            font-family: 'Inter', sans-serif; 
+            background: #000000; 
+            color: #ffffff;
+            overflow-x: hidden; 
+        }
+        .site-main { 
+            padding-top: 95px; /* Height of the header */
+        }
+        @media (max-width: 1024px) {
+            .site-main {
+                padding-top: 90px;
+            }
+        }
+
+        .rwx-header-master {
+            --color-red: #ff0000;
+            --color-maroon: #120303;
+            --color-black: #000000;
+            --font-main: 'Inter', sans-serif;
+            --font-accent: 'Bebas Neue', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+
+            width: 100%;
+            position: fixed;
+            top: 0; left: 0;
+            z-index: 100000;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.8);
+        }
+
+        /* --- UNIFIED BACKGROUNDS --- */
+        .rwx-top-bar, .rwx-nav-bar {
+            background: var(--color-maroon);
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .rwx-top-bar {
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            min-height: 30px;
+        }
+
+        .top-bar-inner, .nav-bar-inner {
+            width: 1300px;
+            max-width: 95%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* --- TOP BAR ELEMENTS --- */
+        .top-left { display: flex; gap: 20px; align-items: center; }
+        .top-left span { 
+            display: flex; align-items: center; gap: 6px; 
+            color: #ffffff !important; font-family: var(--font-mono); font-size: 0.7rem; font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        .top-left svg, .top-left i { color: var(--color-red) !important; opacity: 0.9; width: 12px; height: 12px; }
+
+        .top-right { display: flex; gap: 10px; align-items: center; }
+        .social-icon {
+            width: 24px; height: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            transition: 0.3s;
+        }
+        .social-icon svg, .social-icon i { width: 10px; height: 10px; color: white !important; }
+        .social-icon:hover { border-color: var(--color-red); background: var(--color-red); }
+
+        /* --- NAV BAR ELEMENTS --- */
+        .rwx-nav-bar {
+            padding: 6px 0;
+            border-bottom: 3px solid var(--color-red);
+            min-height: 55px;
+        }
+
+        .rwx-logo {
+            height: 32px;
+            display: flex; align-items: center;
+            flex: 0 0 auto;
+        }
+        .rwx-logo img { height: 100%; width: auto; object-fit: contain; }
+
+        .nav-container { 
+            display: flex; align-items: center; justify-content: space-between;
+            flex: 1; margin-left: 40px;
+        }
+        
+        .nav-links {
+            list-style: none; padding: 0; margin: 0;
+            display: flex; gap: 25px;
+            position: absolute; left: 50%; transform: translateX(-50%);
+        }
+        .nav-links li { position: relative; padding: 15px 0; }
+        .nav-links a {
+            color: white !important;
+            text-decoration: none;
+            font-family: var(--font-main);
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            transition: 0.2s;
+        }
+        .nav-links a:hover, .nav-links li:hover > a, .nav-links li.current-menu-item > a {
+            color: var(--color-red) !important;
+        }
+
+        /* Sub-menus unified to Maroon */
+        .nav-links .sub-menu {
+            position: absolute;
+            top: 100%; left: 50%; transform: translateX(-50%);
+            background: var(--color-maroon);
+            border-top: 2px solid var(--color-red);
+            min-width: 200px;
+            display: none;
+            list-style: none; padding: 10px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            margin: 0;
+            z-index: 1000;
+        }
+        .nav-links li:hover > .sub-menu { display: block; }
+        .nav-links .sub-menu li { padding: 0; }
+        .nav-links .sub-menu a {
+            display: block;
+            padding: 8px 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: none;
+        }
+
+        .cta-btn-header {
+            margin-left: auto;
+            background: var(--color-red);
+            color: white !important;
+            text-decoration: none;
+            font-family: var(--font-accent);
+            font-size: 1.1rem;
+            padding: 6px 20px;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            display: flex; align-items: center; gap: 8px;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+        .cta-btn-header:hover {
+            background: white !important;
+            color: var(--color-red) !important;
+            transform: scale(1.05);
+        }
+
+        /* Mobile Menu Toggle button */
+        .menu-toggle { 
+            display: none; 
+            color: white; 
+            cursor: pointer; 
+            font-size: 1.5rem;
+            display: none;
+            align-items: center;
+        }
+
+        @media (max-width: 1024px) {
+            .nav-links, .cta-btn-header { display: none !important; }
+            .menu-toggle { display: flex; }
+            .top-left span:last-child { display: none; }
+        }
+
+        /* --- TACTICAL MOBILE MENU DRAWER --- */
+        .mobile-menu {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 200000;
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .mobile-menu.is-open {
+            opacity: 1; pointer-events: auto;
+        }
+        .mobile-menu__overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+        }
+        .mobile-menu__drawer {
+            position: absolute;
+            top: 0; right: -320px; width: 320px; height: 100%;
+            background: var(--color-maroon);
+            border-left: 2px solid var(--color-red);
+            box-shadow: -10px 0 30px rgba(0,0,0,0.8);
+            display: flex; flex-direction: column;
+            transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            padding: 30px 24px;
+            box-sizing: border-box;
+        }
+        .mobile-menu.is-open .mobile-menu__drawer {
+            right: 0;
+        }
+        .mobile-menu__header {
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .mobile-menu__logo img {
+            height: 28px; width: auto;
+        }
+        .mobile-menu__close {
+            background: none; border: none; color: white;
+            font-size: 2.2rem; cursor: pointer; line-height: 1;
+            padding: 0; margin-top: -5px;
+            transition: color 0.2s;
+        }
+        .mobile-menu__close:hover {
+            color: var(--color-red);
+        }
+        .mobile-menu__nav {
+            flex: 1; overflow-y: auto;
+        }
+        .mobile-menu__links {
+            list-style: none; padding: 0; margin: 0;
+            display: flex; flex-direction: column; gap: 20px;
+        }
+        .mobile-menu__links a {
+            color: white; text-decoration: none;
+            font-family: var(--font-accent);
+            font-size: 1.8rem; letter-spacing: 1px;
+            text-transform: uppercase;
+            display: block;
+            transition: color 0.2s;
+        }
+        .mobile-menu__links a:hover {
+            color: var(--color-red);
+            padding-left: 8px;
+        }
+        .mobile-menu__footer {
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 20px;
+            display: flex; flex-direction: column; gap: 15px;
+        }
+        .mobile-menu__contact-item {
+            display: flex; align-items: center; gap: 10px;
+            color: #888; text-decoration: none;
+            font-family: var(--font-mono); font-size: 0.8rem;
+        }
+        .mobile-menu__contact-item svg, .mobile-menu__contact-item i {
+            color: var(--color-red); width: 14px; height: 14px;
+        }
+        .mobile-menu__cta {
+            background: var(--color-red); color: white;
+            font-family: var(--font-accent); text-align: center;
+            font-size: 1.4rem; padding: 10px; border-radius: 4px;
+            text-decoration: none; text-transform: uppercase;
+            letter-spacing: 1px; transition: transform 0.2s;
+        }
+        .mobile-menu__cta:hover {
+            transform: scale(1.03);
         }
     </style>
+
+    <!-- ═══ Tier A: Head Guard (Instant Document Sanitization) ═══════════════
+         Prevents cached scroll-locks from freezing the page during HTML parse.
+         ═══════════════════════════════════════════════════════════════════ -->
+    <script data-no-optimize="1" data-no-defer="1" data-cfasync="false" class="no-defer">
+    (function(){
+        var doc = document.documentElement;
+        if (doc) {
+            doc.style.setProperty('overflow', '', 'important');
+            doc.style.setProperty('overflow-y', '', 'important');
+            doc.classList.remove('fouc-guard');
+            doc.classList.remove('has-scroll-lock');
+        }
+        window.addEventListener('pageshow', function(e) {
+            var body = document.body;
+            if (body) {
+                body.classList.remove('is-leaving');
+                body.classList.remove('has-scroll-lock');
+                body.style.setProperty('overflow', '', 'important');
+                body.style.setProperty('overflow-y', '', 'important');
+            }
+            if (doc) {
+                doc.classList.remove('has-scroll-lock');
+                doc.style.setProperty('overflow', '', 'important');
+                doc.style.setProperty('overflow-y', '', 'important');
+            }
+        });
+    }());
+    </script>
 </head>
 
 <body <?php body_class(); ?>>
-<?php wp_body_open(); ?>
+    <!-- ═══ Tier B: Body Open Guard (Instant Viewport Sanitization) ══════════ -->
+    <script data-no-optimize="1" data-no-defer="1" data-cfasync="false" class="no-defer">
+    (function(){
+        var body = document.body;
+        if (body) {
+            body.classList.remove('has-scroll-lock');
+            body.classList.remove('modal-open');
+            body.classList.remove('is-leaving');
+            body.style.setProperty('overflow', '', 'important');
+            body.style.setProperty('overflow-y', '', 'important');
+        }
+    }());
+    </script>
 
-<a class="skip-to-content" href="#main-content">Skip to content</a>
+<a class="skip-to-content" href="#main-content" style="position: absolute; top: -100px; left: 0; background: #ff0000; color: white; padding: 10px; z-index: 999999; transition: top 0.2s; font-family: monospace; font-size: 0.8rem; text-decoration: none;" onfocus="this.style.top='0'" onblur="this.style.top='-100px'">Skip to content</a>
 
 <!-- ═══════════════════════════════════════════
-     TWO-LAYER HEADER
+     TACTICAL COMMAND HEADER
      ═══════════════════════════════════════════ -->
-<header class="hwh-header" id="site-header" role="banner">
-
-    <!-- ── LAYER 1: Top Info Bar ── -->
-    <div class="hwh-topbar" role="complementary" aria-label="Contact information">
-        <div class="hwh-topbar__inner">
-
-            <!-- Left: quick info -->
-            <div class="hwh-topbar__left">
-                <a href="tel:+18137326285" class="hwh-topbar__item hwh-topbar__item--phone">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                    (813) 732-6285
-                </a>
-                <span class="hwh-topbar__sep" aria-hidden="true">|</span>
-                <span class="hwh-topbar__item">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                    Mon–Fri 7:30am–4pm
-                </span>
-                <span class="hwh-topbar__sep" aria-hidden="true">|</span>
-                <span class="hwh-topbar__item">
-                    Licensed &amp; Insured · CGC #123456
-                </span>
+<header class="rwx-header-master" id="site-header" role="banner">
+    <!-- TOP BAR -->
+    <div class="rwx-top-bar" role="complementary" aria-label="Command Stats">
+        <div class="top-bar-inner">
+            <div class="top-left">
+                <span><i data-lucide="shield"></i> ELITE STATUS: ACTIVE</span>
+                <span><i data-lucide="clock"></i> 45 MIN RESPONSE</span>
+                <span><i data-lucide="map-pin"></i> TAMPA BAY COMMAND</span>
             </div>
-
-            <!-- Right: search + social -->
-            <div class="hwh-topbar__right">
-                <!-- Mini search -->
-                <form class="hwh-topbar__search" role="search" action="<?php echo esc_url(home_url('/')); ?>" method="get" aria-label="Site search">
-                    <input type="search" name="s" class="hwh-topbar__search-input" placeholder="Search services…" aria-label="Search" value="<?php echo esc_attr(get_search_query()); ?>">
-                    <button type="submit" class="hwh-topbar__search-btn" aria-label="Submit search">
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-                    </button>
-                </form>
-                <!-- Social -->
-                <a href="https://www.facebook.com/spicolaconstruction/" class="hwh-topbar__social" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-                </a>
-                <a href="https://www.instagram.com/spicolaconstruction/" class="hwh-topbar__social" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
-                </a>
+            <div class="top-right">
+                <a href="https://www.instagram.com/restowrx/" class="social-icon" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i data-lucide="instagram"></i></a>
+                <a href="https://www.facebook.com/restowrx/" class="social-icon" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i data-lucide="facebook"></i></a>
             </div>
-
         </div>
     </div>
 
-    <!-- ── LAYER 2: Main Nav Bar ── -->
-    <div class="hwh-nav-bar">
-        <div class="hwh-nav-bar__inner">
-
-            <!-- Logo -->
-            <a href="<?php echo esc_url(home_url('/')); ?>" class="hwh-nav__logo" aria-label="Spicola Construction — Home"<?php if (is_front_page()) echo ' aria-current="page"'; ?>>
-                <img src="https://spicolaconstruction.com/wp-content/uploads/2022/05/Untitled-1-2-1024x236.png" alt="Spicola Construction" class="hwh-nav__logo-img" width="200" height="46" loading="eager" decoding="async">
+    <!-- MAIN NAV BAR -->
+    <div class="rwx-nav-bar">
+        <div class="nav-bar-inner">
+            <a href="<?php echo esc_url(home_url('/')); ?>" class="rwx-logo" aria-label="Restowrx Elite — Home"<?php if (is_front_page()) echo ' aria-current="page"'; ?>>
+                <img src="https://restowrx.com/wp-content/uploads/2025/04/GetAttachmentThumbnail.png" alt="Restowrx Elite Logo" width="200" height="32" loading="eager" decoding="async">
             </a>
 
-            <!-- Desktop nav -->
-            <nav class="hwh-nav" aria-label="Main navigation">
-                <ul class="hwh-nav__links">
-                    <li class="hwh-nav__item<?php if (is_front_page()) echo ' hwh-nav__item--active'; ?>">
-                        <a href="<?php echo esc_url(home_url('/')); ?>" class="hwh-nav__link"<?php if (is_front_page()) echo ' aria-current="page"'; ?>>Home</a>
-                    </li>
-                    <li class="hwh-nav__item hwh-nav__item--has-drop<?php if (is_post_type_archive('service') || is_singular('service')) echo ' hwh-nav__item--active'; ?>">
-                        <a href="<?php echo esc_url(home_url('/services/')); ?>" class="hwh-nav__link"<?php if (is_post_type_archive('service') || is_singular('service') || is_page('services')) echo ' aria-current="page"'; ?>>
-                            Services <span class="hwh-nav__arrow" aria-hidden="true">▾</span>
-                        </a>
-                        <div class="hwh-drop">
-                            <div class="hwh-drop__inner">
+            <nav class="nav-container" aria-label="Main Navigation">
+                <?php
+                if ( has_nav_menu('header-menu') ) {
+                    wp_nav_menu( array(
+                        'theme_location' => 'header-menu',
+                        'menu_class'     => 'nav-links', 
+                        'container'      => false,          
+                        'depth'          => 2,              
+                    ) );
+                } else {
+                    echo '<ul class="nav-links">';
+                    echo '<li class="current-menu-item"><a href="' . esc_url(home_url('/')) . '">Home</a></li>';
+                    echo '<li><a href="' . esc_url(home_url('/about/')) . '">About</a></li>';
+                    echo '<li><a href="' . esc_url(home_url('/services/')) . '">Services</a></li>';
+                    echo '<li><a href="' . esc_url(home_url('/blog/')) . '">Reports</a></li>';
+                    echo '<li><a href="' . esc_url(home_url('/contact/')) . '">Contact</a></li>';
+                    echo '</ul>';
+                }
+                ?>
 
-                                 <?php if ( ! empty( $hwh_menu_services ) ) :
-                                    foreach ( $hwh_menu_services as $cat_name => $posts ) :
-                                ?>
-                                <div class="hwh-drop__col">
-                                    <span class="hwh-drop__heading"><?php echo esc_html( $cat_name ); ?></span>
-                                    <?php foreach ( array_slice( $posts, 0, 8 ) as $s ) :
-                                        $excerpt = wp_trim_words( get_post_field( 'post_excerpt', $s->ID ) ?: get_post_field( 'post_content', $s->ID ), 7, '' );
-                                    ?>
-                                    <a href="<?php echo esc_url( get_permalink( $s->ID ) ); ?>" class="hwh-drop__item">
-                                        <span>
-                                            <strong><?php echo esc_html( $s->post_title ); ?></strong>
-                                            <?php if ( $excerpt ) : ?><em><?php echo esc_html( $excerpt ); ?></em><?php endif; ?>
-                                        </span>
-                                    </a>
-                                    <?php endforeach; ?>
-                                </div>
-                                <?php endforeach; ?>
-
-                                <?php else : ?>
-                                <!-- Fallback: no services in WP yet -->
-                                <div class="hwh-drop__col">
-                                    <span class="hwh-drop__heading">Our Services</span>
-                                    <a href="<?php echo esc_url(home_url('/services/')); ?>" class="hwh-drop__item">
-                                        <span class="hwh-drop__icon">🏗️</span>
-                                        <span><strong>Browse All Services</strong></span>
-                                    </a>
-                                </div>
-                                <?php endif; ?>
-
-
-                            </div>
-                            <div class="hwh-drop__footer">
-                                <div class="hwh-drop__footer__inner">
-                                    <a href="<?php echo esc_url(home_url('/services/')); ?>" class="hwh-drop__footer-cta">View All Services →</a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="hwh-nav__item<?php if (is_page('about')) echo ' hwh-nav__item--active'; ?>">
-                        <a href="<?php echo esc_url(home_url('/about/')); ?>" class="hwh-nav__link"<?php if (is_page('about')) echo ' aria-current="page"'; ?>>About</a>
-                    </li>
-                    <li class="hwh-nav__item<?php if (is_post_type_archive('portfolio') || is_singular('portfolio')) echo ' hwh-nav__item--active'; ?>">
-                        <a href="<?php echo esc_url(home_url('/projects/')); ?>" class="hwh-nav__link"<?php if (is_post_type_archive('portfolio') || is_singular('portfolio')) echo ' aria-current="page"'; ?>>Projects</a>
-                    </li>
-                    <li class="hwh-nav__item<?php if (is_page('contact')) echo ' hwh-nav__item--active'; ?>">
-                        <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="hwh-nav__link"<?php if (is_page('contact')) echo ' aria-current="page"'; ?>>Contact</a>
-                    </li>
-                </ul>
-            </nav>
-
-            <!-- Actions -->
-            <div class="hwh-nav__actions">
-                <a href="tel:+18137326285" class="hwh-nav__call" aria-label="Call (813) 732-6285">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="cta-btn-header">
+                    <i data-lucide="zap"></i>
+                    INITIATE DISPATCH
                 </a>
-                <a href="/contact/" class="hwh-btn hwh-btn--red hwh-btn--sm">Get a Quote</a>
-                <button class="hwh-nav__hamburger" id="mobile-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-menu">
-                    <span class="hamburger"><span class="hamburger__line"></span><span class="hamburger__line"></span><span class="hamburger__line"></span></span>
-                </button>
-            </div>
 
+                <button class="menu-toggle" id="mobile-toggle" aria-label="Open mobile navigation" aria-expanded="false" aria-controls="mobile-menu" style="background: none; border: none; color: white;">
+                    <i data-lucide="menu"></i>
+                </button>
+            </nav>
         </div>
     </div>
-
 </header>
 
 <!-- ═══════════════════════════════════════════
-     MOBILE MENU
+     TACTICAL MOBILE MENU DRAWER
      ═══════════════════════════════════════════ -->
-<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Mobile navigation" aria-hidden="true">
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Mobile Navigation" aria-hidden="true">
     <div class="mobile-menu__overlay" id="mobile-overlay"></div>
     <div class="mobile-menu__drawer">
         <div class="mobile-menu__header">
-            <a href="<?php echo esc_url(home_url('/')); ?>" class="hwh-nav__logo">
-                <img src="https://spicolaconstruction.com/wp-content/uploads/2022/05/Untitled-1-2-1024x236.png" alt="Spicola Construction" class="hwh-nav__logo-img" width="160" height="37" loading="lazy" decoding="async">
+            <a href="<?php echo esc_url(home_url('/')); ?>" class="mobile-menu__logo">
+                <img src="https://restowrx.com/wp-content/uploads/2025/04/GetAttachmentThumbnail.png" alt="Restowrx Elite Logo" width="150" height="24">
             </a>
-            <button class="mobile-menu__close" id="mobile-close" aria-label="Close navigation">×</button>
+            <button class="mobile-menu__close" id="mobile-close" aria-label="Close navigation">&times;</button>
         </div>
 
-        <!-- Mobile search -->
-        <form class="hwh-mobile-search" role="search" action="<?php echo esc_url(home_url('/')); ?>" method="get" aria-label="Search">
-            <input type="search" name="s" placeholder="Search services…" aria-label="Search" value="<?php echo esc_attr(get_search_query()); ?>">
-            <button type="submit" aria-label="Search">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-            </button>
-        </form>
-
-        <nav class="mobile-menu__nav" aria-label="Mobile navigation">
-            <ul class="mobile-menu__links">
-                <li><a href="<?php echo esc_url(home_url('/')); ?>">Home</a></li>
-                <li><a href="<?php echo esc_url(home_url('/services/')); ?>">All Services</a></li>
-                <?php
-                // Dynamic mobile service sub-links
-                $mobile_svcs = get_posts( [
-                    'post_type'      => 'service',
-                    'post_status'    => 'publish',
-                    'posts_per_page' => -1,
-                    'orderby'        => 'menu_order',
-                    'order'          => 'ASC',
-                    'no_found_rows'  => true,
-                ] );
-                foreach ( $mobile_svcs as $ms ) :
-                ?>
-                <li><a href="<?php echo esc_url( get_permalink( $ms->ID ) ); ?>">↳ <?php echo esc_html( $ms->post_title ); ?></a></li>
-                <?php endforeach; wp_reset_postdata(); ?>
-                <li><a href="<?php echo esc_url(home_url('/about/')); ?>">About Us</a></li>
-                <li><a href="<?php echo esc_url(home_url('/projects/')); ?>">Projects</a></li>
-                <li><a href="<?php echo esc_url(home_url('/contact/')); ?>">Contact</a></li>
-            </ul>
+        <nav class="mobile-menu__nav" aria-label="Mobile menu links">
+            <?php
+            if ( has_nav_menu('header-menu') ) {
+                wp_nav_menu( array(
+                    'theme_location' => 'header-menu',
+                    'menu_class'     => 'mobile-menu__links', 
+                    'container'      => false,          
+                    'depth'          => 1,              
+                ) );
+            } else {
+                echo '<ul class="mobile-menu__links">';
+                echo '<li><a href="' . esc_url(home_url('/')) . '">Home</a></li>';
+                echo '<li><a href="' . esc_url(home_url('/about/')) . '">About</a></li>';
+                echo '<li><a href="' . esc_url(home_url('/services/')) . '">Services</a></li>';
+                echo '<li><a href="' . esc_url(home_url('/blog/')) . '">Reports</a></li>';
+                echo '<li><a href="' . esc_url(home_url('/contact/')) . '">Contact</a></li>';
+                echo '</ul>';
+            }
+            ?>
         </nav>
 
         <div class="mobile-menu__footer">
-            <a href="/contact/" class="hwh-btn hwh-btn--red hwh-btn--full">Get a Free Quote</a>
-            <a href="tel:+18137326285" class="mobile-menu__contact-item">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                (813) 732-6285
+            <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="mobile-menu__cta">
+                <i data-lucide="zap" style="vertical-align: middle; margin-right: 4px;"></i> INITIATE DISPATCH
             </a>
-            <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#105;&#110;&#102;&#111;&#64;&#115;&#112;&#105;&#99;&#111;&#108;&#97;&#99;&#111;&#110;&#115;&#116;&#114;&#117;&#99;&#116;&#105;&#111;&#110;&#46;&#99;&#111;&#109;" class="mobile-menu__contact-item">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                &#105;&#110;&#102;&#111;&#64;&#115;&#112;&#105;&#99;&#111;&#108;&#97;&#99;&#111;&#110;&#115;&#116;&#114;&#117;&#99;&#116;&#105;&#111;&#110;&#46;&#99;&#111;&#109;
+            <a href="tel:+18136994009" class="mobile-menu__contact-item">
+                <i data-lucide="phone"></i> 813.699.4009
+            </a>
+            <a href="mailto:joe@restowrx.com" class="mobile-menu__contact-item">
+                <i data-lucide="mail"></i> joe@restowrx.com
             </a>
         </div>
     </div>
 </div>
+
+<main id="main-content" class="site-main" role="main">

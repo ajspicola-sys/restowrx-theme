@@ -62,6 +62,8 @@ function hwh_setup() {
     register_nav_menus([
         'primary' => 'Primary Navigation',
         'footer'  => 'Footer Navigation',
+        'header-menu' => 'Tactical Command Header Menu',
+        'footer-menu' => 'Tactical Command Footer Menu',
     ]);
 }
 add_action('after_setup_theme', 'hwh_setup');
@@ -200,12 +202,15 @@ add_filter('style_loader_tag', 'hwh_async_styles', 10, 2);
 
 // -- Performance: Preload critical fonts only (preconnects live in header.php) --
 function hwh_resource_hints() {
-    // DNS prefetch for external image CDN
-    echo '<link rel="dns-prefetch" href="//spicolaconstruction.com">' . "\n";
+    // DNS prefetch for external domain
+    echo '<link rel="dns-prefetch" href="//restowrx.com">' . "\n";
+    echo '<link rel="preconnect" href="https://fonts.googleapis.com">' . "\n";
+    echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' . "\n";
 
-    // Preload critical font files (Inter 600 + Montserrat 700 - weights used above the fold)
+    // Preload critical font files (Inter + Bebas Neue + Space Mono - weights used above the fold)
     echo '<link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2" as="font" type="font/woff2" crossorigin>' . "\n";
-    echo '<link rel="preload" href="https://fonts.gstatic.com/s/montserrat/v26/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Hw5aXo.woff2" as="font" type="font/woff2" crossorigin>' . "\n";
+    echo '<link rel="preload" href="https://fonts.gstatic.com/s/bebasneue/v14/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2" as="font" type="font/woff2" crossorigin>' . "\n";
+    echo '<link rel="preload" href="https://fonts.gstatic.com/s/spacemono/v13/i7dMIF98yBdDQXEsF6FTDFHW0w.woff2" as="font" type="font/woff2" crossorigin>' . "\n";
 }
 add_action('wp_head', 'hwh_resource_hints', 1);
 
@@ -2963,3 +2968,376 @@ function hwh_sanitize_service_content($content) {
     </div>';
 }
 add_filter('the_content', 'hwh_sanitize_service_content', 20);
+
+
+// ============================================================================
+// RESTOWRX ELITE - CUSTOM SHORTCODES & FUNCTIONS
+// ============================================================================
+
+function restowrx_footer_menu_shortcode() {
+    ob_start();
+    if ( has_nav_menu('footer-menu') ) {
+        wp_nav_menu( array(
+            'theme_location' => 'footer-menu',
+            'menu_class'     => 'footer-links', 
+            'container'      => false,          
+            'depth'          => 1,              
+        ) );
+    } else {
+        echo '<ul class="footer-links">';
+        echo '<li><a href="/water-damage">Water Damage</a></li>';
+        echo '<li><a href="/fire-damage">Fire Damage</a></li>';
+        echo '<li><a href="/mold-remediation">Mold Remediation</a></li>';
+        echo '<li><a href="/about-us">About Us</a></li>';
+        echo '<li><a href="/contact">Ready Dispatch</a></li>';
+        echo '</ul>';
+    }
+    return ob_get_clean(); 
+}
+add_shortcode('restowrx_footer_menu', 'restowrx_footer_menu_shortcode');
+
+function restowrx_header_menu_shortcode() {
+    ob_start();
+    if ( has_nav_menu('header-menu') ) {
+        wp_nav_menu( array(
+            'theme_location' => 'header-menu',
+            'menu_class'     => 'nav-links', 
+            'container'      => false,          
+            'depth'          => 2,              
+        ) );
+    } else {
+        echo '<ul class="nav-links">';
+        echo '<li><a href="/">Home</a></li>';
+        echo '<li><a href="/about-us">About</a></li>';
+        echo '<li><a href="/services">Services</a></li>';
+        echo '<li><a href="/blog">Reports</a></li>';
+        echo '</ul>';
+    }
+    return ob_get_clean(); 
+}
+add_shortcode('restowrx_header_menu', 'restowrx_header_menu_shortcode');
+
+
+// ------------------------------------------
+// 2. TACTICAL BLOG GRID
+// ------------------------------------------
+function restowrx_mission_blog_shortcode() {
+    ob_start();
+    
+    $args = array(
+        'post_type'      => 'post',
+        'posts_per_page' => 3,
+        'post_status'    => 'publish'
+    );
+    
+    $query = new WP_Query($args);
+    
+    if ($query->have_posts()) {
+        while ($query->have_posts()) {
+            $query->the_post();
+            
+            $categories = get_the_category();
+            $cat_name = !empty($categories) ? esc_html($categories[0]->name) : 'RESTORE';
+            
+            $day = get_the_date('d');
+            $month = get_the_date('M'); 
+            $year = get_the_date('Y');
+            $full_date = $day . ' ' . $month . ' ' . $year;
+            
+            $img_url = get_the_post_thumbnail_url(get_the_ID(), 'large');
+            if (!$img_url) {
+                // Fallback image
+                $img_url = 'https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?q=80&w=800'; 
+            }
+            
+            $excerpt = wp_trim_words(get_the_excerpt(), 22, '...');
+            $ref_id = "REPORT-" . rand(1000, 9999);
+            
+            ?>
+            <a href="<?php the_permalink(); ?>" class="blog-card" data-ref="<?php echo esc_attr($ref_id); ?>">
+                <div class="scan-line"></div>
+                <div class="blog-image-wrap">
+                    <div class="target-reticle"></div>
+                    <img src="<?php echo esc_url($img_url); ?>" alt="<?php the_title_attribute(); ?>" class="blog-image">
+                </div>
+                <div class="blog-content">
+                    <div class="meta-row">
+                        <span class="category-label"><?php echo $cat_name; ?></span>
+                        <span class="date-label"><?php echo $full_date; ?></span>
+                    </div>
+                    <h3><?php the_title(); ?></h3>
+                    <p class="blog-excerpt"><?php echo esc_html($excerpt); ?></p>
+                    <div class="read-more-link">READ FULL REPORT <i data-lucide="chevron-right"></i></div>
+                </div>
+            </a>
+            <?php
+        }
+        wp_reset_postdata(); 
+    } else {
+        echo '<p style="color:white; text-align:center; padding: 40px; border: 1px dashed red; font-family: monospace;">[!] NO REPORTS FOUND IN DATABASE.</p>';
+    }
+    return ob_get_clean();
+}
+add_shortcode('restowrx_blog_grid_mission', 'restowrx_mission_blog_shortcode');
+
+
+// ------------------------------------------
+// 3. DYNAMIC SERVICE PAGE SHORTCODES
+// ------------------------------------------
+
+// Universal function to bypass Elementor's theme builder template overrides
+if ( ! function_exists('rwx_get_current_queried_post') ) {
+    function rwx_get_current_queried_post() {
+        global $wp_query;
+        if ( isset($wp_query->queried_object) && $wp_query->queried_object instanceof WP_Post ) {
+            return $wp_query->queried_object;
+        }
+        global $post;
+        return $post;
+    }
+}
+
+add_shortcode('service_title', function() {
+    $p = rwx_get_current_queried_post();
+    return $p ? $p->post_title : 'Elite Service Unit';
+});
+
+add_shortcode('service_image', function() {
+    $p = rwx_get_current_queried_post();
+    $img_url = $p ? get_the_post_thumbnail_url($p->ID, 'full') : false;
+    $fallback = 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=2000';
+    return $img_url ? $img_url : $fallback;
+});
+
+add_shortcode('service_content', function() {
+    $p = rwx_get_current_queried_post();
+    if ($p) {
+        return wpautop(do_shortcode($p->post_content));
+    }
+    return '';
+});
+
+
+// ------------------------------------------
+// 4. FULL ARCHIVE BLOG FEED WITH PAGINATION
+// ------------------------------------------
+function restowrx_archive_feed_shortcode($atts) {
+    ob_start();
+    
+    $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+    
+    // Query ALL posts, 5 per page
+    $args = array(
+        'post_type'      => 'post',
+        'posts_per_page' => 5,
+        'post_status'    => 'publish',
+        'paged'          => $paged
+    );
+    
+    $query = new WP_Query($args);
+    
+    if ($query->have_posts()) {
+        while ($query->have_posts()) {
+            $query->the_post();
+            
+            $categories = get_the_category();
+            $cat_name = !empty($categories) ? esc_html($categories[0]->name) : 'RESTORE';
+            
+            $day = get_the_date('d');
+            $month = get_the_date('M'); 
+            $year = get_the_date('Y');
+            $full_date = $day . ' ' . $month . ' ' . $year;
+            
+            $img_url = get_the_post_thumbnail_url(get_the_ID(), 'large');
+            if (!$img_url) {
+                $img_url = 'https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?q=80&w=800'; // Fallback
+            }
+            
+            $excerpt = wp_trim_words(get_the_excerpt(), 22, '...');
+            $ref_id = "REPORT-" . rand(1000, 9999);
+            
+            ?>
+            <a href="<?php the_permalink(); ?>" class="blog-card" data-ref="<?php echo esc_attr($ref_id); ?>">
+                <div class="scan-line"></div>
+                <div class="blog-image-wrap">
+                    <div class="target-reticle"></div>
+                    <img src="<?php echo esc_url($img_url); ?>" alt="<?php the_title_attribute(); ?>" class="blog-image">
+                </div>
+                <div class="blog-content">
+                    <div class="meta-row">
+                        <span class="category-label"><?php echo $cat_name; ?></span>
+                        <span class="date-label"><?php echo $full_date; ?></span>
+                    </div>
+                    <h3><?php the_title(); ?></h3>
+                    <p class="blog-excerpt"><?php echo esc_html($excerpt); ?></p>
+                    <div class="read-more-link">READ FULL REPORT <i data-lucide="chevron-right"></i></div>
+                </div>
+            </a>
+            <?php
+        }
+        
+        // Custom Pagination
+        echo '<div class="tactical-pagination">';
+        $total_pages = $query->max_num_pages;
+        if ($total_pages > 1){
+            $current_page = max(1, get_query_var('paged'));
+            echo paginate_links(array(
+                'base' => get_pagenum_link(1) . '%_%',
+                'format' => 'page/%#%',
+                'current' => $current_page,
+                'total' => $total_pages,
+                'prev_text' => '<i data-lucide="chevron-left"></i>',
+                'next_text' => '<i data-lucide="chevron-right"></i>',
+                'type' => 'plain' 
+            ));
+        }
+        echo '</div>';
+        
+        wp_reset_postdata(); 
+    } else {
+        echo '<p style="color:#000; text-align:center; padding: 40px; border: 1px dashed red; font-family: monospace;">[!] NO REPORTS FOUND IN DATABASE.</p>';
+    }
+    
+    return ob_get_clean();
+}
+add_shortcode('restowrx_archive_feed', 'restowrx_archive_feed_shortcode');
+
+
+// ------------------------------------------
+// 5. SINGLE BLOG POST SHORTCODES
+// ------------------------------------------
+
+if ( ! function_exists('rwx_get_current_blog_post') ) {
+    function rwx_get_current_blog_post() {
+
+        // 1. Most reliable: get the post tied to the current URL
+        $post_id = get_queried_object_id();
+
+        // 2. Elementor fallback
+        if (!$post_id) {
+            $post_id = get_the_ID();
+        }
+
+        // 3. Final fallback
+        if (!$post_id) {
+            global $post;
+            if ($post) {
+                $post_id = $post->ID;
+            }
+        }
+
+        if ($post_id) {
+            return get_post($post_id);
+        }
+
+        return null;
+    }
+}
+
+add_shortcode('blog_title', function() {
+    $p = rwx_get_current_blog_post();
+    return $p ? esc_html($p->post_title) : 'INTELLIGENCE REPORT';
+});
+
+add_shortcode('blog_meta', function() {
+    $p = rwx_get_current_blog_post();
+    if (!$p) return '';
+
+    $categories = get_the_category($p->ID);
+    $cat_name = !empty($categories) ? esc_html($categories[0]->name) : 'RESTORE';
+    $date = get_the_date('d M Y', $p->ID);
+
+    return '<span><i data-lucide="tag" size="14"></i> ' . $cat_name . '</span><span>|</span><span><i data-lucide="calendar" size="14"></i> ' . $date . '</span>';
+});
+
+add_shortcode('blog_image', function() {
+    $p = rwx_get_current_blog_post();
+
+    if (!$p) {
+        return 'https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?q=80&w=800';
+    }
+
+    $img_url = get_the_post_thumbnail_url($p->ID, 'full');
+
+    return $img_url ? esc_url($img_url) : 'https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?q=80&w=800';
+});
+
+add_shortcode('blog_content', function() {
+    $p = rwx_get_current_blog_post();
+
+    if ($p) {
+        return apply_filters('the_content', $p->post_content);
+    }
+
+    return '';
+});
+
+// Mini Sidebar feed for recent posts
+add_shortcode('blog_sidebar_feed', function() {
+
+    ob_start();
+
+    $p = rwx_get_current_blog_post();
+    $current_id = $p ? $p->ID : 0;
+
+    // Grab 3 latest posts BUT don't include the one you are currently reading
+    $args = array(
+        'post_type' => 'post',
+        'posts_per_page' => 3,
+        'post__not_in' => array($current_id)
+    );
+
+    $q = new WP_Query($args);
+
+    if($q->have_posts()) {
+
+        while($q->have_posts()) {
+
+            $q->the_post();
+
+            $img = get_the_post_thumbnail_url(get_the_ID(), 'medium');
+
+            if(!$img) {
+                $img = 'https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?q=80&w=800';
+            }
+            ?>
+            <a href="<?php the_permalink(); ?>" class="recent-post-item">
+                <div class="recent-post-img">
+                    <img src="<?php echo esc_url($img); ?>" alt="Recent Report">
+                </div>
+                <div class="recent-post-info">
+                    <h4><?php echo wp_trim_words(get_the_title(), 7, '...'); ?></h4>
+                    <span><?php echo get_the_date('d M Y'); ?></span>
+                </div>
+            </a>
+            <?php
+        }
+
+        wp_reset_postdata();
+
+    } else {
+
+        echo '<p style="color:#666; font-size: 0.9rem;">No other reports available.</p>';
+
+    }
+
+    return ob_get_clean();
+});
+
+
+// ------------------------------------------
+// 6. SHORTCODE ENABLEMENT
+// ------------------------------------------
+
+add_filter('widget_text', 'do_shortcode');
+
+// Forces Elementor HTML widgets to run shortcodes
+add_filter('elementor/widget/render_content', function( $content, $widget ) {
+
+    if ( 'html' === $widget->get_name() ) {
+        return do_shortcode($content);
+    }
+
+    return $content;
+
+}, 10, 2);

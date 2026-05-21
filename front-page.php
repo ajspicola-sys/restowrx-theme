@@ -1,7 +1,7 @@
 <?php
 /**
- * Template Name: Homepage
- * Spicola Construction — Front Page v1
+ * Template Name: Restowrx Elite Homepage
+ * Custom tactical landing page for Restowrx Elite
  */
 get_header(); ?>
 
@@ -13,691 +13,1798 @@ get_header(); ?>
     "@context": "https://schema.org",
     "@type": ["GeneralContractor", "HomeAndConstructionBusiness", "LocalBusiness"],
     "@id": "<?php echo esc_url(home_url('/')); ?>#business",
-    "name": "Spicola Construction",
-    "description": "Tampa Bay's trusted general contractor — expert residential and commercial construction, remodeling, roofing, and renovation services.",
+    "name": "Restowrx Elite",
+    "description": "Tampa Bay's trusted property restoration and recovery contractor — expert water damage restoration, fire damage recovery, mold remediation, and emergency reconstruction services.",
     "url": "<?php echo esc_url(home_url('/')); ?>",
-    "telephone": "+18137326285",
-    "email": "info@spicolaconstruction.com",
+    "telephone": "+18136994009",
+    "email": "joe@restowrx.com",
     "priceRange": "$$-$$$",
     "address": { "@type": "PostalAddress", "addressLocality": "Tampa", "addressRegion": "FL", "addressCountry": "US" },
     "areaServed": [
         {"@type":"City","name":"Tampa"},{"@type":"City","name":"St. Petersburg"},
         {"@type":"City","name":"Clearwater"},{"@type":"City","name":"Brandon"},
-        {"@type":"City","name":"Wesley Chapel"},{"@type":"City","name":"Riverview"}
+        {"@type":"City","name":"Wesley Chapel"},{"@type":"City","name":"Lithia"}
     ],
-    "aggregateRating": {"@type":"AggregateRating","ratingValue":"5","reviewCount":"50","bestRating":"5"},
-    "sameAs": ["https://www.facebook.com/spicolaconstruction/","https://www.instagram.com/spicolaconstruction/"]
+    "aggregateRating": {"@type":"AggregateRating","ratingValue":"5","reviewCount":"32","bestRating":"5"},
+    "sameAs": ["https://www.facebook.com/restowrx/","https://www.instagram.com/restowrx/"]
 }
 </script>
 
-<!-- ══════════════════════════════════════════════════════
-     HERO — Full-screen brand hero
-     ══════════════════════════════════════════════════════ -->
-<section class="sc-hero" id="hero" aria-label="Spicola Construction — Tampa Bay's trusted general contractor">
-    <div class="sc-hero__glow"     aria-hidden="true"></div>
-    <div class="sc-hero__grid-bg" aria-hidden="true"></div>
-    <div class="sc-hero__inner">
-        <span class="sc-hero__label">Tampa Bay's Trusted General Contractor</span>
-        <h1 class="sc-hero__title">
-            Building Tampa Bay's<br>
-            <em>Future</em>, One Project<br>
-            at a Time.
-        </h1>
-        <p class="sc-hero__sub">
-            Licensed &amp; insured residential and commercial construction,
-            remodeling, roofing, and renovation services across
-            Hillsborough, Pinellas &amp; Pasco counties.
-        </p>
-        <div class="sc-hero__actions">
-            <a href="tel:+18137326285" class="sc-hero__btn sc-hero__btn--primary">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                Call (813) 732-6285
-            </a>
-            <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="sc-hero__btn sc-hero__btn--ghost">
-                Get a Free Quote →
-            </a>
-        </div>
-        <div class="sc-hero__badges">
-            <span class="sc-hero__badge">✔ Licensed CGC</span>
-            <span class="sc-hero__badge">✔ Fully Insured</span>
-            <span class="sc-hero__badge">✔ 10+ Years Experience</span>
-            <span class="sc-hero__badge">✔ Free Estimates</span>
-        </div>
-    </div>
-</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
+<!-- ══════════════════════════════════════════════════════
+     SECTION 1 — HERO: Parallax GSAP glass form panel
+     ══════════════════════════════════════════════════════ -->
 <style>
-/* ── Hero ── */
-.sc-hero{position:relative;min-height:700px;display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 50%,#1a2d45 0%,#0A1628 70%);overflow:hidden;padding:clamp(6rem,10vw,10rem) 0 clamp(4rem,6vw,7rem)}
-.sc-hero__glow{position:absolute;inset:0;background:radial-gradient(circle at 50% 40%,rgba(46,143,232,.22) 0%,transparent 60%);pointer-events:none}
-.sc-hero__grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
-.sc-hero__inner{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:0 clamp(1.25rem,1rem + 2vw,3rem);text-align:center}
-.sc-hero__label{display:inline-block;font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:#2E8FE8;margin-bottom:1.5rem;padding-bottom:.6rem;position:relative}
-.sc-hero__label::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);height:3px;width:100%;background:linear-gradient(90deg,transparent,#2E8FE8,transparent);border-radius:2px}
-.sc-hero__title{font-family:'Montserrat',sans-serif;font-size:clamp(2.6rem,5.5vw,5rem);font-weight:900;color:#fff;line-height:1.1;margin:0 0 1.5rem;letter-spacing:-.02em}
-.sc-hero__title em{font-style:normal;color:#2E8FE8}
-.sc-hero__sub{font-size:clamp(1rem,1.4vw,1.2rem);color:rgba(255,255,255,.55);line-height:1.75;max-width:620px;margin:0 auto 2.5rem}
-.sc-hero__actions{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:2.5rem}
-.sc-hero__btn{display:inline-flex;align-items:center;gap:.6rem;font-family:'Montserrat',sans-serif;font-size:.95rem;font-weight:700;letter-spacing:.04em;text-decoration:none;padding:.9rem 2rem;border-radius:10px;transition:all .35s ease}
-.sc-hero__btn--primary{background:#1A6FBF;color:#fff;border:2px solid #1A6FBF;box-shadow:0 4px 20px rgba(26,111,191,.35)}
-.sc-hero__btn--primary:hover{background:#155fa0;border-color:#155fa0;color:#fff;box-shadow:0 8px 32px rgba(26,111,191,.55);transform:translateY(-2px)}
-.sc-hero__btn--ghost{background:transparent;color:rgba(255,255,255,.9);border:2px solid rgba(255,255,255,.25)}
-.sc-hero__btn--ghost:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.5);color:#fff;transform:translateY(-2px)}
-.sc-hero__badges{display:flex;flex-wrap:wrap;justify-content:center;gap:.75rem}
-.sc-hero__badge{font-size:.72rem;font-weight:600;color:rgba(255,255,255,.55);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:30px;padding:.4rem 1rem;letter-spacing:.04em;transition:color .3s,border-color .3s}
-.sc-hero__badge:hover{color:rgba(255,255,255,.85);border-color:rgba(255,255,255,.25)}
-@media(max-width:600px){.sc-hero__title{font-size:clamp(2.2rem,9vw,3.2rem)}.sc-hero__actions{flex-direction:column;align-items:center}}
+    .hyper-hero {
+        width: 100%;
+        padding: clamp(150px, 15vw, 300px) 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        background-color: var(--color-black, #000000);
+        overflow: hidden;
+        color: var(--color-white, #ffffff);
+        font-family: var(--font-main, 'Inter', sans-serif);
+    }
+
+    .hero-canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?q=80&w=2000');
+        background-size: cover;
+        background-position: center;
+        z-index: 1;
+        opacity: 0.15;
+        filter: grayscale(1) brightness(0.4);
+    }
+
+    .hero-overlay-dark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.2) 0%, #000 90%);
+        z-index: 2;
+    }
+
+    /* Huge Background Text - FITTED & CENTERED FIX */
+    .bg-text-large {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-accent, 'Bebas Neue', sans-serif);
+        font-size: 15vw;
+        color: rgba(255, 255, 255, 0.035);
+        text-transform: uppercase;
+        white-space: nowrap;
+        z-index: 3;
+        letter-spacing: -2px;
+        pointer-events: none;
+        overflow: hidden;
+    }
+
+    .hero-container {
+        width: 100%;
+        max-width: 1400px;
+        padding: 0 clamp(20px, 5vw, 40px);
+        position: relative;
+        z-index: 10;
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: clamp(40px, 6vw, 80px);
+        align-items: center;
+    }
+
+    h1.ultra-headline {
+        font-family: var(--font-accent, 'Bebas Neue', sans-serif);
+        font-size: clamp(3.5rem, 7vw, 9rem);
+        line-height: 0.85;
+        margin: 0;
+        text-transform: uppercase;
+        letter-spacing: -3px;
+        position: relative;
+    }
+
+    h1.ultra-headline b {
+        display: block;
+        color: white;
+    }
+
+    h1.ultra-headline span {
+        display: block;
+        color: transparent;
+        -webkit-text-stroke: 2px var(--brand, #ff0000);
+    }
+
+    .hero-tech-stats {
+        display: flex;
+        gap: clamp(20px, 4vw, 40px);
+        margin-top: 40px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 30px;
+    }
+
+    .stat-box h4 {
+        font-family: var(--font-accent, 'Bebas Neue', sans-serif);
+        font-size: clamp(2rem, 3.5vw, 3rem);
+        margin: 0;
+        color: var(--brand, #ff0000);
+    }
+
+    .stat-box p {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: #666;
+        margin: 5px 0 0 0;
+        font-weight: 800;
+    }
+
+    /* REFINED GLASS FORM - REMOVED INTERNAL PICTURES */
+    .glass-form-panel {
+        background: rgba(10, 10, 10, 0.6);
+        backdrop-filter: blur(30px);
+        -webkit-backdrop-filter: blur(30px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: clamp(30px, 5vw, 55px);
+        border-radius: 20px;
+        position: relative;
+        box-shadow: 0 50px 100px rgba(0, 0, 0, 0.8);
+        z-index: 15;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-top: 10px solid var(--brand, #ff0000);
+    }
+
+    .form-title {
+        text-align: center;
+        margin-bottom: clamp(25px, 4vw, 45px);
+        width: 100%;
+    }
+
+    .form-title img {
+        max-width: 250px;
+        height: auto;
+        margin-bottom: 10px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .form-title p {
+        font-family: var(--font-mono, 'Space Mono', monospace);
+        font-size: 0.8rem;
+        color: #888;
+        letter-spacing: 3px;
+        margin: 0;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+
+    /* FLOATING BADGE */
+    .floating-dispatch {
+        position: absolute;
+        bottom: -25px;
+        right: -25px;
+        background: white;
+        color: black;
+        padding: 20px 40px;
+        border-radius: 4px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        z-index: 20;
+        transform: rotate(5deg);
+    }
+
+    .floating-dispatch b {
+        font-family: var(--font-accent, 'Bebas Neue', sans-serif);
+        font-size: 2.2rem;
+        line-height: 1;
+    }
+
+    .floating-dispatch span {
+        font-size: 0.75rem;
+        color: var(--brand, #ff0000);
+        font-weight: 800;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+
+    @media (max-width: 1100px) {
+        .hyper-hero {
+            padding: 100px 0;
+        }
+
+        .hero-container {
+            grid-template-columns: 1fr;
+            text-align: center;
+            gap: 50px;
+        }
+
+        h1.ultra-headline {
+            font-size: clamp(3rem, 10vw, 6rem);
+            letter-spacing: -2px;
+        }
+
+        .hero-tech-stats {
+            justify-content: center;
+        }
+
+        .floating-dispatch {
+            display: none;
+        }
+
+        .bg-text-large {
+            font-size: 20vw;
+        }
+    }
 </style>
 
-<!-- ══════════════════════════════════════════════════════
-     SLIM CTA BAR — White strip above services
-     ══════════════════════════════════════════════════════ -->
-<section class="sc-hero-slim" aria-label="Quick call to action">
-    <div class="sc-hero-slim__inner">
-        <p class="sc-hero-slim__text">Ready to start your next project?
-            <a href="tel:+18137326285" class="sc-hero-slim__highlight">Give us a call →</a>
-        </p>
-    </div>
-</section>
+<section class="hyper-hero">
+    <div class="hero-canvas"></div>
+    <div class="hero-overlay-dark"></div>
+    <div class="bg-text-large" id="bg-text">ELITE RESPONSE</div>
 
-<style>
-.sc-hero-slim{background:#fff;padding:1.5rem 0;border-bottom:1px solid rgba(34,45,63,.06)}
-.sc-hero-slim__inner{max-width:1280px;margin:0 auto;padding:0 clamp(1.25rem,1rem + 2vw,3rem);text-align:center}
-.sc-hero-slim__text{font-family:'Montserrat',sans-serif;font-size:clamp(1rem,1.2vw,1.15rem);font-weight:600;color:var(--brand-navy,#222D3F);margin:0;letter-spacing:.01em}
-.sc-hero-slim__highlight{color:#fff;background:var(--brand,#F22F3A);padding:.45rem 1.2rem;border-radius:8px;text-decoration:none;font-weight:700;margin-left:.5rem;display:inline-block;transition:all .3s ease;box-shadow:0 2px 12px rgba(242,47,58,.25)}
-.sc-hero-slim__highlight:hover{background:var(--brand-dark,#AF2D37);color:#fff;box-shadow:0 4px 20px rgba(242,47,58,.45);transform:translateY(-1px)}
-</style>
-
-<!-- ══════════════════════════════════════════════════════
-     SERVICES — Dark navy, image card carousel
-     ══════════════════════════════════════════════════════ -->
-<section class="sc-services" id="services" aria-label="Our construction services">
-    <div class="sc-services__inner">
-
-        <!-- Section header -->
-        <div class="sc-services__header">
-            <div class="sc-services__header-left">
-                <span class="sc-services__label">WHAT WE DO</span>
-                <h2 class="sc-services__title">Built for <em>Commercial</em><br>& <em>Residential</em></h2>
-                <p class="sc-services__subtitle">From concept to completion — every project backed by decades of Florida construction experience.</p>
+    <div class="hero-container">
+        <!-- LEFT CONTENT -->
+        <div class="reveal">
+            <div style="border: 1px solid var(--brand, #ff0000); padding: 8px 20px; display: inline-block; border-radius: 100px; color: var(--brand, #ff0000); font-family: var(--font-accent, 'Bebas Neue', sans-serif); letter-spacing: 2px; margin-bottom: 30px; font-size: 0.9rem;">
+                CERTIFIED AGENCY EXCELLENCE
             </div>
-            <div class="sc-services__header-right">
-                <div class="sc-services__stats">
-                    <div class="sc-services__stat">
-                        <span class="sc-services__stat-num">250+</span>
-                        <span class="sc-services__stat-label">Projects Completed</span>
-                    </div>
-                    <div class="sc-services__stat">
-                        <span class="sc-services__stat-num">10+</span>
-                        <span class="sc-services__stat-label">Years Experience</span>
-                    </div>
+            <h1 class="ultra-headline"><b>ELITE-GRADE</b><span>RESTORATION</span></h1>
+            <p style="color: rgba(255,255,255,0.6); font-size: clamp(1.1rem, 1.5vw, 1.4rem); line-height: 1.7; margin: 30px 0; max-width: 600px;">
+                Operating at the apex of recovery science. We deliver rapid, surgical stabilization for high-value properties in the Tampa Bay market.
+            </p>
+            <div class="hero-tech-stats">
+                <div class="stat-box">
+                    <h4>45</h4>
+                    <p>Min Response</p>
                 </div>
-                <a href="<?php echo esc_url(home_url('/services/')); ?>" class="sc-services__view-all">Explore All Services <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a>
-            </div>
-        </div>
-
-        <?php
-        $services = new WP_Query([
-            'post_type'      => 'service',
-            'posts_per_page' => 8,
-            'orderby'        => 'menu_order',
-            'order'          => 'ASC',
-            'no_found_rows'  => true,
-        ]);
-        $fallback = [
-            ['title' => 'Commercial Services',      'desc' => 'Office build-outs, retail spaces, and commercial projects built to your specs.'],
-            ['title' => 'Residential',               'desc' => 'Custom homes and residential builds from foundation to finish.'],
-            ['title' => 'Hospitality Services',      'desc' => 'Restaurants, hotels, and venues crafted for guest experiences.'],
-            ['title' => 'Remodeling & Renovations',  'desc' => 'Kitchen, bath, and whole-home transformations with premium finishes.'],
-            ['title' => 'Roofing',                   'desc' => 'New roofs, repairs, and replacements for Florida weather.'],
-            ['title' => 'Concrete & Foundation',     'desc' => 'Driveways, patios, slabs, and structural foundations.'],
-        ];
-        $has_posts = $services->have_posts();
-        $card_count = $has_posts ? $services->post_count : count($fallback);
-        ?>
-
-        <div class="sc-services__carousel">
-            <button class="sc-services__arrow sc-services__arrow--prev" id="svc-prev" aria-label="Previous"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
-            <div class="sc-services__track-wrap">
-                <div class="sc-services__track" id="svc-track">
-                    <?php if ($has_posts) :
-                        $i = 0; while ($services->have_posts()) : $services->the_post();
-                        $thumb = get_the_post_thumbnail_url(get_the_ID(), 'medium_large');
-                        $excerpt = wp_trim_words(get_the_excerpt(), 12); ?>
-                    <a href="<?php the_permalink(); ?>" class="sc-services__card">
-                        <span class="sc-services__card-num"><?php echo str_pad($i + 1, 2, '0', STR_PAD_LEFT); ?></span>
-                        <div class="sc-services__card-img">
-                            <?php if ($thumb) : ?><img src="<?php echo esc_url($thumb); ?>" alt="<?php the_title_attribute(); ?>" loading="lazy" decoding="async">
-                            <?php else : ?><div class="sc-services__card-placeholder" style="background:linear-gradient(135deg,hsl(<?php echo 215+$i*20;?>,35%,22%) 0%,hsl(<?php echo 215+$i*20;?>,25%,35%) 100%);"></div><?php endif; ?>
-                            <div class="sc-services__card-overlay" aria-hidden="true"><span class="sc-services__card-cta">View Service →</span></div>
-                        </div>
-                        <div class="sc-services__card-body">
-                            <h3 class="sc-services__card-title"><?php the_title(); ?> <svg class="sc-services__card-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></h3>
-                            <p class="sc-services__card-desc"><?php echo esc_html($excerpt); ?></p>
-                        </div>
-                    </a>
-                    <?php $i++; endwhile; wp_reset_postdata(); else :
-                        foreach ($fallback as $i => $svc) : ?>
-                    <a href="<?php echo esc_url(home_url('/services/')); ?>" class="sc-services__card">
-                        <span class="sc-services__card-num"><?php echo str_pad($i + 1, 2, '0', STR_PAD_LEFT); ?></span>
-                        <div class="sc-services__card-img">
-                            <div class="sc-services__card-placeholder" style="background:linear-gradient(135deg,hsl(<?php echo 215+$i*20;?>,35%,22%) 0%,hsl(<?php echo 215+$i*20;?>,25%,35%) 100%);"></div>
-                            <div class="sc-services__card-overlay" aria-hidden="true"><span class="sc-services__card-cta">View Service →</span></div>
-                        </div>
-                        <div class="sc-services__card-body">
-                            <h3 class="sc-services__card-title"><?php echo esc_html($svc['title']); ?> <svg class="sc-services__card-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></h3>
-                            <p class="sc-services__card-desc"><?php echo esc_html($svc['desc']); ?></p>
-                        </div>
-                    </a>
-                    <?php endforeach; endif; ?>
+                <div class="stat-box">
+                    <h4>100%</h4>
+                    <p>Precision</p>
+                </div>
+                <div class="stat-box">
+                    <h4>24/7</h4>
+                    <p>Active Radar</p>
                 </div>
             </div>
-            <button class="sc-services__arrow sc-services__arrow--next" id="svc-next" aria-label="Next"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
         </div>
 
-        <div class="sc-services__dots" id="svc-dots">
-            <?php for ($d = 0; $d < max(1, $card_count - 2); $d++) : ?>
-                <button class="sc-services__dot<?php echo $d === 0 ? ' active' : ''; ?>" data-idx="<?php echo $d; ?>" aria-label="Slide <?php echo $d+1; ?>"></button>
-            <?php endfor; ?>
+        <!-- RIGHT FORM -->
+        <div style="position: relative;" class="reveal">
+            <div class="glass-form-panel" id="form-panel">
+                <div class="form-title">
+                    <img src="https://restowrx.com/wp-content/uploads/2025/04/GetAttachmentThumbnail.png" alt="Restowrx Logo" width="220" height="44">
+                    <p>DISPATCH CENTER</p>
+                </div>
+
+                <?php 
+                // Render Hero CF7 Form
+                echo do_shortcode('[contact-form-7 id="3191cf3" title="Hero Form/ Contact Form"]'); 
+                ?>
+
+                <div class="floating-dispatch" id="dispatch-badge">
+                    <span>HOTLINE</span>
+                    <b>813.699.4009</b>
+                </div>
+            </div>
         </div>
     </div>
 </section>
-<style>
-.sc-services{background:radial-gradient(ellipse at 50% 50%,#1a2d45 0%,#0A1628 70%);padding:clamp(4rem,6vw,7rem) 0;position:relative;overflow:hidden}
-.sc-services::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(24,55,93,.4) 0%,transparent 65%);pointer-events:none}
-.sc-services::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
-.sc-services__inner{max-width:1280px;margin:0 auto;padding:0 clamp(1.25rem,1rem + 2vw,3rem);position:relative;z-index:1}
-.sc-services__header{display:flex;justify-content:space-between;align-items:flex-start;gap:3rem;margin-bottom:clamp(3rem,5vw,4rem)}
-.sc-services__header-left{flex:1;max-width:540px}
-.sc-services__header-right{flex:0 0 auto;padding-top:.5rem;display:flex;flex-direction:column;align-items:center;gap:2rem}
-.sc-services__label{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--brand,#F22F3A);margin-bottom:1rem;padding-bottom:.6rem;position:relative}
-.sc-services__label::after{content:'';position:absolute;bottom:0;left:0;height:3px;width:100%;background:linear-gradient(90deg,var(--brand,#F22F3A),rgba(242,47,58,.3));border-radius:2px;animation:sc-label-pulse 2.5s ease-in-out infinite}
-@keyframes sc-label-pulse{0%,100%{opacity:1;transform:scaleX(1)}50%{opacity:.6;transform:scaleX(.85)}}
-.sc-services__title{font-family:'Montserrat',sans-serif;font-size:clamp(2rem,3vw,3rem);font-weight:800;color:#fff;line-height:1.15;margin:0}
-.sc-services__title em{font-style:normal;color:var(--brand,#F22F3A)}
-.sc-services__subtitle{color:rgba(255,255,255,.5);font-size:.95rem;line-height:1.7;margin:.75rem 0 0;max-width:420px}
-/* Stats row */
-.sc-services__stats{display:flex;gap:2.5rem}
-.sc-services__stat{display:flex;flex-direction:column;align-items:center}
-.sc-services__stat-num{font-family:'Montserrat',sans-serif;font-size:1.8rem;font-weight:800;color:#fff;line-height:1}
-.sc-services__stat-label{font-size:.7rem;font-weight:600;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.1em;margin-top:.35rem}
-/* CTA button */
-.sc-services__view-all{display:inline-flex;align-items:center;gap:.5rem;color:rgba(255,255,255,.9);font-size:.8rem;font-weight:700;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;padding:.75rem 1.75rem;background:transparent;border:2px solid rgba(255,255,255,.2);border-radius:8px;transition:all .35s ease}
-.sc-services__view-all:hover{background:#F22F3A;border-color:#F22F3A;color:#fff;box-shadow:0 0 25px rgba(242,47,58,.5),0 0 60px rgba(242,47,58,.2);transform:translateY(-2px);letter-spacing:.1em}
-.sc-services__view-all svg{transition:transform .3s}
-.sc-services__view-all:hover svg{transform:translateX(3px)}
-.sc-services__carousel{position:relative;display:flex;align-items:center;gap:1.25rem}
-.sc-services__track-wrap{flex:1;overflow:hidden;padding:2.5rem 0 3rem;margin:-2.5rem 0 -3rem}
-.sc-services__track{display:flex;gap:1.5rem;will-change:transform}
-.sc-services__track.is-sliding{transition:transform .55s cubic-bezier(.22,1,.36,1)}
-.sc-services__arrow{flex-shrink:0;width:48px;height:48px;border-radius:50%;border:2px solid rgba(255,255,255,.2);background:rgba(255,255,255,.04);color:rgba(255,255,255,.7);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s ease;backdrop-filter:blur(4px);position:relative;overflow:hidden}
-.sc-services__arrow::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--brand,#F22F3A),#F22F3A);opacity:0;transition:opacity .3s ease;border-radius:50%}
-.sc-services__arrow:hover{border-color:var(--brand,#F22F3A);color:#fff;transform:scale(1.1);box-shadow:0 6px 20px rgba(242,47,58,.35)}
-.sc-services__arrow:hover::before{opacity:1}
-.sc-services__arrow svg{position:relative;z-index:1}
-.sc-services__card{flex:0 0 calc(33.333% - 1rem);min-width:calc(33.333% - 1rem);text-decoration:none;display:flex;flex-direction:column;border-radius:14px;overflow:hidden;background:#fff;border:1px solid rgba(255,255,255,.06);position:relative;transition:transform .5s cubic-bezier(.22,1,.36,1),box-shadow .5s ease,border-color .3s,opacity .4s ease,filter .4s ease}
-.sc-services__card:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 12px 24px rgba(0,0,0,.25);border-color:rgba(242,47,58,.3)}
-.sc-services__card-num{position:absolute;top:12px;left:16px;z-index:5;font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:800;color:#fff;background:var(--brand,#F22F3A);padding:4px 10px;border-radius:6px;letter-spacing:.05em;box-shadow:0 4px 12px rgba(242,47,58,.35);transition:transform .3s ease}
-.sc-services__card:hover .sc-services__card-num{transform:translateY(-2px) scale(1.05)}
-.sc-services__card.is-center{transform:scale(1.06);box-shadow:0 10px 30px rgba(0,0,0,.3),0 0 40px rgba(242,47,58,.08);border-color:rgba(242,47,58,.25);z-index:2;opacity:1;filter:brightness(1)}
-.sc-services__card.is-center:hover{transform:scale(1.08) translateY(-4px);box-shadow:0 14px 32px rgba(0,0,0,.3),0 0 50px rgba(242,47,58,.1)}
-.sc-services__card.is-side{opacity:.5;filter:brightness(.65);transform:scale(.93)}
-.sc-services__card.is-side:hover{opacity:.8;filter:brightness(.8);transform:scale(.95) translateY(-4px)}
-.sc-services__card-img{width:100%;aspect-ratio:3/4;overflow:hidden;position:relative}
-.sc-services__card-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.22,1,.36,1)}
-.sc-services__card:hover .sc-services__card-img img{transform:scale(1.08)}
-.sc-services__card-placeholder{width:100%;height:100%;transition:transform .6s cubic-bezier(.22,1,.36,1)}
-.sc-services__card:hover .sc-services__card-placeholder{transform:scale(1.08)}
-.sc-services__card-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(242,47,58,.85) 100%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:1.5rem;opacity:0;visibility:hidden;transition:opacity .35s ease,visibility .35s ease}
-.sc-services__card:hover .sc-services__card-overlay{opacity:1;visibility:visible}
-.sc-services__card-cta{color:#fff;font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.6rem 1.5rem;background:transparent;border:2px solid rgba(255,255,255,.3);border-radius:8px;transition:all .35s ease}
-.sc-services__card:hover .sc-services__card-cta{transform:translateY(-4px);background:#F22F3A;border-color:#F22F3A;box-shadow:0 0 20px rgba(242,47,58,.5),0 0 50px rgba(242,47,58,.2);letter-spacing:.12em}
-.sc-services__card-body{padding:1.25rem 1.25rem 1.5rem;background:#fff;border-top:none}
-.sc-services__card-title{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:700;color:var(--brand-navy,#222D3F);margin:0 0 .4rem;line-height:1.3;display:flex;align-items:center;gap:.4rem}
-.sc-services__card-arrow{opacity:.3;transition:opacity .3s,transform .3s;flex-shrink:0;stroke:var(--brand-navy,#222D3F)}
-.sc-services__card:hover .sc-services__card-arrow{opacity:1;transform:translateX(3px);stroke:var(--brand,#F22F3A)}
-.sc-services__card-desc{font-size:.82rem;color:rgba(34,45,63,.55);line-height:1.55;margin:0}
-.sc-services__dots{display:flex;justify-content:center;gap:.5rem;margin-top:3.5rem}
-.sc-services__dot{width:10px;height:10px;border-radius:50%;border:none;background:rgba(255,255,255,.15);cursor:pointer;transition:all .3s ease;padding:0}
-.sc-services__dot:hover{background:rgba(255,255,255,.35)}
-.sc-services__dot.active{background:var(--brand,#F22F3A);width:28px;border-radius:5px;box-shadow:0 0 8px rgba(242,47,58,.4)}
-@media(max-width:900px){.sc-services__header{flex-direction:column;gap:1.5rem}.sc-services__header-right{align-items:flex-start;flex-direction:row;gap:1.5rem;width:100%}.sc-services__stats{gap:2rem}.sc-services__card{flex:0 0 calc(50% - .75rem);min-width:calc(50% - .75rem)}.sc-services__card-num{font-size:.65rem}}
-@media(max-width:600px){.sc-services__card{flex:0 0 88%;min-width:88%}.sc-services__arrow{width:38px;height:38px}.sc-services__card-body{padding:1rem}}
-</style>
+
 <script>
-(function(){
-    var t = document.getElementById('svc-track');
-    if (!t) return;
-    var orig = Array.from(t.children);
-    var n = orig.length;
-    if (!n) return;
-    var dots = document.querySelectorAll('.sc-services__dot');
-    var autoTimer, busy = false;
+    document.addEventListener("mousemove", (e) => {
+        const x = (e.clientX - window.innerWidth / 2) / 200;
+        const y = (e.clientY - window.innerHeight / 2) / 200;
 
-    function gv() { return innerWidth > 900 ? 3 : innerWidth > 600 ? 2 : 1; }
-    var v = gv();
+        const formPanel = document.getElementById("form-panel");
+        const bgText = document.getElementById("bg-text");
 
-    /* Clone v cards to each end */
-    for (var k = 0; k < v; k++) {
-        var a = orig[k].cloneNode(true);
-        a.setAttribute('aria-hidden','true');
-        a.setAttribute('tabindex','-1');
-        t.appendChild(a);
+        if (formPanel) {
+            gsap.to(formPanel, { x: x * 5, y: y * 5, rotateY: x, rotateX: -y, duration: 1.2, ease: "power2.out" });
+        }
+        if (bgText) {
+            gsap.to(bgText, { x: -x * 3, y: -y * 3, duration: 2.5, ease: "power2.out" });
+        }
+    });
+</script>
+
+
+<!-- ══════════════════════════════════════════════════════
+     SECTION 2 — EMERGENCY TICKER: Scrolling CSS marquee
+     ══════════════════════════════════════════════════════ -->
+<style>
+    .resto-ticker-wrap {
+        --ticker-red: var(--brand, #ff0000);
+        --ticker-glow: rgba(255, 0, 0, 0.8);
+        width: 100%;
+        background-color: var(--ticker-red);
+        padding: 15px 0;
+        overflow: hidden;
+        white-space: nowrap;
+        position: relative;
+        display: flex;
+        align-items: center;
+        box-shadow: 0 0 50px var(--ticker-glow);
+        z-index: 99;
     }
-    for (var k = v - 1; k >= 0; k--) {
-        var b = orig[n - 1 - k].cloneNode(true);
-        b.setAttribute('aria-hidden','true');
-        b.setAttribute('tabindex','-1');
-        t.insertBefore(b, t.firstChild);
+
+    .resto-ticker-wrap::before,
+    .resto-ticker-wrap::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        width: clamp(50px, 10vw, 150px);
+        height: 100%;
+        z-index: 5;
     }
 
-    var c = t.children;
-    var i = v;
+    .resto-ticker-wrap::before {
+        left: 0;
+        background: linear-gradient(to right, var(--ticker-red), transparent);
+    }
 
-    function w() { return c[0].offsetWidth + (parseFloat(getComputedStyle(t).gap) || 24); }
+    .resto-ticker-wrap::after {
+        right: 0;
+        background: linear-gradient(to left, var(--ticker-red), transparent);
+    }
 
-    function cls() {
-        var mid = i + Math.floor(v / 2);
-        for (var j = 0; j < c.length; j++) {
-            c[j].classList.remove('is-center','is-side');
-            if (v >= 3) {
-                if (j === mid) c[j].classList.add('is-center');
-                else if (j >= i && j < i + v) c[j].classList.add('is-side');
-            }
+    .resto-ticker {
+        display: flex;
+        align-items: center;
+        animation: ticker-slide 30s linear infinite;
+        width: fit-content;
+    }
+
+    @keyframes ticker-slide {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+
+    .ticker-item {
+        display: flex;
+        align-items: center;
+        font-family: var(--font-accent, 'Bebas Neue', sans-serif);
+        color: white;
+        font-size: clamp(1.2rem, 2vw, 1.8rem);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        padding: 0 40px;
+        flex-shrink: 0;
+        line-height: 1;
+    }
+
+    .ticker-dot {
+        width: 10px;
+        height: 10px;
+        background-color: rgba(255, 255, 255, 0.6);
+        border-radius: 50%;
+        box-shadow: 0 0 15px white;
+        flex-shrink: 0;
+        margin: 0;
+    }
+
+    .emergency-text {
+        font-weight: 900;
+        text-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+</style>
+
+<div class="resto-ticker-wrap">
+    <div class="resto-ticker">
+        <div class="ticker-item">24/7 EMERGENCY RESPONSE</div>
+        <div class="ticker-dot"></div>
+        <div class="ticker-item">WATER DAMAGE RECOVERY</div>
+        <div class="ticker-dot"></div>
+        <div class="ticker-item"><span class="emergency-text">ELITE FIRE RESTORATION</span></div>
+        <div class="ticker-dot"></div>
+        <div class="ticker-item">MOLD REMEDIATION</div>
+        <div class="ticker-dot"></div>
+        <div class="ticker-item">STORM DAMAGE STABILIZATION</div>
+        <div class="ticker-dot"></div>
+        <div class="ticker-item">CERTIFIED DISASTER RECOVERY</div>
+        <div class="ticker-dot"></div>
+        
+        <!-- Duplicated content for seamless loop -->
+        <div class="ticker-item">24/7 EMERGENCY RESPONSE</div>
+        <div class="ticker-dot"></div>
+        <div class="ticker-item">WATER DAMAGE RECOVERY</div>
+        <div class="ticker-dot"></div>
+        <div class="ticker-item"><span class="emergency-text">ELITE FIRE RESTORATION</span></div>
+        <div class="ticker-dot"></div>
+        <div class="ticker-item">MOLD REMEDIATION</div>
+        <div class="ticker-dot"></div>
+        <div class="ticker-item">STORM DAMAGE STABILIZATION</div>
+        <div class="ticker-dot"></div>
+        <div class="ticker-item">CERTIFIED DISASTER RECOVERY</div>
+        <div class="ticker-dot"></div>
+    </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     SECTION 3 — SPECIALIZATIONS GRID: Loop or fallback
+     ══════════════════════════════════════════════════════ -->
+<style>
+    .services-grid-section {
+        --color-black: #000000;
+        --color-dark: #0a0a0a;
+        --glow-red: rgba(255, 0, 0, 0.5);
+        --transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+
+        width: 100%;
+        background-color: var(--color-black);
+        padding: clamp(60px, 8vw, 100px) 0;
+        color: white;
+        font-family: var(--font-main, 'Inter', sans-serif);
+        position: relative;
+    }
+
+    .grid-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 clamp(20px, 5vw, 40px);
+    }
+
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 30px;
+    }
+
+    .service-card {
+        background: var(--color-dark);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 50px 30px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        transition: var(--transition);
+        text-decoration: none;
+        color: #ffffff !important;
+        overflow: hidden;
+        height: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Forensic Numbering */
+    .card-number {
+        position: absolute;
+        top: 30px;
+        right: 40px;
+        font-family: var(--font-accent, 'Bebas Neue', sans-serif);
+        font-size: 4rem;
+        color: rgba(255, 255, 255, 0.02);
+        transition: var(--transition);
+        line-height: 1;
+    }
+
+    .service-card:hover .card-number {
+        color: rgba(255, 0, 0, 0.15);
+        transform: scale(1.1);
+    }
+
+    .service-card:hover {
+        background: #111111;
+        transform: translateY(-10px);
+        border-color: var(--brand, #ff0000);
+        box-shadow: 0 40px 80px rgba(0,0,0,0.8);
+    }
+
+    /* Red Top Line Animation */
+    .service-card::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 2px;
+        background: var(--brand, #ff0000);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: var(--transition);
+    }
+
+    .service-card:hover::before {
+        transform: scaleX(1);
+    }
+
+    .card-icon {
+        color: var(--brand, #ff0000);
+        margin-bottom: 40px;
+        filter: drop-shadow(0 0 10px var(--glow-red));
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+    }
+
+    .service-card:hover .card-icon {
+        transform: scale(1.1) rotate(-5deg);
+    }
+
+    .service-card h3 {
+        font-family: var(--font-accent, 'Bebas Neue', sans-serif);
+        font-size: clamp(2rem, 3vw, 2.8rem);
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        letter-spacing: 1px;
+        line-height: 1;
+        margin-top: 0;
+    }
+
+    .service-card h3 b { display: block; }
+    .service-card h3 span { color: var(--brand, #ff0000); }
+
+    .service-card p {
+        color: #888;
+        line-height: 1.6;
+        margin-bottom: 40px;
+        font-size: 0.95rem;
+        flex-grow: 1;
+        margin-top: 0;
+    }
+
+    .card-list {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 40px;
+        margin-top: 0;
+    }
+
+    .card-list li {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 12px;
+        font-size: 0.85rem;
+        color: #666;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .card-list li i {
+        color: var(--brand, #ff0000);
+        display: flex;
+        align-items: center;
+    }
+
+    .card-brief-link {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        font-family: var(--font-accent, 'Bebas Neue', sans-serif);
+        font-size: 1.4rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        transition: 0.3s;
+    }
+
+    .service-card:hover .card-brief-link {
+        color: var(--brand, #ff0000);
+        gap: 25px;
+    }
+
+    @media (max-width: 1200px) {
+        .services-grid {
+            grid-template-columns: repeat(2, 1fr);
         }
     }
 
-    function pos(anim) {
-        if (!anim) t.classList.remove('is-sliding');
-        else t.classList.add('is-sliding');
-        t.style.transform = 'translateX(-' + (i * w()) + 'px)';
-        cls();
-        var real = ((i - v) % n + n) % n;
-        dots.forEach(function(d, x) { d.classList.toggle('active', x === real); });
+    @media (max-width: 768px) {
+        .grid-container { padding: 0 20px; }
+        .services-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        .service-card { padding: 40px 25px; }
+    }
+</style>
+
+<section class="services-grid-section">
+    <div class="grid-container">
+        
+        <div style="text-align: center; margin-bottom: 80px;" class="reveal">
+            <span style="color: var(--brand, #ff0000); font-family: var(--font-mono, 'Space Mono', monospace); text-transform: uppercase; letter-spacing: 4px; font-size: 0.9rem; font-weight: 700; margin-bottom: 10px; display: block;">CORE COMPETENCIES</span>
+            <h2 style="font-family: var(--font-accent, 'Bebas Neue', sans-serif); font-size: clamp(3rem, 8vw, 6rem); line-height: 0.95; margin: 0; text-transform: uppercase; letter-spacing: 2px;">SPECIALIZATIONS</h2>
+        </div>
+
+        <div class="services-grid">
+            <?php
+            // Dynamic WP_Query loop for Service post type
+            $services_query = new WP_Query([
+                'post_type'      => 'service',
+                'post_status'    => 'publish',
+                'posts_per_page' => 8,
+                'orderby'        => 'menu_order',
+                'order'          => 'ASC',
+                'no_found_rows'  => true,
+            ]);
+
+            // Fallback content in case no services exist in the WP backend
+            $fallback_services = [
+                [
+                    'num'   => '01',
+                    'icon'  => 'droplets',
+                    'title' => 'Water<b>Extraction</b>',
+                    'desc'  => 'High-capacity extraction and precision thermal drying to stabilize structural integrity and mitigate secondary damage.',
+                    'list'  => ['Rapid Response', 'Thermal Imaging', 'Humidity Control']
+                ],
+                [
+                    'num'   => '02',
+                    'icon'  => 'flame',
+                    'title' => 'Fire<b>Damage</b>',
+                    'desc'  => 'Molecular deodorization and specialized soot removal. We restore the original atmospheric quality and structural safety of your property.',
+                    'list'  => ['Char Removal', 'Debris Recovery', 'Odor Removal']
+                ],
+                [
+                    'num'   => '03',
+                    'icon'  => 'shield-alert',
+                    'title' => 'Mold<b>Removal</b>',
+                    'desc'  => 'Clinical remediation using HEPA-grade filtration to eliminate airborne spores and ensure biological safety standards.',
+                    'list'  => ['Containment', 'Air Scrubbing', 'Anti-Microbial']
+                ],
+                [
+                    'num'   => '04',
+                    'icon'  => 'cloud-lightning',
+                    'title' => 'Storm<b>Impact</b>',
+                    'desc'  => 'Emergency board-up and structural stabilization following catastrophic meteorological outbreaks and flooding.',
+                    'list'  => ['Roof Tarping', 'Board Up', 'Tree Removal']
+                ],
+                [
+                    'num'   => '05',
+                    'icon'  => 'hammer',
+                    'title' => 'Complete<b>Build Back</b>',
+                    'desc'  => 'Advanced reconstruction in partnership with Spicola Construction. Returning your property to pre-loss perfection.',
+                    'list'  => ['Full Repair', 'Elite Finishing', 'Fast Turnaround']
+                ]
+            ];
+
+            if ($services_query->have_posts()) :
+                $idx = 1;
+                while ($services_query->have_posts()) : $services_query->the_post();
+                    $num = str_pad($idx, 2, '0', STR_PAD_LEFT);
+                    $title = get_the_title();
+                    
+                    // Format Title to make first word bold, subsequent ones normal
+                    $title_words = explode(' ', $title);
+                    $first_word = array_shift($title_words);
+                    $formatted_title = $first_word . '<b>' . implode(' ', $title_words) . '</b>';
+
+                    $desc = has_excerpt() ? get_the_excerpt() : wp_trim_words(strip_shortcodes(wp_strip_all_tags(get_the_content())), 20);
+                    
+                    // Determine Icon
+                    $icon = get_post_meta(get_the_ID(), '_service_icon', true);
+                    if (empty($icon)) {
+                        if (stripos($title, 'water') !== false || stripos($title, 'flood') !== false || stripos($title, 'dry') !== false) {
+                            $icon = 'droplets';
+                        } elseif (stripos($title, 'fire') !== false || stripos($title, 'soot') !== false || stripos($title, 'smoke') !== false) {
+                            $icon = 'flame';
+                        } elseif (stripos($title, 'mold') !== false || stripos($title, 'mildew') !== false) {
+                            $icon = 'shield-alert';
+                        } elseif (stripos($title, 'storm') !== false || stripos($title, 'wind') !== false || stripos($title, 'roof') !== false) {
+                            $icon = 'cloud-lightning';
+                        } else {
+                            $icon = 'hammer';
+                        }
+                    }
+
+                    // Map list features
+                    $features = get_post_meta(get_the_ID(), '_service_features', true);
+                    if (empty($features)) {
+                        if ($icon === 'droplets') {
+                            $features = ['Rapid Response', 'Thermal Imaging', 'Humidity Control'];
+                        } elseif ($icon === 'flame') {
+                            $features = ['Char Removal', 'Debris Recovery', 'Odor Removal'];
+                        } elseif ($icon === 'shield-alert') {
+                            $features = ['Containment', 'Air Scrubbing', 'Anti-Microbial'];
+                        } elseif ($icon === 'cloud-lightning') {
+                            $features = ['Roof Tarping', 'Board Up', 'Tree Removal'];
+                        } else {
+                            $features = ['Full Repair', 'Elite Finishing', 'Fast Turnaround'];
+                        }
+                    } else if (is_string($features)) {
+                        $features = array_map('trim', explode(',', $features));
+                    }
+                    ?>
+                    <a href="<?php the_permalink(); ?>" class="service-card reveal">
+                        <div class="card-number"><?php echo esc_html($num); ?></div>
+                        <div class="card-icon"><i data-lucide="<?php echo esc_attr($icon); ?>" size="56"></i></div>
+                        <h3><?php echo $formatted_title; ?></h3>
+                        <p><?php echo esc_html($desc); ?></p>
+                        <ul class="card-list">
+                            <?php foreach ($features as $feature) : ?>
+                                <li><i data-lucide="check-circle" size="14"></i> <?php echo esc_html($feature); ?></li>
+                            <?php endforeach; ?>
+                        </ul>
+                        <div class="card-brief-link">Access Briefing <i data-lucide="arrow-right"></i></div>
+                    </a>
+                    <?php
+                    $idx++;
+                endwhile;
+                wp_reset_postdata();
+            else :
+                // Render fallback static services
+                foreach ($fallback_services as $svc) :
+                    ?>
+                    <a href="<?php echo esc_url(home_url('/services/')); ?>" class="service-card reveal">
+                        <div class="card-number"><?php echo esc_html($svc['num']); ?></div>
+                        <div class="card-icon"><i data-lucide="<?php echo esc_attr($svc['icon']); ?>" size="56"></i></div>
+                        <h3><?php echo $svc['title']; ?></h3>
+                        <p><?php echo esc_html($svc['desc']); ?></p>
+                        <ul class="card-list">
+                            <?php foreach ($svc['list'] as $item) : ?>
+                                <li><i data-lucide="check-circle" size="14"></i> <?php echo esc_html($item); ?></li>
+                            <?php endforeach; ?>
+                        </ul>
+                        <div class="card-brief-link">Access Briefing <i data-lucide="arrow-right"></i></div>
+                    </a>
+                    <?php
+                endforeach;
+            endif;
+            ?>
+        </div>
+    </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════
+     SECTION 4 — WHY CHOOSE US: Tactical grid features
+     ══════════════════════════════════════════════════════ -->
+<style>
+    .rwx-why-choose {
+        --primary-red: var(--brand, #ff0000);
+        --deep-black: #050505;
+        --border-gray: rgba(255, 255, 255, 0.1);
+
+        width: 100%;
+        background-color: var(--deep-black);
+        padding: clamp(60px, 8vw, 100px) 0;
+        color: white;
+        font-family: var(--font-main, 'Inter', sans-serif);
+        position: relative;
+        overflow: hidden;
     }
 
-    /* Listen for transition end to snap clones */
-    t.addEventListener('transitionend', function(e) {
-        if (e.target !== t) return;
-        if (i >= n + v) { i = v; pos(false); }
-        else if (i < v)  { i = n + v - 1; pos(false); }
-        busy = false;
-    });
-
-    function go(dir) {
-        if (busy) return;
-        busy = true;
-        i += dir;
-        pos(true);
+    .rwx-why-choose::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background-image: 
+            linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+        background-size: 50px 50px;
+        pointer-events: none;
     }
 
-    function startAuto() { autoTimer = setInterval(function(){ go(1); }, 4500); }
-    function stopAuto() { clearInterval(autoTimer); }
+    .rwx-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 clamp(20px, 5vw, 40px);
+        position: relative;
+        z-index: 10;
+    }
 
-    document.getElementById('svc-prev').onclick = function() { stopAuto(); go(-1); startAuto(); };
-    document.getElementById('svc-next').onclick = function() { stopAuto(); go(1); startAuto(); };
-    dots.forEach(function(d) {
-        d.onclick = function() { stopAuto(); busy = false; i = v + (+this.dataset.idx); pos(true); busy = true; startAuto(); };
+    .rwx-header {
+        text-align: center;
+        margin-bottom: 80px;
+    }
+
+    .rwx-header .eyebrow {
+        color: var(--primary-red);
+        font-family: var(--font-mono, 'Space Mono', monospace);
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        font-size: 0.9rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    .rwx-header h2 {
+        font-family: var(--font-accent, 'Bebas Neue', sans-serif);
+        font-size: clamp(3rem, 8vw, 6rem);
+        line-height: 0.95;
+        margin: 0;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    .rwx-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+    }
+
+    .rwx-feature-card {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--border-gray);
+        padding: 50px 30px;
+        position: relative;
+        transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        box-sizing: border-box;
+    }
+
+    /* Tactical Corners */
+    .rwx-feature-card::before, .rwx-feature-card::after {
+        content: '';
+        position: absolute;
+        width: 10px; height: 10px;
+        border-color: var(--primary-red);
+        border-style: solid;
+        opacity: 0;
+        transition: 0.3s;
+    }
+    .rwx-feature-card::before {
+        top: 0; left: 0; border-width: 2px 0 0 2px;
+    }
+    .rwx-feature-card::after {
+        bottom: 0; right: 0; border-width: 0 2px 2px 0;
+    }
+
+    .rwx-feature-card:hover {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(255, 0, 0, 0.3);
+        transform: translateY(-10px);
+    }
+
+    .rwx-feature-card:hover::before, .rwx-feature-card:hover::after {
+        opacity: 1;
+        width: 20px; height: 20px;
+    }
+
+    .feature-icon {
+        width: 80px;
+        height: 80px;
+        background: rgba(255, 0, 0, 0.1);
+        border: 1px solid rgba(255, 0, 0, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 30px;
+        position: relative;
+    }
+
+    .feature-icon i {
+        color: var(--primary-red);
+        transition: 0.3s;
+        display: flex;
+        align-items: center;
+    }
+
+    .rwx-feature-card:hover .feature-icon i {
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 8px var(--primary-red));
+    }
+
+    .rwx-feature-card h3 {
+        font-family: var(--font-accent, 'Bebas Neue', sans-serif);
+        font-size: 2.2rem;
+        margin: 0 0 15px 0;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: white;
+    }
+
+    .rwx-feature-card p {
+        color: #888;
+        line-height: 1.6;
+        font-size: 0.95rem;
+        margin: 0;
+    }
+
+    .rwx-feature-number {
+        position: absolute;
+        bottom: 20px;
+        left: 30px;
+        font-family: var(--font-mono, 'Space Mono', monospace);
+        font-size: 0.7rem;
+        color: var(--primary-red);
+        opacity: 0.3;
+        letter-spacing: 2px;
+    }
+
+    /* Vertical line decor */
+    .rwx-decor-line {
+        position: absolute;
+        top: 0; right: 10%;
+        width: 1px; height: 100%;
+        background: linear-gradient(to bottom, transparent, rgba(255,0,0,0.2), transparent);
+        z-index: 1;
+    }
+
+    @media (max-width: 1024px) {
+        .rwx-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 600px) {
+        .rwx-grid {
+            grid-template-columns: 1fr;
+        }
+        .rwx-header h2 {
+            font-size: 3.5rem;
+        }
+    }
+</style>
+
+<section class="rwx-why-choose">
+    <div class="rwx-decor-line"></div>
+    <div class="rwx-container">
+        
+        <div class="rwx-header reveal">
+            <span class="eyebrow">Strategic Advantage</span>
+            <h2>Why Restowrx Elite?</h2>
+        </div>
+
+        <div class="rwx-grid">
+            
+            <!-- Feature 1 -->
+            <div class="rwx-feature-card reveal">
+                <span class="rwx-feature-number">PROT_01</span>
+                <div class="feature-icon">
+                    <i data-lucide="timer" size="40"></i>
+                </div>
+                <h3>Rapid Deploy</h3>
+                <p>On-site in 60 minutes or less. Every second matters when mitigating secondary damage.</p>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="rwx-feature-card reveal">
+                <span class="rwx-feature-number">PROT_02</span>
+                <div class="feature-icon">
+                    <i data-lucide="shield-check" size="40"></i>
+                </div>
+                <h3>Elite Team</h3>
+                <p>IICRC certified specialists trained in advanced structure drying and biohazard protocols.</p>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="rwx-feature-card reveal">
+                <span class="rwx-feature-number">PROT_03</span>
+                <div class="feature-icon">
+                    <i data-lucide="microscope" size="40"></i>
+                </div>
+                <h3>Advanced Tech</h3>
+                <p>Using thermal imaging and industrial moisture mapping to detect hidden moisture paths.</p>
+            </div>
+
+            <!-- Feature 4 -->
+            <div class="rwx-feature-card reveal">
+                <span class="rwx-feature-number">PROT_04</span>
+                <div class="feature-icon">
+                    <i data-lucide="phone-incoming" size="40"></i>
+                </div>
+                <h3>24/7 Dispatch</h3>
+                <p>Strategic response units are active 24/7/365. Emergency command is always listening.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════
+     SECTION 5 — REVIEWS: Custom quote carousel slider
+     ══════════════════════════════════════════════════════ -->
+<style>
+    .resto-reviews {
+        --color-red: var(--brand, #ff0000);
+        --color-black: #000000;
+        --color-white: #ffffff;
+        --color-gold: #FFD700;
+
+        width: 100%;
+        background: radial-gradient(circle at 70% 50%, #4a0909 0%, #170000 100%);
+        padding: clamp(60px, 10vw, 120px) 0;
+        color: white;
+        font-family: var(--font-main, 'Inter', sans-serif);
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Technical Grid Background */
+    .reviews-bg-grid {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background-image: 
+            linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
+        background-size: 50px 50px;
+        pointer-events: none;
+    }
+
+    .reviews-container {
+        width: 100%;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 clamp(20px, 5vw, 40px);
+        position: relative;
+        z-index: 10;
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 60px;
+        align-items: center;
+    }
+
+    /* LEFT SIDE: HEADING & STATS */
+    .reviews-header {
+        position: relative;
+    }
+
+    .reviews-header::before {
+        content: '';
+        position: absolute;
+        left: -40px;
+        top: 0;
+        width: 4px;
+        height: 100px;
+        background: var(--color-white);
+    }
+
+    .reviews-subtitle {
+        color: rgba(255, 255, 255, 0.7);
+        font-family: var(--font-main);
+        font-weight: 800;
+        font-size: 0.9rem;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        display: block;
+    }
+
+    .reviews-header h2 {
+        font-family: var(--font-accent, 'Bebas Neue', sans-serif);
+        font-size: clamp(3.5rem, 5vw, 5.5rem);
+        margin: 0 0 30px 0;
+        line-height: 0.9;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+
+    .reviews-header h2 span {
+        color: transparent;
+        -webkit-text-stroke: 2px rgba(255, 255, 255, 0.8);
+    }
+
+    .leave-review-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: transparent;
+        border: 1px solid white;
+        color: white !important;
+        padding: 15px 30px;
+        font-family: var(--font-accent, 'Bebas Neue', sans-serif);
+        font-size: 1.2rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        text-decoration: none !important;
+        transition: 0.3s;
+        border-radius: 4px;
+    }
+
+    .leave-review-btn:hover {
+        background: white;
+        color: var(--color-black) !important;
+        box-shadow: 0 0 20px rgba(255,255,255,0.4);
+    }
+
+    /* RIGHT SIDE: CUSTOM CAROUSEL */
+    .custom-carousel-container {
+        position: relative;
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 8px;
+        padding: clamp(30px, 5vw, 60px);
+        box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+        box-sizing: border-box;
+    }
+
+    .custom-carousel-container::after,
+    .custom-carousel-container::before {
+        content: '';
+        position: absolute;
+        width: 80px; height: 80px;
+        pointer-events: none;
+    }
+
+    .custom-carousel-container::after {
+        top: -15px; right: -15px;
+        border-top: 2px solid rgba(255,255,255,0.4);
+        border-right: 2px solid rgba(255,255,255,0.4);
+    }
+
+    .custom-carousel-container::before {
+        bottom: -15px; left: -15px;
+        border-bottom: 2px solid rgba(255,255,255,0.4);
+        border-left: 2px solid rgba(255,255,255,0.4);
+    }
+
+    .carousel-track {
+        position: relative;
+        min-height: 220px;
+    }
+
+    .carousel-slide {
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+    }
+
+    .carousel-slide.active {
+        opacity: 1;
+        visibility: visible;
+        position: relative;
+    }
+
+    .slide-stars {
+        display: flex;
+        gap: 5px;
+        color: var(--color-gold);
+        margin-bottom: 20px;
+    }
+
+    .slide-stars i {
+        display: flex;
+        align-items: center;
+    }
+
+    .slide-text {
+        font-size: clamp(1.1rem, 1.4vw, 1.3rem);
+        font-style: italic;
+        line-height: 1.6;
+        color: #eee;
+        margin: 0 0 20px 0;
+    }
+
+    .slide-author {
+        font-family: var(--font-accent, 'Bebas Neue', sans-serif);
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 1.5rem;
+        letter-spacing: 2px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .slide-author img {
+        width: 25px;
+        height: auto;
+    }
+
+    /* Carousel Controls */
+    .carousel-controls {
+        display: flex;
+        justify-content: flex-end;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .nav-btn {
+        background: transparent;
+        border: 1px solid rgba(255,255,255,0.2);
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: 0.3s;
+        padding: 0;
+    }
+
+    .nav-btn:hover {
+        background: white;
+        color: var(--color-black);
+        border-color: white;
+    }
+
+    .nav-btn i {
+        display: flex;
+        align-items: center;
+    }
+
+    @media (max-width: 1024px) {
+        .reviews-container {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+        .reviews-header::before {
+            display: none;
+        }
+        .reviews-header h2 {
+            font-size: 4.5rem;
+        }
+        .carousel-controls {
+            justify-content: center;
+        }
+    }
+</style>
+
+<section class="resto-reviews">
+    <div class="reviews-bg-grid"></div>
+    <div class="reviews-container">
+        
+        <!-- LEFT: STATS & HEADER -->
+        <div class="reviews-header reveal">
+            <span class="reviews-subtitle">// AFTER ACTION REPORTS //</span>
+            <h2>PROVEN <span>EXECUTION</span></h2>
+            
+            <a href="https://g.page/r/CSnpRAQ17nXnEAE/review" target="_blank" class="leave-review-btn" rel="noopener noreferrer">
+                <i data-lucide="message-square-plus"></i> SUBMIT REPORT
+            </a>
+        </div>
+
+        <!-- RIGHT: CUSTOM CAROUSEL -->
+        <div class="custom-carousel-container reveal">
+            <i data-lucide="quote" size="48" style="color: rgba(255,255,255,0.05); position: absolute; top: 20px; left: 20px;"></i>
+            
+            <div class="carousel-track">
+                
+                <!-- SLIDE 1 -->
+                <div class="carousel-slide active">
+                    <div class="slide-stars">
+                        <i data-lucide="star" fill="currentColor" size="20"></i>
+                        <i data-lucide="star" fill="currentColor" size="20"></i>
+                        <i data-lucide="star" fill="currentColor" size="20"></i>
+                        <i data-lucide="star" fill="currentColor" size="20"></i>
+                        <i data-lucide="star" fill="currentColor" size="20"></i>
+                    </div>
+                    <p class="slide-text">"After Hurricane Milton left significant damage to our home, we were overwhelmed... RestoWrx turned a stressful situation into a smooth recovery process. Lauren and the team were professional, responsive, and genuinely compassionate."</p>
+                    <div class="slide-author">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" width="25" height="25">
+                        LEIGH VALENTI
+                    </div>
+                </div>
+
+                <!-- SLIDE 2 -->
+                <div class="carousel-slide">
+                    <div class="slide-stars">
+                        <i data-lucide="star" fill="currentColor" size="20"></i>
+                        <i data-lucide="star" fill="currentColor" size="20"></i>
+                        <i data-lucide="star" fill="currentColor" size="20"></i>
+                        <i data-lucide="star" fill="currentColor" size="20"></i>
+                        <i data-lucide="star" fill="currentColor" size="20"></i>
+                    </div>
+                    <p class="slide-text">"I recently hired RestoWrx to replace drywall damaged by Hurricane Milton... From start to finish, their team was professional, knowledgeable, and efficient. A special shout-out to Alek for going above and beyond."</p>
+                    <div class="slide-author">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" width="25" height="25">
+                        EUNICE PAYANO
+                    </div>
+                </div>
+
+                <!-- SLIDE 3 -->
+                <div class="carousel-slide">
+                    <div class="slide-stars">
+                        <i data-lucide="star" fill="currentColor" size="20"></i>
+                        <i data-lucide="star" fill="currentColor" size="20"></i>
+                        <i data-lucide="star" fill="currentColor" size="20"></i>
+                        <i data-lucide="star" fill="currentColor" size="20"></i>
+                        <i data-lucide="star" fill="currentColor" size="20"></i>
+                    </div>
+                    <p class="slide-text">"Thank God for Restowrx! As a property manager I have worked with 11 different restoration companies and this one by far takes the cake... transparent, thorough and see the jobs through! Yianni has been a breath of fresh air."</p>
+                    <div class="slide-author">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" width="25" height="25">
+                        THEOHARI TSAGARIS
+                    </div>
+                </div>
+
+                <!-- SLIDE 4 -->
+                <div class="carousel-slide">
+                    <div class="slide-stars">
+                        <i data-lucide="star" fill="currentColor" size="20"></i>
+                        <i data-lucide="star" fill="currentColor" size="20"></i>
+                        <i data-lucide="star" fill="currentColor" size="20"></i>
+                        <i data-lucide="star" fill="currentColor" size="20"></i>
+                        <i data-lucide="star" fill="currentColor" size="20"></i>
+                    </div>
+                    <p class="slide-text">"We had the fortunate opportunity to work with RestoWrx when our home was flooded. Alek, Lauren and Joe were there on day 2. The team did awesome work... thankfully these people made a terrible situation manageable."</p>
+                    <div class="slide-author">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" width="25" height="25">
+                        PAUL CAPUTO
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- CAROUSEL CONTROLS -->
+            <div class="carousel-controls">
+                <button class="nav-btn prev" aria-label="Previous review"><i data-lucide="chevron-left"></i></button>
+                <button class="nav-btn next" aria-label="Next review"><i data-lucide="chevron-right"></i></button>
+            </div>
+
+        </div>
+        
+    </div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const slides = document.querySelectorAll('.carousel-slide');
+        const prevBtn = document.querySelector('.nav-btn.prev');
+        const nextBtn = document.querySelector('.nav-btn.next');
+        if (!slides.length || !prevBtn || !nextBtn) return;
+
+        let currentSlide = 0;
+        let slideInterval;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === index) {
+                    slide.classList.add('active');
+                }
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            resetInterval();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            resetInterval();
+        });
+
+        function startInterval() {
+            slideInterval = setInterval(nextSlide, 6000);
+        }
+
+        function resetInterval() {
+            clearInterval(slideInterval);
+            startInterval();
+        }
+
+        startInterval();
     });
-    addEventListener('resize', function() { v = gv(); pos(false); });
-
-    pos(false);
-    startAuto();
-
-    var sx = 0, df = 0;
-    t.addEventListener('touchstart', function(e) { sx = e.touches[0].clientX; stopAuto(); }, {passive:true});
-    t.addEventListener('touchmove', function(e) { df = sx - e.touches[0].clientX; }, {passive:true});
-    t.addEventListener('touchend', function() { if (Math.abs(df) > 40) go(df > 0 ? 1 : -1); df = 0; startAuto(); });
-})();
 </script>
 
-<!-- ══════════════════════════════════════════════════════
-     WHY CHOOSE US — Light bg, bold trust signals
-     ══════════════════════════════════════════════════════ -->
-<section class="hwh-why" aria-label="Why choose Spicola Construction">
-    <div class="hwh-section-inner">
-        <div class="hwh-why__grid">
-            <div class="hwh-why__content reveal">
-                <span class="hwh-label">The Spicola Difference</span>
-                <h2 class="hwh-section-title">Why Tampa Bay<br>Chooses <em>Us</em></h2>
-                <p class="hwh-section-desc">We built our reputation one project at a time — delivering quality craftsmanship, honest pricing, and work that stands the test of time.</p>
-                <ul class="hwh-why__list">
-                    <li class="hwh-why__item">
-                        <span class="hwh-why__check" aria-hidden="true">✔</span>
-                        <div>
-                            <strong>Licensed General Contractor</strong>
-                            <p>Fully licensed CGC and insured for residential and commercial projects in Florida.</p>
-                        </div>
-                    </li>
-                    <li class="hwh-why__item">
-                        <span class="hwh-why__check" aria-hidden="true">✔</span>
-                        <div>
-                            <strong>Transparent Pricing</strong>
-                            <p>Detailed estimates before work begins. No surprises, no change-order games.</p>
-                        </div>
-                    </li>
-                    <li class="hwh-why__item">
-                        <span class="hwh-why__check" aria-hidden="true">✔</span>
-                        <div>
-                            <strong>10+ Years Experience</strong>
-                            <p>10+ years of construction expertise across residential, commercial, and renovation projects.</p>
-                        </div>
-                    </li>
-                    <li class="hwh-why__item">
-                        <span class="hwh-why__check" aria-hidden="true">✔</span>
-                        <div>
-                            <strong>On Time, On Budget</strong>
-                            <p>We respect your timeline and your investment — no delays, no excuses.</p>
-                        </div>
-                    </li>
-                </ul>
-                <a href="<?php echo esc_url(home_url('/about/')); ?>" class="hwh-btn hwh-btn--red">Meet Our Team →</a>
-            </div>
-            <div class="hwh-why__stats reveal">
-                <div class="hwh-why__stat-card">
-                    <span class="hwh-why__stat-num">500+</span>
-                    <span class="hwh-why__stat-lbl">Projects Completed</span>
-                </div>
-                <div class="hwh-why__stat-card">
-                    <span class="hwh-why__stat-num">50+</span>
-                    <span class="hwh-why__stat-lbl">5-Star Reviews</span>
-                </div>
-                <div class="hwh-why__stat-card hwh-why__stat-card--accent">
-                    <span class="hwh-why__stat-num">10+</span>
-                    <span class="hwh-why__stat-lbl">Years Experience</span>
-                </div>
-                <div class="hwh-why__stat-card">
-                    <span class="hwh-why__stat-num">100%</span>
-                    <span class="hwh-why__stat-lbl">Satisfaction Guaranteed</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
 <!-- ══════════════════════════════════════════════════════
-     RECENT WORKS — Portfolio showcase, gradient bg
+     SECTION 6 — BOTTOM CTA: Pulsing radar & Google Map
      ══════════════════════════════════════════════════════ -->
-<?php
-$portfolio = new WP_Query([
-    'post_type'      => 'portfolio',
-    'posts_per_page' => 6,
-    'post_status'    => 'publish',
-    'orderby'        => 'date',
-    'order'          => 'DESC',
-    'no_found_rows'  => true,
-]);
-if ($portfolio->have_posts()): ?>
-<section class="sc-works" id="recent-works" aria-label="Recent projects">
-    <div class="sc-works__glow" aria-hidden="true"></div>
-    <div class="sc-works__grid-bg" aria-hidden="true"></div>
-    <div class="sc-works__inner">
-        <div class="sc-works__header">
-            <div>
-                <span class="sc-works__label">Our Work</span>
-                <h2 class="sc-works__title">Recent <em>Projects</em></h2>
-            </div>
-            <a href="<?php echo esc_url(get_post_type_archive_link('portfolio')); ?>" class="sc-works__view-all">View All Projects <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a>
-        </div>
-        <div class="sc-works__grid">
-            <?php while ($portfolio->have_posts()): $portfolio->the_post();
-                $types = get_the_terms(get_the_ID(), 'project_type');
-                $type  = ($types && !is_wp_error($types)) ? $types[0]->name : '';
-                $year  = get_post_meta(get_the_ID(), '_portfolio_year', true);
-            ?>
-            <a href="<?php the_permalink(); ?>" class="sc-works__card reveal">
-                <div class="sc-works__card-img">
-                    <?php if (has_post_thumbnail()):
-                        the_post_thumbnail('medium_large', ['loading' => 'lazy', 'decoding' => 'async', 'alt' => esc_attr(get_the_title())]);
-                    else: ?>
-                        <div class="sc-works__card-placeholder"></div>
-                    <?php endif; ?>
-                    <div class="sc-works__card-overlay" aria-hidden="true">
-                        <span class="sc-works__card-cta">View Project →</span>
-                    </div>
-                </div>
-                <div class="sc-works__card-body">
-                    <h3 class="sc-works__card-title"><?php the_title(); ?></h3>
-                    <?php if ($type || $year): ?>
-                    <span class="sc-works__card-meta">
-                        <?php echo esc_html($type); ?><?php if ($type && $year) echo ' · '; ?><?php echo esc_html($year); ?>
-                    </span>
-                    <?php endif; ?>
-                </div>
-            </a>
-            <?php endwhile; wp_reset_postdata(); ?>
-        </div>
-    </div>
-</section>
 <style>
-.sc-works{background:radial-gradient(ellipse at 50% 50%,#1a2d45 0%,#0A1628 70%);padding:clamp(4rem,6vw,7rem) 0;position:relative;overflow:hidden}
-.sc-works__glow{position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(24,55,93,.4) 0%,transparent 65%);pointer-events:none}
-.sc-works__grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
-.sc-works__inner{max-width:1280px;margin:0 auto;padding:0 clamp(1.25rem,1rem + 2vw,3rem);position:relative;z-index:1}
-.sc-works__header{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;margin-bottom:clamp(2.5rem,4vw,3.5rem)}
-.sc-works__label{display:inline-block;font-family:'Inter',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--brand,#F22F3A);padding-bottom:.5rem;position:relative}
-.sc-works__label::after{content:'';position:absolute;bottom:0;left:0;height:3px;width:100%;background:linear-gradient(90deg,var(--brand,#F22F3A),rgba(242,47,58,.3));border-radius:2px}
-.sc-works__title{font-family:'Montserrat',sans-serif;font-size:clamp(2rem,3vw,3rem);font-weight:800;color:#fff;line-height:1.15;margin:.5rem 0 0}
-.sc-works__title em{font-style:normal;color:var(--brand,#F22F3A)}
-.sc-works__view-all{display:inline-flex;align-items:center;gap:.5rem;color:rgba(255,255,255,.9);font-size:.8rem;font-weight:700;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;padding:.75rem 1.75rem;background:transparent;border:2px solid rgba(255,255,255,.2);border-radius:8px;transition:all .35s ease}
-.sc-works__view-all:hover{background:#F22F3A;border-color:#F22F3A;color:#fff;box-shadow:0 0 25px rgba(242,47,58,.5);transform:translateY(-2px)}
-/* Grid */
-.sc-works__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
-.sc-works__card{text-decoration:none;border-radius:14px;overflow:hidden;background:#fff;transition:transform .5s cubic-bezier(.22,1,.36,1),box-shadow .5s ease}
-.sc-works__card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(0,0,0,.3)}
-.sc-works__card-img{position:relative;aspect-ratio:16/10;overflow:hidden}
-.sc-works__card-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.22,1,.36,1)}
-.sc-works__card:hover .sc-works__card-img img{transform:scale(1.06)}
-.sc-works__card-placeholder{width:100%;height:100%;background:linear-gradient(135deg,#222D3F,#3D6491)}
-.sc-works__card-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(242,47,58,.8) 100%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:1.5rem;opacity:0;visibility:hidden;transition:opacity .35s ease,visibility .35s ease}
-.sc-works__card:hover .sc-works__card-overlay{opacity:1;visibility:visible}
-.sc-works__card-cta{color:#fff;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.5rem 1.25rem;border:2px solid rgba(255,255,255,.3);border-radius:8px;transition:all .3s}
-.sc-works__card:hover .sc-works__card-cta{background:#F22F3A;border-color:#F22F3A;box-shadow:0 0 20px rgba(242,47,58,.5)}
-.sc-works__card-body{padding:1.25rem 1.25rem 1.5rem}
-.sc-works__card-title{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:700;color:var(--brand-navy,#222D3F);margin:0 0 .3rem;line-height:1.3}
-.sc-works__card-meta{font-size:.78rem;color:rgba(34,45,63,.45);font-weight:500}
-@media(max-width:900px){.sc-works__grid{grid-template-columns:repeat(2,1fr)}.sc-works__header{flex-direction:column;align-items:flex-start}}
-@media(max-width:600px){.sc-works__grid{grid-template-columns:1fr}}
-</style>
-<?php endif; ?>
+    .elite-cta-section {
+        width: 100%;
+        padding: clamp(80px, 12vw, 160px) 0;
+        background-color: var(--color-black, #000000);
+        position: relative;
+        overflow: hidden;
+        color: white;
+        font-family: var(--font-main, 'Inter', sans-serif);
+    }
 
-<!-- ══════════════════════════════════════════════════════
-     HOW IT WORKS — Dark navy, bold numbered steps
-     ══════════════════════════════════════════════════════ -->
-<section class="hwh-process" aria-label="How our service works">
-    <div class="hwh-section-inner">
-        <div class="hwh-section-header hwh-section-header--light">
-            <span class="hwh-label hwh-label--red">How It Works</span>
-            <h2 class="hwh-section-title hwh-section-title--white">Your Project in 4 Steps</h2>
-            <p class="hwh-section-desc hwh-section-desc--muted">We make construction simple — transparent pricing, clear timelines, and quality you can trust.</p>
-        </div>
-        <div class="hwh-process-steps">
-            <div class="hwh-process-step">
-                <div class="hwh-process-step__num">01</div>
-                <div class="hwh-process-step__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-                <h3 class="hwh-process-step__title">Free Consultation</h3>
-                <p class="hwh-process-step__text">Call us or request a quote online. We schedule a free on-site consultation to understand your vision.</p>
-            </div>
-            <div class="hwh-process-connector" aria-hidden="true"></div>
-            <div class="hwh-process-step">
-                <div class="hwh-process-step__num">02</div>
-                <div class="hwh-process-step__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
-                <h3 class="hwh-process-step__title">Design & Planning</h3>
-                <p class="hwh-process-step__text">Our team creates a detailed plan with blueprints, materials, and a transparent project estimate.</p>
-            </div>
-            <div class="hwh-process-connector" aria-hidden="true"></div>
-            <div class="hwh-process-step">
-                <div class="hwh-process-step__num">03</div>
-                <div class="hwh-process-step__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
-                <h3 class="hwh-process-step__title">Build &amp; Execute</h3>
-                <p class="hwh-process-step__text">Licensed crews get to work on schedule. We keep you updated with regular progress reports.</p>
-            </div>
-            <div class="hwh-process-connector" aria-hidden="true"></div>
-            <div class="hwh-process-step">
-                <div class="hwh-process-step__num">04</div>
-                <div class="hwh-process-step__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
-                <h3 class="hwh-process-step__title">Final Walkthrough</h3>
-                <p class="hwh-process-step__text">We walk every detail with you to ensure 100% satisfaction. Your project is backed by our quality guarantee.</p>
-            </div>
-        </div>
-    </div>
-</section>
+    .cta-bg-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?q=80&w=2000');
+        background-size: cover;
+        background-position: center;
+        opacity: 0.15;
+        filter: grayscale(1) brightness(0.3);
+        z-index: 1;
+    }
 
+    .cta-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to right, #000 30%, transparent 100%),
+            radial-gradient(circle at 80% 50%, rgba(255, 0, 0, 0.1) 0%, transparent 70%);
+        z-index: 2;
+    }
 
-<!-- ══════════════════════════════════════════════════════
-     FAQ Section — word count + FAQ rich results
-     ══════════════════════════════════════════════════════ -->
-<section class="hwh-faq" id="faq" aria-label="Frequently asked construction questions">
-    <div class="hwh-section-inner">
-        <div class="hwh-section-header reveal">
-            <span class="hwh-label">Common Questions</span>
-            <h2 class="hwh-section-title">Construction <em>FAQs</em></h2>
-            <p class="hwh-section-desc">Have questions? Here are the answers Tampa Bay homeowners and business owners ask most.</p>
-        </div>
-        <div class="hwh-faq__grid reveal" itemscope itemtype="https://schema.org/FAQPage">
-            <div class="hwh-faq__item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                <h3 class="hwh-faq__question" itemprop="name">How long does a typical construction project take?</h3>
-                <div class="hwh-faq__answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                    <p itemprop="text">Project timelines vary based on scope. A kitchen remodel typically takes 4-8 weeks, a bathroom remodel 2-4 weeks, and new construction 4-8 months. During your free consultation, we provide a detailed timeline so you know exactly what to expect.</p>
-                </div>
-            </div>
-            <div class="hwh-faq__item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                <h3 class="hwh-faq__question" itemprop="name">Do you provide free estimates?</h3>
-                <div class="hwh-faq__answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                    <p itemprop="text">Yes. Spicola Construction provides free estimates on all projects. We visit your property, discuss your vision, and provide a detailed written estimate with no obligation. We believe in transparent pricing with no hidden fees or surprise charges.</p>
-                </div>
-            </div>
-            <div class="hwh-faq__item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                <h3 class="hwh-faq__question" itemprop="name">Are you licensed and insured?</h3>
-                <div class="hwh-faq__answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                    <p itemprop="text">Yes. Spicola Construction is a fully licensed Certified General Contractor (CGC) and carries comprehensive liability insurance and workers compensation. Your property and investment are fully protected on every project.</p>
-                </div>
-            </div>
-            <div class="hwh-faq__item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                <h3 class="hwh-faq__question" itemprop="name">What areas do you serve in Tampa Bay?</h3>
-                <div class="hwh-faq__answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                    <p itemprop="text">We serve all of Hillsborough, Pinellas, and Pasco counties. Service areas include Tampa, South Tampa, St. Petersburg, Clearwater, Brandon, Riverview, Wesley Chapel, Carrollwood, Westchase, Lutz, Land O Lakes, Odessa, New Tampa, and Zephyrhills. If you are in Greater Tampa Bay, we have got you covered.</p>
-                </div>
-            </div>
-            <div class="hwh-faq__item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                <h3 class="hwh-faq__question" itemprop="name">What types of construction projects do you handle?</h3>
-                <div class="hwh-faq__answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                    <p itemprop="text">We handle residential and commercial projects of all sizes including new construction, home remodeling, kitchen and bathroom renovations, room additions, roofing, concrete work, commercial build-outs, and tenant improvements. No project is too big or too small.</p>
-                </div>
-            </div>
-            <div class="hwh-faq__item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                <h3 class="hwh-faq__question" itemprop="name">Do you offer financing?</h3>
-                <div class="hwh-faq__answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                    <p itemprop="text">Yes. We accept cash, all major credit cards, and offer flexible financing options for larger projects. We work with you to find a payment plan that fits your budget so you can get the construction work you need without financial stress.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+    .cta-container {
+        width: 100%;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 clamp(20px, 5vw, 40px);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(40px, 6vw, 80px);
+        align-items: center;
+        position: relative;
+        z-index: 10;
+    }
 
-<!-- ══════════════════════════════════════════════════════
-     FROM THE BLOG — Fresh content signal for SEO
-     ══════════════════════════════════════════════════════ -->
-<?php
-$blog_query = new WP_Query([
-    'post_type'      => 'post',
-    'post_status'    => 'publish',
-    'posts_per_page' => 3,
-    'orderby'        => 'date',
-    'order'          => 'DESC',
-    'no_found_rows'  => true,
-]);
-if ( $blog_query->have_posts() ) : ?>
-<section class="sc-blog" aria-label="Latest construction tips and news">
-    <div class="hwh-section-inner">
-        <div class="hwh-section-header reveal">
-            <span class="hwh-label">Construction Tips &amp; News</span>
-            <h2 class="hwh-section-title">From <em>The Blog</em></h2>
-            <p class="hwh-section-desc">Helpful guides, project spotlights, and construction advice from the Spicola team.</p>
-        </div>
-        <div class="sc-blog__grid reveal">
-            <?php while ( $blog_query->have_posts() ) : $blog_query->the_post();
-                $cats = get_the_category();
-                $cat_name = $cats ? esc_html( $cats[0]->name ) : 'Construction';
-            ?>
-            <div class="sc-blog__card">
-                <?php if ( has_post_thumbnail() ) : ?>
-                <a href="<?php the_permalink(); ?>" class="sc-blog__thumb" tabindex="-1" aria-hidden="true">
-                    <?php the_post_thumbnail( 'medium', [ 'loading' => 'lazy', 'decoding' => 'async', 'alt' => esc_attr( get_the_title() ) ] ); ?>
-                </a>
-                <?php endif; ?>
-                <div class="sc-blog__body">
-                    <span class="sc-blog__cat"><?php echo $cat_name; ?></span>
-                    <h3 class="sc-blog__title">
-                        <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                    </h3>
-                    <p class="sc-blog__excerpt"><?php echo wp_trim_words( get_the_excerpt(), 18 ); ?></p>
-                    <div class="sc-blog__footer">
-                        <time class="sc-blog__date" datetime="<?php echo get_the_date('c'); ?>"><?php echo get_the_date('M j, Y'); ?></time>
-                        <a href="<?php the_permalink(); ?>" class="sc-blog__read" aria-label="Read More about <?php the_title_attribute(); ?>">Read More →</a>
-                    </div>
-                </div>
-            </div>
-            <?php endwhile; wp_reset_postdata(); ?>
-        </div>
-        <div class="sc-blog__cta reveal">
-            <a href="<?php echo esc_url( home_url('/blog/') ); ?>" class="hwh-btn hwh-btn--outline-navy">View All Articles →</a>
-        </div>
-    </div>
-</section>
+    /* MASSIVE PULSING ELEMENT (LEFT BACKGROUND) */
+    .massive-pulse-bg {
+        position: absolute;
+        top: 50%;
+        left: 20%;
+        transform: translate(-50%, -50%);
+        width: 600px;
+        height: 600px;
+        border: 4px solid rgba(255, 0, 0, 0.1);
+        border-radius: 50%;
+        z-index: 1;
+        pointer-events: none;
+        animation: pulseRadarLarge 6s ease-in-out infinite;
+    }
 
-<style>
-.sc-blog{padding:clamp(4rem,6vw,7rem) 0;background:#F8F8F6}
-.sc-blog .hwh-section-title em{color:var(--brand,#F22F3A);font-style:normal}
-.sc-blog .hwh-section-desc{color:rgba(34,45,63,.6)}
-.sc-blog__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:clamp(2rem,3vw,3rem)}
-.sc-blog__card{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,.06);display:flex;flex-direction:column;transition:transform .3s ease,box-shadow .3s ease}
-.sc-blog__card:hover{transform:translateY(-5px);box-shadow:0 12px 40px rgba(0,0,0,.1)}
-.sc-blog__thumb{display:block;aspect-ratio:16/9;overflow:hidden}
-.sc-blog__thumb img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
-.sc-blog__card:hover .sc-blog__thumb img{transform:scale(1.04)}
-.sc-blog__body{padding:1.5rem;display:flex;flex-direction:column;flex:1}
-.sc-blog__cat{font-family:'Montserrat',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--brand,#F22F3A);background:rgba(242,47,58,.08);border-radius:30px;padding:.3rem .8rem;display:inline-block;margin-bottom:.85rem}
-.sc-blog__title{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:700;color:var(--brand-navy,#222D3F);line-height:1.4;margin:0 0 .75rem}
-.sc-blog__title a{color:inherit;text-decoration:none}
-.sc-blog__title a:hover{color:var(--brand,#F22F3A)}
-.sc-blog__excerpt{font-size:.88rem;line-height:1.7;color:rgba(34,45,63,.65);margin:0 0 1rem;flex:1}
-.sc-blog__footer{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:.75rem;border-top:1px solid rgba(34,45,63,.07)}
-.sc-blog__date{font-size:.75rem;color:rgba(34,45,63,.4)}
-.sc-blog__read{font-family:'Montserrat',sans-serif;font-size:.75rem;font-weight:700;color:var(--brand,#F22F3A);text-decoration:none;letter-spacing:.03em}
-.sc-blog__read:hover{text-decoration:underline}
-.sc-blog__cta{text-align:center;margin-top:2.5rem}
-.hwh-btn--outline-navy{display:inline-flex;align-items:center;gap:.5rem;font-family:'Montserrat',sans-serif;font-size:.875rem;font-weight:700;letter-spacing:.04em;padding:.85rem 2rem;border-radius:10px;border:2px solid var(--brand-navy,#222D3F);color:var(--brand-navy,#222D3F);background:transparent;text-decoration:none;transition:background .25s ease,color .25s ease}
-.hwh-btn--outline-navy:hover{background:var(--brand-navy,#222D3F);color:#fff}
-@media(max-width:900px){.sc-blog__grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:580px){.sc-blog__grid{grid-template-columns:1fr}}
+    .massive-pulse-bg::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 400px;
+        height: 400px;
+        border: 2px solid rgba(255, 0, 0, 0.3);
+        border-radius: 50%;
+        animation: pulseRadarLarge 4s ease-in-out infinite reverse;
+    }
+
+    .massive-pulse-bg::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 800px;
+        height: 800px;
+        background: radial-gradient(circle, rgba(255, 0, 0, 0.05) 0%, transparent 60%);
+        border-radius: 50%;
+    }
+
+    @keyframes pulseRadarLarge {
+        0% {
+            transform: translate(-50%, -50%) scale(0.9);
+            opacity: 0.5;
+        }
+        50% {
+            transform: translate(-50%, -50%) scale(1.1);
+            opacity: 1;
+        }
+        100% {
+            transform: translate(-50%, -50%) scale(0.9);
+            opacity: 0.5;
+        }
+    }
+
+    .cta-content-left {
+        max-width: 600px;
+        position: relative;
+        z-index: 10;
+    }
+
+    .cta-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: rgba(255, 0, 0, 0.15);
+        border: 1px solid var(--brand, #ff0000);
+        color: white;
+        padding: 12px 24px;
+        border-radius: 100px;
+        font-family: var(--font-accent, 'Bebas Neue', sans-serif);
+        font-size: 1.1rem;
+        letter-spacing: 2px;
+        margin-bottom: 40px;
+        text-transform: uppercase;
+        animation: badgePulse 2s infinite;
+        backdrop-filter: blur(10px);
+    }
+
+    @keyframes badgePulse {
+        0% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.4); }
+        70% { box-shadow: 0 0 0 15px rgba(255, 0, 0, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
+    }
+
+    .cta-title {
+        font-family: var(--font-accent, 'Bebas Neue', sans-serif);
+        font-size: clamp(3.5rem, 6vw, 7.5rem);
+        line-height: 0.85;
+        margin: 0;
+        text-transform: uppercase;
+        letter-spacing: -3px;
+        position: relative;
+        z-index: 5;
+    }
+
+    .cta-title span {
+        display: block;
+        color: transparent;
+        -webkit-text-stroke: 3px var(--brand, #ff0000);
+    }
+
+    .cta-description {
+        font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+        color: #888;
+        line-height: 1.7;
+        margin: 40px 0;
+        position: relative;
+        z-index: 5;
+    }
+
+    .cta-map-container {
+        margin-top: 40px;
+        width: 100%;
+        height: 250px;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        position: relative;
+        z-index: 10;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .cta-map-container iframe {
+        width: 100%;
+        height: 100%;
+        border: 0;
+        filter: invert(90%) hue-rotate(180deg) brightness(85%) contrast(120%);
+    }
+
+    .cta-form-wrapper {
+        position: relative;
+        z-index: 10;
+    }
+
+    .cta-glass-panel {
+        background: rgba(10, 10, 10, 0.7);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        padding: clamp(30px, 5vw, 60px);
+        box-shadow: 0 50px 100px rgba(0, 0, 0, 0.8);
+        border-top: 5px solid var(--brand, #ff0000);
+        position: relative;
+        box-sizing: border-box;
+    }
+
+    /* Floating Status Badge */
+    .floating-status {
+        position: absolute;
+        top: -30px;
+        right: -30px;
+        background: white;
+        color: black;
+        padding: 15px 30px;
+        border-radius: 4px;
+        font-family: var(--font-accent, 'Bebas Neue', sans-serif);
+        transform: rotate(5deg);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        z-index: 20;
+    }
+
+    .floating-status span {
+        font-size: 0.7rem;
+        color: var(--brand, #ff0000);
+        font-weight: 800;
+        letter-spacing: 2px;
+    }
+
+    .floating-status b {
+        font-size: 1.8rem;
+        line-height: 1;
+    }
+
+    /* SPINNING CIRCULAR BADGE */
+    .spinning-badge-wrapper {
+        position: absolute;
+        top: -50px;
+        left: -50px;
+        width: 140px;
+        height: 140px;
+        z-index: 25;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
+    }
+
+    .spinning-text {
+        animation: rotateText 15s linear infinite;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+    }
+
+    .spinning-icon-center {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #000;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        border: 2px solid var(--brand, #ff0000);
+        z-index: 2;
+        color: white;
+    }
+
+    @keyframes rotateText {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 1100px) {
+        .cta-container {
+            grid-template-columns: 1fr;
+            text-align: center;
+            gap: 60px;
+        }
+
+        .cta-content-left { margin: 0 auto; }
+        .floating-status { display: none; }
+        .massive-pulse-bg { left: 50%; }
+    }
+
+    @media (max-width: 768px) {
+        .cta-title {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            letter-spacing: -1px;
+        }
+
+        .spinning-badge-wrapper {
+            width: 110px;
+            height: 110px;
+            top: -55px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .spinning-text {
+            width: 110px;
+            height: 110px;
+        }
+
+        .spinning-icon-center {
+            width: 50px;
+            height: 50px;
+        }
+
+        .cta-map-container {
+            height: 200px;
+        }
+    }
 </style>
 
-<?php endif; ?>
+<section class="elite-cta-section">
+    <div class="cta-bg-image"></div>
+    <div class="cta-overlay"></div>
 
-<!-- ══════════════════════════════════════════════════════
-     CTA — Bold red, full width
-     ══════════════════════════════════════════════════════ -->
-<section class="hwh-cta" id="request-service" aria-label="Request construction service">
-    <div class="hwh-cta__inner reveal">
-        <div class="hwh-cta__content">
-            <span class="hwh-label hwh-label--white">Start Your Project</span>
-            <h2 class="hwh-cta__title">Ready to Build?<br>Let's Talk.</h2>
-            <p class="hwh-cta__text">From new construction to renovations, we bring your vision to life. Call now or request a free quote online.</p>
+    <!-- THE MASSIVE PULSING RADAR (LEFT SIDE) -->
+    <div class="massive-pulse-bg"></div>
+
+    <div class="cta-container">
+        <!-- LEFT: THE CALL TO ACTION -->
+        <div class="cta-content-left reveal">
+            <div class="cta-badge">
+                <i data-lucide="zap" size="18"></i>
+                Emergency Support Active
+            </div>
+            <h2 class="cta-title">
+                COMMAND THE
+                <span>RECOVERY.</span>
+            </h2>
+            <p class="cta-description">
+                Don't let the damage dictate the terms. Deploy Restowrx today and take immediate control of your property's future.
+            </p>
+
+            <div style="display: flex; gap: 30px; align-items: center;" class="cta-stats-mini">
+                <div>
+                    <h4 style="font-family: var(--font-accent, 'Bebas Neue', sans-serif); font-size: 2.5rem; margin: 0; color: var(--brand, #ff0000);">45</h4>
+                    <p style="margin: 0; font-size: 0.75rem; color: #888; letter-spacing: 3px; margin-top: 10px; text-transform: uppercase; font-weight: 700;">Min Response</p>
+                </div>
+                <div style="width: 1px; height: 50px; background: rgba(255,255,255,0.1);"></div>
+                <div>
+                    <h4 style="font-family: var(--font-accent, 'Bebas Neue', sans-serif); font-size: 2.5rem; margin: 0; color: white;">24/7</h4>
+                    <p style="margin: 0; font-size: 0.75rem; color: #888; letter-spacing: 3px; margin-top: 10px; text-transform: uppercase; font-weight: 700;">Active Radar</p>
+                </div>
+            </div>
+
+            <!-- TACTICAL DARK MODE MAP -->
+            <div class="cta-map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3521.94435882436!2d-82.35515228492023!3d28.025530182661877!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88c2c6114eb6cbb1%3A0x6b4be939bbbd0bc4!2s9249%20Lazy%20Ln%2C%20Tampa%2C%20FL%2033610!5e0!3m2!1sen!2sus!4v1689990000000!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Restowrx Tactical Command Headquarters Location"></iframe>
+            </div>
         </div>
-        <div class="hwh-cta__actions">
-            <a href="tel:+18137326285" class="hwh-btn hwh-btn--white hwh-btn--lg">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                Call (813) 732-6285
-            </a>
-            <a href="/contact/" class="hwh-btn hwh-btn--ghost-white hwh-btn--lg">
-                Get a Free Quote →
-            </a>
+
+        <!-- RIGHT: THE FORM -->
+        <div class="cta-form-wrapper reveal">
+            <div class="cta-glass-panel" id="cta-form">
+
+                <!-- SPINNING CORNER BADGE -->
+                <div class="spinning-badge-wrapper">
+                    <svg class="spinning-text" viewBox="0 0 100 100" width="140" height="140">
+                        <defs>
+                            <path id="circlePath" d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0" />
+                        </defs>
+                        <text font-family="var(--font-main, 'Inter', sans-serif)" font-weight="800" font-size="10" fill="var(--brand, #ff0000)" letter-spacing="1.2">
+                            <textPath href="#circlePath">
+                                RESTOWRX TACTICAL • 24/7 ACTIVE RADAR •
+                            </textPath>
+                        </text>
+                    </svg>
+                    <div class="spinning-icon-center">
+                        <i data-lucide="triangle-alert" size="28"></i>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-bottom: 40px;">
+                    <h3 style="font-family: var(--font-accent, 'Bebas Neue', sans-serif); font-size: 2.5rem; margin: 0; letter-spacing: 2px; color: white;">INITIATE <span style="color: var(--brand, #ff0000);">DISPATCH</span></h3>
+                    <p style="font-size: 0.75rem; color: #888; letter-spacing: 3px; margin-top: 10px; text-transform: uppercase; font-weight: 700;">Response Level: Priority One</p>
+                </div>
+
+                <?php 
+                // Render Bottom CF7 Form
+                echo do_shortcode('[contact-form-7 id="3191cf3" title="Hero Form/ Contact Form"]'); 
+                ?>
+
+                <!-- Floating 24/7 Badge -->
+                <div class="floating-status" id="status-tag">
+                    <span>STATUS</span>
+                    <b>ACTIVE</b>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
+<script>
+    // GSAP Parallax Effect for CTA
+    document.addEventListener("mousemove", (e) => {
+        const x = (e.clientX - window.innerWidth / 2) / 100;
+        const y = (e.clientY - window.innerHeight / 2) / 100;
 
+        const ctaForm = document.getElementById("cta-form");
+        const statusTag = document.getElementById("status-tag");
+
+        if (ctaForm) {
+            gsap.to(ctaForm, { x: x * 2, y: y * 2, rotateY: x, rotateX: -y, duration: 1, ease: "power2.out" });
+        }
+        if (statusTag) {
+            gsap.to(statusTag, { x: x * 5, y: y * 5, duration: 2, ease: "power2.out" });
+        }
+    });
+</script>
 
 </main>
 

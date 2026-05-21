@@ -1,67 +1,67 @@
 /*
-Theme Name:       Spicola Construction v1
-Theme URI:        https://spicolaconstruction.com
-Author:           Spicola Construction
-Author URI:       https://spicolaconstruction.com
-Description:      Premium, performance-optimized theme for Spicola Construction — Tampa Bay General Contractor.
-Version:          1.0.1
+Theme Name:       Restowrx Elite Theme
+Theme URI:        https://restowrx.com
+Author:           Restowrx Elite
+Author URI:       https://restowrx.com
+Description:      Premium, tactical-optimized custom WordPress theme for Restowrx Elite — Command Center for Property Recovery.
+Version:          1.0.0
 Requires at least: 6.0
 Tested up to:     6.7
 Requires PHP:     8.0
 License:          GPL v2 or later
-Text Domain:      spicola-construction
+Text Domain:      restowrx-theme
 */
 /* ==========================================================================
-   SPICOLA CONSTRUCTION - DESIGN TOKEN SYSTEM
+   RESTOWRX ELITE - DESIGN TOKEN SYSTEM
    All brand colors, backgrounds, and surfaces are defined here as CSS
    custom properties. Edit this block to retheme the entire site at once.
    ========================================================================== */
 :root {
-  /* Brand: Construction Red & Dark Navy */
-  --brand:            #F22F3A;
-  --brand-dark:       #AF2D37;
-  --brand-mid:        #F22F3A;
-  --brand-bright:     #F22F3A;
-  --brand-pink:       #F22F3A;
-  --brand-pink-mid:   #AF2D37;
-  --brand-882:        #AF2D37;
-  --brand-navy:       #222D3F;
-  --brand-navy-dark:  #151E2D;
+  /* Brand: Tactical Red, Maroon & Dark Greys */
+  --brand:            #ff0000;
+  --brand-dark:       #cc0000;
+  --brand-mid:        #ff0000;
+  --brand-bright:     #ff3333;
+  --brand-pink:       #ff0000;
+  --brand-pink-mid:   #cc0000;
+  --brand-882:        #cc0000;
+  --brand-navy:       #120303;
+  --brand-navy-dark:  #000000;
 
   /* RGB channels for rgba() */
-  --brand-rgb:        242, 47, 58;
-  --cream-rgb:        248, 248, 246;
-  --dark-rgb:         34, 45, 63;
-  --ink-rgb:          21, 30, 45;
+  --brand-rgb:        255, 0, 0;
+  --cream-rgb:        18, 3, 3;
+  --dark-rgb:         10, 10, 10;
+  --ink-rgb:          0, 0, 0;
 
   /* Backgrounds */
-  --bg-cream:         #F8F8F6;
-  --bg-alt:           #F0F0ED;
-  --bg-warm:          #EAEAE6;
-  --bg-light-blue:    #E8E8E4;
-  --bg-light-blue-deep: #DCDCD8;
-  --bg-petal:         #F2F0EC;
-  --bg-blush:         #F5F4F1;
+  --bg-cream:         #000000;
+  --bg-alt:           #0a0a0a;
+  --bg-warm:          #120303;
+  --bg-light-blue:    #1a1a1a;
+  --bg-light-blue-deep: #0d0d0d;
+  --bg-petal:         #050505;
+  --bg-blush:         #0f0f0f;
 
   /* Text */
-  --text-dark:        #151E2D;
-  --text-body:        #222D3F;
-  --text-mid:         #2E3D55;
-  --text-muted:       #4A5568;
-  --text-subtle:      #6B7280;
-  --text-faint:       #9CA3AF;
-  --text-pale:        #D1D5DB;
+  --text-dark:        #ffffff;
+  --text-body:        #cccccc;
+  --text-mid:         #aaaaaa;
+  --text-muted:       #888888;
+  --text-subtle:      #666666;
+  --text-faint:       #444444;
+  --text-pale:        #222222;
 
   /* Surfaces and Borders */
-  --surface-card:     #222D3F;
-  --surface-ink:      #151E2D;
-  --border-soft:      #D0CFC8;
-  --border-warm:      #C8C7BE;
+  --surface-card:     #0d0d0d;
+  --surface-ink:      #000000;
+  --border-soft:      rgba(255, 255, 255, 0.1);
+  --border-warm:      rgba(255, 0, 0, 0.2);
 
   /* State */
-  --color-error:      #e53e3e;
-  --color-success:    #68d391;
-  --color-warning:    #F5C542;
+  --color-error:      #ff0000;
+  --color-success:    #00ff00;
+  --color-warning:    #ffff00;
 }
 
 
@@ -210,7 +210,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Montserrat', Georgia, serif;
+  font-family: var(--font-accent), Georgia, serif;
   font-weight: 300;
   line-height: 1.15;
   color: var(--text-dark);
@@ -385,7 +385,7 @@ html {
 }
 
 .site-logo__name {
-  font-family: 'Montserrat', serif;
+  font-family: var(--font-accent), serif;
   font-size: clamp(1.6rem, 1.3rem + 1.2vw, 2.1rem);
   font-weight: 300;
   letter-spacing: 0.06em;
@@ -800,7 +800,7 @@ html {
 }
 
 .mega-menu__promo-title {
-  font-family: 'Montserrat', serif;
+  font-family: var(--font-accent), serif;
   font-size: clamp(1.4rem, 1.1rem + 1.2vw, 1.9rem);
   font-weight: 300;
   color: var(--text-dark);
@@ -1027,7 +1027,7 @@ html {
 .mobile-menu__links a {
   display: block;
   padding: 1rem 0;
-  font-family: 'Montserrat', serif;
+  font-family: var(--font-accent), serif;
   font-size: clamp(1.25rem, 1.1rem + 0.7vw, 1.5rem);
   font-weight: 500;
   color: var(--text-dark);
@@ -1415,7 +1415,7 @@ html {
 }
 
 .hero__stat-num {
-  font-family: 'Montserrat', serif;
+  font-family: var(--font-accent), serif;
   font-size: 1.8rem;
   font-weight: 600;
   color: var(--text-dark);
@@ -2117,7 +2117,7 @@ html {
 }
 
 .journey-step__number {
-  font-family: 'Montserrat', Georgia, serif;
+  font-family: var(--font-accent), Georgia, serif;
   font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 0.1em;
@@ -2446,7 +2446,7 @@ html {
 }
 
 .supplements__partner-label {
-  font-family: 'Montserrat', serif;
+  font-family: var(--font-accent), serif;
   font-size: 1rem;
   font-weight: 600;
   color: var(--text-dark);
@@ -2752,7 +2752,7 @@ html {
 
 .why-us__stat-number {
   display: block;
-  font-family: 'Montserrat', serif;
+  font-family: var(--font-accent), serif;
   font-size: clamp(1.8rem, 1.5rem + 1.2vw, 2.4rem);
   font-weight: 600;
   color: var(--brand);
@@ -2866,7 +2866,7 @@ html {
   position: absolute;
   top: 0.75rem;
   right: 1.25rem;
-  font-family: 'Montserrat', Georgia, serif;
+  font-family: var(--font-accent), Georgia, serif;
   font-size: 3.5rem;
   line-height: 1;
   color: rgba(var(--brand-rgb), 0.08);
@@ -3076,7 +3076,7 @@ html {
 }
 
 .refer-card__title {
-  font-family: 'Montserrat', Georgia, serif;
+  font-family: var(--font-accent), Georgia, serif;
   font-size: clamp(1.5rem, 1.2rem + 1.5vw, 2.2rem);
   font-weight: 400;
   color: var(--text-dark);
@@ -3320,7 +3320,7 @@ html {
 }
 
 .error-404__digit {
-  font-family: 'Montserrat', serif;
+  font-family: var(--font-accent), serif;
   font-size: clamp(5rem, 4rem + 5vw, 9rem);
   font-weight: 300;
   color: rgba(var(--brand-rgb), 0.15);
@@ -3340,7 +3340,7 @@ html {
 }
 
 .error-404__title {
-  font-family: 'Montserrat', serif;
+  font-family: var(--font-accent), serif;
   font-size: clamp(1.8rem, 1.5rem + 2vw, 2.8rem);
   font-weight: 500;
   color: var(--text-dark);
@@ -3581,7 +3581,7 @@ html {
 .page-content__body h2,
 .page-content__body h3,
 .page-content__body h4 {
-  font-family: 'Montserrat', serif;
+  font-family: var(--font-accent), serif;
   color: var(--text-dark);
   margin-top: 2rem;
   margin-bottom: 0.75rem;
@@ -3809,7 +3809,7 @@ html {
 }
 
 .newsletter__title {
-  font-family: 'Montserrat', Georgia, serif;
+  font-family: var(--font-accent), Georgia, serif;
   font-size: 1.3rem;
   font-weight: 400;
   color: var(--bg-warm);
@@ -4037,7 +4037,7 @@ html {
 
 /* Form */
 .contact-form__title {
-  font-family: 'Montserrat', serif;
+  font-family: var(--font-accent), serif;
   font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem);
   font-weight: 400;
   margin-bottom: 0.5rem;
@@ -4117,7 +4117,7 @@ html {
 }
 
 .contact-form__success-title {
-  font-family: 'Montserrat', Georgia, serif;
+  font-family: var(--font-accent), Georgia, serif;
   font-size: 1.5rem;
   color: var(--text-dark);
   margin-bottom: 0.5rem;
@@ -4401,7 +4401,7 @@ a.contact-card__text:hover {
 }
 
 .blog-hero__title {
-  font-family: 'Montserrat', Georgia, serif;
+  font-family: var(--font-accent), Georgia, serif;
   font-size: clamp(2.2rem, 1.6rem + 3vw, 3.8rem);
   font-weight: 800; color: #fff;
   line-height: 1.1; letter-spacing: -0.02em;
@@ -4511,7 +4511,7 @@ a.contact-card__text:hover {
   display: flex; flex-direction: column; justify-content: center;
 }
 .blog-featured__title {
-  font-family: 'Montserrat', Georgia, serif;
+  font-family: var(--font-accent), Georgia, serif;
   font-size: clamp(1.5rem, 1.2rem + 1.5vw, 2.2rem);
   font-weight: 400; color: var(--text-dark);
   line-height: 1.2; margin-bottom: 0.75rem;
@@ -4603,7 +4603,7 @@ a.contact-card__text:hover {
 }
 
 .blog-card__title {
-  font-family: 'Montserrat', Georgia, serif;
+  font-family: var(--font-accent), Georgia, serif;
   font-size: clamp(1.05rem, 0.95rem + 0.5vw, 1.3rem);
   font-weight: 600; color: var(--text-dark);
   line-height: 1.3; margin-bottom: 0.6rem;
@@ -4668,7 +4668,7 @@ a.contact-card__text:hover {
   color: var(--brand);
 }
 .blog-empty__title {
-  font-family: 'Montserrat', Georgia, serif;
+  font-family: var(--font-accent), Georgia, serif;
   font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.2rem);
   font-weight: 300; color: var(--text-dark);
   margin-bottom: 0.75rem;
@@ -4699,7 +4699,7 @@ a.contact-card__text:hover {
   background: rgba(255,255,255,0.05);
 }
 .blog-newsletter__title {
-  font-family: 'Montserrat', Georgia, serif;
+  font-family: var(--font-accent), Georgia, serif;
   font-size: clamp(1.6rem, 1.2rem + 1.5vw, 2.4rem);
   font-weight: 300; color: #fff;
   line-height: 1.15; margin-bottom: 0.75rem;
@@ -4871,7 +4871,7 @@ a.contact-card__text:hover {
 }
 
 .service-hero__title {
-  font-family: 'Montserrat', Georgia, serif;
+  font-family: var(--font-accent), Georgia, serif;
   font-size: clamp(2.4rem, 1.8rem + 3vw, 4.2rem);
   font-weight: 800;
   color: #fff;
@@ -4940,7 +4940,7 @@ a.contact-card__text:hover {
 }
 
 .service-hero__meta-value {
-  font-family: 'Montserrat', Georgia, serif;
+  font-family: var(--font-accent), Georgia, serif;
   font-size: 1.1rem;
   font-weight: 700;
   color: #fff;
@@ -5040,7 +5040,7 @@ a.contact-card__text:hover {
 .service-sidebar__icon { font-size: 2.5rem; display: block; margin-bottom: 0.75rem; }
 
 .service-sidebar__title {
-  font-family: 'Montserrat', Georgia, serif;
+  font-family: var(--font-accent), Georgia, serif;
   font-size: 1.2rem;
   font-weight: 700;
   color: #fff;
@@ -5065,7 +5065,7 @@ a.contact-card__text:hover {
 }
 
 .service-sidebar__value {
-  font-family: 'Montserrat', Georgia, serif;
+  font-family: var(--font-accent), Georgia, serif;
   font-size: 0.9rem;
   font-weight: 700;
   color: #fff;
@@ -5130,7 +5130,7 @@ a.contact-card__text:hover {
 }
 
 .service-content__body h2 {
-  font-family: 'Montserrat', Georgia, serif;
+  font-family: var(--font-accent), Georgia, serif;
   font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem);
   font-weight: 700;
   color: var(--text-dark);
@@ -5145,7 +5145,7 @@ a.contact-card__text:hover {
 }
 
 .service-content__body h3 {
-  font-family: 'Montserrat', Georgia, serif;
+  font-family: var(--font-accent), Georgia, serif;
   font-size: clamp(1.1rem, 1rem + 0.5vw, 1.35rem);
   font-weight: 600;
   color: var(--text-dark);
@@ -5351,7 +5351,7 @@ a.contact-card__text:hover {
 }
 
 .service-why-us__card-title {
-  font-family: 'Montserrat', Georgia, serif;
+  font-family: var(--font-accent), Georgia, serif;
   font-size: clamp(1rem, 0.9rem + 0.4vw, 1.15rem);
   font-weight: 600;
   color: var(--text-dark);
@@ -5409,7 +5409,7 @@ a.contact-card__text:hover {
 }
 
 .svc-trust__heading {
-  font-family: 'Montserrat', Georgia, serif;
+  font-family: var(--font-accent), Georgia, serif;
   font-size: clamp(2.5rem, 2rem + 3vw, 4rem);
   font-weight: 300;
   color: #fff;
@@ -5451,7 +5451,7 @@ a.contact-card__text:hover {
 }
 .svc-trust__stat strong {
   display: block;
-  font-family: 'Montserrat', Georgia, serif;
+  font-family: var(--font-accent), Georgia, serif;
   font-size: 1.1rem;
   font-weight: 800;
   color: #fff;
@@ -5510,7 +5510,7 @@ a.contact-card__text:hover {
 }
 
 .svc-trust__card-num {
-  font-family: 'Montserrat', Georgia, serif;
+  font-family: var(--font-accent), Georgia, serif;
   font-size: clamp(1.8rem, 1.4rem + 1.5vw, 2.4rem);
   font-weight: 900;
   color: #fff;
@@ -5528,7 +5528,7 @@ a.contact-card__text:hover {
 }
 
 .svc-trust__card-body h3 {
-  font-family: 'Montserrat', Georgia, serif;
+  font-family: var(--font-accent), Georgia, serif;
   font-size: 0.85rem;
   font-weight: 700;
   color: rgba(255, 255, 255, 0.85);
@@ -5656,7 +5656,7 @@ a.contact-card__text:hover {
 
 .stats-bar__number {
   display: block;
-  font-family: 'Montserrat', serif;
+  font-family: var(--font-accent), serif;
   font-size: clamp(2rem, 1.5rem + 2vw, 3rem);
   font-weight: 600;
   color: var(--brand);
@@ -5771,7 +5771,7 @@ a.contact-card__text:hover {
 }
 
 .value-card__number {
-  font-family: 'Montserrat', serif;
+  font-family: var(--font-accent), serif;
   font-size: 2rem;
   font-weight: 300;
   color: var(--brand);
@@ -5954,7 +5954,7 @@ a.contact-card__text:hover {
 }
 
 .product-card__name {
-  font-family: 'Montserrat', serif;
+  font-family: var(--font-accent), serif;
   font-size: clamp(1.3rem, 1.1rem + 0.8vw, 1.6rem);
   font-weight: 500;
   color: var(--text-dark);
@@ -6163,7 +6163,7 @@ a.contact-card__text:hover {
   color: rgba(var(--brand-rgb), 0.25);
   font-weight: 300;
   letter-spacing: 0.2em;
-  font-family: 'Montserrat', serif;
+  font-family: var(--font-accent), serif;
 }
 
 /* ── Info Area ─────────────────────────────────────────────────── */
@@ -6192,7 +6192,7 @@ a.contact-card__text:hover {
 }
 
 .team-member__name {
-  font-family: 'Montserrat', serif;
+  font-family: var(--font-accent), serif;
   font-size: clamp(1.8rem, 1.4rem + 1.5vw, 2.6rem);
   font-weight: 400;
   margin-bottom: 0.4rem;
@@ -6287,7 +6287,7 @@ a.contact-card__text:hover {
 }
 
 .mission-quote {
-  font-family: 'Montserrat', serif;
+  font-family: var(--font-accent), serif;
   font-size: clamp(1.5rem, 1.2rem + 1.5vw, 2.4rem);
   font-weight: 300;
   font-style: italic;
@@ -6378,7 +6378,7 @@ a.contact-card__text:hover {
 }
 
 .value-detail__number {
-  font-family: 'Montserrat', serif;
+  font-family: var(--font-accent), serif;
   font-size: 2.5rem;
   font-weight: 300;
   color: var(--brand);
@@ -6386,7 +6386,7 @@ a.contact-card__text:hover {
 }
 
 .value-detail__title {
-  font-family: 'Montserrat', serif;
+  font-family: var(--font-accent), serif;
   font-size: clamp(1.3rem, 1.1rem + 0.8vw, 1.6rem);
   font-weight: 400;
   margin-bottom: 0.75rem;
@@ -7056,7 +7056,7 @@ a.contact-card__text:hover {
 }
 
 .blog-empty__title {
-  font-family: 'Montserrat', serif;
+  font-family: var(--font-accent), serif;
   font-size: 1.8rem;
   font-weight: 600;
   color: var(--text-dark);
@@ -7176,7 +7176,7 @@ a.contact-card__text:hover {
 }
 
 .related-posts__title {
-  font-family: 'Montserrat', serif;
+  font-family: var(--font-accent), serif;
   font-size: 1.5rem;
   font-weight: 600;
   color: var(--text-dark);
@@ -7266,7 +7266,7 @@ a.contact-card__text:hover {
 }
 
 .membership-step__number {
-  font-family: 'Montserrat', serif;
+  font-family: var(--font-accent), serif;
   font-size: 2.5rem;
   font-weight: 700;
   color: rgba(var(--brand-rgb), 0.2);
@@ -7485,7 +7485,7 @@ a.contact-card__text:hover {
 }
 
 .party-block__subtitle {
-  font-family: 'Montserrat', serif;
+  font-family: var(--font-accent), serif;
   font-size: clamp(1.3rem, 1rem + 1.5vw, 1.8rem);
   font-weight: 600;
   color: var(--text-dark);
@@ -7593,7 +7593,7 @@ a.contact-card__text:hover {
 }
 
 .party-divider__text {
-  font-family: 'Montserrat', serif;
+  font-family: var(--font-accent), serif;
   font-size: 1.1rem;
   font-style: italic;
   color: var(--text-faint);
@@ -7628,7 +7628,7 @@ a.contact-card__text:hover {
 }
 
 .party-step__number {
-  font-family: 'Montserrat', serif;
+  font-family: var(--font-accent), serif;
   font-size: 2rem;
   font-weight: 700;
   color: var(--brand);
@@ -7743,7 +7743,7 @@ a.contact-card__text:hover {
 }
 
 .mission-statement__quote {
-  font-family: 'Montserrat', Georgia, serif;
+  font-family: var(--font-accent), Georgia, serif;
   font-size: clamp(1.4rem, 1.1rem + 1.5vw, 2.2rem);
   font-weight: 300;
   font-style: italic;
@@ -7830,7 +7830,7 @@ a.contact-card__text:hover {
 }
 
 .mission-pillar__title {
-  font-family: 'Montserrat', Georgia, serif;
+  font-family: var(--font-accent), Georgia, serif;
   font-size: clamp(1.2rem, 1rem + 0.8vw, 1.5rem);
   font-weight: 400;
   color: var(--text-dark);
@@ -7880,7 +7880,7 @@ a.contact-card__text:hover {
 }
 
 .value-detail__number {
-  font-family: 'Montserrat', Georgia, serif;
+  font-family: var(--font-accent), Georgia, serif;
   font-size: 2rem;
   font-weight: 300;
   color: var(--brand);
@@ -7890,7 +7890,7 @@ a.contact-card__text:hover {
 }
 
 .value-detail__title {
-  font-family: 'Montserrat', Georgia, serif;
+  font-family: var(--font-accent), Georgia, serif;
   font-size: clamp(1.3rem, 1.1rem + 0.8vw, 1.65rem);
   font-weight: 400;
   color: var(--text-dark);
@@ -8493,7 +8493,7 @@ a.contact-card__text:hover {
 }
 
 .tier-card__name {
-  font-family: 'Montserrat', Georgia, serif;
+  font-family: var(--font-accent), Georgia, serif;
   font-size: clamp(1.5rem, 1.2rem + 1vw, 1.85rem);
   font-weight: 300;
   color: var(--text-dark);
@@ -8670,7 +8670,7 @@ a.contact-card__text:hover {
 }
 
 .compare-table th {
-  font-family: 'Montserrat', serif;
+  font-family: var(--font-accent), serif;
   font-size: 1.1rem;
   font-weight: 400;
   color: #FFFFFF;
@@ -9617,7 +9617,7 @@ a.contact-card__text:hover {
 }
 
 .maint-plan-step__num {
-  font-family: 'Montserrat', serif;
+  font-family: var(--font-accent), serif;
   font-size: 3.5rem;
   font-weight: 300;
   background: linear-gradient(135deg, var(--brand), var(--brand-pink));
@@ -9875,7 +9875,7 @@ a.contact-card__text:hover {
 }
 
 .deal-popup__title {
-  font-family: 'Montserrat', serif;
+  font-family: var(--font-accent), serif;
   font-size: clamp(1.9rem, 5vw, 2.6rem);
   font-weight: 600;
   line-height: 1.1;
@@ -9965,7 +9965,7 @@ a.contact-card__text:hover {
    ========================================================================== */
 
 /* Shared Utilities */
-.hwh-section-inner{max-width:1280px;margin:0 auto;padding:0 clamp(1.25rem,1rem + 2vw,3rem)}.hwh-center{text-align:center}.hwh-section-header{text-align:center;margin-bottom:3.5rem}.hwh-section-header--light{color:#fff}.hwh-label{display:inline-block;font-family:'Inter',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#F22F3A;margin-bottom:1rem}.hwh-label--red{color:#F22F3A}.hwh-label--white{color:rgba(255,255,255,.6)}.hwh-section-title{font-family:'Montserrat',serif;font-size:clamp(2rem,1.5rem + 2.5vw,3.2rem);font-weight:800;line-height:1.1;color:#0F2440;margin-bottom:1rem}.hwh-section-title em{color:#F22F3A;font-style:normal}.hwh-section-title--white{color:#fff}.hwh-section-title--white em{color:#F22F3A}.hwh-section-desc{font-size:clamp(.95rem,.85rem + .3vw,1.05rem);color:#3D6491;max-width:580px;margin:0 auto;line-height:1.7}.hwh-section-desc--muted{color:rgba(255,255,255,.6)}
+.hwh-section-inner{max-width:1280px;margin:0 auto;padding:0 clamp(1.25rem,1rem + 2vw,3rem)}.hwh-center{text-align:center}.hwh-section-header{text-align:center;margin-bottom:3.5rem}.hwh-section-header--light{color:#fff}.hwh-label{display:inline-block;font-family:'Inter',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#F22F3A;margin-bottom:1rem}.hwh-label--red{color:#F22F3A}.hwh-label--white{color:rgba(255,255,255,.6)}.hwh-section-title{font-family:var(--font-accent),serif;font-size:clamp(2rem,1.5rem + 2.5vw,3.2rem);font-weight:800;line-height:1.1;color:#0F2440;margin-bottom:1rem}.hwh-section-title em{color:#F22F3A;font-style:normal}.hwh-section-title--white{color:#fff}.hwh-section-title--white em{color:#F22F3A}.hwh-section-desc{font-size:clamp(.95rem,.85rem + .3vw,1.05rem);color:#3D6491;max-width:580px;margin:0 auto;line-height:1.7}.hwh-section-desc--muted{color:rgba(255,255,255,.6)}
 /* HWH Buttons */
 .hwh-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.9rem 2rem;font-family:'Inter',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.04em;text-decoration:none;border-radius:9999px;border:2px solid transparent;cursor:pointer;transition:all .3s ease;white-space:nowrap}
 .hwh-btn--lg{padding:1.05rem 2.4rem;font-size:.9rem}
@@ -9988,7 +9988,7 @@ a.contact-card__text:hover {
 .hwh-hero__eyebrow{display:flex;align-items:center;gap:.6rem;font-family:'Inter',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:1.5rem}
 .hwh-hero__dot{width:8px;height:8px;background:#F22F3A;border-radius:50%;box-shadow:0 0 12px rgba(242,47,58,.8);animation:hwh-pulse 1.8s ease infinite;flex-shrink:0}
 @keyframes hwh-pulse{0%,100%{box-shadow:0 0 8px rgba(242,47,58,.8)}50%{box-shadow:0 0 20px rgba(242,47,58,1),0 0 40px rgba(242,47,58,.4)}}
-.hwh-hero__title{font-family:'Montserrat',serif;font-size:clamp(2.8rem,2rem + 4vw,5.5rem);font-weight:900;line-height:1.0;color:#fff;margin-bottom:1.5rem;letter-spacing:-.02em}
+.hwh-hero__title{font-family:var(--font-accent),serif;font-size:clamp(2.8rem,2rem + 4vw,5.5rem);font-weight:900;line-height:1.0;color:#fff;margin-bottom:1.5rem;letter-spacing:-.02em}
 .hwh-hero__title-accent{color:#F22F3A;display:block}
 .hwh-hero__sub{font-size:clamp(1rem,.9rem + .3vw,1.15rem);color:rgba(255,255,255,.7);line-height:1.75;margin-bottom:2.5rem;max-width:520px}
 .hwh-hero__actions{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2.5rem}
@@ -10010,7 +10010,7 @@ a.contact-card__text:hover {
 .hwh-stats{background:#F22F3A;padding:2rem 0}
 .hwh-stats__inner{max-width:1280px;margin:0 auto;padding:0 clamp(1.25rem,1rem + 2vw,3rem);display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:0}
 .hwh-stat-item{display:flex;flex-direction:column;align-items:center;padding:.5rem 3rem;text-align:center}
-.hwh-stat-item__num{font-family:'Montserrat',serif;font-size:clamp(2rem,1.5rem + 1.5vw,2.8rem);font-weight:900;color:#fff;line-height:1}
+.hwh-stat-item__num{font-family:var(--font-accent),serif;font-size:clamp(2rem,1.5rem + 1.5vw,2.8rem);font-weight:900;color:#fff;line-height:1}
 .hwh-stat-item__label{font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.75);margin-top:.3rem}
 .hwh-stat-item__div{width:1px;height:40px;background:rgba(255,255,255,.25);flex-shrink:0}
 
@@ -10025,7 +10025,7 @@ a.contact-card__text:hover {
 .hwh-service-card__img img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
 .hwh-service-card:hover .hwh-service-card__img img{transform:scale(1.05)}
 .hwh-service-card__icon{font-size:2.2rem}
-.hwh-service-card__title{font-family:'Montserrat',serif;font-size:.92rem;font-weight:800;color:#0F2440;line-height:1.2}
+.hwh-service-card__title{font-family:var(--font-accent),serif;font-size:.92rem;font-weight:800;color:#0F2440;line-height:1.2}
 .hwh-service-card__text{font-size:.88rem;color:#3D6491;line-height:1.65;flex:1}
 .hwh-service-card__price{font-size:.78rem;font-weight:700;color:#F22F3A;letter-spacing:.04em}
 .hwh-service-card__link{font-size:.82rem;font-weight:700;color:#F22F3A;text-decoration:none;display:inline-block;margin-top:.25rem;transition:letter-spacing .2s ease}
@@ -10035,9 +10035,9 @@ a.contact-card__text:hover {
 .hwh-process{padding:7rem 0;background:#0F2440}
 .hwh-process-steps{display:flex;align-items:flex-start;gap:0;margin-top:1rem}
 .hwh-process-step{flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 1.5rem}
-.hwh-process-step__num{font-family:'Montserrat',serif;font-size:4rem;font-weight:900;color:rgba(242,47,58,.35);line-height:1;margin-bottom:.25rem}
+.hwh-process-step__num{font-family:var(--font-accent),serif;font-size:4rem;font-weight:900;color:rgba(242,47,58,.35);line-height:1;margin-bottom:.25rem}
 .hwh-process-step__icon{font-size:1.6rem;margin-bottom:1rem;position:relative;z-index:1;width:64px;height:64px;background:rgba(242,47,58,.15);border:1.5px solid rgba(242,47,58,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff}
-.hwh-process-step__title{font-family:'Montserrat',serif;font-size:1rem;font-weight:800;color:#fff;margin-bottom:.6rem}
+.hwh-process-step__title{font-family:var(--font-accent),serif;font-size:1rem;font-weight:800;color:#fff;margin-bottom:.6rem}
 .hwh-process-step__text{font-size:.84rem;color:rgba(255,255,255,.55);line-height:1.65}
 .hwh-process-connector{flex-shrink:0;position:relative;top:80px;width:60px}
 .hwh-process-connector::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,rgba(242,47,58,.5),rgba(242,47,58,.1))}
@@ -10055,7 +10055,7 @@ a.contact-card__text:hover {
 .hwh-why__stat-card:hover{border-color:var(--brand);transform:translateY(-3px)}
 .hwh-why__stat-card--accent{background:var(--brand);border-color:var(--brand)}
 .hwh-why__stat-card--accent .hwh-why__stat-num,.hwh-why__stat-card--accent .hwh-why__stat-lbl{color:#fff}
-.hwh-why__stat-num{display:block;font-family:'Montserrat',serif;font-size:clamp(2rem,1.5rem + 1.5vw,2.8rem);font-weight:900;color:#222D3F;line-height:1;margin-bottom:.4rem}
+.hwh-why__stat-num{display:block;font-family:var(--font-accent),serif;font-size:clamp(2rem,1.5rem + 1.5vw,2.8rem);font-weight:900;color:#222D3F;line-height:1;margin-bottom:.4rem}
 .hwh-why__stat-lbl{font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(34,45,63,.5)}
 
 /* HWH Reviews */
@@ -10107,7 +10107,7 @@ footer.hwh-foot { background: #0A1628; color: rgba(255,255,255,0.7); font-family
 .hwh-foot__stars { color:#F5C542; letter-spacing:.05em; font-size:.9rem; }
 
 /* Nav cols */
-.hwh-foot__heading { font-family:'Montserrat',serif; font-size:.65rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:#F22F3A; margin-bottom:1.25rem; }
+.hwh-foot__heading { font-family:var(--font-accent),serif; font-size:.65rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:#F22F3A; margin-bottom:1.25rem; }
 .hwh-foot__links { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:.6rem; }
 .hwh-foot__links a { font-size:.85rem; color:rgba(255,255,255,.55); text-decoration:none; transition:all .2s ease; display:inline-flex; align-items:center; gap:.35rem; }
 .hwh-foot__links a:hover { color:#fff; transform:translateX(3px); }
@@ -10134,7 +10134,7 @@ footer.hwh-foot { background: #0A1628; color: rgba(255,255,255,0.7); font-family
   .hwh-foot__bottom-inner { flex-direction:column; text-align:center; }
   .hwh-foot__legal { justify-content:center; }
 }
-.hwh-cta__title{font-family:'Montserrat',serif;font-size:clamp(2rem,1.5rem + 2.5vw,3.5rem);font-weight:900;color:#fff;line-height:1.05;margin-bottom:1rem;letter-spacing:-.02em}
+.hwh-cta__title{font-family:var(--font-accent),serif;font-size:clamp(2rem,1.5rem + 2.5vw,3.5rem);font-weight:900;color:#fff;line-height:1.05;margin-bottom:1rem;letter-spacing:-.02em}
 .hwh-cta__text{font-size:1rem;color:rgba(255,255,255,.8);line-height:1.65;max-width:420px}
 .hwh-cta__actions{display:flex;flex-direction:column;gap:1rem;flex-shrink:0}
 
@@ -10189,7 +10189,7 @@ footer.hwh-foot { background: #0A1628; color: rgba(255,255,255,0.7); font-family
 .hwh-footer__stars { color:#F5C542; letter-spacing:.05em; font-size:.9rem; }
 
 /* Nav cols */
-.hwh-footer__heading { font-family:'Montserrat',serif; font-size:.65rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:#F22F3A; margin-bottom:1.25rem; }
+.hwh-footer__heading { font-family:var(--font-accent),serif; font-size:.65rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:#F22F3A; margin-bottom:1.25rem; }
 .hwh-footer__links { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:.6rem; }
 .hwh-footer__links a { font-size:.85rem; color:rgba(255,255,255,.55); text-decoration:none; transition:all .2s ease; display:inline-flex; align-items:center; gap:.35rem; }
 .hwh-footer__links a:hover { color:#fff; transform:translateX(3px); }
@@ -10291,7 +10291,7 @@ footer.hwh-foot { background: #0A1628; color: rgba(255,255,255,0.7); font-family
 /* Promo panel */
 .hwh-drop__promo { background:#0F2440; border-radius:14px; padding:1.75rem; display:flex; flex-direction:column; justify-content:space-between; }
 .hwh-drop__promo-label { font-size:.6rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:#F22F3A; display:block; margin-bottom:.6rem; }
-.hwh-drop__promo-title { font-family:'Montserrat',serif; font-size:1.25rem; font-weight:800; color:#fff; line-height:1.2; margin:0 0 .6rem; }
+.hwh-drop__promo-title { font-family:var(--font-accent),serif; font-size:1.25rem; font-weight:800; color:#fff; line-height:1.2; margin:0 0 .6rem; }
 .hwh-drop__promo-text { font-size:.78rem; color:rgba(255,255,255,.6); line-height:1.6; margin:0 0 1.25rem; flex:1; }
 .hwh-drop__promo-btn { display:inline-flex; align-items:center; background:#F22F3A; color:#fff; padding:.6rem 1.2rem; border-radius:9999px; font-size:.75rem; font-weight:700; text-decoration:none; transition:all .25s ease; align-self:flex-start; }
 .hwh-drop__promo-btn:hover { background:#AF2D37; transform:translateY(-1px); color:#fff; }
@@ -10603,7 +10603,7 @@ footer.hwh-foot { background: #0A1628; color: rgba(255,255,255,0.7); font-family
 /* Ghost "404" — visible on dark navy via gradient fill + stroke */
 .e404__number {
   position: relative;
-  font-family: 'Montserrat', Georgia, serif;
+  font-family: var(--font-accent), Georgia, serif;
   font-size: clamp(4rem, 8vw, 7rem);
   font-weight: 900;
   letter-spacing: -0.04em;
@@ -10640,7 +10640,7 @@ footer.hwh-foot { background: #0A1628; color: rgba(255,255,255,0.7); font-family
 
 /* Headline */
 .e404__title {
-  font-family: 'Montserrat', Georgia, serif;
+  font-family: var(--font-accent), Georgia, serif;
   font-size: clamp(2rem, 1.4rem + 2.8vw, 3.4rem);
   font-weight: 300;
   line-height: 1.1;
@@ -10922,7 +10922,7 @@ footer.hwh-foot { background: #0A1628; color: rgba(255,255,255,0.7); font-family
 }
 
 .svc-hero__title {
-  font-family: 'Montserrat', Georgia, serif;
+  font-family: var(--font-accent), Georgia, serif;
   font-size: clamp(2.8rem, 2rem + 3.5vw, 4.8rem);
   font-weight: 800;
   line-height: 1.05;
@@ -11056,7 +11056,7 @@ footer.hwh-foot { background: #0A1628; color: rgba(255,255,255,0.7); font-family
   animation: svcFloat 5s ease-in-out infinite;
 }
 .svc-hero__float strong {
-  font-family: 'Montserrat', Georgia, serif;
+  font-family: var(--font-accent), Georgia, serif;
   font-size: 1.15rem;
   font-weight: 800;
   color: #fff;
@@ -11259,7 +11259,7 @@ footer.hwh-foot { background: #0A1628; color: rgba(255,255,255,0.7); font-family
 }
 
 .svc-card__title {
-  font-family: 'Montserrat', Georgia, serif;
+  font-family: var(--font-accent), Georgia, serif;
   font-size: clamp(1rem, 0.9rem + 0.4vw, 1.2rem);
   font-weight: 500;
   color: var(--text-dark);
@@ -11349,7 +11349,7 @@ footer.hwh-foot { background: #0A1628; color: rgba(255,255,255,0.7); font-family
 }
 .svc-empty__icon  { font-size: 3rem; }
 .svc-empty__title {
-  font-family: 'Montserrat', Georgia, serif;
+  font-family: var(--font-accent), Georgia, serif;
   font-size: 1.8rem;
   font-weight: 300;
   color: var(--text-dark);
@@ -11384,7 +11384,7 @@ footer.hwh-foot { background: #0A1628; color: rgba(255,255,255,0.7); font-family
 }
 
 .svc-stat__num {
-  font-family: 'Montserrat', Georgia, serif;
+  font-family: var(--font-accent), Georgia, serif;
   font-size: clamp(2rem, 1.5rem + 2vw, 2.8rem);
   font-weight: 700;
   color: #fff;
@@ -11430,7 +11430,7 @@ footer.hwh-foot { background: #0A1628; color: rgba(255,255,255,0.7); font-family
   flex-shrink: 0;
 }
 .svc-archive__count strong {
-  font-family: 'Montserrat', Georgia, serif;
+  font-family: var(--font-accent), Georgia, serif;
   font-size: 2rem;
   font-weight: 800;
   color: var(--brand);
@@ -11476,7 +11476,7 @@ footer.hwh-foot { background: #0A1628; color: rgba(255,255,255,0.7); font-family
   border-radius: 50%;
   background: var(--brand);
   color: #fff;
-  font-family: 'Montserrat', Georgia, serif;
+  font-family: var(--font-accent), Georgia, serif;
   font-size: 0.85rem;
   font-weight: 800;
   display: flex;
@@ -11508,7 +11508,7 @@ footer.hwh-foot { background: #0A1628; color: rgba(255,255,255,0.7); font-family
 }
 
 .svc-process__title {
-  font-family: 'Montserrat', Georgia, serif;
+  font-family: var(--font-accent), Georgia, serif;
   font-size: clamp(0.9rem, 0.8rem + 0.35vw, 1.05rem);
   font-weight: 600;
   color: var(--text-dark);
@@ -11593,7 +11593,7 @@ footer.hwh-foot { background: #0A1628; color: rgba(255,255,255,0.7); font-family
 }
 
 .svc-cta__title {
-  font-family: 'Montserrat', Georgia, serif;
+  font-family: var(--font-accent), Georgia, serif;
   font-size: clamp(2rem, 1.4rem + 3vw, 3.5rem);
   font-weight: 300;
   line-height: 1.1;
@@ -11764,7 +11764,7 @@ footer.hwh-foot { background: #0A1628; color: rgba(255,255,255,0.7); font-family
 }
 
 .about-hero__title {
-  font-family: 'Montserrat', Georgia, serif;
+  font-family: var(--font-accent), Georgia, serif;
   font-size: clamp(2.8rem, 2rem + 3.5vw, 4.8rem);
   font-weight: 800;
   line-height: 1.05;
@@ -11875,7 +11875,7 @@ footer.hwh-foot { background: #0A1628; color: rgba(255,255,255,0.7); font-family
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Montserrat', Georgia, serif;
+  font-family: var(--font-accent), Georgia, serif;
   font-size: 0.85rem;
   font-weight: 800;
   color: #fff;
@@ -11884,7 +11884,7 @@ footer.hwh-foot { background: #0A1628; color: rgba(255,255,255,0.7); font-family
 }
 
 .about-story__detail h3 {
-  font-family: 'Montserrat', Georgia, serif;
+  font-family: var(--font-accent), Georgia, serif;
   font-size: clamp(1.1rem, 0.9rem + 0.5vw, 1.3rem);
   font-weight: 700;
   color: var(--text-dark);
@@ -11956,7 +11956,7 @@ footer.hwh-foot { background: #0A1628; color: rgba(255,255,255,0.7); font-family
 }
 
 .about-val__num {
-  font-family: 'Montserrat', Georgia, serif;
+  font-family: var(--font-accent), Georgia, serif;
   font-size: 0.7rem;
   font-weight: 800;
   color: rgba(242,47,58,0.2);
@@ -11965,7 +11965,7 @@ footer.hwh-foot { background: #0A1628; color: rgba(255,255,255,0.7); font-family
 }
 
 .about-val__title {
-  font-family: 'Montserrat', Georgia, serif;
+  font-family: var(--font-accent), Georgia, serif;
   font-size: clamp(0.95rem, 0.85rem + 0.35vw, 1.1rem);
   font-weight: 600;
   color: var(--text-dark);
@@ -12050,7 +12050,7 @@ footer.hwh-foot { background: #0A1628; color: rgba(255,255,255,0.7); font-family
 }
 
 .about-family__name {
-  font-family: 'Montserrat', Georgia, serif;
+  font-family: var(--font-accent), Georgia, serif;
   font-size: 1.15rem;
   font-weight: 700;
   color: var(--text-dark);
@@ -12617,7 +12617,7 @@ footer.hwh-foot { background: #0A1628; color: rgba(255,255,255,0.7); font-family
 }
 
 .hwh-faq__question {
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-accent), sans-serif;
   font-size: clamp(0.88rem, 0.82rem + 0.25vw, 1rem);
   font-weight: 700;
   color: var(--text-dark);
@@ -12679,7 +12679,7 @@ footer.hwh-foot { background: #0A1628; color: rgba(255,255,255,0.7); font-family
 }
 
 .hwh-geo__title {
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-accent), sans-serif;
   font-size: clamp(1.35rem, 1.1rem + 1vw, 1.75rem);
   font-weight: 700;
   color: var(--text-dark);
@@ -12707,3 +12707,4 @@ footer.hwh-foot { background: #0A1628; color: rgba(255,255,255,0.7); font-family
 .hwh-geo__body a:hover {
   color: var(--brand-dark);
 }
+

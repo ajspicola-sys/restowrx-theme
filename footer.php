@@ -1,146 +1,474 @@
 <?php
 /**
- * Spicola Construction &mdash; Footer v3
- * Clean dark navy footer, no emergency bar
+ * Restowrx Elite Theme — Footer Template
+ * Premium tactical theme footer with Tier C state recovery guard
  */
 ?>
 
-<!-- Floating Mobile CTA -->
-<div class="floating-cta" id="floating-cta" role="navigation" aria-label="Quick actions">
-    <a href="/contact/" class="floating-cta__btn floating-cta__btn--book">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg>
-        Get Quote
+</main> <!-- End #main-content from header.php -->
+
+<!-- Floating Mobile Dispatch CTA -->
+<div class="floating-cta" id="floating-cta" role="navigation" aria-label="Quick action dispatch">
+    <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="floating-cta__btn floating-cta__btn--dispatch">
+        <i data-lucide="zap"></i>
+        Dispatch
     </a>
-    <a href="tel:+18137326285" class="floating-cta__btn floating-cta__btn--call">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        Call
+    <a href="tel:+18136994009" class="floating-cta__btn floating-cta__btn--call">
+        <i data-lucide="phone"></i>
+        Call Center
     </a>
 </div>
 
 <!-- Scroll to Top -->
 <button class="scroll-top" id="scroll-top" aria-label="Back to top">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg>
+    <i data-lucide="chevron-up"></i>
 </button>
 
-<footer class="hwh-foot">
+<style>
+    /* Floating CTA styles for Restowrx Elite */
+    .floating-cta {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 99999;
+        display: none;
+        gap: 10px;
+        background: rgba(18, 3, 3, 0.9);
+        border: 1px solid #ff0000;
+        padding: 6px 12px;
+        border-radius: 50px;
+        box-shadow: 0 10px 30px rgba(255, 0, 0, 0.2);
+        backdrop-filter: blur(10px);
+        transition: opacity 0.3s, transform 0.3s;
+    }
+    .floating-cta__btn {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        color: white;
+        text-decoration: none;
+        font-family: 'Space Mono', monospace;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        padding: 8px 16px;
+        border-radius: 30px;
+        transition: background 0.2s;
+    }
+    .floating-cta__btn svg {
+        width: 14px;
+        height: 14px;
+    }
+    .floating-cta__btn--dispatch {
+        background: #ff0000;
+    }
+    .floating-cta__btn--dispatch:hover {
+        background: white;
+        color: #ff0000;
+    }
+    .floating-cta__btn--call {
+        background: rgba(255, 255, 255, 0.1);
+    }
+    .floating-cta__btn--call:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+    @media (max-width: 768px) {
+        .floating-cta {
+            display: flex;
+        }
+    }
 
-    <!-- Main footer body -->
-    <div class="hwh-foot__main">
-        <div class="hwh-foot__inner">
+    /* Scroll Top styles */
+    .scroll-top {
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        z-index: 9999;
+        width: 45px;
+        height: 45px;
+        background: #120303;
+        border: 1px solid rgba(255, 0, 0, 0.3);
+        border-radius: 4px;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s;
+    }
+    .scroll-top:hover {
+        background: #ff0000;
+        border-color: #ff0000;
+        transform: translateY(-3px);
+    }
+    .scroll-top.is-visible {
+        opacity: 1;
+        visibility: visible;
+    }
 
-            <!-- Brand col -->
-            <div class="hwh-foot__brand">
-                <a href="<?php echo esc_url(home_url('/')); ?>" class="hwh-foot__logo" aria-label="Spicola Construction &mdash; Home"<?php if (is_front_page()) echo ' aria-current="page"'; ?>>
-                    <img src="https://spicolaconstruction.com/wp-content/uploads/2022/06/White-Spicola-Logo.png" alt="Spicola Construction" width="300" height="69" loading="lazy" decoding="async" style="display:block;width:300px;height:auto;">
-                </a>
-                <p class="hwh-foot__brand-text">Tampa Bay's trusted general contractor &mdash; quality craftsmanship for residential and commercial construction, remodeling, roofing, and renovations.</p>
-                <div class="hwh-foot__social">
-                    <a href="https://www.facebook.com/spicolaconstruction/" class="hwh-foot__social-link" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-                    </a>
-                    <a href="https://www.instagram.com/spicolaconstruction/" class="hwh-foot__social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
-                    </a>
-                    <a href="https://g.co/spicolaconstruction" class="hwh-foot__social-link" aria-label="Google Reviews" target="_blank" rel="noopener noreferrer">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-                    </a>
+    /* --- RESTOWRX TACTICAL COMMAND FOOTER --- */
+    .elite-footer {
+        background-color: #000000;
+        color: white;
+        font-family: 'Inter', sans-serif;
+        padding: 90px 0 45px;
+        position: relative;
+        overflow: hidden;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* Technical Background Grid */
+    .footer-grid-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image:
+            linear-gradient(to right, rgba(255, 255, 255, 0.01) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+        background-size: 50px 50px;
+        pointer-events: none;
+    }
+
+    .footer-container {
+        width: 100%;
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 0 40px;
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr 0.8fr 1.2fr;
+        gap: 50px;
+        position: relative;
+        z-index: 10;
+    }
+
+    .footer-col h3 {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 1.8rem;
+        letter-spacing: 2px;
+        margin-bottom: 25px;
+        color: white;
+        text-transform: uppercase;
+        position: relative;
+        display: inline-block;
+        margin-top: 0;
+    }
+
+    .footer-col h3::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 30px;
+        height: 2px;
+        background: #ff0000;
+    }
+
+    .footer-logo img {
+        height: 40px;
+        width: auto;
+        object-fit: contain;
+        margin-bottom: 20px;
+    }
+
+    .footer-about p {
+        color: #888;
+        line-height: 1.6;
+        font-size: 0.9rem;
+        max-width: 300px;
+        margin-top: 0;
+    }
+
+    .footer-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .footer-links li {
+        margin-bottom: 12px;
+    }
+
+    .footer-links a {
+        color: #888;
+        text-decoration: none;
+        transition: 0.3s;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 500;
+        display: inline-block;
+    }
+
+    .footer-links a:hover {
+        color: #ff0000;
+        transform: translateX(4px);
+    }
+
+    /* Radar Zones */
+    .radar-zones {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px 10px;
+    }
+
+    .zone-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #888;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-family: 'Space Mono', monospace;
+    }
+
+    .zone-pulse {
+        width: 6px;
+        height: 6px;
+        background: #ff0000;
+        border-radius: 50%;
+        box-shadow: 0 0 8px #ff0000;
+        animation: zonePulse 1.5s infinite;
+    }
+
+    @keyframes zonePulse {
+        0% { opacity: 1; }
+        50% { opacity: 0.3; }
+        100% { opacity: 1; }
+    }
+
+    /* Contact Block */
+    .footer-contact-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    .contact-icon {
+        color: #ff0000;
+        margin-top: 3px;
+        display: flex;
+        align-items: center;
+    }
+
+    .contact-text span {
+        display: block;
+        font-size: 0.65rem;
+        color: #555;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-family: 'Space Mono', monospace;
+    }
+
+    .contact-text b {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 1.5rem;
+        color: white;
+        letter-spacing: 1px;
+    }
+
+    /* Social Stack */
+    .social-stack {
+        display: flex;
+        gap: 12px;
+        margin-top: 25px;
+    }
+
+    .social-btn {
+        width: 40px;
+        height: 40px;
+        background: #111;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4px;
+        color: #ffffff !important;
+        text-decoration: none;
+        transition: 0.3s;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .social-btn:hover {
+        background: #ff0000;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(255, 0, 0, 0.4);
+    }
+
+    /* Bottom Certification Bar */
+    .footer-bottom {
+        max-width: 1300px;
+        margin: 60px auto 0;
+        padding: 30px 40px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .cert-list {
+        display: flex;
+        gap: 25px;
+        color: #444;
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 1.1rem;
+        letter-spacing: 2px;
+    }
+
+    .cert-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .copyright {
+        color: #444;
+        font-size: 0.75rem;
+        letter-spacing: 1px;
+    }
+
+    @media (max-width: 1100px) {
+        .footer-container {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .footer-container {
+            grid-template-columns: 1fr;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .footer-col h3::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .footer-contact-item {
+            justify-content: center;
+        }
+
+        .social-stack {
+            justify-content: center;
+        }
+
+        .footer-bottom {
+            flex-direction: column;
+            text-align: center;
+            padding: 20px 20px 0;
+        }
+
+        .cert-list {
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-about p {
+            margin: 0 auto;
+        }
+    }
+</style>
+
+<footer class="elite-footer" role="contentinfo">
+    <div class="footer-grid-bg"></div>
+
+    <div class="footer-container">
+        <!-- BRANDING -->
+        <div class="footer-col footer-about">
+            <div class="footer-logo">
+                <img src="https://restowrx.com/wp-content/uploads/2025/04/GetAttachmentThumbnail.png" alt="Restowrx Elite Logo" width="180" height="36" loading="lazy">
+            </div>
+            <p>TAMPA BAY'S COMMAND CENTER FOR PROPERTY RECOVERY. SURGICAL PRECISION. ELITE RESPONSE. 24/7 ACTIVE RADAR.</p>
+            <div class="social-stack">
+                <a href="https://www.instagram.com/restowrx/" class="social-btn" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i data-lucide="instagram"></i></a>
+                <a href="https://www.facebook.com/restowrx/" class="social-btn" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i data-lucide="facebook"></i></a>
+                <a href="https://www.linkedin.com/company/restowrx/" class="social-btn" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i data-lucide="linkedin"></i></a>
+            </div>
+        </div>
+
+        <!-- DISPATCH LINKS -->
+        <div class="footer-col">
+            <h3>Mission Control</h3>
+            <?php
+            if ( has_nav_menu('footer-menu') ) {
+                wp_nav_menu( array(
+                    'theme_location' => 'footer-menu',
+                    'menu_class'     => 'footer-links', 
+                    'container'      => false,          
+                    'depth'          => 1,              
+                ) );
+            } else {
+                echo '<ul class="footer-links">';
+                echo '<li><a href="' . esc_url(home_url('/services/')) . '">Water Damage</a></li>';
+                echo '<li><a href="' . esc_url(home_url('/services/')) . '">Fire Damage</a></li>';
+                echo '<li><a href="' . esc_url(home_url('/services/')) . '">Mold Remediation</a></li>';
+                echo '<li><a href="' . esc_url(home_url('/about/')) . '">About Us</a></li>';
+                echo '<li><a href="' . esc_url(home_url('/contact/')) . '">Ready Dispatch</a></li>';
+                echo '</ul>';
+            }
+            ?>
+        </div>
+
+        <!-- RADAR ZONES -->
+        <div class="footer-col">
+            <h3>Active Radar</h3>
+            <div class="radar-zones">
+                <div class="zone-item"><div class="zone-pulse"></div>TAMPA</div>
+                <div class="zone-item"><div class="zone-pulse"></div>S. PETE</div>
+                <div class="zone-item"><div class="zone-pulse"></div>CWATER</div>
+                <div class="zone-item"><div class="zone-pulse"></div>BRANDON</div>
+                <div class="zone-item"><div class="zone-pulse"></div>WESLEY</div>
+                <div class="zone-item"><div class="zone-pulse"></div>LITHIA</div>
+            </div>
+        </div>
+
+        <!-- CONTACT DISPATCH -->
+        <div class="footer-col">
+            <h3>Ready Dispatch</h3>
+            <div class="footer-contact-item">
+                <div class="contact-icon"><i data-lucide="phone-call" size="24"></i></div>
+                <div class="contact-text">
+                    <span>EMERGENCY DISPATCH</span>
+                    <b>813.699.4009</b>
                 </div>
-                <div class="hwh-foot__rating">
-                    <span class="hwh-foot__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-                    <span>5.0 &middot; 50+ Google Reviews</span>
+            </div>
+            <div class="footer-contact-item">
+                <div class="contact-icon"><i data-lucide="mail" size="24"></i></div>
+                <div class="contact-text">
+                    <span>EMAIL INTEL</span>
+                    <b>JOE@RESTOWRX.COM</b>
                 </div>
             </div>
-
-            <!-- Services col -->
-            <div class="hwh-foot__col">
-                <h3 class="hwh-foot__heading">Our Services</h3>
-                <ul class="hwh-foot__links">
-                    <li><a href="<?php echo esc_url(home_url('/services/')); ?>">New Construction</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/services/')); ?>">Remodeling &amp; Renovations</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/services/')); ?>">Roofing</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/services/')); ?>">Commercial Build-Outs</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/services/')); ?>">Additions &amp; Extensions</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/services/')); ?>">Concrete &amp; Foundation</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/services/')); ?>">All Services &rarr;</a></li>
-                </ul>
-            </div>
-
-            <!-- Company col -->
-            <div class="hwh-foot__col">
-                <h3 class="hwh-foot__heading">Company</h3>
-                <ul class="hwh-foot__links">
-                    <li><a href="<?php echo esc_url(home_url('/about/')); ?>">About Us</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/projects/')); ?>">Our Projects</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/blog/')); ?>">Blog</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/contact/')); ?>">Contact Us</a></li>
-                </ul>
-            </div>
-
-            <!-- Contact col -->
-            <div class="hwh-foot__col">
-                <h3 class="hwh-foot__heading">Contact Us</h3>
-                <div class="hwh-foot__contact">
-                    <div class="hwh-foot__contact-item">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                        <a href="tel:+18137326285">(813) 732-6285</a>
-                    </div>
-                    <div class="hwh-foot__contact-item">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                        <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#105;&#110;&#102;&#111;&#64;&#115;&#112;&#105;&#99;&#111;&#108;&#97;&#99;&#111;&#110;&#115;&#116;&#114;&#117;&#99;&#116;&#105;&#111;&#110;&#46;&#99;&#111;&#109;" class="hwh-foot__email-link">&#105;&#110;&#102;&#111;&#64;&#115;&#112;&#105;&#99;&#111;&#108;&#97;&#99;&#111;&#110;&#115;&#116;&#114;&#117;&#99;&#116;&#105;&#111;&#110;&#46;&#99;&#111;&#109;</a>
-                    </div>
-                    <div class="hwh-foot__contact-item">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                        <a href="https://spicolaconstruction.com" target="_blank" rel="noopener noreferrer">spicolaconstruction.com</a>
-                    </div>
-                    <div class="hwh-foot__contact-item" itemscope itemtype="https://schema.org/PostalAddress">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                        <address class="hwh-foot__address">
-                            <span itemprop="streetAddress">9249 Lazy Ln</span>,
-                            <span itemprop="addressLocality">Tampa</span>,
-                            <span itemprop="addressRegion">FL</span>
-                            <span itemprop="postalCode">33614</span>
-                        </address>
-                    </div>
-                    <div class="hwh-foot__contact-item">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                        <span>Mon&ndash;Fri 7:30am&ndash;4pm</span>
-                    </div>
-                </div>
-                <a href="/contact/" class="hwh-btn hwh-btn--red hwh-foot__cta-btn">Get a Free Quote</a>
-            </div>
-
         </div>
     </div>
 
-    <!-- Bottom bar -->
-    <div class="hwh-foot__bottom">
-        <div class="hwh-foot__bottom-inner">
-            <p class="hwh-foot__copyright">&copy; <?php echo date('Y'); ?> Spicola Construction. All rights reserved. &middot; Licensed &amp; Insured &middot; Tampa Bay, FL</p>
-            <div class="hwh-foot__legal">
-                <a href="<?php echo esc_url(home_url('/privacy-policy/')); ?>">Privacy Policy</a>
-                <a href="<?php echo esc_url(home_url('/cancellation-policy/')); ?>">Cancellation Policy</a>
-                <a href="<?php echo esc_url(home_url('/refund-policy/')); ?>">Refund Policy</a>
-            </div>
+    <!-- BOTTOM STRIP -->
+    <div class="footer-bottom">
+        <div class="cert-list">
+            <div class="cert-item"><i data-lucide="shield-check" size="18"></i> IICRC LICENSED</div>
+            <div class="cert-item"><i data-lucide="shield-check" size="18"></i> OSHA COMPLIANT</div>
+            <div class="cert-item"><i data-lucide="shield-check" size="18"></i> ELITE CERTIFIED</div>
+        </div>
+        <div class="copyright">
+            &copy; <?php echo date('Y'); ?> RESTOWRX. ALL RIGHTS RESERVED. OPERATING AT THE APEX.
         </div>
     </div>
-
 </footer>
-
-<!-- Cookie consent banner &mdash; server-rendered for LLM/crawler visibility -->
-<div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Cookie consent" aria-hidden="true">
-    <div class="cookie-banner__inner">
-        <p class="cookie-banner__text"><strong>Cookies</strong> &mdash; We use cookies to enhance your experience.</p>
-        <div class="cookie-banner__actions">
-            <button class="cookie-banner__btn cookie-banner__btn--accept" id="cookie-accept">Accept</button>
-            <button class="cookie-banner__btn cookie-banner__btn--decline" id="cookie-decline">Decline</button>
-        </div>
-    </div>
-</div>
 
 <script>
 (function() {
     'use strict';
-    var rIC = window.requestIdleCallback || function(cb) { return setTimeout(cb, 1); };
+    
+    // Core Elements
     var header      = document.getElementById('site-header');
     var toggle      = document.getElementById('mobile-toggle');
     var mobileMenu  = document.getElementById('mobile-menu');
@@ -149,187 +477,190 @@
     var scrollBtn   = document.getElementById('scroll-top');
     var lastScrollY = 0, ticking = false;
 
+    // Remove leaving class or scroll locks on DOM loads
     document.body.classList.add('is-loaded');
-
-    // Fix white screen when navigating back — bfcache restores the
-    // page with the exit-transition class still applied.
     window.addEventListener('pageshow', function(e) {
         if (e.persisted) document.body.classList.remove('is-leaving');
     });
 
-    // Scroll reveal
+    // ── INTERSECTION OBSERVER FOR FADE-IN REVEAL ──
     (function() {
         var obs = new IntersectionObserver(function(entries) {
             for (var i = 0; i < entries.length; i++) {
-                if (entries[i].isIntersecting) { entries[i].target.classList.add('is-visible'); obs.unobserve(entries[i].target); }
+                if (entries[i].isIntersecting) { 
+                    entries[i].target.classList.add('is-visible'); 
+                    obs.unobserve(entries[i].target); 
+                }
             }
         }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
+        
         document.querySelectorAll('.reveal').forEach(function(el) {
             var r = el.getBoundingClientRect();
             if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('is-visible');
             else obs.observe(el);
         });
-        setTimeout(function() { document.querySelectorAll('.reveal:not(.is-visible)').forEach(function(el) { el.classList.add('is-visible'); }); }, 1500);
+        
+        // Safety net to show everything if observer is blocked
+        setTimeout(function() { 
+            document.querySelectorAll('.reveal:not(.is-visible)').forEach(function(el) { 
+                el.classList.add('is-visible'); 
+            }); 
+        }, 1200);
     })();
 
-    // Header scroll
-    function onScroll() { lastScrollY = window.scrollY; if (!ticking) { requestAnimationFrame(function() { if(header) header.classList.toggle('is-scrolled', lastScrollY > 50); if(scrollBtn) scrollBtn.classList.toggle('is-visible', lastScrollY > 600); ticking = false; }); ticking = true; } }
+    // ── HEADER & SCROLL TO TOP TRANSITIONS ──
+    function onScroll() { 
+        lastScrollY = window.scrollY; 
+        if (!ticking) { 
+            requestAnimationFrame(function() { 
+                if (header) {
+                    header.classList.toggle('is-scrolled', lastScrollY > 50); 
+                }
+                if (scrollBtn) {
+                    scrollBtn.classList.toggle('is-visible', lastScrollY > 500); 
+                }
+                ticking = false; 
+            }); 
+            ticking = true; 
+        } 
+    }
     window.addEventListener('scroll', onScroll, { passive: true });
-    if (header) header.style.top = '0px';
 
-    // Mobile menu
-    function openMenu() { if(!mobileMenu||!toggle) return; mobileMenu.classList.add('is-open'); mobileMenu.setAttribute('aria-hidden','false'); toggle.classList.add('is-active'); toggle.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; if(mobileClose) mobileClose.focus(); }
-    function closeMenu() { if(!mobileMenu||!toggle) return; mobileMenu.classList.remove('is-open'); mobileMenu.setAttribute('aria-hidden','true'); toggle.classList.remove('is-active'); toggle.setAttribute('aria-expanded','false'); document.body.style.overflow=''; toggle.focus(); }
+    // ── MOBILE MENU ACTIONS ──
+    function openMenu() { 
+        if(!mobileMenu || !toggle) return; 
+        mobileMenu.classList.add('is-open'); 
+        mobileMenu.setAttribute('aria-hidden','false'); 
+        toggle.setAttribute('aria-expanded','true'); 
+        document.body.style.setProperty('overflow', 'hidden', 'important'); 
+        document.documentElement.style.setProperty('overflow', 'hidden', 'important');
+        if (mobileClose) mobileClose.focus(); 
+    }
+    
+    function closeMenu() { 
+        if(!mobileMenu || !toggle) return; 
+        mobileMenu.classList.remove('is-open'); 
+        mobileMenu.setAttribute('aria-hidden','true'); 
+        toggle.setAttribute('aria-expanded','false'); 
+        document.body.style.removeProperty('overflow');
+        document.documentElement.style.removeProperty('overflow');
+        toggle.focus(); 
+    }
+    
     if (toggle) toggle.addEventListener('click', openMenu);
     if (mobileOver) mobileOver.addEventListener('click', closeMenu);
     if (mobileClose) mobileClose.addEventListener('click', closeMenu);
-    document.addEventListener('keydown', function(e) { if (e.key==='Escape' && mobileMenu && mobileMenu.classList.contains('is-open')) closeMenu(); });
-    if (scrollBtn) scrollBtn.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
-
-    rIC(function() {
-        // Page exit transitions
-        document.querySelectorAll('a[href]').forEach(function(link) {
-            var href = link.getAttribute('href');
-            if (href && href.charAt(0)!=='#' && !href.startsWith('tel:') && !href.startsWith('mailto:') && !link.hasAttribute('target') && (href.indexOf(window.location.hostname)!==-1 || href.charAt(0)==='/')) {
-                link.addEventListener('click', function(e) {
-                    if (e.ctrlKey||e.metaKey||e.shiftKey) return;
-                    e.preventDefault(); document.body.classList.add('is-leaving');
-                    setTimeout(function() { window.location.href = href; }, 250);
-                });
-            }
-        });
-        // Lazy image fade
-        document.querySelectorAll('img[loading="lazy"]').forEach(function(img) {
-            if (img.complete) img.classList.add('is-loaded');
-            else img.addEventListener('load', function() { this.classList.add('is-loaded'); });
-        });
-        // Smooth anchors (skip /contact/ — handled by ServiceTitan)
-        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
-            anchor.addEventListener('click', function(e) {
-                var id = this.getAttribute('href'); if (id==='#') return;
-                if (id === '/contact/') return; // ServiceTitan handles this
-                var target = document.querySelector(id);
-                if (target) { e.preventDefault(); var y = target.getBoundingClientRect().top + window.scrollY - (header ? header.offsetHeight : 0) - 20; window.scrollTo({ top: y, behavior: 'smooth' }); }
-            });
-        });
-        // Floating CTA hide near footer
-        var floatingCta = document.getElementById('floating-cta');
-        var siteFooter  = document.querySelector('.hwh-foot');
-        if (floatingCta && siteFooter) {
-            new IntersectionObserver(function(entries) {
-                floatingCta.style.opacity       = entries[0].isIntersecting ? '0' : '';
-                floatingCta.style.pointerEvents = entries[0].isIntersecting ? 'none' : '';
-            }, { threshold: 0.1 }).observe(siteFooter);
-        }
-        // Contact form
-        var contactForm = document.getElementById('contact-form');
-        var formSuccess = document.getElementById('form-success');
-        if (contactForm && formSuccess) {
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                var btn = contactForm.querySelector('.contact-form__submit');
-                var orig = btn ? btn.innerHTML : '';
-                if (btn) { btn.innerHTML = 'Sending...'; btn.disabled = true; }
-                var data = new FormData(contactForm); data.set('action','hwh_contact_submit');
-                fetch('<?php echo esc_url(admin_url('admin-ajax.php')); ?>', { method:'POST', body:data, credentials:'same-origin' })
-                    .then(function(r){ return r.json(); })
-                    .then(function(res){ if(res.success){ contactForm.style.display='none'; formSuccess.classList.add('is-visible'); formSuccess.scrollIntoView({behavior:'smooth',block:'center'}); } else { if(btn){ btn.innerHTML=orig; btn.disabled=false; } alert((res.data&&res.data.message)?res.data.message:'Something went wrong.'); } })
-                    .catch(function(){ if(btn){ btn.innerHTML=orig; btn.disabled=false; } alert('Connection error. Please call us at (813) 732-6285.'); });
-            });
-        }
-        var phoneInput = document.getElementById('cf-phone');
-        if (phoneInput) {
-            phoneInput.addEventListener('input', function() {
-                var d = this.value.replace(/\D/g,'');
-                if (d.length<=3) this.value = d.length ? '('+d : '';
-                else if (d.length<=6) this.value = '('+d.slice(0,3)+') '+d.slice(3);
-                else this.value = '('+d.slice(0,3)+') '+d.slice(3,6)+'-'+d.slice(6,10);
-            });
+    
+    document.addEventListener('keydown', function(e) { 
+        if (e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('is-open')) {
+            closeMenu(); 
         }
     });
 
-    // Cookie banner â€” HTML is server-rendered; JS only shows/hides it
-    setTimeout(function() { rIC(function() {
-        var banner = document.getElementById('cookie-banner');
-        if (!banner) return;
-        if (!localStorage.getItem('hwh-cookie-consent')) {
-            setTimeout(function() {
-                banner.classList.add('is-visible');
-                banner.setAttribute('aria-hidden', 'false');
-                document.getElementById('cookie-accept').addEventListener('click', function() {
-                    localStorage.setItem('hwh-cookie-consent', 'accepted');
-                    banner.classList.remove('is-visible');
-                    banner.setAttribute('aria-hidden', 'true');
+    if (scrollBtn) {
+        scrollBtn.addEventListener('click', function() { 
+            window.scrollTo({ top: 0, behavior: 'smooth' }); 
+        });
+    }
+
+    // ── OPTIMIZED CLICK HANDLERS (EXITS & ANCHORS) ──
+    setTimeout(function() {
+        // Exit Transitions
+        document.querySelectorAll('a[href]').forEach(function(link) {
+            var href = link.getAttribute('href');
+            if (href && href.charAt(0) !== '#' && !href.startsWith('tel:') && !href.startsWith('mailto:') && !link.hasAttribute('target') && (href.indexOf(window.location.hostname) !== -1 || href.charAt(0) === '/')) {
+                link.addEventListener('click', function(e) {
+                    if (e.ctrlKey || e.metaKey || e.shiftKey) return;
+                    e.preventDefault(); 
+                    document.body.classList.add('is-leaving');
+                    setTimeout(function() { window.location.href = href; }, 200);
                 });
-                document.getElementById('cookie-decline').addEventListener('click', function() {
-                    localStorage.setItem('hwh-cookie-consent', 'declined');
-                    banner.classList.remove('is-visible');
-                    banner.setAttribute('aria-hidden', 'true');
-                });
-            }, 5000);
+            }
+        });
+
+        // Smooth Anchor Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+            anchor.addEventListener('click', function(e) {
+                var id = this.getAttribute('href'); 
+                if (id === '#') return;
+                var target = document.querySelector(id);
+                if (target) { 
+                    e.preventDefault(); 
+                    var y = target.getBoundingClientRect().top + window.scrollY - (header ? header.offsetHeight : 0) - 20; 
+                    window.scrollTo({ top: y, behavior: 'smooth' }); 
+                }
+            });
+        });
+    }, 100);
+
+    // ── THREE-TIER STATE RECOVERY TIMER WATCHDOG ──
+    // In case mobile menu or other popups fail to clean up on navigate
+    function isSafeToUnlock() {
+        var menuOpen = mobileMenu && mobileMenu.classList.contains('is-open');
+        return !menuOpen;
+    }
+    
+    function tryUnlock() {
+        if (!isSafeToUnlock()) return;
+        document.documentElement.classList.remove('has-scroll-lock');
+        document.body.classList.remove('has-scroll-lock');
+        document.body.classList.remove('modal-open');
+        
+        if (window.getComputedStyle(document.body).overflow === 'hidden') {
+            document.body.style.removeProperty('overflow');
         }
-    }); }, 200);
+        if (window.getComputedStyle(document.documentElement).overflow === 'hidden') {
+            document.documentElement.style.removeProperty('overflow');
+        }
+    }
+    setInterval(tryUnlock, 2000);
 
 })();
 </script>
 
-<?php
-$popup_enabled = get_theme_mod('hwh_popup_enabled', false);
-$popup_expiry  = get_theme_mod('hwh_popup_expiry', '');
-$popup_active  = $popup_enabled;
-if ($popup_active && !empty($popup_expiry) && strtotime($popup_expiry) && strtotime($popup_expiry) < time()) $popup_active = false;
-if ($popup_active) :
-    $p_badge    = esc_html(get_theme_mod('hwh_popup_badge',    'Limited Time'));
-    $p_title    = esc_html(get_theme_mod('hwh_popup_title',    '$50 Off Your First Service'));
-    $p_text     = esc_html(get_theme_mod('hwh_popup_text',     'Book your first plumbing service and save $50. Available for new customers in Tampa Bay.'));
-    $p_code     = esc_html(get_theme_mod('hwh_popup_code',     ''));
-    $p_btn_text = esc_html(get_theme_mod('hwh_popup_btn_text', 'Claim Offer Now'));
-    $p_btn_url  = esc_url(get_theme_mod('hwh_popup_btn_url',   '/contact/'));
-    $p_delay    = absint(get_theme_mod('hwh_popup_delay',      5)) * 1000;
-    $p_freq     = absint(get_theme_mod('hwh_popup_frequency',  7));
-?>
-<div class="deal-popup" id="deal-popup" role="dialog" aria-modal="true" aria-label="Special offer" aria-hidden="true">
-    <div class="deal-popup__overlay" id="deal-popup-overlay"></div>
-    <div class="deal-popup__modal">
-        <button class="deal-popup__close" id="deal-popup-close" aria-label="Close offer">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m18 6-12 12"/><path d="m6 6 12 12"/></svg>
-        </button>
-        <div class="deal-popup__glow" aria-hidden="true"></div>
-        <div class="deal-popup__content">
-            <span class="deal-popup__badge"><?php echo $p_badge; ?></span>
-            <h2 class="deal-popup__title"><?php echo $p_title; ?></h2>
-            <p class="deal-popup__text"><?php echo $p_text; ?></p>
-            <?php if ($p_code) : ?>
-            <div class="deal-popup__code-wrap">
-                <span class="deal-popup__code-label">Use Code</span>
-                <span class="deal-popup__code"><?php echo $p_code; ?></span>
-                <button class="deal-popup__copy" onclick="navigator.clipboard.writeText('<?php echo esc_js($p_code); ?>');this.textContent='&#10003; Copied!'">Copy</button>
-            </div>
-            <?php endif; ?>
-            <a href="<?php echo $p_btn_url; ?>" class="hwh-btn hwh-btn--red hwh-btn--lg deal-popup__btn"><?php echo $p_btn_text; ?></a>
-            <p class="deal-popup__fine">No commitment required &middot; New customers only</p>
-        </div>
-    </div>
-</div>
-<script>(function(){
-    var KEY='hwh-popup-dismissed',FREQ=<?php echo $p_freq; ?>,DELAY=<?php echo $p_delay; ?>;
-    var last=localStorage.getItem(KEY);
-    if(last&&(Date.now()-parseInt(last,10))/86400000<FREQ) return;
-    var popup=document.getElementById('deal-popup'),overlay=document.getElementById('deal-popup-overlay'),closeBtn=document.getElementById('deal-popup-close');
-    function open(){popup.classList.add('is-open');popup.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}
-    function close(){popup.classList.remove('is-open');popup.setAttribute('aria-hidden','true');document.body.style.overflow='';localStorage.setItem(KEY,Date.now());}
-    setTimeout(open,DELAY);
-    closeBtn.addEventListener('click',close);overlay.addEventListener('click',close);
-    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&popup.classList.contains('is-open'))close();});
-})();</script>
-<?php endif; ?>
+<!-- ═══ Tier C: DOM Reset Guard (Instant State & Visibility Sanitization) ═══
+     Runs synchronously during HTML parsing at the bottom of the page, ensuring
+     the DOM is fully reconstructed but not yet painted. Restores a clean,
+     unlocked, and fully visible state, bypassing deferred event-listeners.
+     ═══════════════════════════════════════════════════════════════════════ -->
+<script data-no-optimize="1" data-no-defer="1" data-cfasync="false" class="no-defer">
+(function() {
+    var doc = document.documentElement;
+    var body = document.body;
+    
+    // 1. Double check and clear scroll locks on html and body
+    if (doc) {
+        doc.classList.remove('has-scroll-lock');
+        doc.style.setProperty('overflow', '', 'important');
+        doc.style.setProperty('overflow-y', '', 'important');
+    }
+    if (body) {
+        body.classList.remove('has-scroll-lock');
+        body.classList.remove('modal-open');
+        body.classList.remove('is-leaving');
+        body.style.setProperty('overflow', '', 'important');
+        body.style.setProperty('overflow-y', '', 'important');
+    }
 
-<!-- ServiceTitan scheduler widget disabled -- re-enable when configured -->
-
+    // 2. Clear cached open states on mobile menu drawer to prevent overlay blocks
+    var mobileMenu = document.getElementById('mobile-menu');
+    if (mobileMenu) {
+        mobileMenu.classList.remove('is-open');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+    }
+    var toggle = document.getElementById('mobile-toggle');
+    if (toggle) {
+        toggle.classList.remove('is-active');
+        toggle.setAttribute('aria-expanded', 'false');
+    }
+})();
+</script>
 
 <?php wp_footer(); ?>
 
+<script>
+    lucide.createIcons();
+</script>
+
 </body>
 </html>
-
-
