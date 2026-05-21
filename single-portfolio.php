@@ -152,7 +152,18 @@ $has_image   = has_post_thumbnail();
 .pf-lightbox__prev{left:1.5rem}
 .pf-lightbox__next{right:1.5rem}
 .pf-lightbox__prev:hover,.pf-lightbox__next:hover{background:var(--brand,#F22F3A);border-color:var(--brand,#F22F3A)}
-@media(max-width:600px){.pf-gallery__grid{grid-template-columns:repeat(2,1fr);gap:.5rem}.pf-hero{min-height:40vh}}
+@media(max-width:600px){
+  .pf-gallery__grid{grid-template-columns:repeat(2,1fr);gap:.5rem}
+  .pf-hero{min-height:40vh}
+  .pf-lightbox__prev, .pf-lightbox__next {
+    width: 44px;
+    height: 44px;
+    font-size: 1.5rem;
+  }
+  .pf-lightbox__prev { left: 0.75rem; }
+  .pf-lightbox__next { right: 0.75rem; }
+  .pf-lightbox__close { top: 0.75rem; right: 0.75rem; width: 44px; height: 44px; font-size: 2rem; }
+}
 </style>
 
 <script>
