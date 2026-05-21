@@ -1200,7 +1200,7 @@ get_header(); ?>
 
     .reviews-subtitle {
         color: rgba(255, 255, 255, 0.7);
-        font-family: var(--font-main);
+        font-family: var(--font-mono, monospace);
         font-weight: 800;
         font-size: 0.9rem;
         letter-spacing: 4px;

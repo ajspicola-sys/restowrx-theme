@@ -1,6 +1,6 @@
 <?php
 /**
- * Spicola Construction — Single Post Template
+ * Restowrx Elite — Single Post Template
  * Performance-optimized: lazy loading, optimized WP_Query, semantic HTML
  */
 get_header(); ?>
@@ -71,7 +71,7 @@ get_header(); ?>
                     <div class="post-content__tags">
                         <?php the_tags('<span class="post-tag">', '</span><span class="post-tag">', '</span>'); ?>
                     </div>
-                    <a href="<?php echo esc_url(home_url('/blog/')); ?>" class="btn btn--outline">? Back to Blog</a>
+                    <a href="<?php echo esc_url(home_url('/blog/')); ?>" class="hwh-btn hwh-btn--ghost">« Return to Intel</a>
                 </div>
 
                 <!-- Related Posts -->

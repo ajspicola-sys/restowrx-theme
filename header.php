@@ -48,6 +48,9 @@
     <meta name="twitter:image"       content="<?php echo esc_url($og_img); ?>">
 
     <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800;900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
     <?php
     $theme_ver = filemtime(get_stylesheet_directory() . '/style.css');
@@ -57,6 +60,11 @@
     <?php wp_head(); ?>
 
     <style id="rwx-critical-css">
+        :root {
+            --font-main: 'Inter', sans-serif;
+            --font-accent: 'Bebas Neue', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+        }
         html { 
             scroll-behavior: smooth; 
             scroll-padding-top: clamp(80px, 10vw, 110px); 
@@ -64,7 +72,7 @@
         }
         body { 
             margin: 0; 
-            font-family: 'Inter', sans-serif; 
+            font-family: var(--font-main); 
             background: #000000; 
             color: #ffffff;
             overflow-x: hidden; 
@@ -82,9 +90,7 @@
             --color-red: #ff0000;
             --color-maroon: #120303;
             --color-black: #000000;
-            --font-main: 'Inter', sans-serif;
-            --font-accent: 'Bebas Neue', sans-serif;
-            --font-mono: 'Space Mono', monospace;            width: 100%; position: fixed;
+            width: 100%; position: fixed;
             top: 0; left: 0;
             z-index: 100000;
             background: transparent;
