@@ -43,7 +43,7 @@ get_header(); ?>
         align-items: center;
         justify-content: center;
         position: relative;
-        background: radial-gradient(circle at 10% 20%, rgba(255, 0, 0, 0.12) 0%, transparent 45%), radial-gradient(circle at 90% 80%, rgba(255, 0, 0, 0.05) 0%, transparent 60%), #060606;
+        background: linear-gradient(135deg, #090c15 0%, #151821 40%, #06070a 100%);
         overflow: hidden;
         color: #ffffff;
         font-family: var(--font-main, 'Inter', sans-serif);
@@ -55,12 +55,75 @@ get_header(); ?>
         left: 0;
         width: 100%;
         height: 100%;
-        background-image: url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2000');
+        background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2000');
         background-size: cover;
         background-position: center;
         z-index: 1;
-        opacity: 0.12;
-        filter: grayscale(1) brightness(0.3);
+        opacity: 0.22;
+        filter: grayscale(0.6) contrast(1.1) brightness(0.6);
+    }
+
+    .hero-grid-decor {
+        position: absolute;
+        inset: 0;
+        background-image: 
+            linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+        background-size: 40px 40px;
+        z-index: 2;
+        pointer-events: none;
+    }
+
+    /* Ambient Tech Orbs */
+    .hero-orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(100px);
+        z-index: 2;
+        pointer-events: none;
+        opacity: 0.8;
+    }
+
+    .hero-orb--1 {
+        width: 400px;
+        height: 400px;
+        background: rgba(255, 0, 0, 0.15);
+        top: -10%;
+        left: -5%;
+        animation: float-orb-1 12s ease-in-out infinite alternate;
+    }
+
+    .hero-orb--2 {
+        width: 500px;
+        height: 500px;
+        background: rgba(30, 80, 180, 0.14);
+        bottom: -15%;
+        right: -10%;
+        animation: float-orb-2 15s ease-in-out infinite alternate;
+    }
+
+    .hero-orb--3 {
+        width: 350px;
+        height: 350px;
+        background: rgba(255, 0, 0, 0.08);
+        top: 30%;
+        left: 45%;
+        animation: float-orb-3 10s ease-in-out infinite alternate;
+    }
+
+    @keyframes float-orb-1 {
+        0% { transform: translate(0, 0) scale(1); }
+        100% { transform: translate(40px, 30px) scale(1.1); }
+    }
+
+    @keyframes float-orb-2 {
+        0% { transform: translate(0, 0) scale(1); }
+        100% { transform: translate(-50px, -40px) scale(1.05); }
+    }
+
+    @keyframes float-orb-3 {
+        0% { transform: translate(0, 0) scale(0.9); }
+        100% { transform: translate(30px, -30px) scale(1.1); }
     }
 
     .hero-overlay-dark {
@@ -69,8 +132,8 @@ get_header(); ?>
         left: 0;
         width: 100%;
         height: 100%;
-        background: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.1) 0%, #000 85%);
-        z-index: 2;
+        background: radial-gradient(circle at 20% 30%, rgba(9, 12, 21, 0.3) 0%, rgba(6, 7, 10, 0.85) 85%);
+        z-index: 3;
     }
 
     /* Huge Background Text */
@@ -396,6 +459,13 @@ get_header(); ?>
 
 <section class="hyper-hero">
     <div class="hero-canvas"></div>
+    <div class="hero-grid-decor"></div>
+    
+    <!-- Dynamic Glowing Tech Orbs -->
+    <div class="hero-orb hero-orb--1"></div>
+    <div class="hero-orb hero-orb--2"></div>
+    <div class="hero-orb hero-orb--3"></div>
+    
     <div class="hero-overlay-dark"></div>
     <div class="bg-text-large" id="bg-text">ELITE RESPONSE</div>
 
@@ -766,7 +836,7 @@ get_header(); ?>
             $services_query = new WP_Query([
                 'post_type'      => 'service',
                 'post_status'    => 'publish',
-                'posts_per_page' => 8,
+                'posts_per_page' => 4,
                 'orderby'        => 'menu_order',
                 'order'          => 'ASC',
                 'no_found_rows'  => true,
@@ -876,7 +946,7 @@ get_header(); ?>
                 wp_reset_postdata();
             else :
                 // Render fallback static services
-                foreach ($fallback_services as $svc) :
+                foreach (array_slice($fallback_services, 0, 4) as $svc) :
                     ?>
                     <a href="<?php echo esc_url(home_url('/services/')); ?>" class="service-card reveal">
                         <div class="card-number"><?php echo esc_html($svc['num']); ?></div>
