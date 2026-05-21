@@ -132,7 +132,7 @@ get_header(); ?>
                         <span class="sc-services__stat-label">Years Experience</span>
                     </div>
                 </div>
-                <a href="<?php echo esc_url(home_url('/services/')); ?>" class="sc-services__view-all">Explore All Services <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></a>
+                <a href="<?php echo esc_url(home_url('/services/')); ?>" class="sc-services__view-all">Explore All Services <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a>
             </div>
         </div>
 
@@ -157,42 +157,42 @@ get_header(); ?>
         ?>
 
         <div class="sc-services__carousel">
-            <button class="sc-services__arrow sc-services__arrow--prev" id="svc-prev" aria-label="Previous"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg></button>
+            <button class="sc-services__arrow sc-services__arrow--prev" id="svc-prev" aria-label="Previous"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
             <div class="sc-services__track-wrap">
                 <div class="sc-services__track" id="svc-track">
                     <?php if ($has_posts) :
                         $i = 0; while ($services->have_posts()) : $services->the_post();
                         $thumb = get_the_post_thumbnail_url(get_the_ID(), 'medium_large');
                         $excerpt = wp_trim_words(get_the_excerpt(), 12); ?>
-                    <a href="<?php the_permalink(); ?>" class="sc-services__card">
-                        <span class="sc-services__card-num"><?php echo str_pad($i + 1, 2, '0', STR_PAD_LEFT); ?></span>
+                    <a href="<?php the_permalink(); ?>" class="sc-services__card" aria-label="View <?php the_title_attribute(); ?> service details">
+                        <span class="sc-services__card-num" aria-hidden="true"><?php echo str_pad($i + 1, 2, '0', STR_PAD_LEFT); ?></span>
                         <div class="sc-services__card-img">
                             <?php if ($thumb) : ?><img src="<?php echo esc_url($thumb); ?>" alt="<?php the_title_attribute(); ?>" loading="lazy" decoding="async">
                             <?php else : ?><div class="sc-services__card-placeholder" style="background:linear-gradient(135deg,hsl(<?php echo 215+$i*20;?>,35%,22%) 0%,hsl(<?php echo 215+$i*20;?>,25%,35%) 100%);"></div><?php endif; ?>
-                            <div class="sc-services__card-overlay"><span class="sc-services__card-cta">View Service →</span></div>
+                            <div class="sc-services__card-overlay" aria-hidden="true"><span class="sc-services__card-cta">View Service →</span></div>
                         </div>
                         <div class="sc-services__card-body">
-                            <h3 class="sc-services__card-title"><?php the_title(); ?> <svg class="sc-services__card-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></h3>
-                            <p class="sc-services__card-desc"><?php echo esc_html($excerpt); ?></p>
+                            <h3 class="sc-services__card-title" aria-hidden="true"><?php the_title(); ?> <svg class="sc-services__card-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></h3>
+                            <p class="sc-services__card-desc" aria-hidden="true"><?php echo esc_html($excerpt); ?></p>
                         </div>
                     </a>
                     <?php $i++; endwhile; wp_reset_postdata(); else :
                         foreach ($fallback as $i => $svc) : ?>
-                    <a href="<?php echo esc_url(home_url('/services/')); ?>" class="sc-services__card">
-                        <span class="sc-services__card-num"><?php echo str_pad($i + 1, 2, '0', STR_PAD_LEFT); ?></span>
+                    <a href="<?php echo esc_url(home_url('/services/')); ?>" class="sc-services__card" aria-label="View <?php echo esc_attr($svc['title']); ?> service details">
+                        <span class="sc-services__card-num" aria-hidden="true"><?php echo str_pad($i + 1, 2, '0', STR_PAD_LEFT); ?></span>
                         <div class="sc-services__card-img">
                             <div class="sc-services__card-placeholder" style="background:linear-gradient(135deg,hsl(<?php echo 215+$i*20;?>,35%,22%) 0%,hsl(<?php echo 215+$i*20;?>,25%,35%) 100%);"></div>
-                            <div class="sc-services__card-overlay"><span class="sc-services__card-cta">View Service →</span></div>
+                            <div class="sc-services__card-overlay" aria-hidden="true"><span class="sc-services__card-cta">View Service →</span></div>
                         </div>
                         <div class="sc-services__card-body">
-                            <h3 class="sc-services__card-title"><?php echo esc_html($svc['title']); ?> <svg class="sc-services__card-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></h3>
-                            <p class="sc-services__card-desc"><?php echo esc_html($svc['desc']); ?></p>
+                            <h3 class="sc-services__card-title" aria-hidden="true"><?php echo esc_html($svc['title']); ?> <svg class="sc-services__card-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></h3>
+                            <p class="sc-services__card-desc" aria-hidden="true"><?php echo esc_html($svc['desc']); ?></p>
                         </div>
                     </a>
                     <?php endforeach; endif; ?>
                 </div>
             </div>
-            <button class="sc-services__arrow sc-services__arrow--next" id="svc-next" aria-label="Next"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></button>
+            <button class="sc-services__arrow sc-services__arrow--next" id="svc-next" aria-label="Next"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
         </div>
 
         <div class="sc-services__dots" id="svc-dots">
@@ -248,8 +248,8 @@ get_header(); ?>
 .sc-services__card:hover .sc-services__card-img img{transform:scale(1.08)}
 .sc-services__card-placeholder{width:100%;height:100%;transition:transform .6s cubic-bezier(.22,1,.36,1)}
 .sc-services__card:hover .sc-services__card-placeholder{transform:scale(1.08)}
-.sc-services__card-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(242,47,58,.85) 100%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:1.5rem;opacity:0;transition:opacity .35s ease}
-.sc-services__card:hover .sc-services__card-overlay{opacity:1}
+.sc-services__card-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(242,47,58,.85) 100%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:1.5rem;opacity:0;visibility:hidden;transition:opacity .35s ease,visibility .35s ease}
+.sc-services__card:hover .sc-services__card-overlay{opacity:1;visibility:visible}
 .sc-services__card-cta{color:#fff;font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.6rem 1.5rem;background:transparent;border:2px solid rgba(255,255,255,.3);border-radius:8px;transition:all .35s ease}
 .sc-services__card:hover .sc-services__card-cta{transform:translateY(-4px);background:#F22F3A;border-color:#F22F3A;box-shadow:0 0 20px rgba(242,47,58,.5),0 0 50px rgba(242,47,58,.2);letter-spacing:.12em}
 .sc-services__card-body{padding:1.25rem 1.25rem 1.5rem;background:#fff;border-top:none}
@@ -281,11 +281,13 @@ get_header(); ?>
     for (var k = 0; k < v; k++) {
         var a = orig[k].cloneNode(true);
         a.setAttribute('aria-hidden','true');
+        a.setAttribute('tabindex','-1');
         t.appendChild(a);
     }
     for (var k = v - 1; k >= 0; k--) {
         var b = orig[n - 1 - k].cloneNode(true);
         b.setAttribute('aria-hidden','true');
+        b.setAttribute('tabindex','-1');
         t.insertBefore(b, t.firstChild);
     }
 
@@ -435,7 +437,7 @@ if ($portfolio->have_posts()): ?>
                 <span class="sc-works__label">Our Work</span>
                 <h2 class="sc-works__title">Recent <em>Projects</em></h2>
             </div>
-            <a href="<?php echo esc_url(get_post_type_archive_link('portfolio')); ?>" class="sc-works__view-all">View All Projects <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></a>
+            <a href="<?php echo esc_url(get_post_type_archive_link('portfolio')); ?>" class="sc-works__view-all" aria-label="View all construction projects">View All Projects <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a>
         </div>
         <div class="sc-works__grid">
             <?php while ($portfolio->have_posts()): $portfolio->the_post();
@@ -443,18 +445,18 @@ if ($portfolio->have_posts()): ?>
                 $type  = ($types && !is_wp_error($types)) ? $types[0]->name : '';
                 $year  = get_post_meta(get_the_ID(), '_portfolio_year', true);
             ?>
-            <a href="<?php the_permalink(); ?>" class="sc-works__card reveal">
+            <a href="<?php the_permalink(); ?>" class="sc-works__card reveal" aria-label="View <?php the_title_attribute(); ?> project details">
                 <div class="sc-works__card-img">
                     <?php if (has_post_thumbnail()):
-                        the_post_thumbnail('medium_large', ['loading' => 'lazy', 'decoding' => 'async']);
+                        the_post_thumbnail('medium_large', ['loading' => 'lazy', 'decoding' => 'async', 'alt' => esc_attr(get_the_title())]);
                     else: ?>
                         <div class="sc-works__card-placeholder"></div>
                     <?php endif; ?>
-                    <div class="sc-works__card-overlay">
+                    <div class="sc-works__card-overlay" aria-hidden="true">
                         <span class="sc-works__card-cta">View Project →</span>
                     </div>
                 </div>
-                <div class="sc-works__card-body">
+                <div class="sc-works__card-body" aria-hidden="true">
                     <h3 class="sc-works__card-title"><?php the_title(); ?></h3>
                     <?php if ($type || $year): ?>
                     <span class="sc-works__card-meta">
@@ -487,8 +489,8 @@ if ($portfolio->have_posts()): ?>
 .sc-works__card-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.22,1,.36,1)}
 .sc-works__card:hover .sc-works__card-img img{transform:scale(1.06)}
 .sc-works__card-placeholder{width:100%;height:100%;background:linear-gradient(135deg,#222D3F,#3D6491)}
-.sc-works__card-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(242,47,58,.8) 100%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:1.5rem;opacity:0;transition:opacity .35s ease}
-.sc-works__card:hover .sc-works__card-overlay{opacity:1}
+.sc-works__card-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(242,47,58,.8) 100%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:1.5rem;opacity:0;visibility:hidden;transition:opacity .35s ease,visibility .35s ease}
+.sc-works__card:hover .sc-works__card-overlay{opacity:1;visibility:visible}
 .sc-works__card-cta{color:#fff;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.5rem 1.25rem;border:2px solid rgba(255,255,255,.3);border-radius:8px;transition:all .3s}
 .sc-works__card:hover .sc-works__card-cta{background:#F22F3A;border-color:#F22F3A;box-shadow:0 0 20px rgba(242,47,58,.5)}
 .sc-works__card-body{padding:1.25rem 1.25rem 1.5rem}
@@ -618,7 +620,7 @@ if ( $blog_query->have_posts() ) : ?>
                 $cats = get_the_category();
                 $cat_name = $cats ? esc_html( $cats[0]->name ) : 'Construction';
             ?>
-            <article class="sc-blog__card">
+            <div class="sc-blog__card">
                 <?php if ( has_post_thumbnail() ) : ?>
                 <a href="<?php the_permalink(); ?>" class="sc-blog__thumb" tabindex="-1" aria-hidden="true">
                     <?php the_post_thumbnail( 'medium', [ 'loading' => 'lazy', 'decoding' => 'async', 'alt' => esc_attr( get_the_title() ) ] ); ?>
@@ -632,14 +634,14 @@ if ( $blog_query->have_posts() ) : ?>
                     <p class="sc-blog__excerpt"><?php echo wp_trim_words( get_the_excerpt(), 18 ); ?></p>
                     <div class="sc-blog__footer">
                         <time class="sc-blog__date" datetime="<?php echo get_the_date('c'); ?>"><?php echo get_the_date('M j, Y'); ?></time>
-                        <a href="<?php the_permalink(); ?>" class="sc-blog__read">Read More →</a>
+                        <a href="<?php the_permalink(); ?>" class="sc-blog__read" aria-label="Read more about <?php the_title_attribute(); ?>">Read More →</a>
                     </div>
                 </div>
-            </article>
+            </div>
             <?php endwhile; wp_reset_postdata(); ?>
         </div>
         <div class="sc-blog__cta reveal">
-            <a href="<?php echo esc_url( home_url('/blog/') ); ?>" class="hwh-btn hwh-btn--outline-navy">View All Articles →</a>
+            <a href="<?php echo esc_url( home_url('/blog/') ); ?>" class="hwh-btn hwh-btn--outline-navy" aria-label="View all blog articles">View All Articles →</a>
         </div>
     </div>
 </section>

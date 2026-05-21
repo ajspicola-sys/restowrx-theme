@@ -76,15 +76,15 @@ $has_image   = has_post_thumbnail();
                     $alt  = get_post_meta($img_id, '_wp_attachment_image_alt', true) ?: get_the_title();
                     if (!$full) continue;
                 ?>
-                <a href="<?php echo esc_url($full[0]); ?>" class="pf-gallery__item" data-lightbox="gallery" data-index="<?php echo $i; ?>">
+                <a href="<?php echo esc_url($full[0]); ?>" class="pf-gallery__item" data-lightbox="gallery" data-index="<?php echo $i; ?>" aria-label="View larger image: <?php echo esc_attr($alt); ?>">
                     <?php echo wp_get_attachment_image($img_id, 'medium', false, [
                         'class'    => 'pf-gallery__img',
                         'loading'  => 'lazy',
                         'decoding' => 'async',
                         'alt'      => $alt,
                     ]); ?>
-                    <div class="pf-gallery__hover">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                    <div class="pf-gallery__hover" aria-hidden="true">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
                     </div>
                 </a>
                 <?php endforeach; ?>
@@ -139,8 +139,8 @@ $has_image   = has_post_thumbnail();
 .pf-gallery__item{position:relative;aspect-ratio:4/3;border-radius:12px;overflow:hidden;cursor:pointer;display:block}
 .pf-gallery__img{width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.22,1,.36,1)}
 .pf-gallery__item:hover .pf-gallery__img{transform:scale(1.06)}
-.pf-gallery__hover{position:absolute;inset:0;background:rgba(10,22,40,.5);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s ease}
-.pf-gallery__item:hover .pf-gallery__hover{opacity:1}
+.pf-gallery__hover{position:absolute;inset:0;background:rgba(10,22,40,.5);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease}
+.pf-gallery__item:hover .pf-gallery__hover{opacity:1;visibility:visible}
 
 /* Lightbox */
 .pf-lightbox{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.92);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px)}

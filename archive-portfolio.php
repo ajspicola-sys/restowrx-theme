@@ -92,12 +92,14 @@ get_header();
     justify-content: center;
     padding-bottom: 1.5rem;
     opacity: 0;
-    transition: opacity .35s ease;
+    visibility: hidden;
+    transition: opacity .35s ease, visibility .35s ease;
     transform-style: preserve-3d;
 }
 
 .sc-projects-card:hover .sc-projects-card-overlay {
     opacity: 1;
+    visibility: visible;
 }
 
 .sc-projects-card-cta {
@@ -253,8 +255,8 @@ get_header();
                             $desc = 'Explore the full image gallery and before & after highlights for this project.';
                         }
                     ?>
-                        <article class="sc-projects-card reveal">
-                            <a href="<?php the_permalink(); ?>" class="sc-projects-card-img" aria-label="<?php the_title_attribute(); ?>">
+                        <div class="sc-projects-card reveal">
+                            <a href="<?php the_permalink(); ?>" class="sc-projects-card-img" aria-label="View <?php the_title_attribute(); ?> project details">
                                 <?php if (has_post_thumbnail()): ?>
                                     <?php the_post_thumbnail('medium_large', [
                                         'loading'  => 'lazy',
@@ -263,29 +265,29 @@ get_header();
                                     ]); ?>
                                 <?php else: ?>
                                     <div class="sc-projects-card-placeholder">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                                             <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
                                         </svg>
                                     </div>
                                 <?php endif; ?>
-                                <div class="sc-projects-card-overlay">
+                                <div class="sc-projects-card-overlay" aria-hidden="true">
                                     <span class="sc-projects-card-cta">View Gallery →</span>
                                 </div>
                             </a>
 
-                            <div class="sc-projects-card-body">
+                            <div class="sc-projects-card-body" aria-hidden="true">
                                 <div>
                                     <h2 class="sc-projects-card-title"><?php the_title(); ?></h2>
                                     <p class="sc-projects-card-desc"><?php echo esc_html($desc); ?></p>
                                 </div>
-                                <a href="<?php the_permalink(); ?>" class="sc-projects-card-link" aria-label="View project details: <?php the_title_attribute(); ?>">
+                                <span class="sc-projects-card-link">
                                     View Gallery 
-                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
                                         <path d="M5 12h14M12 5l7 7-7 7"/>
                                     </svg>
-                                </a>
+                                </span>
                             </div>
-                        </article>
+                        </div>
                     <?php endwhile; wp_reset_postdata(); ?>
                 </div>
 

@@ -19,7 +19,7 @@
 
 <!-- Scroll to Top -->
 <button class="scroll-top" id="scroll-top" aria-label="Back to top">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m18 15-6-6-6 6"/></svg>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg>
 </button>
 
 <footer class="hwh-foot">
@@ -30,7 +30,7 @@
 
             <!-- Brand col -->
             <div class="hwh-foot__brand">
-                <a href="<?php echo esc_url(home_url('/')); ?>" class="hwh-foot__logo" aria-label="Spicola Construction &mdash; Home">
+                <a href="<?php echo esc_url(home_url('/')); ?>" class="hwh-foot__logo" aria-label="Spicola Construction &mdash; Home"<?php if (is_front_page()) echo ' aria-current="page"'; ?>>
                     <img src="https://spicolaconstruction.com/wp-content/uploads/2022/06/White-Spicola-Logo.png" alt="Spicola Construction" width="300" height="69" loading="lazy" decoding="async" style="display:block;width:300px;height:auto;">
                 </a>
                 <p class="hwh-foot__brand-text">Tampa Bay's trusted general contractor &mdash; quality craftsmanship for residential and commercial construction, remodeling, roofing, and renovations.</p>
@@ -86,7 +86,7 @@
                     </div>
                     <div class="hwh-foot__contact-item">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                        <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#105;&#110;&#102;&#111;&#64;&#115;&#112;&#105;&#99;&#111;&#108;&#97;&#99;&#111;&#110;&#115;&#116;&#114;&#117;&#99;&#116;&#105;&#111;&#110;&#46;&#99;&#111;&#109;" class="hwh-foot__email-link">&#105;&#110;&#102;&#111;&#64;&#115;&#112;&#105;&#99;&#111;&#108;&#97;&#99;&#111;&#110;&#115;&#116;&#114;&#117;&#99;&#116;&#105;&#111;&#110;&#46;&#99;&#111;&#109;</a>
+                        <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#105;&#110;&#102;&#111;&#64;&#115;&#112;&#105;&#99;&#111;&#108;&#97;&#99;&#111;&#110;&#115;&#116;&#114;&#117;&#99;&#116;&#105;&#111;&#110;&#46;&#99;&#111;&#109;" class="hwh-foot__email-link" aria-label="Email info@spicolaconstruction.com (opens email application)">&#105;&#110;&#102;&#111;&#64;&#115;&#112;&#105;&#99;&#111;&#108;&#97;&#99;&#111;&#110;&#115;&#116;&#114;&#117;&#99;&#116;&#105;&#111;&#110;&#46;&#99;&#111;&#109;</a>
                     </div>
                     <div class="hwh-foot__contact-item">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>

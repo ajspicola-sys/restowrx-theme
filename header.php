@@ -185,7 +185,7 @@ $hwh_menu_services = hwh_get_menu_services();
         <div class="hwh-nav-bar__inner">
 
             <!-- Logo -->
-            <a href="<?php echo esc_url(home_url('/')); ?>" class="hwh-nav__logo" aria-label="Spicola Construction — Home">
+            <a href="<?php echo esc_url(home_url('/')); ?>" class="hwh-nav__logo" aria-label="Spicola Construction — Home"<?php if (is_front_page()) echo ' aria-current="page"'; ?>>
                 <img src="https://spicolaconstruction.com/wp-content/uploads/2022/05/Untitled-1-2-1024x236.png" alt="Spicola Construction" class="hwh-nav__logo-img" width="200" height="46" loading="eager" decoding="async">
             </a>
 
@@ -193,10 +193,10 @@ $hwh_menu_services = hwh_get_menu_services();
             <nav class="hwh-nav" aria-label="Main navigation">
                 <ul class="hwh-nav__links">
                     <li class="hwh-nav__item<?php if (is_front_page()) echo ' hwh-nav__item--active'; ?>">
-                        <a href="<?php echo esc_url(home_url('/')); ?>" class="hwh-nav__link">Home</a>
+                        <a href="<?php echo esc_url(home_url('/')); ?>" class="hwh-nav__link"<?php if (is_front_page()) echo ' aria-current="page"'; ?>>Home</a>
                     </li>
                     <li class="hwh-nav__item hwh-nav__item--has-drop<?php if (is_post_type_archive('service') || is_singular('service')) echo ' hwh-nav__item--active'; ?>">
-                        <a href="<?php echo esc_url(home_url('/services/')); ?>" class="hwh-nav__link">
+                        <a href="<?php echo esc_url(home_url('/services/')); ?>" class="hwh-nav__link"<?php if (is_post_type_archive('service') || is_singular('service') || is_page('services')) echo ' aria-current="page"'; ?>>
                             Services <span class="hwh-nav__arrow" aria-hidden="true">▾</span>
                         </a>
                         <div class="hwh-drop">
@@ -241,13 +241,13 @@ $hwh_menu_services = hwh_get_menu_services();
                         </div>
                     </li>
                     <li class="hwh-nav__item<?php if (is_page('about')) echo ' hwh-nav__item--active'; ?>">
-                        <a href="<?php echo esc_url(home_url('/about/')); ?>" class="hwh-nav__link">About</a>
+                        <a href="<?php echo esc_url(home_url('/about/')); ?>" class="hwh-nav__link"<?php if (is_page('about')) echo ' aria-current="page"'; ?>>About</a>
                     </li>
                     <li class="hwh-nav__item<?php if (is_post_type_archive('portfolio') || is_singular('portfolio')) echo ' hwh-nav__item--active'; ?>">
-                        <a href="<?php echo esc_url(home_url('/projects/')); ?>" class="hwh-nav__link">Projects</a>
+                        <a href="<?php echo esc_url(home_url('/projects/')); ?>" class="hwh-nav__link"<?php if (is_post_type_archive('portfolio') || is_singular('portfolio')) echo ' aria-current="page"'; ?>>Projects</a>
                     </li>
                     <li class="hwh-nav__item<?php if (is_page('contact')) echo ' hwh-nav__item--active'; ?>">
-                        <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="hwh-nav__link">Contact</a>
+                        <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="hwh-nav__link"<?php if (is_page('contact')) echo ' aria-current="page"'; ?>>Contact</a>
                     </li>
                 </ul>
             </nav>
