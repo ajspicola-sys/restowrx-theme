@@ -910,6 +910,80 @@ function hwh_create_services() {
 }
 add_action('after_switch_theme', 'hwh_create_services');
 
+// -- Auto-create New Construction Services (v3) ---------------------
+// Adds 19 SEO-targeted service pages for Spicola Construction.
+// Uses a separate option key so it runs independently of v2.
+function hwh_create_services_v3() {
+    if ( get_option('hwh_services_created_v3') ) return;
+
+    $categories = [
+        'Residential Services' => 'Custom home building, remodeling, additions, roofing, and specialty residential construction across Tampa Bay.',
+        'Commercial Services'  => 'Commercial build-outs, office construction, restaurant builds, retail storefronts, and tenant improvements in Tampa Bay.',
+        'Specialty Services'   => 'Concrete, flooring, painting, fencing, decks, permits, demolition, and storm damage repair across Tampa Bay.',
+    ];
+
+    $cat_ids = [];
+    foreach ( $categories as $name => $desc ) {
+        $existing = term_exists( $name, 'service_category' );
+        if ( $existing ) {
+            $cat_ids[ $name ] = $existing['term_id'];
+        } else {
+            $term = wp_insert_term( $name, 'service_category', [ 'description' => $desc ] );
+            if ( ! is_wp_error( $term ) ) {
+                $cat_ids[ $name ] = $term['term_id'];
+            }
+        }
+    }
+
+    $services = [
+        // Residential
+        [ 'title' => 'Kitchen Remodeling',            'category' => 'Residential Services', 'excerpt' => 'Tampa Bay\'s trusted kitchen remodeling contractor. Custom cabinets, countertops, and full gut renovations — licensed, insured, and built to last.' ],
+        [ 'title' => 'Bathroom Remodeling',            'category' => 'Residential Services', 'excerpt' => 'Expert bathroom remodeling in Tampa Bay. Walk-in showers, custom tile, vanities, and full bath renovations completed on time by licensed general contractors.' ],
+        [ 'title' => 'Home Additions & Room Extensions','category' => 'Residential Services', 'excerpt' => 'Need more space? Spicola Construction builds seamless home additions and room extensions across Tampa Bay — permitted, engineered, and delivered on budget.' ],
+        [ 'title' => 'Roofing Services',               'category' => 'Residential Services', 'excerpt' => 'Full-service roofing contractor in Tampa Bay. New roofs, repairs, inspections, and replacements for residential and commercial properties — licensed & insured.' ],
+        [ 'title' => 'Roof Replacement',               'category' => 'Residential Services', 'excerpt' => 'Complete roof replacement in Tampa, FL. Shingles, tile, flat, and metal roofing installed by licensed crews with manufacturer warranties and free estimates.' ],
+        [ 'title' => 'Concrete & Flatwork',            'category' => 'Residential Services', 'excerpt' => 'Professional concrete flatwork in Tampa Bay. Driveways, patios, slabs, sidewalks, and foundations poured by licensed concrete contractors. Free estimates.' ],
+        [ 'title' => 'Flooring Installation',          'category' => 'Residential Services', 'excerpt' => 'Expert flooring installation across Tampa Bay. Tile, hardwood, LVP, and more — installed by licensed contractors with meticulous attention to every detail.' ],
+        // Commercial
+        [ 'title' => 'Office Build-Outs',              'category' => 'Commercial Services',  'excerpt' => 'Custom office build-outs in Tampa Bay. From open-plan offices to private suites — Spicola Construction delivers permit-ready, code-compliant commercial spaces.' ],
+        [ 'title' => 'Restaurant Construction',        'category' => 'Commercial Services',  'excerpt' => 'Restaurant construction and renovation in Tampa, FL. We build commercial kitchens, dining rooms, and full restaurant spaces from the ground up.' ],
+        [ 'title' => 'Retail Storefront Construction', 'category' => 'Commercial Services',  'excerpt' => 'Retail storefront construction and build-outs in Tampa Bay. Custom storefronts and retail interiors built to your brand standards and delivered on schedule.' ],
+        [ 'title' => 'Medical Office Construction',    'category' => 'Commercial Services',  'excerpt' => 'Specialized medical office construction in Tampa Bay. ADA-compliant exam rooms, waiting areas, and healthcare facilities built to Florida code.' ],
+        [ 'title' => 'Tenant Improvements',            'category' => 'Commercial Services',  'excerpt' => 'Tenant improvement contractor in Tampa Bay. We transform leased commercial spaces to fit your business — on time, within budget, and permit-ready.' ],
+        // Specialty
+        [ 'title' => 'Interior Demolition',            'category' => 'Specialty Services',   'excerpt' => 'Safe, efficient interior demolition in Tampa Bay. Selective demo, full gut-outs, and debris removal by licensed contractors — ready for your next renovation.' ],
+        [ 'title' => 'Exterior Painting & Stucco',     'category' => 'Specialty Services',   'excerpt' => 'Exterior painting and stucco services in Tampa Bay. Repair, refinish, and repaint your home or business with weather-resistant finishes built for Florida.' ],
+        [ 'title' => 'Fence Installation',             'category' => 'Specialty Services',   'excerpt' => 'Fence installation across Tampa Bay. Wood, vinyl, aluminum, and chain-link fencing installed by licensed contractors — permitted and built to last.' ],
+        [ 'title' => 'Deck & Patio Construction',      'category' => 'Specialty Services',   'excerpt' => 'Custom deck and patio construction in Tampa, FL. Wood, composite, and pavers — outdoor living spaces that add real value and curb appeal to your home.' ],
+        [ 'title' => 'Permit Pulling & Management',    'category' => 'Specialty Services',   'excerpt' => 'Licensed permit management in Tampa Bay. We handle every permit application, inspection, and approval so your project stays legal and on schedule.' ],
+        [ 'title' => 'Pre-Construction Consulting',    'category' => 'Specialty Services',   'excerpt' => 'Pre-construction consulting from Spicola Construction in Tampa Bay. Budget planning, site analysis, and scope development before a single nail is driven.' ],
+        [ 'title' => 'Storm Damage Repair',            'category' => 'Specialty Services',   'excerpt' => 'Storm damage repair contractor in Tampa Bay. We assess, restore, and rebuild after hurricane and severe weather damage — licensed, insured, Florida-experienced.' ],
+    ];
+
+    foreach ( $services as $service ) {
+        $existing = get_page_by_title( $service['title'], OBJECT, 'service' );
+        if ( $existing ) {
+            if ( isset( $cat_ids[ $service['category'] ] ) ) {
+                wp_set_object_terms( $existing->ID, (int) $cat_ids[ $service['category'] ], 'service_category' );
+            }
+            continue;
+        }
+        $post_id = wp_insert_post( [
+            'post_title'   => $service['title'],
+            'post_excerpt' => $service['excerpt'],
+            'post_content' => '',
+            'post_status'  => 'publish',
+            'post_type'    => 'service',
+        ] );
+        if ( $post_id && ! is_wp_error( $post_id ) && isset( $cat_ids[ $service['category'] ] ) ) {
+            wp_set_object_terms( $post_id, (int) $cat_ids[ $service['category'] ], 'service_category' );
+        }
+    }
+
+    update_option( 'hwh_services_created_v3', true );
+}
+add_action( 'init', 'hwh_create_services_v3' );
+
 // -- Services Custom Post Type --------------------------------------
 function hwh_register_services() {
     register_post_type('service', [
@@ -923,15 +997,17 @@ function hwh_register_services() {
             'view_item'          => 'View Service',
             'search_items'       => 'Search Services',
             'not_found'          => 'No services found',
-            'menu_name'          => '?? Services',
+            'menu_name'          => 'Services',
         ],
         'public'              => true,
         'exclude_from_search' => false,
         'has_archive'         => true,
         'rewrite'             => ['slug' => 'services'],
-        'menu_icon'           => 'dashicons-heart',
+        'menu_icon'           => 'dashicons-hammer',
         'menu_position'       => 5,
-        'supports'            => ['title', 'editor', 'thumbnail', 'excerpt'],
+        // 'custom-fields' allows Yoast to read/write post meta (required for full Yoast panel).
+        // 'page-attributes' adds the Order field for carousel sorting.
+        'supports'            => ['title', 'editor', 'thumbnail', 'excerpt', 'custom-fields', 'page-attributes'],
         'show_in_rest'        => true,
     ]);
 
@@ -952,7 +1028,7 @@ function hwh_register_services() {
 add_action('init', 'hwh_register_services');
 
 // ═══════════════════════════════════════════════════════════════════
-// PORTFOLIO — Custom Post Type + Image Gallery Metabox
+// PORTFOLIO — Custom Post Type
 // ═══════════════════════════════════════════════════════════════════
 function sc_register_portfolio() {
     register_post_type('portfolio', [
@@ -974,7 +1050,9 @@ function sc_register_portfolio() {
         'rewrite'             => ['slug' => 'projects'],
         'menu_icon'           => 'dashicons-images-alt2',
         'menu_position'       => 6,
-        'supports'            => ['title', 'editor', 'thumbnail', 'excerpt'],
+        // 'custom-fields' lets Yoast SEO read/write meta (full panel visible).
+        // 'page-attributes' adds the Order field for manual portfolio sorting.
+        'supports'            => ['title', 'editor', 'thumbnail', 'excerpt', 'custom-fields', 'page-attributes'],
         'show_in_rest'        => true,
     ]);
 
@@ -1358,62 +1436,13 @@ function hwh_ajax_blog_posts() {
 add_action( 'wp_ajax_hwh_load_posts', 'hwh_ajax_blog_posts' );
 add_action( 'wp_ajax_nopriv_hwh_load_posts', 'hwh_ajax_blog_posts' );
 
-// -- Service custom fields (meta box) -------------------------------
-function hwh_service_meta_boxes() {
-    add_meta_box(
-        'hwh_service_details',
-        'Service Details',
-        'hwh_service_meta_html',
-        'service',
-        'normal',
-        'high'
-    );
-}
-add_action('add_meta_boxes', 'hwh_service_meta_boxes');
-
-function hwh_service_meta_html($post) {
-    wp_nonce_field('hwh_service_meta', 'hwh_service_nonce');
-    $icon     = get_post_meta($post->ID, '_service_icon', true);
-    $price    = get_post_meta($post->ID, '_service_price', true);
-    $duration = get_post_meta($post->ID, '_service_duration', true);
-    ?>
-    <style>
-        .hwh-meta-row { display:flex; gap:1.5rem; margin-bottom:1rem; }
-        .hwh-meta-field { flex:1; }
-        .hwh-meta-field label { display:block; font-weight:600; margin-bottom:4px; }
-        .hwh-meta-field input { width:100%; padding:8px 10px; border:1px solid #ddd; border-radius:6px; }
-    </style>
-    <div class="hwh-meta-row">
-        <div class="hwh-meta-field">
-            <label for="service_icon">Icon (emoji)</label>
-            <input type="text" id="service_icon" name="service_icon" value="<?php echo esc_attr($icon); ?>" placeholder="??">
-            <p class="description">Paste an emoji like ?? ? ?? ?? ? ??</p>
-        </div>
-        <div class="hwh-meta-field">
-            <label for="service_price">Starting Price</label>
-            <input type="text" id="service_price" name="service_price" value="<?php echo esc_attr($price); ?>" placeholder="$250+">
-        </div>
-        <div class="hwh-meta-field">
-            <label for="service_duration">Duration</label>
-            <input type="text" id="service_duration" name="service_duration" value="<?php echo esc_attr($duration); ?>" placeholder="30 min">
-        </div>
-    </div>
-    <?php
-}
-
-function hwh_save_service_meta($post_id) {
-    if (!isset($_POST['hwh_service_nonce']) || !wp_verify_nonce($_POST['hwh_service_nonce'], 'hwh_service_meta')) return;
-    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
-    if (!current_user_can('edit_post', $post_id)) return;
-
-    $fields = ['service_icon', 'service_price', 'service_duration'];
-    foreach ($fields as $field) {
-        if (isset($_POST[$field])) {
-            update_post_meta($post_id, '_' . $field, sanitize_text_field($_POST[$field]));
-        }
-    }
-}
-add_action('save_post_service', 'hwh_save_service_meta');
+// NOTE: The old 'Service Details' custom metabox (Icon / Price / Duration) has been
+// intentionally removed. It was registered at context='normal' priority='high', which
+// pushed Yoast SEO's meta panel off-screen and hid the Meta Title / Meta Description
+// fields. Use the standard WordPress Excerpt field for the service summary, and Yoast
+// SEO's own panel for all SEO metadata. Any previously saved _service_icon / _service_price
+// / _service_duration values are preserved in the database — they can be accessed via
+// the built-in Custom Fields panel if needed (enabled above via 'custom-fields' support).
 
 // -- Team Member Custom Post Type -----------------------------------
 function hwh_register_team() {
@@ -2309,32 +2338,9 @@ function hwh_popup_customizer($wp_customize) {
 }
 
 
-// -- Service Page Extras ? Video & Benefits Meta Box ----------------
-add_action('add_meta_boxes', 'hwh_service_extras_meta_box');
-function hwh_service_extras_meta_box() {
-    add_meta_box('hwh_service_extras','?? Video & Key Benefits','hwh_service_extras_html','service','normal','high');
-}
-function hwh_service_extras_html($post) {
-    wp_nonce_field('hwh_service_extras', 'hwh_service_extras_nonce');
-    $video    = get_post_meta($post->ID, '_service_video', true);
-    $benefits = get_post_meta($post->ID, '_service_benefits', true);
-    echo '<table class="form-table" style="width:100%">';
-    echo '<tr><th style="width:160px;padding:12px 0;vertical-align:top"><label for="_service_video"><strong>?? Video URL</strong></label></th>';
-    echo '<td><input type="url" id="_service_video" name="_service_video" value="' . esc_attr($video) . '" style="width:100%;padding:6px 10px;border:1px solid #ddd;border-radius:4px" placeholder="https://youtube.com/watch?v=...">';
-    echo '<p style="color:#666;font-size:12px;margin:4px 0 0">Paste a YouTube or Vimeo URL. Leave blank to hide the video section.</p></td></tr>';
-    echo '<tr><th style="padding:12px 0;vertical-align:top"><label for="_service_benefits"><strong>? Key Benefits</strong></label></th>';
-    echo '<td><textarea id="_service_benefits" name="_service_benefits" rows="6" style="width:100%;padding:6px 10px;border:1px solid #ddd;border-radius:4px;font-family:inherit" placeholder="Same-day service available&#10;Licensed & insured technicians&#10;Free written estimate included">' . esc_textarea($benefits) . '</textarea>';
-    echo '<p style="color:#666;font-size:12px;margin:4px 0 0">One benefit per line. Leave blank to hide the benefits section.</p></td></tr>';
-    echo '</table>';
-}
-add_action('save_post_service', 'hwh_save_service_extras');
-function hwh_save_service_extras($post_id) {
-    if (!isset($_POST['hwh_service_extras_nonce']) || !wp_verify_nonce($_POST['hwh_service_extras_nonce'], 'hwh_service_extras')) return;
-    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
-    if (!current_user_can('edit_post', $post_id)) return;
-    if (isset($_POST['_service_video'])) update_post_meta($post_id, '_service_video', esc_url_raw($_POST['_service_video']));
-    if (isset($_POST['_service_benefits'])) update_post_meta($post_id, '_service_benefits', sanitize_textarea_field($_POST['_service_benefits']));
-}
+// NOTE: The 'Video & Key Benefits' service metabox (Video URL + Key Benefits textarea)
+// has been intentionally removed. It was blocking Yoast SEO's full meta panel.
+// Any saved _service_video / _service_benefits values are preserved in the database.
 
 // =============================================================================
 // HWH DEMO CONTENT IMPORTER
