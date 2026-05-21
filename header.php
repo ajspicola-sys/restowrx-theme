@@ -84,29 +84,33 @@
             --color-black: #000000;
             --font-main: 'Inter', sans-serif;
             --font-accent: 'Bebas Neue', sans-serif;
-            --font-mono: 'Space Mono', monospace;
-
-            width: 100%; position: fixed;
+            --font-mono: 'Space Mono', monospace;            width: 100%; position: fixed;
             top: 0; left: 0;
             z-index: 100000;
-            background: #ffffff;
-            border-bottom: 2px solid var(--color-red);
-            box-shadow: 0 4px 25px rgba(0,0,0,0.08);
+            background: transparent;
             transition: all 0.3s ease;
         }
 
-        /* --- UNIFIED BACKGROUNDS --- */
+        /* --- TWO-TONE SPICOLA STYLE BACKGROUNDS --- */
         .rwx-top-bar, .rwx-nav-bar {
-            background: transparent;
             padding: 0;
             display: flex;
             justify-content: center;
         }
 
         .rwx-top-bar {
+            background: #060606;
             padding: 6px 0;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             min-height: 30px;
+        }
+
+        .rwx-nav-bar {
+            background: #ffffff;
+            padding: 10px 0;
+            min-height: 55px;
+            border-bottom: 3px solid var(--color-red);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
         }
 
         .top-bar-inner, .nav-bar-inner {
@@ -121,7 +125,7 @@
         .top-left { display: flex; gap: 20px; align-items: center; }
         .top-left span { 
             display: flex; align-items: center; gap: 6px; 
-            color: #4a5568 !important; font-family: var(--font-mono); font-size: 0.68rem; font-weight: 600;
+            color: rgba(255, 255, 255, 0.85) !important; font-family: var(--font-mono); font-size: 0.68rem; font-weight: 500;
             letter-spacing: 0.8px;
         }
         .top-left svg, .top-left i { color: var(--color-red) !important; opacity: 0.9; width: 12px; height: 12px; }
@@ -129,21 +133,16 @@
         .top-right { display: flex; gap: 10px; align-items: center; }
         .social-icon {
             width: 24px; height: 24px;
-            border: 1px solid rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 50%;
             display: flex; justify-content: center; align-items: center;
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .social-icon svg, .social-icon i { width: 10px; height: 10px; color: #111111 !important; }
+        .social-icon svg, .social-icon i { width: 10px; height: 10px; color: #ffffff !important; }
         .social-icon:hover { border-color: var(--color-red); background: var(--color-red); transform: translateY(-1px); }
         .social-icon:hover svg, .social-icon:hover i { color: #ffffff !important; }
 
         /* --- NAV BAR ELEMENTS --- */
-        .rwx-nav-bar {
-            padding: 10px 0;
-            min-height: 55px;
-        }
-
         .rwx-logo {
             height: 30px;
             display: flex; align-items: center;
