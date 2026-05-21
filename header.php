@@ -86,15 +86,12 @@
             --font-accent: 'Bebas Neue', sans-serif;
             --font-mono: 'Space Mono', monospace;
 
-            width: 100%;
-            position: fixed;
+            width: 100%; position: fixed;
             top: 0; left: 0;
             z-index: 100000;
-            background: rgba(10, 10, 10, 0.75);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+            background: #ffffff;
+            border-bottom: 2px solid var(--color-red);
+            box-shadow: 0 4px 25px rgba(0,0,0,0.08);
             transition: all 0.3s ease;
         }
 
@@ -108,7 +105,7 @@
 
         .rwx-top-bar {
             padding: 6px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
             min-height: 30px;
         }
 
@@ -124,7 +121,7 @@
         .top-left { display: flex; gap: 20px; align-items: center; }
         .top-left span { 
             display: flex; align-items: center; gap: 6px; 
-            color: rgba(255, 255, 255, 0.8) !important; font-family: var(--font-mono); font-size: 0.68rem; font-weight: 500;
+            color: #4a5568 !important; font-family: var(--font-mono); font-size: 0.68rem; font-weight: 600;
             letter-spacing: 0.8px;
         }
         .top-left svg, .top-left i { color: var(--color-red) !important; opacity: 0.9; width: 12px; height: 12px; }
@@ -132,13 +129,14 @@
         .top-right { display: flex; gap: 10px; align-items: center; }
         .social-icon {
             width: 24px; height: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.1);
             border-radius: 50%;
             display: flex; justify-content: center; align-items: center;
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .social-icon svg, .social-icon i { width: 10px; height: 10px; color: white !important; }
+        .social-icon svg, .social-icon i { width: 10px; height: 10px; color: #111111 !important; }
         .social-icon:hover { border-color: var(--color-red); background: var(--color-red); transform: translateY(-1px); }
+        .social-icon:hover svg, .social-icon:hover i { color: #ffffff !important; }
 
         /* --- NAV BAR ELEMENTS --- */
         .rwx-nav-bar {
@@ -169,7 +167,7 @@
         }
         .nav-links li { position: relative; padding: 12px 0; }
         .nav-links a {
-            color: rgba(255, 255, 255, 0.9) !important;
+            color: #111111 !important;
             text-decoration: none;
             font-family: var(--font-main);
             font-weight: 700;
@@ -193,25 +191,24 @@
             transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .nav-links a:hover, .nav-links li:hover > a, .nav-links li.current-menu-item > a {
-            color: #ffffff !important;
+            color: var(--color-red) !important;
         }
         .nav-links a:hover::after, .nav-links li:hover > a::after, .nav-links li.current-menu-item > a::after {
             transform: scaleX(1);
             transform-origin: left;
         }
 
-        /* Sub-menus unified to Maroon Glass */
+        /* Sub-menus unified to White Glass */
         .nav-links .sub-menu {
             position: absolute;
             top: 100%; left: 50%; transform: translateX(-50%);
-            background: rgba(18, 3, 3, 0.95);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-top: 2px solid var(--color-red);
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-top: 3px solid var(--color-red);
             min-width: 200px;
             display: none;
             list-style: none; padding: 10px 0;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             margin: 0;
             z-index: 1000;
             border-radius: 4px;
@@ -221,11 +218,17 @@
         .nav-links .sub-menu a {
             display: block;
             padding: 8px 20px;
+            color: #111111 !important;
             font-size: 0.7rem;
             font-weight: 600;
             text-transform: none;
+            transition: color 0.2s ease;
         }
         .nav-links .sub-menu a::after { display: none; }
+        .nav-links .sub-menu a:hover {
+            color: var(--color-red) !important;
+            background: rgba(0,0,0,0.02);
+        }
 
         .cta-btn-header {
             margin-left: auto;
@@ -257,17 +260,17 @@
             left: 100%;
         }
         .cta-btn-header:hover {
-            background: #ffffff !important;
-            color: var(--color-red) !important;
-            border-color: #ffffff;
-            box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
+            background: #111111 !important;
+            color: #ffffff !important;
+            border-color: #111111;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             transform: translateY(-2px) scale(1.02);
         }
 
         /* Mobile Menu Toggle button */
         .menu-toggle { 
             display: none; 
-            color: white; 
+            color: #111111; 
             cursor: pointer; 
             font-size: 1.5rem;
             display: none;
@@ -319,6 +322,7 @@
         }
         .mobile-menu__logo img {
             height: 28px; width: auto;
+            filter: brightness(0) invert(1);
         }
         .mobile-menu__close {
             background: none; border: none; color: white;
@@ -471,7 +475,7 @@
                     INITIATE DISPATCH
                 </a>
 
-                <button class="menu-toggle" id="mobile-toggle" aria-label="Open mobile navigation" aria-expanded="false" aria-controls="mobile-menu" style="background: none; border: none; color: white;">
+                <button class="menu-toggle" id="mobile-toggle" aria-label="Open mobile navigation" aria-expanded="false" aria-controls="mobile-menu" style="background: none; border: none; color: #111111;">
                     <i data-lucide="menu"></i>
                 </button>
             </nav>
