@@ -45,7 +45,7 @@ get_header();
 .sc-projects-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
-    border-color: rgba(193, 51, 51, 0.2);
+    border-color: rgba(242, 47, 58, 0.2);
 }
 
 .sc-projects-card-img {
@@ -86,7 +86,7 @@ get_header();
 .sc-projects-card-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(10, 22, 40, 0) 30%, rgba(193, 51, 51, 0.9) 100%);
+    background: linear-gradient(180deg, rgba(10, 22, 40, 0) 30%, rgba(242, 47, 58, 0.9) 100%);
     display: flex;
     align-items: flex-end;
     justify-content: center;
@@ -117,9 +117,9 @@ get_header();
 }
 
 .sc-projects-card:hover .sc-projects-card-cta {
-    background: #C13333;
-    border-color: #C13333;
-    box-shadow: 0 4px 15px rgba(193, 51, 51, 0.4);
+    background: #F22F3A;
+    border-color: #F22F3A;
+    box-shadow: 0 4px 15px rgba(242, 47, 58, 0.4);
     transform: translateY(-2px) translateZ(45px);
 }
 
@@ -144,7 +144,7 @@ get_header();
 }
 
 .sc-projects-card:hover .sc-projects-card-title {
-    color: var(--brand, #C13333);
+    color: var(--brand, #F22F3A);
 }
 
 .sc-projects-card-desc {
@@ -176,7 +176,7 @@ get_header();
 }
 
 .sc-projects-card:hover .sc-projects-card-link {
-    color: var(--brand, #C13333);
+    color: var(--brand, #F22F3A);
 }
 
 .sc-projects-card:hover .sc-projects-card-link svg {
@@ -291,7 +291,7 @@ get_header();
 
             <?php else: ?>
                 <p style="text-align:center;padding:5rem 0;font-size:1.15rem;color:rgba(34, 45, 63, 0.6);">
-                    No projects found. <a href="<?php echo esc_url(home_url('/contact/')); ?>" style="color:var(--brand,#C13333);font-weight:700;">Contact us</a> to start yours!
+                    No projects found. <a href="<?php echo esc_url(home_url('/contact/')); ?>" style="color:var(--brand,#F22F3A);font-weight:700;">Contact us</a> to start yours!
                 </p>
             <?php endif; ?>
 
@@ -348,7 +348,7 @@ get_header();
                 card.style.transition = 'transform 0.08s ease, box-shadow 0.3s ease, border-color 0.3s ease';
                 card.style.transform = 'perspective(1000px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) translateY(-8px) scale3d(1.02, 1.02, 1.02)';
                 card.style.boxShadow = '0 20px 45px rgba(10, 22, 40, 0.18)';
-                card.style.borderColor = 'rgba(193, 51, 51, 0.35)';
+                card.style.borderColor = 'rgba(242, 47, 58, 0.35)';
             });
             
             card.addEventListener('mouseleave', function() {

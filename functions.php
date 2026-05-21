@@ -1093,7 +1093,7 @@ function sc_portfolio_gallery_html($post) {
         .sc-gallery-wrap{display:flex;flex-wrap:wrap;gap:10px;padding:10px 0}
         .sc-gallery-wrap .sc-gallery-thumb{position:relative;width:120px;height:120px;border-radius:8px;overflow:hidden;cursor:move;border:2px solid #ddd}
         .sc-gallery-wrap .sc-gallery-thumb img{width:100%;height:100%;object-fit:cover}
-        .sc-gallery-wrap .sc-gallery-thumb .sc-gallery-remove{position:absolute;top:4px;right:4px;background:#C13333;color:#fff;border:none;border-radius:50%;width:22px;height:22px;cursor:pointer;font-size:14px;line-height:20px;text-align:center}
+        .sc-gallery-wrap .sc-gallery-thumb .sc-gallery-remove{position:absolute;top:4px;right:4px;background:#F22F3A;color:#fff;border:none;border-radius:50%;width:22px;height:22px;cursor:pointer;font-size:14px;line-height:20px;text-align:center}
     </style>
     <input type="hidden" name="portfolio_gallery" id="sc-gallery-ids" value="<?php echo esc_attr(implode(',', $gallery_ids)); ?>">
     <div class="sc-gallery-wrap" id="sc-gallery-wrap">

@@ -151,7 +151,7 @@ $has_image   = has_post_thumbnail();
 .pf-lightbox__prev,.pf-lightbox__next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.1);border:2px solid rgba(255,255,255,.2);color:#fff;font-size:2rem;cursor:pointer;width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all .3s;backdrop-filter:blur(4px)}
 .pf-lightbox__prev{left:1.5rem}
 .pf-lightbox__next{right:1.5rem}
-.pf-lightbox__prev:hover,.pf-lightbox__next:hover{background:var(--brand,#C13333);border-color:var(--brand,#C13333)}
+.pf-lightbox__prev:hover,.pf-lightbox__next:hover{background:var(--brand,#F22F3A);border-color:var(--brand,#F22F3A)}
 @media(max-width:600px){.pf-gallery__grid{grid-template-columns:repeat(2,1fr);gap:.5rem}.pf-hero{min-height:40vh}}
 </style>
 
