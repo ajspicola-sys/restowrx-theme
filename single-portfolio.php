@@ -66,9 +66,9 @@ $has_image   = has_post_thumbnail();
     <?php if (!empty($gallery)): ?>
     <section class="pf-gallery" aria-label="Project photos">
         <div class="section__inner">
-            <div class="section__header">
-                <span class="section__label">Project Gallery</span>
-                <h2 class="section__title">Before, During &amp; After</h2>
+            <div class="section__header" style="margin-bottom: 3rem;">
+                <span class="section__label">Finished Showcase</span>
+                <h2 class="section__title" style="color: var(--brand-navy, #222D3F); margin-top: 0.5rem;">Finished Craftsmanship &amp; Details</h2>
             </div>
             <div class="pf-gallery__grid">
                 <?php foreach ($gallery as $i => $img_id):
@@ -130,11 +130,11 @@ $has_image   = has_post_thumbnail();
 
 /* Content */
 .pf-content{padding:clamp(3rem,5vw,5rem) 0}
-.pf-content__body{max-width:780px;margin:0 auto;font-size:1.05rem;line-height:1.8;color:#333}
+.pf-content__body{max-width:1000px;margin:0 auto;font-size:1.05rem;line-height:1.8;color:#333}
 .pf-content__body h2,.pf-content__body h3{font-family:'Montserrat',sans-serif;color:var(--brand-navy,#222D3F);margin:2rem 0 .75rem}
 
 /* Gallery Grid */
-.pf-gallery{padding:0 0 clamp(4rem,6vw,6rem);background:#f8f9fa}
+.pf-gallery{padding:clamp(4rem,6vw,6rem) 0;background:#F8F8F6}
 .pf-gallery__grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin-top:2.5rem}
 .pf-gallery__item{position:relative;aspect-ratio:4/3;border-radius:12px;overflow:hidden;cursor:pointer;display:block}
 .pf-gallery__img{width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.22,1,.36,1)}
