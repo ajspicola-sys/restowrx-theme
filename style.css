@@ -10235,9 +10235,33 @@ footer.hwh-foot { background: #0A1628; color: rgba(255,255,255,0.7); font-family
 .hwh-topbar__social:hover { color:#F22F3A; }
 
 /* ── Nav bar ─────────────────────────────────────────────────────── */
-.hwh-nav-bar { background:rgba(255,255,255,.97); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px); box-shadow:0 2px 20px rgba(0,0,0,.07); padding:.85rem 0; transition:padding .3s ease, box-shadow .3s ease; }
+.hwh-header { transition: padding 0.4s cubic-bezier(.22, 1, .36, 1); }
+.hwh-nav-bar { background:rgba(255,255,255,.97); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px); box-shadow:0 2px 20px rgba(0,0,0,.07); padding:.85rem 0; transition:padding .3s ease, box-shadow .3s ease, border-radius .3s ease, max-width .3s ease, border .3s ease; }
 .hwh-header.is-scrolled .hwh-nav-bar { padding:.6rem 0; box-shadow:0 4px 30px rgba(0,0,0,.1); }
 .hwh-nav-bar__inner { max-width:1280px; margin:0 auto; padding:0 clamp(1.25rem,1rem + 2vw,3rem); display:flex; align-items:center; justify-content:space-between; gap:2rem; }
+
+/* Desktop-only premium floating island header on scroll */
+@media (min-width: 1025px) {
+    .hwh-header.is-scrolled {
+        padding: 10px 30px 0;
+    }
+    .hwh-header.is-scrolled .hwh-nav-bar {
+        border-radius: 9999px;
+        max-width: 1240px;
+        margin: 0 auto;
+        box-shadow: 0 16px 45px rgba(10, 22, 40, 0.16), 0 1px 3px rgba(10, 22, 40, 0.04);
+        border: 1px solid rgba(34, 45, 63, 0.08);
+        background: rgba(255, 255, 255, 0.96);
+    }
+    .hwh-header.is-scrolled .hwh-drop {
+        border-radius: 20px;
+        border-top: none;
+        margin-top: 12px;
+        box-shadow: 0 20px 50px rgba(10, 22, 40, 0.18);
+        border: 1px solid rgba(34, 45, 63, 0.08);
+        overflow: hidden;
+    }
+}
 
 /* Logo */
 .hwh-nav__logo { display:flex; align-items:center; flex-shrink:0; text-decoration:none; }

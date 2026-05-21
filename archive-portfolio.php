@@ -38,6 +38,8 @@ get_header();
     transition: transform .5s cubic-bezier(.22, 1, .36, 1), box-shadow .5s ease, border-color .3s;
     display: flex;
     flex-direction: column;
+    transform-style: preserve-3d;
+    perspective: 1000px;
 }
 
 .sc-projects-card:hover {
@@ -51,6 +53,7 @@ get_header();
     aspect-ratio: 16 / 10;
     overflow: hidden;
     background: #222D3F;
+    transform-style: preserve-3d;
 }
 
 .sc-projects-card-img img {
@@ -90,6 +93,7 @@ get_header();
     padding-bottom: 1.5rem;
     opacity: 0;
     transition: opacity .35s ease;
+    transform-style: preserve-3d;
 }
 
 .sc-projects-card:hover .sc-projects-card-overlay {
@@ -108,14 +112,15 @@ get_header();
     border-radius: 8px;
     background: rgba(10, 22, 40, 0.2);
     backdrop-filter: blur(4px);
-    transition: all .3s;
+    transition: all .3s, transform .5s cubic-bezier(.22, 1, .36, 1);
+    transform: translateZ(45px);
 }
 
 .sc-projects-card:hover .sc-projects-card-cta {
     background: #C13333;
     border-color: #C13333;
     box-shadow: 0 4px 15px rgba(193, 51, 51, 0.4);
-    transform: translateY(-2px);
+    transform: translateY(-2px) translateZ(45px);
 }
 
 .sc-projects-card-body {
@@ -124,6 +129,7 @@ get_header();
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    transform-style: preserve-3d;
 }
 
 .sc-projects-card-title {
@@ -133,7 +139,8 @@ get_header();
     color: var(--brand-navy, #222D3F);
     margin: 0 0 .5rem;
     line-height: 1.3;
-    transition: color .3s;
+    transition: color .3s, transform .5s cubic-bezier(.22, 1, .36, 1);
+    transform: translateZ(30px);
 }
 
 .sc-projects-card:hover .sc-projects-card-title {
@@ -145,6 +152,8 @@ get_header();
     color: rgba(34, 45, 63, 0.65);
     line-height: 1.6;
     margin: 0 0 1rem;
+    transition: transform .5s cubic-bezier(.22, 1, .36, 1);
+    transform: translateZ(20px);
 }
 
 .sc-projects-card-link {
@@ -157,8 +166,9 @@ get_header();
     display: inline-flex;
     align-items: center;
     gap: .4rem;
-    transition: color .3s, transform .3s;
+    transition: color .3s, transform .5s cubic-bezier(.22, 1, .36, 1);
     margin-top: auto;
+    transform: translateZ(35px);
 }
 
 .sc-projects-card-link svg {
@@ -314,5 +324,42 @@ get_header();
     </section>
 
 </main>
+
+<script>
+(function() {
+    // 3D Mouse Tilt Interactive Parallax Effect for Project Cards
+    var cards = document.querySelectorAll('.sc-projects-card');
+    
+    // Check if the user is on a device supporting hover interactions
+    if (window.matchMedia('(hover: hover)').matches) {
+        cards.forEach(function(card) {
+            card.addEventListener('mousemove', function(e) {
+                var rect = card.getBoundingClientRect();
+                var x = e.clientX - rect.left;
+                var y = e.clientY - rect.top;
+                
+                var centerX = rect.width / 2;
+                var centerY = rect.height / 2;
+                
+                // Tilt rotation of maximum 8 degrees
+                var rotateX = -(y - centerY) / centerY * 8;
+                var rotateY = (x - centerX) / centerX * 8;
+                
+                card.style.transition = 'transform 0.08s ease, box-shadow 0.3s ease, border-color 0.3s ease';
+                card.style.transform = 'perspective(1000px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) translateY(-8px) scale3d(1.02, 1.02, 1.02)';
+                card.style.boxShadow = '0 20px 45px rgba(10, 22, 40, 0.18)';
+                card.style.borderColor = 'rgba(193, 51, 51, 0.35)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                card.style.transition = 'transform 0.5s cubic-bezier(.25, 1, 0.5, 1), box-shadow 0.5s ease, border-color 0.3s ease';
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0) scale3d(1, 1, 1)';
+                card.style.boxShadow = '';
+                card.style.borderColor = '';
+            });
+        });
+    }
+})();
+</script>
 
 <?php get_footer(); ?>
