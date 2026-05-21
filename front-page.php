@@ -38,14 +38,14 @@ get_header(); ?>
 <style>
     .hyper-hero {
         width: 100%;
-        padding: clamp(150px, 15vw, 300px) 0;
+        padding: clamp(140px, 12vw, 220px) 0;
         display: flex;
         align-items: center;
         justify-content: center;
         position: relative;
-        background-color: var(--color-black, #000000);
+        background: radial-gradient(circle at 10% 20%, rgba(255, 0, 0, 0.12) 0%, transparent 45%), radial-gradient(circle at 90% 80%, rgba(255, 0, 0, 0.05) 0%, transparent 60%), #060606;
         overflow: hidden;
-        color: var(--color-white, #ffffff);
+        color: #ffffff;
         font-family: var(--font-main, 'Inter', sans-serif);
     }
 
@@ -55,12 +55,12 @@ get_header(); ?>
         left: 0;
         width: 100%;
         height: 100%;
-        background-image: url('https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?q=80&w=2000');
+        background-image: url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2000');
         background-size: cover;
         background-position: center;
         z-index: 1;
-        opacity: 0.15;
-        filter: grayscale(1) brightness(0.4);
+        opacity: 0.12;
+        filter: grayscale(1) brightness(0.3);
     }
 
     .hero-overlay-dark {
@@ -69,11 +69,11 @@ get_header(); ?>
         left: 0;
         width: 100%;
         height: 100%;
-        background: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.2) 0%, #000 90%);
+        background: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.1) 0%, #000 85%);
         z-index: 2;
     }
 
-    /* Huge Background Text - FITTED & CENTERED FIX */
+    /* Huge Background Text */
     .bg-text-large {
         position: absolute;
         top: 0;
@@ -85,7 +85,7 @@ get_header(); ?>
         justify-content: center;
         font-family: var(--font-accent, 'Bebas Neue', sans-serif);
         font-size: 15vw;
-        color: rgba(255, 255, 255, 0.035);
+        color: rgba(255, 255, 255, 0.02);
         text-transform: uppercase;
         white-space: nowrap;
         z-index: 3;
@@ -101,132 +101,259 @@ get_header(); ?>
         position: relative;
         z-index: 10;
         display: grid;
-        grid-template-columns: 0.9fr 1.1fr;
-        gap: clamp(40px, 6vw, 80px);
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: clamp(40px, 6vw, 90px);
         align-items: center;
+    }
+
+    .hero-badge {
+        background: rgba(255, 0, 0, 0.08); 
+        border: 1px solid rgba(255, 0, 0, 0.3); 
+        color: #ff3333; 
+        box-shadow: 0 0 20px rgba(255, 0, 0, 0.15); 
+        padding: 6px 18px; 
+        border-radius: 100px; 
+        display: inline-flex; 
+        align-items: center; 
+        gap: 8px; 
+        font-family: var(--font-mono, 'Space Mono', monospace); 
+        font-size: 0.72rem; 
+        font-weight: 700; 
+        letter-spacing: 2px; 
+        margin-bottom: 25px;
+        text-transform: uppercase;
+    }
+    .hero-badge i {
+        width: 12px; height: 12px;
+        color: #ff3333;
     }
 
     h1.ultra-headline {
         font-family: var(--font-accent, 'Bebas Neue', sans-serif);
-        font-size: clamp(3.5rem, 7vw, 9rem);
-        line-height: 0.85;
+        font-size: clamp(3.2rem, 6.8vw, 7.8rem);
+        line-height: 0.9;
         margin: 0;
         text-transform: uppercase;
-        letter-spacing: -3px;
+        letter-spacing: -2px;
         position: relative;
     }
 
     h1.ultra-headline b {
         display: block;
-        color: white;
+        background: linear-gradient(135deg, #ffffff 0%, #cccccc 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
     }
 
     h1.ultra-headline span {
         display: block;
-        color: transparent;
-        -webkit-text-stroke: 2px var(--brand, #ff0000);
+        background: linear-gradient(135deg, #ff0000 0%, #ff6666 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
     }
 
     .hero-tech-stats {
         display: flex;
-        gap: clamp(20px, 4vw, 40px);
+        gap: clamp(15px, 3vw, 30px);
         margin-top: 40px;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
         padding-top: 30px;
+    }
+
+    .stat-box {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-left: 3px solid var(--brand, #ff0000);
+        padding: 16px 22px;
+        border-radius: 8px;
+        flex: 1;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .stat-box:hover {
+        background: rgba(255, 255, 255, 0.06);
+        border-color: rgba(255, 255, 255, 0.1);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.3);
     }
 
     .stat-box h4 {
         font-family: var(--font-accent, 'Bebas Neue', sans-serif);
-        font-size: clamp(2rem, 3.5vw, 3rem);
+        font-size: clamp(2rem, 3.2vw, 2.8rem);
         margin: 0;
-        color: var(--brand, #ff0000);
+        color: #ffffff;
+        line-height: 1;
+        letter-spacing: 0.5px;
     }
 
     .stat-box p {
-        font-size: 0.7rem;
+        font-size: 0.65rem;
         text-transform: uppercase;
-        letter-spacing: 2px;
-        color: #666;
-        margin: 5px 0 0 0;
-        font-weight: 800;
+        letter-spacing: 1.5px;
+        color: rgba(255, 255, 255, 0.4);
+        margin: 6px 0 0 0;
+        font-weight: 700;
+        font-family: var(--font-mono, 'Space Mono', monospace);
     }
 
-    /* REFINED GLASS FORM - REMOVED INTERNAL PICTURES */
+    /* PREMIUM WHITE GLASS DISPATCH FORM */
     .glass-form-panel {
-        background: rgba(10, 10, 10, 0.6);
+        background: rgba(255, 255, 255, 0.96);
         backdrop-filter: blur(30px);
         -webkit-backdrop-filter: blur(30px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        padding: clamp(30px, 5vw, 55px);
-        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        padding: clamp(30px, 4.5vw, 48px);
+        border-radius: 16px;
         position: relative;
-        box-shadow: 0 50px 100px rgba(0, 0, 0, 0.8);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25), 0 10px 20px rgba(0, 0, 0, 0.15);
         z-index: 15;
         display: flex;
         flex-direction: column;
         align-items: center;
-        border-top: 10px solid var(--brand, #ff0000);
+        border-top: 8px solid var(--brand, #ff0000);
+        color: #1a202c;
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .glass-form-panel:hover {
+        box-shadow: 0 40px 80px rgba(0, 0, 0, 0.35);
     }
 
     .form-title {
         text-align: center;
-        margin-bottom: clamp(25px, 4vw, 45px);
+        margin-bottom: 25px;
         width: 100%;
     }
 
     .form-title img {
-        max-width: 250px;
+        max-width: 200px;
         height: auto;
-        margin-bottom: 10px;
+        margin-bottom: 8px;
         display: block;
         margin-left: auto;
         margin-right: auto;
+        filter: brightness(0); /* Make black on white panel */
+        opacity: 0.95;
     }
 
     .form-title p {
         font-family: var(--font-mono, 'Space Mono', monospace);
-        font-size: 0.8rem;
-        color: #888;
+        font-size: 0.72rem;
+        color: var(--brand, #ff0000);
         letter-spacing: 3px;
         margin: 0;
         text-transform: uppercase;
-        font-weight: 700;
+        font-weight: 800;
     }
 
-    /* FLOATING BADGE */
+    /* Form Fields Stylings inside White Panel */
+    .glass-form-panel input[type="text"],
+    .glass-form-panel input[type="email"],
+    .glass-form-panel input[type="tel"],
+    .glass-form-panel textarea,
+    .glass-form-panel select {
+        width: 100%;
+        padding: 12px 16px !important;
+        background: rgba(0, 0, 0, 0.03) !important;
+        border: 1px solid rgba(0, 0, 0, 0.08) !important;
+        border-radius: 6px !important;
+        color: #111111 !important;
+        font-family: var(--font-main) !important;
+        font-size: 0.85rem !important;
+        font-weight: 500 !important;
+        margin-bottom: 15px !important;
+        transition: all 0.3s ease !important;
+        box-sizing: border-box !important;
+    }
+
+    .glass-form-panel input:focus,
+    .glass-form-panel textarea:focus,
+    .glass-form-panel select:focus {
+        background: #ffffff !important;
+        border-color: var(--brand, #ff0000) !important;
+        box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.12) !important;
+        outline: none !important;
+    }
+
+    .glass-form-panel ::placeholder {
+        color: #718096 !important;
+        opacity: 0.8 !important;
+    }
+
+    /* Submit Button styling */
+    .glass-form-panel input[type="submit"] {
+        width: 100% !important;
+        background: linear-gradient(135deg, var(--brand, #ff0000) 0%, #990000 100%) !important;
+        color: #ffffff !important;
+        font-family: var(--font-accent) !important;
+        font-size: 1.25rem !important;
+        letter-spacing: 1.5px !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        border: none !important;
+        border-radius: 6px !important;
+        padding: 14px 20px !important;
+        cursor: pointer !important;
+        box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3) !important;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        box-sizing: border-box !important;
+    }
+
+    .glass-form-panel input[type="submit"]:hover {
+        background: #000000 !important;
+        color: #ffffff !important;
+        transform: translateY(-2px) scale(1.01) !important;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25) !important;
+    }
+
+    /* TACTICAL OVERLAPPING HOTLINE BADGE */
     .floating-dispatch {
         position: absolute;
-        bottom: -25px;
-        right: -25px;
-        background: white;
-        color: black;
-        padding: 20px 40px;
-        border-radius: 4px;
+        bottom: -20px;
+        right: -20px;
+        background: #111111;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: #ffffff;
+        padding: 14px 28px;
+        border-radius: 6px;
         display: flex;
         flex-direction: column;
         align-items: center;
-        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4);
         z-index: 20;
-        transform: rotate(5deg);
+        transform: rotate(3deg);
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .floating-dispatch:hover {
+        transform: rotate(0deg) scale(1.05);
+        border-color: var(--brand, #ff0000);
+        box-shadow: 0 25px 50px rgba(255, 0, 0, 0.15);
     }
 
     .floating-dispatch b {
         font-family: var(--font-accent, 'Bebas Neue', sans-serif);
-        font-size: 2.2rem;
+        font-size: 1.8rem;
         line-height: 1;
+        letter-spacing: 0.5px;
+        margin-top: 2px;
+        color: #ffffff;
     }
 
     .floating-dispatch span {
-        font-size: 0.75rem;
+        font-size: 0.62rem;
         color: var(--brand, #ff0000);
         font-weight: 800;
         letter-spacing: 2px;
         text-transform: uppercase;
+        font-family: var(--font-mono, 'Space Mono', monospace);
     }
 
     @media (max-width: 1100px) {
         .hyper-hero {
-            padding: 100px 0;
+            padding: 100px 0 60px 0;
         }
 
         .hero-container {
@@ -236,8 +363,12 @@ get_header(); ?>
         }
 
         h1.ultra-headline {
-            font-size: clamp(3rem, 10vw, 6rem);
-            letter-spacing: -2px;
+            font-size: clamp(3rem, 9vw, 5.5rem);
+            letter-spacing: -1.5px;
+        }
+
+        .hero-badge {
+            margin-bottom: 20px;
         }
 
         .hero-tech-stats {
@@ -245,7 +376,16 @@ get_header(); ?>
         }
 
         .floating-dispatch {
-            display: none;
+            position: relative;
+            bottom: auto;
+            right: auto;
+            margin-top: 20px;
+            transform: none;
+            width: 100%;
+            max-width: 280px;
+        }
+        .floating-dispatch:hover {
+            transform: scale(1.02);
         }
 
         .bg-text-large {
@@ -262,11 +402,11 @@ get_header(); ?>
     <div class="hero-container">
         <!-- LEFT CONTENT -->
         <div class="reveal">
-            <div style="border: 1px solid var(--brand, #ff0000); padding: 8px 20px; display: inline-block; border-radius: 100px; color: var(--brand, #ff0000); font-family: var(--font-accent, 'Bebas Neue', sans-serif); letter-spacing: 2px; margin-bottom: 30px; font-size: 0.9rem;">
-                CERTIFIED AGENCY EXCELLENCE
+            <div class="hero-badge">
+                <i data-lucide="shield"></i> Certified Agency Excellence
             </div>
             <h1 class="ultra-headline"><b>ELITE-GRADE</b><span>RESTORATION</span></h1>
-            <p style="color: rgba(255,255,255,0.6); font-size: clamp(1.1rem, 1.5vw, 1.4rem); line-height: 1.7; margin: 30px 0; max-width: 600px;">
+            <p style="color: rgba(255,255,255,0.75); font-size: clamp(1.05rem, 1.4vw, 1.25rem); line-height: 1.75; margin: 25px 0 35px 0; max-width: 600px;">
                 Operating at the apex of recovery science. We deliver rapid, surgical stabilization for high-value properties in the Tampa Bay market.
             </p>
             <div class="hero-tech-stats">
@@ -315,8 +455,8 @@ get_header(); ?>
         const formPanel = document.getElementById("form-panel");
         const bgText = document.getElementById("bg-text");
 
-        if (formPanel) {
-            gsap.to(formPanel, { x: x * 5, y: y * 5, rotateY: x, rotateX: -y, duration: 1.2, ease: "power2.out" });
+        if (formPanel && window.innerWidth > 1100) {
+            gsap.to(formPanel, { x: x * 5, y: y * 5, rotateY: x * 0.8, rotateX: -y * 0.8, duration: 1.2, ease: "power2.out" });
         }
         if (bgText) {
             gsap.to(bgText, { x: -x * 3, y: -y * 3, duration: 2.5, ease: "power2.out" });
