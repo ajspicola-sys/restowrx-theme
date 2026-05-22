@@ -78,12 +78,7 @@
             overflow-x: hidden; 
         }
         .site-main { 
-            padding-top: 95px; /* Height of the header */
-        }
-        @media (max-width: 1024px) {
-            .site-main {
-                padding-top: 90px;
-            }
+            padding-top: 0 !important; 
         }
 
         .rwx-header-master {
@@ -536,4 +531,4 @@
     </div>
 </div>
 
-<main id="main-content" class="site-main" role="main">
+

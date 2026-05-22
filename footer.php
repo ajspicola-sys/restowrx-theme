@@ -5,7 +5,7 @@
  */
 ?>
 
-</main> <!-- End #main-content from header.php -->
+
 
 <!-- Floating Mobile Dispatch CTA -->
 <div class="floating-cta" id="floating-cta" role="navigation" aria-label="Quick action dispatch">

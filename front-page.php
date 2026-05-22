@@ -38,7 +38,7 @@ get_header(); ?>
 <style>
     .hyper-hero {
         width: 100%;
-        padding: clamp(140px, 12vw, 220px) 0;
+        padding: clamp(140px, 9vw, 180px) 0;
         display: flex;
         align-items: center;
         justify-content: center;
