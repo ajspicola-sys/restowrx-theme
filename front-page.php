@@ -504,8 +504,8 @@ get_header(); ?>
                 </div>
 
                 <?php 
-                // Render Hero CF7 Form
-                echo do_shortcode('[contact-form-7 id="3191cf3" title="Hero Form/ Contact Form"]'); 
+                // Render Custom Hero Form
+                echo rwx_render_contact_form('rwx-hero-contact'); 
                 ?>
 
                 <div class="floating-dispatch" id="dispatch-badge">
@@ -2369,8 +2369,8 @@ if ( $blog_query->have_posts() ) : ?>
                 </div>
 
                 <?php 
-                // Render Bottom CF7 Form
-                echo do_shortcode('[contact-form-7 id="3191cf3" title="Hero Form/ Contact Form"]'); 
+                // Render Custom Bottom Form
+                echo rwx_render_contact_form('rwx-footer-contact'); 
                 ?>
 
                 <!-- Floating 24/7 Badge -->

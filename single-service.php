@@ -1253,8 +1253,8 @@ if ($categories && !is_wp_error($categories)) {
                     </div>
 
                     <?php 
-                    // Render CF7 inside sidebar
-                    echo do_shortcode('[contact-form-7 id="3191cf3" title="Hero Form/ Contact Form"]'); 
+                    // Render Custom Sidebar Form
+                    echo rwx_render_contact_form('rwx-sidebar-contact'); 
                     ?>
 
                     <a href="tel:+18136994009" class="rwx-widget__call-btn">

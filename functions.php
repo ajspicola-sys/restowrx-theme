@@ -1957,15 +1957,23 @@ function hwh_handle_contact_form() {
     }
 
     // Sanitize inputs
-    $first   = sanitize_text_field($_POST['first_name'] ?? '');
-    $last    = sanitize_text_field($_POST['last_name']  ?? '');
+    $fullname = sanitize_text_field($_POST['full_name'] ?? '');
+    if ( ! empty($fullname) ) {
+        $parts = explode(' ', trim($fullname), 2);
+        $first = $parts[0] ?? '';
+        $last  = $parts[1] ?? '';
+    } else {
+        $first   = sanitize_text_field($_POST['first_name'] ?? '');
+        $last    = sanitize_text_field($_POST['last_name']  ?? '');
+    }
+
     $email   = sanitize_email($_POST['email']           ?? '');
     $phone   = sanitize_text_field($_POST['phone']      ?? '');
     $service = sanitize_text_field($_POST['service']    ?? '');
     $message = sanitize_textarea_field($_POST['message'] ?? '');
 
     // Validate required fields
-    if ( empty($first) || empty($email) || ! is_email($email) ) {
+    if ( (empty($first) && empty($fullname)) || empty($email) || ! is_email($email) ) {
         wp_send_json_error(['message' => 'Please fill in all required fields.']);
     }
 
@@ -3300,3 +3308,109 @@ add_filter('elementor/widget/render_content', function( $content, $widget ) {
     return $content;
 
 }, 10, 2);
+
+// -- Centralized Custom Contact Form System --------------------------
+function rwx_render_contact_form($form_id = 'rwx-contact-form') {
+    ob_start();
+    $nonce = wp_create_nonce('hwh_contact_form');
+    ?>
+    <form class="rwx-custom-form wpcf7-form" id="<?php echo esc_attr($form_id); ?>" method="post" novalidate style="width: 100%; display: flex; flex-direction: column; gap: 12px; box-sizing: border-box;">
+        <input type="hidden" name="hwh_contact_nonce" value="<?php echo esc_attr($nonce); ?>">
+        <input type="hidden" name="action" value="hwh_contact_submit">
+        
+        <div class="rwx-form-group" style="width: 100%;">
+            <input type="text" name="full_name" placeholder="Full Name" required style="width: 100%;">
+        </div>
+        
+        <div class="rwx-form-group" style="width: 100%;">
+            <input type="email" name="email" placeholder="Email Address" required style="width: 100%;">
+        </div>
+        
+        <div class="rwx-form-group" style="width: 100%;">
+            <input type="tel" name="phone" placeholder="Phone Number" required style="width: 100%;">
+        </div>
+        
+        <div class="rwx-form-group" style="width: 100%;">
+            <textarea name="message" rows="4" placeholder="Tell us about your restoration needs..." required style="width: 100%; min-height: 100px; resize: vertical;"></textarea>
+        </div>
+        
+        <div class="rwx-form-group" style="width: 100%;">
+            <input type="submit" class="wpcf7-submit" value="SEND DISPATCH" style="width: 100%;">
+        </div>
+        
+        <!-- Status Messages -->
+        <div class="rwx-form-status rwx-status-success" style="display: none; align-items: center; gap: 10px; margin-top: 15px; padding: 12px; border-radius: 4px; background: rgba(45, 106, 79, 0.15); border: 1px solid #2d6a4f; color: #52b788; font-size: 0.85rem; font-family: var(--font-main, sans-serif);">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span class="rwx-status-msg"></span>
+        </div>
+        
+        <div class="rwx-form-status rwx-status-error" style="display: none; align-items: center; gap: 10px; margin-top: 15px; padding: 12px; border-radius: 4px; background: rgba(196, 78, 78, 0.15); border: 1px solid #c44e4e; color: #e5383b; font-size: 0.85rem; font-family: var(--font-main, sans-serif);">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span class="rwx-status-msg"></span>
+        </div>
+    </form>
+    
+    <script>
+    (function() {
+        function initForm() {
+            var form = document.getElementById('<?php echo esc_js($form_id); ?>');
+            if (!form || form.dataset.ajaxBound) return;
+            form.dataset.ajaxBound = 'true';
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                var submitBtn = form.querySelector('input[type="submit"]');
+                var successBox = form.querySelector('.rwx-status-success');
+                var errorBox = form.querySelector('.rwx-status-error');
+                
+                // Clear previous messages
+                successBox.style.display = 'none';
+                errorBox.style.display = 'none';
+                
+                if (submitBtn) {
+                    submitBtn.disabled = true;
+                    submitBtn.value = 'SENDING...';
+                }
+                
+                var formData = new FormData(form);
+                
+                fetch('<?php echo esc_url(admin_url('admin-ajax.php')); ?>', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(function(res) {
+                    return res.json();
+                })
+                .then(function(data) {
+                    if (data.success) {
+                        successBox.querySelector('.rwx-status-msg').textContent = data.data.message || 'Message sent successfully!';
+                        successBox.style.display = 'flex';
+                        form.reset();
+                    } else {
+                        errorBox.querySelector('.rwx-status-msg').textContent = data.data.message || 'An error occurred. Please try again.';
+                        errorBox.style.display = 'flex';
+                    }
+                })
+                .catch(function(err) {
+                    errorBox.querySelector('.rwx-status-msg').textContent = 'Connection error. Please check your internet connection.';
+                    errorBox.style.display = 'flex';
+                })
+                .finally(function() {
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.value = 'SEND DISPATCH';
+                    }
+                });
+            });
+        }
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initForm);
+        } else {
+            initForm();
+        }
+    })();
+    </script>
+    <?php
+    return ob_get_clean();
+}
