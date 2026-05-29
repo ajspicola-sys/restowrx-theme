@@ -734,7 +734,7 @@ get_header(); ?>
     /* Overlapping Circular Brand Icon */
     .card-icon {
         position: absolute;
-        bottom: -24px;
+        top: -24px;
         left: 30px;
         width: 48px;
         height: 48px;
@@ -744,7 +744,7 @@ get_header(); ?>
         display: flex;
         align-items: center;
         justify-content: center;
-        z-index: 10;
+        z-index: 20;
         box-shadow: 0 8px 20px rgba(0,0,0,0.4);
         transition: var(--transition);
         color: var(--brand, #ff0000) !important;
@@ -989,12 +989,12 @@ get_header(); ?>
                     ?>
                     <a href="<?php the_permalink(); ?>" class="service-card reveal">
                         <div class="card-image-wrap">
-                            <img src="<?php echo esc_url($thumb_url); ?>" alt="<?php echo esc_attr($title); ?>" class="card-img" loading="lazy">
+                            <img src="<?php echo esc_url($thumb_url); ?>" alt="<?php echo esc_attr($title); ?>" class="card-img">
                             <div class="card-number"><?php echo esc_html($num); ?></div>
-                            <div class="card-icon"><i data-lucide="<?php echo esc_attr($icon); ?>" size="20"></i></div>
                         </div>
                         
                         <div class="card-info">
+                            <div class="card-icon"><i data-lucide="<?php echo esc_attr($icon); ?>" size="20"></i></div>
                             <h3><?php echo $formatted_title; ?></h3>
                             <p><?php echo esc_html($desc); ?></p>
                             <ul class="card-list">
@@ -1015,12 +1015,12 @@ get_header(); ?>
                     ?>
                     <a href="<?php echo esc_url(home_url('/services/')); ?>" class="service-card reveal">
                         <div class="card-image-wrap">
-                            <img src="<?php echo esc_url($svc['bg']); ?>" alt="Service Image" class="card-img" loading="lazy">
+                            <img src="<?php echo esc_url($svc['bg']); ?>" alt="Service Image" class="card-img">
                             <div class="card-number"><?php echo esc_html($svc['num']); ?></div>
-                            <div class="card-icon"><i data-lucide="<?php echo esc_attr($svc['icon']); ?>" size="20"></i></div>
                         </div>
                         
                         <div class="card-info">
+                            <div class="card-icon"><i data-lucide="<?php echo esc_attr($svc['icon']); ?>" size="20"></i></div>
                             <h3><?php echo $svc['title']; ?></h3>
                             <p><?php echo esc_html($svc['desc']); ?></p>
                             <ul class="card-list">
