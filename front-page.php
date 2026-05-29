@@ -38,7 +38,7 @@ get_header(); ?>
 <style>
     .hyper-hero {
         width: 100%;
-        padding: clamp(140px, 9vw, 180px) 0;
+        padding: clamp(200px, 12vw, 240px) 0;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -416,7 +416,7 @@ get_header(); ?>
 
     @media (max-width: 1100px) {
         .hyper-hero {
-            padding: 100px 0 60px 0;
+            padding: 160px 0 100px 0;
         }
 
         .hero-container {
@@ -692,6 +692,42 @@ get_header(); ?>
         box-sizing: border-box;
     }
 
+    /* Premium Featured Image Background layers */
+    .card-bg-img {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+        opacity: 0.12;
+        transition: var(--transition);
+        z-index: 1;
+        pointer-events: none;
+    }
+    
+    .service-card:hover .card-bg-img {
+        opacity: 0.32;
+        transform: scale(1.06);
+    }
+    
+    .card-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom, rgba(10, 10, 10, 0.4) 0%, rgba(0, 0, 0, 0.95) 100%);
+        z-index: 2;
+        pointer-events: none;
+    }
+
+    /* Content layers above background */
+    .card-number,
+    .card-icon,
+    .service-card h3,
+    .service-card p,
+    .card-list,
+    .card-brief-link {
+        position: relative;
+        z-index: 5;
+    }
+
     /* Forensic Numbering */
     .card-number {
         position: absolute;
@@ -827,16 +863,16 @@ get_header(); ?>
         
         <div style="text-align: center; margin-bottom: 80px;" class="reveal">
             <span style="color: var(--brand, #ff0000); font-family: var(--font-mono, 'Space Mono', monospace); text-transform: uppercase; letter-spacing: 4px; font-size: 0.9rem; font-weight: 700; margin-bottom: 10px; display: block;">CORE COMPETENCIES</span>
-            <h2 style="font-family: var(--font-accent, 'Bebas Neue', sans-serif); font-size: clamp(3rem, 8vw, 6rem); line-height: 0.95; margin: 0; text-transform: uppercase; letter-spacing: 2px;">SPECIALIZATIONS</h2>
+            <h2 style="font-family: var(--font-accent, 'Bebas Neue', sans-serif); font-size: clamp(3rem, 8vw, 6rem); line-height: 0.95; margin: 0; text-transform: uppercase; letter-spacing: 2px;">SERVICES</h2>
         </div>
 
         <div class="services-grid">
             <?php
-            // Dynamic WP_Query loop for Service post type
+            // Dynamic WP_Query loop for Service post type (6 max)
             $services_query = new WP_Query([
                 'post_type'      => 'service',
                 'post_status'    => 'publish',
-                'posts_per_page' => 4,
+                'posts_per_page' => 6,
                 'orderby'        => 'menu_order',
                 'order'          => 'ASC',
                 'no_found_rows'  => true,
@@ -847,6 +883,7 @@ get_header(); ?>
                 [
                     'num'   => '01',
                     'icon'  => 'droplets',
+                    'bg'    => 'https://images.unsplash.com/photo-1542013936693-8848e574047e?q=80&w=600',
                     'title' => 'Water<b>Extraction</b>',
                     'desc'  => 'High-capacity extraction and precision thermal drying to stabilize structural integrity and mitigate secondary damage.',
                     'list'  => ['Rapid Response', 'Thermal Imaging', 'Humidity Control']
@@ -854,6 +891,7 @@ get_header(); ?>
                 [
                     'num'   => '02',
                     'icon'  => 'flame',
+                    'bg'    => 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=600',
                     'title' => 'Fire<b>Damage</b>',
                     'desc'  => 'Molecular deodorization and specialized soot removal. We restore the original atmospheric quality and structural safety of your property.',
                     'list'  => ['Char Removal', 'Debris Recovery', 'Odor Removal']
@@ -861,6 +899,7 @@ get_header(); ?>
                 [
                     'num'   => '03',
                     'icon'  => 'shield-alert',
+                    'bg'    => 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=600',
                     'title' => 'Mold<b>Removal</b>',
                     'desc'  => 'Clinical remediation using HEPA-grade filtration to eliminate airborne spores and ensure biological safety standards.',
                     'list'  => ['Containment', 'Air Scrubbing', 'Anti-Microbial']
@@ -868,6 +907,7 @@ get_header(); ?>
                 [
                     'num'   => '04',
                     'icon'  => 'cloud-lightning',
+                    'bg'    => 'https://images.unsplash.com/photo-1527031913707-5d8f6d2e05cd?q=80&w=600',
                     'title' => 'Storm<b>Impact</b>',
                     'desc'  => 'Emergency board-up and structural stabilization following catastrophic meteorological outbreaks and flooding.',
                     'list'  => ['Roof Tarping', 'Board Up', 'Tree Removal']
@@ -875,9 +915,18 @@ get_header(); ?>
                 [
                     'num'   => '05',
                     'icon'  => 'hammer',
+                    'bg'    => 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=600',
                     'title' => 'Complete<b>Build Back</b>',
                     'desc'  => 'Advanced reconstruction in partnership with Spicola Construction. Returning your property to pre-loss perfection.',
                     'list'  => ['Full Repair', 'Elite Finishing', 'Fast Turnaround']
+                ],
+                [
+                    'num'   => '06',
+                    'icon'  => 'building',
+                    'bg'    => 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=600',
+                    'title' => 'Commercial<b>Restoration</b>',
+                    'desc'  => 'Large-scale structural mitigation and corporate recovery services to minimize business interruption and restore operations.',
+                    'list'  => ['Rapid Response', 'Business Continuity', 'Code Compliant']
                 ]
             ];
 
@@ -927,8 +976,16 @@ get_header(); ?>
                     } else if (is_string($features)) {
                         $features = array_map('trim', explode(',', $features));
                     }
+                    $thumb_url = '';
+                    if (has_post_thumbnail()) {
+                        $thumb_url = get_the_post_thumbnail_url(get_the_ID(), 'medium_large');
+                    }
                     ?>
                     <a href="<?php the_permalink(); ?>" class="service-card reveal">
+                        <?php if ($thumb_url): ?>
+                            <div class="card-bg-img" style="background-image: url('<?php echo esc_url($thumb_url); ?>');"></div>
+                            <div class="card-overlay"></div>
+                        <?php endif; ?>
                         <div class="card-number"><?php echo esc_html($num); ?></div>
                         <div class="card-icon"><i data-lucide="<?php echo esc_attr($icon); ?>" size="56"></i></div>
                         <h3><?php echo $formatted_title; ?></h3>
@@ -945,10 +1002,14 @@ get_header(); ?>
                 endwhile;
                 wp_reset_postdata();
             else :
-                // Render fallback static services
-                foreach (array_slice($fallback_services, 0, 4) as $svc) :
+                // Render fallback static services (slice to 6)
+                foreach (array_slice($fallback_services, 0, 6) as $svc) :
                     ?>
                     <a href="<?php echo esc_url(home_url('/services/')); ?>" class="service-card reveal">
+                        <?php if (!empty($svc['bg'])): ?>
+                            <div class="card-bg-img" style="background-image: url('<?php echo esc_url($svc['bg']); ?>');"></div>
+                            <div class="card-overlay"></div>
+                        <?php endif; ?>
                         <div class="card-number"><?php echo esc_html($svc['num']); ?></div>
                         <div class="card-icon"><i data-lucide="<?php echo esc_attr($svc['icon']); ?>" size="56"></i></div>
                         <h3><?php echo $svc['title']; ?></h3>
@@ -964,6 +1025,11 @@ get_header(); ?>
                 endforeach;
             endif;
             ?>
+        </div>
+
+        <!-- Centered See All Services Button -->
+        <div style="text-align: center; margin-top: 60px;" class="reveal">
+            <a href="<?php echo esc_url(home_url('/services/')); ?>" class="btn btn--outline btn--lg" style="font-family: var(--font-accent, sans-serif); font-size: 1.4rem; letter-spacing: 1px; padding: 12px 40px; border-color: rgba(255, 0, 0, 0.4); color: white;">See All Services</a>
         </div>
     </div>
 </section>
