@@ -206,7 +206,10 @@ get_header(); ?>
     <!-- ════════════════════════════════════════════════════════════
          OUR STORY
          ════════════════════════════════════════════════════════════ -->
-    <section class="about-story" aria-label="Our story">
+    <!-- ════════════════════════════════════════════════════════════
+         OUR STORY (LIGHT THEME)
+         ════════════════════════════════════════════════════════════ -->
+    <section class="about-story about-story--light" aria-label="Our story">
         <div class="section__inner">
             <div class="section__header reveal section__header--center">
                 <span class="section__label">Our Background</span>
@@ -279,6 +282,32 @@ get_header(); ?>
         background: #050505;
         border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
+    /* Elegant Light Theme Overrides */
+    .about-story--light {
+        background: #ffffff;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    }
+    .about-story--light .section__title {
+        color: #111111;
+    }
+    .about-story--light .about-story__right p {
+        color: #333333;
+    }
+    .about-story--light .about-story__left {
+        background: #f8f9fa;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    }
+    .about-story--light .about-story__quote {
+        color: #111111;
+    }
+    .about-story--light .about-story__stat-row {
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+    }
+    .about-story--light .about-story__stat span {
+        color: #555555;
+    }
+
     .about-story__layout {
         display: grid;
         grid-template-columns: 1.6fr 1fr;
@@ -475,12 +504,15 @@ get_header(); ?>
     <!-- ════════════════════════════════════════════════════════════
          WHAT SETS US APART
          ════════════════════════════════════════════════════════════ -->
-    <section class="about-family" aria-label="What sets us apart">
+    <!-- ════════════════════════════════════════════════════════════
+         WHAT SETS US APART (LIGHT THEME)
+         ════════════════════════════════════════════════════════════ -->
+    <section class="about-family about-family--light" aria-label="What sets us apart">
         <div class="section__inner">
             <div class="section__header reveal section__header--center">
                 <span class="section__label">Our Professional Edge</span>
                 <h2 class="section__title">Expert Property Recovery</h2>
-                <p class="section__subtitle section__subtitle--narrow" style="color:#aaa; max-width:700px; margin:20px auto 0 auto; line-height:1.6;">We are not a bloated generalist corporation. We are a specialized property restoration team operating under strict containment protocols. Here is what separates our expert team from general contractors.</p>
+                <p class="section__subtitle section__subtitle--narrow" style="max-width:700px; margin:20px auto 0 auto; line-height:1.6;">We are not a bloated generalist corporation. We are a specialized property restoration team operating under strict containment protocols. Here is what separates our expert team from general contractors.</p>
             </div>
             <div class="about-family__grid reveal">
                 <article class="about-family__card">
@@ -518,6 +550,33 @@ get_header(); ?>
         background: #050505;
         border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
+    /* Elegant Light Theme Overrides */
+    .about-family--light {
+        background: #ffffff;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    }
+    .about-family--light .section__title {
+        color: #111111;
+    }
+    .about-family--light .section__subtitle {
+        color: #555555 !important;
+    }
+    .about-family--light .about-family__card {
+        background: #ffffff;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.03);
+    }
+    .about-family--light .about-family__card:hover {
+        border-color: var(--brand, #ff0000);
+        box-shadow: 0 15px 35px rgba(255, 0, 0, 0.08);
+    }
+    .about-family--light .about-family__name {
+        color: #111111;
+    }
+    .about-family--light .about-family__desc {
+        color: #555555;
+    }
+
     .about-family__grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
