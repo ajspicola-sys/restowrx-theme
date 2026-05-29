@@ -38,7 +38,7 @@ get_header(); ?>
 <style>
     .hyper-hero {
         width: 100%;
-        padding: clamp(200px, 12vw, 240px) 0;
+        padding: clamp(300px, 18vw, 360px) 0;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -416,7 +416,7 @@ get_header(); ?>
 
     @media (max-width: 1100px) {
         .hyper-hero {
-            padding: 160px 0 100px 0;
+            padding: 240px 0 150px 0;
         }
 
         .hero-container {
@@ -698,21 +698,21 @@ get_header(); ?>
         inset: 0;
         background-size: cover;
         background-position: center;
-        opacity: 0.12;
+        opacity: 0.38;
         transition: var(--transition);
         z-index: 1;
         pointer-events: none;
     }
     
     .service-card:hover .card-bg-img {
-        opacity: 0.32;
+        opacity: 0.72;
         transform: scale(1.06);
     }
     
     .card-overlay {
         position: absolute;
         inset: 0;
-        background: linear-gradient(to bottom, rgba(10, 10, 10, 0.4) 0%, rgba(0, 0, 0, 0.95) 100%);
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.98) 100%);
         z-index: 2;
         pointer-events: none;
     }
