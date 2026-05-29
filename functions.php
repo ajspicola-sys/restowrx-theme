@@ -359,30 +359,29 @@ if (!defined('WP_POST_REVISIONS')) {
 // -- 1. GeneralContractor + WebSite + Person -- every page ----
 function hwh_schema_markup() {
 
-    // Named provider: Spicola Construction Team
+    // Named provider: Restowrx Elite Command Team
     $provider = [
         '@type'       => 'Person',
-        '@id'         => esc_url(home_url('/')) . '#sc-team',
-        'name'        => 'Spicola Construction Team',
-        'jobTitle'    => 'Founder & General Contractor',
-        'honorificPrefix' => 'CGC',
-        'description' => 'Licensed General Contractor and founder of Spicola Construction in Tampa Bay, FL. Specializes in residential and commercial construction, remodeling, and roofing.',
-        'worksFor'    => [ '@type' => 'GeneralContractor', 'name' => 'Spicola Construction' ],
-        'sameAs'      => [ 'https://www.instagram.com/spicolaconstruction/' ],
+        '@id'         => esc_url(home_url('/')) . '#rwx-team',
+        'name'        => 'Restowrx Elite Team',
+        'jobTitle'    => 'Incident Commander & Property Recovery Specialist',
+        'description' => 'Property recovery commanders and certified restoration specialists serving Tampa Bay, FL. Expert water extraction, mold remediation, fire damage restoration, and storm stabilization.',
+        'worksFor'    => [ '@type' => 'LocalBusiness', 'name' => 'Restowrx Elite' ],
+        'sameAs'      => [ 'https://www.instagram.com/restowrx/' ],
     ];
 
-    // Full LocalBusiness entity (GeneralContractor)
+    // Full LocalBusiness entity (GeneralContractor / Damage Restoration Service)
     $business = [
         '@context'         => 'https://schema.org',
-        '@type'            => ['GeneralContractor', 'HomeAndConstructionBusiness', 'LocalBusiness'],
-        '@id'              => esc_url(home_url('/')) . '#sc-construction',
-        'name'             => 'Spicola Construction',
-        'legalName'        => 'Spicola Construction LLC',
-        'alternateName'    => 'Spicola Construction',
-        'description'      => "Tampa Bay's trusted general contractor offering new construction, remodeling, roofing, commercial build-outs, and renovation services. Licensed, insured, and committed to quality craftsmanship. Serving Hillsborough, Pinellas, and Pasco counties.",
+        '@type'            => ['GeneralContractor', 'LocalBusiness'],
+        '@id'              => esc_url(home_url('/')) . '#rwx-recovery',
+        'name'             => 'Restowrx Elite',
+        'legalName'        => 'Restowrx Elite',
+        'alternateName'    => 'Restowrx Elite',
+        'description'      => "Tampa Bay's command center for property recovery. Surgical precision fire damage restoration, high-capacity water extraction, biological mold containment, and storm damage stabilization in Hillsborough, Pinellas, and Pasco counties.",
         'url'              => esc_url(home_url('/')),
-        'telephone'        => '+18137326285',
-        'email'            => 'info@spicolaconstruction.com',
+        'telephone'        => '+18136994009',
+        'email'            => 'joe@restowrx.com',
         'foundingDate'     => '2020',
         'address'          => [
             '@type'           => 'PostalAddress',
@@ -399,38 +398,29 @@ function hwh_schema_markup() {
         ],
         'hasMap'           => 'https://maps.google.com/?q=9249+Lazy+Ln+Tampa+FL+33614',
         'openingHoursSpecification' => [
-            [ '@type' => 'OpeningHoursSpecification', 'dayOfWeek' => ['Monday','Tuesday','Wednesday','Thursday','Friday'], 'opens' => '07:30', 'closes' => '16:00' ],
+            [ '@type' => 'OpeningHoursSpecification', 'dayOfWeek' => ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'], 'opens' => '00:00', 'closes' => '23:59' ],
         ],
-        'priceRange'       => '$$-$$$',
+        'priceRange'       => '$$$',
         'currenciesAccepted' => 'USD',
-        'paymentAccepted'  => 'Cash, Credit Card, Financing',
+        'paymentAccepted'  => 'Cash, Credit Card, Insurance Claims Financing',
         'image'            => [
             esc_url(home_url('/')) . 'wp-content/uploads/spicola-og.jpg',
         ],
         'logo'             => esc_url(home_url('/')) . 'wp-content/uploads/spicola-og.jpg',
         'sameAs'           => [
-            'https://www.facebook.com/spicolaconstruction/',
-            'https://www.instagram.com/spicolaconstruction/',
-            'https://www.google.com/maps/place/Spicola+Construction',
-        ],
-        'aggregateRating'  => [
-            '@type'       => 'AggregateRating',
-            'ratingValue' => '5.0',
-            'bestRating'  => '5',
-            'worstRating' => '1',
-            'reviewCount' => '50',
+            'https://www.facebook.com/restowrx/',
+            'https://www.instagram.com/restowrx/',
+            'https://www.google.com/maps/place/Restowrx+Elite',
         ],
         'employee'         => [ $provider ],
         'founder'          => $provider,
-        'serviceType' => 'General Contracting',
+        'serviceType'      => 'Property Damage Restoration',
         'availableService' => [
-            [ '@type' => 'Service', 'name' => 'New Construction',          'url' => esc_url(home_url('/services/')) ],
-            [ '@type' => 'Service', 'name' => 'Remodeling & Renovations', 'url' => esc_url(home_url('/services/')) ],
-            [ '@type' => 'Service', 'name' => 'Roofing',                  'url' => esc_url(home_url('/services/')) ],
-            [ '@type' => 'Service', 'name' => 'Commercial Build-Outs',    'url' => esc_url(home_url('/services/')) ],
-            [ '@type' => 'Service', 'name' => 'Additions & Extensions',   'url' => esc_url(home_url('/services/')) ],
-            [ '@type' => 'Service', 'name' => 'Concrete & Foundation',    'url' => esc_url(home_url('/services/')) ],
-            [ '@type' => 'Service', 'name' => 'Camera Inspection',          'url' => esc_url(home_url('/services/')) ],
+            [ '@type' => 'Service', 'name' => 'Water Extraction & Drying', 'url' => esc_url(home_url('/services/')) ],
+            [ '@type' => 'Service', 'name' => 'Fire & Smoke Deodorization',  'url' => esc_url(home_url('/services/')) ],
+            [ '@type' => 'Service', 'name' => 'Biological Mold Containment', 'url' => esc_url(home_url('/services/')) ],
+            [ '@type' => 'Service', 'name' => 'Storm Stabilization & Board Up', 'url' => esc_url(home_url('/services/')) ],
+            [ '@type' => 'Service', 'name' => 'Structural Build Back',     'url' => esc_url(home_url('/services/')) ],
         ],
         'areaServed'       => [
             [ '@type' => 'City', 'name' => 'Tampa',          'containedInPlace' => [ '@type' => 'State', 'name' => 'Florida' ] ],
@@ -448,14 +438,14 @@ function hwh_schema_markup() {
         ],
         'hasOfferCatalog'  => [
             '@type' => 'OfferCatalog',
-            'name'  => 'Spicola Construction Services',
+            'name'  => 'Restowrx Elite Mitigation Services',
             'url'   => esc_url(home_url('/services/')),
         ],
         'makesOffer' => [
             [
                 '@type'       => 'Offer',
-                'name'        => 'Free Estimate',
-                'description' => 'Free construction estimate with our licensed team.',
+                'name'        => 'Free Telemetry Estimate',
+                'description' => 'Free property recovery telemetry scan and damage assessment.',
                 'price'       => '0',
                 'priceCurrency' => 'USD',
                 'url'         => esc_url(home_url('/contact/')),
@@ -469,11 +459,11 @@ function hwh_schema_markup() {
         '@context'        => 'https://schema.org',
         '@type'           => 'WebSite',
         '@id'             => esc_url(home_url('/')) . '#website',
-        'name'            => 'Spicola Construction',
+        'name'            => 'Restowrx Elite',
         'url'             => esc_url(home_url('/')),
-        'description'     => "Tampa Bay's trusted construction company — water heater installation, emergency repairs, drain cleaning, repiping, and 24/7 service.",
+        'description'     => "Tampa Bay's command center for property recovery — water extraction, fire restoration, mold remediation, storm stabilization, and 24/7 service.",
         'inLanguage'      => 'en-US',
-        'publisher'       => [ '@id' => esc_url(home_url('/')) . '#hwh-construction' ],
+        'publisher'       => [ '@id' => esc_url(home_url('/')) . '#rwx-recovery' ],
         'potentialAction' => [
             '@type'       => 'SearchAction',
             'target'      => [ '@type' => 'EntryPoint', 'urlTemplate' => esc_url(home_url('/')) . '?s={search_term_string}' ],
@@ -494,9 +484,9 @@ function hwh_schema_markup() {
             'name'        => get_the_title(),
             'description' => $excerpt,
             'provider'    => [
-                '@type' => 'GeneralContractor',
-                'name'  => 'Spicola Construction',
-                '@id'   => esc_url(home_url('/')) . '#sc-construction',
+                '@type' => 'LocalBusiness',
+                'name'  => 'Restowrx Elite',
+                '@id'   => esc_url(home_url('/')) . '#rwx-recovery',
             ],
             'areaServed'  => 'Tampa Bay, FL',
             'url'         => get_permalink($post_id),
@@ -670,7 +660,7 @@ function hwh_create_blog_posts() {
     if (get_option('hwh_blog_created_v1')) return;
 
     // Create blog categories
-    $categories = ['Tips & Maintenance', 'Water Heater Services', 'Emergency Services', 'How-To Guides', 'HWH News'];
+    $categories = ['Mitigation Tips', 'Water Extraction', 'Mold & Biological', 'Fire & Smoke', 'Restowrx Intel'];
     $cat_ids = [];
     foreach ($categories as $cat) {
         $existing = term_exists($cat, 'category');
@@ -686,134 +676,109 @@ function hwh_create_blog_posts() {
 
     $posts = [
         [
-            'title'    => 'Tank vs. Tankless Water Heaters: Which Is Right for Your Home?',
-            'category' => 'Water Heater Services',
-            'excerpt'  => 'Understanding the difference between tank and tankless water heaters to make the best choice for your Tampa Bay home.',
-            'content'  => '<h2>Choosing the Right Water Heater</h2>
-<p>One of the most common questions we hear at Spicola Construction is: "Should I get a tank or tankless water heater?" Both have advantages, and the right choice depends on your household size, budget, and hot water needs.</p>
+            'title'    => 'Mitigation vs. Restoration: The Property Recovery Command Cycle',
+            'category' => 'Mitigation Tips',
+            'excerpt'  => 'Understanding the critical difference between active damage mitigation and full property restoration to navigate your recovery smoothly.',
+            'content'  => '<h2>Navigating Property Recovery</h2>
+<p>When disaster strikes your property, the response time is measured in minutes, not hours. A common question we hear at Restowrx Elite is: "What is the difference between mitigation and restoration?" Both are essential, but they serve very different purposes in the recovery command cycle.</p>
 
-<h3>Tank Water Heaters: The Reliable Classic</h3>
-<p>Tank water heaters store 40-80 gallons of pre-heated water, ready for use whenever you need it. They have a lower upfront cost and are simple to install and maintain. However, they use energy continuously to keep the water hot, even when you are not using it.</p>
+<h3>Active Mitigation: Stopping the Damage</h3>
+<p>Mitigation is the immediate, emergency phase of property recovery. It is designed to stop the damage from spreading. This includes high-capacity water extraction, biological containment, structural drying, and storm board-ups. Mitigation prevents secondary issues like toxic mold growth or structural collapse.</p>
 
-<h3>Tankless Water Heaters: Endless Hot Water</h3>
-<p>Tankless units heat water on-demand as it flows through the system. They are more energy-efficient (saving up to 40% on water heating bills), last longer (20+ years vs. 10-15 for tanks), and take up far less space. The tradeoff is a higher upfront cost.</p>
+<h3>Property Restoration: The Build-Back Phase</h3>
+<p>Once the property is stabilized, dried, and sanitized, the restoration phase begins. This is where we rebuild what was destroyed. In partnership with Spicola Construction, our licensed general contracting partner, we handle full reconstruction, from drywall and framing to roofing and custom finishes.</p>
 
-<h3>Which Should You Choose?</h3>
-<p>The answer depends on your specific needs. For smaller households with moderate hot water usage, a high-efficiency tank heater is often the most cost-effective choice. For larger families or homes that need simultaneous hot water at multiple fixtures, tankless is the way to go.</p>
+<h3>Strategic Recovery Command</h3>
+<p>Our unified approach ensures that mitigation transitions seamlessly into reconstruction without the typical delays of coordinating multiple contractors.</p>
 
-<p><strong>Not sure which is right for you?</strong> Call Spicola Construction for a free estimate and we will help you choose the best option for your home.</p>',
+<p><strong>Faced with property damage?</strong> Call the Restowrx Elite 24/7 hotline at 813.699.4009 for immediate strike team deployment.</p>',
         ],
         [
-            'title'    => 'The Complete Guide to Preventing construction Emergencies',
-            'category' => 'Drain & Pipe Services',
-            'excerpt'  => 'Simple maintenance tips every Tampa Bay homeowner should know to prevent costly construction disasters.',
-            'content'  => '<h2>Prevention Is Cheaper Than Repair</h2>
-<p>Most construction emergencies do not happen overnight. They build up slowly from years of neglect. At Spicola Construction, we have seen it all, and most of it could have been prevented with basic maintenance.</p>
+            'title'    => 'The Complete Guide to Preventing Mold After Water Damage',
+            'category' => 'Mold & Biological',
+            'excerpt'  => 'Simple, critical containment and drying tips every Tampa Bay property owner should know to prevent toxic mold after a leak or flood.',
+            'content'  => '<h2>Prevention Is Faster Than Remediation</h2>
+<p>Toxic mold spores begin to colonize and grow within 24 to 48 hours of exposure to moisture. At Restowrx Elite, we treat water damage as an active biological hazard. Here is how you can protect your property before it becomes a mold contamination zone.</p>
 
-<h3>1. Know Where Your Main Shutoff Is</h3>
-<p>If a pipe bursts, the first thing you need to do is stop the water. Every homeowner should know exactly where the main water shutoff valve is and test it annually to make sure it works.</p>
+<h3>1. Extract Water Immediately</h3>
+<p>Mops and shop-vacs are not enough for structural saturation. Professional-grade truck-mounted extractors are required to pull water from deep within flooring and subfloors.</p>
 
-<h3>2. Never Pour Grease Down the Drain</h3>
-<p>Grease solidifies in your pipes and creates stubborn clogs over time. Let it cool in a container and throw it in the trash instead.</p>
+<h3>2. Deploy Advanced Containment</h3>
+<p>If water damage is confined to one room, seal it off using heavy-duty plastic sheeting and negative air pressure to prevent airborne mold spores from migrating to clean areas.</p>
 
-<h3>3. Flush Your Water Heater Annually</h3>
-<p>Sediment builds up at the bottom of your water heater tank, reducing efficiency and shortening its lifespan. A simple annual flush takes 20 minutes and can add years to your unit.</p>
+<h3>3. Manage Temperature and Humidity</h3>
+<p>Mold thrives in warm, humid climates. Keep air conditioning running and deploy structural dehumidifiers to drop relative humidity below 50% immediately.</p>
 
-<h3>4. Watch for Warning Signs</h3>
-<p>Slow drains, low water pressure, discolored water, and unexplained increases in your water bill are all early signs of construction problems. Address them early before they become emergencies.</p>
+<h3>4. Track Hidden Moisture</h3>
+<p>Water travels behind baseboards and under cabinets. We use infrared thermal telemetry scans to map invisible moisture corridors and target them for structural drying.</p>
 
-<p><strong>Want peace of mind?</strong> Ask about our annual maintenance plans at Spicola Construction.</p>',
+<p><strong>Want absolute peace of mind?</strong> Call Restowrx Elite for a professional moisture scan and stabilization plan.</p>',
         ],
         [
-            'title'    => 'What to Expect When You Call a contractor',
-            'category' => 'Drain & Pipe Services',
-            'excerpt'  => 'A step-by-step walkthrough of the Spicola Construction service experience, from your first call to job completion.',
-            'content'  => '<h2>Your First Call to Spicola Construction</h2>
-<p>If you have never called a contractor before, it is completely normal to have questions. At Spicola Construction, we have designed every step of the experience to be straightforward, transparent, and stress-free.</p>
+            'title'    => 'What to Expect When You Request a Restoration Response',
+            'category' => 'Mitigation Tips',
+            'excerpt'  => 'A step-by-step walkthrough of the Restowrx Elite property recovery experience, from dispatch call to structural build-back.',
+            'content'  => '<h2>Your Restoration Process with Restowrx Elite</h2>
+<p>If you have never dealt with property damage before, the process can feel overwhelming. At Restowrx Elite, we have designed our emergency response process to be structured, transparent, and highly responsive.</p>
 
-<h3>Step 1: The Call</h3>
-<p>When you call (813) 732-6285, you will speak with a real person who will ask about your issue, schedule a convenient time, and give you an upfront service call fee. No surprises.</p>
+<h3>Step 1: Emergency Dispatch</h3>
+<p>When you call 813.699.4009, our dispatch center gathers crucial details, logs your incident, and dispatches a rapid response team immediately. We coordinate with your insurance carrier from the very first minute.</p>
 
-<h3>Step 2: The Diagnosis</h3>
-<p>Your licensed contractor arrives on time, inspects the problem, and gives you a written estimate before any work begins. We explain what is wrong, what needs to be done, and exactly what it will cost.</p>
+<h3>Step 2: Emergency Stabilization</h3>
+<p>Our mitigation specialist arrives, assesses the structural threat, and deploys immediate containment. We stop active leaks, extract standing water, board up breaches, and stabilize the site.</p>
 
-<h3>Step 3: The Repair</h3>
-<p>Once you approve the estimate, we get to work immediately. Our contractors carry fully-stocked trucks, so most repairs can be completed in a single visit.</p>
+<h3>Step 3: Moisture Mapping & Drying</h3>
+<p>We deploy moisture sensors and high-volume air movers. We monitor daily, documenting every reading to ensure your insurance claim is fully supported by empirical data.</p>
 
-<h3>Step 4: The Walkthrough</h3>
-<p>When the job is done, your contractor walks you through everything that was done, answers your questions, and cleans up the work area completely.</p>
+<h3>Step 4: Seamless Build-Back</h3>
+<p>When the property is dry and sanitized, our partner Spicola Construction takes the baton to handle all reconstruction and finishing work, returning your property to pre-loss condition.</p>
 
-<p><strong>Ready to experience the difference?</strong> Call Spicola Construction today or book online.</p>',
+<p><strong>Ready to secure your property?</strong> Call Restowrx Elite now for immediate rapid response dispatch.</p>',
         ],
         [
-            'title'    => '5 Signs You Need to Replace Your Water Heater',
-            'category' => 'Water Heater Services',
-            'excerpt'  => 'How to tell if your water heater is on its last legs and when it makes sense to repair vs. replace.',
-            'content'  => '<h2>Is Your Water Heater Telling You Something?</h2>
-<p>Your water heater works hard every day, but it will not last forever. Here are the top 5 signs it is time for a replacement.</p>
+            'title'    => '5 Signs Your Property Has a Hidden Water Leak',
+            'category' => 'Water Extraction',
+            'excerpt'  => 'How to spot the invisible warning signs of structural moisture before it leads to toxic mold or catastrophic rot.',
+            'content'  => '<h2>Is Your Property Leaking Invisibly?</h2>
+<p>A burst pipe is obvious, but a slow pinhole leak behind drywall can go unnoticed for months, rotting wood and feeding toxic mold. Here are the top 5 warning signs of a hidden leak.</p>
 
-<h3>1. Age</h3>
-<p>If your tank water heater is over 10-12 years old, it is living on borrowed time. Check the serial number on the manufacturer label to find the production date.</p>
+<h3>1. Unexplained Utility Spikes</h3>
+<p>If your water bill jumps suddenly without an increase in usage, an underground slab leak or behind-the-wall plumbing breach is a highly likely culprit.</p>
 
-<h3>2. Rusty or Discolored Water</h3>
-<p>Brown or rusty water coming from your hot water tap usually means the inside of the tank is corroding. This is a sign of imminent failure.</p>
+<h3>2. Musty Odors</h3>
+<p>A damp, earthy, or musty smell is the absolute signature of active mold growth. If you smell it but cannot see it, moisture is lurking in your walls or subfloors.</p>
 
-<h3>3. Strange Noises</h3>
-<p>Banging, rumbling, or popping sounds from your water heater indicate heavy sediment buildup. This makes the unit work harder and can lead to leaks.</p>
+<h3>3. Baseboard Swelling & Warping</h3>
+<p>Drywall and wood baseboards absorb moisture like a sponge. Look for peeling paint, bubbling wallpaper, or baseboards pulling away from the wall.</p>
 
-<h3>4. Leaking Around the Base</h3>
-<p>Any moisture or pooling water around the base of your water heater means the tank integrity is compromised. This requires immediate attention.</p>
+<h3>4. Discolored Patches</h3>
+<p>Yellowish, brown, or dark stains on ceilings and walls indicate water pooling from above or creeping up from the foundation.</p>
 
-<h3>5. Not Enough Hot Water</h3>
-<p>If you are running out of hot water faster than usual, or it takes forever to heat up, the heating elements or tank capacity may no longer meet your needs.</p>
+<h3>5. Sound of Rushing Water</h3>
+<p>If you hear a faint whistling, rushing, or dripping sound when all faucets and appliances are turned off, water is actively flowing somewhere in your structure.</p>
 
-<p><strong>Noticing any of these signs?</strong> Call Spicola Construction for a free assessment and same-day replacement options.</p>',
+<p><strong>Noticing any of these signs?</strong> Call Restowrx Elite for a thermal moisture telemetry scan and protect your investment.</p>',
         ],
         [
-            'title'    => 'Why Tampa Bay Homes Need Annual construction Inspections',
-            'category' => 'Water Heater Services',
-            'excerpt'  => 'Florida homes face unique construction challenges. Here is why an annual inspection can save you thousands.',
-            'content'  => '<h2>Florida construction Is Different</h2>
-<p>Tampa Bay homes face unique construction challenges that homes in other parts of the country do not. From hard water mineral buildup to shifting sandy soil that stresses underground pipes, our climate and geology put extra wear on your construction system.</p>
+            'title'    => 'Why Florida Properties Need Active Moisture Telemetry Scans',
+            'category' => 'Restowrx Intel',
+            'excerpt'  => 'Florida properties face extreme heat, humidity, and storm risks. Here is why regular thermal moisture scanning saves thousands.',
+            'content'  => '<h2>Florida Environments Are Demanding</h2>
+<p>Tampa Bay properties face unique environmental challenges. High humidity, tropical storms, and sandy soil movement create severe structural stresses. Regular moisture telemetry scanning is your best defense against catastrophic structural decay.</p>
 
-<h3>What a Professional Inspection Covers</h3>
-<p>During an annual construction inspection at Spicola Construction, our licensed contractors check:</p>
+<h3>What a Moisture Assessment Covers</h3>
+<p>During an active telemetry scan, our IICRC-certified specialists inspect:</p>
 <ul>
-<li><strong>Water heater</strong> - condition, age, sediment levels, anode rod, and temperature settings</li>
-<li><strong>Supply lines</strong> - checking for leaks, corrosion, and water pressure</li>
-<li><strong>Drain lines</strong> - flow testing and camera inspection if needed</li>
-<li><strong>Fixtures</strong> - faucets, toilets, and shut-off valves for leaks and proper operation</li>
-<li><strong>Water quality</strong> - hardness testing and filtration recommendations</li>
+<li><strong>Thermal anomalies</strong> - detecting cold spots in walls that indicate active moisture corridors</li>
+<li><strong>Structural wood saturation</strong> - measuring moisture content in load-bearing studs</li>
+<li><strong>Containment seals</strong> - checking high-risk window and door flashing for air/water penetration</li>
+<li><strong>Foundation humidity</strong> - scanning slab edges for capillary water draw</li>
 </ul>
 
-<h3>The Cost of Skipping Inspections</h3>
-<p>A small leak you cannot see can waste thousands of gallons of water per year and cause mold, rot, and structural damage. A $150 inspection today can prevent a $15,000 repair tomorrow.</p>
+<h3>The Cost of Delayed Mitigation</h3>
+<p>A small ceiling leak can waste thousands in structural framing damage and feed biological contaminants. A quick assessment today prevents a massive structural tear-out tomorrow.</p>
 
-<p><strong>Protect your home.</strong> Schedule your annual construction inspection with Spicola Construction today.</p>',
-        ],
-        [
-            'title'    => 'Hard Water in Tampa Bay: What It Does to Your construction',
-            'category' => 'Drain & Pipe Services',
-            'excerpt'  => 'Tampa Bay has some of the hardest water in Florida. Learn how it affects your pipes, fixtures, and appliances.',
-            'content'  => '<h2>The Hard Truth About Tampa Bay Water</h2>
-<p>If you have ever noticed white crusty buildup on your faucets or shower heads, you have seen hard water deposits firsthand. Tampa Bay water contains high levels of calcium and magnesium minerals that wreak havoc on your construction over time.</p>
-
-<h3>How Hard Water Damages Your Home</h3>
-<p>Hard water mineral deposits build up inside your pipes, water heater, dishwasher, and washing machine. Over time, this reduces water flow, decreases appliance efficiency, and shortens the lifespan of everything it touches.</p>
-
-<h3>Signs of Hard Water Problems</h3>
-<ul>
-<li>White or chalky buildup on faucets and shower heads</li>
-<li>Spots on dishes and glassware after washing</li>
-<li>Dry skin and hair after showering</li>
-<li>Reduced water pressure over time</li>
-<li>Water heater making popping or rumbling sounds</li>
-</ul>
-
-<h3>The Solution: Water Softener Installation</h3>
-<p>A whole-house water softener removes the excess minerals before they reach your fixtures and appliances. It extends the life of your construction, improves water quality, and reduces cleaning time.</p>
-
-<p><strong>Tired of hard water?</strong> Call Spicola Construction for a free water quality test and softener installation estimate.</p>',
+<p><strong>Protect your property.</strong> Schedule your active defense scan with Restowrx Elite today.</p>',
         ],
     ];
 
@@ -847,9 +812,9 @@ function hwh_create_services() {
 
     // 3 broad categories
     $categories = [
-        'Water Heater Services'    => 'Professional water heater installation, repair, and maintenance for residential and commercial properties.',
-        'Drain & Pipe Services'    => 'Expert drain cleaning, pipe repair, sewer line service, and camera inspections.',
-        'Emergency & General'      => 'Emergency repairs, general construction maintenance, and comprehensive home construction solutions.',
+        'Mitigation & Extraction' => 'Emergency high-capacity water extraction, structural drying, and rapid leak containment.',
+        'Remediation & Cleanup'   => 'IICRC-certified mold containment, biohazard decontamination, and fire/soot deodorization.',
+        'Stabilization & Defense' => 'Emergency storm stabilization, roof tarping, structural shoring, and Active Property Defense plans.',
     ];
 
     $cat_ids = [];
@@ -866,24 +831,18 @@ function hwh_create_services() {
     }
 
     $services = [
-        ['title' => 'Water Heater Repair',      'icon' => '', 'category' => 'Water Heater Services', 'excerpt' => 'Fast, reliable water heater repair for all tank and tankless models. Same-day service available across Tampa Bay.'],
-        ['title' => 'Water Heater Installation', 'icon' => '', 'category' => 'Water Heater Services', 'excerpt' => 'Upgrade your home with a new high-efficiency water heater. We install tank and tankless units from top brands with same-day availability.'],
-        ['title' => 'Tankless Water Heaters',    'icon' => '', 'category' => 'Water Heater Services', 'excerpt' => 'Endless hot water with a tankless upgrade. We sell, install, and service all major brands across Tampa Bay.'],
-        ['title' => 'Drain Cleaning',            'icon' => '', 'category' => 'Water Heater Services', 'excerpt' => 'Professional drain cleaning for kitchen, bathroom, and main sewer lines using hydro-jetting and camera inspection.'],
-        ['title' => 'Leak Detection',            'icon' => '', 'category' => 'Drain & Pipe Services', 'excerpt' => 'Advanced electronic and camera-based leak detection to find hidden leaks without destroying your walls or floors.'],
-        ['title' => 'Pipe Repair',               'icon' => '', 'category' => 'Drain & Pipe Services', 'excerpt' => 'Expert pipe repair and replacement for burst, corroded, or leaking pipes. Emergency service available 24/7 across Tampa Bay.'],
-        ['title' => 'Whole-Home Repiping',       'icon' => '', 'category' => 'Drain & Pipe Services', 'excerpt' => 'Complete whole-home repiping using durable, modern materials. Protect your home from aging galvanized or corroded pipes.'],
-        ['title' => 'Toilet Repair',             'icon' => '', 'category' => 'Drain & Pipe Services', 'excerpt' => 'Toilet running, leaking, or not flushing? We repair and replace all toilet brands with same-day service.'],
-        ['title' => 'Faucet Installation',       'icon' => '', 'category' => 'Drain & Pipe Services', 'excerpt' => 'Professional faucet installation, repair, and replacement for kitchen and bathroom fixtures.'],
-        ['title' => 'Garbage Disposal',          'icon' => '', 'category' => 'Drain & Pipe Services', 'excerpt' => 'Garbage disposal jammed, leaking, or not working? We repair and install all major brands quickly and affordably.'],
-        ['title' => 'Emergency contractor',         'icon' => '', 'category' => 'Emergency & General',   'excerpt' => '24/7 emergency construction service for burst pipes, major leaks, sewer backups, and no-hot-water situations.'],
-        ['title' => 'Sewer & Water Line',        'icon' => '', 'category' => 'Emergency & General',   'excerpt' => 'Expert sewer and water main line inspection, repair, and replacement. We resolve blockages and breaks fast.'],
-        ['title' => 'Water Filtration',          'icon' => '', 'category' => 'Emergency & General',   'excerpt' => 'Whole-house water filtration and softener systems for cleaner, better-tasting water. Free water quality testing.'],
-        ['title' => 'Sump Pump',                 'icon' => '', 'category' => 'Emergency & General',   'excerpt' => 'Sump pump installation, repair, and replacement to protect your home from flooding and water damage.'],
-        ['title' => 'Gas Line Service',          'icon' => '', 'category' => 'Emergency & General',   'excerpt' => 'Licensed gas line installation, repair, and leak detection for residential and commercial properties.'],
-        ['title' => 'Backflow Prevention',       'icon' => '', 'category' => 'Emergency & General',   'excerpt' => 'Professional backflow preventer installation, testing, and annual certification to protect your water supply.'],
-        ['title' => 'Slab Leak Repair',          'icon' => '', 'category' => 'Emergency & General',   'excerpt' => 'Slab leak detection and repair using minimally invasive tunneling and rerouting techniques.'],
-        ['title' => 'Camera Inspection',         'icon' => '', 'category' => 'Emergency & General',   'excerpt' => 'Video camera pipe inspection to diagnose clogs, cracks, and root intrusion without digging.'],
+        ['title' => 'Water Damage Extraction',   'icon' => '', 'category' => 'Mitigation & Extraction', 'excerpt' => 'Emergency high-capacity water extraction and structural dehumidification. Immediate 24/7 strike team response across Tampa Bay.'],
+        ['title' => 'Structural Drying',         'icon' => '', 'category' => 'Mitigation & Extraction', 'excerpt' => 'Advanced structural drying utilizing high-velocity air movers and low-grain refrigerant dehumidifiers to prevent mold.'],
+        ['title' => 'Thermal Moisture Mapping',  'icon' => '', 'category' => 'Mitigation & Extraction', 'excerpt' => 'Non-invasive infrared thermal telemetry to locate hidden moisture corridors behind walls, floors, and ceilings.'],
+        ['title' => 'Sewage Cleanup & Sanitizing','icon' => '', 'category' => 'Mitigation & Extraction', 'excerpt' => 'Safe containment, extraction, and antimicrobial disinfection of hazardous Category 3 black water and sewage backups.'],
+        ['title' => 'Mold containment',          'icon' => '', 'category' => 'Remediation & Cleanup',   'excerpt' => 'Strict negative air pressure containment and HEPA air filtration to isolate toxic mold spores during remediation.'],
+        ['title' => 'Mold Remediation',          'icon' => '', 'category' => 'Remediation & Cleanup',   'excerpt' => 'Certified remediation of biological growth. We source, isolate, and eliminate mold from structural elements.'],
+        ['title' => 'Fire & Smoke Cleanup',      'icon' => '', 'category' => 'Remediation & Cleanup',   'excerpt' => 'Professional soot removal, structural washing, and thermal fogging to permanently eliminate fire and smoke odors.'],
+        ['title' => 'Biohazard Decontamination', 'icon' => '', 'category' => 'Remediation & Cleanup',   'excerpt' => 'Biological and hazardous material decontamination following strict OSHA, EPA, and IICRC protocols.'],
+        ['title' => 'Storm Impact Stabilization','icon' => '', 'category' => 'Stabilization & Defense', 'excerpt' => 'Rapid response stabilization following storm damage. Roof tarping, window board-ups, and structural shoring.'],
+        ['title' => 'Emergency Roof Tarping',    'icon' => '', 'category' => 'Stabilization & Defense', 'excerpt' => 'High-durability roof tarping and shrink-wrapping to prevent active water intrusion during severe weather events.'],
+        ['title' => 'Emergency Board-Up',        'icon' => '', 'category' => 'Stabilization & Defense', 'excerpt' => 'Secure board-up services for structural breaches, doors, and windows to protect your property from theft and weather.'],
+        ['title' => 'Active Property Defense',   'icon' => '', 'category' => 'Stabilization & Defense', 'excerpt' => 'Comprehensive risk mapping, annual telemetry scans, and priority emergency response for property defense members.'],
     ];
 
     foreach ($services as $service) {
@@ -1256,7 +1215,7 @@ function hwh_purge_staging_canonical( $canonical ) {
     if ( is_string( $canonical ) ) {
         $canonical = str_replace(
             'olive-ferret-752298.hostingersite.com',
-            'spicolaconstruction.com',
+            'restowrx.com',
             $canonical
         );
     }
@@ -1276,6 +1235,8 @@ function hwh_fix_meta_descriptions( $description ) {
     $generic_descriptions = [
         "Spicola Construction — Tampa Bay's premier construction company. Water heaters, drain cleaning, emergency construction, and more.",
         "Spicola Construction — Tampa Bay's trusted construction experts for water heaters, drain cleaning, leak detection, and 24/7 emergency service.",
+        "Restowrx Elite — Tampa Bay's premier property damage restoration company. Water extraction, mold remediation, fire cleanup, storm stabilization, and general reconstruction.",
+        "Restowrx Elite — Tampa Bay's trusted restoration experts for water extraction, mold mitigation, fire deodorization, storm stabilization, and 24/7 emergency service.",
     ];
 
     $is_generic = empty( $description ) || in_array( trim( $description ), $generic_descriptions, true );
@@ -1284,12 +1245,12 @@ function hwh_fix_meta_descriptions( $description ) {
     if ( is_page() ) {
         $slug = get_post_field( 'post_name', get_queried_object_id() );
         $page_metas = [
-            'about'               => 'Meet the Spicola Construction team — licensed Tampa Bay contractors with 300+ jobs completed. Honest pricing, same-day service, and a satisfaction guarantee.',
-            'contact'             => 'Need a contractor in Tampa? Contact Spicola Construction — call (813) 732-6285 or book online for same-day service across Tampa Bay.',
-            'service-areas'       => 'Spicola Construction serves Tampa, St. Pete, Clearwater, Brandon, Wesley Chapel, and all of Tampa Bay. Fast, local construction — same-day available.',
-            'privacy-policy'      => 'Read the Spicola Construction privacy policy. Learn how we collect, use, and protect your personal information.',
-            'cancellation-policy' => 'View the Spicola Construction cancellation and payment policy. Clear terms for appointments, no-shows, and accepted payment methods.',
-            'refund-policy'       => 'Spicola Construction refund policy — upfront estimates, transparent pricing, and our satisfaction guarantee for Tampa Bay homeowners.',
+            'about'               => 'Meet the Restowrx Elite team — certified property damage restoration and mitigation specialists in Tampa Bay. Rapid response 24/7, advanced moisture detection, and licensed reconstruction.',
+            'contact'             => 'Need emergency property restoration in Tampa? Contact Restowrx Elite — call 813.699.4009 or dispatch a strike team online for 24/7 rapid response across Tampa Bay.',
+            'service-areas'       => 'Restowrx Elite serves Tampa, St. Pete, Clearwater, Brandon, Wesley Chapel, and all of Tampa Bay. Fast, local property damage mitigation — same-day rapid response available.',
+            'privacy-policy'      => 'Read the Restowrx Elite privacy policy. Learn how we collect, use, and protect your personal information.',
+            'cancellation-policy' => 'View the Restowrx Elite cancellation and payment policy. Clear terms for emergency response, strike team dispatches, and billing.',
+            'refund-policy'       => 'Restowrx Elite refund policy — upfront estimates, transparent insurance billing, and our satisfaction guarantee for Tampa Bay property owners.',
         ];
         if ( isset( $page_metas[ $slug ] ) ) {
             return $page_metas[ $slug ];
@@ -1298,14 +1259,14 @@ function hwh_fix_meta_descriptions( $description ) {
 
     // -- Blog page (archive) --
     if ( is_home() && $is_generic ) {
-        return 'construction tips, water heater guides, and expert advice from Spicola Construction in Tampa Bay. Learn how to protect your home and save money.';
+        return 'Property recovery tips, mold mitigation guides, and expert advice from Restowrx Elite in Tampa Bay. Learn how to protect your property and prevent water damage.';
     }
 
     // -- Category archives --
     if ( is_category() && $is_generic ) {
         $cat = get_queried_object();
         if ( $cat ) {
-            return 'Browse ' . $cat->name . ' articles from Spicola Construction — expert Tampa Bay construction tips, guides, and service info.';
+            return 'Browse ' . $cat->name . ' articles from Restowrx Elite — expert Tampa Bay damage restoration tips, guides, and service info.';
         }
     }
 
@@ -1322,7 +1283,7 @@ function hwh_fix_meta_descriptions( $description ) {
             return $meta;
         }
         // Fallback: use post title
-        return get_the_title() . ' — expert construction advice from Spicola Construction, Tampa Bay\'s trusted local contractor.';
+        return get_the_title() . ' — expert restoration advice from Restowrx Elite, Tampa Bay\'s trusted property damage mitigation company.';
     }
 
     // -- Service pages: auto-generate from excerpt if too long or generic --
@@ -1337,13 +1298,13 @@ function hwh_fix_meta_descriptions( $description ) {
                 }
                 return $meta;
             }
-            return get_the_title() . ' in Tampa Bay, FL. Licensed contractors, upfront pricing, same-day service. Call Spicola Construction at (813) 732-6285.';
+            return get_the_title() . ' in Tampa Bay, FL. Certified restoration specialists, upfront billing, 24/7 emergency response. Call Restowrx Elite at 813.699.4009.';
         }
     }
 
     // -- Services archive --
     if ( is_post_type_archive( 'service' ) && $is_generic ) {
-        return 'Professional construction services in Tampa Bay — water heater repair, drain cleaning, leak detection, pipe repair, and 24/7 emergency service. Call today.';
+        return 'Professional property damage restoration in Tampa Bay — water damage extraction, mold mitigation, fire restoration, storm stabilization, and reconstruction. Call 813.699.4009.';
     }
 
     return $description;
@@ -1511,15 +1472,15 @@ function hwh_team_meta_html($post) {
     <div class="hwh-team-row">
         <div class="hwh-team-field">
             <label for="team_credentials">Credential Badges</label>
-            <input type="text" id="team_credentials" name="team_credentials" value="<?php echo esc_attr($credentials); ?>" placeholder="Licensed, 10+ Years, Master contractor">
-            <p class="description">Comma-separated badges shown under the name, e.g. "Board Certified, 12+ Years"</p>
+            <input type="text" id="team_credentials" name="team_credentials" value="<?php echo esc_attr($credentials); ?>" placeholder="IICRC Certified, OSHA Compliant, Licensed">
+            <p class="description">Comma-separated badges shown under the name, e.g. "IICRC Certified, 10+ Years"</p>
         </div>
     </div>
     <div class="hwh-team-row">
         <div class="hwh-team-field">
             <label for="team_specialties">Specialties</label>
-            <input type="text" id="team_specialties" name="team_specialties" value="<?php echo esc_attr($specialties); ?>" placeholder="Water Heaters, Drain Cleaning, Repiping">
-            <p class="description">Comma-separated specialties shown as tags, e.g. "Water Heaters, Drain Cleaning, Repiping"</p>
+            <input type="text" id="team_specialties" name="team_specialties" value="<?php echo esc_attr($specialties); ?>" placeholder="Water Extraction, Mold Mitigation, Fire Restoration">
+            <p class="description">Comma-separated specialties shown as tags, e.g. "Water Extraction, Mold Mitigation, Fire Restoration"</p>
         </div>
     </div>
     <?php
@@ -1807,7 +1768,7 @@ function hwh_seo_meta_html($post) {
                    id="hwh_og_image"
                    name="hwh_og_image"
                    value="<?php echo esc_attr($og_image); ?>"
-                   placeholder="https://spicolaconstruction.com/wp-content/uploads/...">
+                   placeholder="https://restowrx.com/wp-content/uploads/...">
             <span class="hwh-seo-hint">Image shown when shared on Facebook, Twitter, etc. Ideal size: 1200—630px.</span>
         </div>
 
@@ -1815,7 +1776,7 @@ function hwh_seo_meta_html($post) {
         <div class="hwh-seo-preview">
             <div class="hwh-seo-preview__label">Google Search Preview</div>
             <div class="hwh-seo-preview__title" id="seo-preview-title">
-                <?php echo esc_html($seo_title ?: $post->post_title . ' — Spicola Construction'); ?>
+                <?php echo esc_html($seo_title ?: $post->post_title . ' — Restowrx Elite'); ?>
             </div>
             <div class="hwh-seo-preview__url">
                 <?php echo esc_url(get_permalink($post->ID)); ?>
@@ -1834,7 +1795,7 @@ function hwh_seo_meta_html($post) {
         var descCounter  = document.getElementById('seo-desc-counter');
         var previewTitle = document.getElementById('seo-preview-title');
         var previewDesc  = document.getElementById('seo-preview-desc');
-        var defaultTitle = <?php echo json_encode($post->post_title . ' — Spicola Construction'); ?>;
+        var defaultTitle = <?php echo json_encode($post->post_title . ' — Restowrx Elite'); ?>;
 
         function updateCounter(input, counter, ideal) {
             var len = input.value.length;
@@ -1884,21 +1845,21 @@ add_action('save_post', 'hwh_save_seo_meta');
 function hwh_custom_title($title) {
     // Homepage
     if (is_front_page()) {
-        $title['title'] = 'construction Services in Tampa Bay, FL';
-        $title['site']  = 'Spicola Construction';
+        $title['title'] = 'Property Damage Restoration in Tampa Bay, FL';
+        $title['site']  = 'Restowrx Elite';
         return $title;
     }
-    // Service pages: "Water Heater Repair in Tampa Bay, FL | Spicola Construction"
+    // Service pages: "Water Damage Extraction in Tampa Bay, FL | Restowrx Elite"
     if (is_singular('service')) {
         $custom = get_post_meta(get_the_ID(), '_hwh_seo_title', true);
         $title['title'] = !empty($custom) ? $custom : get_the_title() . ' in Tampa Bay, FL';
-        $title['site']  = 'Spicola Construction';
+        $title['site']  = 'Restowrx Elite';
         return $title;
     }
     // Product pages
     if (is_singular('product')) {
-        $title['title'] = get_the_title() . ' | Professional construction';
-        $title['site']  = 'Spicola Construction';
+        $title['title'] = get_the_title() . ' | Property Recovery & Restoration';
+        $title['site']  = 'Restowrx Elite';
         return $title;
     }
     // All other singular pages — use custom SEO title if set
@@ -1930,7 +1891,7 @@ function hwh_seo_head_tags() {
         echo '<meta property="og:title" content="' . esc_attr($title) . '">' . "\n";
         echo '<meta property="og:type" content="website">' . "\n";
         echo '<meta property="og:url" content="' . esc_url(get_permalink($post_id)) . '">' . "\n";
-        echo '<meta property="og:site_name" content="Spicola Construction">' . "\n";
+        echo '<meta property="og:site_name" content="Restowrx Elite">' . "\n";
         echo '<meta name="twitter:card" content="summary_large_image">' . "\n";
         echo '<meta name="twitter:title" content="' . esc_attr($title) . '">' . "\n";
 
@@ -1947,11 +1908,11 @@ function hwh_faq_schema() {
     if (!is_page(['memberships','maintenance-plan'])) return;
 
     $faqs = [
-        ['q' => 'Is there a minimum commitment?', 'a' => 'We ask for a minimum annual commitment to get the most out of your Maintenance Plan membership. After that, you can continue month-to-month or cancel anytime.'],
-        ['q' => 'Do my credits expire?', 'a' => 'No! Your banked credits never expire as long as your membership is active. If you cancel, unused credits remain available for 90 days.'],
-        ['q' => 'What can I use my credits on?', 'a' => 'Your maintenance plan benefits can be used on any construction service we offer — water heater repairs, drain cleaning, repiping, fixture installation, and more.'],
-        ['q' => 'Can I share my credits with friends or family?', 'a' => 'Absolutely! You can gift your credits to friends and family members.'],
-        ['q' => 'How much should I set as my monthly deposit?', 'a' => 'Our plans start at affordable annual rates. During your free estimate, we\'ll help you find the perfect amount.'],
+        ['q' => 'Is there a minimum commitment?', 'a' => 'We ask for a minimum annual commitment to get the most out of your Active Property Defense Plan membership. After that, you can continue month-to-month or cancel anytime.'],
+        ['q' => 'Do my credits expire?', 'a' => 'No! Your banked defense credits never expire as long as your membership is active. If you cancel, unused credits remain available for 90 days.'],
+        ['q' => 'What can I use my credits on?', 'a' => 'Your Active Property Defense Plan credits can be used on any structural restoration or build-back services we offer — water extraction, mold remediation, storm stabilization, or reconstruction via Spicola Construction.'],
+        ['q' => 'Can I share my credits with friends or family?', 'a' => 'Absolutely! You can gift your property defense credits to friends and family members.'],
+        ['q' => 'How much should I set as my monthly deposit?', 'a' => 'Our plans start at affordable annual rates. During your free property risk assessment, we\'ll help you find the perfect defense tier.'],
     ];
 
     $schema = [
@@ -2009,12 +1970,12 @@ function hwh_handle_contact_form() {
     }
 
     // -- Build recipients list (supports multiple, comma-separated) --
-    $recipients_raw = get_option('hwh_notification_emails', 'info@spicolaconstruction.com');
+    $recipients_raw = get_option('hwh_notification_emails', 'joe@restowrx.com');
     $recipients = array_filter(array_map('trim', explode(',', $recipients_raw)), 'is_email');
-    if ( empty($recipients) ) $recipients = ['info@spicolaconstruction.com'];
+    if ( empty($recipients) ) $recipients = ['joe@restowrx.com'];
     $to = $recipients;
 
-    $subject = '? New Message — Spicola Construction Website';
+    $subject = '⚡ New Message — Restowrx Elite Website';
 
     // -- Prepare substitution values ---------------------------------
     $service_display = $service ? ucwords(str_replace('-', ' ', $service)) : 'Not specified';
@@ -2039,7 +2000,6 @@ function hwh_handle_contact_form() {
         $template
     );
 
-
     $headers = [
         'Content-Type: text/html; charset=UTF-8',
         "Reply-To: {$first} {$last} <{$email}>",
@@ -2050,7 +2010,7 @@ function hwh_handle_contact_form() {
     if ($sent) {
         wp_send_json_success(['message' => 'Message sent! We\'ll get back to you within 24 hours.']);
     } else {
-        wp_send_json_error(['message' => 'Something went wrong. Please call us at (813) 732-6285.']);
+        wp_send_json_error(['message' => 'Something went wrong. Please call us at 813.699.4009.']);
     }
 }
 add_action('wp_ajax_hwh_contact_submit',        'hwh_handle_contact_form');
@@ -2067,7 +2027,7 @@ function hwh_default_email_template() {
       <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;border-radius:16px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.12);">
         <tr>
           <td style="background:linear-gradient(135deg,#0f0720 0%,#0A1628 60%,#2d0d5e 100%);padding:40px 40px 32px;text-align:center;">
-            <p style="margin:0 0 8px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(201,169,110,0.9);">Spicola Construction</p>
+            <p style="margin:0 0 8px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(201,169,110,0.9);">Restowrx Elite</p>
             <h1 style="margin:0;font-size:26px;font-weight:300;color:#f0ebe3;letter-spacing:1px;">New Website Message</h1>
             <div style="width:40px;height:2px;background:linear-gradient(90deg,#F22F3A,#C9A96E);margin:16px auto 0;border-radius:2px;"></div>
           </td>
@@ -2106,17 +2066,17 @@ function hwh_default_email_template() {
               </tr>
             </table>
             <div style="background:#FFF5F5;border-radius:10px;padding:20px 22px;margin-top:4px;border-left:3px solid #F22F3A;">
-              <p style="margin:0 0 8px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#F22F3A;font-weight:600;">Message</p>
-              <p style="margin:0;font-size:15px;color:#333;line-height:1.7;">{{message}}</p>
+               <p style="margin:0 0 8px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#F22F3A;font-weight:600;">Message</p>
+               <p style="margin:0;font-size:15px;color:#333;line-height:1.7;">{{message}}</p>
             </div>
             <div style="text-align:center;margin-top:32px;">
-              <a href="mailto:{{email}}" style="display:inline-block;background:linear-gradient(135deg,#F22F3A,#C41E27);color:#ffffff;text-decoration:none;padding:14px 36px;border-radius:50px;font-size:14px;font-weight:600;letter-spacing:0.5px;">Reply to {{first_name}} ?</a>
+              <a href="mailto:{{email}}" style="display:inline-block;background:linear-gradient(135deg,#F22F3A,#C41E27);color:#ffffff;text-decoration:none;padding:14px 36px;border-radius:50px;font-size:14px;font-weight:600;letter-spacing:0.5px;">Reply to {{first_name}} ⚡</a>
             </div>
           </td>
         </tr>
         <tr>
           <td style="background:#0f0720;padding:24px 40px;text-align:center;">
-            <p style="margin:0;font-size:11px;color:rgba(240,235,227,0.4);letter-spacing:1px;">Spicola Construction &middot; Tampa Bay, FL &middot; <a href="https://spicolaconstruction.com" style="color:rgba(172,19,249,0.7);text-decoration:none;">spicolaconstruction.com</a></p>
+            <p style="margin:0;font-size:11px;color:rgba(240,235,227,0.4);letter-spacing:1px;">Restowrx Elite &middot; Tampa Bay, FL &middot; <a href="https://restowrx.com" style="color:rgba(242,47,58,0.7);text-decoration:none;">restowrx.com</a></p>
           </td>
         </tr>
       </table>
@@ -2132,23 +2092,23 @@ function hwh_settings_page_html() {
 
     if ( isset($_POST['hwh_settings_nonce']) && wp_verify_nonce($_POST['hwh_settings_nonce'], 'hwh_save_settings') ) {
         // Multiple emails — stored as comma-separated string
-        $emails_raw = sanitize_text_field($_POST['hwh_notification_emails'] ?? 'info@spicolaconstruction.com');
+        $emails_raw = sanitize_text_field($_POST['hwh_notification_emails'] ?? 'joe@restowrx.com');
         $emails_clean = implode(', ', array_filter(array_map('sanitize_email', array_map('trim', explode(',', $emails_raw))), 'is_email'));
-        update_option('hwh_notification_emails', $emails_clean ?: 'info@spicolaconstruction.com');
+        update_option('hwh_notification_emails', $emails_clean ?: 'joe@restowrx.com');
 
         // Email template — allow HTML
         $template = wp_unslash($_POST['hwh_email_template'] ?? '');
         update_option('hwh_email_template', $template);
 
-        echo '<div class="notice notice-success is-dismissible"><p><strong>? Settings saved!</strong></p></div>';
+        echo '<div class="notice notice-success is-dismissible"><p><strong>⚡ Settings saved!</strong></p></div>';
     }
 
-    $current_emails  = get_option('hwh_notification_emails', 'info@spicolaconstruction.com');
+    $current_emails  = get_option('hwh_notification_emails', 'joe@restowrx.com');
     $current_template = get_option('hwh_email_template', '') ?: hwh_default_email_template();
     ?>
     <div class="wrap">
         <h1 style="display:flex;align-items:center;gap:10px;margin-bottom:24px;">
-            <span style="font-size:1.4rem;">?</span> Spicola Construction — Settings
+            <span style="font-size:1.4rem;">⚡</span> Restowrx Elite — Settings
         </h1>
 
         <form method="post">
@@ -2156,14 +2116,14 @@ function hwh_settings_page_html() {
 
             <!-- Section: Recipients -->
             <div style="background:#fff;border-radius:10px;padding:28px 32px;max-width:800px;margin-bottom:20px;box-shadow:0 1px 4px rgba(0,0,0,0.08);">
-                <h2 style="margin:0 0 6px;font-size:16px;">?? Notification Recipients</h2>
+                <h2 style="margin:0 0 6px;font-size:16px;">⚡ Notification Recipients</h2>
                 <p style="margin:0 0 20px;color:#666;font-size:13px;">Separate multiple email addresses with commas. All recipients receive every submission.</p>
                 <label for="hwh_notification_emails" style="display:block;font-weight:600;margin-bottom:6px;font-size:13px;">Email Address(es)</label>
                 <input type="text" id="hwh_notification_emails" name="hwh_notification_emails"
                        value="<?php echo esc_attr($current_emails); ?>"
                        style="width:100%;max-width:600px;padding:10px 14px;border:1px solid #ddd;border-radius:6px;font-size:14px;"
-                       placeholder="info@spicolaconstruction.com, info@spicolaconstruction.com">
-                <p style="margin:8px 0 0;font-size:12px;color:#888;">Example: <code>info@spicolaconstruction.com, info@spicolaconstruction.com</code></p>
+                       placeholder="joe@restowrx.com, support@restowrx.com">
+                <p style="margin:8px 0 0;font-size:12px;color:#888;">Example: <code>joe@restowrx.com, support@restowrx.com</code></p>
             </div>
 
             <!-- Section: Email Template -->
@@ -2232,8 +2192,8 @@ function hwh_settings_page_html() {
 
 function hwh_add_settings_menu() {
     add_options_page(
-        'Spicola Construction Settings',
-        '? HWH Settings',
+        'Restowrx Elite Settings',
+        '⚡ Restowrx Settings',
         'manage_options',
         'hwh-settings',
         'hwh_settings_page_html'
@@ -2241,16 +2201,16 @@ function hwh_add_settings_menu() {
 }
 add_action('admin_menu', 'hwh_add_settings_menu');
 
-// -- Deal Popup — Customizer Controls -------------------------------
-// Client manages all popup content from Appearance ? Customize ? ?? Deal Popup
+// -- Mitigation Alert Popup — Customizer Controls -------------------
+// Client manages all popup content from Appearance > Customize > ⚡ Mitigation Alert
 // Zero code required. Changes go live on Save & Publish.
 add_action('customize_register', 'hwh_popup_customizer');
 function hwh_popup_customizer($wp_customize) {
 
     $wp_customize->add_section('hwh_popup', [
-        'title'       => '?? Deal Popup',
+        'title'       => '⚡ Mitigation Alert',
         'priority'    => 30,
-        'description' => 'Control the promotional popup. Turn it on/off, set the offer text, button, and when it expires. Visitors only see it once every 7 days.',
+        'description' => 'Control the active alert popup. Turn it on/off, set the alert text, button, and when it expires. Visitors only see it once every 7 days.',
     ]);
 
     // Enable toggle
@@ -2258,20 +2218,20 @@ function hwh_popup_customizer($wp_customize) {
     $wp_customize->add_control('hwh_popup_enabled', [
         'type'        => 'checkbox',
         'section'     => 'hwh_popup',
-        'label'       => 'Show Popup on Site',
+        'label'       => 'Show Active Alert Popup',
     ]);
 
     // Badge
-    $wp_customize->add_setting('hwh_popup_badge', ['default' => '? Limited Time Offer', 'sanitize_callback' => 'sanitize_text_field', 'transport' => 'refresh']);
+    $wp_customize->add_setting('hwh_popup_badge', ['default' => '⚡ Active Deployment Alert', 'sanitize_callback' => 'sanitize_text_field', 'transport' => 'refresh']);
     $wp_customize->add_control('hwh_popup_badge', [
         'type'        => 'text',
         'section'     => 'hwh_popup',
         'label'       => 'Badge Label',
-        'description' => 'Small tag above the title. e.g. "? New Client Special"',
+        'description' => 'Small tag above the title. e.g. "⚡ Active Storm Alert"',
     ]);
 
     // Title
-    $wp_customize->add_setting('hwh_popup_title', ['default' => '$50 Off Your First Visit', 'sanitize_callback' => 'sanitize_text_field', 'transport' => 'refresh']);
+    $wp_customize->add_setting('hwh_popup_title', ['default' => 'Rapid Damage Mitigation & Restoration', 'sanitize_callback' => 'sanitize_text_field', 'transport' => 'refresh']);
     $wp_customize->add_control('hwh_popup_title', [
         'type'        => 'text',
         'section'     => 'hwh_popup',
@@ -2279,7 +2239,7 @@ function hwh_popup_customizer($wp_customize) {
     ]);
 
     // Body text
-    $wp_customize->add_setting('hwh_popup_text', ['default' => 'Book your first service today and receive $50 off any construction repair. New customers only.', 'sanitize_callback' => 'sanitize_textarea_field', 'transport' => 'refresh']);
+    $wp_customize->add_setting('hwh_popup_text', ['default' => 'Need emergency property restoration? Restowrx Elite provides 24/7 water extraction, mold remediation, storm stabilization, and complete turnkey reconstruction. 45-minute rapid response.', 'sanitize_callback' => 'sanitize_textarea_field', 'transport' => 'refresh']);
     $wp_customize->add_control('hwh_popup_text', [
         'type'        => 'textarea',
         'section'     => 'hwh_popup',
@@ -2291,12 +2251,12 @@ function hwh_popup_customizer($wp_customize) {
     $wp_customize->add_control('hwh_popup_code', [
         'type'        => 'text',
         'section'     => 'hwh_popup',
-        'label'       => 'Discount Code (optional)',
-        'description' => 'Leave blank if no promo code — the code box won\'t appear.',
+        'label'       => 'Incident Reference Code (optional)',
+        'description' => 'Leave blank if no reference code — the code box won\'t appear.',
     ]);
 
     // Button text
-    $wp_customize->add_setting('hwh_popup_btn_text', ['default' => 'Book Now & Save $50', 'sanitize_callback' => 'sanitize_text_field', 'transport' => 'refresh']);
+    $wp_customize->add_setting('hwh_popup_btn_text', ['default' => 'Request Rapid Response', 'sanitize_callback' => 'sanitize_text_field', 'transport' => 'refresh']);
     $wp_customize->add_control('hwh_popup_btn_text', [
         'type'        => 'text',
         'section'     => 'hwh_popup',
@@ -2304,12 +2264,12 @@ function hwh_popup_customizer($wp_customize) {
     ]);
 
     // Button URL
-    $wp_customize->add_setting('hwh_popup_btn_url', ['default' => '#book-now', 'sanitize_callback' => 'esc_url_raw', 'transport' => 'refresh']);
+    $wp_customize->add_setting('hwh_popup_btn_url', ['default' => '/contact/', 'sanitize_callback' => 'esc_url_raw', 'transport' => 'refresh']);
     $wp_customize->add_control('hwh_popup_btn_url', [
         'type'        => 'url',
         'section'     => 'hwh_popup',
         'label'       => 'Button Link',
-        'description' => 'Use #book-now to open booking, or paste any URL.',
+        'description' => 'Use /contact/ to direct visitors to the dispatch page.',
     ]);
 
     // Delay
@@ -2682,44 +2642,44 @@ function hwh_homepage_faq_schema() {
 
     $faqs = [
         [
-            'q' => 'What services does Spicola Construction offer in Tampa Bay?',
-            'a' => 'Spicola Construction in Tampa Bay, FL offers water heater repair and installation, drain cleaning, pipe repair, whole-home repiping, leak detection, slab leak repair, gas line service, water filtration, sump pump installation, and 24/7 emergency construction service.',
+            'q' => 'What services does Restowrx Elite offer in Tampa Bay?',
+            'a' => 'Restowrx Elite in Tampa Bay offers 24/7 emergency water damage restoration, flood water extraction, structural drying, mold remediation, fire and smoke damage mitigation, storm damage stabilization, thermal moisture scanning, and commercial property recovery. Structural reconstruction and rebuild-back services are executed in partnership with Spicola Construction, our licensed general contracting partner.',
         ],
         [
-            'q' => 'Who is the provider at Spicola Construction?',
-            'a' => 'Spicola Construction is a family-owned, licensed construction company — serving Tampa Bay with fast, honest, and affordable construction services. Our team of licensed master contractors brings decades of combined experience to every job.',
+            'q' => 'Who is the provider at Restowrx Elite?',
+            'a' => 'Restowrx Elite is Tampa Bay\'s premier property damage mitigation and disaster restoration specialist. Our certified rapid response units deploy 24/7/365 with advanced telemetry tools to stabilize structures and safeguard equity, coordinating directly with insurance carriers.',
         ],
         [
-            'q' => 'Where is Spicola Construction located?',
-            'a' => 'Spicola Construction is located at 9249 Lazy Ln, Tampa, FL 33614 (Egypt Lake-Leto neighborhood) — conveniently serving Carrollwood, Westchase, Lutz, Land O Lakes, and the greater Tampa Bay Bay area. Call (813) 732-6285 to book.',
+            'q' => 'Where is Restowrx Elite located?',
+            'a' => 'Restowrx Elite serves Carrollwood, Westchase, Lutz, Land O Lakes, St. Petersburg, Clearwater, Brandon, Lithia, Wesley Chapel, and the greater Tampa Bay area. Our emergency command dispatch center can be reached 24/7 at 813.699.4009.',
         ],
         [
-            'q' => 'How much does a construction project cost at Spicola Construction?',
-            'a' => 'Project pricing at Spicola Construction depends on the scope and type of work. We provide free, detailed written estimates before any work begins so you know exactly what to expect.',
+            'q' => 'How much does a property recovery project cost at Restowrx Elite?',
+            'a' => 'Restoration and mitigation costs depend on the severity of damage and insurance coverage. We provide direct insurance billing and detailed thermal imaging moisture telemetry report estimates so you know exactly what is required.',
         ],
         [
-            'q' => 'Does Spicola Construction offer free estimates?',
-            'a' => 'Yes! Spicola Construction provides free estimates on all projects. Our team will visit your property, assess the scope of work, and provide a written quote with no obligation. Call (813) 732-6285.',
+            'q' => 'Does Restowrx Elite offer free moisture scans?',
+            'a' => 'Yes! Restowrx Elite provides free professional thermal moisture scanning and damage assessments for property owners facing active water, storm, or flood emergency damage. Call 813.699.4009.',
         ],
         [
-            'q' => 'What are Spicola Construction\'s hours?',
-            'a' => 'Spicola Construction is open Monday through Friday 7:30am to 4pm. Call (813) 732-6285 to schedule a consultation.',
+            'q' => 'What are Restowrx Elite\'s hours?',
+            'a' => 'Restowrx Elite is open 24/7/365. Our rapid response mitigation teams are ready to deploy and arrive at your property within 45 minutes of dispatch.',
         ],
         [
-            'q' => 'Does Spicola Construction handle permits?',
-            'a' => 'Yes. Spicola Construction handles all necessary permits and inspections as part of every project. Our team is fully familiar with Hillsborough, Pinellas, and Pasco county building codes and requirements.',
+            'q' => 'Does Restowrx Elite handle building permits and reconstruction?',
+            'a' => 'Yes. While Restowrx Elite handles emergency stabilization and dry-out, our licensed general contractor partner Spicola Construction handles all building permits, architectural engineering, and complete structural reconstruction back to pre-loss condition.',
         ],
         [
-            'q' => 'Is Spicola Construction good for first-time homeowners?',
-            'a' => 'Absolutely. Spicola Construction welcomes first-time homeowners and provides a friendly, transparent experience. Our licensed contractors take a thorough, professional approach to every estimate, explaining your options clearly before any work begins.',
+            'q' => 'Is Restowrx Elite certified and compliant?',
+            'a' => 'Absolutely. Restowrx Elite is fully IICRC certified, OSHA compliant, and licensed to perform advanced water damage restoration, mold containment, and hazardous structure cleanup.',
         ],
         [
-            'q' => 'Does Spicola Construction offer financing?',
-            'a' => 'Yes, Spicola Construction offers flexible financing options — allowing you to spread the cost of larger construction projects into manageable monthly payments. Ask our team for details when you schedule your consultation.',
+            'q' => 'Does Restowrx Elite work with my insurance company?',
+            'a' => 'Yes. We work directly with all major homeowners and commercial property insurance carriers. We handle all documentation, moisture mapping, and line-item billing to make the claims process seamless.',
         ],
         [
-            'q' => 'What makes Spicola Construction different from other Tampa Bay contractors?',
-            'a' => 'Spicola Construction stands out for its 10+ years of experience, commitment to quality craftsmanship, transparent pricing, and on-time project delivery. All work is performed by licensed, insured contractors and backed by our satisfaction guarantee.',
+            'q' => 'What makes Restowrx Elite different from other Tampa Bay restoration contractors?',
+            'a' => 'Restowrx Elite stands out for its high-tech tactical response, IICRC-certified specialists, 45-minute rapid deployment, direct insurance claims integration, and turnkey reconstruction in partnership with Spicola Construction.',
         ],
     ];
 
@@ -2757,24 +2717,24 @@ function hwh_service_faq_schema() {
 
     $faqs = [
         [
-            'q' => 'How much does ' . $service_name . ' cost at Spicola Construction?',
+            'q' => 'How much does ' . $service_name . ' cost at Restowrx Elite?',
             'a' => $price
-                ? $service_name . ' at Spicola Construction starts at ' . esc_html($price) . '. We provide free written estimates before any work begins.'
-                : $service_name . ' pricing at Spicola Construction depends on the scope of work. Call us for a free estimate.',
+                ? $service_name . ' starts at ' . esc_html($price) . '. However, we offer direct insurance billing for qualifying claims, meaning out-of-pocket costs can be zero. Call for details.'
+                : $service_name . ' costs depend on the size of the structure and severity of property damage. We provide 100% free thermal moisture telemetry mapping and estimates for all active damage incidents.',
         ],
         [
-            'q' => 'How long does ' . $service_name . ' take at Spicola Construction?',
+            'q' => 'How long does ' . $service_name . ' take to complete?',
             'a' => $duration
-                ? $service_name . ' at Spicola Construction typically takes ' . esc_html($duration) . '. Times may vary based on the scope of your specific project.'
-                : $service_name . ' project timelines vary. Contact Spicola Construction at (813) 732-6285 for details.',
+                ? $service_name . ' by Restowrx Elite typically takes ' . esc_html($duration) . '. Our priority is immediate stabilization within 60 minutes.'
+                : $service_name . ' stabilization begins immediately upon arrival. Complete dry-out and sanitation usually takes 3 to 5 days, depending on structural saturation. Call 813.699.4009 for dispatch.',
         ],
         [
-            'q' => 'Is ' . $service_name . ' done to code?',
-            'a' => $service_name . ' at Spicola Construction is performed by licensed, insured contractors with years of experience. All work is done to Florida building code and backed by our satisfaction guarantee.',
+            'q' => 'Is ' . $service_name . ' performed by certified technicians?',
+            'a' => 'Yes. All ' . $service_name . ' operations are conducted by IICRC-licensed, certified restoration specialists who are OSHA compliant and trained in advanced structural drying and containment techniques.',
         ],
         [
             'q' => 'Where can I get ' . $service_name . ' in Tampa Bay, FL?',
-            'a' => 'Spicola Construction offers ' . $service_name . ' in Tampa Bay, FL at 9249 Lazy Ln, Tampa, FL 33614. Call (813) 732-6285 or request a quote online.',
+            'a' => 'Restowrx Elite offers emergency ' . $service_name . ' across Hillsborough, Pinellas, and Pasco counties, including Tampa, St. Petersburg, Clearwater, Brandon, and Wesley Chapel. Contact our 24/7 Command Center at 813.699.4009 to authorize dispatch.',
         ],
     ];
 
@@ -2837,31 +2797,31 @@ function hwh_review_schema() {
             'author'  => 'Sarah M.',
             'rating'  => 5,
             'date'    => '2026-02-15',
-            'body'    => 'Spicola Construction did an amazing job on our kitchen remodel. Professional crew, great communication throughout the project, and the finished result exceeded our expectations. Highly recommend them for any construction project in Tampa.',
+            'body'    => 'Restowrx Elite did an amazing job after our slab leak. They arrived within 45 minutes of dispatch, mapped the hidden moisture with thermal telemetry, and handled all of the drying. They even billed our insurance carrier directly, making it completely stress-free!',
         ],
         [
             'author'  => 'James R.',
             'rating'  => 5,
             'date'    => '2026-03-10',
-            'body'    => 'We hired Spicola for a complete home addition and they delivered on time and on budget. The quality of work is outstanding. Their team was respectful of our property and kept us informed every step of the way.',
+            'body'    => 'We suffered severe storm damage that saturated our home\'s framing. Restowrx Elite stabilized the structural integrity immediately and dried the house perfectly. Their licensed general contractor partner Spicola Construction then rebuilt the damaged rooms flawlessly.',
         ],
         [
             'author'  => 'Mike T.',
             'rating'  => 5,
             'date'    => '2026-01-18',
-            'body'    => 'Best contractor in the Tampa Bay area. Fair pricing, excellent craftsmanship, and they stand behind their work. We have used them for two projects now and will continue to call them for everything.',
+            'body'    => 'The absolute best restoration team in the Tampa Bay area. Extremely professional, high-tech industrial dehumidifiers, and they are fully IICRC certified. They stand behind their service 100%.',
         ],
         [
             'author'  => 'Linda P.',
             'rating'  => 5,
             'date'    => '2026-02-05',
-            'body'    => 'Spicola Construction handled our complete bathroom renovation beautifully. The crew was professional, clean, and finished ahead of schedule. Could not be happier with the results.',
+            'body'    => 'Saved our home from mold after a major plumbing breach. Restowrx Elite set up negative pressure containment immediately and completely scrubbed the air. Exceptional communication and surgical cleanup.',
         ],
         [
             'author'  => 'David K.',
             'rating'  => 5,
             'date'    => '2026-02-10',
-            'body'    => 'Had Spicola do a commercial build-out for our new office space. Everything was done to code, on time, and their attention to detail was impressive. 10 out of 10 recommend.',
+            'body'    => 'Had Restowrx Elite handle commercial flood mitigation at our office facility. Extremely fast response, code-compliant containment, and direct insurance claims coordination. 10 out of 10 recommend.',
         ],
     ];
 
@@ -2874,8 +2834,8 @@ function hwh_review_schema() {
             'datePublished' => $r['date'],
             'reviewBody'    => $r['body'],
             'itemReviewed'  => [
-                '@type' => 'GeneralContractor',
-                'name'  => 'Spicola Construction',
+                '@type' => 'LocalBusiness',
+                'name'  => 'Restowrx Elite',
                 'image' => esc_url(home_url('/')) . 'wp-content/uploads/spicola-og.jpg',
             ],
         ];
@@ -2906,19 +2866,18 @@ function hwh_sanitize_service_excerpt($excerpt) {
 
     if (!$is_medspa) return $excerpt;
 
-    // Generate a clean construction excerpt based on the service title
+    // Generate a clean damage restoration excerpt based on the service title
     $title = strtolower(get_the_title());
     $fallbacks = [
-        'construction'    => 'Custom residential and commercial construction from the ground up. Licensed general contractor serving Tampa Bay.',
-        'remodel'         => 'Expert kitchen, bathroom, and whole-home remodeling. Quality craftsmanship and transparent pricing.',
-        'renovation'      => 'Full home and commercial renovation services. Transform your space with Spicola Construction.',
-        'roofing'         => 'Professional roof replacement, repair, and new installations for residential and commercial properties.',
-        'concrete'        => 'Expert concrete work including driveways, patios, slabs, and foundations built to last.',
-        'addition'        => 'Seamless room additions and home extensions that match your existing structure perfectly.',
-        'commercial'      => 'Commercial build-outs, tenant improvements, and office renovations tailored to your business.',
-        'kitchen'         => 'Complete kitchen remodeling with custom cabinets, countertops, and modern finishes.',
-        'bathroom'        => 'Full bathroom renovations from design to completion. Modern fixtures and quality materials.',
-        'foundation'      => 'Foundation repair and new foundation work built strong for Florida conditions.',
+        'water'    => 'Emergency water extraction, structural drying, and thermal moisture scanning. IICRC certified 24/7 rapid response across Tampa Bay.',
+        'flood'    => 'Disaster flood water pumping, debris cleanup, and structural dehumidification. Immediate stabilization strike teams.',
+        'mold'     => 'Professional biological mold remediation, negative-pressure containment, and HEPA air filtration to clear active spores.',
+        'fire'     => 'Soot removal, structural smoke deodorization, and property stabilization. Complete hazard mitigation post-fire.',
+        'smoke'    => 'Soot removal, structural smoke deodorization, and property stabilization. Complete hazard mitigation post-fire.',
+        'storm'    => 'Emergency board-up, roof tarping, storm debris removal, and active structural hazard stabilization.',
+        'reconstruct' => 'Complete turnkey rebuilding and structural build-back services in partnership with Spicola Construction, licensed general contractor.',
+        'build'    => 'Complete turnkey rebuilding and structural build-back services in partnership with Spicola Construction, licensed general contractor.',
+        'repair'   => 'Complete turnkey rebuilding and structural build-back services in partnership with Spicola Construction, licensed general contractor.',
     ];
 
     foreach ($fallbacks as $keyword => $desc) {
@@ -2928,7 +2887,7 @@ function hwh_sanitize_service_excerpt($excerpt) {
     }
 
     // Generic fallback
-    return 'Professional construction services by licensed Tampa Bay contractors. Call (813) 732-6285 for a free estimate.';
+    return 'Professional property damage mitigation and restoration. Call 813.699.4009 for emergency rapid response dispatch.';
 }
 add_filter('get_the_excerpt', 'hwh_sanitize_service_excerpt', 20);
 
@@ -2956,15 +2915,15 @@ function hwh_sanitize_service_content($content) {
     $title = esc_html(get_the_title());
     return '<div class="svc-placeholder-content">
         <h2>Professional ' . $title . ' in Tampa Bay</h2>
-        <p>Spicola Construction provides expert ' . strtolower($title) . ' services across Hillsborough, Pinellas, and Pasco counties. Our licensed contractors are equipped to handle any project &mdash; big or small.</p>
-        <h3>Why Choose Spicola Construction?</h3>
+        <p>Restowrx Elite provides expert ' . strtolower($title) . ' services across Hillsborough, Pinellas, and Pasco counties. Our certified rapid response strike teams are deployed 24/7/365 to stabilize your property.</p>
+        <h3>Why Choose Restowrx Elite?</h3>
         <ul>
-            <li><strong>Licensed &amp; Insured</strong> &mdash; Certified General Contractor (CGC)</li>
-            <li><strong>Transparent Pricing</strong> &mdash; Detailed estimates before we start</li>
-            <li><strong>On Time Delivery</strong> &mdash; We respect your schedule</li>
-            <li><strong>Satisfaction Guaranteed</strong> &mdash; We stand behind our work</li>
+            <li><strong>IICRC Licensed &amp; Certified</strong> &mdash; Certified specialists in structural damage mitigation</li>
+            <li><strong>Direct Insurance Billing</strong> &mdash; We handle documentation, telemetry, and itemized billing</li>
+            <li><strong>45-Minute Rapid Response</strong> &mdash; Emergency dispatch teams standing by 24/7</li>
+            <li><strong>Turnkey Rebuilding</strong> &mdash; Reconstruction and finishing in partnership with Spicola Construction (CGC)</li>
         </ul>
-        <p>Call <strong>(813) 732-6285</strong> or <a href="' . esc_url(home_url('/contact/')) . '">request a quote online</a> to start your project today.</p>
+        <p>Call <strong>813.699.4009</strong> or <a href="' . esc_url(home_url('/contact/')) . '">request a dispatch online</a> to start your recovery today.</p>
     </div>';
 }
 add_filter('the_content', 'hwh_sanitize_service_content', 20);

@@ -1,7 +1,7 @@
 <?php
 /**
- * Spicola Construction — Single Portfolio Project
- * Hero with featured image, project details, image gallery with lightbox.
+ * Restowrx Elite — Single Portfolio Case File
+ * Hero with featured image, deployment details, image gallery with lightbox.
  */
 get_header();
 
@@ -68,7 +68,7 @@ $has_image   = has_post_thumbnail();
         <div class="section__inner">
             <div class="section__header" style="margin-bottom: 3rem;">
                 <span class="section__label">Finished Showcase</span>
-                <h2 class="section__title" style="color: var(--brand-navy, #222D3F); margin-top: 0.5rem;">Finished Craftsmanship &amp; Details</h2>
+                <h2 class="section__title" style="color: #ffffff; margin-top: 0.5rem;">Deployment Showcase &amp; Details</h2>
             </div>
             <div class="pf-gallery__grid">
                 <?php foreach ($gallery as $i => $img_id):
@@ -106,11 +106,11 @@ $has_image   = has_post_thumbnail();
         <div class="svc-cta__inner">
             <div class="svc-cta__text">
                 <span class="svc-cta__eyebrow">Like What You See?</span>
-                <h2 class="svc-cta__title">Let's Build <em>Yours</em></h2>
-                <p class="svc-cta__desc">Every project starts with a conversation. Call us or request a free quote — no obligation, just honest answers.</p>
+                <h2 class="svc-cta__title">Secure Your <em>Property</em></h2>
+                <p class="svc-cta__desc">Every deployment starts with a conversation. Call us or request a rapid damage assessment — no obligation, just tactical solutions.</p>
             </div>
             <div class="svc-cta__actions">
-                <a href="tel:+18137326285" class="btn btn--primary btn--lg">Call (813) 732-6285</a>
+                <a href="tel:+18136994009" class="btn btn--primary btn--lg">Call 813.699.4009</a>
                 <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--outline btn--lg">Get a Free Quote</a>
             </div>
         </div>
@@ -130,11 +130,11 @@ $has_image   = has_post_thumbnail();
 
 /* Content */
 .pf-content{padding:clamp(3rem,5vw,5rem) 0}
-.pf-content__body{max-width:1000px;margin:0 auto;font-size:1.05rem;line-height:1.8;color:#333}
-.pf-content__body h2,.pf-content__body h3{font-family:'Montserrat',sans-serif;color:var(--brand-navy,#222D3F);margin:2rem 0 .75rem}
+.pf-content__body{max-width:1000px;margin:0 auto;font-size:1.05rem;line-height:1.8;color:#ffffff}
+.pf-content__body h2,.pf-content__body h3{font-family:'Montserrat',sans-serif;color:#ffffff;margin:2rem 0 .75rem}
 
 /* Gallery Grid */
-.pf-gallery{padding:clamp(4rem,6vw,6rem) 0;background:#F8F8F6}
+.pf-gallery{padding:clamp(4rem,6vw,6rem) 0;background:#050505}
 .pf-gallery__grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin-top:2.5rem}
 .pf-gallery__item{position:relative;aspect-ratio:4/3;border-radius:12px;overflow:hidden;cursor:pointer;display:block}
 .pf-gallery__img{width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.22,1,.36,1)}

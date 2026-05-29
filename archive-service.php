@@ -504,10 +504,10 @@ get_header();
                 <b>Restoration Specializations</b>
             </h1>
             <p class="rwx-hero__desc">
-                Surgical precision in structural property recovery. Our elite rapid response units deploy 24/7/365 to stabilize and mitigate property damage.
+                Precision structural property recovery. Our expert rapid response units deploy 24/7/365 to stabilize and mitigate property damage.
             </p>
             <div class="rwx-hero__actions">
-                <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="rwx-btn rwx-btn--red">Dispatch Tactical Unit</a>
+                <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="rwx-btn rwx-btn--red">Request Emergency Service</a>
                 <a href="tel:+18136994009" class="rwx-btn rwx-btn--outline">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" style="margin-right:5px; vertical-align:-3px;">
                         <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L7.91 9.27a16 16 0 0 0 6.29 6.29l1.45-1.45a2 2 0 0 1 2.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z" />
@@ -651,8 +651,8 @@ get_header();
     <section class="process-section" id="process" aria-label="Deployment steps">
         <div class="grid-container">
             <div class="process-header">
-                <span class="section-label">Incident Command</span>
-                <h2>Our Tactical <em>Response Protocol</em></h2>
+                <span class="section-label">Our Recovery Process</span>
+                <h2>Our Proven <em>Restoration Process</em></h2>
             </div>
             
             <div class="process-grid">
@@ -664,7 +664,7 @@ get_header();
                             <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L7.91 9.27a16 16 0 0 0 6.29 6.29l1.45-1.45a2 2 0 0 1 2.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z"></path></svg>
                         </div>
                         <h4>01. Dispatch</h4>
-                        <p>24/7 Emergency Command Center gathers intelligence and activates local mitigation strike teams within 15 minutes.</p>
+                        <p>24/7 Emergency Dispatch gathers details and activates local mitigation specialists within 15 minutes.</p>
                     </div>
                 </div>
 
@@ -675,8 +675,8 @@ get_header();
                         <div class="step-icon-wrap">
                             <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"></polygon><line x1="9" y1="3" x2="9" y2="18"></line><line x1="15" y1="6" x2="15" y2="21"></line></svg>
                         </div>
-                        <h4>02. Recon</h4>
-                        <p>Rapid deployment on-site within 60 minutes for moisture telemetry mapping, hazard appraisal, and structural scanning.</p>
+                        <h4>02. Assessment</h4>
+                        <p>Rapid deployment on-site within 60 minutes for moisture mapping, hazard appraisal, and structural scanning.</p>
                     </div>
                 </div>
 
@@ -711,10 +711,10 @@ get_header();
     <section class="rwx-cta-block" aria-label="Mitigation request call to action">
         <div class="rwx-cta-block__pulse"></div>
         <div class="rwx-cta-block__inner">
-            <span class="rwx-cta-block__eyebrow">Active Radar Response</span>
-            <h2 class="rwx-cta-block__title">Catastrophic Loss?<br><em>Initiate Tactical Stabilization</em></h2>
+            <span class="rwx-cta-block__eyebrow">24/7 Emergency Response</span>
+            <h2 class="rwx-cta-block__title">Catastrophic Loss?<br><em>Activate Rapid Mitigation</em></h2>
             <p class="rwx-cta-block__desc">
-                Do not wait for property destruction to become permanent. Our operators stand ready to authorize insurance claims integration and deploy critical recovery systems immediately.
+                Do not wait for property destruction to become permanent. Our team stands ready to coordinate insurance claims and deploy critical recovery systems immediately.
             </p>
             <div class="rwx-cta-block__actions">
                 <a href="tel:+18136994009" class="rwx-btn rwx-btn--red">
@@ -723,7 +723,7 @@ get_header();
                     </svg>
                     Dispatch: 813.699.4009
                 </a>
-                <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="rwx-btn rwx-btn--outline">Get a Free Telemetry Estimate</a>
+                <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="rwx-btn rwx-btn--outline">Request a Free Estimate</a>
             </div>
         </div>
     </section>

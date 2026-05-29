@@ -1,6 +1,6 @@
 <?php
 /**
- * Spicola Construction — Cancellation & Financial Policy Page
+ * Restowrx Elite — Cancellation & Financial Policy Page
  */
 get_header(); ?>
 
@@ -46,7 +46,7 @@ get_header(); ?>
                             <div class="cancellation-card__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></div>
                             <div class="cancellation-card__body">
                                 <h3>No-Shows</h3>
-                                <p>If our plumber arrives and no one is home, a <strong>trip charge</strong> will apply.</p>
+                                <p>If our dispatch specialist or strike team arrives and no one is home, a <strong>trip charge</strong> will apply to cover deployment costs.</p>
                             </div>
                         </div>
                         <div class="cancellation-card cancellation-card--info">
@@ -93,7 +93,7 @@ get_header(); ?>
                     <p>We are committed to serving you with the highest quality workmanship at a fair price. If you have questions regarding these policies, please reach out at any time.</p>
                     <blockquote class="legal-quote">
                         <strong>I have read and understand this Financial Policy and Agreement.</strong><br><br>
-                        I authorize <strong>Spicola Construction</strong> to charge my credit card for no-show appointments, late cancellation fees, and outstanding service balances.
+                        I authorize <strong>Restowrx Elite</strong> (and licensed partners) to charge my credit card for no-show appointments, late cancellation fees, and outstanding service balances.
                     </blockquote>
                     <div class="legal-cta">
                         <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary">Questions? Contact Us</a>

@@ -1,6 +1,6 @@
 <?php
 /**
- * Spicola Construction — Search Results Template
+ * Restowrx Elite — Search Results Template
  */
 get_header(); ?>
 
@@ -13,7 +13,7 @@ get_header(); ?>
             <p class="page-hero__desc"><?php
                 global $wp_query;
                 $count = $wp_query->found_posts;
-                printf(_n('%d result found', '%d results found', $count, 'hot-water-heroes'), $count);
+                printf(_n('%d result found', '%d results found', $count, 'restowrx-theme'), $count);
             ?></p>
         </div>
     </section>

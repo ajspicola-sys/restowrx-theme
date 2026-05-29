@@ -1,6 +1,6 @@
 <?php
 /**
- * Spicola Construction — Privacy Policy Page
+ * Restowrx Elite — Privacy Policy Page
  */
 get_header(); ?>
 
@@ -18,8 +18,8 @@ get_header(); ?>
         <div class="legal-page__inner">
 
             <div class="legal-page__intro">
-                <p>This Privacy Notice for <strong>Spicola Construction</strong> ("we," "us," or "our") describes how and why we might access, collect, store, use, and/or share ("process") your personal information when you use our services, including when you visit our website at <a href="http://www.spicolaconstruction.com">www.spicolaconstruction.com</a> or engage with us in other related ways, including any sales, marketing, or events.</p>
-                <p><strong>Questions or concerns?</strong> Reading this Privacy Notice will help you understand your privacy rights and choices. If you do not agree with our policies and practices, please do not use our Services. If you still have any questions or concerns, please contact us at <a href="mailto:info@spicolaconstruction.com">info@spicolaconstruction.com</a>.</p>
+                <p>This Privacy Notice for <strong>Restowrx Elite</strong> ("we," "us," or "our") describes how and why we might access, collect, store, use, and/or share ("process") your personal information when you use our services, including when you visit our website at <a href="https://restowrx.com">restowrx.com</a> or engage with us in other related ways, including any sales, marketing, or events.</p>
+                <p><strong>Questions or concerns?</strong> Reading this Privacy Notice will help you understand your privacy rights and choices. If you do not agree with our policies and practices, please do not use our Services. If you still have any questions or concerns, please contact us at <a href="mailto:joe@restowrx.com">joe@restowrx.com</a>.</p>
             </div>
 
             <div class="legal-page__toc">
@@ -145,7 +145,7 @@ get_header(); ?>
                 <section id="section-8">
                     <h2>8. Do We Collect Information From Minors?</h2>
                     <p><em>In Short: We do not knowingly collect data from or market to children under 18 years of age.</em></p>
-                    <p>We do not knowingly collect, solicit data from, or market to children under 18 years of age, nor do we knowingly sell such personal information. By using the Services, you represent that you are at least 18 or that you are the parent or guardian of such a minor and consent to such minor dependent's use of the Services. If you become aware of any data we may have collected from children under age 18, please contact us at <a href="mailto:info@spicolaconstruction.com">info@spicolaconstruction.com</a>.</p>
+                    <p>We do not knowingly collect, solicit data from, or market to children under 18 years of age, nor do we knowingly sell such personal information. By using the Services, you represent that you are at least 18 or that you are the parent or guardian of such a minor and consent to such minor dependent's use of the Services. If you become aware of any data we may have collected from children under age 18, please contact us at <a href="mailto:joe@restowrx.com">joe@restowrx.com</a>.</p>
                 </section>
 
                 <section id="section-9">
@@ -157,7 +157,7 @@ get_header(); ?>
                     <h3>Account Information</h3>
                     <p>If you would at any time like to review or change the information in your account or terminate your account, you can contact us using the contact information provided. Upon your request to terminate your account, we will deactivate or delete your account and information from our active databases.</p>
                     <p><strong>Cookies and similar technologies:</strong> Most Web browsers are set to accept cookies by default. You can usually choose to set your browser to remove cookies and to reject cookies.</p>
-                    <p>If you have questions or comments about your privacy rights, you may email us at <a href="mailto:info@spicolaconstruction.com">info@spicolaconstruction.com</a>.</p>
+                    <p>If you have questions or comments about your privacy rights, you may email us at <a href="mailto:joe@restowrx.com">joe@restowrx.com</a>.</p>
                 </section>
 
                 <section id="section-10">
@@ -260,11 +260,11 @@ get_header(); ?>
                     </ul>
 
                     <h3>How to Exercise Your Rights</h3>
-                    <p>To exercise these rights, you can contact us by submitting a <a href="https://app.termly.io/notify/e0c7f514-b022-4d7c-a05e-8e14f1dbac8e" target="_blank" rel="noopener noreferrer">data subject access request</a>, by emailing us at <a href="mailto:info@spicolaconstruction.com">info@spicolaconstruction.com</a>, or by referring to the contact details at the bottom of this document.</p>
+                    <p>To exercise these rights, you can contact us by submitting a <a href="https://app.termly.io/notify/e0c7f514-b022-4d7c-a05e-8e14f1dbac8e" target="_blank" rel="noopener noreferrer">data subject access request</a>, by emailing us at <a href="mailto:joe@restowrx.com">joe@restowrx.com</a>, or by referring to the contact details at the bottom of this document.</p>
                     <p>We will honor your opt-out preferences if you enact the <a href="https://globalprivacycontrol.org/" target="_blank" rel="noopener noreferrer">Global Privacy Control (GPC)</a> opt-out signal on your browser.</p>
 
                     <h3>Appeals</h3>
-                    <p>Under certain US state data protection laws, if we decline to take action regarding your request, you may appeal our decision by emailing us at <a href="mailto:info@spicolaconstruction.com">info@spicolaconstruction.com</a>.</p>
+                    <p>Under certain US state data protection laws, if we decline to take action regarding your request, you may appeal our decision by emailing us at <a href="mailto:joe@restowrx.com">joe@restowrx.com</a>.</p>
 
                     <h3>California "Shine The Light" Law</h3>
                     <p>California Civil Code Section 1798.83 permits our users who are California residents to request and obtain from us, once a year and free of charge, information about categories of personal information (if any) we disclosed to third parties for direct marketing purposes. If you are a California resident and would like to make such a request, please submit your request in writing to us using the contact details provided in section 13.</p>
@@ -278,9 +278,9 @@ get_header(); ?>
 
                 <section id="section-13">
                     <h2>13. How Can You Contact Us About This Notice?</h2>
-                    <p>If you have questions or comments about this notice, you may email us at <a href="mailto:info@spicolaconstruction.com">info@spicolaconstruction.com</a> or contact us by post at:</p>
+                    <p>If you have questions or comments about this notice, you may email us at <a href="mailto:joe@restowrx.com">joe@restowrx.com</a> or contact us by post at:</p>
                     <address class="legal-address">
-                        Spicola Construction<br>
+                        Restowrx Elite<br>
                         9249 Lazy Ln<br>
                         Tampa, FL 33614<br>
                         United States

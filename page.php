@@ -1,6 +1,6 @@
 <?php
 /**
- * Spicola Construction — Generic Page Template
+ * Restowrx Elite — Generic Page Template
  * Auto-routes to custom templates based on page slug
  */
 

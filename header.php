@@ -107,11 +107,12 @@
         }
 
         .rwx-nav-bar {
-            background: #ffffff;
+            background: rgba(10, 10, 10, 0.85);
             padding: 10px 0;
             min-height: 55px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(12px);
         }
 
         .top-bar-inner, .nav-bar-inner {
@@ -167,7 +168,7 @@
         }
         .nav-links li { position: relative; padding: 12px 0; }
         .nav-links a {
-            color: #111111 !important;
+            color: rgba(255, 255, 255, 0.85) !important;
             text-decoration: none;
             font-family: var(--font-main);
             font-weight: 700;
@@ -202,13 +203,13 @@
         .nav-links .sub-menu {
             position: absolute;
             top: 100%; left: 50%; transform: translateX(-50%);
-            background: #ffffff;
-            border: 1px solid rgba(0, 0, 0, 0.08);
+            background: #050505;
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-top: 3px solid var(--color-red);
             min-width: 200px;
             display: none;
             list-style: none; padding: 10px 0;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             margin: 0;
             z-index: 1000;
             border-radius: 4px;
@@ -218,7 +219,7 @@
         .nav-links .sub-menu a {
             display: block;
             padding: 8px 20px;
-            color: #111111 !important;
+            color: rgba(255, 255, 255, 0.85) !important;
             font-size: 0.7rem;
             font-weight: 600;
             text-transform: none;
@@ -227,7 +228,7 @@
         .nav-links .sub-menu a::after { display: none; }
         .nav-links .sub-menu a:hover {
             color: var(--color-red) !important;
-            background: rgba(0,0,0,0.02);
+            background: rgba(255,255,255,0.02);
         }
 
         .cta-btn-header {
@@ -270,7 +271,7 @@
         /* Mobile Menu Toggle button */
         .menu-toggle { 
             display: none; 
-            color: #111111; 
+            color: #ffffff; 
             cursor: pointer; 
             font-size: 1.5rem;
             display: none;
@@ -475,7 +476,7 @@
                     INITIATE DISPATCH
                 </a>
 
-                <button class="menu-toggle" id="mobile-toggle" aria-label="Open mobile navigation" aria-expanded="false" aria-controls="mobile-menu" style="background: none; border: none; color: #111111;">
+                <button class="menu-toggle" id="mobile-toggle" aria-label="Open mobile navigation" aria-expanded="false" aria-controls="mobile-menu" style="background: none; border: none; color: #ffffff;">
                     <i data-lucide="menu"></i>
                 </button>
             </nav>

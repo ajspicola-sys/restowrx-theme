@@ -1004,9 +1004,9 @@ get_header(); ?>
                 </div>
             </div>
             <div class="about-story__right">
-                <p>Spicola Construction was born out of a passion for building things right. With over 10 years of hands-on experience in Florida's construction industry, our founder saw an opportunity to create a company that puts quality and integrity above everything else &mdash; no shortcuts, no excuses.</p>
-                <p>Word travels fast when you do great work. From custom home builds to large-scale commercial renovations, we've grown through referrals and repeat clients. Every project in our portfolio was earned through results &mdash; not advertising.</p>
-                <p>Today, Spicola Construction is a full-service general contracting firm serving Hillsborough, Pinellas, and Pasco counties. From ground-up new builds to complete interior renovations, we handle every phase of construction with the same dedication to craftsmanship that started it all.</p>
+                <p>Restowrx Elite was born out of a passion for property recovery done right. With extensive hands-on experience in Florida's disaster mitigation and construction industry, our leadership established a command center that puts elite containment, thorough dehumidification, and absolute safety above everything else &mdash; no shortcuts, no excuses.</p>
+                <p>Word travels fast when you do exceptional work. From emergency water extraction to full structural stabilization, we've grown by securing properties rapidly and coordinating seamlessly with insurance carriers. Every case file in our portfolio represents a property saved and a client supported through a crisis.</p>
+                <p>Today, Restowrx Elite is Tampa Bay's premier property damage mitigation and restoration firm, serving Hillsborough, Pinellas, and Pasco counties. In direct partnership with Spicola Construction, our licensed general contracting partner, we handle every phase of recovery, from negative-pressure biological containment to complete structural build-back.</p>
             </div>
         </div>
     </div>
@@ -2332,13 +2332,13 @@ if ( $blog_query->have_posts() ) : ?>
                 <div style="width: 1px; height: 50px; background: rgba(255,255,255,0.1);"></div>
                 <div>
                     <h4 style="font-family: var(--font-accent, 'Bebas Neue', sans-serif); font-size: 2.5rem; margin: 0; color: white;">24/7</h4>
-                    <p style="margin: 0; font-size: 0.75rem; color: #888; letter-spacing: 3px; margin-top: 10px; text-transform: uppercase; font-weight: 700;">Active Radar</p>
+                    <p style="margin: 0; font-size: 0.75rem; color: #888; letter-spacing: 3px; margin-top: 10px; text-transform: uppercase; font-weight: 700;">Active Response</p>
                 </div>
             </div>
 
             <!-- TACTICAL DARK MODE MAP -->
             <div class="cta-map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3521.94435882436!2d-82.35515228492023!3d28.025530182661877!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88c2c6114eb6cbb1%3A0x6b4be939bbbd0bc4!2s9249%20Lazy%20Ln%2C%20Tampa%2C%20FL%2033610!5e0!3m2!1sen!2sus!4v1689990000000!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Restowrx Tactical Command Headquarters Location"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3521.94435882436!2d-82.35515228492023!3d28.025530182661877!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88c2c6114eb6cbb1%3A0x6b4be939bbbd0bc4!2s9249%20Lazy%20Ln%2C%20Tampa%2C%20FL%2033610!5e0!3m2!1sen!2sus!4v1689990000000!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Restowrx Elite Headquarters Location"></iframe>
             </div>
         </div>
 
@@ -2354,7 +2354,7 @@ if ( $blog_query->have_posts() ) : ?>
                         </defs>
                         <text font-family="var(--font-main, 'Inter', sans-serif)" font-weight="800" font-size="10" fill="var(--brand, #ff0000)" letter-spacing="1.2">
                             <textPath href="#circlePath">
-                                RESTOWRX TACTICAL • 24/7 ACTIVE RADAR •
+                                RESTOWRX ELITE • 24/7 ACTIVE DISPATCH •
                             </textPath>
                         </text>
                     </svg>
@@ -2364,8 +2364,8 @@ if ( $blog_query->have_posts() ) : ?>
                 </div>
 
                 <div style="text-align: center; margin-bottom: 40px;">
-                    <h3 style="font-family: var(--font-accent, 'Bebas Neue', sans-serif); font-size: 2.5rem; margin: 0; letter-spacing: 2px; color: white;">INITIATE <span style="color: var(--brand, #ff0000);">DISPATCH</span></h3>
-                    <p style="font-size: 0.75rem; color: #888; letter-spacing: 3px; margin-top: 10px; text-transform: uppercase; font-weight: 700;">Response Level: Priority One</p>
+                    <h3 style="font-family: var(--font-accent, 'Bebas Neue', sans-serif); font-size: 2.5rem; margin: 0; letter-spacing: 2px; color: white;">REQUEST <span style="color: var(--brand, #ff0000);">DISPATCH</span></h3>
+                    <p style="font-size: 0.75rem; color: #888; letter-spacing: 3px; margin-top: 10px; text-transform: uppercase; font-weight: 700;">Response: 24/7 Emergency</p>
                 </div>
 
                 <?php 

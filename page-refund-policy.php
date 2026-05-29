@@ -1,6 +1,6 @@
 <?php
 /**
- * Spicola Construction — Refund Policy Page
+ * Restowrx Elite — Refund Policy Page
  */
 get_header(); ?>
 
@@ -25,19 +25,19 @@ get_header(); ?>
             <div class="legal-page__body">
 
                 <section id="services">
-                    <h2>Plumbing Services</h2>
-                    <p>At Spicola Construction, we strive to ensure every customer receives quality workmanship. Before services are performed, we provide clear estimates and explain the scope of work so you can make informed decisions.</p>
+                    <h2>Mitigation & Restoration Services</h2>
+                    <p>At Restowrx Elite, we strive to ensure every property owner receives quality workmanship. Before services are performed, we provide clear scope details and coordinate directly with your insurance carrier so you can make informed decisions.</p>
 
                     <div class="refund-policy-cards">
                         <div class="refund-policy-card">
                             <div class="refund-policy-card__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></div>
                             <h3>No Refunds on Completed Work</h3>
-                            <p>Once plumbing services are completed, charges are <strong>non-refundable</strong>.</p>
+                            <p>Once property mitigation or restoration services are completed, charges are <strong>non-refundable</strong>.</p>
                         </div>
                         <div class="refund-policy-card refund-policy-card--positive">
                             <div class="refund-policy-card__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
                             <h3>Satisfaction Guarantee</h3>
-                            <p>If you're not satisfied with our work, contact us within <strong>30 days</strong> and we'll send a plumber back to address the issue at <strong>no additional charge</strong>.</p>
+                            <p>If you're not satisfied with our work, contact us within <strong>30 days</strong> and we'll send a recovery specialist back to address the issue at <strong>no additional charge</strong>.</p>
                         </div>
                     </div>
                 </section>

@@ -45,12 +45,12 @@ Text Domain:      restowrx-theme
 
   /* Text */
   --text-dark:        #ffffff;
-  --text-body:        #cccccc;
-  --text-mid:         #aaaaaa;
-  --text-muted:       #888888;
-  --text-subtle:      #666666;
-  --text-faint:       #444444;
-  --text-pale:        #222222;
+  --text-body:        #dddddd; /* Shifted from #cccccc to #dddddd for premium readable contrast */
+  --text-mid:         #bbbbbb; /* Shifted from #aaaaaa to #bbbbbb */
+  --text-muted:       #999999; /* Shifted from #888888 to #999999 */
+  --text-subtle:      #7c7c7c; /* Shifted from #666666 to #7c7c7c */
+  --text-faint:       #5d5d5d; /* Shifted from #444444 to #5d5d5d */
+  --text-pale:        #3a3a3a; /* Shifted from #222222 to #3a3a3a */
 
   /* Surfaces and Borders */
   --surface-card:     #0d0d0d;
@@ -130,7 +130,7 @@ body {
   font-size: clamp(0.9rem, 0.85rem + 0.25vw, 1rem);
   line-height: 1.6;
   color: var(--text-dark);
-  background: #F8F8F6;
+  background: var(--bg-cream, #000000);
   overflow-x: hidden;
   scrollbar-width: thin;
   scrollbar-color: var(--brand) transparent;
@@ -9362,7 +9362,7 @@ a.contact-card__text:hover {
    ========================================================================== */
 .legal-page {
   padding: clamp(3rem, 2rem + 4vw, 6rem) 0 clamp(4rem, 3rem + 4vw, 7rem);
-  background: var(--bg-cream);
+  background: var(--bg-cream, #000000);
 }
 
 .legal-page__inner {
@@ -9372,17 +9372,17 @@ a.contact-card__text:hover {
 }
 
 .legal-page__intro {
-  background: #fff;
+  background: #0a0a0a;
   border-radius: 16px;
   padding: 2rem 2.5rem;
   margin-bottom: 2.5rem;
   border-left: 4px solid var(--brand);
-  box-shadow: 0 2px 20px rgba(0,0,0,0.04);
+  box-shadow: 0 4px 30px rgba(0,0,0,0.4);
 }
 
 .legal-page__intro p {
   font-size: 0.95rem;
-  color: var(--text-body);
+  color: var(--text-body, #ffffff);
   line-height: 1.7;
   margin-bottom: 0.75rem;
 }
@@ -9390,7 +9390,7 @@ a.contact-card__text:hover {
 .legal-page__intro p:last-child { margin-bottom: 0; }
 
 .legal-page__toc {
-  background: linear-gradient(135deg, var(--bg-cream), var(--bg-lavender));
+  background: linear-gradient(135deg, #050505, #120505);
   border: 1px solid rgba(var(--brand-rgb), 0.12);
   border-left: 4px solid var(--brand);
   border-radius: 16px;
@@ -9418,12 +9418,12 @@ a.contact-card__text:hover {
 
 .legal-page__toc ol li {
   font-size: 0.82rem;
-  color: var(--text-muted);
+  color: var(--text-muted, #888);
   line-height: 1.5;
 }
 
 .legal-page__toc ol li a {
-  color: var(--surface-card);
+  color: #ffffff;
   text-decoration: none;
   transition: color 0.2s ease;
 }
@@ -9431,22 +9431,22 @@ a.contact-card__text:hover {
 .legal-page__toc ol li a:hover { color: var(--brand); }
 
 .legal-page__summary {
-  background: #fff;
+  background: #0a0a0a;
   border-radius: 16px;
   padding: 2rem 2.5rem;
   margin-bottom: 3rem;
-  box-shadow: 0 2px 20px rgba(0,0,0,0.04);
+  box-shadow: 0 4px 30px rgba(0,0,0,0.4);
 }
 
 .legal-page__summary h2 {
   font-size: clamp(1.3rem, 1rem + 1.2vw, 1.7rem);
-  color: var(--text-dark);
+  color: #ffffff;
   margin-bottom: 1rem;
 }
 
 .legal-page__summary p {
   font-size: 0.9rem;
-  color: var(--text-muted);
+  color: var(--text-muted, #888);
   margin-bottom: 1rem;
   line-height: 1.7;
 }
@@ -9460,7 +9460,7 @@ a.contact-card__text:hover {
 
 .legal-page__summary ul li {
   font-size: 0.88rem;
-  color: var(--text-body);
+  color: var(--text-body, #ffffff);
   padding-left: 1.25rem;
   position: relative;
   line-height: 1.6;
@@ -9488,7 +9488,7 @@ a.contact-card__text:hover {
 
 .legal-page__body h2 {
   font-size: clamp(1.2rem, 1rem + 1vw, 1.5rem);
-  color: var(--text-dark);
+  color: #ffffff;
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
   border-bottom: 2px solid rgba(var(--brand-rgb), 0.15);
@@ -9498,13 +9498,13 @@ a.contact-card__text:hover {
   font-family: 'Inter', sans-serif;
   font-size: 0.95rem;
   font-weight: 600;
-  color: var(--text-dark);
+  color: #ffffff;
   margin: 1.5rem 0 0.5rem;
 }
 
 .legal-page__body p {
   font-size: 0.9rem;
-  color: var(--text-body);
+  color: var(--text-body, #ffffff);
   line-height: 1.75;
   margin-bottom: 1rem;
 }
@@ -9520,7 +9520,7 @@ a.contact-card__text:hover {
 
 .legal-page__body li {
   font-size: 0.88rem;
-  color: var(--text-body);
+  color: var(--text-body, #ffffff);
   line-height: 1.7;
   margin-bottom: 0.4rem;
 }
@@ -9538,14 +9538,14 @@ a.contact-card__text:hover {
   overflow-x: auto;
   margin: 1.5rem 0;
   border-radius: 12px;
-  box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+  box-shadow: 0 4px 30px rgba(0,0,0,0.4);
 }
 
 .legal-table {
   width: 100%;
   border-collapse: collapse;
   font-size: 0.82rem;
-  background: #fff;
+  background: #0a0a0a;
 }
 
 .legal-table th {
@@ -9560,24 +9560,24 @@ a.contact-card__text:hover {
 
 .legal-table td {
   padding: 0.75rem 1rem;
-  border-bottom: 1px solid #f0f0f4;
-  color: var(--text-body);
+  border-bottom: 1px solid #222;
+  color: var(--text-body, #ffffff);
   line-height: 1.5;
   vertical-align: top;
 }
 
 .legal-table tr:last-child td { border-bottom: none; }
-.legal-table tr:nth-child(even) td { background: #faf9fc; }
+.legal-table tr:nth-child(even) td { background: #0f0707; }
 .legal-table__yes { color: var(--brand); font-weight: 700; text-align: center; }
 
 /* Address block */
 .legal-address {
   font-style: normal;
-  background: #fff;
+  background: #0a0a0a;
   border-radius: 12px;
   padding: 1.25rem 1.5rem;
   font-size: 0.9rem;
-  color: var(--text-body);
+  color: var(--text-body, #ffffff);
   line-height: 1.8;
   display: inline-block;
   border-left: 3px solid var(--brand);
@@ -9592,7 +9592,7 @@ a.contact-card__text:hover {
   padding: 1rem 1.5rem;
   margin: 1rem 0;
   font-size: 0.88rem;
-  color: var(--text-body);
+  color: var(--text-body, #ffffff);
   line-height: 1.7;
 }
 
@@ -9669,23 +9669,23 @@ a.contact-card__text:hover {
 
 /* Warn — 50% */
 .cancellation-card--warn {
-  background: #fff8e1;
-  border-color: #f6d860;
-  color: #7a5c00;
+  background: #1d1200;
+  border-color: #d69e2e;
+  color: #fef3c7;
 }
 
 /* Danger — 100% / No-show */
 .cancellation-card--danger {
-  background: #fff0f0;
+  background: #2d0a0a;
   border-color: #fc8181;
-  color: #7a0000;
+  color: #fed7d7;
 }
 
 /* Info — Repeat / Prepay */
 .cancellation-card--info {
-  background: #f3f0ff;
-  border-color: var(--brand);
-  color: #4a0080;
+  background: #0d1b2a;
+  border-color: #4299e1;
+  color: #ebf8ff;
 }
 
 @media (max-width: 768px) {
@@ -9705,17 +9705,17 @@ a.contact-card__text:hover {
 }
 
 .refund-policy-card {
-  background: #fff0f0;
+  background: #2d0a0a;
   border: 1px solid #fc8181;
   border-radius: 14px;
   padding: 1.5rem;
-  color: #7a0000;
+  color: #fed7d7;
 }
 
 .refund-policy-card--positive {
-  background: #f0fff4;
+  background: #0d2818;
   border-color: var(--color-success);
-  color: #1a4731;
+  color: #d4edda;
 }
 
 .refund-policy-card__icon {
@@ -12175,7 +12175,8 @@ footer.hwh-foot { background: #0A1628; color: rgba(255,255,255,0.7); font-family
 /* ── Family of Companies ──────────────────────────────────────────── */
 .about-family {
   padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
-  background: linear-gradient(180deg, #fff 0%, var(--bg-cream) 100%);
+  background: #050505;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .about-family__grid {
@@ -12186,18 +12187,18 @@ footer.hwh-foot { background: #0A1628; color: rgba(255,255,255,0.7); font-family
 }
 
 .about-family__card {
-  background: #fff;
-  border: 1px solid rgba(0,0,0,0.05);
+  background: #0a0a0a;
+  border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 1.25rem;
   padding: 2rem;
   text-align: center;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 .about-family__card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 16px 48px rgba(var(--ink-rgb), 0.1);
-  border-color: rgba(var(--brand-rgb), 0.15);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6);
+  border-color: var(--brand, #ff0000);
 }
 
 .about-family__icon {
@@ -12205,27 +12206,29 @@ footer.hwh-foot { background: #0A1628; color: rgba(255,255,255,0.7); font-family
   margin: 0 auto 1.25rem;
   display: flex; align-items: center; justify-content: center;
   border-radius: 16px;
-  background: rgba(var(--brand-rgb), 0.08);
-  color: var(--brand);
+  background: rgba(255, 0, 0, 0.05);
+  color: var(--brand, #ff0000);
   transition: background 0.3s ease, transform 0.3s ease;
+  border: 1px solid rgba(255, 0, 0, 0.15);
 }
 .about-family__card:hover .about-family__icon {
-  background: var(--brand);
+  background: var(--brand, #ff0000);
   color: #fff;
   transform: scale(1.08);
 }
 
 .about-family__name {
-  font-family: var(--font-accent), Georgia, serif;
-  font-size: 1.15rem;
+  font-family: var(--font-accent, 'Bebas Neue', sans-serif);
+  font-size: 1.8rem;
   font-weight: 700;
-  color: var(--text-dark);
+  color: #ffffff;
   margin-bottom: 0.6rem;
+  letter-spacing: 1px;
 }
 
 .about-family__desc {
   font-size: 0.88rem;
-  color: var(--text-subtle);
+  color: #888;
   line-height: 1.7;
   margin-bottom: 1.25rem;
 }
@@ -12233,14 +12236,14 @@ footer.hwh-foot { background: #0A1628; color: rgba(255,255,255,0.7); font-family
 .about-family__tag {
   display: inline-block;
   padding: 0.3rem 0.9rem;
-  background: rgba(var(--brand-rgb), 0.08);
+  background: rgba(255, 0, 0, 0.08);
   border-radius: 9999px;
   font-family: 'Inter', sans-serif;
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--brand);
+  color: var(--brand, #ff0000);
 }
 
 @media (max-width: 900px) {

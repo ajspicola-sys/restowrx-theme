@@ -162,6 +162,13 @@ if ($categories && !is_wp_error($categories)) {
         cursor: pointer;
     }
 
+    .rwx-btn i, .rwx-btn svg {
+        width: 18px;
+        height: 18px;
+        display: inline-block;
+        color: currentColor;
+    }
+
     .rwx-btn--red {
         background: var(--brand, #ff0000);
         color: white !important;
@@ -170,10 +177,10 @@ if ($categories && !is_wp_error($categories)) {
     }
 
     .rwx-btn--red:hover {
-        background: white;
-        color: var(--brand, #ff0000) !important;
-        border-color: white;
-        box-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
+        background: #111111 !important;
+        color: white !important;
+        border-color: var(--brand, #ff0000);
+        box-shadow: 0 0 30px rgba(255, 0, 0, 0.6);
         transform: translateY(-2px);
     }
 
@@ -233,12 +240,22 @@ if ($categories && !is_wp_error($categories)) {
         gap: 60px;
     }
 
-    /* Left Column Content */
+    /* Left Column Content - High-end glassmorphism */
     .rwx-intel {
-        background: rgba(10, 10, 10, 0.5);
-        border: 1px solid rgba(255, 255, 255, 0.05);
+        background: rgba(10, 10, 10, 0.65);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         padding: clamp(30px, 5vw, 60px);
         border-radius: 12px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        position: relative;
+    }
+
+    .rwx-intel::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 40px; right: 40px; height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(255, 0, 0, 0.3), transparent);
     }
 
     .rwx-intel h2 {
@@ -356,7 +373,7 @@ if ($categories && !is_wp_error($categories)) {
     }
 
     .rwx-gallery__item::before {
-        content: 'SCANNING...';
+        content: 'ACTIVE SYSTEM...';
         position: absolute;
         top: 15px; left: 15px;
         font-family: var(--font-mono, 'Space Mono', monospace);
@@ -364,7 +381,7 @@ if ($categories && !is_wp_error($categories)) {
         color: var(--brand, #ff0000);
         letter-spacing: 2px;
         z-index: 10;
-        background: rgba(0,0,0,0.6);
+        background: rgba(0,0,0,0.65);
         padding: 4px 8px;
         border-radius: 2px;
     }
@@ -385,16 +402,18 @@ if ($categories && !is_wp_error($categories)) {
     }
 
     .rwx-widget {
-        background: #0a0a0a;
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(10, 10, 10, 0.85);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
         padding: 35px;
         border-radius: 12px;
         position: relative;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
     }
 
     .rwx-widget--dispatch {
         border-top: 6px solid var(--brand, #ff0000);
-        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
+        box-shadow: 0 25px 55px rgba(0, 0, 0, 0.7);
     }
 
     .rwx-widget__header {
@@ -430,7 +449,7 @@ if ($categories && !is_wp_error($categories)) {
     .rwx-widget__radar {
         font-family: var(--font-mono, 'Space Mono', monospace);
         font-size: 0.65rem;
-        color: #666;
+        color: #999; /* Brightened from #666 to #999 for contrast */
         font-weight: 700;
         letter-spacing: 1.5px;
         margin: 0 0 25px 0;
@@ -439,8 +458,11 @@ if ($categories && !is_wp_error($categories)) {
         gap: 6px;
     }
 
-    .rwx-widget__radar i {
-        color: var(--brand, #ff0000);
+    .rwx-widget__radar i, .rwx-widget__radar svg {
+        color: var(--brand, #ff0000) !important;
+        width: 12px;
+        height: 12px;
+        display: inline-block;
     }
 
     /* Custom sidebar data list */
@@ -455,13 +477,21 @@ if ($categories && !is_wp_error($categories)) {
 
     .rwx-meta-row {
         display: flex;
-        justify-content: space-between;
         align-items: center;
+        width: 100%;
         font-size: 0.9rem;
     }
 
+    .rwx-meta-divider {
+        flex-grow: 1;
+        border-bottom: 1px dotted rgba(255, 255, 255, 0.18);
+        margin: 0 10px;
+        position: relative;
+        top: -2px;
+    }
+
     .rwx-meta-row span:first-child {
-        color: #777;
+        color: #888;
         font-family: var(--font-mono, 'Space Mono', monospace);
         font-size: 0.75rem;
         text-transform: uppercase;
@@ -508,7 +538,8 @@ if ($categories && !is_wp_error($categories)) {
     .rwx-widget--dispatch select:focus,
     .rwx-widget--dispatch textarea:focus {
         border-color: var(--brand, #ff0000);
-        background: rgba(255, 0, 0, 0.02);
+        background: rgba(255, 0, 0, 0.04);
+        box-shadow: 0 0 15px rgba(255, 0, 0, 0.15);
     }
 
     .rwx-widget--dispatch input[type="submit"],
@@ -524,15 +555,16 @@ if ($categories && !is_wp_error($categories)) {
         text-transform: uppercase;
         cursor: pointer;
         clip-path: polygon(4% 0, 100% 0, 96% 100%, 0 100%);
-        transition: all 0.3s;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
     }
 
     .rwx-widget--dispatch input[type="submit"]:hover,
     .rwx-widget--dispatch .wpcf7-submit:hover {
-        background: white;
-        color: var(--brand, #ff0000);
-        box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
+        background: #111111 !important;
+        color: white !important;
+        border: 1px solid var(--brand, #ff0000) !important;
+        box-shadow: 0 0 25px rgba(255, 0, 0, 0.6);
     }
 
     .rwx-widget--dispatch .rwx-widget__call-btn {
@@ -551,6 +583,14 @@ if ($categories && !is_wp_error($categories)) {
         margin-top: 15px;
         text-decoration: none;
         transition: 0.3s;
+    }
+
+    .rwx-widget--dispatch .rwx-widget__call-btn i,
+    .rwx-widget--dispatch .rwx-widget__call-btn svg {
+        width: 14px;
+        height: 14px;
+        display: inline-block;
+        color: currentColor;
     }
 
     .rwx-widget--dispatch .rwx-widget__call-btn:hover {
@@ -580,17 +620,34 @@ if ($categories && !is_wp_error($categories)) {
         display: flex;
         align-items: center;
         gap: 20px;
-        background: rgba(255,255,255,0.02);
+        background: rgba(10, 10, 10, 0.6);
+        backdrop-filter: blur(8px);
         padding: 20px;
-        border-left: 2px solid rgba(255, 0, 0, 0.3);
+        border-left: 3px solid rgba(255, 0, 0, 0.4);
         border-radius: 0 8px 8px 0;
-        border-top: 1px solid rgba(255,255,255,0.02);
-        border-right: 1px solid rgba(255,255,255,0.02);
-        border-bottom: 1px solid rgba(255,255,255,0.02);
+        border-top: 1px solid rgba(255,255,255,0.04);
+        border-right: 1px solid rgba(255,255,255,0.04);
+        border-bottom: 1px solid rgba(255,255,255,0.04);
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     }
 
-    .rwx-cert-badge i {
+    .rwx-cert-badge:hover {
+        background: rgba(25, 10, 10, 0.5);
+        border-left-color: var(--brand, #ff0000);
+        border-top-color: rgba(255, 0, 0, 0.15);
+        border-right-color: rgba(255, 0, 0, 0.15);
+        border-bottom-color: rgba(255, 0, 0, 0.15);
+        box-shadow: 0 15px 35px rgba(255, 0, 0, 0.05);
+        transform: translateX(4px);
+    }
+
+    .rwx-cert-badge i, .rwx-cert-badge svg {
         color: var(--brand, #ff0000);
+        width: 32px;
+        height: 32px;
+        display: inline-block;
+        flex-shrink: 0;
     }
 
     .rwx-cert-badge div span {
@@ -605,7 +662,7 @@ if ($categories && !is_wp_error($categories)) {
     .rwx-cert-badge div p {
         margin: 3px 0 0 0;
         font-size: 0.75rem;
-        color: #666;
+        color: #999; /* Brightened from #666 to #999 for contrast */
         text-transform: uppercase;
         font-family: var(--font-mono, 'Space Mono', monospace);
     }
@@ -712,6 +769,14 @@ if ($categories && !is_wp_error($categories)) {
         border-radius: 8px;
         position: relative;
         overflow: hidden;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .rwx-trust-card:hover {
+        border-color: rgba(255, 0, 0, 0.25);
+        background: rgba(25, 15, 15, 0.6);
+        transform: translateY(-3px);
+        box-shadow: 0 15px 35px rgba(255, 0, 0, 0.05);
     }
 
     .rwx-trust-card::after {
@@ -725,13 +790,27 @@ if ($categories && !is_wp_error($categories)) {
     .rwx-trust-card__icon {
         color: var(--brand, #ff0000);
         flex-shrink: 0;
-        background: rgba(255,0,0,0.08);
+        background: rgba(255,0,0,0.05);
         width: 60px; height: 60px;
         border-radius: 6px;
         display: flex;
         align-items: center;
         justify-content: center;
         border: 1px solid rgba(255,0,0,0.15);
+        transition: all 0.3s ease;
+    }
+
+    .rwx-trust-card:hover .rwx-trust-card__icon {
+        background: rgba(255, 0, 0, 0.15);
+        border-color: var(--brand, #ff0000);
+        box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+    }
+
+    .rwx-trust-card__icon i, .rwx-trust-card__icon svg {
+        width: 24px;
+        height: 24px;
+        color: var(--brand, #ff0000) !important;
+        display: inline-block;
     }
 
     .rwx-trust-card__body h3 {
@@ -744,7 +823,7 @@ if ($categories && !is_wp_error($categories)) {
     }
 
     .rwx-trust-card__body p {
-        color: #888;
+        color: #999;
         font-size: 0.95rem;
         line-height: 1.6;
         margin: 0;
@@ -754,12 +833,18 @@ if ($categories && !is_wp_error($categories)) {
         font-family: var(--font-mono, 'Space Mono', monospace);
         font-size: 2.2rem;
         font-weight: 700;
-        color: rgba(255,255,255,0.05);
+        color: rgba(255,255,255,0.03);
         position: absolute;
         right: 25px;
         bottom: 15px;
         pointer-events: none;
         line-height: 1;
+        transition: all 0.3s ease;
+    }
+
+    .rwx-trust-card:hover .rwx-trust-card__num {
+        color: rgba(255, 0, 0, 0.08);
+        transform: scale(1.1) translateY(-5px);
     }
 
     /* --- RELATED SERVICES --- */
@@ -806,21 +891,24 @@ if ($categories && !is_wp_error($categories)) {
 
     /* service card */
     .rwx-card {
-        background: #0a0a0a;
-        border: 1px solid rgba(255, 255, 255, 0.05);
+        background: rgba(10, 10, 10, 0.65);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.06);
         border-radius: 8px;
         overflow: hidden;
         text-decoration: none;
         display: flex;
         flex-direction: column;
-        transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         position: relative;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     }
 
     .rwx-card:hover {
         border-color: rgba(255, 0, 0, 0.3);
-        transform: translateY(-5px);
-        box-shadow: 0 20px 40px rgba(255, 0, 0, 0.08);
+        transform: translateY(-8px);
+        box-shadow: 0 20px 45px rgba(255, 0, 0, 0.12);
+        background: rgba(18, 10, 10, 0.7);
     }
 
     .rwx-card__thumb {
@@ -1035,7 +1123,13 @@ if ($categories && !is_wp_error($categories)) {
     <section class="rwx-hero" aria-label="Service details" itemscope itemtype="https://schema.org/Service">
         <meta itemprop="name" content="<?php the_title_attribute(); ?>">
         <meta itemprop="areaServed" content="Tampa Bay, FL">
-        <div class="rwx-hero__canvas" style="background-image: url('<?php echo esc_url(get_the_post_thumbnail_url($post_id, 'full')); ?>');"></div>
+        <?php 
+        $hero_bg_url = get_the_post_thumbnail_url($post_id, 'full');
+        if (empty($hero_bg_url)) {
+            $hero_bg_url = 'https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?q=80&w=1200'; // Sleek dark recovery texture fallback
+        }
+        ?>
+        <div class="rwx-hero__canvas" style="background-image: url('<?php echo esc_url($hero_bg_url); ?>');"></div>
         <div class="rwx-hero__overlay"></div>
         <div class="rwx-hero__scanline"></div>
 
@@ -1058,17 +1152,17 @@ if ($categories && !is_wp_error($categories)) {
                     </span>
                 </nav>
 
-                <span class="rwx-eyebrow-label">RESTOWRX PROTOCOL</span>
+                <span class="rwx-eyebrow-label">RESTOWRX SERVICE STANDARDS</span>
 
                 <h1 class="rwx-hero__title">
                     <b><?php the_title(); ?></b>
-                    <span>TACTICAL RESPONSE</span>
+                    <span>EMERGENCY RESTORATION</span>
                 </h1>
 
                 <?php if (has_excerpt()): ?>
                     <p class="rwx-hero__desc"><?php echo get_the_excerpt(); ?></p>
                 <?php else: ?>
-                    <p class="rwx-hero__desc">Operating at the peak of recovery science. We deliver surgical-grade property restoration for residential and commercial structures under strict emergency response timelines.</p>
+                    <p class="rwx-hero__desc">Operating at the peak of recovery science. We deliver high-grade property restoration for residential and commercial structures under strict emergency response timelines.</p>
                 <?php endif; ?>
 
                 <div class="rwx-hero__actions">
@@ -1099,14 +1193,13 @@ if ($categories && !is_wp_error($categories)) {
     </section>
 
     <!-- ═══════════════════════════════════════════════════════
-         CONTENT + STICKY TACTICAL SIDEBAR
+         CONTENT + STICKY SIDEBAR
          ═══════════════════════════════════════════════════════ -->
-    <main class="single-service-page">
+    <div class="single-service-page">
     <div class="rwx-matrix">
         
-        <!-- LEFT: INTEL (Main content body) -->
+        <!-- LEFT: SERVICE OVERVIEW (Main content body) -->
         <article class="rwx-intel reveal" itemprop="description">
-            <h2>Protocol Briefing</h2>
             <div class="rwx-content-body">
                 <?php the_content(); ?>
             </div>
@@ -1116,7 +1209,7 @@ if ($categories && !is_wp_error($categories)) {
                     <img src="https://images.unsplash.com/photo-1581094288338-2314dddb7eed?q=80&w=800" alt="Extraction Scan" class="rwx-gallery__img">
                 </div>
                 <div class="rwx-gallery__item">
-                    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=800" alt="Forensic Drying" class="rwx-gallery__img">
+                    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=800" alt="Drying Array" class="rwx-gallery__img">
                 </div>
             </div>
         </article>
@@ -1128,30 +1221,33 @@ if ($categories && !is_wp_error($categories)) {
                 <!-- Dispatch Box -->
                 <div class="rwx-widget rwx-widget--dispatch reveal">
                     <div class="rwx-widget__header">
-                        <h3>Tactical Dispatch</h3>
+                        <h3>Emergency Dispatch</h3>
                         <div class="rwx-status-dot"></div>
                     </div>
                     <div class="rwx-widget__radar">
-                        <i data-lucide="radio" size="14"></i> 60-MINUTE COMMAND RADAR
+                        <i data-lucide="radio" size="14"></i> 60-MINUTE EMERGENCY DISPATCH
                     </div>
 
                     <div class="rwx-meta-list">
                         <?php if ($price): ?>
                         <div class="rwx-meta-row">
                             <span>Starting At</span>
+                            <span class="rwx-meta-divider"></span>
                             <span><?php echo esc_html($price); ?></span>
                         </div>
                         <?php endif; ?>
 
                         <?php if ($duration): ?>
                         <div class="rwx-meta-row">
-                            <span>Response Spec</span>
+                            <span>Response Time</span>
+                            <span class="rwx-meta-divider"></span>
                             <span><?php echo esc_html($duration); ?></span>
                         </div>
                         <?php endif; ?>
 
                         <div class="rwx-meta-row">
                             <span>Classification</span>
+                            <span class="rwx-meta-divider"></span>
                             <span><?php echo esc_html($category_name); ?></span>
                         </div>
                     </div>
@@ -1164,7 +1260,7 @@ if ($categories && !is_wp_error($categories)) {
                     <a href="tel:+18136994009" class="rwx-widget__call-btn">
                         <i data-lucide="phone" size="14"></i> DIRECT HOTLINE: 813.699.4009
                     </a>
-                    <p class="rwx-widget__fine-print">Licensed · Insured · 24/7 Command</p>
+                    <p class="rwx-widget__fine-print">Licensed · Insured · 24/7 Dispatch</p>
                 </div>
 
                 <!-- Technical Badges -->
@@ -1180,14 +1276,14 @@ if ($categories && !is_wp_error($categories)) {
                         <i data-lucide="clock" size="36"></i>
                         <div>
                             <span>24/7 RAPID ALERT</span>
-                            <p>Immediate tactical deploy</p>
+                            <p>Immediate emergency response</p>
                         </div>
                     </div>
                     <div class="rwx-cert-badge">
                         <i data-lucide="activity" size="36"></i>
                         <div>
                             <span>DIRECT BILLING</span>
-                            <p>Direct insurance mitigation</p>
+                            <p>Direct insurance coordination</p>
                         </div>
                     </div>
                 </div>
@@ -1202,9 +1298,9 @@ if ($categories && !is_wp_error($categories)) {
     <section class="rwx-trust" aria-label="Why choose Restowrx Elite">
         <div class="rwx-trust__inner">
             <div class="rwx-trust__left reveal">
-                <span class="section__label">Operational Integrity</span>
+                <span class="section__label">Why Florida Trusts Us</span>
                 <h2>Why Florida Trusts<br><em>Restowrx Elite</em></h2>
-                <p>We operate at the intersection of structural forensic restoration and advanced mitigation technology. Our teams deliver calculated, high-speed recovery actions to return your commercial or residential property to operational status with zero compromises.</p>
+                <p>We operate at the intersection of high-grade restoration standards and advanced mitigation technology. Our teams deliver highly responsive restoration services to return your commercial or residential property to operational status with zero compromises.</p>
                 
                 <div class="rwx-trust__stat">
                     <span class="rwx-trust__stat-stars">★★★★★</span>
@@ -1223,8 +1319,8 @@ if ($categories && !is_wp_error($categories)) {
                         <i data-lucide="shield-check" size="28"></i>
                     </div>
                     <div class="rwx-trust-card__body">
-                        <h3>Surgical Mitigation</h3>
-                        <p>We run state-of-the-art thermal imaging and high-volume moisture sensing arrays to extract water and capture hidden water lines before mold colonizes.</p>
+                        <h3>Advanced Mitigation</h3>
+                        <p>We run state-of-the-art thermal imaging and high-volume moisture sensing arrays to extract water and detect hidden moisture before mold colonizes.</p>
                     </div>
                 </div>
 
@@ -1247,8 +1343,8 @@ if ($categories && !is_wp_error($categories)) {
                         <i data-lucide="zap" size="28"></i>
                     </div>
                     <div class="rwx-trust-card__body">
-                        <h3>60-Min Deploy Radius</h3>
-                        <p>Our rapid-response tactical units are fully equipped and active 24/7/365. We deploy immediately within the entire Tampa Bay metro area.</p>
+                        <h3>60-Minute Response Area</h3>
+                        <p>Our rapid-response mitigation teams are fully equipped and active 24/7/365. We deploy immediately within the entire Tampa Bay metro area.</p>
                     </div>
                 </div>
             </div>
@@ -1295,7 +1391,7 @@ if ($categories && !is_wp_error($categories)) {
     <section class="rwx-related" aria-label="Related services">
         <div class="rwx-related__inner">
             <div class="rwx-related__header reveal">
-                <span class="section__label">Operational Matrix</span>
+                <span class="section__label">Restowrx Services</span>
                 <h2>Complementary Services</h2>
             </div>
             <div class="rwx-related__grid reveal">
@@ -1315,7 +1411,7 @@ if ($categories && !is_wp_error($categories)) {
                     <div class="rwx-card__body">
                         <h3><?php the_title(); ?></h3>
                         <p><?php echo wp_trim_words(get_the_excerpt(), 15); ?></p>
-                        <span class="rwx-card__link">Activate Protocol <i data-lucide="arrow-right" size="14"></i></span>
+                        <span class="rwx-card__link">View Details <i data-lucide="arrow-right" size="14"></i></span>
                     </div>
                 </a>
                 <?php endwhile; wp_reset_postdata(); ?>
@@ -1330,29 +1426,23 @@ if ($categories && !is_wp_error($categories)) {
     <section class="rwx-cta-block" aria-label="Book this service">
         <div class="rwx-cta-block__pulse" aria-hidden="true"></div>
         <div class="rwx-cta-block__inner reveal">
-            <span class="rwx-cta-block__eyebrow">CRITICAL INCIDENT ALERT</span>
+            <span class="rwx-cta-block__eyebrow">24/7 EMERGENCY RESPONSE</span>
             <h2 class="rwx-cta-block__title">Need Immediate <em><?php the_title(); ?></em>?</h2>
-            <p class="rwx-cta-block__desc">Contact the dispatch center immediately. Our rapid response teams deploy within 60 minutes or less with full thermal drying and high-volume stabilization gear.</p>
+            <p class="rwx-cta-block__desc">Contact our emergency dispatch center immediately. Our rapid response teams deploy within 60 minutes or less with full thermal drying and advanced stabilization equipment.</p>
             <div class="rwx-cta-block__actions">
                 <a href="tel:+18136994009" class="rwx-btn rwx-btn--red">
                     <i data-lucide="phone-call" size="20"></i> CALL DISPATCH: 813.699.4009
                 </a>
                 <a href="/contact/" class="rwx-btn rwx-btn--outline">
-                    <i data-lucide="mail" size="20"></i> Request Online Dispatch
+                    <i data-lucide="mail" size="20"></i> Request Online Estimate
                 </a>
             </div>
         </div>
     </section>
-    </main>
+    </div>
 
 </main>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        if (typeof lucide !== 'undefined') {
-            lucide.createIcons();
-        }
-    });
-</script>
+
 
 <?php get_footer(); ?>

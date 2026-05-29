@@ -1,58 +1,73 @@
 <?php
 /**
- * Spicola Construction — Projects Archive
- * Dynamically queries the portfolio post type and displays them in a premium grid.
+ * Restowrx Elite — Case Files & Deployments Archive
+ * Dynamically queries the portfolio post type and displays them in a premium dark tactical grid.
  */
 get_header();
 ?>
 
 <style>
-/* Projects Archive Specific Styling */
+/* Case Files Archive Specific Styling - Tactical Dark Mode */
 .sc-projects-archive {
     padding: clamp(4rem, 6vw, 7rem) 0;
-    background: #F8F8F6; /* Clean background to make project cards pop */
+    background: #050505; /* Deep tactical black background */
     position: relative;
+    border-top: 1px solid rgba(255, 0, 0, 0.15);
+}
+
+.sc-projects-archive::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: 
+        linear-gradient(to right, rgba(255,255,255,0.01) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.01) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
 }
 
 .sc-projects-inner {
     max-width: 1280px;
     margin: 0 auto;
     padding: 0 clamp(1.25rem, 1rem + 2vw, 3rem);
+    position: relative;
+    z-index: 10;
 }
 
 /* Grid Layout */
 .sc-projects-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+    gap: 2.5rem;
     margin-top: 1rem;
 }
 
 .sc-projects-card {
     text-decoration: none;
-    border-radius: 16px;
+    border-radius: 4px;
     overflow: hidden;
-    background: #fff;
-    border: 1px solid rgba(34, 45, 63, 0.08);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    background: #0a0a0a;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
     transition: transform .5s cubic-bezier(.22, 1, .36, 1), box-shadow .5s ease, border-color .3s;
     display: flex;
     flex-direction: column;
     transform-style: preserve-3d;
     perspective: 1000px;
+    box-sizing: border-box;
 }
 
 .sc-projects-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
-    border-color: rgba(242, 47, 58, 0.2);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
+    border-color: var(--brand, #ff0000);
 }
 
 .sc-projects-card-img {
     position: relative;
     aspect-ratio: 16 / 10;
     overflow: hidden;
-    background: #222D3F;
+    background: #000;
     transform-style: preserve-3d;
 }
 
@@ -61,16 +76,18 @@ get_header();
     height: 100%;
     object-fit: cover;
     transition: transform .6s cubic-bezier(.22, 1, .36, 1);
+    filter: grayscale(0.2) brightness(0.9);
 }
 
 .sc-projects-card:hover .sc-projects-card-img img {
     transform: scale(1.08);
+    filter: grayscale(0) brightness(1);
 }
 
 .sc-projects-card-placeholder {
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #1a2d45 0%, #0A1628 100%);
+    background: linear-gradient(135deg, #120303 0%, #000000 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -79,14 +96,14 @@ get_header();
 .sc-projects-card-placeholder svg {
     width: 48px;
     height: 48px;
-    stroke: rgba(255, 255, 255, 0.15);
+    stroke: rgba(255, 0, 0, 0.3);
 }
 
-/* Card Hover Accent Overlay */
+/* Card Hover Accent Overlay - Restowrx Tactical Red */
 .sc-projects-card-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(10, 22, 40, 0) 30%, rgba(242, 47, 58, 0.9) 100%);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 30%, rgba(255, 0, 0, 0.85) 100%);
     display: flex;
     align-items: flex-end;
     justify-content: center;
@@ -104,24 +121,24 @@ get_header();
 
 .sc-projects-card-cta {
     color: #fff;
-    font-family: 'Montserrat', sans-serif;
-    font-size: .75rem;
-    font-weight: 700;
+    font-family: var(--font-accent, 'Bebas Neue', sans-serif);
+    font-size: 1.25rem;
+    font-weight: 400;
     letter-spacing: .1em;
     text-transform: uppercase;
-    padding: .6rem 1.5rem;
-    border: 2px solid rgba(255, 255, 255, 0.4);
-    border-radius: 8px;
-    background: rgba(10, 22, 40, 0.2);
+    padding: .5rem 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(4px);
     transition: all .3s, transform .5s cubic-bezier(.22, 1, .36, 1);
     transform: translateZ(45px);
 }
 
 .sc-projects-card:hover .sc-projects-card-cta {
-    background: #F22F3A;
-    border-color: #F22F3A;
-    box-shadow: 0 4px 15px rgba(242, 47, 58, 0.4);
+    background: var(--brand, #ff0000);
+    border-color: var(--brand, #ff0000);
+    box-shadow: 0 4px 15px rgba(255, 0, 0, 0.4);
     transform: translateY(-2px) translateZ(45px);
 }
 
@@ -132,39 +149,42 @@ get_header();
     flex-direction: column;
     justify-content: space-between;
     transform-style: preserve-3d;
+    background: #0a0a0a;
 }
 
 .sc-projects-card-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.15rem;
-    font-weight: 800;
-    color: var(--brand-navy, #222D3F);
+    font-family: var(--font-accent, 'Bebas Neue', sans-serif);
+    font-size: 1.8rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: #ffffff;
     margin: 0 0 .5rem;
-    line-height: 1.3;
+    line-height: 1.2;
     transition: color .3s, transform .5s cubic-bezier(.22, 1, .36, 1);
     transform: translateZ(30px);
+    text-transform: uppercase;
 }
 
 .sc-projects-card:hover .sc-projects-card-title {
-    color: var(--brand, #F22F3A);
+    color: var(--brand, #ff0000);
 }
 
 .sc-projects-card-desc {
     font-size: .88rem;
-    color: rgba(34, 45, 63, 0.65);
+    color: #888888;
     line-height: 1.6;
-    margin: 0 0 1rem;
+    margin: 0 0 1.25rem;
     transition: transform .5s cubic-bezier(.22, 1, .36, 1);
     transform: translateZ(20px);
 }
 
 .sc-projects-card-link {
-    font-family: 'Montserrat', sans-serif;
-    font-size: .8rem;
-    font-weight: 700;
+    font-family: var(--font-accent, 'Bebas Neue', sans-serif);
+    font-size: 1.2rem;
+    font-weight: 400;
     text-transform: uppercase;
-    letter-spacing: .05em;
-    color: var(--brand-navy, #222D3F);
+    letter-spacing: .08em;
+    color: #ffffff;
     display: inline-flex;
     align-items: center;
     gap: .4rem;
@@ -175,14 +195,193 @@ get_header();
 
 .sc-projects-card-link svg {
     transition: transform .3s;
+    width: 14px;
+    height: 14px;
 }
 
 .sc-projects-card:hover .sc-projects-card-link {
-    color: var(--brand, #F22F3A);
+    color: var(--brand, #ff0000);
 }
 
 .sc-projects-card:hover .sc-projects-card-link svg {
     transform: translateX(4px);
+}
+
+/* Page Hero Overrides for Restowrx Aesthetic */
+.hwh-hero--inner {
+    position: relative;
+    padding: clamp(140px, 12vw, 200px) 0 clamp(60px, 6vw, 100px) 0;
+    background-color: #000000;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(255, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hwh-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(18, 3, 3, 0.4) 0%, #050505 100%);
+    z-index: 2;
+}
+
+.hwh-hero__grid {
+    position: absolute;
+    inset: 0;
+    background-image: 
+        linear-gradient(to right, rgba(255,0,0,0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,0,0,0.02) 1px, transparent 1px);
+    background-size: 50px 50px;
+    z-index: 1;
+}
+
+.hwh-label {
+    font-family: var(--font-mono, 'Space Mono', monospace);
+    color: var(--brand, #ff0000);
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.hwh-section-title--white {
+    font-family: var(--font-accent, 'Bebas Neue', sans-serif);
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: white;
+    line-height: 0.95;
+    margin: 0 0 20px 0;
+}
+
+.hwh-section-title--white em {
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.7);
+    font-style: normal;
+}
+
+.hwh-section-desc--muted {
+    color: #aaa;
+    font-size: clamp(0.95rem, 1.2vw, 1.15rem);
+    line-height: 1.7;
+    margin: 0 auto;
+    max-width: 700px;
+}
+
+/* Premium Tactical Buttons */
+.hwh-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.6rem 1.8rem;
+    font-family: var(--font-accent, 'Bebas Neue', sans-serif);
+    font-size: 1.3rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hwh-btn--red {
+    background: linear-gradient(135deg, var(--brand, #ff0000) 0%, #990000 100%);
+    color: white !important;
+    border: 1px solid rgba(255,0,0,0.3);
+    box-shadow: 0 4px 15px rgba(255, 0, 0, 0.2);
+}
+
+.hwh-btn--red:hover {
+    background: #111111 !important;
+    border-color: #111111;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+.hwh-btn--ghost {
+    background: transparent;
+    color: white !important;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.hwh-btn--ghost:hover {
+    border-color: var(--brand, #ff0000);
+    color: var(--brand, #ff0000) !important;
+    background: rgba(255, 0, 0, 0.05);
+    transform: translateY(-2px);
+}
+
+/* Bottom CTA block */
+.hwh-cta {
+    background: radial-gradient(circle at 50% 50%, #200202 0%, #000000 100%);
+    padding: clamp(60px, 8vw, 100px) 0;
+    border-top: 1px solid rgba(255, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.hwh-cta__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 5vw, 40px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    position: relative;
+    z-index: 10;
+}
+
+.hwh-cta__title {
+    font-family: var(--font-accent, 'Bebas Neue', sans-serif);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: white;
+    line-height: 0.95;
+    margin: 0 0 15px 0;
+}
+
+.hwh-cta__text {
+    color: #888;
+    max-width: 600px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.hwh-cta__actions {
+    display: flex;
+    gap: 15px;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+}
+
+.hwh-btn--white {
+    background: #ffffff;
+    color: #000000 !important;
+    font-weight: 500;
+}
+
+.hwh-btn--white:hover {
+    background: var(--brand, #ff0000);
+    color: #ffffff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255,0,0,0.3);
+}
+
+.hwh-btn--ghost-white {
+    background: transparent;
+    color: white !important;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.hwh-btn--ghost-white:hover {
+    border-color: var(--brand, #ff0000);
+    color: var(--brand, #ff0000) !important;
+    background: rgba(255, 0, 0, 0.05);
+    transform: translateY(-2px);
 }
 
 /* Responsive Rules */
@@ -190,6 +389,10 @@ get_header();
     .sc-projects-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 1.5rem;
+    }
+    .hwh-cta__inner {
+        flex-direction: column;
+        text-align: center;
     }
 }
 
@@ -207,20 +410,25 @@ get_header();
 <main class="site-main" id="main-content">
 
     <!-- ── Page Hero ── -->
-    <section class="hwh-hero hwh-hero--inner" aria-label="Our construction projects">
+    <section class="hwh-hero hwh-hero--inner" aria-label="Our recovery deployments">
         <div class="hwh-hero__overlay" aria-hidden="true"></div>
         <div class="hwh-hero__grid" aria-hidden="true"></div>
         <div class="hwh-section-inner" style="position:relative;z-index:2;text-align:center;padding-top:2rem;padding-bottom:2rem;">
-            <span class="hwh-label hwh-label--white">Our Work</span>
-            <h1 class="hwh-section-title hwh-section-title--white" style="margin-bottom:1rem;">
-                Completed Construction Projects<br><em>Crafted with Excellence</em>
+            <span class="hwh-label">Completed Projects</span>
+            <h1 class="hwh-section-title--white" style="margin-bottom:1rem;">
+                Property Recovery Projects<br><em>Completed Restoration Profiles</em>
             </h1>
-            <p class="hwh-section-desc hwh-section-desc--muted">
-                Explore our gallery of residential and commercial work across Tampa Bay. From custom builds to renovations, we let our work speak for itself.
+            <p class="hwh-section-desc--muted">
+                Explore our completed damage mitigation profiles across Tampa Bay. High-grade restoration standards. Zero compromise.
             </p>
-            <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:2rem;">
-                <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="hwh-btn hwh-btn--red hwh-btn--lg">Start Your Project</a>
-                <a href="tel:+18137326285" class="hwh-btn hwh-btn--ghost hwh-btn--lg">Call (813) 732-6285</a>
+            <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:2.5rem;">
+                <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="hwh-btn hwh-btn--red">Request Service</a>
+                <a href="tel:+18136994009" class="hwh-btn hwh-btn--ghost">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" style="margin-right:5px; vertical-align:-3px;">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L7.91 9.27a16 16 0 0 0 6.29 6.29l1.45-1.45a2 2 0 0 1 2.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z" />
+                    </svg>
+                    Call 813.699.4009
+                </a>
             </div>
         </div>
     </section>
@@ -252,7 +460,7 @@ get_header();
                         } elseif ($content) {
                             $desc = wp_trim_words(strip_shortcodes(wp_strip_all_tags($content)), 15);
                         } else {
-                            $desc = 'Explore the full image gallery and before & after highlights for this project.';
+                            $desc = 'Explore the full image gallery and damage mitigation highlights for this restoration project.';
                         }
                     ?>
                         <a href="<?php the_permalink(); ?>" class="sc-projects-card reveal">
@@ -271,7 +479,7 @@ get_header();
                                     </div>
                                 <?php endif; ?>
                                 <div class="sc-projects-card-overlay" aria-hidden="true">
-                                    <span class="sc-projects-card-cta">View Gallery →</span>
+                                    <span class="sc-projects-card-cta">View Project →</span>
                                 </div>
                             </div>
 
@@ -281,7 +489,7 @@ get_header();
                                     <p class="sc-projects-card-desc"><?php echo esc_html($desc); ?></p>
                                 </div>
                                 <span class="sc-projects-card-link">
-                                    View Gallery 
+                                    View Project 
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
                                         <path d="M5 12h14M12 5l7 7-7 7"/>
                                     </svg>
@@ -292,8 +500,8 @@ get_header();
                 </div>
 
             <?php else: ?>
-                <p style="text-align:center;padding:5rem 0;font-size:1.15rem;color:rgba(34, 45, 63, 0.6);">
-                    No projects found. <a href="<?php echo esc_url(home_url('/contact/')); ?>" style="color:var(--brand,#F22F3A);font-weight:700;">Contact us</a> to start yours!
+                <p style="text-align:center;padding:5rem 0;font-size:1.15rem;color:#888888;font-family:var(--font-mono, 'Space Mono', monospace);">
+                    NO ARCHIVES FOUND. <a href="<?php echo esc_url(home_url('/contact/')); ?>" style="color:var(--brand,#ff0000);font-weight:700;">CONTACT DISPATCH</a> TO REQUEST SERVICE!
                 </p>
             <?php endif; ?>
 
@@ -301,25 +509,25 @@ get_header();
     </section>
 
     <!-- ── Bottom CTA ── -->
-    <section class="hwh-cta" aria-label="Start your project call to action">
+    <section class="hwh-cta" aria-label="Mitigation request call to action">
         <div class="hwh-cta__inner">
             <div>
-                <h2 class="hwh-cta__title">Ready to Build<br>
-                    <span style="opacity:.85;font-size:.85em;">Your Dream Space?</span>
+                <h2 class="hwh-cta__title">Catastrophic Loss?<br>
+                    <span style="opacity:.85;font-size:.85em;color:var(--brand, #ff0000);">Request Emergency Response</span>
                 </h2>
                 <p class="hwh-cta__text">
-                    From new builds to custom renovations, our team is ready to bring your vision to life. Get a free, upfront estimate with transparent pricing.
+                    Do not let structural damage dictate the terms. Our team stands ready to coordinate insurance claims and deploy local recovery assets immediately.
                 </p>
             </div>
             <div class="hwh-cta__actions">
-                <a href="tel:+18137326285" class="hwh-btn hwh-btn--white hwh-btn--lg">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                <a href="tel:+18136994009" class="hwh-btn hwh-btn--white">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" style="margin-right:5px; vertical-align:-3px;">
                         <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L7.91 9.27a16 16 0 0 0 6.29 6.29l1.45-1.45a2 2 0 0 1 2.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z" />
                     </svg>
-                    Call (813) 732-6285
+                    Dispatch: 813.699.4009
                 </a>
-                <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="hwh-btn hwh-btn--ghost-white hwh-btn--lg">
-                    Get a Free Quote
+                <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="hwh-btn hwh-btn--ghost-white">
+                    Get Free Scan
                 </a>
             </div>
         </div>
@@ -329,7 +537,7 @@ get_header();
 
 <script>
 (function() {
-    // 3D Mouse Tilt Interactive Parallax Effect for Project Cards
+    // 3D Mouse Tilt Interactive Parallax Effect for Case File Cards
     var cards = document.querySelectorAll('.sc-projects-card');
     
     // Check if the user is on a device supporting hover interactions
@@ -349,8 +557,8 @@ get_header();
                 
                 card.style.transition = 'transform 0.08s ease, box-shadow 0.3s ease, border-color 0.3s ease';
                 card.style.transform = 'perspective(1000px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) translateY(-8px) scale3d(1.02, 1.02, 1.02)';
-                card.style.boxShadow = '0 20px 45px rgba(10, 22, 40, 0.18)';
-                card.style.borderColor = 'rgba(242, 47, 58, 0.35)';
+                card.style.boxShadow = '0 25px 50px rgba(0, 0, 0, 0.7)';
+                card.style.borderColor = 'rgba(255, 0, 0, 0.35)';
             });
             
             card.addEventListener('mouseleave', function() {

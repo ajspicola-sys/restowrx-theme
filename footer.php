@@ -257,6 +257,13 @@
         align-items: center;
     }
 
+    .contact-icon i, .contact-icon svg {
+        width: 20px;
+        height: 20px;
+        color: #ff0000 !important;
+        display: inline-block;
+    }
+
     .contact-text span {
         display: block;
         font-size: 0.65rem;
@@ -295,6 +302,18 @@
         border: 1px solid rgba(255, 255, 255, 0.05);
     }
 
+    .social-btn i, .social-btn svg {
+        width: 18px;
+        height: 18px;
+        color: #ffffff !important;
+        display: inline-block;
+        transition: transform 0.3s;
+    }
+
+    .social-btn:hover i, .social-btn:hover svg {
+        transform: scale(1.15);
+    }
+
     .social-btn:hover {
         background: #ff0000;
         transform: translateY(-3px);
@@ -317,7 +336,7 @@
     .cert-list {
         display: flex;
         gap: 25px;
-        color: #444;
+        color: #bbbbbb; /* Brightened from #444 to #bbbbbb for beautiful contrast on solid black background */
         font-family: 'Bebas Neue', sans-serif;
         font-size: 1.1rem;
         letter-spacing: 2px;
@@ -329,8 +348,15 @@
         gap: 8px;
     }
 
+    .cert-item i, .cert-item svg {
+        width: 16px;
+        height: 16px;
+        color: #ff0000 !important; /* Brand red accent for cert icons */
+        display: inline-block;
+    }
+
     .copyright {
-        color: #444;
+        color: #777777; /* Brightened from #444 to #777777 for readability on black background */
         font-size: 0.75rem;
         letter-spacing: 1px;
     }
@@ -659,7 +685,16 @@
 <?php wp_footer(); ?>
 
 <script>
-    lucide.createIcons();
+    (function() {
+        function initLucide() {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            } else {
+                setTimeout(initLucide, 100);
+            }
+        }
+        initLucide();
+    })();
 </script>
 
 </body>
