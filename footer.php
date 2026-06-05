@@ -579,7 +579,7 @@
         <!-- BRANDING -->
         <div class="footer-col footer-about">
             <div class="footer-logo">
-                <img src="https://restowrx.com/wp-content/uploads/2025/04/restowrx-logo-white-scaled.png" alt="Restowrx Elite Logo" width="180" height="36" loading="lazy">
+                <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/restowrx-logo-white-scaled.png' ); ?>" alt="Restowrx Elite Logo" width="180" height="36" loading="lazy">
             </div>
             <p>TAMPA BAY'S COMMAND CENTER FOR PROPERTY RECOVERY. SURGICAL PRECISION. ELITE RESPONSE. 24/7 ACTIVE RADAR.</p>
             <div class="social-stack">
