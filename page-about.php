@@ -119,8 +119,6 @@ get_header(); ?>
         color: white;
     }
     .about-hero__title em {
-        color: transparent;
-        -webkit-text-stroke: 1px rgba(255, 255, 255, 0.7);
         font-style: normal;
     }
     .about-hero__desc {
