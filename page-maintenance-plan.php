@@ -339,67 +339,8 @@ get_header(); ?>
     }
     </style>
 
-    <!-- CTA -->
-    <section class="cta-section" aria-label="Join Maintenance Plan">
-        <div class="cta-section__inner reveal">
-            <span class="cta-section__label">Protect Your Structure</span>
-            <h2 class="cta-section__title">Ready to Secure<br>Your Property Shield?</h2>
-            <p class="cta-section__text" style="color:#aaa;">Prevent permanent structural decay, bypass emergency dispatch queues, and save on every restoration or rebuild project. Call us to secure your shield today.</p>
-            <div class="cta-section__actions">
-                <a href="/contact/" class="btn btn--primary btn--lg" style="font-family:var(--font-accent); font-size:1.3rem; letter-spacing:1px; padding:10px 30px;">Request Dispatch</a>
-                <a href="tel:+18136994009" class="btn btn--outline btn--lg" style="font-family:var(--font-accent); font-size:1.3rem; letter-spacing:1px; padding:10px 30px; border-color:rgba(255,255,255,0.2);">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" style="margin-right:8px; vertical-align:-3px;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L7.91 9.27a16 16 0 0 0 6.29 6.29l1.45-1.45a2 2 0 0 1 2.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z"/></svg>
-                    Call 813.699.4009
-                </a>
-            </div>
-        </div>
-    </section>
 
-    <style>
-    .cta-section {
-        position: relative;
-        background: radial-gradient(circle at 50% 50%, #200202 0%, #000 100%);
-        padding: clamp(60px, 10vw, 120px) 0;
-        text-align: center;
-        border-top: 1px solid rgba(255,0,0,0.2);
-    }
-    .cta-section__inner {
-        max-width: 900px;
-        margin: 0 auto;
-        padding: 0 clamp(20px, 5vw, 40px);
-        position: relative;
-        z-index: 10;
-    }
-    .cta-section__label {
-        font-family: var(--font-mono, 'Space Mono', monospace);
-        color: var(--brand, #ff0000);
-        font-size: 0.8rem;
-        letter-spacing: 4px;
-        text-transform: uppercase;
-        display: block;
-        margin-bottom: 15px;
-        font-weight: 700;
-    }
-    .cta-section__title {
-        font-family: var(--font-accent, 'Bebas Neue', sans-serif);
-        font-size: clamp(2.5rem, 5vw, 4.5rem);
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        color: white;
-        line-height: 0.95;
-        margin: 0 0 15px 0;
-    }
-    .cta-section__text {
-        margin-bottom: 30px;
-        line-height: 1.6;
-    }
-    .cta-section__actions {
-        display: flex;
-        justify-content: center;
-        gap: 15px;
-        flex-wrap: wrap;
-    }
-    </style>
+
 
 </main>
 

@@ -94,17 +94,8 @@ get_header(); ?>
         </div>
     </section>
 
-    <!-- Service CTA -->
-    <section class="cta-section" aria-label="Book with us">
-        <div class="cta-section__inner reveal">
-            <span class="cta-section__label">Expert Telemetry & Guidance</span>
-            <h2 class="cta-section__title">Need Help<br>Choosing?</h2>
-            <p class="cta-section__text">Our specialists can recommend the right drying, extraction, or containment solutions for your property recovery needs. Call us anytime.</p>
-            <div class="cta-section__actions">
-                <a href="/contact/" class="btn btn--primary btn--lg">Request Service</a>
-            </div>
-        </div>
-    </section>
+
+
 
 </main>
 

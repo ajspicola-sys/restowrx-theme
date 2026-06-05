@@ -155,18 +155,8 @@ get_header(); ?>
         </div>
     </section>
 
-    <!-- CTA -->
-    <section class="cta-section" aria-label="Get in touch">
-        <div class="cta-section__inner reveal">
-            <span class="cta-section__label">We're Here for You</span>
-            <h2 class="cta-section__title">Have Questions?<br>We Have Answers</h2>
-            <p class="cta-section__text">Our command center is ready to help with any property recovery question. Don't hesitate to reach out.</p>
-            <div class="cta-section__actions">
-                <a href="tel:+18136994009" class="btn btn--primary btn--lg">Call 813.699.4009</a>
-                <a href="mailto:joe@restowrx.com" class="btn btn--outline btn--lg">Email Us</a>
-            </div>
-        </div>
-    </section>
+
+
 
 </main>
 

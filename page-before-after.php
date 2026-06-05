@@ -363,63 +363,8 @@ get_header(); ?>
     });
     </script>
 
-    <!-- CTA -->
-    <section class="cta-section" aria-label="Request service">
-        <div class="cta-section__inner reveal">
-            <span class="cta-section__label">24/7 Rapid Response</span>
-            <h2 class="cta-section__title">Property Loss?<br>Request Emergency Response</h2>
-            <p class="cta-section__text" style="color:#aaa;">Coordinate insurance claims. We'll dispatch a specialized mitigation response team to your property immediately.</p>
-            <div class="cta-section__actions">
-                <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary btn--lg" style="font-family:var(--font-accent); font-size:1.3rem; letter-spacing:1px; padding:10px 30px;">Request Service</a>
-            </div>
-        </div>
-    </section>
 
-    <style>
-    .cta-section {
-        position: relative;
-        background: radial-gradient(circle at 50% 50%, #200202 0%, #000 100%);
-        padding: clamp(60px, 10vw, 120px) 0;
-        text-align: center;
-        border-top: 1px solid rgba(255,0,0,0.2);
-    }
-    .cta-section__inner {
-        max-width: 900px;
-        margin: 0 auto;
-        padding: 0 clamp(20px, 5vw, 40px);
-        position: relative;
-        z-index: 10;
-    }
-    .cta-section__label {
-        font-family: var(--font-mono, 'Space Mono', monospace);
-        color: var(--brand, #ff0000);
-        font-size: 0.8rem;
-        letter-spacing: 4px;
-        text-transform: uppercase;
-        display: block;
-        margin-bottom: 15px;
-        font-weight: 700;
-    }
-    .cta-section__title {
-        font-family: var(--font-accent, 'Bebas Neue', sans-serif);
-        font-size: clamp(2.5rem, 5vw, 4.5rem);
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        color: white;
-        line-height: 0.95;
-        margin: 0 0 15px 0;
-    }
-    .cta-section__text {
-        margin-bottom: 30px;
-        line-height: 1.6;
-    }
-    .cta-section__actions {
-        display: flex;
-        justify-content: center;
-        gap: 15px;
-        flex-wrap: wrap;
-    }
-    </style>
+
 
 </main>
 

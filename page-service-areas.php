@@ -116,18 +116,8 @@ get_header(); ?>
         </div>
     </section>
 
-    <!-- CTA -->
-    <section class="cta-section">
-        <div class="cta-section__inner reveal">
-            <span class="cta-section__label">Property Damage Emergency?</span>
-            <h2 class="cta-section__title">We're in<br>Your Neighborhood.</h2>
-            <p class="cta-section__text">Fast, local, and always available. Call now or request dispatch online.</p>
-            <div class="cta-section__actions">
-                <a href="/contact/" class="btn btn--primary btn--lg">Request Service</a>
-                <a href="tel:+18136994009" class="btn btn--outline btn--lg">Call 813.699.4009</a>
-            </div>
-        </div>
-    </section>
+
+
 
 </main>
 

@@ -313,86 +313,11 @@ get_header();
     transform: translateY(-2px);
 }
 
-/* Bottom CTA block */
-.hwh-cta {
-    background: radial-gradient(circle at 50% 50%, #200202 0%, #000000 100%);
-    padding: clamp(60px, 8vw, 100px) 0;
-    border-top: 1px solid rgba(255, 0, 0, 0.2);
-    position: relative;
-    overflow: hidden;
-}
-
-.hwh-cta__inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 clamp(20px, 5vw, 40px);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 40px;
-    position: relative;
-    z-index: 10;
-}
-
-.hwh-cta__title {
-    font-family: var(--font-accent, 'Bebas Neue', sans-serif);
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: white;
-    line-height: 0.95;
-    margin: 0 0 15px 0;
-}
-
-.hwh-cta__text {
-    color: #888;
-    max-width: 600px;
-    line-height: 1.6;
-    margin: 0;
-}
-
-.hwh-cta__actions {
-    display: flex;
-    gap: 15px;
-    flex-shrink: 0;
-    flex-wrap: wrap;
-}
-
-.hwh-btn--white {
-    background: #ffffff;
-    color: #000000 !important;
-    font-weight: 500;
-}
-
-.hwh-btn--white:hover {
-    background: var(--brand, #ff0000);
-    color: #ffffff !important;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(255,0,0,0.3);
-}
-
-.hwh-btn--ghost-white {
-    background: transparent;
-    color: white !important;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-.hwh-btn--ghost-white:hover {
-    border-color: var(--brand, #ff0000);
-    color: var(--brand, #ff0000) !important;
-    background: rgba(255, 0, 0, 0.05);
-    transform: translateY(-2px);
-}
-
 /* Responsive Rules */
 @media(max-width: 992px) {
     .sc-projects-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 1.5rem;
-    }
-    .hwh-cta__inner {
-        flex-direction: column;
-        text-align: center;
     }
 }
 
@@ -508,30 +433,7 @@ get_header();
         </div>
     </section>
 
-    <!-- ── Bottom CTA ── -->
-    <section class="hwh-cta" aria-label="Mitigation request call to action">
-        <div class="hwh-cta__inner">
-            <div>
-                <h2 class="hwh-cta__title">Catastrophic Loss?<br>
-                    <span style="opacity:.85;font-size:.85em;color:var(--brand, #ff0000);">Request Emergency Response</span>
-                </h2>
-                <p class="hwh-cta__text">
-                    Do not let structural damage dictate the terms. Our team stands ready to coordinate insurance claims and deploy local recovery assets immediately.
-                </p>
-            </div>
-            <div class="hwh-cta__actions">
-                <a href="tel:+18136994009" class="hwh-btn hwh-btn--white">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" style="margin-right:5px; vertical-align:-3px;">
-                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L7.91 9.27a16 16 0 0 0 6.29 6.29l1.45-1.45a2 2 0 0 1 2.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z" />
-                    </svg>
-                    Dispatch: 813.699.4009
-                </a>
-                <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="hwh-btn hwh-btn--ghost-white">
-                    Get Free Scan
-                </a>
-            </div>
-        </div>
-    </section>
+
 
 </main>
 
