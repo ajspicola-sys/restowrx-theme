@@ -1,5 +1,5 @@
 # -----------------------------------------------------------------
-#  Hot Water Heroes Theme -- Git Sync Helper
+#  Restowrx Elite Theme -- Git Sync Helper
 #  Usage:
 #    .\sync.ps1          -> PULL latest from GitHub
 #    .\sync.ps1 "msg"    -> COMMIT all changes + PUSH to GitHub
