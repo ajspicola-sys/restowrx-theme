@@ -146,59 +146,7 @@ if ($categories && !is_wp_error($categories)) {
         flex-wrap: wrap;
     }
 
-    .rwx-btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        font-family: var(--font-accent, 'Bebas Neue', sans-serif);
-        font-size: 1.3rem;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        text-decoration: none;
-        padding: 16px 36px;
-        border-radius: 4px;
-        transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
-        cursor: pointer;
-    }
-
-    .rwx-btn i, .rwx-btn svg {
-        width: 18px;
-        height: 18px;
-        display: inline-block;
-        color: currentColor;
-        stroke: currentColor !important;
-        fill: none !important;
-    }
-
-    .rwx-btn--red {
-        background: var(--brand, #ff0000);
-        color: white !important;
-        border: 1px solid var(--brand, #ff0000);
-        box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
-    }
-
-    .rwx-btn--red:hover {
-        background: #111111 !important;
-        color: white !important;
-        border-color: var(--brand, #ff0000);
-        box-shadow: 0 0 30px rgba(255, 0, 0, 0.6);
-        transform: translateY(-2px);
-    }
-
-    .rwx-btn--outline {
-        background: rgba(255, 255, 255, 0.04);
-        color: white !important;
-        border: 1px solid rgba(255, 255, 255, 0.6);
-    }
-
-    .rwx-btn--outline:hover {
-        background: #ffffff !important;
-        color: #000000 !important;
-        border-color: #ffffff !important;
-        transform: translateY(-2px);
-        box-shadow: 0 0 30px rgba(255, 255, 255, 0.25);
-    }
+    
 
     /* Hero Featured Image Column */
     .rwx-hero__img-container {
@@ -993,83 +941,7 @@ if ($categories && !is_wp_error($categories)) {
         gap: 12px;
     }
 
-    /* --- BOTTOM CTA --- */
-    .rwx-cta-block {
-        background: radial-gradient(circle at 50% 50%, #200202 0%, #000000 100%);
-        padding: clamp(80px, 12vw, 150px) 0;
-        text-align: center;
-        border-top: 1px solid rgba(255, 0, 0, 0.2);
-        position: relative;
-        overflow: hidden;
-    }
-
-    .rwx-cta-block__pulse {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 600px;
-        height: 600px;
-        background: radial-gradient(circle, rgba(255, 0, 0, 0.12) 0%, transparent 70%);
-        transform: translate(-50%, -50%);
-        z-index: 1;
-        pointer-events: none;
-        animation: rwx-pulse-radar 4s infinite linear;
-        border-radius: 50%;
-    }
-
-    @keyframes rwx-pulse-radar {
-        0% { transform: translate(-50%, -50%) scale(0.6); opacity: 0; }
-        50% { opacity: 1; }
-        100% { transform: translate(-50%, -50%) scale(1.4); opacity: 0; }
-    }
-
-    .rwx-cta-block__inner {
-        max-width: 900px;
-        margin: 0 auto;
-        padding: 0 40px;
-        position: relative;
-        z-index: 5;
-    }
-
-    .rwx-cta-block__eyebrow {
-        font-family: var(--font-mono, 'Space Mono', monospace);
-        color: var(--brand, #ff0000);
-        font-size: 0.8rem;
-        text-transform: uppercase;
-        letter-spacing: 4px;
-        display: block;
-        margin-bottom: 25px;
-        font-weight: 700;
-    }
-
-    .rwx-cta-block__title {
-        font-family: var(--font-accent, 'Bebas Neue', sans-serif);
-        font-size: clamp(3rem, 6vw, 5.5rem);
-        margin: 0 0 25px 0;
-        line-height: 0.9;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
-
-    .rwx-cta-block__title em {
-        color: transparent;
-        -webkit-text-stroke: 1.5px white;
-        font-style: normal;
-    }
-
-    .rwx-cta-block__desc {
-        color: #aaa;
-        font-size: 1.15rem;
-        line-height: 1.7;
-        margin-bottom: 40px;
-    }
-
-    .rwx-cta-block__actions {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        flex-wrap: wrap;
-    }
+    
 
     /* RESPONSIVE */
     @media (max-width: 1100px) {
@@ -1423,25 +1295,7 @@ if ($categories && !is_wp_error($categories)) {
     </section>
     <?php endif; ?>
 
-    <!-- ═══════════════════════════════════════════════════════
-         CTA BLOCK
-         ═══════════════════════════════════════════════════════ -->
-    <section class="rwx-cta-block" aria-label="Book this service">
-        <div class="rwx-cta-block__pulse" aria-hidden="true"></div>
-        <div class="rwx-cta-block__inner reveal">
-            <span class="rwx-cta-block__eyebrow">24/7 EMERGENCY RESPONSE</span>
-            <h2 class="rwx-cta-block__title">Need Immediate <em><?php the_title(); ?></em>?</h2>
-            <p class="rwx-cta-block__desc">Contact our emergency dispatch center immediately. Our rapid response teams deploy within 60 minutes or less with full thermal drying and advanced stabilization equipment.</p>
-            <div class="rwx-cta-block__actions">
-                <a href="tel:+18136994009" class="rwx-btn rwx-btn--red">
-                    <i data-lucide="phone-call" size="20"></i> CALL DISPATCH: 813.699.4009
-                </a>
-                <a href="/contact/" class="rwx-btn rwx-btn--outline">
-                    <i data-lucide="mail" size="20"></i> Request Online Estimate
-                </a>
-            </div>
-        </div>
-    </section>
+    
     </div>
 
 </main>

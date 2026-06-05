@@ -124,18 +124,7 @@ $current_cat = get_queried_object();
         </div>
     </section>
 
-    <!-- CTA -->
-    <section class="cta-section" aria-label="Request dispatch">
-        <div class="cta-section__inner reveal">
-            <span class="cta-section__label">Catastrophic Loss?</span>
-            <h2 class="cta-section__title">Need Help?<br>Deploy Strike Team.</h2>
-            <p class="cta-section__text">Call us or request a telemetry scan online &mdash; 24/7 strategic emergency dispatch across Tampa Bay.</p>
-            <div class="cta-section__actions">
-                <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="hwh-btn hwh-btn--red hwh-btn--lg">Request Dispatch</a>
-                <a href="tel:+18136994009" class="hwh-btn hwh-btn--ghost hwh-btn--lg">Call 813.699.4009</a>
-            </div>
-        </div>
-    </section>
+    
 
 </main>
 

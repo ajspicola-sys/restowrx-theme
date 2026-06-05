@@ -410,7 +410,167 @@
             margin: 0 auto;
         }
     }
+
+    /* --- GLOBAL CTA BLOCK --- */
+    .rwx-cta-block {
+        background: radial-gradient(circle at 50% 50%, #200202 0%, #000000 100%);
+        padding: clamp(80px, 12vw, 150px) 0;
+        text-align: center;
+        border-top: 1px solid rgba(255, 0, 0, 0.2);
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .rwx-cta-block__pulse {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(circle, rgba(255, 0, 0, 0.12) 0%, transparent 70%);
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        pointer-events: none;
+        animation: rwx-pulse-radar-global 4s infinite linear;
+        border-radius: 50%;
+    }
+
+    @keyframes rwx-pulse-radar-global {
+        0% { transform: translate(-50%, -50%) scale(0.6); opacity: 0; }
+        50% { opacity: 1; }
+        100% { transform: translate(-50%, -50%) scale(1.4); opacity: 0; }
+    }
+
+    .rwx-cta-block__inner {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 clamp(20px, 5vw, 40px);
+        position: relative;
+        z-index: 5;
+        box-sizing: border-box;
+    }
+
+    .rwx-cta-block__eyebrow {
+        font-family: var(--font-mono, 'Space Mono', monospace);
+        color: var(--brand, #ff0000);
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        display: block;
+        margin-bottom: 25px;
+        font-weight: 700;
+    }
+
+    .rwx-cta-block__title {
+        font-family: var(--font-accent, 'Bebas Neue', sans-serif);
+        font-size: clamp(3rem, 6vw, 5.5rem);
+        margin: 0 0 25px 0;
+        line-height: 0.9;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: white;
+    }
+
+    .rwx-cta-block__title em {
+        color: transparent;
+        -webkit-text-stroke: 1.5px white;
+        font-style: normal;
+    }
+
+    .rwx-cta-block__desc {
+        color: #aaa;
+        font-size: 1.15rem;
+        line-height: 1.7;
+        margin-bottom: 40px;
+    }
+
+    .rwx-cta-block__actions {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    /* Global rwx-btn styles */
+    .rwx-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        font-family: var(--font-accent, 'Bebas Neue', sans-serif);
+        font-size: 1.3rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 16px 36px;
+        border-radius: 4px;
+        transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+        cursor: pointer;
+    }
+
+    .rwx-btn i, .rwx-btn svg {
+        width: 18px;
+        height: 18px;
+        display: inline-block;
+        color: currentColor;
+        stroke: currentColor !important;
+        fill: none !important;
+    }
+
+    .rwx-btn--red {
+        background: var(--brand, #ff0000);
+        color: white !important;
+        border: 1px solid var(--brand, #ff0000);
+        box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
+    }
+
+    .rwx-btn--red:hover {
+        background: #111111 !important;
+        color: white !important;
+        border-color: var(--brand, #ff0000);
+        box-shadow: 0 0 30px rgba(255, 0, 0, 0.6);
+        transform: translateY(-2px);
+    }
+
+    .rwx-btn--outline {
+        background: rgba(255, 255, 255, 0.04);
+        color: white !important;
+        border: 1px solid rgba(255, 255, 255, 0.6);
+    }
+
+    .rwx-btn--outline:hover {
+        background: #ffffff !important;
+        color: #000000 !important;
+        border-color: #ffffff !important;
+        transform: translateY(-2px);
+        box-shadow: 0 0 30px rgba(255, 255, 255, 0.25);
+    }
 </style>
+
+<?php if ( ! is_page( array( 'contact', 'privacy-policy', 'refund-policy', 'cancellation-policy' ) ) && ! is_404() ) : ?>
+    <!-- ── Bottom Command CTA ────────────────────────────────────── -->
+    <section class="rwx-cta-block" aria-label="Mitigation request call to action">
+        <div class="rwx-cta-block__pulse" aria-hidden="true"></div>
+        <div class="rwx-cta-block__inner">
+            <span class="rwx-cta-block__eyebrow">24/7 Emergency Response</span>
+            <h2 class="rwx-cta-block__title">Catastrophic Loss?<br><em>Activate Rapid Mitigation</em></h2>
+            <p class="rwx-cta-block__desc">
+                Do not wait for property destruction to become permanent. Our team stands ready to coordinate insurance claims and deploy critical recovery systems immediately.
+            </p>
+            <div class="rwx-cta-block__actions">
+                <a href="tel:+18136994009" class="rwx-btn rwx-btn--red">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" style="margin-right:5px; vertical-align:-3px;">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L7.91 9.27a16 16 0 0 0 6.29 6.29l1.45-1.45a2 2 0 0 1 2.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z" />
+                    </svg>
+                    Dispatch: 813.699.4009
+                </a>
+                <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="rwx-btn rwx-btn--outline">Request a Free Estimate</a>
+            </div>
+        </div>
+    </section>
+<?php endif; ?>
 
 <footer class="elite-footer" role="contentinfo">
     <div class="footer-grid-bg"></div>
