@@ -35,7 +35,7 @@
         display: none;
         gap: 10px;
         background: rgba(18, 3, 3, 0.9);
-        border: 1px solid #ff0000;
+        border: 1px solid var(--brand, #F22F3A);
         padding: 6px 12px;
         border-radius: 50px;
         box-shadow: 0 10px 30px rgba(255, 0, 0, 0.2);
@@ -61,11 +61,11 @@
         height: 14px;
     }
     .floating-cta__btn--dispatch {
-        background: #ff0000;
+        background: var(--brand, #F22F3A);
     }
     .floating-cta__btn--dispatch:hover {
         background: white;
-        color: #ff0000;
+        color: var(--brand, #F22F3A);
     }
     .floating-cta__btn--call {
         background: rgba(255, 255, 255, 0.1);
@@ -100,8 +100,8 @@
         transition: all 0.3s;
     }
     .scroll-top:hover {
-        background: #ff0000;
-        border-color: #ff0000;
+        background: var(--brand, #F22F3A);
+        border-color: var(--brand, #F22F3A);
         transform: translateY(-3px);
     }
     .scroll-top.is-visible {
@@ -165,7 +165,7 @@
         left: 0;
         width: 30px;
         height: 2px;
-        background: #ff0000;
+        background: var(--brand, #F22F3A);
     }
 
     .footer-logo img {
@@ -205,7 +205,7 @@
     }
 
     .footer-links a:hover {
-        color: #ff0000;
+        color: var(--brand, #F22F3A);
         transform: translateX(4px);
     }
 
@@ -230,9 +230,9 @@
     .zone-pulse {
         width: 6px;
         height: 6px;
-        background: #ff0000;
+        background: var(--brand, #F22F3A);
         border-radius: 50%;
-        box-shadow: 0 0 8px #ff0000;
+        box-shadow: 0 0 8px var(--brand, #F22F3A);
         animation: zonePulse 1.5s infinite;
     }
 
@@ -251,7 +251,7 @@
     }
 
     .contact-icon {
-        color: #ff0000;
+        color: var(--brand, #F22F3A);
         margin-top: 3px;
         display: flex;
         align-items: center;
@@ -260,7 +260,7 @@
     .contact-icon i, .contact-icon svg {
         width: 20px;
         height: 20px;
-        color: #ff0000 !important;
+        color: var(--brand, #F22F3A) !important;
         display: inline-block;
     }
 
@@ -315,9 +315,9 @@
     }
 
     .social-btn:hover {
-        background: #ff0000;
+        background: var(--brand, #F22F3A);
         transform: translateY(-3px);
-        box-shadow: 0 8px 20px rgba(255, 0, 0, 0.4);
+        box-shadow: 0 8px 20px rgba(242, 47, 58, 0.4);
     }
 
     /* Bottom Certification Bar */
@@ -351,7 +351,7 @@
     .cert-item i, .cert-item svg {
         width: 16px;
         height: 16px;
-        color: #ff0000 !important; /* Brand red accent for cert icons */
+        color: var(--brand, #F22F3A) !important; /* Brand red accent for cert icons */
         display: inline-block;
     }
 

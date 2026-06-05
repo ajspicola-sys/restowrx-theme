@@ -4420,7 +4420,7 @@ a.contact-card__text:hover {
 }
 .blog-hero__orb--2 {
   width: 400px; height: 400px;
-  background: #ff0000;
+  background: var(--brand-dark);
   bottom: -20%; left: 10%;
   animation-delay: -6s;
   animation-direction: alternate-reverse;

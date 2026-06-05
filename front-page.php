@@ -211,7 +211,7 @@ get_header(); ?>
 
     h1.ultra-headline span {
         display: block;
-        background: linear-gradient(135deg, #ff0000 0%, #ff6666 100%);
+        background: linear-gradient(135deg, var(--brand, #F22F3A) 0%, var(--brand-bright, #FF4A55) 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
