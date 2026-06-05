@@ -50,7 +50,7 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800;900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800;900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
     <?php
     $theme_ver = filemtime(get_stylesheet_directory() . '/style.css');
@@ -173,7 +173,7 @@
         
         .nav-links {
             list-style: none; padding: 0; margin: 0;
-            display: flex; gap: 25px;
+            display: flex; gap: 6px;
             position: absolute; left: 50%; transform: translateX(-50%);
         }
         .nav-links li { position: relative; padding: 12px 0; }
@@ -181,32 +181,34 @@
             color: #0f2440 !important;
             text-decoration: none;
             font-family: var(--font-main);
-            font-weight: 700;
-            text-transform: uppercase;
-            font-size: 0.74rem;
-            letter-spacing: 1.2px;
+            font-weight: 500;
+            text-transform: none;
+            font-size: 0.83rem;
+            letter-spacing: normal;
             position: relative;
-            padding: 6px 0;
-            transition: color 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 9999px;
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
         }
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--color-red);
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        .nav-links a:hover, .nav-links li:hover > a {
+            color: #F22F3A !important;
+            background: rgba(242, 47, 58, 0.06);
         }
-        .nav-links a:hover, .nav-links li:hover > a, .nav-links li.current-menu-item > a {
+        .nav-links li.current-menu-item > a {
             color: #F22F3A !important;
         }
-        .nav-links a:hover::after, .nav-links li:hover > a::after, .nav-links li.current-menu-item > a::after {
-            transform: scaleX(1) !important;
-            transform-origin: left !important;
+        .nav-links li.current-menu-item > a::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: #F22F3A;
         }
 
         /* Sub-menus unified to White Glass */
@@ -234,11 +236,14 @@
             font-weight: 600;
             text-transform: none;
             transition: color 0.2s ease;
+            border-radius: 0;
         }
-        .nav-links .sub-menu a::after { display: none; }
-        .nav-links .sub-menu a:hover {
+        .nav-links .sub-menu a::after { display: none !important; }
+        .nav-links .sub-menu a:hover,
+        .nav-links .sub-menu li:hover > a {
             color: #F22F3A !important;
-            background: rgba(0,0,0,0.02);
+            background: rgba(0,0,0,0.02) !important;
+            border-radius: 0 !important;
         }
 
         .cta-btn-header {
