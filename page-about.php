@@ -119,6 +119,7 @@ get_header(); ?>
         color: white;
     }
     .about-hero__title em {
+        color: var(--brand, #ff0000);
         font-style: normal;
     }
     .about-hero__desc {
