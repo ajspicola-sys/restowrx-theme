@@ -1,18 +1,18 @@
 <?php
 /**
- * Plugin Name: HWH CSV Importer
- * Plugin URI: https://hotwaterheroesplumbing.com
- * Description: Bulk-update any WordPress post data from a CSV — titles, content, excerpts, slugs, Yoast SEO fields, and any custom meta. Match by post ID.
+ * Plugin Name: Restowrx CSV Importer
+ * Plugin URI: https://restowrx.com
+ * Description: Bulk-update any WordPress post data from a CSV — titles, content, excerpts, slugs, Yoast SEO fields, and any custom meta. Match by post ID. Built for Restowrx Elite.
  * Version: 2.0
- * Author: Hot Water Heroes
- * Author URI: https://hotwaterheroesplumbing.com
+ * Author: Restowrx Elite
+ * Author URI: https://restowrx.com
  * License: GPL v2 or later
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 add_action( 'admin_menu', function() {
-    add_management_page( 'HWH CSV Importer', 'HWH CSV Importer', 'manage_options', 'hwh-csv-importer', 'hwh_csv_importer_page' );
+    add_management_page( 'Restowrx CSV Importer', 'Restowrx CSV Importer', 'manage_options', 'hwh-csv-importer', 'hwh_csv_importer_page' );
 });
 
 add_action( 'admin_enqueue_scripts', function( $hook ) {
@@ -46,7 +46,7 @@ function hwh_csv_importer_page() {
     }
     ?>
     <div class="wrap hwh-wrap">
-    <h1>🔧 HWH CSV Importer</h1>
+    <h1>🔧 Restowrx CSV Importer</h1>
     <p>Bulk-update posts, pages, or services from a CSV. Supports titles, content, excerpts, slugs, and any Yoast/custom meta.</p><hr>
 
     <?php if ($step==='upload'): ?>

@@ -1,13 +1,13 @@
 <?php
 /**
- * Hot Water Heroes � One-Time Git Deploy Script
+ * Restowrx Elite — One-Time Git Deploy Script
  * Upload to: /public_html/deploy.php
- * Visit: https://hotwaterheroesplumbing.com/deploy.php?key=HWHGitDeploy2026
+ * Visit: https://restowrx.com/deploy.php?key=RestowrxGitDeploy2026
  * DELETES ITSELF after running for security.
  */
 
-$SECRET_KEY  = 'HWHGitDeploy2026';
-$THEME_PATH  = __DIR__ . '/wp-content/themes/hot-water-heroes-theme';
+$SECRET_KEY  = 'RestowrxGitDeploy2026';
+$THEME_PATH  = __DIR__ . '/wp-content/themes/restowrx-theme';
 
 // Auth check
 if ( ! isset( $_GET['key'] ) || $_GET['key'] !== $SECRET_KEY ) {
@@ -16,7 +16,7 @@ if ( ! isset( $_GET['key'] ) || $_GET['key'] !== $SECRET_KEY ) {
 }
 
 header( 'Content-Type: text/plain; charset=utf-8' );
-echo "=== Hot Water Heroes Git Deploy ===\n\n";
+echo "=== Restowrx Elite Git Deploy ===\n\n";
 
 // Verify theme directory exists
 if ( ! is_dir( $THEME_PATH ) ) {

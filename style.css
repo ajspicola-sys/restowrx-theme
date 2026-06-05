@@ -18,18 +18,18 @@ Text Domain:      restowrx-theme
    ========================================================================== */
 :root {
   /* Brand: Tactical Red, Maroon & Dark Greys */
-  --brand:            #ff0000;
-  --brand-dark:       #cc0000;
-  --brand-mid:        #ff0000;
-  --brand-bright:     #ff3333;
-  --brand-pink:       #ff0000;
-  --brand-pink-mid:   #cc0000;
-  --brand-882:        #cc0000;
-  --brand-navy:       #120303;
-  --brand-navy-dark:  #000000;
+  --brand:            #F22F3A;
+  --brand-dark:       #AF2D37;
+  --brand-mid:        #E52E3D;
+  --brand-bright:     #FF4A55;
+  --brand-pink:       #E52E3D;
+  --brand-pink-mid:   #AF2D37;
+  --brand-882:        #AF2D37;
+  --brand-navy:       #0A0E17;
+  --brand-navy-dark:  #04060A;
 
   /* RGB channels for rgba() */
-  --brand-rgb:        255, 0, 0;
+  --brand-rgb:        242, 47, 58;
   --cream-rgb:        18, 3, 3;
   --dark-rgb:         10, 10, 10;
   --ink-rgb:          0, 0, 0;

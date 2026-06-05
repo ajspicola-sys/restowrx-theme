@@ -1,6 +1,6 @@
 <?php
 /**
- * Spicola Construction — Theme Functions
+ * Restowrx Elite Theme — Theme Functions
  * Performance-optimized build
  */
 
@@ -351,7 +351,7 @@ if (!defined('WP_POST_REVISIONS')) {
 }
 
 // ============================================================
-// AI SEARCH VISIBILITY & STRUCTURED DATA — SPICOLA CONSTRUCTION
+// AI SEARCH VISIBILITY & STRUCTURED DATA — RESTOWRX ELITE
 // Comprehensive JSON-LD schema for Google AI Overviews,
 // ChatGPT, Perplexity, Bing Copilot, and all AEO signals.
 // ============================================================
@@ -1423,7 +1423,7 @@ function hwh_register_team() {
             'view_item'          => 'View Team Member',
             'search_items'       => 'Search Team Members',
             'not_found'          => 'No team members found',
-            'menu_name'          => '????? Team',
+            'menu_name'          => 'Restowrx Team',
         ],
         'public'             => false,
         'show_ui'            => true,
@@ -1513,7 +1513,7 @@ function hwh_register_products() {
             'view_item'          => 'View Product',
             'search_items'       => 'Search Products',
             'not_found'          => 'No products found',
-            'menu_name'          => '??? Products',
+            'menu_name'          => 'Products',
         ],
         'public'             => false,
         'show_ui'            => true,
@@ -2348,7 +2348,7 @@ function hwh_importer_admin_notice() {
 
     echo '<div class="notice notice-info" style="padding:1rem 1.25rem;display:flex;align-items:center;gap:1.5rem;">';
     echo '<div>';
-    echo '<strong>?? Spicola Construction Theme</strong> ? ';
+    echo '<strong>🏗️ Restowrx Elite Theme</strong> — ';
     echo 'Import all services, posts, categories, and custom fields from the bundled demo content?';
     echo '</div>';
     echo '<a href="' . esc_url( $import_url ) . '" class="button button-primary" style="white-space:nowrap;">Import Content Now</a>';

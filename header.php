@@ -82,7 +82,7 @@
         }
 
         .rwx-header-master {
-            --color-red: #ff0000;
+            --color-red: #F22F3A;
             --color-maroon: #120303;
             --color-black: #000000;
             width: 100%; position: fixed;
@@ -107,12 +107,11 @@
         }
 
         .rwx-nav-bar {
-            background: rgba(10, 10, 10, 0.85);
+            background: #ffffff;
             padding: 10px 0;
             min-height: 55px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
         }
 
         .top-bar-inner, .nav-bar-inner {
@@ -168,7 +167,7 @@
         }
         .nav-links li { position: relative; padding: 12px 0; }
         .nav-links a {
-            color: rgba(255, 255, 255, 0.85) !important;
+            color: #0f2440 !important;
             text-decoration: none;
             font-family: var(--font-main);
             font-weight: 700;
@@ -203,13 +202,13 @@
         .nav-links .sub-menu {
             position: absolute;
             top: 100%; left: 50%; transform: translateX(-50%);
-            background: #050505;
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.08);
             border-top: 3px solid var(--color-red);
             min-width: 200px;
             display: none;
             list-style: none; padding: 10px 0;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             margin: 0;
             z-index: 1000;
             border-radius: 4px;
@@ -219,7 +218,7 @@
         .nav-links .sub-menu a {
             display: block;
             padding: 8px 20px;
-            color: rgba(255, 255, 255, 0.85) !important;
+            color: #0f2440 !important;
             font-size: 0.7rem;
             font-weight: 600;
             text-transform: none;
@@ -228,7 +227,7 @@
         .nav-links .sub-menu a::after { display: none; }
         .nav-links .sub-menu a:hover {
             color: var(--color-red) !important;
-            background: rgba(255,255,255,0.02);
+            background: rgba(0,0,0,0.02);
         }
 
         .cta-btn-header {
@@ -271,7 +270,7 @@
         /* Mobile Menu Toggle button */
         .menu-toggle { 
             display: none; 
-            color: #ffffff; 
+            color: #0f2440; 
             cursor: pointer; 
             font-size: 1.5rem;
             display: none;
@@ -423,7 +422,7 @@
     }());
     </script>
 
-<a class="skip-to-content" href="#main-content" style="position: absolute; top: -100px; left: 0; background: #ff0000; color: white; padding: 10px; z-index: 999999; transition: top 0.2s; font-family: monospace; font-size: 0.8rem; text-decoration: none;" onfocus="this.style.top='0'" onblur="this.style.top='-100px'">Skip to content</a>
+<a class="skip-to-content" href="#main-content" style="position: absolute; top: -100px; left: 0; background: #F22F3A; color: white; padding: 10px; z-index: 999999; transition: top 0.2s; font-family: monospace; font-size: 0.8rem; text-decoration: none;" onfocus="this.style.top='0'" onblur="this.style.top='-100px'">Skip to content</a>
 
 <!-- ═══════════════════════════════════════════
      TACTICAL COMMAND HEADER
@@ -476,7 +475,7 @@
                     INITIATE DISPATCH
                 </a>
 
-                <button class="menu-toggle" id="mobile-toggle" aria-label="Open mobile navigation" aria-expanded="false" aria-controls="mobile-menu" style="background: none; border: none; color: #ffffff;">
+                <button class="menu-toggle" id="mobile-toggle" aria-label="Open mobile navigation" aria-expanded="false" aria-controls="mobile-menu" style="background: none; border: none; color: #0f2440;">
                     <i data-lucide="menu"></i>
                 </button>
             </nav>

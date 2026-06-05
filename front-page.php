@@ -1092,21 +1092,24 @@ get_header(); ?>
 .about-story {
     position: relative;
     padding: clamp(60px, 8vw, 100px) 0;
-    background-color: #070707;
-    color: white;
+    background-color: #ffffff;
+    color: #0f2440;
     font-family: var(--font-main, 'Inter', sans-serif);
     overflow: hidden;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
 .about-story::before {
     content: '';
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
     background-image: 
-        linear-gradient(to right, rgba(255,255,255,0.01) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255,255,255,0.01) 1px, transparent 1px);
+        linear-gradient(to right, rgba(0,0,0,0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0,0,0,0.02) 1px, transparent 1px);
     background-size: 40px 40px;
     pointer-events: none;
+}
+.about-story .rwx-header h2 {
+    color: #0f2440;
 }
 .about-story__layout {
     display: grid;
@@ -1117,8 +1120,8 @@ get_header(); ?>
 }
 .about-story__left {
     position: relative;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(0, 0, 0, 0.05);
     padding: 40px 30px 40px 45px;
     backdrop-filter: blur(10px);
 }
@@ -1128,7 +1131,7 @@ get_header(); ?>
     top: 0;
     bottom: 0;
     width: 4px;
-    background: linear-gradient(180deg, var(--brand, #ff0000) 0%, rgba(255, 0, 0, 0.1) 100%);
+    background: linear-gradient(180deg, var(--brand, #F22F3A) 0%, rgba(242, 47, 58, 0.1) 100%);
 }
 .about-story__chips {
     display: flex;
@@ -1142,9 +1145,9 @@ get_header(); ?>
     font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: var(--brand, #ff0000);
-    background: rgba(255, 0, 0, 0.05);
-    border: 1px solid rgba(255, 0, 0, 0.2);
+    color: var(--brand, #F22F3A);
+    background: rgba(242, 47, 58, 0.05);
+    border: 1px solid rgba(242, 47, 58, 0.2);
     border-radius: 4px;
     padding: 6px 14px;
 }
@@ -1153,7 +1156,7 @@ get_header(); ?>
     font-size: clamp(1.1rem, 2vw, 1.4rem);
     font-weight: 700;
     font-style: italic;
-    color: #ffffff;
+    color: #0f2440;
     line-height: 1.5;
     margin: 0 0 35px;
     border: none;
@@ -1164,7 +1167,7 @@ get_header(); ?>
     display: flex;
     gap: 30px;
     flex-wrap: wrap;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
     padding-top: 30px;
 }
 .about-story__stat {
@@ -1177,7 +1180,7 @@ get_header(); ?>
     font-family: var(--font-accent, 'Bebas Neue', sans-serif);
     font-size: 2.8rem;
     font-weight: 400;
-    color: var(--brand, #ff0000);
+    color: var(--brand, #F22F3A);
     line-height: 1;
     letter-spacing: 1px;
 }
@@ -1185,7 +1188,7 @@ get_header(); ?>
     font-family: var(--font-mono, 'Space Mono', monospace);
     font-size: 0.65rem;
     font-weight: 600;
-    color: #888;
+    color: #4a5568;
     text-transform: uppercase;
     letter-spacing: 1.5px;
     margin-top: 8px;
@@ -1193,7 +1196,7 @@ get_header(); ?>
 .about-story__right p {
     font-size: 1.05rem;
     line-height: 1.8;
-    color: #e5e5e5;
+    color: #2d3748;
     margin: 0 0 25px;
     font-weight: 400;
 }
@@ -1253,6 +1256,7 @@ get_header(); ?>
     }
 
     .rwx-header {
+        --primary-red: var(--brand, #F22F3A);
         text-align: center;
         margin-bottom: 80px;
     }
@@ -1910,24 +1914,27 @@ if ( $blog_query->have_posts() ) : ?>
 .sc-blog {
     position: relative;
     padding: clamp(60px, 8vw, 100px) 0;
-    background-color: #050505;
-    color: white;
+    background-color: #ffffff;
+    color: #0f2440;
     font-family: var(--font-main, 'Inter', sans-serif);
     overflow: hidden;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
 .sc-blog::before {
     content: '';
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
     background-image: 
-        linear-gradient(to right, rgba(255,255,255,0.01) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255,255,255,0.01) 1px, transparent 1px);
+        linear-gradient(to right, rgba(0,0,0,0.015) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0,0,0,0.015) 1px, transparent 1px);
     background-size: 50px 50px;
     pointer-events: none;
 }
+.sc-blog .rwx-header h2 {
+    color: #0f2440;
+}
 .sc-blog .rwx-header h2 em {
-    color: var(--brand, #ff0000);
+    color: var(--brand, #F22F3A);
     font-style: normal;
 }
 .sc-blog__grid {
@@ -1937,8 +1944,8 @@ if ( $blog_query->have_posts() ) : ?>
     margin-top: clamp(40px, 6vw, 80px);
 }
 .sc-blog__card {
-    background: rgba(15, 15, 15, 0.7);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
     border-radius: 4px;
     overflow: hidden;
     display: flex;
@@ -1948,15 +1955,15 @@ if ( $blog_query->have_posts() ) : ?>
 }
 .sc-blog__card:hover {
     transform: translateY(-8px);
-    border-color: rgba(255, 0, 0, 0.3);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    border-color: var(--brand, #F22F3A);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
 }
 .sc-blog__thumb {
     display: block;
     aspect-ratio: 16/9;
     overflow: hidden;
     position: relative;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 .sc-blog__thumb img {
     width: 100%;
@@ -1965,11 +1972,11 @@ if ( $blog_query->have_posts() ) : ?>
     transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
 }
 .sc-blog__thumb--placeholder {
-    background: linear-gradient(135deg, #0a0a0a 0%, #151515 100%);
+    background: linear-gradient(135deg, #f7f8fa 0%, #edf0f5 100%);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: rgba(255,255,255,0.15);
+    color: rgba(15, 36, 64, 0.15);
 }
 .sc-blog__card:hover .sc-blog__thumb img {
     transform: scale(1.06);
@@ -1992,9 +1999,9 @@ if ( $blog_query->have_posts() ) : ?>
     font-weight: 700;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    color: var(--brand, #ff0000);
-    background: rgba(255, 0, 0, 0.07);
-    border: 1px solid rgba(255, 0, 0, 0.2);
+    color: var(--brand, #F22F3A);
+    background: rgba(242, 47, 58, 0.07);
+    border: 1px solid rgba(242, 47, 58, 0.2);
     border-radius: 2px;
     padding: 3px 10px;
     display: inline-block;
@@ -2002,7 +2009,7 @@ if ( $blog_query->have_posts() ) : ?>
 .sc-blog__date {
     font-family: var(--font-mono, 'Space Mono', monospace);
     font-size: 0.7rem;
-    color: #666;
+    color: #4a5568;
 }
 .sc-blog__title {
     font-family: var(--font-accent, 'Bebas Neue', sans-serif);
@@ -2013,17 +2020,17 @@ if ( $blog_query->have_posts() ) : ?>
     text-transform: uppercase;
 }
 .sc-blog__title a {
-    color: #ffffff;
+    color: #0f2440;
     text-decoration: none;
     transition: color 0.3s;
 }
 .sc-blog__title a:hover {
-    color: var(--brand, #ff0000);
+    color: var(--brand, #F22F3A);
 }
 .sc-blog__excerpt {
     font-size: 0.95rem;
     line-height: 1.65;
-    color: #888;
+    color: #4a5568;
     margin: 0 0 25px;
     flex: 1;
 }
@@ -2031,14 +2038,14 @@ if ( $blog_query->have_posts() ) : ?>
     display: flex;
     align-items: center;
     margin-top: auto;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
     padding-top: 20px;
 }
 .sc-blog__read {
     font-family: var(--font-mono, 'Space Mono', monospace);
     font-size: 0.75rem;
     font-weight: 700;
-    color: var(--brand, #ff0000);
+    color: var(--brand, #F22F3A);
     text-decoration: none;
     letter-spacing: 1.5px;
     display: inline-flex;
@@ -2055,6 +2062,15 @@ if ( $blog_query->have_posts() ) : ?>
 .sc-blog__cta {
     text-align: center;
     margin-top: 50px;
+}
+.sc-blog .btn--outline {
+    color: #0f2440;
+    border-color: rgba(15, 36, 64, 0.2);
+}
+.sc-blog .btn--outline:hover {
+    color: var(--brand, #F22F3A);
+    border-color: var(--brand, #F22F3A);
+    background: rgba(242, 47, 58, 0.04);
 }
 @media(max-width:991px){
     .sc-blog__grid{grid-template-columns:repeat(2,1fr);}
