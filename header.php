@@ -139,9 +139,19 @@
             display: flex; justify-content: center; align-items: center;
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .social-icon svg, .social-icon i { width: 10px; height: 10px; color: #ffffff !important; }
+        .social-icon svg, .social-icon i { 
+            width: 13px; 
+            height: 13px; 
+            color: #ffffff !important; 
+            stroke: #ffffff !important; 
+            fill: none !important; 
+        }
         .social-icon:hover { border-color: var(--color-red); background: var(--color-red); transform: translateY(-1px); }
-        .social-icon:hover svg, .social-icon:hover i { color: #ffffff !important; }
+        .social-icon:hover svg, .social-icon:hover i { 
+            color: #ffffff !important; 
+            stroke: #ffffff !important; 
+            fill: none !important; 
+        }
 
         /* --- NAV BAR ELEMENTS --- */
         .rwx-logo {
@@ -348,8 +358,8 @@
             display: block;
             transition: color 0.2s;
         }
-        .mobile-menu__links a:hover {
-            color: var(--color-red);
+        .mobile-menu__links a:hover, .mobile-menu__links li.current-menu-item > a {
+            color: var(--color-red) !important;
             padding-left: 8px;
         }
         .mobile-menu__footer {
@@ -452,6 +462,12 @@
 
             <nav class="nav-container" aria-label="Main Navigation">
                 <?php
+                $rwx_home_class = is_front_page() ? 'current-menu-item' : '';
+                $rwx_about_class = is_page('about') ? 'current-menu-item' : '';
+                $rwx_services_class = (is_post_type_archive('service') || is_singular('service') || is_page('services') || is_page('service-areas')) ? 'current-menu-item' : '';
+                $rwx_blog_class = (is_home() || is_singular('post') || is_category() || is_tag()) ? 'current-menu-item' : '';
+                $rwx_contact_class = is_page('contact') ? 'current-menu-item' : '';
+
                 if ( has_nav_menu('header-menu') ) {
                     wp_nav_menu( array(
                         'theme_location' => 'header-menu',
@@ -461,11 +477,11 @@
                     ) );
                 } else {
                     echo '<ul class="nav-links">';
-                    echo '<li class="current-menu-item"><a href="' . esc_url(home_url('/')) . '">Home</a></li>';
-                    echo '<li><a href="' . esc_url(home_url('/about/')) . '">About</a></li>';
-                    echo '<li><a href="' . esc_url(home_url('/services/')) . '">Services</a></li>';
-                    echo '<li><a href="' . esc_url(home_url('/blog/')) . '">Reports</a></li>';
-                    echo '<li><a href="' . esc_url(home_url('/contact/')) . '">Contact</a></li>';
+                    echo '<li class="' . $rwx_home_class . '"><a href="' . esc_url(home_url('/')) . '">Home</a></li>';
+                    echo '<li class="' . $rwx_about_class . '"><a href="' . esc_url(home_url('/about/')) . '">About</a></li>';
+                    echo '<li class="' . $rwx_services_class . '"><a href="' . esc_url(home_url('/services/')) . '">Services</a></li>';
+                    echo '<li class="' . $rwx_blog_class . '"><a href="' . esc_url(home_url('/blog/')) . '">Reports</a></li>';
+                    echo '<li class="' . $rwx_contact_class . '"><a href="' . esc_url(home_url('/contact/')) . '">Contact</a></li>';
                     echo '</ul>';
                 }
                 ?>
@@ -507,11 +523,11 @@
                 ) );
             } else {
                 echo '<ul class="mobile-menu__links">';
-                echo '<li><a href="' . esc_url(home_url('/')) . '">Home</a></li>';
-                echo '<li><a href="' . esc_url(home_url('/about/')) . '">About</a></li>';
-                echo '<li><a href="' . esc_url(home_url('/services/')) . '">Services</a></li>';
-                echo '<li><a href="' . esc_url(home_url('/blog/')) . '">Reports</a></li>';
-                echo '<li><a href="' . esc_url(home_url('/contact/')) . '">Contact</a></li>';
+                echo '<li class="' . $rwx_home_class . '"><a href="' . esc_url(home_url('/')) . '">Home</a></li>';
+                echo '<li class="' . $rwx_about_class . '"><a href="' . esc_url(home_url('/about/')) . '">About</a></li>';
+                echo '<li class="' . $rwx_services_class . '"><a href="' . esc_url(home_url('/services/')) . '">Services</a></li>';
+                echo '<li class="' . $rwx_blog_class . '"><a href="' . esc_url(home_url('/blog/')) . '">Reports</a></li>';
+                echo '<li class="' . $rwx_contact_class . '"><a href="' . esc_url(home_url('/contact/')) . '">Contact</a></li>';
                 echo '</ul>';
             }
             ?>

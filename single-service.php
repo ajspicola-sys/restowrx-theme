@@ -167,6 +167,8 @@ if ($categories && !is_wp_error($categories)) {
         height: 18px;
         display: inline-block;
         color: currentColor;
+        stroke: currentColor !important;
+        fill: none !important;
     }
 
     .rwx-btn--red {
@@ -185,16 +187,17 @@ if ($categories && !is_wp_error($categories)) {
     }
 
     .rwx-btn--outline {
-        background: transparent;
+        background: rgba(255, 255, 255, 0.04);
         color: white !important;
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.6);
     }
 
     .rwx-btn--outline:hover {
-        background: rgba(255, 0, 0, 0.1);
-        border-color: var(--brand, #ff0000);
-        color: white !important;
+        background: #ffffff !important;
+        color: #000000 !important;
+        border-color: #ffffff !important;
         transform: translateY(-2px);
+        box-shadow: 0 0 30px rgba(255, 255, 255, 0.25);
     }
 
     /* Hero Featured Image Column */

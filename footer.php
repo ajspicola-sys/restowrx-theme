@@ -59,6 +59,8 @@
     .floating-cta__btn svg {
         width: 14px;
         height: 14px;
+        stroke: currentColor !important;
+        fill: none !important;
     }
     .floating-cta__btn--dispatch {
         background: var(--brand, #F22F3A);
@@ -261,6 +263,8 @@
         width: 20px;
         height: 20px;
         color: var(--brand, #F22F3A) !important;
+        stroke: var(--brand, #F22F3A) !important;
+        fill: none !important;
         display: inline-block;
     }
 
@@ -306,6 +310,8 @@
         width: 18px;
         height: 18px;
         color: #ffffff !important;
+        stroke: #ffffff !important;
+        fill: none !important;
         display: inline-block;
         transition: transform 0.3s;
     }
@@ -352,6 +358,8 @@
         width: 16px;
         height: 16px;
         color: var(--brand, #F22F3A) !important; /* Brand red accent for cert icons */
+        stroke: var(--brand, #F22F3A) !important;
+        fill: none !important;
         display: inline-block;
     }
 
