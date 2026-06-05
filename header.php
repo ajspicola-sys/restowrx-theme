@@ -64,6 +64,7 @@
             --font-main: 'Inter', sans-serif;
             --font-accent: 'Bebas Neue', sans-serif;
             --font-mono: 'Space Mono', monospace;
+            --color-red: #F22F3A;
         }
         html { 
             scroll-behavior: smooth; 
@@ -146,7 +147,7 @@
             stroke: #ffffff !important; 
             fill: none !important; 
         }
-        .social-icon:hover { border-color: var(--color-red); background: var(--color-red); transform: translateY(-1px); }
+        .social-icon:hover { border-color: #F22F3A !important; background: #F22F3A !important; transform: translateY(-1px) !important; }
         .social-icon:hover svg, .social-icon:hover i { 
             color: #ffffff !important; 
             stroke: #ffffff !important; 
@@ -201,11 +202,11 @@
             transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .nav-links a:hover, .nav-links li:hover > a, .nav-links li.current-menu-item > a {
-            color: var(--color-red) !important;
+            color: #F22F3A !important;
         }
         .nav-links a:hover::after, .nav-links li:hover > a::after, .nav-links li.current-menu-item > a::after {
-            transform: scaleX(1);
-            transform-origin: left;
+            transform: scaleX(1) !important;
+            transform-origin: left !important;
         }
 
         /* Sub-menus unified to White Glass */
@@ -236,7 +237,7 @@
         }
         .nav-links .sub-menu a::after { display: none; }
         .nav-links .sub-menu a:hover {
-            color: var(--color-red) !important;
+            color: #F22F3A !important;
             background: rgba(0,0,0,0.02);
         }
 
@@ -257,6 +258,13 @@
             box-shadow: 0 4px 15px rgba(255, 0, 0, 0.2);
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             text-transform: uppercase;
+        }
+        .cta-btn-header svg, .cta-btn-header i {
+            width: 14px;
+            height: 14px;
+            stroke: currentColor !important;
+            fill: none !important;
+            display: inline-block;
         }
         .cta-btn-header::before {
             content: '';
