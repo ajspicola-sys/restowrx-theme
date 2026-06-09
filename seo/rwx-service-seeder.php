@@ -19,20 +19,25 @@ function rwx_seed_services_now() {
     }
 
     // 3. Create or fetch categories
-    $mitigation_cat_id = 0;
+    $mit_cat_id = 0;
     $recon_cat_id = 0;
 
     $mit_term = term_exists( 'Mitigation & Recovery', 'service_category' );
     if ( ! $mit_term ) {
         $mit_term = wp_insert_term( 'Mitigation & Recovery', 'service_category', [ 'slug' => 'mitigation-recovery' ] );
     }
-    $mit_cat_id = is_array( $mit_term ) ? $mit_term['term_id'] : $mit_term;
+    if ( $mit_term && ! is_wp_error( $mit_term ) ) {
+        $mit_cat_id = is_array( $mit_term ) ? $mit_term['term_id'] : (int) $mit_term;
+    }
 
     $rec_term = term_exists( 'Reconstruction', 'service_category' );
     if ( ! $rec_term ) {
         $rec_term = wp_insert_term( 'Reconstruction', 'service_category', [ 'slug' => 'reconstruction' ] );
     }
-    $recon_cat_id = is_array( $rec_term ) ? $rec_term['term_id'] : $rec_term;
+    if ( $rec_term && ! is_wp_error( $rec_term ) ) {
+        $recon_cat_id = is_array( $rec_term ) ? $rec_term['term_id'] : (int) $rec_term;
+    }
+
 
     // 4. Content Arrays
     $services = [
@@ -667,7 +672,7 @@ function rwx_seed_services_now() {
             'seo_title' => 'Water Damage Restoration Brandon | Restowrx Elite',
             'seo_desc'  => 'Need emergency water damage restoration in Brandon, FL? Restowrx Elite provides 24/7 local extraction and mold remediation near Brandon Parkway. Call (813) 699-4009.',
             'content'   => '<!-- wp:paragraph -->
-<p>Brandon's suburban communities, commercial developments, and proximity to local rivers like the Alafia River make it prone to unique water and storm hazards. At Restowrx Elite, we provide 24/7 emergency water damage restoration and water extraction services in Brandon, FL. Whether you’re dealing with a residential slab leak in a family estate near Brandon Parkway, a commercial plumbing failure along Highway 60, or storm-water intrusion in Valrico, our local Brandon crews deploy immediately. We arrive within 45 minutes to extract water, dry structural wood, and prevent mold colonization.</p>
+<p>Brandon’s suburban communities, commercial developments, and proximity to local rivers like the Alafia River make it prone to unique water and storm hazards. At Restowrx Elite, we provide 24/7 emergency water damage restoration and water extraction services in Brandon, FL. Whether you’re dealing with a residential slab leak in a family estate near Brandon Parkway, a commercial plumbing failure along Highway 60, or storm-water intrusion in Valrico, our local Brandon crews deploy immediately. We arrive within 45 minutes to extract water, dry structural wood, and prevent mold colonization.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading -->
@@ -1043,7 +1048,10 @@ function rwx_seed_services_now() {
         }
 
         // Set category (taxonomy)
-        wp_set_object_terms( $post_id, [ $s['category'] ], 'service_category' );
+        if ( ! empty( $s['category'] ) && ! is_wp_error( $s['category'] ) ) {
+            wp_set_object_terms( $post_id, [ (int) $s['category'] ], 'service_category' );
+        }
+
 
         // Add custom meta fields
         update_post_meta( $post_id, '_service_price', $s['price'] );
