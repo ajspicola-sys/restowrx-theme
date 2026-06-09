@@ -8,7 +8,11 @@ get_header(); ?>
 
     <section class="page-hero" aria-label="Search results">
         <div class="page-hero__inner">
-            <span class="section__label">Search Results</span>
+            <div class="rwx-breadcrumb">
+                <a href="<?php echo esc_url(home_url('/')); ?>">Home</a>
+                <svg viewBox="0 0 24 24" width="10" height="10" stroke="currentColor" stroke-width="3" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                <span>Search</span>
+            </div>
             <h1 class="page-hero__title">Results for "<?php echo esc_html(get_search_query()); ?>"</h1>
             <p class="page-hero__desc"><?php
                 global $wp_query;

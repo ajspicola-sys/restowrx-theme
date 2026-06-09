@@ -14,8 +14,19 @@ get_header(); ?>
 
     <article class="single-post" itemscope itemtype="https://schema.org/BlogPosting">
         <!-- Post Hero -->
-        <div class="page-hero page-hero--blog">
+        <section class="page-hero page-hero--blog" aria-label="<?php the_title_attribute(); ?>">
             <div class="page-hero__inner">
+                <div class="rwx-breadcrumb">
+                    <a href="<?php echo esc_url(home_url('/')); ?>">Home</a>
+                    <svg viewBox="0 0 24 24" width="10" height="10" stroke="currentColor" stroke-width="3" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    <a href="<?php echo esc_url(home_url('/blog/')); ?>">Blog</a>
+                    <svg viewBox="0 0 24 24" width="10" height="10" stroke="currentColor" stroke-width="3" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    <span>Article</span>
+                </div>
+                <h1 class="page-hero__title" itemprop="headline"><?php the_title(); ?></h1>
+                <?php if (has_excerpt()) : ?>
+                    <p class="page-hero__desc" itemprop="description"><?php echo get_the_excerpt(); ?></p>
+                <?php endif; ?>
                 <div class="post-meta-line">
                     <time class="post-meta-line__date" datetime="<?php echo get_the_date('c'); ?>" itemprop="datePublished"><?php echo get_the_date('F j, Y'); ?></time>
                     <?php if (has_category()) : ?>
@@ -25,12 +36,8 @@ get_header(); ?>
                     <span class="post-meta-line__sep" aria-hidden="true">—</span>
                     <span class="post-meta-line__read"><?php echo ceil(str_word_count(strip_tags(get_the_content())) / 250); ?> min read</span>
                 </div>
-                <h1 class="page-hero__title" itemprop="headline"><?php the_title(); ?></h1>
-                <?php if (has_excerpt()) : ?>
-                    <p class="page-hero__desc" itemprop="description"><?php echo get_the_excerpt(); ?></p>
-                <?php endif; ?>
             </div>
-        </div>
+        </section>
 
         <!-- Post Content -->
         <div class="post-content">

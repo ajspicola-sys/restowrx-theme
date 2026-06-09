@@ -995,74 +995,40 @@ if ($categories && !is_wp_error($categories)) {
     <!-- ═══════════════════════════════════════════════════════
          HERO — Tactical Header with Featured Image Background
          ═══════════════════════════════════════════════════════ -->
-    <section class="rwx-hero" aria-label="Service details" itemscope itemtype="https://schema.org/Service">
+    <section class="page-hero" aria-label="Service details" itemscope itemtype="https://schema.org/Service">
         <meta itemprop="name" content="<?php the_title_attribute(); ?>">
         <meta itemprop="areaServed" content="Tampa Bay, FL">
-        <?php 
-        $hero_bg_url = get_the_post_thumbnail_url($post_id, 'full');
-        if (empty($hero_bg_url)) {
-            $hero_bg_url = 'https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?q=80&w=1200'; // Sleek dark recovery texture fallback
-        }
-        ?>
-        <div class="rwx-hero__canvas" style="background-image: url('<?php echo esc_url($hero_bg_url); ?>');"></div>
-        <div class="rwx-hero__overlay"></div>
-        <div class="rwx-hero__scanline"></div>
+        <div class="page-hero__inner">
+            <nav class="rwx-breadcrumb" aria-label="Breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+                <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <a href="<?php echo esc_url(home_url('/')); ?>" itemprop="item"><span itemprop="name">Home</span></a>
+                    <meta itemprop="position" content="1">
+                </span>
+                <span>/</span>
+                <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <a href="<?php echo esc_url(home_url('/services/')); ?>" itemprop="item"><span itemprop="name">Services</span></a>
+                    <meta itemprop="position" content="2">
+                </span>
+                <span>/</span>
+                <span class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" aria-current="page">
+                    <span itemprop="name"><?php the_title(); ?></span>
+                    <meta itemprop="position" content="3">
+                </span>
+            </nav>
 
-        <div class="rwx-hero__inner">
-            <div class="reveal">
-                <nav class="rwx-breadcrumb" aria-label="Breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
-                    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                        <a href="<?php echo esc_url(home_url('/')); ?>" itemprop="item"><span itemprop="name">Home</span></a>
-                        <meta itemprop="position" content="1">
-                    </span>
-                    <span>/</span>
-                    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                        <a href="<?php echo esc_url(home_url('/services/')); ?>" itemprop="item"><span itemprop="name">Services</span></a>
-                        <meta itemprop="position" content="2">
-                    </span>
-                    <span>/</span>
-                    <span class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" aria-current="page">
-                        <span itemprop="name"><?php the_title(); ?></span>
-                        <meta itemprop="position" content="3">
-                    </span>
-                </nav>
+            <h1 class="page-hero__title">
+                <?php the_title(); ?><br><em>Emergency Restoration</em>
+            </h1>
 
-                <span class="rwx-eyebrow-label">RESTOWRX SERVICE STANDARDS</span>
+            <?php if (has_excerpt()): ?>
+                <p class="page-hero__desc"><?php echo get_the_excerpt(); ?></p>
+            <?php else: ?>
+                <p class="page-hero__desc">Operating at the peak of recovery science. We deliver high-grade property restoration for residential and commercial structures under strict emergency response timelines.</p>
+            <?php endif; ?>
 
-                <h1 class="rwx-hero__title">
-                    <b><?php the_title(); ?></b>
-                    <span>EMERGENCY RESTORATION</span>
-                </h1>
-
-                <?php if (has_excerpt()): ?>
-                    <p class="rwx-hero__desc"><?php echo get_the_excerpt(); ?></p>
-                <?php else: ?>
-                    <p class="rwx-hero__desc">Operating at the peak of recovery science. We deliver high-grade property restoration for residential and commercial structures under strict emergency response timelines.</p>
-                <?php endif; ?>
-
-                <div class="rwx-hero__actions">
-                    <a href="/contact/" class="rwx-btn rwx-btn--red"><i data-lucide="shield-alert" size="20"></i> Activate Response</a>
-                    <a href="tel:+18136994009" class="rwx-btn rwx-btn--outline"><i data-lucide="phone-call" size="20"></i> Call 813.699.4009</a>
-                </div>
-            </div>
-
-            <!-- Featured Image Column -->
-            <div class="reveal">
-                <div class="rwx-hero__img-container">
-                    <?php if ($has_image): ?>
-                        <?php the_post_thumbnail('large', [
-                            'loading'       => 'eager',
-                            'decoding'      => 'async',
-                            'fetchpriority' => 'high',
-                            'itemprop'      => 'image',
-                            'class'         => 'rwx-hero__img',
-                        ]); ?>
-                    <?php else: ?>
-                        <img src="https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?q=80&w=1200" alt="Tactical Recovery" class="rwx-hero__img">
-                    <?php endif; ?>
-                    <div class="rwx-hero__img-glow"></div>
-                    <div class="rwx-hero__img-overlay-lines"></div>
-                </div>
+            <div class="page-hero__actions" style="margin-top: 25px; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <a href="/contact/" class="btn btn--primary btn--lg" style="font-family: var(--font-accent); font-size: 1.2rem; letter-spacing: 1px; padding: 10px 25px;"><i data-lucide="shield-alert" size="18"></i> Activate Response</a>
+                <a href="tel:+18136994009" class="btn btn--outline btn--lg" style="font-family: var(--font-accent); font-size: 1.2rem; letter-spacing: 1px; padding: 10px 25px;"><i data-lucide="phone-call" size="18"></i> Call 813.699.4009</a>
             </div>
         </div>
     </section>

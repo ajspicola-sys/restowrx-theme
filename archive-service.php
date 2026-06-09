@@ -447,20 +447,17 @@ get_header();
 <main class="site-main rwx-services-archive" id="main-content">
 
     <!-- ── Page Hero ─────────────────────────────────────────────── -->
-    <section class="rwx-hero" aria-label="Our recovery services">
-        <div class="rwx-hero__canvas" style="background-image: url('https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?q=80&w=1600');"></div>
-        <div class="rwx-hero__overlay"></div>
-        <div class="rwx-hero__scanline"></div>
-        <div class="rwx-hero__inner">
+    <section class="page-hero" aria-label="Our recovery services">
+        <div class="page-hero__inner">
             <div class="rwx-breadcrumb">
                 <a href="<?php echo esc_url(home_url('/')); ?>">Home</a>
                 <svg viewBox="0 0 24 24" width="10" height="10" stroke="currentColor" stroke-width="3" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 <span>Services</span>
             </div>
-            <h1 class="rwx-hero__title" style="color: white;">
-                Restoration Specializations
+            <h1 class="page-hero__title">
+                Restoration <em>Specializations</em>
             </h1>
-            <p class="rwx-hero__desc">
+            <p class="page-hero__desc">
                 Precision structural property recovery. Our expert rapid response units deploy 24/7/365 to stabilize and mitigate property damage.
             </p>
         </div>

@@ -8,8 +8,12 @@ get_header(); ?>
 
     <section class="page-hero" aria-label="Privacy Policy">
         <div class="page-hero__inner">
-            <span class="section__label">Legal</span>
-            <h1 class="page-hero__title">Privacy Policy</h1>
+            <div class="rwx-breadcrumb">
+                <a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a>
+                <svg viewBox="0 0 24 24" width="10" height="10" stroke="currentColor" stroke-width="3" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                <span>Privacy Policy</span>
+            </div>
+            <h1 class="page-hero__title">Privacy <em>Policy</em></h1>
             <p class="page-hero__desc">Last updated September 15, 2025</p>
         </div>
     </section>

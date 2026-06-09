@@ -11,35 +11,15 @@ get_header(); ?>
     <!-- ════════════════════════════════════════════════════════════
          HERO
          ════════════════════════════════════════════════════════════ -->
-    <section class="about-hero" aria-label="About Restowrx Elite">
-        <div class="about-hero__bg" aria-hidden="true">
-            <div class="about-hero__scanline"></div>
-            <div class="about-hero__grid"></div>
-        </div>
-        <div class="about-hero__inner">
-            <div class="about-hero__text">
-                <span class="svc-hero__badge">
-                    <span class="svc-hero__badge-dot" aria-hidden="true"></span>
-                    Tampa Bay's Property Recovery Center
-                </span>
-                <h1 class="about-hero__title">We Don't Just<br><em>Restore.</em></h1>
-                <p class="about-hero__desc">We restore certainty. Restowrx Elite was founded on a simple belief: when disaster strikes, you deserve rapid response speed, clinical mitigation excellence, and a professional team that treats your property like their own.</p>
-                <div class="about-hero__actions">
-                    <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="btn btn--primary btn--lg">Request Service</a>
-                    <a href="<?php echo esc_url( home_url( '/services/' ) ); ?>" class="btn btn--outline btn--lg">Our Specializations</a>
-                </div>
+    <section class="page-hero" aria-label="About Restowrx Elite">
+        <div class="page-hero__inner">
+            <div class="rwx-breadcrumb">
+                <a href="<?php echo esc_url(home_url('/')); ?>">Home</a>
+                <svg viewBox="0 0 24 24" width="10" height="10" stroke="currentColor" stroke-width="3" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                <span>About Us</span>
             </div>
-            <div class="about-hero__visual">
-                <div class="about-hero__mascot-glow" aria-hidden="true"></div>
-                <div class="svc-hero__float svc-hero__float--1">
-                    <strong>250+</strong>
-                    <span>Deployments Completed</span>
-                </div>
-                <div class="svc-hero__float svc-hero__float--2">
-                    <strong>45 MIN</strong>
-                    <span>Avg. Response Time</span>
-                </div>
-            </div>
+            <h1 class="page-hero__title">We Don't Just<br><em>Restore.</em></h1>
+            <p class="page-hero__desc">We restore certainty. Restowrx Elite was founded on a simple belief: when disaster strikes, you deserve rapid response speed, clinical mitigation excellence, and a professional team that treats your property like their own.</p>
         </div>
     </section>
 

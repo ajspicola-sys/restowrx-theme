@@ -8,13 +8,13 @@ get_header(); ?>
 <main class="site-main" id="main-content" style="background:#050505; color:#ffffff; font-family:var(--font-main, 'Inter', sans-serif); overflow-x:hidden;">
 
     <!-- Hero -->
-    <section class="page-hero maint-plan-hero" aria-label="Active Property Defense Plan">
-        <div class="page-hero__bg" aria-hidden="true">
-            <div class="page-hero__scanline"></div>
-            <div class="page-hero__grid"></div>
-        </div>
-        <div class="page-hero__inner reveal">
-            <span class="section__label">Annual Protection Shield</span>
+    <section class="page-hero" aria-label="Active Property Defense Plan">
+        <div class="page-hero__inner">
+            <div class="rwx-breadcrumb">
+                <a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a>
+                <svg viewBox="0 0 24 24" width="10" height="10" stroke="currentColor" stroke-width="3" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                <span>Defense Plan</span>
+            </div>
             <h1 class="page-hero__title">Active Property<br><em>Defense Plan</em></h1>
             <p class="page-hero__desc">The ultimate property protection for your property — pre-incident risk assessment, guaranteed 24/7 priority emergency response, and exclusive member savings on restoration and reconstruction.</p>
             <div class="page-hero__actions" style="margin-top:25px; display:flex; justify-content:center;">
@@ -22,67 +22,6 @@ get_header(); ?>
             </div>
         </div>
     </section>
-
-    <style>
-    .page-hero {
-        position: relative;
-        padding: clamp(140px, 12vw, 180px) 0 clamp(50px, 5vw, 80px) 0;
-        background: #000;
-        overflow: hidden;
-        border-bottom: 1px solid rgba(255, 0, 0, 0.15);
-        text-align: center;
-    }
-    .page-hero__bg {
-        position: absolute;
-        inset: 0;
-        background: radial-gradient(circle at 50% 50%, rgba(18, 3, 3, 0.4) 0%, #000 100%);
-        z-index: 1;
-    }
-    .page-hero__scanline {
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(to bottom, transparent 50%, rgba(255, 0, 0, 0.02) 50%);
-        background-size: 100% 4px;
-        pointer-events: none;
-    }
-    .page-hero__grid {
-        position: absolute;
-        inset: 0;
-        background-image: 
-            linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
-        background-size: 50px 50px;
-        pointer-events: none;
-    }
-    .page-hero__inner {
-        max-width: 900px;
-        margin: 0 auto;
-        padding: 0 clamp(20px, 5vw, 40px);
-        position: relative;
-        z-index: 10;
-    }
-    .page-hero__title {
-        font-family: var(--font-accent, 'Bebas Neue', sans-serif);
-        font-size: clamp(3.5rem, 6vw, 6rem);
-        text-transform: uppercase;
-        color: white;
-        margin: 0 0 20px 0;
-        letter-spacing: 1px;
-        line-height: 0.95;
-    }
-    .page-hero__title em {
-        color: transparent;
-        -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.7);
-        font-style: normal;
-    }
-    .page-hero__desc {
-        color: #aaa;
-        font-size: clamp(1rem, 1.2vw, 1.25rem);
-        line-height: 1.7;
-        margin: 0 auto;
-        max-width: 650px;
-    }
-    </style>
 
     <!-- How It Works -->
     <section class="maint-plan-section maint-plan-how" aria-label="How the plan works">

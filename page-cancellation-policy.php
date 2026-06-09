@@ -8,8 +8,12 @@ get_header(); ?>
 
     <section class="page-hero" aria-label="Cancellation & Financial Policy">
         <div class="page-hero__inner">
-            <span class="section__label">Legal</span>
-            <h1 class="page-hero__title">Cancellation &amp; Financial Policy</h1>
+            <div class="rwx-breadcrumb">
+                <a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a>
+                <svg viewBox="0 0 24 24" width="10" height="10" stroke="currentColor" stroke-width="3" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                <span>Cancellation Policy</span>
+            </div>
+            <h1 class="page-hero__title">Cancellation &amp;<br><em>Financial Policy</em></h1>
             <p class="page-hero__desc">Please read our policies carefully before booking your service appointment.</p>
         </div>
     </section>

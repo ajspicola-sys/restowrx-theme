@@ -10,13 +10,13 @@ get_header(); ?>
     <!-- Hero -->
     <section class="page-hero" aria-label="Service areas">
         <div class="page-hero__inner">
-            <span class="section__label">Where We Work</span>
+            <div class="rwx-breadcrumb">
+                <a href="<?php echo esc_url(home_url('/')); ?>">Home</a>
+                <svg viewBox="0 0 24 24" width="10" height="10" stroke="currentColor" stroke-width="3" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                <span>Service Areas</span>
+            </div>
             <h1 class="page-hero__title">Serving All of<br><em>Tampa Bay</em></h1>
             <p class="page-hero__desc">From South Tampa to Wesley Chapel, we provide fast, certified property damage mitigation and restoration across Hillsborough, Pinellas, and Pasco counties.</p>
-            <div class="hero__actions hero__actions--center">
-                <a href="/contact/" class="btn btn--primary btn--lg">Request Service</a>
-                <a href="tel:+18136994009" class="btn btn--outline btn--lg">Call 813.699.4009</a>
-            </div>
         </div>
     </section>
 

@@ -75,6 +75,11 @@ get_header(); ?>
 
     <section class="page-hero" aria-label="Page header">
         <div class="page-hero__inner">
+            <div class="rwx-breadcrumb">
+                <a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a>
+                <svg viewBox="0 0 24 24" width="10" height="10" stroke="currentColor" stroke-width="3" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                <span><?php the_title(); ?></span>
+            </div>
             <h1 class="page-hero__title"><?php the_title(); ?></h1>
             <?php if (has_excerpt()) : ?>
                 <p class="page-hero__desc"><?php echo get_the_excerpt(); ?></p>

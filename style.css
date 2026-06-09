@@ -3985,45 +3985,98 @@ html {
    PAGE HERO (inner pages)
    ========================================================================== */
 .page-hero {
-  background: linear-gradient(135deg, var(--bg-cream) 0%, var(--bg-lavender) 60%, var(--bg-lavender-deep) 100%);
-  padding: clamp(3.5rem, 3rem + 2vw, 5rem) 0 clamp(3rem, 2rem + 3vw, 5rem);
-  text-align: center;
   position: relative;
+  background: #000000;
+  padding: clamp(8rem, 6rem + 6vw, 11rem) 0 clamp(4rem, 3rem + 3vw, 6rem);
   overflow: hidden;
-  border-bottom: 1px solid rgba(var(--brand-rgb), 0.1);
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .page-hero::before {
   content: '';
   position: absolute;
-  top: -50%;
-  right: -30%;
-  width: 500px;
-  height: 500px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(var(--brand-rgb), 0.06) 0%, transparent 70%);
+  inset: 0;
+  background: 
+    linear-gradient(rgba(255, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 0, 0, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: center;
+  mask-image: radial-gradient(circle at 50% 50%, black 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, black 30%, transparent 80%);
+  opacity: 0.8;
   pointer-events: none;
+  z-index: 1;
+}
+
+.page-hero::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.15;
+  animation: blog-orb-float 12s ease-in-out infinite alternate;
+  width: 600px;
+  height: 600px;
+  background: var(--brand, #F22F3A);
+  top: -30%;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 1;
 }
 
 .page-hero__inner {
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 0 2rem;
   position: relative;
   z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 1rem + 2vw, 3rem);
+}
+
+.page-hero__inner::before {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.15;
+  animation: blog-orb-float 12s ease-in-out infinite alternate;
+  width: 400px;
+  height: 400px;
+  background: var(--brand-dark, #a31d24);
+  bottom: -40%;
+  left: -20%;
+  animation-delay: -6s;
+  animation-direction: alternate-reverse;
+  pointer-events: none;
+  z-index: 1;
 }
 
 .page-hero__title {
-  font-size: clamp(2.5rem, 2rem + 2.5vw, 4rem);
-  color: var(--text-dark);
-  font-weight: 800;
-  margin-bottom: 1rem;
+  font-family: var(--font-accent, 'Bebas Neue', sans-serif);
+  font-size: clamp(2.8rem, 2rem + 4vw, 4.8rem);
+  font-weight: 400;
+  color: #ffffff;
+  line-height: 0.95;
+  letter-spacing: 1px;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+}
+
+.page-hero__title em {
+  font-style: normal;
+  font-weight: 400;
+  color: var(--brand, #F22F3A);
 }
 
 .page-hero__desc {
-  font-size: clamp(0.95rem, 0.88rem + 0.3vw, 1.1rem);
-  color: var(--text-muted);
-  line-height: 1.7;
+  font-family: var(--font-main, 'Inter', sans-serif);
+  font-size: clamp(0.95rem, 0.88rem + 0.3vw, 1.15rem);
+  color: #cccccc;
+  line-height: 1.8;
+  max-width: 60ch;
+  margin: 0 auto;
+  font-weight: 300;
 }
 
 /* ==========================================================================

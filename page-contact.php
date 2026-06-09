@@ -11,7 +11,11 @@ get_header(); ?>
     <!-- Page Hero -->
     <section class="page-hero" aria-label="Contact us">
         <div class="page-hero__inner">
-            <span class="section__label">Get in Touch</span>
+            <div class="rwx-breadcrumb">
+                <a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a>
+                <svg viewBox="0 0 24 24" width="10" height="10" stroke="currentColor" stroke-width="3" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                <span>Contact</span>
+            </div>
             <h1 class="page-hero__title">Contact Us</h1>
             <p class="page-hero__desc">We'd love to hear from you. Reach out to schedule a service or ask any questions.</p>
         </div>
