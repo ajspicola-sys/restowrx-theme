@@ -3427,8 +3427,39 @@ function rwx_add_slug_to_body_class($classes) {
 }
 add_filter('body_class', 'rwx_add_slug_to_body_class');
 
-
-
-
-
+/**
+ * Exclude neighborhood-specific service pages from general service list queries.
+ */
+function rwx_exclude_neighborhood_services( $where, $query ) {
+    global $wpdb;
+    
+    // Only run on the front-end
+    if ( is_admin() ) {
+        return $where;
+    }
+    
+    $post_types = isset( $query->query_vars['post_type'] ) ? $query->query_vars['post_type'] : '';
+    $has_service = false;
+    if ( is_array( $post_types ) ) {
+        $has_service = in_array( 'service', $post_types, true );
+    } else {
+        $has_service = ( $post_types === 'service' );
+    }
+    
+    if ( $has_service ) {
+        // If query is specifically requesting a single page or specific IDs, do not filter
+        if ( $query->is_single() || $query->is_singular() || ! empty( $query->query_vars['name'] ) || ! empty( $query->query_vars['p'] ) || ! empty( $query->query_vars['post__in'] ) ) {
+            return $where;
+        }
+        
+        // Exclude location-specific suffixes from general queries
+        $where .= " AND {$wpdb->posts}.post_name NOT LIKE '%-brandon' ";
+        $where .= " AND {$wpdb->posts}.post_name NOT LIKE '%-st-petersburg' ";
+        $where .= " AND {$wpdb->posts}.post_name NOT LIKE '%-south-tampa' ";
+        $where .= " AND {$wpdb->posts}.post_name NOT LIKE '%-carrollwood' ";
+    }
+    
+    return $where;
+}
+add_filter( 'posts_where', 'rwx_exclude_neighborhood_services', 10, 2 );
 
