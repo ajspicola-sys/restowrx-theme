@@ -3990,7 +3990,7 @@ html {
   padding: clamp(8rem, 6rem + 6vw, 11rem) 0 clamp(4rem, 3rem + 3vw, 6rem);
   overflow: hidden;
   text-align: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: none;
 }
 
 .page-hero::before {
@@ -4440,7 +4440,7 @@ a.contact-card__text:hover {
   padding: clamp(8rem, 6rem + 6vw, 11rem) 0 clamp(4rem, 3rem + 3vw, 6rem);
   overflow: hidden;
   text-align: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: none;
 }
 
 .blog-hero::before {
