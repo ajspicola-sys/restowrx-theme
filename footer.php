@@ -763,6 +763,12 @@
         document.querySelectorAll('a[href]').forEach(function(link) {
             var href = link.getAttribute('href');
             if (href && href.charAt(0) !== '#' && !href.startsWith('tel:') && !href.startsWith('mailto:') && !link.hasAttribute('target') && (href.indexOf(window.location.hostname) !== -1 || href.charAt(0) === '/')) {
+                
+                // Exclude AJAX-driven links to allow seamless filtering/pagination
+                if (link.classList.contains('blog-filter-btn') || link.closest('.blog-pagination') || link.hasAttribute('data-ajax') || link.classList.contains('no-transition')) {
+                    return;
+                }
+                
                 link.addEventListener('click', function(e) {
                     if (e.ctrlKey || e.metaKey || e.shiftKey) return;
                     e.preventDefault(); 

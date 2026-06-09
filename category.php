@@ -19,7 +19,13 @@ $current_cat = get_queried_object();
             <div class="blog-hero__orb blog-hero__orb--2"></div>
         </div>
         <div class="blog-hero__inner">
-            <span class="section__label">RESTOWRX INTEL</span>
+            <div class="rwx-breadcrumb">
+                <a href="<?php echo esc_url(home_url('/')); ?>">Home</a>
+                <svg viewBox="0 0 24 24" width="10" height="10" stroke="currentColor" stroke-width="3" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                <a href="<?php echo esc_url(home_url('/blog/')); ?>">Blog</a>
+                <svg viewBox="0 0 24 24" width="10" height="10" stroke="currentColor" stroke-width="3" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                <span><?php echo esc_html( $current_cat->name ); ?></span>
+            </div>
             <h1 class="blog-hero__title"><?php echo esc_html( $current_cat->name ); ?></h1>
             <?php if ( $current_cat->description ) : ?>
                 <p class="blog-hero__desc"><?php echo esc_html( $current_cat->description ); ?></p>
@@ -140,10 +146,10 @@ $current_cat = get_queried_object();
         if (!link) return;
         
         e.preventDefault();
-        loadBlogPage(link.href);
+        loadBlogPage(link.href, false);
     });
 
-    function loadBlogPage(url) {
+    function loadBlogPage(url, isPopState) {
         var heroInner = document.querySelector('.blog-hero__inner');
         var filterBar = document.querySelector('.blog-filters__bar');
         var blogArchive = document.querySelector('.blog-archive');
@@ -176,7 +182,9 @@ $current_cat = get_queried_object();
                 if (filterBar && newFilterBar) filterBar.innerHTML = newFilterBar.innerHTML;
                 if (blogArchive && newBlogArchive) blogArchive.innerHTML = newBlogArchive.innerHTML;
                 
-                window.history.pushState(null, '', url);
+                if (!isPopState) {
+                    window.history.pushState(null, '', url);
+                }
                 
                 if (heroInner) heroInner.style.opacity = '1';
                 if (filterBar) filterBar.style.opacity = '1';
@@ -203,7 +211,7 @@ $current_cat = get_queried_object();
     
     if (!window.blogAjaxInitialized) {
         window.addEventListener('popstate', function() {
-            window.location.reload();
+            loadBlogPage(window.location.href, true);
         });
         window.blogAjaxInitialized = true;
     }

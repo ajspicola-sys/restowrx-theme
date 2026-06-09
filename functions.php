@@ -992,8 +992,9 @@ function hwh_register_services() {
 add_action('init', 'hwh_register_services');
 
 // ═══════════════════════════════════════════════════════════════════
-// PORTFOLIO — Custom Post Type
+// PORTFOLIO — Custom Post Type (Disabled)
 // ═══════════════════════════════════════════════════════════════════
+/*
 function sc_register_portfolio() {
     register_post_type('portfolio', [
         'labels' => [
@@ -1014,8 +1015,6 @@ function sc_register_portfolio() {
         'rewrite'             => ['slug' => 'projects'],
         'menu_icon'           => 'dashicons-images-alt2',
         'menu_position'       => 6,
-        // 'custom-fields' lets Yoast SEO read/write meta (full panel visible).
-        // 'page-attributes' adds the Order field for manual portfolio sorting.
         'supports'            => ['title', 'editor', 'thumbnail', 'excerpt', 'custom-fields', 'page-attributes'],
         'show_in_rest'        => true,
     ]);
@@ -1119,6 +1118,7 @@ function sc_portfolio_admin_scripts($hook) {
     }
 }
 add_action('admin_enqueue_scripts', 'sc_portfolio_admin_scripts');
+*/
 
 // -- Redirect /service/ (singular) → /services/ (plural) -----------
 // Safety net for external links and bookmarks pointing to old URLs.
@@ -1135,13 +1135,13 @@ function hwh_redirect_singular_service() {
 }
 add_action( 'template_redirect', 'hwh_redirect_singular_service', 1 );
 
-// -- Redirect /portfolio/ (old) → /projects/ (new) ------------------
+// -- Redirect /portfolio/ and /projects/ → / (homepage) -----------
 function sc_redirect_portfolio_to_projects() {
     if ( is_admin() || wp_doing_ajax() || wp_doing_cron() ) return;
 
-    // 1. If it's a static Page with slug 'portfolio', redirect to /projects/
-    if ( is_page( 'portfolio' ) ) {
-        wp_redirect( home_url( '/projects/' ), 301 );
+    // 1. If it's a static Page with slug 'portfolio' or 'projects', redirect to /
+    if ( is_page( 'portfolio' ) || is_page( 'projects' ) ) {
+        wp_redirect( home_url( '/' ), 301 );
         exit;
     }
 
@@ -1149,11 +1149,11 @@ function sc_redirect_portfolio_to_projects() {
     global $wp;
     $request = isset( $wp->request ) ? trim( $wp->request, '/' ) : '';
 
-    if ( $request === 'portfolio' ) {
-        wp_redirect( home_url( '/projects/' ), 301 );
+    if ( in_array( $request, array( 'portfolio', 'projects' ), true ) ) {
+        wp_redirect( home_url( '/' ), 301 );
         exit;
-    } elseif ( preg_match( '#^portfolio/(.+)#', $request, $m ) ) {
-        wp_redirect( home_url( '/projects/' . $m[1] ), 301 );
+    } elseif ( preg_match( '#^(portfolio|projects)/(.+)#', $request, $m ) ) {
+        wp_redirect( home_url( '/' ), 301 );
         exit;
     }
 
@@ -1168,11 +1168,11 @@ function sc_redirect_portfolio_to_projects() {
         $uri_path = trim( substr( $uri_path, strlen( $home_path ) ), '/' );
     }
 
-    if ( $uri_path === 'portfolio' ) {
-        wp_redirect( home_url( '/projects/' ), 301 );
+    if ( in_array( $uri_path, array( 'portfolio', 'projects' ), true ) ) {
+        wp_redirect( home_url( '/' ), 301 );
         exit;
-    } elseif ( preg_match( '#^portfolio/(.+)#', $uri_path, $m ) ) {
-        wp_redirect( home_url( '/projects/' . $m[1] ), 301 );
+    } elseif ( preg_match( '#^(portfolio|projects)/(.+)#', $uri_path, $m ) ) {
+        wp_redirect( home_url( '/' ), 301 );
         exit;
     }
 }
@@ -3414,3 +3414,16 @@ function rwx_render_contact_form($form_id = 'rwx-contact-form') {
     <?php
     return ob_get_clean();
 }
+
+/**
+ * Add page-slug class to the body tag for styling hooks.
+ */
+function rwx_add_slug_to_body_class($classes) {
+    global $post;
+    if (isset($post) && is_page()) {
+        $classes[] = 'page-slug-' . $post->post_name;
+    }
+    return $classes;
+}
+add_filter('body_class', 'rwx_add_slug_to_body_class');
+

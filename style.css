@@ -12877,3 +12877,223 @@ footer.hwh-foot { background: #0A1628; color: rgba(255,255,255,0.7); font-family
   color: var(--brand-dark);
 }
 
+/* ==========================================================================
+   GLOBAL BREADCRUMBS
+   ========================================================================== */
+.rwx-breadcrumb {
+  font-family: var(--font-mono, 'Space Mono', monospace);
+  color: var(--brand, #F22F3A);
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.rwx-breadcrumb a {
+  color: #888888;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.rwx-breadcrumb a:hover {
+  color: var(--brand, #F22F3A);
+}
+
+.rwx-breadcrumb svg {
+  color: #555555;
+  stroke: currentColor;
+}
+
+/* ==========================================================================
+   SERVICES SECTION - PREMIUM LIGHT THEME OVERRIDES
+   ========================================================================== */
+.rwx-services-archive .services-grid-section,
+.post-type-archive-service .services-grid-section,
+.page-slug-services .services-grid-section,
+.page-slug-our-services .services-grid-section {
+  background-color: #ffffff !important;
+  color: #111111 !important;
+}
+
+.rwx-services-archive .services-grid-section .reveal span,
+.post-type-archive-service .services-grid-section .reveal span,
+.page-slug-services .services-grid-section .reveal span,
+.page-slug-our-services .services-grid-section .reveal span {
+  color: var(--brand, #F22F3A) !important;
+}
+
+.rwx-services-archive .services-grid-section .reveal h2,
+.post-type-archive-service .services-grid-section .reveal h2,
+.page-slug-services .services-grid-section .reveal h2,
+.page-slug-our-services .services-grid-section .reveal h2 {
+  color: #111111 !important;
+}
+
+.rwx-services-archive .services-grid-section .services-grid,
+.post-type-archive-service .services-grid-section .services-grid,
+.page-slug-services .services-grid-section .services-grid,
+.page-slug-our-services .services-grid-section .services-grid {
+  display: grid !important;
+}
+
+.rwx-services-archive .services-grid-section .service-card,
+.post-type-archive-service .services-grid-section .service-card,
+.page-slug-services .services-grid-section .service-card,
+.page-slug-our-services .services-grid-section .service-card {
+  background: #ffffff !important;
+  border: 1px solid rgba(0, 0, 0, 0.06) !important;
+  color: #111111 !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02) !important;
+}
+
+.rwx-services-archive .services-grid-section .service-card:hover,
+.post-type-archive-service .services-grid-section .service-card:hover,
+.page-slug-services .services-grid-section .service-card:hover,
+.page-slug-our-services .services-grid-section .service-card:hover {
+  background: #ffffff !important;
+  border-color: var(--brand, #F22F3A) !important;
+  box-shadow: 0 20px 45px rgba(242, 47, 58, 0.06) !important;
+}
+
+.rwx-services-archive .services-grid-section .service-card h3,
+.post-type-archive-service .services-grid-section .service-card h3,
+.page-slug-services .services-grid-section .service-card h3,
+.page-slug-our-services .services-grid-section .service-card h3 {
+  color: #111111 !important;
+}
+
+.rwx-services-archive .services-grid-section .service-card h3 span,
+.post-type-archive-service .services-grid-section .service-card h3 span,
+.page-slug-services .services-grid-section .service-card h3 span,
+.page-slug-our-services .services-grid-section .service-card h3 span {
+  color: var(--brand, #F22F3A) !important;
+}
+
+.rwx-services-archive .services-grid-section .service-card p,
+.post-type-archive-service .services-grid-section .service-card p,
+.page-slug-services .services-grid-section .service-card p,
+.page-slug-our-services .services-grid-section .service-card p {
+  color: #555555 !important;
+}
+
+.rwx-services-archive .services-grid-section .card-list li,
+.post-type-archive-service .services-grid-section .card-list li,
+.page-slug-services .services-grid-section .card-list li,
+.page-slug-our-services .services-grid-section .card-list li {
+  color: #555555 !important;
+}
+
+.rwx-services-archive .services-grid-section .card-brief-link,
+.post-type-archive-service .services-grid-section .card-brief-link,
+.page-slug-services .services-grid-section .card-brief-link,
+.page-slug-our-services .services-grid-section .card-brief-link {
+  color: #111111 !important;
+}
+
+.rwx-services-archive .services-grid-section .service-card:hover .card-brief-link,
+.post-type-archive-service .services-grid-section .service-card:hover .card-brief-link,
+.page-slug-services .services-grid-section .service-card:hover .card-brief-link,
+.page-slug-our-services .services-grid-section .service-card:hover .card-brief-link {
+  color: var(--brand, #F22F3A) !important;
+}
+
+.rwx-services-archive .services-grid-section .card-number,
+.post-type-archive-service .services-grid-section .card-number,
+.page-slug-services .services-grid-section .card-number,
+.page-slug-our-services .services-grid-section .card-number {
+  color: rgba(0, 0, 0, 0.03) !important;
+}
+
+.rwx-services-archive .services-grid-section .service-card:hover .card-number,
+.post-type-archive-service .services-grid-section .service-card:hover .card-number,
+.page-slug-services .services-grid-section .service-card:hover .card-number,
+.page-slug-our-services .services-grid-section .service-card:hover .card-number {
+  color: rgba(242, 47, 58, 0.08) !important;
+}
+
+.rwx-services-archive .services-grid-section .card-icon,
+.post-type-archive-service .services-grid-section .card-icon,
+.page-slug-services .services-grid-section .card-icon,
+.page-slug-our-services .services-grid-section .card-icon {
+  background: #ffffff !important;
+  border-color: var(--brand, #F22F3A) !important;
+  color: var(--brand, #F22F3A) !important;
+  filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.15)) !important;
+}
+
+.rwx-services-archive .services-grid-section .service-card:hover .card-icon,
+.post-type-archive-service .services-grid-section .service-card:hover .card-icon,
+.page-slug-services .services-grid-section .service-card:hover .card-icon,
+.page-slug-our-services .services-grid-section .service-card:hover .card-icon {
+  background: var(--brand, #F22F3A) !important;
+  color: #ffffff !important;
+}
+
+.rwx-services-archive .services-grid-section a.btn.btn--outline,
+.post-type-archive-service .services-grid-section a.btn.btn--outline,
+.page-slug-services .services-grid-section a.btn.btn--outline,
+.page-slug-our-services .services-grid-section a.btn.btn--outline {
+  border-color: var(--brand, #F22F3A) !important;
+  color: var(--brand, #F22F3A) !important;
+  background: transparent !important;
+}
+
+.rwx-services-archive .services-grid-section a.btn.btn--outline:hover,
+.post-type-archive-service .services-grid-section a.btn.btn--outline:hover,
+.page-slug-services .services-grid-section a.btn.btn--outline:hover,
+.page-slug-our-services .services-grid-section a.btn.btn--outline:hover {
+  background: var(--brand, #F22F3A) !important;
+  color: #ffffff !important;
+}
+
+/* Page wrapper overrides for services page */
+.rwx-services-archive,
+.post-type-archive-service,
+.page-slug-services,
+.page-slug-our-services {
+  background-color: #ffffff !important;
+  color: #111111 !important;
+}
+
+/* Elementor layout & widget container overrides for services pages */
+.rwx-services-archive section:not(.rwx-hero):not(.process-section),
+.post-type-archive-service section:not(.rwx-hero):not(.process-section),
+.page-slug-services section:not(.rwx-hero):not(.process-section),
+.page-slug-our-services section:not(.rwx-hero):not(.process-section),
+.rwx-services-archive .elementor-section:not(.rwx-hero):not(.process-section),
+.post-type-archive-service .elementor-section:not(.rwx-hero):not(.process-section),
+.page-slug-services .elementor-section:not(.rwx-hero):not(.process-section),
+.page-slug-our-services .elementor-section:not(.rwx-hero):not(.process-section) {
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+  color: #111111 !important;
+}
+
+.rwx-services-archive .elementor-background-overlay,
+.post-type-archive-service .elementor-background-overlay,
+.page-slug-services .elementor-background-overlay,
+.page-slug-our-services .elementor-background-overlay,
+.rwx-services-archive .elementor-container,
+.post-type-archive-service .elementor-container,
+.page-slug-services .elementor-container,
+.page-slug-our-services .elementor-container,
+.rwx-services-archive .elementor-column,
+.post-type-archive-service .elementor-column,
+.page-slug-services .elementor-column,
+.page-slug-our-services .elementor-column,
+.rwx-services-archive .elementor-column-wrap,
+.post-type-archive-service .elementor-column-wrap,
+.page-slug-services .elementor-column-wrap,
+.page-slug-our-services .elementor-column-wrap,
+.rwx-services-archive .elementor-widget-wrap,
+.post-type-archive-service .elementor-widget-wrap,
+.page-slug-services .elementor-widget-wrap,
+.page-slug-our-services .elementor-widget-wrap {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+

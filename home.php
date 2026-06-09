@@ -28,7 +28,11 @@ $blog_query = new WP_Query( array(
             <div class="blog-hero__orb blog-hero__orb--2"></div>
         </div>
         <div class="blog-hero__inner">
-            <span class="section__label">RESTOWRX INTEL</span>
+            <div class="rwx-breadcrumb">
+                <a href="<?php echo esc_url(home_url('/')); ?>">Home</a>
+                <svg viewBox="0 0 24 24" width="10" height="10" stroke="currentColor" stroke-width="3" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                <span>Blog</span>
+            </div>
             <h1 class="blog-hero__title">Field Intelligence &amp;<br><em>After Action Reports</em></h1>
             <p class="blog-hero__desc">Operational briefs, tactical restoration field reports, and property recovery insights from the Restowrx Elite command team.</p>
         </div>
@@ -198,10 +202,10 @@ $blog_query = new WP_Query( array(
         if (!link) return;
         
         e.preventDefault();
-        loadBlogPage(link.href);
+        loadBlogPage(link.href, false);
     });
 
-    function loadBlogPage(url) {
+    function loadBlogPage(url, isPopState) {
         var heroInner = document.querySelector('.blog-hero__inner');
         var filterBar = document.querySelector('.blog-filters__bar');
         var blogArchive = document.querySelector('.blog-archive');
@@ -234,7 +238,9 @@ $blog_query = new WP_Query( array(
                 if (filterBar && newFilterBar) filterBar.innerHTML = newFilterBar.innerHTML;
                 if (blogArchive && newBlogArchive) blogArchive.innerHTML = newBlogArchive.innerHTML;
                 
-                window.history.pushState(null, '', url);
+                if (!isPopState) {
+                    window.history.pushState(null, '', url);
+                }
                 
                 if (heroInner) heroInner.style.opacity = '1';
                 if (filterBar) filterBar.style.opacity = '1';
@@ -261,7 +267,7 @@ $blog_query = new WP_Query( array(
     
     if (!window.blogAjaxInitialized) {
         window.addEventListener('popstate', function() {
-            window.location.reload();
+            loadBlogPage(window.location.href, true);
         });
         window.blogAjaxInitialized = true;
     }

@@ -10,8 +10,8 @@ get_header();
 <style>
     /* Service Archive Page Custom Styling */
     .rwx-services-archive {
-        background-color: #050505;
-        color: #ffffff;
+        background-color: #ffffff;
+        color: #111111;
         font-family: var(--font-main, 'Inter', sans-serif);
         overflow-x: hidden;
     }
@@ -130,7 +130,7 @@ get_header();
     /* --- SERVICES SECTION --- */
     .services-grid-section {
         width: 100%;
-        background-color: #050505;
+        background-color: #ffffff;
         padding: clamp(60px, 8vw, 120px) 0;
         position: relative;
     }
@@ -148,18 +148,19 @@ get_header();
     }
 
     .service-card {
-        background: #0a0a0a;
-        border: 1px solid rgba(255, 255, 255, 0.05);
+        background: #ffffff;
+        border: 1px solid rgba(0, 0, 0, 0.06);
         padding: clamp(35px, 4vw, 50px) clamp(25px, 3vw, 30px);
         position: relative;
         display: flex;
         flex-direction: column;
         transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1);
         text-decoration: none;
-        color: #ffffff !important;
+        color: #111111 !important;
         overflow: hidden;
         height: 100%;
         border-radius: 4px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
     }
 
     /* Forensic Numbering */
@@ -169,22 +170,22 @@ get_header();
         right: 35px;
         font-family: var(--font-accent, 'Bebas Neue', sans-serif);
         font-size: 4rem;
-        color: rgba(255, 255, 255, 0.02);
+        color: rgba(0, 0, 0, 0.03);
         transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1);
         line-height: 1;
         pointer-events: none;
     }
 
     .service-card:hover .card-number {
-        color: rgba(255, 0, 0, 0.12);
+        color: rgba(242, 47, 58, 0.08);
         transform: scale(1.1);
     }
 
     .service-card:hover {
-        background: #111;
+        background: #ffffff;
         transform: translateY(-10px);
         border-color: var(--brand, #ff0000);
-        box-shadow: 0 40px 80px rgba(0,0,0,0.8);
+        box-shadow: 0 20px 45px rgba(242, 47, 58, 0.06);
     }
 
     /* Red Top Line Animation */
@@ -205,7 +206,7 @@ get_header();
     .card-icon {
         color: var(--brand, #ff0000);
         margin-bottom: 35px;
-        filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.4));
+        filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.15));
         transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1);
         display: flex;
         align-items: center;
@@ -222,14 +223,14 @@ get_header();
         margin-bottom: 20px;
         letter-spacing: 1px;
         line-height: 1;
-        color: #ffffff;
+        color: #111111;
     }
 
     .service-card h3 b { display: block; font-weight: normal; }
     .service-card h3 span { color: var(--brand, #ff0000); }
 
     .service-card p {
-        color: #888;
+        color: #555555;
         line-height: 1.6;
         margin-bottom: 35px;
         font-size: 0.95rem;
@@ -248,7 +249,7 @@ get_header();
         gap: 12px;
         margin-bottom: 12px;
         font-size: 0.8rem;
-        color: #666;
+        color: #555555;
         text-transform: uppercase;
         letter-spacing: 1px;
         font-family: var(--font-mono, 'Space Mono', monospace);
@@ -269,7 +270,7 @@ get_header();
         text-transform: uppercase;
         letter-spacing: 2px;
         transition: 0.3s;
-        color: white;
+        color: #111111;
     }
 
     .card-brief-link svg {
@@ -424,22 +425,12 @@ get_header();
                 <svg viewBox="0 0 24 24" width="10" height="10" stroke="currentColor" stroke-width="3" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 <span>Services</span>
             </div>
-            <h1 class="rwx-hero__title">
-                <span>Intelligence Driven</span>
-                <b>Restoration Specializations</b>
+            <h1 class="rwx-hero__title" style="color: white;">
+                Restoration Specializations
             </h1>
             <p class="rwx-hero__desc">
                 Precision structural property recovery. Our expert rapid response units deploy 24/7/365 to stabilize and mitigate property damage.
             </p>
-            <div class="rwx-hero__actions">
-                <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="rwx-btn rwx-btn--red">Request Emergency Service</a>
-                <a href="tel:+18136994009" class="rwx-btn rwx-btn--outline">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" style="margin-right:5px; vertical-align:-3px;">
-                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L7.91 9.27a16 16 0 0 0 6.29 6.29l1.45-1.45a2 2 0 0 1 2.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z" />
-                    </svg>
-                    813.699.4009
-                </a>
-            </div>
         </div>
     </section>
 

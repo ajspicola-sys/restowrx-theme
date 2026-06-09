@@ -47,6 +47,8 @@ $custom_templates = [
     'our-values'   => 'page-values.php',
     'mission'      => 'page-values.php',
     'before-after' => 'page-before-after.php',
+    'services'     => 'archive-service.php',
+    'our-services' => 'archive-service.php',
 ];
 
 if ($slug && isset($custom_templates[$slug])) {
