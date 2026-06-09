@@ -148,99 +148,139 @@ get_header();
     }
 
     .service-card {
-        background: #ffffff;
-        border: 1px solid rgba(0, 0, 0, 0.06);
-        padding: clamp(35px, 4vw, 50px) clamp(25px, 3vw, 30px);
+        background: #0a0a0a !important;
+        border: 1px solid rgba(255, 255, 255, 0.05) !important;
+        padding: 0 !important;
         position: relative;
         display: flex;
         flex-direction: column;
         transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1);
         text-decoration: none;
-        color: #111111 !important;
+        color: #ffffff !important;
         overflow: hidden;
         height: 100%;
-        border-radius: 4px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
-    }
-
-    /* Forensic Numbering */
-    .card-number {
-        position: absolute;
-        top: 30px;
-        right: 35px;
-        font-family: var(--font-accent, 'Bebas Neue', sans-serif);
-        font-size: 4rem;
-        color: rgba(0, 0, 0, 0.03);
-        transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-        line-height: 1;
-        pointer-events: none;
-    }
-
-    .service-card:hover .card-number {
-        color: rgba(242, 47, 58, 0.08);
-        transform: scale(1.1);
+        box-sizing: border-box;
+        border-radius: 8px !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
     }
 
     .service-card:hover {
-        background: #ffffff;
-        transform: translateY(-10px);
-        border-color: var(--brand, #ff0000);
-        box-shadow: 0 20px 45px rgba(242, 47, 58, 0.06);
+        background: #111111 !important;
+        transform: translateY(-10px) !important;
+        border-color: var(--brand, #ff0000) !important;
+        box-shadow: 0 40px 80px rgba(0,0,0,0.8) !important;
     }
 
-    /* Red Top Line Animation */
-    .service-card::before {
-        content: '';
-        position: absolute;
-        top: 0; left: 0; width: 100%; height: 2px;
-        background: var(--brand, #ff0000);
-        transform: scaleX(0);
-        transform-origin: left;
+    /* Premium Featured Image Top Wrap */
+    .card-image-wrap {
+        position: relative;
+        width: 100%;
+        height: 220px;
+        overflow: hidden;
+        background: #000;
+        border-bottom: 2px solid var(--brand, #ff0000);
+    }
+    
+    .card-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.75;
         transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1);
     }
-
-    .service-card:hover::before {
-        transform: scaleX(1);
+    
+    .service-card:hover .card-img {
+        opacity: 1;
+        transform: scale(1.08);
+    }
+    
+    .card-info {
+        padding: 40px 30px 30px;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        position: relative;
     }
 
+    /* Overlapping Circular Brand Icon */
     .card-icon {
-        color: var(--brand, #ff0000);
-        margin-bottom: 35px;
-        filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.15));
-        transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+        position: absolute;
+        top: -24px;
+        left: 30px;
+        width: 48px;
+        height: 48px;
+        background: #0a0a0a !important;
+        border: 1px solid var(--brand, #ff0000) !important;
+        border-radius: 50% !important;
         display: flex;
         align-items: center;
+        justify-content: center;
+        z-index: 20;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+        color: var(--brand, #ff0000) !important;
+        margin: 0;
+    }
+    
+    .service-card:hover .card-icon {
+        background: var(--brand, #ff0000) !important;
+        color: white !important;
+        transform: scale(1.1);
+        box-shadow: 0 10px 25px rgba(255,0,0,0.3);
+    }
+    
+    .card-icon i, .card-icon svg {
+        width: 20px;
+        height: 20px;
+        display: inline-block;
     }
 
-    .service-card:hover .card-icon {
-        transform: scale(1.1) rotate(-5deg);
+    /* Floating Corner Numbering */
+    .card-number {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        font-family: var(--font-accent, 'Bebas Neue', sans-serif);
+        font-size: 3.2rem;
+        color: rgba(255, 255, 255, 0.25) !important;
+        transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+        line-height: 1;
+        z-index: 10;
+    }
+
+    .service-card:hover .card-number {
+        color: var(--brand, #ff0000) !important;
+        transform: scale(1.05);
     }
 
     .service-card h3 {
         font-family: var(--font-accent, 'Bebas Neue', sans-serif);
-        font-size: clamp(2rem, 3vw, 2.5rem);
+        font-size: clamp(2rem, 3vw, 2.8rem) !important;
         text-transform: uppercase;
         margin-bottom: 20px;
         letter-spacing: 1px;
         line-height: 1;
-        color: #111111;
+        margin-top: 0;
+        color: #ffffff !important;
     }
 
-    .service-card h3 b { display: block; font-weight: normal; }
-    .service-card h3 span { color: var(--brand, #ff0000); }
+    .service-card h3 b { display: block; }
+    .service-card h3 span { color: var(--brand, #ff0000) !important; }
 
     .service-card p {
-        color: #555555;
+        color: #888888 !important;
         line-height: 1.6;
-        margin-bottom: 35px;
+        margin-bottom: 40px;
         font-size: 0.95rem;
         flex-grow: 1;
+        margin-top: 0;
     }
 
     .card-list {
         list-style: none;
         padding: 0;
-        margin-bottom: 35px;
+        margin-bottom: 40px;
+        margin-top: 0;
     }
 
     .card-list li {
@@ -248,15 +288,17 @@ get_header();
         align-items: center;
         gap: 12px;
         margin-bottom: 12px;
-        font-size: 0.8rem;
-        color: #555555;
+        font-size: 0.85rem !important;
+        color: #aaaaaa !important;
         text-transform: uppercase;
         letter-spacing: 1px;
         font-family: var(--font-mono, 'Space Mono', monospace);
     }
 
-    .card-list li svg {
-        color: var(--brand, #ff0000);
+    .card-list li i, .card-list li svg {
+        color: var(--brand, #ff0000) !important;
+        display: flex;
+        align-items: center;
         width: 14px;
         height: 14px;
     }
@@ -270,22 +312,12 @@ get_header();
         text-transform: uppercase;
         letter-spacing: 2px;
         transition: 0.3s;
-        color: #111111;
-    }
-
-    .card-brief-link svg {
-        width: 18px;
-        height: 18px;
-        transition: transform 0.3s;
+        color: #ffffff !important;
     }
 
     .service-card:hover .card-brief-link {
-        color: var(--brand, #ff0000);
+        color: var(--brand, #ff0000) !important;
         gap: 25px;
-    }
-
-    .service-card:hover .card-brief-link svg {
-        transform: translateX(5px);
     }
 
     /* --- THE PROCESS --- */
@@ -531,24 +563,38 @@ get_header();
                             }
                         }
                         ?>
+                        <?php
+                        $thumb_url = '';
+                        if (has_post_thumbnail()) {
+                            $thumb_url = get_the_post_thumbnail_url(get_the_ID(), 'medium_large');
+                        } else {
+                            $thumb_url = 'https://images.unsplash.com/photo-1542013936693-8848e574047e?q=80&w=600';
+                        }
+                        ?>
                         <a href="<?php the_permalink(); ?>" class="service-card reveal">
-                            <div class="card-number"><?php echo sprintf('%02d', $index++); ?></div>
-                            <div class="card-icon"><i data-lucide="<?php echo esc_attr($lucide_name); ?>" size="56"></i></div>
-                            <h3><?php echo $formatted_title; ?></h3>
-                            <p><?php echo esc_html($desc); ?></p>
+                            <div class="card-image-wrap">
+                                <img src="<?php echo esc_url($thumb_url); ?>" alt="<?php echo esc_attr($title); ?>" class="card-img">
+                                <div class="card-number"><?php echo sprintf('%02d', $index++); ?></div>
+                            </div>
                             
-                            <ul class="card-list">
-                                <?php foreach (array_slice($features, 0, 3) as $feature): ?>
-                                    <li>
-                                        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="3" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                        <?php echo esc_html($feature); ?>
-                                    </li>
-                                <?php endforeach; ?>
-                            </ul>
-                            
-                            <div class="card-brief-link">
-                                Access Briefing 
-                                <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="3" fill="none"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                            <div class="card-info">
+                                <div class="card-icon"><i data-lucide="<?php echo esc_attr($lucide_name); ?>" size="20"></i></div>
+                                <h3><?php echo $formatted_title; ?></h3>
+                                <p><?php echo esc_html($desc); ?></p>
+                                
+                                <ul class="card-list">
+                                    <?php foreach (array_slice($features, 0, 3) as $feature): ?>
+                                        <li>
+                                            <i data-lucide="check-circle" size="14"></i>
+                                            <?php echo esc_html($feature); ?>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                                
+                                <div class="card-brief-link">
+                                    Access Briefing 
+                                    <i data-lucide="arrow-right"></i>
+                                </div>
                             </div>
                         </a>
                     <?php endwhile;
