@@ -113,8 +113,8 @@
 
     /* --- RESTOWRX TACTICAL COMMAND FOOTER --- */
     .elite-footer {
-        background-color: #000000;
-        color: white;
+        background-color: #000000 !important;
+        color: #ffffff !important;
         font-family: 'Inter', sans-serif;
         padding: 90px 0 45px;
         position: relative;
@@ -153,7 +153,7 @@
         font-size: 1.8rem;
         letter-spacing: 2px;
         margin-bottom: 25px;
-        color: white;
+        color: #ffffff !important;
         text-transform: uppercase;
         position: relative;
         display: inline-block;
@@ -171,14 +171,17 @@
     }
 
     .footer-logo img {
-        height: 40px;
-        width: auto;
-        object-fit: contain;
+        height: 40px !important;
+        width: auto !important;
+        object-fit: contain !important;
         margin-bottom: 20px;
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
     }
 
     .footer-about p {
-        color: #888;
+        color: #bbbbbb !important;
         line-height: 1.6;
         font-size: 0.9rem;
         max-width: 300px;
@@ -196,7 +199,7 @@
     }
 
     .footer-links a {
-        color: #888;
+        color: #bbbbbb !important;
         text-decoration: none;
         transition: 0.3s;
         font-size: 0.85rem;
@@ -207,7 +210,7 @@
     }
 
     .footer-links a:hover {
-        color: var(--brand, #F22F3A);
+        color: var(--brand, #F22F3A) !important;
         transform: translateX(4px);
     }
 
@@ -222,11 +225,12 @@
         display: flex;
         align-items: center;
         gap: 8px;
-        color: #888;
+        color: #bbbbbb !important;
         font-size: 0.75rem;
         text-transform: uppercase;
         letter-spacing: 1px;
         font-family: 'Space Mono', monospace;
+        white-space: nowrap !important;
     }
 
     .zone-pulse {
@@ -271,7 +275,7 @@
     .contact-text span {
         display: block;
         font-size: 0.65rem;
-        color: #555;
+        color: #777777 !important;
         font-weight: 800;
         text-transform: uppercase;
         letter-spacing: 2px;
@@ -281,7 +285,7 @@
     .contact-text b {
         font-family: 'Bebas Neue', sans-serif;
         font-size: 1.5rem;
-        color: white;
+        color: #ffffff !important;
         letter-spacing: 1px;
     }
 
@@ -342,7 +346,7 @@
     .cert-list {
         display: flex;
         gap: 25px;
-        color: #bbbbbb; /* Brightened from #444 to #bbbbbb for beautiful contrast on solid black background */
+        color: #bbbbbb !important; /* Brightened from #444 to #bbbbbb for beautiful contrast on solid black background */
         font-family: 'Bebas Neue', sans-serif;
         font-size: 1.1rem;
         letter-spacing: 2px;
@@ -364,7 +368,7 @@
     }
 
     .copyright {
-        color: #777777; /* Brightened from #444 to #777777 for readability on black background */
+        color: #777777 !important; /* Brightened from #444 to #777777 for readability on black background */
         font-size: 0.75rem;
         letter-spacing: 1px;
     }
@@ -579,13 +583,19 @@
         <!-- BRANDING -->
         <div class="footer-col footer-about">
             <div class="footer-logo">
-                <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/restowrx-logo-white-scaled.png' ); ?>" alt="Restowrx Elite Logo" width="180" height="36" loading="lazy">
+                <img src="https://restowrx.com/wp-content/uploads/2025/04/GetAttachmentThumbnail.png" alt="Restowrx Elite Logo" width="180" height="36" loading="lazy">
             </div>
             <p>TAMPA BAY'S COMMAND CENTER FOR PROPERTY RECOVERY. SURGICAL PRECISION. ELITE RESPONSE. 24/7 ACTIVE RADAR.</p>
             <div class="social-stack">
-                <a href="https://www.instagram.com/restowrx/" class="social-btn" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i data-lucide="instagram"></i></a>
-                <a href="https://www.facebook.com/restowrx/" class="social-btn" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i data-lucide="facebook"></i></a>
-                <a href="https://www.linkedin.com/company/restowrx/" class="social-btn" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i data-lucide="linkedin"></i></a>
+                <a href="https://www.instagram.com/restowrx/" class="social-btn" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-instagram"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                </a>
+                <a href="https://www.facebook.com/restowrx/" class="social-btn" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                </a>
+                <a href="https://www.linkedin.com/company/restowrx/" class="social-btn" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+                </a>
             </div>
         </div>
 
@@ -617,7 +627,7 @@
             <h3>Active Radar</h3>
             <div class="radar-zones">
                 <div class="zone-item"><div class="zone-pulse"></div>TAMPA</div>
-                <div class="zone-item"><div class="zone-pulse"></div>S. PETE</div>
+                <div class="zone-item"><div class="zone-pulse"></div>ST. PETE</div>
                 <div class="zone-item"><div class="zone-pulse"></div>CWATER</div>
                 <div class="zone-item"><div class="zone-pulse"></div>BRANDON</div>
                 <div class="zone-item"><div class="zone-pulse"></div>WESLEY</div>
