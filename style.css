@@ -13113,14 +13113,14 @@ footer.hwh-foot { background: #0A1628; color: rgba(255,255,255,0.7); font-family
 }
 
 /* Elementor layout & widget container overrides for services pages */
-.rwx-services-archive section:not(.rwx-hero):not(.process-section):not(.rwx-cta-block):not(.hwh-cta),
-.post-type-archive-service section:not(.rwx-hero):not(.process-section):not(.rwx-cta-block):not(.hwh-cta),
-.page-slug-services section:not(.rwx-hero):not(.process-section):not(.rwx-cta-block):not(.hwh-cta),
-.page-slug-our-services section:not(.rwx-hero):not(.process-section):not(.rwx-cta-block):not(.hwh-cta),
-.rwx-services-archive .elementor-section:not(.rwx-hero):not(.process-section):not(.rwx-cta-block):not(.hwh-cta),
-.post-type-archive-service .elementor-section:not(.rwx-hero):not(.process-section):not(.rwx-cta-block):not(.hwh-cta),
-.page-slug-services .elementor-section:not(.rwx-hero):not(.process-section):not(.rwx-cta-block):not(.hwh-cta),
-.page-slug-our-services .elementor-section:not(.rwx-hero):not(.process-section):not(.rwx-cta-block):not(.hwh-cta) {
+.rwx-services-archive section:not(.page-hero):not(.process-section):not(.rwx-cta-block):not(.hwh-cta),
+.post-type-archive-service section:not(.page-hero):not(.process-section):not(.rwx-cta-block):not(.hwh-cta),
+.page-slug-services section:not(.page-hero):not(.process-section):not(.rwx-cta-block):not(.hwh-cta),
+.page-slug-our-services section:not(.page-hero):not(.process-section):not(.rwx-cta-block):not(.hwh-cta),
+.rwx-services-archive .elementor-section:not(.page-hero):not(.process-section):not(.rwx-cta-block):not(.hwh-cta),
+.post-type-archive-service .elementor-section:not(.page-hero):not(.process-section):not(.rwx-cta-block):not(.hwh-cta),
+.page-slug-services .elementor-section:not(.page-hero):not(.process-section):not(.rwx-cta-block):not(.hwh-cta),
+.page-slug-our-services .elementor-section:not(.page-hero):not(.process-section):not(.rwx-cta-block):not(.hwh-cta) {
   background-color: #ffffff !important;
   background: #ffffff !important;
   color: #111111 !important;
