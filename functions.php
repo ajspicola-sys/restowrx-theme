@@ -3427,11 +3427,5 @@ function rwx_add_slug_to_body_class($classes) {
 }
 add_filter('body_class', 'rwx_add_slug_to_body_class');
 
-// TEMPORARY: Service Seeder Trigger (will be removed after execution)
-add_action( 'init', function() {
-    if ( isset( $_GET['rwx_seed_services'] ) && current_user_can( 'manage_options' ) ) {
-        require_once get_template_directory() . '/seo/rwx-service-seeder.php';
-        rwx_seed_services_now();
-    }
-});
+
 

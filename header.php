@@ -154,6 +154,48 @@
             fill: none !important; 
         }
 
+        /* --- DYNAMIC LOCATION SELECTOR --- */
+        .rwx-location-selector {
+            display: flex;
+            align-items: center;
+            position: relative;
+            margin-right: 5px;
+        }
+        .rwx-location-selector select {
+            background: #111111;
+            color: rgba(255, 255, 255, 0.85) !important;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 4px;
+            padding: 3px 25px 3px 10px;
+            font-family: var(--font-mono, 'Space Mono', monospace);
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            cursor: pointer;
+            outline: none;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            appearance: none;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23F22F3A' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+            background-repeat: no-repeat;
+            background-position: right 8px center;
+            height: 24px;
+        }
+        .rwx-location-selector select:hover {
+            border-color: #F22F3A;
+            color: #ffffff !important;
+        }
+        /* Mobile adjustment */
+        @media (max-width: 768px) {
+            .rwx-top-bar .top-left span:nth-child(2),
+            .rwx-top-bar .top-left span:nth-child(3) {
+                display: none !important;
+            }
+            .rwx-location-selector {
+                margin-right: 0;
+            }
+        }
+
         /* --- NAV BAR ELEMENTS --- */
         .rwx-logo {
             height: 22px;
@@ -457,12 +499,22 @@
             <div class="top-left">
                 <span><i data-lucide="shield"></i> ELITE STATUS: ACTIVE</span>
                 <span><i data-lucide="clock"></i> 45 MIN RESPONSE</span>
-                <span><i data-lucide="map-pin"></i> TAMPA BAY COMMAND</span>
+                <span id="rwx-top-bar-location"><i data-lucide="map-pin"></i> TAMPA BAY COMMAND</span>
             </div>
             <div class="top-right">
+                <div class="rwx-location-selector">
+                    <select id="rwx-location-dropdown" aria-label="Select Dispatch Location">
+                        <option value="tampa">Tampa (Main)</option>
+                        <option value="south-tampa">South Tampa</option>
+                        <option value="brandon">Brandon</option>
+                        <option value="st-petersburg">St. Petersburg</option>
+                        <option value="carrollwood">Carrollwood</option>
+                    </select>
+                </div>
                 <a href="https://www.instagram.com/restowrx/" class="social-icon" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i data-lucide="instagram"></i></a>
                 <a href="https://www.facebook.com/restowrx/" class="social-icon" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i data-lucide="facebook"></i></a>
             </div>
+
         </div>
     </div>
 
@@ -511,6 +563,150 @@
         </div>
     </div>
 </header>
+
+<!-- rw-geolocation-script -->
+<script>
+(function() {
+    const geoMapping = {
+        'brandon': { name: 'Brandon', slug: 'water-damage-restoration-brandon' },
+        'st-petersburg': { name: 'St. Petersburg', slug: 'water-damage-restoration-st-petersburg' },
+        'south-tampa': { name: 'South Tampa', slug: 'water-damage-restoration-south-tampa' },
+        'carrollwood': { name: 'Carrollwood', slug: 'water-damage-restoration-carrollwood' },
+        'tampa': { name: 'Tampa (Main)', slug: '' }
+    };
+
+    // 1. Identify location from URL (always overrides lookup)
+    const path = window.location.pathname;
+    let urlLocation = null;
+    for (const [key, val] of Object.entries(geoMapping)) {
+        if (val.slug && path.includes(val.slug)) {
+            urlLocation = key;
+            break;
+        }
+    }
+
+    // Initialize DOM variables
+    const dropdown = document.getElementById('rwx-location-dropdown');
+    const locationDisplay = document.getElementById('rwx-top-bar-location');
+
+    function updateUI(locationKey) {
+        if (!geoMapping[locationKey]) return;
+        const loc = geoMapping[locationKey];
+        
+        // Update select value
+        if (dropdown) {
+            dropdown.value = locationKey;
+        }
+        
+        // Update top bar text
+        if (locationDisplay) {
+            if (locationKey === 'tampa') {
+                locationDisplay.innerHTML = '<i data-lucide="map-pin"></i> TAMPA BAY COMMAND';
+            } else {
+                locationDisplay.innerHTML = `<i data-lucide="map-pin"></i> ${loc.name.toUpperCase()} DISPATCH`;
+            }
+            // Re-render Lucide icon
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        }
+    }
+
+    // If we are on a specific location page, cache it and update UI
+    if (urlLocation) {
+        localStorage.setItem('rwx_user_geo', urlLocation);
+        updateUI(urlLocation);
+        return; // Don't run background lookup or redirect
+    }
+
+    // 2. Read from localStorage cache
+    let cachedGeo = localStorage.getItem('rwx_user_geo');
+    const cacheTime = localStorage.getItem('rwx_user_geo_time');
+    const now = new Date().getTime();
+
+    // Cache valid for 30 days
+    const isCacheValid = cachedGeo && cacheTime && (now - parseInt(cacheTime) < 30 * 24 * 60 * 60 * 1000);
+
+    if (isCacheValid) {
+        updateUI(cachedGeo);
+        handleRedirect(cachedGeo);
+    } else {
+        // 3. Silently fetch IP Geolocation in the background (using HTTPS-friendly ipapi.co)
+        fetch('https://ipapi.co/json/')
+            .then(res => res.json())
+            .then(data => {
+                let detected = 'tampa'; // default fallback
+                const city = (data.city || '').toLowerCase();
+                const zip = (data.postal || '').trim();
+
+                // South Tampa ZIP Codes
+                const southTampaZips = ['33629', '33611', '33606', '33609', '33616', '33621'];
+
+                if (city.includes('brandon')) {
+                    detected = 'brandon';
+                } else if (city.includes('petersburg') || city.includes('st. pete') || city.includes('petersburg')) {
+                    detected = 'st-petersburg';
+                } else if (city.includes('carrollwood')) {
+                    detected = 'carrollwood';
+                } else if (city.includes('tampa')) {
+                    if (southTampaZips.includes(zip)) {
+                        detected = 'south-tampa';
+                    } else {
+                        detected = 'tampa';
+                    }
+                }
+
+                localStorage.setItem('rwx_user_geo', detected);
+                localStorage.setItem('rwx_user_geo_time', now.toString());
+                
+                updateUI(detected);
+                handleRedirect(detected);
+            })
+            .catch(err => {
+                // On error or blocked API, default to tampa (no redirect)
+                localStorage.setItem('rwx_user_geo', 'tampa');
+                localStorage.setItem('rwx_user_geo_time', now.toString());
+                updateUI('tampa');
+            });
+    }
+
+    // 4. Handle auto-redirect if they visit the main services page
+    function handleRedirect(locationKey) {
+        // Only auto-redirect if they are visiting the main services directory page
+        const isServicesMain = path === '/services/' || path === '/services';
+        if (isServicesMain && locationKey !== 'tampa') {
+            const loc = geoMapping[locationKey];
+            if (loc && loc.slug) {
+                // Prevent infinite redirect loops by marking that we redirected once in sessionStorage
+                if (!sessionStorage.getItem('rwx_redirected')) {
+                    sessionStorage.setItem('rwx_redirected', '1');
+                    window.location.href = window.location.origin + '/services/' + loc.slug + '/';
+                }
+            }
+        }
+    }
+
+    // 5. Handle manual dropdown changes
+    if (dropdown) {
+        dropdown.addEventListener('change', function() {
+            const selected = this.value;
+            localStorage.setItem('rwx_user_geo', selected);
+            localStorage.setItem('rwx_user_geo_time', new Date().getTime().toString());
+            
+            // Redirect to corresponding page
+            const loc = geoMapping[selected];
+            if (loc) {
+                if (selected === 'tampa') {
+                    window.location.href = window.location.origin + '/services/';
+                } else {
+                    window.location.href = window.location.origin + '/services/' + loc.slug + '/';
+                }
+            }
+        });
+    }
+})();
+</script>
+
 
 <!-- ═══════════════════════════════════════════
      TACTICAL MOBILE MENU DRAWER
