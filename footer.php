@@ -527,9 +527,9 @@
     }
 
     .rwx-btn--red:hover {
-        background: #111111 !important;
+        background: var(--brand-dark, #a31d24) !important;
         color: white !important;
-        border-color: var(--brand, #ff0000);
+        border-color: var(--brand-dark, #a31d24) !important;
         box-shadow: 0 0 30px rgba(255, 0, 0, 0.6);
         transform: translateY(-2px);
     }
