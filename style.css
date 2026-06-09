@@ -12944,26 +12944,26 @@ footer.hwh-foot { background: #0A1628; color: rgba(255,255,255,0.7); font-family
 .post-type-archive-service .services-grid-section .service-card,
 .page-slug-services .services-grid-section .service-card,
 .page-slug-our-services .services-grid-section .service-card {
-  background: #ffffff !important;
-  border: 1px solid rgba(0, 0, 0, 0.06) !important;
-  color: #111111 !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02) !important;
+  background: #0a0a0a !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
 }
 
 .rwx-services-archive .services-grid-section .service-card:hover,
 .post-type-archive-service .services-grid-section .service-card:hover,
 .page-slug-services .services-grid-section .service-card:hover,
 .page-slug-our-services .services-grid-section .service-card:hover {
-  background: #ffffff !important;
+  background: #111111 !important;
   border-color: var(--brand, #F22F3A) !important;
-  box-shadow: 0 20px 45px rgba(242, 47, 58, 0.06) !important;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4) !important;
 }
 
 .rwx-services-archive .services-grid-section .service-card h3,
 .post-type-archive-service .services-grid-section .service-card h3,
 .page-slug-services .services-grid-section .service-card h3,
 .page-slug-our-services .services-grid-section .service-card h3 {
-  color: #111111 !important;
+  color: #ffffff !important;
 }
 
 .rwx-services-archive .services-grid-section .service-card h3 span,
@@ -12977,21 +12977,21 @@ footer.hwh-foot { background: #0A1628; color: rgba(255,255,255,0.7); font-family
 .post-type-archive-service .services-grid-section .service-card p,
 .page-slug-services .services-grid-section .service-card p,
 .page-slug-our-services .services-grid-section .service-card p {
-  color: #555555 !important;
+  color: #aaaaaa !important;
 }
 
 .rwx-services-archive .services-grid-section .card-list li,
 .post-type-archive-service .services-grid-section .card-list li,
 .page-slug-services .services-grid-section .card-list li,
 .page-slug-our-services .services-grid-section .card-list li {
-  color: #555555 !important;
+  color: #aaaaaa !important;
 }
 
 .rwx-services-archive .services-grid-section .card-brief-link,
 .post-type-archive-service .services-grid-section .card-brief-link,
 .page-slug-services .services-grid-section .card-brief-link,
 .page-slug-our-services .services-grid-section .card-brief-link {
-  color: #111111 !important;
+  color: #ffffff !important;
 }
 
 .rwx-services-archive .services-grid-section .service-card:hover .card-brief-link,
@@ -13005,7 +13005,7 @@ footer.hwh-foot { background: #0A1628; color: rgba(255,255,255,0.7); font-family
 .post-type-archive-service .services-grid-section .card-number,
 .page-slug-services .services-grid-section .card-number,
 .page-slug-our-services .services-grid-section .card-number {
-  color: rgba(0, 0, 0, 0.03) !important;
+  color: rgba(255, 255, 255, 0.03) !important;
 }
 
 .rwx-services-archive .services-grid-section .service-card:hover .card-number,
@@ -13019,7 +13019,7 @@ footer.hwh-foot { background: #0A1628; color: rgba(255,255,255,0.7); font-family
 .post-type-archive-service .services-grid-section .card-icon,
 .page-slug-services .services-grid-section .card-icon,
 .page-slug-our-services .services-grid-section .card-icon {
-  background: #ffffff !important;
+  background: #0a0a0a !important;
   border-color: var(--brand, #F22F3A) !important;
   color: var(--brand, #F22F3A) !important;
   filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.15)) !important;
@@ -13060,14 +13060,14 @@ footer.hwh-foot { background: #0A1628; color: rgba(255,255,255,0.7); font-family
 }
 
 /* Elementor layout & widget container overrides for services pages */
-.rwx-services-archive section:not(.rwx-hero):not(.process-section),
-.post-type-archive-service section:not(.rwx-hero):not(.process-section),
-.page-slug-services section:not(.rwx-hero):not(.process-section),
-.page-slug-our-services section:not(.rwx-hero):not(.process-section),
-.rwx-services-archive .elementor-section:not(.rwx-hero):not(.process-section),
-.post-type-archive-service .elementor-section:not(.rwx-hero):not(.process-section),
-.page-slug-services .elementor-section:not(.rwx-hero):not(.process-section),
-.page-slug-our-services .elementor-section:not(.rwx-hero):not(.process-section) {
+.rwx-services-archive section:not(.rwx-hero):not(.process-section):not(.rwx-cta-block):not(.hwh-cta),
+.post-type-archive-service section:not(.rwx-hero):not(.process-section):not(.rwx-cta-block):not(.hwh-cta),
+.page-slug-services section:not(.rwx-hero):not(.process-section):not(.rwx-cta-block):not(.hwh-cta),
+.page-slug-our-services section:not(.rwx-hero):not(.process-section):not(.rwx-cta-block):not(.hwh-cta),
+.rwx-services-archive .elementor-section:not(.rwx-hero):not(.process-section):not(.rwx-cta-block):not(.hwh-cta),
+.post-type-archive-service .elementor-section:not(.rwx-hero):not(.process-section):not(.rwx-cta-block):not(.hwh-cta),
+.page-slug-services .elementor-section:not(.rwx-hero):not(.process-section):not(.rwx-cta-block):not(.hwh-cta),
+.page-slug-our-services .elementor-section:not(.rwx-hero):not(.process-section):not(.rwx-cta-block):not(.hwh-cta) {
   background-color: #ffffff !important;
   background: #ffffff !important;
   color: #111111 !important;
