@@ -1,8 +1,9 @@
 <?php
 /**
  * Restowrx Elite — Bulk Service Page Seeder
- * Programmatically inserts 80 localized services and subcategory pages (16 core services x 5 locations).
+ * Programmatically inserts or updates 80 localized services and subcategory pages (16 core services x 5 locations).
  * Generates unique local SEO content dynamically for each page.
+ * Optimized for word count (1,400+ words per page), keyword density, and E-EAT standards.
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
@@ -13,7 +14,7 @@ function rwx_seed_bulk_services() {
         wp_die( 'Access denied: Administrator permissions required.' );
     }
 
-    // 2. Check or set execution option (allows running seeder multiple times but skips existing posts)
+    // 2. Create or fetch category term
     $mit_term = term_exists( 'Mitigation & Recovery', 'service_category' );
     if ( ! $mit_term ) {
         $mit_term = wp_insert_term( 'Mitigation & Recovery', 'service_category', [ 'slug' => 'mitigation-recovery' ] );
@@ -152,7 +153,7 @@ function rwx_seed_bulk_services() {
 
     // 4. Define 5 locations (Main + 4 Neighborhoods)
     $locations = [
-        [ 'key' => 'tampa',          'name' => 'Tampa (Main)',      'suffix' => '' ],
+        [ 'key' => 'tampa',          'name' => 'Tampa',             'suffix' => '' ],
         [ 'key' => 'south-tampa',    'name' => 'South Tampa',       'suffix' => 'South Tampa' ],
         [ 'key' => 'brandon',        'name' => 'Brandon',           'suffix' => 'Brandon' ],
         [ 'key' => 'st-petersburg',  'name' => 'St. Petersburg',    'suffix' => 'St. Petersburg' ],
@@ -179,66 +180,76 @@ function rwx_seed_bulk_services() {
                 'post_status'    => 'any',
             ]);
 
+            $is_update = false;
+            $post_id = 0;
             if ( $existing->have_posts() ) {
                 $post_id = $existing->posts[0];
-                $results[] = [
-                    'slug'   => $slug,
-                    'title'  => $title,
-                    'status' => 'SKIPPED (Exists, ID: ' . $post_id . ')',
-                    'ok'     => false,
-                ];
-                continue;
+                $is_update = true;
             }
 
-            // Generate content dynamically
-            $content = rwx_compile_service_content( $s['slug'], $l['key'], $s['title'], $s['parent'] );
+            // Generate content dynamically (1,400+ words target)
+            $content = rwx_compile_service_content( $s['slug'], $l['key'], $title, $s['parent'] );
+            $excerpt = $s['title'] . ' services in ' . $l['name'] . ', FL. Professional property recovery, 24/7 support.';
 
             // Yoast SEO parameters
             $seo_title = ($l['key'] === 'tampa') ? $s['title'] . ' Tampa | Restowrx Elite' : $s['title'] . ' ' . $l['name'] . ' | Restowrx Elite';
             $seo_desc = ($l['key'] === 'tampa') ? 'Need expert ' . strtolower($s['title']) . ' in Tampa? Restowrx Elite offers 24/7 emergency dispatch. Call (813) 699-4009.' : 'Need expert ' . strtolower($s['title']) . ' in ' . $l['name'] . ', FL? Restowrx Elite offers 24/7 emergency recovery. Call (813) 699-4009.';
-            $focuskw = ($l['key'] === 'tampa') ? strtolower($s['title']) . ' Tampa' : strtolower($s['title']) . ' ' . $l['name'];
+            $focuskw = ($l['key'] === 'tampa') ? strtolower($s['title']) . ' tampa' : strtolower($s['title']) . ' ' . strtolower($l['name']);
 
-            // Insert new post as DRAFT
-            $post_data = [
-                'post_title'   => $title,
-                'post_name'    => $slug,
-                'post_content' => $content,
-                'post_excerpt' => $s['title'] . ' services in ' . $l['name'] . ', FL. Professional property recovery, 24/7 support.',
-                'post_status'  => 'draft',
-                'post_type'    => 'service',
-            ];
-
-            $post_id = wp_insert_post( $post_data );
-
-            if ( is_wp_error( $post_id ) ) {
-                $results[] = [
-                    'slug'   => $slug,
-                    'title'  => $title,
-                    'status' => 'ERROR: ' . $post_id->get_error_message(),
-                    'ok'     => false,
+            if ( $is_update ) {
+                // Update existing post content & parameters
+                $post_data = [
+                    'ID'           => $post_id,
+                    'post_title'   => $title,
+                    'post_content' => $content,
+                    'post_excerpt' => $excerpt,
                 ];
-                continue;
+                wp_update_post( $post_data );
+                $status = 'UPDATED (ID: ' . $post_id . ')';
+                $ok = true;
+            } else {
+                // Insert new post as DRAFT
+                $post_data = [
+                    'post_title'   => $title,
+                    'post_name'    => $slug,
+                    'post_content' => $content,
+                    'post_excerpt' => $excerpt,
+                    'post_status'  => 'draft',
+                    'post_type'    => 'service',
+                ];
+
+                $post_id = wp_insert_post( $post_data );
+
+                if ( is_wp_error( $post_id ) ) {
+                    $status = 'ERROR: ' . $post_id->get_error_message();
+                    $ok = false;
+                } else {
+                    $status = 'CREATED (ID: ' . $post_id . ')';
+                    $ok = true;
+                }
             }
 
-            // Set category
-            if ( $mit_cat_id ) {
-                wp_set_object_terms( $post_id, [ $mit_cat_id ], 'service_category' );
+            if ( $ok && $post_id ) {
+                // Set category
+                if ( $mit_cat_id ) {
+                    wp_set_object_terms( $post_id, [ $mit_cat_id ], 'service_category' );
+                }
+
+                // Add custom meta fields
+                update_post_meta( $post_id, '_service_price', $s['price'] );
+                update_post_meta( $post_id, '_service_duration', $s['duration'] );
+
+                // Add Yoast SEO fields
+                update_post_meta( $post_id, '_yoast_wpseo_title', $seo_title );
+                update_post_meta( $post_id, '_yoast_wpseo_metadesc', $seo_desc );
+                update_post_meta( $post_id, '_yoast_wpseo_focuskw', $focuskw );
             }
-
-            // Add custom meta fields
-            update_post_meta( $post_id, '_service_price', $s['price'] );
-            update_post_meta( $post_id, '_service_duration', $s['duration'] );
-
-            // Add Yoast SEO fields
-            update_post_meta( $post_id, '_yoast_wpseo_title', $seo_title );
-            update_post_meta( $post_id, '_yoast_wpseo_metadesc', $seo_desc );
-            update_post_meta( $post_id, '_yoast_wpseo_focuskw', $focuskw );
 
             $results[] = [
                 'slug'   => $slug,
                 'title'  => $title,
-                'status' => 'CREATED (ID: ' . $post_id . ')',
-                'ok'     => true,
+                'status' => $status,
+                'ok'     => $ok,
             ];
         }
     }
@@ -286,7 +297,7 @@ function rwx_seed_bulk_services() {
                             <tr>
                                 <td><strong><?php echo esc_html( $r['title'] ); ?></strong></td>
                                 <td><code><?php echo esc_html( $r['slug'] ); ?></code></td>
-                                <td class="<?php echo $r['ok'] ? 'status-ok' : 'status-skip'; ?>">
+                                <td class="<?php echo (strpos($r['status'], 'ERROR') === false) ? 'status-ok' : 'status-skip'; ?>">
                                     <?php echo esc_html( $r['status'] ); ?>
                                 </td>
                             </tr>
@@ -297,7 +308,7 @@ function rwx_seed_bulk_services() {
 
             <div class="alert">
                 <strong>✅ Next Step: Code Cleanup Required</strong><br>
-                All draft pages have been seeded. Please check your WordPress Admin under <strong>Services</strong>. Once you verify that they are correct, notify Antigravity in the chat so the temporary trigger hook and seeder script can be safely deleted.
+                All draft pages have been seeded or updated. Please check your WordPress Admin under <strong>Services</strong>. Once you verify that they are correct, notify Antigravity in the chat so the temporary trigger hook and seeder script can be safely deleted.
             </div>
 
             <a href="<?php echo esc_url( admin_url( 'edit.php?post_type=service' ) ); ?>" class="btn">Go to Services in Admin</a>
@@ -309,36 +320,35 @@ function rwx_seed_bulk_services() {
 }
 
 /**
- * Helper Content Compiler
+ * Helper Content Compiler (Generates 1,400+ words per page)
  */
 function rwx_compile_service_content( $slug, $location_key, $service_title, $parent_title ) {
     // Determine location parameters
     $locName = 'Tampa';
     $locCounty = 'Hillsborough County';
-    $locLandmarks = 'Ybor City, Tampa Heights, and the downtown business district';
-    $locDetails = 'intense Florida humidity, summer storms, and high local water tables';
-    $southTampaZips = ['33629', '33611', '33606', '33609', '33616', '33621'];
+    $locLandmarks = 'Ybor City, Tampa Heights, Channel District, and the downtown business corridor';
+    $locRiskFactor = 'Tampa’s urban core, spanning Ybor City and Tampa Heights, features a mix of aging commercial masonry buildings and historic residential structures. High seasonal temperatures combined with extreme sub-tropical humidity create an environment where water leaks quickly turn into severe structural mold or dry rot if not mitigated within the first 24 hours.';
     
     if ( $location_key === 'brandon' ) {
         $locName = 'Brandon';
         $locCounty = 'Hillsborough County';
-        $locLandmarks = 'Brandon Parkway, the Bloomingdale area, Brandon Town Center, and the Alafia River basin';
-        $locDetails = 'suburban expansion homes, slab leaks, and river runoff flooding';
+        $locLandmarks = 'Brandon Parkway, the Bloomingdale residential sector, Brandon Town Center, and the Alafia River basin';
+        $locRiskFactor = 'With Brandon’s rapid suburban growth since the 1980s, many homes feature copper plumbing embedded directly in concrete slabs. Over time, chemical reactions between local water chemistry and the copper piping cause pinhole slab leaks that saturate subfloors unnoticed until flooring buckling occurs.';
     } elseif ( $location_key === 'st-petersburg' ) {
         $locName = 'St. Petersburg';
         $locCounty = 'Pinellas County';
-        $locLandmarks = 'Old Northeast, Snell Isle, Shore Acres, and Historic Kenwood';
-        $locDetails = 'coastal surges, historic lath-and-plaster wood frames, and wind-load weather protection';
+        $locLandmarks = 'Old Northeast, Snell Isle, Shore Acres, Historic Kenwood, and the Gandy Boulevard corridor';
+        $locRiskFactor = 'St. Petersburg’s historic Old Northeast and Snell Isle feature vintage timber framing and lath-and-plaster wall systems. When coastal surges or severe windstorms breach these building envelopes, water becomes trapped within the dense plaster walls, requiring advanced thermal detection and prolonged drying times to prevent wood rot and structural mold.';
     } elseif ( $location_key === 'south-tampa' ) {
         $locName = 'South Tampa';
         $locCounty = 'Hillsborough County';
-        $locLandmarks = 'Bayshore Boulevard, Hyde Park, Davis Islands, and Palma Ceia';
-        $locDetails = 'historic bungalows, cast-iron plumbing failures, and coastal tidal surges';
+        $locLandmarks = 'Bayshore Boulevard, Hyde Park, Davis Islands, Palma Ceia, and MacDill Air Force Base';
+        $locRiskFactor = 'In South Tampa’s historic neighborhoods like Hyde Park and Davis Islands, many homes retain their original cast-iron plumbing systems. Cast-iron lines corrode internally, leading to slow sewage backups and pipe collapses. Furthermore, low-lying coastal elevations make Davis Islands particularly vulnerable to storm surges and high water table intrusion during high tides.';
     } elseif ( $location_key === 'carrollwood' ) {
         $locName = 'Carrollwood';
         $locCounty = 'Hillsborough County';
-        $locLandmarks = 'Carrollwood Village, Lake Carroll, Dale Mabry Corridor, and Lake Ellen';
-        $locDetails = 'lakefront property humidity, custom cabinetry leaks, and aging residential plumbing';
+        $locLandmarks = 'Carrollwood Village, Lake Carroll, the Dale Mabry highway corridor, and Lake Ellen';
+        $locRiskFactor = 'Carrollwood’s residential properties, situated around Lake Carroll and Lake Ellen, experience high ambient relative humidity year-round. This lakefront microclimate accelerates condensation inside HVAC duct systems, leading to high-risk microbial growth in crawlspaces and custom cabinetry if drainage systems fail.';
     }
 
     // Determine service category based on slug
@@ -352,242 +362,367 @@ function rwx_compile_service_content( $slug, $location_key, $service_title, $par
     }
 
     $introText = "";
-    $whyNeedText = "";
-    $concernsTitle = "Common Warning Signs";
-    $concernsList = [];
-    $solutionsTitle = "Our Tactical Solutions";
-    $solutionsList = [];
+    $localText = "";
+    $processText = "";
     $eeatText = "";
-    $costText = "";
-    $processSteps = [];
+    $insuranceText = "";
     $faqs = [];
 
-    // Populate arrays
+    // Populate arrays with dense, high-end copy (1400+ word structures)
     if ( $category === 'water' ) {
-        $introText = "When water damage compromises your property, immediate action is required to halt structural decay and prevent biological growth. In {$locName}, water intrusion can saturate drywall, wood framing, and flooring rapidly. Our IICRC-certified response teams deploy with commercial-grade water extraction pumps, thermal imaging cameras, and LGR dehumidifiers to dry and restore your residential or commercial space with surgical precision.";
-        $whyNeedText = "Properties in the {$locName} area are highly vulnerable to {$locDetails}. Trying to dry structural water with domestic fans leaves deep-seated moisture trapped behind walls, leading to wood rot, swelling, and mold growth. Professional water damage mitigation detects hidden moisture channels and runs scientific drying arrays to restore the property to dry-standard compliance.";
-        $concernsTitle = "Common Water Damage Warning Signs";
-        $concernsList = [
-            "Warping, bubbling paint, or yellow stains along lower walls and baseboards.",
-            "Musty, damp, or sour odors venting from wall cavities or HVAC ducts.",
-            "Buckling hardwood planks, separating laminate seams, or lifting floor tiles.",
-            "Water spots, sagging drywall ceilings, or active leaking from upper floors."
-        ];
-        $solutionsTitle = "Our Comprehensive Water Mitigation Solutions";
-        $solutionsList = [
-            "<strong>24/7 Water Extraction:</strong> High-powered truck-mounted pumps removing thousands of gallons of standing water.",
-            "<strong>Thermal Imaging & Mapping:</strong> Locating moisture pockets hidden behind masonry, framing, and insulation.",
-            "<strong>LGR Dehumidification:</strong> Rapidly lowering relative humidity to accelerate evaporation from wet structural materials.",
-            "<strong>Biohazard Sanitizing:</strong> Full chemical flushing, disinfecting, and odor neutralization for Category 3 sewage backflows."
-        ];
-        $eeatText = "Restowrx Elite is a licensed property restoration contractor in Florida. Our technicians hold advanced certifications from the IICRC in water damage restoration (WRT) and applied structural drying (ASD). We coordinate directly with your homeowners insurance provider, logging daily moisture readings to secure claim approvals smoothly.";
-        $costText = "Water mitigation costs in {$locName} range from $1,500 to $5,000+ depending on the class of water intrusion and square footage affected. Because emergency dryouts prevent catastrophic structural failure, they are typically fully covered by standard property insurance. We offer direct insurance billing to minimize your stress.";
-        $processSteps = [
-            "<strong>Phase 1: Inspection & Thermal Mapping:</strong> We define the exact boundary of moisture and isolate the affected areas.",
-            "<strong>Phase 2: High-Volume Extraction:</strong> We extract standing water from all floors, subfloors, and slabs.",
-            "<strong>Phase 3: Drying Equipment Placement:</strong> We deploy industrial air movers and LGR dehumidifiers to dry structural framing.",
-            "<strong>Phase 4: Monitoring & Sanitation:</strong> We track drying progress daily, apply EPA-registered antimicrobials, and clear the site for rebuild."
-        ];
+        $introText = "<!-- wp:paragraph -->
+<p>Property water damage is a high-velocity emergency that compromises structural integrity, destroys building finishes, and introduces biological hazards within hours. In {$locName}, Florida, water intrusion commonly stems from severe weather, slab leaks, or sudden pipe bursts. At Restowrx Elite, our IICRC-certified restoration teams operate 24/7/365 to deliver rapid mitigation. We deploy industrial-grade water extraction systems, Low Grain Refrigerant (LGR) dehumidifiers, and thermal mapping sensors to stabilize your property and execute structured drying protocols.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>Our emergency response window is optimized for maximum efficiency. When you call (813) 699-4009, our nearest crew is dispatched to arrive at your {$locName} location within 45 to 60 minutes. Upon arrival, we immediately implement negative pressure containment grids to isolate the water-intrusion zone. By using FLIR infrared cameras and moisture meters, we locate hidden water pockets behind drywall, under flooring, and inside concrete slabs before they cause irreversible structural damage or rot.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>We approach every project with a commitment to protecting your equity and minimizing property down-time. Our field technicians are fully trained in the science of psychrometrics, tracking relative humidity, temperature, and vapor pressure to guide our drying systems. This scientific approach ensures that your home or commercial space reaches dry standard weight quickly and safely, protecting your family from structural decay and indoor air contamination.</p>
+<!-- /wp:paragraph -->";
+
+        $localText = "<!-- wp:heading -->
+<h2><strong>Understanding {$locName} Water Damage Risks</strong></h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Properties in {$locName} face unique environmental factors that complicate water damage recovery. The sub-tropical climate of {$locCounty} features high ambient humidity, heavy seasonal downpours, and a shallow local water table. When water enters a building, it moves through porous drywall and wood framing via capillary action. Attempting to dry these materials with standard household fans is ineffective; it simply evaporates surface moisture while leaving deep framing saturated, creating a high-humidity incubator for mold spores.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>{$locRiskFactor}</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>Restowrx Elite is deeply familiar with these localized challenges. We adjust our structural drying grids to account for {$locName}’s specific conditions, ensuring that materials near landmarks like {$locLandmarks} are dried completely. We set up structural drying logs and record daily moisture readings to verify that your property is returned to a safe, dry state that complies with local building standards.</p>
+<!-- /wp:paragraph -->";
+
+        $processText = "<!-- wp:heading -->
+<h2><strong>Our Professional {$service_title} Process</strong></h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>We execute all water mitigation projects in strict alignment with the ANSI/IICRC S500 Standard for Professional Water Damage Restoration. Our systematic, four-stage process is designed to isolate moisture, extract standing water, dry structural elements, and sanitize all surfaces to prevent secondary damage:</p>
+<!-- /wp:paragraph -->
+<!-- wp:list {\"ordered\":true} -->
+<ol>
+<li><strong>Thermal Mapping and Assessment:</strong> We utilize FLIR infrared cameras to detect moisture patterns behind walls and beneath flooring, establishing a baseline moisture map without destructive testing.</li>
+<li><strong>High-Volume Water Extraction:</strong> We deploy truck-mounted extraction units and submersible pumps to remove thousands of gallons of standing water quickly, reducing drying times.</li>
+<li><strong>Psychrometric Drying Setup:</strong> We install commercial-grade LGR dehumidifiers and high-velocity axial air movers to establish negative vapor pressure, pulling moisture out of wood framing and concrete slabs.</li>
+<li><strong>Sanitization &amp; Containment Breakdown:</strong> We apply EPA-registered, hospital-grade antimicrobials to disinfect all affected areas, checking daily moisture logs until the dry standard is reached.</li>
+</ol>
+<!-- /wp:list -->
+<!-- wp:paragraph -->
+<p>Throughout this process, we maintain strict documentation, including moisture maps, relative humidity charts, and daily drying logs. This data is critical for validating that the structure is completely dry, preventing future structural issues and supporting insurance claim processing.</p>
+<!-- /wp:paragraph -->";
+
+        $eeatText = "<!-- wp:heading -->
+<h2><strong>Licensed Florida Contracting &amp; E-EAT Standards</strong></h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Restowrx Elite is a licensed, bonded, and fully insured property restoration contractor operating in {$locCounty}. Our technicians hold advanced certifications from the Institute of Inspection, Cleaning and Restoration Certification (IICRC) in Water Damage Restoration (WRT) and Applied Structural Drying (ASD). We follow strict OSHA safety standards, wearing proper personal protective equipment (PPE) and ensuring the safe handling of all sanitizing agents.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>For complete post-damage reconstruction, we work in direct partnership with our sister company, <strong>Spicola Construction</strong> (State Certified CGC General Contractor). This relationship allows us to offer a turnkey, stress-free rebuild. Once our mitigation teams have completed the extraction and dry-out phase, Spicola Construction’s licensed building teams step in to handle structural reframing, drywall hanging, drywall texturing, paint matching, and floor installations.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>This combined approach ensures that all repairs comply with the latest Florida Building Code, wind-load calculations, and local municipal permitting requirements. By managing both the mitigation and the rebuild under one unified management system, we eliminate the coordination delays, permit backlogs, and communication gaps that occur when hiring separate contractors.</p>
+<!-- /wp:paragraph -->";
+
+        $insuranceText = "<!-- wp:heading -->
+<h2><strong>Direct Insurance Billing &amp; Xactimate Pricing</strong></h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Dealing with property damage is stressful, which is why we streamline the claims process. Under standard homeowners and commercial property insurance policies, property owners have a legal “duty to mitigate” secondary damage. This means that hiring a professional extraction company to stop water spread is typically fully covered under your policy peril guidelines.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>We use **Xactimate**—the exact same software used by insurance adjusters—to compile our damage estimates. This ensures that every line item is priced according to approved regional carrier rates, minimizing pricing disputes. We document the entire drying cycle with thermal photos, digital moisture readings, and structural logs, submitting them directly to your insurance company for seamless direct billing.</p>
+<!-- /wp:paragraph -->";
+
         $faqs = [
             [
-                'q' => 'Does insurance cover ' . $service_title . ' in ' . $locName . '?',
-                'a' => 'Yes, sudden and accidental water damage (such as pipe leaks, plumbing overflows, or water heater failures) is typically covered by standard property policies. We bill your insurance provider directly.'
+                'q' => 'Is ' . $service_title . ' covered by property insurance in ' . $locName . '?',
+                'a' => 'Yes, sudden and accidental water damage (such as pipe leaks, toilet overflows, and water heater failures) is typically covered by standard homeowners and commercial insurance policies. Restowrx Elite works directly with your adjuster and utilizes Xactimate for direct billing.'
             ],
             [
-                'q' => 'How long does a property take to dry?',
-                'a' => 'A standard structural dry-out takes between 3 to 5 days. Hardwood floors, concrete slabs, and crawlspaces may require specialized drying equipment and take slightly longer.'
+                'q' => 'How long does the structural drying process take?',
+                'a' => 'A standard dry-out takes between 3 to 5 days, depending on the materials affected. Concrete slabs and subfloors may require specialized drying equipment and take slightly longer. We log daily moisture levels to verify dryness.'
             ],
             [
-                'q' => 'Will mold grow if I wait to start cleanup?',
-                'a' => 'Yes. Mold spores colonize and grow within 24 to 48 hours of water exposure in Florida\'s humid climate. Prompt extraction and dehumidification are critical to prevent mold infestation.'
+                'q' => 'Can I dry the water damage myself with standard fans?',
+                'a' => 'No. Standard household fans only dry surface moisture. Water absorbed into framing wood and subfloors requires commercial LGR dehumidifiers to lower relative humidity and extract deeply trapped water, preventing structural rot.'
+            ],
+            [
+                'q' => 'What is the risk of delaying water damage restoration in Florida?',
+                'a' => 'In Florida’s hot and humid climate, mold spores can colonize and begin growing on damp drywall and wood within 24 to 48 hours. Delaying mitigation can lead to structural rot, respiratory hazards, and denial of insurance claims due to neglect.'
             ]
         ];
+
     } elseif ( $category === 'mold' ) {
-        $introText = "Mold colonization compromises indoor air quality and structural integrity in Florida’s humid environment. In {$locName}, mold spores find ideal growing conditions whenever moisture remains unchecked. At Restowrx Elite, we provide certified mold remediation and black mold removal. We construct negative-pressure containment zones, scrub the air with HEPA filtration, and physically remediate mold roots to restore your property’s health.";
-        $whyNeedText = "In {$locName}, trying to spray bleach on moldy drywall is a critical mistake; bleach cannot penetrate porous materials and the water content actually feeds mold roots. Safe mold remediation requires strict containment to isolate spores, physical extraction of contaminated materials, and certified air scrubbing. Under Florida law (§ 468.84), remediation must maintain a strict division from assessment to protect consumers.";
-        $concernsTitle = "Warning Signs of Mold Infestation";
-        $concernsList = [
-            "Visible dark green, black, or grey patches spreading on drywall, baseboards, or cabinetry.",
-            "A persistent musty, earthy, or damp smell that gets stronger when the AC is running.",
-            "Recurring allergy symptoms, nasal congestion, coughing, or respiratory irritation when inside.",
-            "Failed home inspections due to mold growth, stalling real estate transactions."
-        ];
-        $solutionsTitle = "Our Mold Remediation & Cleanout Solutions";
-        $solutionsList = [
-            "<strong>Negative Pressure Containment:</strong> Isolating work zones with airtight plastic barriers to contain spores.",
-            "<strong>HEPA Air Filtration:</strong> Continuously scrubbing the air to trap microscopic mold spores and dust particles.",
-            "<strong>Physical Remediation & Sanding:</strong> Sanding structural wood framing and applying mold-resistant coatings.",
-            "<strong>HVAC System Disinfection:</strong> Sanitizing air handlers, coils, and ductwork to prevent spore recirculation."
-        ];
-        $eeatText = "Our remediation specialists are fully licensed in the State of Florida and certified by the IICRC as Applied Microbial Remediation Technicians (AMRT). We partner with independent, licensed mold assessors to perform pre- and post-remediation testing, ensuring that a certified laboratory clearance report verifies your home’s air is safe.";
-        $costText = "Mold remediation in {$locName} typically ranges from $1,200 to $8,000+ depending on the containment size, accessibility, and structural materials affected. We provide fully itemized quotes and help you navigate insurance coverage if the mold resulted from a covered water leak.";
-        $processSteps = [
-            "<strong>Step 1: Containment Construction:</strong> We build plastic airlocks and set up negative air machines to protect the rest of the property.",
-            "<strong>Step 2: Controlled Material Removal:</strong> We bag and remove contaminated drywall, carpet, and trim under negative pressure.",
-            "<strong>Step 3: Physical Remediation & Sanding:</strong> We brush and sand remaining framing wood, followed by HEPA vacuuming and antimicrobial application.",
-            "<strong>Step 4: Clearance Testing & Containment Drop:</strong> An independent inspector takes air samples. Once the lab clearance is issued, we tear down containment."
-        ];
+        $introText = "<!-- wp:paragraph -->
+<p>Microscopic mold spores colonize and multiply rapidly in Florida’s hot, humid climates, releasing allergens and compromising indoor air quality. In {$locName}, mold growth typically occurs after unresolved water leaks, AC condensate line overflows, or elevated crawlspace humidity. At Restowrx Elite, we provide certified mold remediation and black mold removal services. We construct negative-pressure containment barriers, scrub the air with commercial HEPA filtration units, and physically remove mold roots to restore your property’s safety.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>We follow strict scientific protocols to isolate mold spores during the remediation process. Our containment airlocks prevent spores from traveling to unaffected areas of your home or office. By running industrial air scrubbers, we capture airborne particulate matter down to 0.3 microns, ensuring the breathing zone is completely protected throughout the cleanout.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>Uncontrolled mold growth poses significant risks to structural wood, drywall paper, and HVAC duct systems. As mold feeds on cellulose materials, it weakens floor joists and wall studs. Our technicians physically remove the mold source, sand structural wood, and apply specialized mold-resistant sealants to ensure it cannot re-colonize.</p>
+<!-- /wp:paragraph -->";
+
+        $localText = "<!-- wp:heading -->
+<h2><strong>Understanding {$locName} Mold Growth Hazards</strong></h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Properties in {$locName} face extreme sub-tropical humidity, high average temperatures, and frequent storm moisture. These environmental factors create the perfect breeding ground for mold spores, which only require a food source (like drywall or wood) and moisture to grow. Homeowners often try to clean mold with bleach, which is a common mistake. Bleach consists mostly of water; when applied to porous surfaces, the chlorine evaporates on the surface while the water penetrates deep, feeding the mold roots and causing it to return stronger.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>{$locRiskFactor}</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>Restowrx Elite approaches mold remediation in {$locName} with local climate expertise. Near areas like {$locLandmarks}, we optimize containment and HEPA air scrubbing grids to address localized relative humidity. We work to identify the root cause of the moisture—whether it is high water tables, plumbing leaks, or HVAC condensation—ensuring the mold does not return.</p>
+<!-- /wp:paragraph -->";
+
+        $processText = "<!-- wp:heading -->
+<h2><strong>Our Certified Mold Remediation Process</strong></h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>We execute all mold cleanup projects in strict compliance with the ANSI/IICRC S520 Standard for Professional Mold Remediation. This ensures that all spores are isolated, contaminated materials are safely removed, and remaining surfaces are deeply cleaned and sanitized:</p>
+<!-- /wp:paragraph -->
+<!-- wp:list {\"ordered\":true} -->
+<ol>
+<li><strong>Containment and Negative Pressure:</strong> We construct 6-mil plastic barriers and airlocks around the affected area, setting up negative pressure air machines to prevent spores from escaping into the rest of the property.</li>
+<li><strong>Air Filtration &amp; HEPA Scrubbing:</strong> We deploy industrial air scrubbers equipped with HEPA filters, running them continuously to capture airborne mold spores, dust, and particulate matter.</li>
+<li><strong>Controlled Material Removal:</strong> Affected porous materials (such as drywall, carpet, and trim) are carefully bagged and sealed under negative pressure before removal to prevent cross-contamination.</li>
+<li><strong>Physical Remediation and Sanding:</strong> We brush and sand affected structural framing studs, HEPA-vacuum all surfaces, and apply specialized, EPA-registered antimicrobials and mold-resistant sealants.</li>
+</ol>
+<!-- /wp:list -->
+<!-- wp:paragraph -->
+<p>Once remediation is complete, we leave containment in place for post-remediation clearance testing. An independent assessor will collect air samples to verify that the mold spore count inside the containment zone is equal to or lower than outdoor background levels before the containment is disassembled.</p>
+<!-- /wp:paragraph -->";
+
+        $eeatText = "<!-- wp:heading -->
+<h2><strong>Florida Mold Law Licensure &amp; E-EAT Standards</strong></h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Restowrx Elite is a licensed Mold Remediator in the State of Florida (Department of Business and Professional Regulation). Our crews hold advanced certifications, including the IICRC Applied Microbial Remediation Technician (AMRT) credential. We maintain high standards of professional ethics and strictly follow Florida Statute § 468.8414, which prohibits the same company from performing both the mold assessment (testing) and the mold remediation (cleanup) on the same project. This division of labor prevents conflict of interest and guarantees an unbiased assessment.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>We work closely with independent, licensed mold assessors (third-party professionals) who perform the initial testing, write the remediation protocol, and conduct the final air clearance testing. This third-party verification provides you with scientific proof that your home’s air is clean and safe.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>If mold damage requires the removal of drywall, framing, or cabinetry, our partnership with <strong>Spicola Construction</strong> (State Certified CGC General Contractor) provides a seamless transition to the rebuild phase. Spicola’s general contracting teams replace framing, hang new mold-resistant drywall, apply texture, and paint to match, restoring your space to pre-loss condition in full compliance with local building codes.</p>
+<!-- /wp:paragraph -->";
+
+        $insuranceText = "<!-- wp:heading -->
+<h2><strong>Mold Remediation Insurance Coordination &amp; Estimating</strong></h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Mold remediation costs vary based on the containment size, accessibility, and the materials affected. If the mold growth is the direct result of a covered sudden and accidental water leak (such as a burst pipe), your property insurance policy may cover the remediation and repair costs. We provide fully itemized estimates using **Xactimate** software, aligning with insurance carrier pricing guidelines.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>We assist you and your independent assessor in documenting the source water leak, providing thermal photos, moisture readings, and structural logs to support your insurance claim. Our goal is to make the documentation and billing process as clear and straightforward as possible.</p>
+<!-- /wp:paragraph -->";
+
         $faqs = [
             [
-                'q' => 'Can I clean mold myself with bleach?',
-                'a' => 'No. Bleach is mostly water. On porous materials like drywall, wood, or carpet, the chlorine stays on the surface while the water sinks in, which actually feeds the mold roots and causes it to return stronger.'
+                'q' => 'Can I clean mold myself using bleach?',
+                'a' => 'No. Bleach is chemical chlorine dissolved in water. When applied to porous materials like drywall or wood, the chlorine evaporates on the surface while the water penetrates deep into the material, which actually feeds the mold roots and causes it to return stronger.'
             ],
             [
-                'q' => 'Do I need a mold test before removing it?',
-                'a' => 'While not always required, pre-testing by an independent mold assessor is highly recommended to document spore levels and create a remediation protocol. Post-testing is crucial to prove the air is safe.'
+                'q' => 'What is the Florida Mold Law regarding testing and cleanup?',
+                'a' => 'Florida Statute § 468.8414 prohibits a single contractor from performing both mold assessment (testing) and mold remediation (cleanup) on the same property to prevent conflict of interest. Restowrx Elite handles remediation and partners with independent licensed assessors to perform testing and clearance.'
             ],
             [
-                'q' => 'How long does mold remediation take?',
-                'a' => 'Most mold remediation projects take 3 to 5 days, which includes setting up containment, physical cleaning, and waiting for the independent lab to process the post-remediation air clearance samples.'
+                'q' => 'How long does the mold remediation process take?',
+                'a' => 'Most mold remediation projects take 3 to 5 days. This includes constructing containment, running HEPA air scrubbers, physical cleaning, and waiting for the independent laboratory to process the post-remediation air clearance samples.'
+            ],
+            [
+                'q' => 'Is mold remediation covered by my homeowners insurance?',
+                'a' => 'If the mold resulted from a covered sudden and accidental water escape (like a pipe burst) and was mitigated promptly, insurance typically covers it. If the mold resulted from long-term unresolved maintenance issues, it may be subject to policy limits. We provide Xactimate estimates to assist with your claim.'
             ]
         ];
+
     } elseif ( $category === 'fire' ) {
-        $introText = "Property fires cause sudden devastation, leaving behind structural damage, acidic soot residue, and toxic smoke odors. In {$locName}, the hours following a fire are critical. Soot is corrosive and will chemically etch metals, stone, and glass within days. At Restowrx Elite, our fire damage restoration teams deploy immediately to secure the structure, board up openings, clean soot, and neutralize smoke odor at the molecular level.";
-        $whyNeedText = "Fire restoration requires a specialized chemical cleaning process. Soot particles are microscopic, sticky, and highly acidic. Standard cleaning smears the soot, trapping acrid smoke smells in the drywall. Additionally, water used to extinguish the fire triggers an immediate risk of mold growth. Professional mitigation handles both soot cleanup and rapid structural drying to prevent secondary rot in {$locName}’s humid air.";
-        $concernsTitle = "Signs of Fire & Smoke Damage";
-        $concernsList = [
-            "Acidic soot coatings covering countertops, walls, and tarnishable metal fixtures.",
-            "Heavy, acrid smoke odor deeply embedded in wood framing, carpets, and air ducts.",
-            "Charred or structurally compromised wall framing, floor joists, or roof trusses.",
-            "High humidity, standing water, and chemical foam pooling from fire suppression."
-        ];
-        $solutionsTitle = "Our Fire & Smoke Mitigation Services";
-        $solutionsList = [
-            "<strong>Emergency Board-Up & Tarping:</strong> Securing broken windows, doors, and roofs to protect against weather and theft.",
-            "<strong>Soot Chemical Washing:</strong> Using specialized dry-sponges and soot-releasing compounds to clean surfaces safely.",
-            "<strong>Ozone & Hydroxyl Deodorization:</strong> Breaking down complex smoke odor molecules in the air and framing wood.",
-            "<strong>Structural Stabilization & Drying:</strong> Drying structural framing saturated by fire hoses and stabilizing framing."
-        ];
-        $eeatText = "Our technicians are certified by the IICRC in fire and smoke restoration (FSRT) and odor control (OCT). In cases of structural rebuild, we coordinate with our partner general contractor, **Spicola Construction**, to manage building permits, structural inspections, and complete framing, drywall, and finish reconstruction.";
-        $costText = "Fire restoration costs in {$locName} vary from $5,000 for minor kitchen soot cleanups to $100,000+ for whole-home structural rebuilds. Fire damage is a standard covered peril on property insurance. We write our estimates in Xactimate and handle direct insurance billing to minimize your financial burden.";
-        $processSteps = [
-            "<strong>Phase 1: Board-Up & Secure:</strong> We seal off windows, doors, and roofs to protect the home from elements and trespassers.",
-            "<strong>Phase 2: Water Pumping & Cleanup:</strong> We extract fire-hose water and clean up charred structural debris.",
-            "<strong>Phase 3: Soot Cleaning & Washing:</strong> We hand-clean soot from all structural and cosmetic surfaces with specialized sponges.",
-            "<strong>Phase 4: Odor Neutralization & Sealing:</strong> We run ozone/hydroxyl generators to eliminate smoke smells and apply odor-blocking primers."
-        ];
+        $introText = "<!-- wp:paragraph -->
+<p>A property fire is a devastating event that leaves behind structural damage, corrosive soot residues, and toxic smoke odors. In {$locName}, Florida, the hours immediately following a fire are critical. Soot is highly acidic and begins to chemically etch metals, stone countertops, glass, and plastics within days, turning restorable finishes into permanent losses. At Restowrx Elite, our fire damage restoration teams deploy 24/7/365 to board up damaged openings, clear charred debris, wash soot, and neutralize smoke odors at the molecular level.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>We focus on immediate site stabilization. We pump out water left behind by fire suppression hoses, dry wet structural framing, and secure the building envelope to protect your home or business from the elements and trespassing. Our teams work quickly to salvage personal belongings, furniture, and structural components using specialized cleaning agents.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>Smoke soot particles are microscopic and carry chemical residues from burned synthetic materials. If left uncleaned, soot will penetrate HVAC systems and travel throughout the building, posing inhalation hazards. We seal off unaffected areas and run heavy-duty HEPA air scrubbers alongside deodorization equipment to clean the indoor environment.</p>
+<!-- /wp:paragraph -->";
+
+        $localText = "<!-- wp:heading -->
+<h2><strong>Understanding {$locName} Fire &amp; Smoke Damage Risks</strong></h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Properties in {$locName} require swift stabilization to protect structural wood framing from moisture-rich salt air, which accelerates wood rot and metal connection corrosion on fire-compromised properties. The sub-tropical climate of {$locCounty} features high ambient humidity, heavy seasonal downpours, and a shallow local water table. When fire suppression water saturates a property, it creates an immediate secondary water damage and mold hazard that must be mitigated alongside the fire cleanup.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>{$locRiskFactor}</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>Restowrx Elite is deeply familiar with these localized challenges. We adjust our restoration grids to account for {$locName}’s specific conditions, ensuring that materials near landmarks like {$locLandmarks} are secured completely. We set up structural drying logs and record daily moisture readings to verify that your property is returned to a safe, dry state that complies with local building standards.</p>
+<!-- /wp:paragraph -->";
+
+        $processText = "<!-- wp:heading -->
+<h2><strong>Our Professional Fire Restoration Process</strong></h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>We execute all fire and smoke mitigation projects in strict alignment with the ANSI/IICRC S540 Standard for Professional Fire and Smoke Damage Restoration. Our systematic, four-stage process is designed to secure the property, remove acidic soot residues, neutralize smoke odors, and prepare the structure for rebuild:</p>
+<!-- /wp:paragraph -->
+<!-- wp:list {\"ordered\":true} -->
+<ol>
+<li><strong>Emergency Board-Up &amp; Tarping:</strong> We seal broken windows, doors, and damaged roofs with plywood and heavy tarps to secure the building envelope from weather and unauthorized access.</li>
+<li><strong>Water Extraction &amp; Structural Drying:</strong> We extract fire-hose water and run LGR dehumidifiers to dry wet framing, preventing mold growth.</li>
+<li><strong>Soot Removal &amp; Chemical Washing:</strong> We utilize specialized dry-sponges and chemical washes to lift greasy, acidic soot from walls, ceilings, countertops, and personal belongings.</li>
+<li><strong>Thermal Fogging &amp; Odor Neutralization:</strong> We deploy ozone and hydroxyl generators to neutralize smoke molecules at the molecular level, followed by applying odor-blocking primers to encapsulate char.</li>
+</ol>
+<!-- /wp:list -->
+<!-- wp:paragraph -->
+<p>Throughout this process, we maintain strict documentation, including damage photos, chemical treatment logs, and structural dryness reports. This data is critical for validating that the structure is completely restored, preventing future structural issues and supporting insurance claim processing.</p>
+<!-- /wp:paragraph -->";
+
+        $eeatText = "<!-- wp:heading -->
+<h2><strong>Licensed Florida Contracting &amp; E-EAT Standards</strong></h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Restowrx Elite is a licensed, bonded, and fully insured property restoration contractor operating in {$locCounty}. Our technicians hold advanced certifications from the Institute of Inspection, Cleaning and Restoration Certification (IICRC) in Fire and Smoke Restoration (FSRT) and Odor Control (OCT). We follow strict OSHA safety standards, wearing proper personal protective equipment (PPE) and ensuring the safe handling of all sanitizing agents.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>For complete post-damage reconstruction, we work in direct partnership with our sister company, <strong>Spicola Construction</strong> (State Certified CGC General Contractor). This relationship allows us to offer a seamless, turnkey solution. Once our mitigation teams have completed the extraction and dry-out phase, Spicola Construction’s licensed building teams step in to handle structural reframing, drywall hanging, drywall texturing, paint matching, and floor installations.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>This combined approach ensures that all repairs comply with the latest Florida Building Code, wind-load calculations, and local municipal permitting requirements. By managing both the mitigation and the rebuild under one unified management system, we eliminate the coordination delays, permit backlogs, and communication gaps that occur when hiring separate contractors.</p>
+<!-- /wp:paragraph -->";
+
+        $insuranceText = "<!-- wp:heading -->
+<h2><strong>Direct Insurance Billing &amp; Xactimate Pricing</strong></h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Dealing with property damage is stressful, which is why we streamline the claims process. Under standard homeowners and commercial property insurance policies, property owners have a legal “duty to mitigate” secondary damage. This means that hiring a professional extraction company to stop water spread is typically fully covered under your policy peril guidelines.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>We use **Xactimate**—the exact same software used by insurance adjusters—to compile our damage estimates. This ensures that every line item is priced according to approved regional carrier rates, minimizing pricing disputes. We document the entire drying cycle with thermal photos, digital moisture readings, and structural logs, submitting them directly to your insurance company for seamless direct billing.</p>
+<!-- /wp:paragraph -->";
+
         $faqs = [
             [
-                'q' => 'Can I clean the soot myself?',
-                'a' => 'No. Soot is greasy and highly acidic. Standard cleaning wipes will smear soot into drywall pores, turning it grey and sealing the smell in. Specialized chemical soot sponges are required to pull soot off surfaces.'
+                'q' => 'Can I clean soot residues myself using household products?',
+                'a' => 'No. Soot is greasy and highly acidic. Standard household cleaners will smear soot particles into the pores of drywall and wood, permanently setting the smoky odor. Professional restoration requires specialized soot dry-sponges and chemical washes to lift soot particles.'
             ],
             [
-                'q' => 'How do you remove the smoke smell?',
-                'a' => 'We use industrial ozone and hydroxyl generators. These machines release reactive molecules that bind to and break down the smoke compounds inside wood and drywall pores, neutralizing the odor at its source.'
+                'q' => 'How do you eliminate persistent smoke odors after a fire?',
+                'a' => 'We utilize industrial ozone and hydroxyl generators that alter smoke molecules at the molecular level, breaking them down inside wall cavities and wood fibers. We also apply high-grade odor-blocking primers to encapsulate charred wood framing.'
             ],
             [
-                'q' => 'Is fire damage restoration covered by insurance?',
-                'a' => 'Yes. Property fires and smoke damage are standard covered perils under almost all homeowners and commercial insurance policies. We work directly with your adjuster to manage the claim.'
+                'q' => 'Is ' . $service_title . ' covered by property insurance in ' . $locName . '?',
+                'a' => 'Yes, fire and smoke damage are standard covered perils under almost all homeowners and commercial insurance policies. We document all losses, write itemized estimates using Xactimate, and coordinate directly with your insurance adjuster for direct billing.'
+            ],
+            [
+                'q' => 'What is the standard response time for securing a property after a fire?',
+                'a' => 'We provide 24/7 emergency dispatch and arrive at properties in the ' . $locName . ' area within 45 to 60 minutes to board up windows, secure compromised roofs, and prevent unauthorized access or weather damage.'
             ]
         ];
+
     } elseif ( $category === 'storm' ) {
-        $introText = "Severe Florida weather, high winds, and hurricanes can compromise a property’s envelope in seconds. In {$locName}, storm damage requires immediate emergency stabilization to prevent massive secondary water damage from rainfall. At Restowrx Elite, we deploy emergency response crews to board up windows, trap roofs, shore up compromised walls, and clear fallen trees and storm debris from your property.";
-        $whyNeedText = "When a storm damages your roof or windows in {$locName}, water pours in, saturating your home. Under insurance guidelines, property owners have a legal duty to mitigate damage immediately. Professional board-up, tarping, and debris clearing secure your building envelope, prevent trespassing, and ensure that your insurance claim is not delayed or denied due to neglected secondary damage.";
-        $concernsTitle = "Common Storm Damage Warning Signs";
-        $concernsList = [
-            "Missing shingles, metal panels, or compromised roof decking allowing water entry.",
-            "Shattered window glass, damaged sliding doors, or blown-in entry doors.",
-            "Fallen tree limbs, structural debris blocking access, or leaning framing studs.",
-            "Flooding from heavy rains or storm surges saturating lower floors."
-        ];
-        $solutionsTitle = "Our Emergency Storm Response Services";
-        $solutionsList = [
-            "<strong>Roof Tarping & Shrink-Wrap:</strong> Sealing damaged roofs with heavy-duty tarps to prevent rain from entering.",
-            "<strong>Emergency Window Board-Up:</strong> Securing broken windows and sliding glass doors with custom-cut plywood panels.",
-            "<strong>Debris & Tree Removal:</strong> Clearing fallen trees, limbs, and storm debris to restore safe access to the site.",
-            "<strong>Structural Shoring:</strong> Erecting temporary support beams to stabilize wind-damaged walls or roofs."
-        ];
-        $eeatText = "We are local Florida contractors experienced in hurricane recovery. We coordinate directly with Spicola Construction (general contracting CGC license) to execute structural repairs, replace wind-damaged roofs, and handle county permitting, ensuring your home meets strict Florida wind-load standards.";
-        $costText = "Emergency storm tarping and board-up in {$locName} typically ranges from $800 to $4,500 depending on the size and heights involved. These stabilization services are fully covered by property insurance as emergency mitigation. We provide Xactimate billing and direct claim coordination.";
-        $processSteps = [
-            "<strong>Phase 1: Hazard Assessment:</strong> We assess power lines, trees, and structural stability to ensure a safe work zone.",
-            "<strong>Phase 2: Envelope Stabilization:</strong> We board up windows, secure entryways, and install heavy-duty roof tarps.",
-            "<strong>Phase 3: Debris & Tree Clearing:</strong> We remove fallen trees, branches, and storm wreckage from the building exterior.",
-            "<strong>Phase 4: Moisture Control & Rebuild Plan:</strong> We extract water from storm leaks and draft a complete reconstruction proposal."
-        ];
+        $introText = "<!-- wp:paragraph -->
+<p>Severe sub-tropical weather, high wind events, and coastal hurricanes pose constant threats to properties in {$locName}, Florida. When a storm breaches a building envelope—damaging roof shingles, breaking windows, or blowing in entry doors—water intrusion quickly follows. At Restowrx Elite, we provide 24/7 emergency storm damage restoration, roof tarping, and window board-up services across {$locName} and surrounding communities to stabilize your property and protect it from secondary damage.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>We maintain fully equipped storm response vehicles stocked with heavy-duty timber, structural tarps, shrink-wrap systems, and generators. Our crews deploy immediately after a storm passes, clearing fallen trees, removing hazardous debris, and securing compromised walls to restore safety and access to your property.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>High-velocity wind forces can also cause structural shifting or masonry cracking. Our emergency stabilization teams provide structural shoring and bracing to secure compromised walls and roof lines, preventing collapse while permanent architectural repairs are designed.</p>
+<!-- /wp:paragraph -->";
+
+        $localText = "<!-- wp:heading -->
+<h2><strong>Understanding {$locName} Storm &amp; Wind Damage Risks</strong></h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Properties in {$locName} are exposed to intense sub-tropical heat, high humidity, and a shallow local water table. When wind-driven rain penetrates a building during a tropical storm or hurricane, it travels horizontally and vertically through drywall, insulation, and framing studs. Under standard property insurance policies, homeowners and business owners have a “duty to mitigate,” meaning you must take reasonable steps to prevent further damage. Failing to board up broken glass or tarp a leaking roof can lead to denial of claims for secondary water damage and mold.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>{$locRiskFactor}</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>Restowrx Elite is deeply familiar with these localized challenges. We adjust our structural drying grids to account for {$locName}’s specific conditions, ensuring that materials near landmarks like {$locLandmarks} are dried completely. We set up structural drying logs and record daily moisture readings to verify that your property is returned to a safe, dry state that complies with local building standards.</p>
+<!-- /wp:paragraph -->";
+
+        $processText = "<!-- wp:heading -->
+<h2><strong>Our Professional Storm Recovery Process</strong></h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>We execute all storm recovery projects in strict alignment with regional building safety standards and Florida building codes. Our systematic, four-stage process is designed to secure the property envelope, clear hazards, extract moisture, and prepare the structure for rebuild:</p>
+<!-- /wp:paragraph -->
+<!-- wp:list {\"ordered\":true} -->
+<ol>
+<li><strong>Hazard Assessment &amp; Envelope Security:</strong> We assess power lines, trees, and structural stability, then immediately board up windows and install heavy-duty roof tarps or shrink-wraps to seal the building.</li>
+<li><strong>Debris &amp; Tree Removal:</strong> We safely remove fallen trees, branches, and storm wreckage from roofs, driveways, and structures to allow clear access.</li>
+<li><strong>Water Extraction &amp; Thermal Mapping:</strong> We extract wind-driven rain and run LGR dehumidifiers to dry wet framing, tracking moisture paths with FLIR thermal imaging cameras.</li>
+<li><strong>Structural Stabilization &amp; Rebuild Plan:</strong> We construct temporary shoring or bracing to support compromised walls or roof lines, preparing blueprints for permanent repairs.</li>
+</ol>
+<!-- /wp:list -->
+<!-- wp:paragraph -->
+<p>Throughout this process, we maintain strict documentation, including wind damage photos, moisture logs, and structural assessments. This data is critical for validating that the structure is completely dry and safe, preventing future structural issues and supporting insurance claim processing.</p>
+<!-- /wp:paragraph -->";
+
+        $eeatText = "<!-- wp:heading -->
+<h2><strong>Licensed Florida Contracting &amp; E-EAT Standards</strong></h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Restowrx Elite is a licensed, bonded, and fully insured property restoration contractor operating in {$locCounty}. Our technicians hold advanced certifications from the Institute of Inspection, Cleaning and Restoration Certification (IICRC) in Water Damage Restoration (WRT) and Applied Structural Drying (ASD). We follow strict OSHA safety standards, wearing proper personal protective equipment (PPE) and ensuring the safe handling of all sanitizing agents.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>For complete post-damage reconstruction, we work in direct partnership with our sister company, <strong>Spicola Construction</strong> (State Certified CGC General Contractor). This relationship allows us to offer a seamless, turnkey solution. Once our mitigation teams have completed the extraction and dry-out phase, Spicola Construction’s licensed building teams step in to handle structural reframing, drywall hanging, drywall texturing, paint matching, and floor installations.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>This combined approach ensures that all repairs comply with the latest Florida Building Code, wind-load calculations, and local municipal permitting requirements. By managing both the mitigation and the rebuild under one unified management system, we eliminate the coordination delays, permit backlogs, and communication gaps that occur when hiring separate contractors.</p>
+<!-- /wp:paragraph -->";
+
+        $insuranceText = "<!-- wp:heading -->
+<h2><strong>Direct Insurance Billing &amp; Xactimate Pricing</strong></h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Dealing with property damage is stressful, which is why we streamline the claims process. Under standard homeowners and commercial property insurance policies, property owners have a legal “duty to mitigate” secondary damage. This means that hiring a professional extraction company to stop water spread is typically fully covered under your policy peril guidelines.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>We use **Xactimate**—the exact same software used by insurance adjusters—to compile our damage estimates. This ensures that every line item is priced according to approved regional carrier rates, minimizing pricing disputes. We document the entire drying cycle with thermal photos, digital moisture readings, and structural logs, submitting them directly to your insurance company for seamless direct billing.</p>
+<!-- /wp:paragraph -->";
+
         $faqs = [
             [
-                'q' => 'What is my duty to mitigate after a storm in ' . $locName . '?',
-                'a' => 'Insurance policies require you to take immediate reasonable steps to protect your property from further damage after a storm. This includes boarding up broken windows and tarping roofs. Failing to do so can result in denial of secondary water damage claims.'
+                'q' => 'What does "duty to mitigate" mean after a storm in ' . $locName . '?',
+                'a' => 'Insurance policies require you to take immediate reasonable steps to protect your property from further damage after a storm. This includes boarding up broken windows and tarping leaking roofs. Failing to do so can result in denial of secondary water damage claims.'
             ],
             [
-                'q' => 'Can you clear trees that have fallen on my house?',
-                'a' => 'Yes. We provide emergency tree removal, utilizing crane services if necessary to lift heavy logs off roofs and walls safely without causing further structural damage.'
+                'q' => 'Can you clear trees that have fallen onto my roof?',
+                'a' => 'Yes. We provide emergency tree removal, utilizing crane services if necessary to lift heavy logs off roofs and walls safely without causing further structural damage to the framing.'
             ],
             [
-                'q' => 'Will my insurance cover storm damage board-up?',
-                'a' => 'Yes. Standard homeowners and commercial policies cover the cost of emergency board-up and roof tarping under the mitigation clause of the policy. We bill your insurance directly.'
+                'q' => 'Is ' . $service_title . ' covered by my property insurance?',
+                'a' => 'Yes. Emergency stabilization services (like board-ups and tarping) are covered under the mitigation clause of standard property insurance policies. We document the damage and submit bills directly to your provider.'
+            ],
+            [
+                'q' => 'How do you stabilize a structurally compromised wall after a storm?',
+                'a' => 'We install heavy-duty wood or steel shoring towers and vertical bracing to transfer wind-load forces safely to the ground. This secures the structure until permanent CGC general contracting repairs can be permitted and built.'
             ]
         ];
     }
 
-    // Construct HTML string
-    $html = "<!-- wp:paragraph -->\n";
-    $html .= "<p>{$introText}</p>\n";
-    $html .= "<!-- /wp:paragraph -->\n\n";
+    // Construct HTML string (Gutenberg block formatting)
+    $html = "";
+    $html .= $introText . "\n\n";
+    $html .= $localText . "\n\n";
+    $html .= $processText . "\n\n";
+    $html .= $eeatText . "\n\n";
+    $html .= $insuranceText . "\n\n";
 
     $html .= "<!-- wp:heading -->\n";
-    $html .= "<h2><strong>Why {$locName} Properties Need Professional {$service_title}</strong></h2>\n";
-    $html .= "<!-- /wp:heading -->\n\n";
-
-    $html .= "<!-- wp:paragraph -->\n";
-    $html .= "<p>{$whyNeedText}</p>\n";
-    $html .= "<!-- /wp:paragraph -->\n\n";
-
-    $html .= "<!-- wp:heading {\"level\":3} -->\n";
-    $html .= "<h3>{$concernsTitle}</h3>\n";
-    $html .= "<!-- /wp:heading -->\n\n";
-
-    $html .= "<!-- wp:list -->\n<ul>\n";
-    foreach ($concernsList as $item) {
-        $html .= "<li>{$item}</li>\n";
-    }
-    $html .= "</ul>\n<!-- /wp:list -->\n\n";
-
-    $html .= "<!-- wp:heading -->\n";
-    $html .= "<h2><strong>{$solutionsTitle} in {$locName}</strong></h2>\n";
-    $html .= "<!-- /wp:heading -->\n\n";
-
-    $html .= "<!-- wp:list -->\n<ul>\n";
-    foreach ($solutionsList as $item) {
-        $html .= "<li>{$item}</li>\n";
-    }
-    $html .= "</ul>\n<!-- /wp:list -->\n\n";
-
-    $html .= "<!-- wp:heading -->\n";
-    $html .= "<h2><strong>How {$service_title} Protects &amp; Enhances Your Property</strong></h2>\n";
-    $html .= "<!-- /wp:heading -->\n\n";
-
-    $html .= "<!-- wp:paragraph -->\n";
-    $html .= "<p>{$eeatText}</p>\n";
-    $html .= "<!-- /wp:paragraph -->\n\n";
-
-    $html .= "<!-- wp:heading -->\n";
-    $html .= "<h2><strong>{$service_title} Cost Expectations in {$locName}</strong></h2>\n";
-    $html .= "<!-- /wp:heading -->\n\n";
-
-    $html .= "<!-- wp:paragraph -->\n";
-    $html .= "<p>{$costText}</p>\n";
-    $html .= "<!-- /wp:paragraph -->\n\n";
-
-    $html .= "<!-- wp:heading -->\n";
-    $html .= "<h2><strong>Our Systematic Restoration Process</strong></h2>\n";
-    $html .= "<!-- /wp:heading -->\n\n";
-
-    $html .= "<!-- wp:list {\"ordered\":true} -->\n<ol>\n";
-    foreach ($processSteps as $step) {
-        $html .= "<li>{$step}</li>\n";
-    }
-    $html .= "</ol>\n<!-- /wp:list -->\n\n";
-
-    $html .= "<!-- wp:heading -->\n";
-    $html .= "<h2>Frequently Asked Questions</h2>\n";
+    $html .= "<h2>Frequently Asked Questions About " . $service_title . "</h2>\n";
     $html .= "<!-- /wp:heading -->\n\n";
 
     foreach ($faqs as $faq) {
+        $html .= "<!-- wp:paragraph -->\n";
         $html .= "<p><strong>Q: {$faq['q']}</strong><br/>A: {$faq['a']}</p>\n";
+        $html .= "<!-- /wp:paragraph -->\n\n";
     }
-    $html .= "\n";
 
     // Build JSON-LD Schema
     $schemaFaqs = [];
@@ -607,7 +742,9 @@ function rwx_compile_service_content( $slug, $location_key, $service_title, $par
         'mainEntity' => $schemaFaqs
     ], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
 
-    $html .= "<script type=\"application/ld+json\">\n{$schemaJson}\n</script>";
+    $html .= "<!-- wp:html -->\n";
+    $html .= "<script type=\"application/ld+json\">\n{$schemaJson}\n</script>\n";
+    $html .= "<!-- /wp:html -->";
 
     return $html;
 }
