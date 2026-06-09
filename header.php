@@ -686,21 +686,58 @@
         }
     }
 
-    // 5. Handle manual dropdown changes
+    // 5. Handle manual dropdown changes with premium transition animation
     if (dropdown) {
         dropdown.addEventListener('change', function() {
             const selected = this.value;
             localStorage.setItem('rwx_user_geo', selected);
             localStorage.setItem('rwx_user_geo_time', new Date().getTime().toString());
             
-            // Redirect to corresponding page
-            const loc = geoMapping[selected];
-            if (loc) {
-                if (selected === 'tampa') {
-                    window.location.href = window.location.origin + '/services/';
-                } else {
-                    window.location.href = window.location.origin + '/services/' + loc.slug + '/';
+            let redirectUrl = window.location.href; // default fallback: reload current page
+            const origin = window.location.origin;
+            const suffixes = ['-brandon', '-st-petersburg', '-south-tampa', '-carrollwood'];
+            
+            // Check if we are on a single service page
+            const serviceMatch = path.match(/^\/services\/([^\/]+)\/?$/);
+            if (serviceMatch) {
+                let currentSlug = serviceMatch[1];
+                let baseSlug = currentSlug;
+                
+                // Strip existing location suffix to get the base service name
+                for (const suffix of suffixes) {
+                    if (baseSlug.endsWith(suffix)) {
+                        baseSlug = baseSlug.slice(0, -suffix.length);
+                        break;
+                    }
                 }
+                
+                // Redirect to the same service page under the new location
+                if (selected === 'tampa') {
+                    redirectUrl = origin + '/services/' + baseSlug + '/';
+                } else {
+                    redirectUrl = origin + '/services/' + baseSlug + '-' + selected + '/';
+                }
+            } else {
+                // If we are on the main services catalog directory
+                const isServicesMain = path === '/services/' || path === '/services';
+                if (isServicesMain) {
+                    if (selected === 'tampa') {
+                        redirectUrl = origin + '/services/';
+                    } else {
+                        redirectUrl = origin + '/services/water-damage-restoration-' + selected + '/';
+                    }
+                }
+            }
+            
+            // Trigger a premium fade/float out transition before navigating
+            const mainContent = document.getElementById('main-content');
+            if (mainContent) {
+                mainContent.classList.add('rwx-fade-out');
+                setTimeout(function() {
+                    window.location.href = redirectUrl;
+                }, 300); // matches the CSS transition-out duration
+            } else {
+                window.location.href = redirectUrl;
             }
         });
     }
