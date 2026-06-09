@@ -4218,27 +4218,28 @@ html {
 }
 
 .contact-card {
-  background: #fff;
-  border: 1px solid #f0f0f4;
+  background: #0a0a0a;
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 14px;
   padding: 1.5rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .contact-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+  border-color: var(--brand, #F22F3A);
+  box-shadow: 0 8px 25px rgba(242, 47, 58, 0.15);
 }
 
 .contact-card__icon {
   width: 44px;
   height: 44px;
   border-radius: 10px;
-  background: rgba(var(--brand-rgb), 0.1);
+  background: rgba(242, 47, 58, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--brand);
+  color: var(--brand, #F22F3A);
   margin-bottom: 1rem;
 }
 
@@ -4246,19 +4247,19 @@ html {
   font-family: 'Inter', sans-serif;
   font-size: 0.85rem;
   font-weight: 700;
-  color: var(--text-dark);
+  color: #ffffff;
   margin-bottom: 0.4rem;
 }
 
 .contact-card__text {
   font-size: 0.88rem;
-  color: var(--text-mid);
+  color: #bbbbbb;
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 a.contact-card__text:hover {
-  color: var(--brand);
+  color: var(--brand, #F22F3A);
 }
 
 .contact-card__hours {
@@ -4271,14 +4272,15 @@ a.contact-card__text:hover {
   display: flex;
   justify-content: space-between;
   font-size: 0.82rem;
-  color: var(--text-mid);
+  color: #bbbbbb;
 }
 
 .contact-social {
   padding: 1.5rem;
-  background: #fff;
-  border: 1px solid #f0f0f4;
+  background: #0a0a0a;
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 14px;
+  margin-top: 1.5rem;
 }
 
 .contact-social__label {
@@ -4287,7 +4289,7 @@ a.contact-card__text:hover {
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--text-subtle);
+  color: #777777;
   margin-bottom: 1rem;
 }
 
@@ -4302,7 +4304,7 @@ a.contact-card__text:hover {
    ========================================================================== */
 .contact-map {
   padding: 0 0 clamp(3rem, 2rem + 3vw, 5rem);
-  background: var(--bg-cream);
+  background: #000000;
 }
 
 .contact-map__wrap {
