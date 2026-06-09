@@ -1083,6 +1083,7 @@ get_header(); ?>
                 <p>Restowrx Elite was born out of a passion for property recovery done right. With extensive hands-on experience in Florida's disaster mitigation and construction industry, our leadership established a command center that puts elite containment, thorough dehumidification, and absolute safety above everything else &mdash; no shortcuts, no excuses.</p>
                 <p>Word travels fast when you do exceptional work. From emergency water extraction to full structural stabilization, we've grown by securing properties rapidly and coordinating seamlessly with insurance carriers. Every case file in our portfolio represents a property saved and a client supported through a crisis.</p>
                 <p>Today, Restowrx Elite is Tampa Bay's premier property damage mitigation and restoration firm, serving Hillsborough, Pinellas, and Pasco counties. In direct partnership with Spicola Construction, our licensed general contracting partner, we handle every phase of recovery, from negative-pressure biological containment to complete structural build-back.</p>
+                <a href="<?php echo esc_url(home_url('/about/')); ?>" class="btn btn--primary" style="margin-top: 1.5rem; display: inline-block;">Learn More About Us</a>
             </div>
         </div>
     </div>
