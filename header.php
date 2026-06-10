@@ -593,6 +593,8 @@
     function updateServiceLinks(locationKey) {
         if (!locationKey) return;
         const suffixes = ['-brandon', '-st-petersburg', '-south-tampa', '-carrollwood'];
+        const loc = geoMapping[locationKey];
+        if (!loc) return;
         
         // Find links matching either the plural /services/ or singular /service/ path
         const links = document.querySelectorAll('a[href*="/services/"], a[href*="/service/"]');
@@ -647,11 +649,76 @@
                     
                     console.log('Restowrx Geo: Rewriting link:', href, '->', newHref);
                     link.setAttribute('href', newHref);
+
+                    // --- Dynamic Visual Title Update inside Service Cards ---
+                    if (link.classList.contains('service-card')) {
+                        const titleEl = link.querySelector('h3');
+                        if (titleEl) {
+                            if (!titleEl.dataset.originalHtml) {
+                                titleEl.dataset.originalHtml = titleEl.innerHTML;
+                            }
+                            
+                            let originalHtml = titleEl.dataset.originalHtml;
+                            if (locationKey === 'tampa') {
+                                titleEl.innerHTML = originalHtml;
+                            } else {
+                                // Append the location name inside bold tags or span tags if present
+                                if (originalHtml.includes('</span>')) {
+                                    titleEl.innerHTML = originalHtml.replace('</span>', ' ' + loc.name + '</span>');
+                                } else if (originalHtml.includes('</b>')) {
+                                    titleEl.innerHTML = originalHtml.replace('</b>', ' ' + loc.name + '</b>');
+                                } else {
+                                    titleEl.innerHTML = originalHtml + ' ' + loc.name;
+                                }
+                            }
+                        }
+                    }
                 }
             } catch (e) {
                 console.error('Restowrx Geo: Error rewriting link:', href, e);
             }
         });
+
+        // --- Dynamic Section Headings & Hero Text Updates ---
+        const heroTitle = document.querySelector('.page-hero__title');
+        if (heroTitle) {
+            if (!heroTitle.dataset.originalHtml) {
+                heroTitle.dataset.originalHtml = heroTitle.innerHTML;
+            }
+            let originalHtml = heroTitle.dataset.originalHtml;
+            if (locationKey === 'tampa') {
+                heroTitle.innerHTML = originalHtml;
+            } else {
+                heroTitle.innerHTML = originalHtml + ' in ' + loc.name;
+            }
+        }
+
+        const heroDesc = document.querySelector('.page-hero__desc');
+        if (heroDesc) {
+            if (!heroDesc.dataset.originalHtml) {
+                heroDesc.dataset.originalHtml = heroDesc.innerHTML;
+            }
+            let originalHtml = heroDesc.dataset.originalHtml;
+            if (locationKey === 'tampa') {
+                heroDesc.innerHTML = originalHtml;
+            } else {
+                // Incorporate the location name into the descriptions
+                heroDesc.innerHTML = originalHtml.replace('Precision structural', 'Precision structural ' + loc.name);
+            }
+        }
+
+        const sectionH2 = document.querySelector('.services-grid-section h2');
+        if (sectionH2) {
+            if (!sectionH2.dataset.originalHtml) {
+                sectionH2.dataset.originalHtml = sectionH2.innerHTML;
+            }
+            let originalHtml = sectionH2.dataset.originalHtml;
+            if (locationKey === 'tampa') {
+                sectionH2.innerHTML = originalHtml;
+            } else {
+                sectionH2.innerHTML = originalHtml + ' IN ' + loc.name.toUpperCase();
+            }
+        }
     }
 
     function updateUI(locationKey) {
@@ -759,7 +826,7 @@
         }
     }
 
-    // 5. Handle manual dropdown changes with premium transition animation
+    // 5. Handle manual dropdown changes with premium transition animation and in-place updating
     if (dropdown) {
         dropdown.addEventListener('change', function() {
             const selected = this.value;
@@ -767,7 +834,7 @@
             localStorage.setItem('rwx_user_geo_time', new Date().getTime().toString());
             document.cookie = "rwx_user_geo=" + encodeURIComponent(selected) + "; path=/; max-age=" + (30 * 24 * 60 * 60) + "; SameSite=Lax";
             
-            let redirectUrl = window.location.href; // default fallback: reload current page
+            let redirectUrl = null; // default to null (means update in place, no redirect needed)
             const origin = window.location.origin;
             const suffixes = ['-brandon', '-st-petersburg', '-south-tampa', '-carrollwood'];
             
@@ -809,15 +876,27 @@
                 }
             }
             
-            // Trigger a premium fade/float out transition before navigating
+            // Trigger a premium fade/float out transition before navigating or updating
             const mainContent = document.getElementById('main-content');
             if (mainContent) {
                 mainContent.classList.add('rwx-fade-out');
                 setTimeout(function() {
-                    window.location.href = redirectUrl;
+                    if (redirectUrl) {
+                        window.location.href = redirectUrl;
+                    } else {
+                        // In-place update for general pages (like home page, contact page, etc.)
+                        updateUI(selected);
+                        setTimeout(function() {
+                            mainContent.classList.remove('rwx-fade-out');
+                        }, 50);
+                    }
                 }, 300); // matches the CSS transition-out duration
             } else {
-                window.location.href = redirectUrl;
+                if (redirectUrl) {
+                    window.location.href = redirectUrl;
+                } else {
+                    updateUI(selected);
+                }
             }
         });
     }
