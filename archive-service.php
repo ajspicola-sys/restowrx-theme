@@ -452,12 +452,7 @@ get_header();
                         }
                         ?>
                         <?php
-                        $thumb_url = '';
-                        if (has_post_thumbnail()) {
-                            $thumb_url = get_the_post_thumbnail_url(get_the_ID(), 'medium_large');
-                        } else {
-                            $thumb_url = 'https://images.unsplash.com/photo-1542013936693-8848e574047e?q=80&w=600';
-                        }
+                        $thumb_url = rwx_get_service_image_url(get_the_ID());
                         ?>
                         <a href="<?php the_permalink(); ?>" class="service-card reveal">
                             <div class="card-image-wrap">

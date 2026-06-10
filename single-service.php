@@ -1072,15 +1072,9 @@ if ($categories && !is_wp_error($categories)) {
                     $r_icon = get_post_meta(get_the_ID(), '_service_icon', true) ?: 'shield';
                 ?>
                 <a href="<?php the_permalink(); ?>" class="rwx-card">
-                    <?php if (has_post_thumbnail()): ?>
                     <div class="rwx-card__thumb">
-                        <?php the_post_thumbnail('medium', ['loading' => 'lazy', 'decoding' => 'async']); ?>
+                        <img src="<?php echo esc_url(rwx_get_service_image_url(get_the_ID())); ?>" alt="<?php the_title_attribute(); ?>" loading="lazy" decoding="async">
                     </div>
-                    <?php else: ?>
-                    <div class="rwx-card__icon-fallback" aria-hidden="true">
-                        <i data-lucide="<?php echo esc_attr($r_icon); ?>" size="40"></i>
-                    </div>
-                    <?php endif; ?>
                     <div class="rwx-card__body">
                         <h3><?php the_title(); ?></h3>
                         <p><?php echo wp_trim_words(get_the_excerpt(), 15); ?></p>

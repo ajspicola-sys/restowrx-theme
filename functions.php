@@ -3512,3 +3512,62 @@ function rwx_adjust_service_permalink( $post_link, $post ) {
 add_filter( 'post_type_link', 'rwx_adjust_service_permalink', 10, 2 );
 
 
+/**
+ * Get dynamic curated featured image URL for service posts based on service slug.
+ */
+function rwx_get_service_image_url($post_id) {
+    if (has_post_thumbnail($post_id)) {
+        return get_the_post_thumbnail_url($post_id, 'medium_large');
+    }
+
+    $post = get_post($post_id);
+    if (!$post || $post->post_type !== 'service') {
+        return 'https://images.unsplash.com/photo-1542013936693-8848e574047e?q=80&w=800&auto=format&fit=crop'; // default blueprint fallback
+    }
+
+    $slug = $post->post_name;
+    
+    // Strip location suffixes to find the base service slug
+    $suffixes = ['-brandon', '-st-petersburg', '-south-tampa', '-carrollwood'];
+    $base_slug = $slug;
+    foreach ($suffixes as $suffix) {
+        if (substr($base_slug, -strlen($suffix)) === $suffix) {
+            $base_slug = substr($base_slug, 0, -strlen($suffix));
+            break;
+        }
+    }
+
+    // Curated high-quality, professional premium restoration Unsplash images
+    $images = [
+        // Water Damage
+        'water-damage-restoration'          => 'https://images.unsplash.com/photo-1517646287270-a5a9ca602e5c?q=80&w=800&auto=format&fit=crop', // water damage cleanup
+        'emergency-water-extraction'         => 'https://images.unsplash.com/photo-1581094288338-2314dddb7eed?q=80&w=800&auto=format&fit=crop', // extraction tech
+        'flooded-basement-cleanup'          => 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=800&auto=format&fit=crop', // drying / blower fans
+        'sewage-cleanup-sanitization'       => 'https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=800&auto=format&fit=crop', // hazmat sanitizer
+        'water-leak-repair'                 => 'https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?q=80&w=800&auto=format&fit=crop', // plumber repairing pipe
+
+        // Storm Damage
+        'storm-damage-restoration'           => 'https://images.unsplash.com/photo-1594759714349-14a51e600570?q=80&w=800&auto=format&fit=crop', // damaged roof
+        'hurricane-wind-damage-cleanup'     => 'https://images.unsplash.com/photo-1547683905-f686c993aae5?q=80&w=800&auto=format&fit=crop', // storm debris
+        'emergency-board-up-tarping'        => 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=800&auto=format&fit=crop', // contractor boarding up
+        'debris-tree-removal'               => 'https://images.unsplash.com/photo-1508962914676-134849a727f0?q=80&w=800&auto=format&fit=crop', // fallen tree removal
+
+        // Fire Damage
+        'fire-damage-restoration'           => 'https://images.unsplash.com/photo-1508873696983-2df519f0397e?q=80&w=800&auto=format&fit=crop', // charred burned interior
+        'smoke-soot-cleanup'                => 'https://images.unsplash.com/photo-1595841696660-ab6140defb73?q=80&w=800&auto=format&fit=crop', // soot cleaning
+        'fire-damage-repair-reconstruction' => 'https://images.unsplash.com/photo-1581092921461-eab62e97a780?q=80&w=800&auto=format&fit=crop', // rebuilding construction
+        'odor-deodorization-sanitization'   => 'https://images.unsplash.com/photo-1613217788912-d7405e393c4e?q=80&w=800&auto=format&fit=crop', // sanitization spraying
+
+        // Mold Remediation
+        'mold-remediation'                  => 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800&auto=format&fit=crop', // containment scrubbing
+        'black-mold-removal'                => 'https://images.unsplash.com/photo-1584622781564-1d987f7333c1?q=80&w=800&auto=format&fit=crop', // technician cleaning mold
+        'mold-inspection-testing'           => 'https://images.unsplash.com/photo-1578496479914-7ef3b0193be3?q=80&w=800&auto=format&fit=crop', // lab mold testing
+        'crawlspace-mold-remediation'       => 'https://images.unsplash.com/photo-1527254958085-9ab7d7f2a1a6?q=80&w=800&auto=format&fit=crop'  // crawlspace encapsulation
+    ];
+
+    if (isset($images[$base_slug])) {
+        return $images[$base_slug];
+    }
+
+    return 'https://images.unsplash.com/photo-1542013936693-8848e574047e?q=80&w=800&auto=format&fit=crop'; // fallback blueprint
+}
