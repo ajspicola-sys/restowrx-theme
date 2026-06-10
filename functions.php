@@ -3571,3 +3571,10 @@ function rwx_get_service_image_url($post_id) {
 
     return 'https://images.unsplash.com/photo-1542013936693-8848e574047e?q=80&w=800&auto=format&fit=crop'; // fallback blueprint
 }
+
+/**
+ * Load Restowrx CSV Importer helper when in WordPress Admin area.
+ */
+if ( is_admin() ) {
+    require_once get_template_directory() . '/seo/hwh-csv-importer.php';
+}
