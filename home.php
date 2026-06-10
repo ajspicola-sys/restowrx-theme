@@ -73,13 +73,8 @@ $blog_query = new WP_Query( array(
             <article class="blog-featured reveal" itemscope itemtype="https://schema.org/BlogPosting">
                 <a href="<?php the_permalink(); ?>" class="blog-featured__link">
                     <div class="blog-featured__img">
-                        <?php
-                        $feat_img = get_the_post_thumbnail_url( get_the_ID(), 'large' );
-                        if ( $feat_img ) :
-                        ?>
-                            <img src="<?php echo esc_url( $feat_img ); ?>"
-                                 alt="<?php the_title_attribute(); ?>"
-                                 loading="eager" decoding="async" fetchpriority="high" itemprop="image">
+                        <?php if ( has_post_thumbnail() ) : ?>
+                            <?php the_post_thumbnail( 'large', [ 'loading' => 'eager', 'decoding' => 'async', 'fetchpriority' => 'high', 'itemprop' => 'image' ] ); ?>
                         <?php else : ?>
                             <div class="blog-featured__placeholder" aria-hidden="true">
                                 <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
@@ -118,14 +113,9 @@ $blog_query = new WP_Query( array(
                 <?php while ( $blog_query->have_posts() ) : $blog_query->the_post(); ?>
                     <article class="blog-card reveal" itemscope itemtype="https://schema.org/BlogPosting">
                         <a href="<?php the_permalink(); ?>" class="blog-card__link">
-                            <?php
-                            $card_img = get_the_post_thumbnail_url( get_the_ID(), 'medium_large' );
-                            if ( $card_img ) :
-                            ?>
+                            <?php if ( has_post_thumbnail() ) : ?>
                                 <div class="blog-card__img">
-                                    <img src="<?php echo esc_url( $card_img ); ?>"
-                                         alt="<?php the_title_attribute(); ?>"
-                                         loading="lazy" decoding="async">
+                                    <?php the_post_thumbnail( 'medium_large', [ 'loading' => 'lazy', 'decoding' => 'async' ] ); ?>
                                 </div>
                             <?php else : ?>
                                 <div class="blog-card__img blog-card__img--placeholder" aria-hidden="true">

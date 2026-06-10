@@ -67,14 +67,9 @@ $current_cat = get_queried_object();
                 <?php while ( have_posts() ) : the_post(); ?>
                     <article class="blog-card reveal" itemscope itemtype="https://schema.org/BlogPosting">
                         <a href="<?php the_permalink(); ?>" class="blog-card__link">
-                            <?php
-                            $card_img = get_the_post_thumbnail_url( get_the_ID(), 'medium_large' );
-                            if ( $card_img ) :
-                            ?>
+                            <?php if ( has_post_thumbnail() ) : ?>
                                 <div class="blog-card__img">
-                                    <img src="<?php echo esc_url( $card_img ); ?>"
-                                         alt="<?php the_title_attribute(); ?>"
-                                         loading="lazy" decoding="async">
+                                    <?php the_post_thumbnail( 'medium_large', [ 'loading' => 'lazy', 'decoding' => 'async' ] ); ?>
                                 </div>
                             <?php else : ?>
                                 <div class="blog-card__img blog-card__img--placeholder" aria-hidden="true">
