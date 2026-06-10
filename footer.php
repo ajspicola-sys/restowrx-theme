@@ -658,6 +658,7 @@
     <!-- BOTTOM STRIP -->
     <div class="footer-bottom">
         <div class="cert-list">
+            <div class="cert-item"><i data-lucide="shield-check" size="18"></i> LIC# CBC-1268070</div>
             <div class="cert-item"><i data-lucide="shield-check" size="18"></i> IICRC LICENSED</div>
             <div class="cert-item"><i data-lucide="shield-check" size="18"></i> OSHA COMPLIANT</div>
             <div class="cert-item"><i data-lucide="shield-check" size="18"></i> ELITE CERTIFIED</div>

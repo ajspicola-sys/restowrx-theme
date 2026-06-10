@@ -133,25 +133,24 @@
         .top-left svg, .top-left i { color: var(--color-red) !important; opacity: 0.9; width: 12px; height: 12px; }
 
         .top-right { display: flex; gap: 10px; align-items: center; }
-        .social-icon {
-            width: 24px; height: 24px;
+        .header-license {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: rgba(255, 255, 255, 0.85) !important;
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 0.8px;
             border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 50%;
-            display: flex; justify-content: center; align-items: center;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            background: rgba(255, 255, 255, 0.03);
+            padding: 4px 8px;
+            border-radius: 4px;
         }
-        .social-icon svg, .social-icon i { 
-            width: 13px; 
-            height: 13px; 
-            color: #ffffff !important; 
-            stroke: #ffffff !important; 
-            fill: none !important; 
-        }
-        .social-icon:hover { border-color: #F22F3A !important; background: #F22F3A !important; transform: translateY(-1px) !important; }
-        .social-icon:hover svg, .social-icon:hover i { 
-            color: #ffffff !important; 
-            stroke: #ffffff !important; 
-            fill: none !important; 
+        .header-license i, .header-license svg {
+            color: var(--color-red) !important;
+            width: 12px;
+            height: 12px;
         }
 
         /* --- DYNAMIC LOCATION SELECTOR --- */
@@ -193,6 +192,11 @@
             }
             .rwx-location-selector {
                 margin-right: 0;
+            }
+            .header-license {
+                font-size: 0.6rem;
+                padding: 2px 6px;
+                gap: 4px;
             }
         }
 
@@ -511,8 +515,7 @@
                         <option value="carrollwood">Carrollwood</option>
                     </select>
                 </div>
-                <a href="https://www.instagram.com/restowrx/" class="social-icon" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i data-lucide="instagram"></i></a>
-                <a href="https://www.facebook.com/restowrx/" class="social-icon" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i data-lucide="facebook"></i></a>
+                <span class="header-license"><i data-lucide="shield-check"></i> CBC-1268070</span>
             </div>
 
         </div>
