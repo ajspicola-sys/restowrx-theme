@@ -114,11 +114,63 @@ function hwh_parse_csv($path) {
 function hwh_run_import($d) {
     $headers=$d['headers'];$rows=$d['rows'];$fm=hwh_post_field_map();$results=[];
     $idi=null; foreach($headers as $i=>$h) if(strtolower($h)==='id'){$idi=$i;break;}
+    $slugi=null; foreach($headers as $i=>$h) if(in_array(strtolower($h), ['slug', 'post_name'])){$slugi=$i;break;}
+    $titlei=null; foreach($headers as $i=>$h) if(in_array(strtolower($h), ['title', 'post_title'])){$titlei=$i;break;}
+    $typei=null; foreach($headers as $i=>$h) if(strtolower($h) === 'post_type'){$typei=$i;break;}
 
     foreach($rows as $row) {
-        $pid=intval($row[$idi]); if(!$pid) continue;
-        $post=get_post($pid);
-        if(!$post){$results[]=['id'=>$pid,'title'=>'(not found)','pf'=>'-','mf'=>'-','st'=>'SKIPPED','ok'=>false];continue;}
+        $pid=isset($row[$idi]) ? intval($row[$idi]) : 0;
+        $post=null;
+        $is_new = false;
+        
+        // 1. Try to find by ID
+        if ($pid) {
+            $post=get_post($pid);
+        }
+        
+        // 2. If not found by ID, try to find by slug
+        if (!$post && $slugi !== null && !empty($row[$slugi])) {
+            $slug_val = sanitize_title($row[$slugi]);
+            $found_posts = get_posts([
+                'name'        => $slug_val,
+                'post_type'   => 'any',
+                'post_status' => 'any',
+                'posts_per_page' => 1,
+                'suppress_filters' => true,
+            ]);
+            if (!empty($found_posts)) {
+                $post = $found_posts[0];
+                $pid = $post->ID;
+            }
+        }
+        
+        // 3. If still not found, try to auto-create
+        if (!$post) {
+            $title_val = ($titlei !== null) ? trim($row[$titlei]) : '';
+            $slug_val = ($slugi !== null) ? sanitize_title($row[$slugi]) : '';
+            
+            if (!empty($title_val) || !empty($slug_val)) {
+                $post_type_val = ($typei !== null && !empty($row[$typei])) ? trim($row[$typei]) : 'service';
+                
+                $new_pid = wp_insert_post([
+                    'post_title'  => !empty($title_val) ? $title_val : $slug_val,
+                    'post_name'   => $slug_val,
+                    'post_type'   => $post_type_val,
+                    'post_status' => 'publish',
+                ]);
+                
+                if ($new_pid && !is_wp_error($new_pid)) {
+                    $pid = $new_pid;
+                    $post = get_post($pid);
+                    $is_new = true;
+                }
+            }
+        }
+
+        if(!$post){
+            $results[]=['id'=>$pid ?: '—','title'=>'(not found)','pf'=>'-','mf'=>'-','st'=>'SKIPPED','ok'=>false];
+            continue;
+        }
 
         $pu=[]; $mu=[];
         foreach($headers as $i=>$header) {
@@ -133,10 +185,16 @@ function hwh_run_import($d) {
             }
         }
         if(!empty($pu)){$pu['ID']=$pid;wp_update_post($pu);}
+        
+        $status_text = $is_new ? '✅ Created' : '✅ Updated';
+        if (!$is_new && empty($pu) && empty($mu)) {
+            $status_text = '— No changes';
+        }
+        
         $results[]=['id'=>$pid,'title'=>get_the_title($pid),
             'pf'=>!empty($pu)?implode(', ',array_diff(array_keys($pu),['ID'])):'—',
             'mf'=>!empty($mu)?implode(', ',$mu):'—',
-            'st'=>(!empty($pu)||!empty($mu))?'✅ Updated':'— No changes','ok'=>(!empty($pu)||!empty($mu))];
+            'st'=>$status_text,'ok'=>(!empty($pu)||!empty($mu)||$is_new)];
     }
     return $results;
 }
