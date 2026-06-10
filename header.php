@@ -873,14 +873,23 @@
     }
 
     // 6. Rewrite links when the DOM is fully parsed
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', function() {
-            const currentGeo = localStorage.getItem('rwx_user_geo') || 'tampa';
-            updateServiceLinks(currentGeo);
+    function initGeoAndLinks() {
+        document.querySelectorAll('a').forEach(function(link) {
+            var text = link.textContent.trim().toLowerCase();
+            var href = link.getAttribute('href');
+            if (text === 'services' && (!href || href === '#' || href === '')) {
+                link.setAttribute('href', '<?php echo esc_url(home_url("/services/")); ?>');
+            }
         });
-    } else {
+
         const currentGeo = localStorage.getItem('rwx_user_geo') || 'tampa';
         updateServiceLinks(currentGeo);
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initGeoAndLinks);
+    } else {
+        initGeoAndLinks();
     }
 })();
 </script>
