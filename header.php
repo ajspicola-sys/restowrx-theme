@@ -593,7 +593,11 @@
     function updateServiceLinks(locationKey) {
         if (!locationKey) return;
         const suffixes = ['-brandon', '-st-petersburg', '-south-tampa', '-carrollwood'];
-        const links = document.querySelectorAll('a[href*="/services/"]');
+        
+        // Find links matching either the plural /services/ or singular /service/ path
+        const links = document.querySelectorAll('a[href*="/services/"], a[href*="/service/"]');
+        
+        console.log('Restowrx Geo: Scanning links. Found:', links.length, 'for location:', locationKey);
         
         links.forEach(link => {
             let href = link.getAttribute('href');
@@ -608,10 +612,11 @@
                 }
                 
                 let pathVal = urlObj.pathname;
-                // Match /services/slug/ where slug does not contain a slash
-                const serviceMatch = pathVal.match(/\/services\/([^\/]+)\/?$/);
-                if (serviceMatch && serviceMatch[1] !== 'services') {
-                    let slug = serviceMatch[1];
+                // Match /services/slug/ or /service/slug/ where slug does not contain a slash
+                const serviceMatch = pathVal.match(/\/(services?)\/([^\/]+)\/?$/);
+                if (serviceMatch && serviceMatch[2] !== 'services' && serviceMatch[2] !== 'service') {
+                    let matchedPostType = serviceMatch[1]; // 'services' or 'service'
+                    let slug = serviceMatch[2];
                     let baseSlug = slug;
                     
                     // Strip any existing location suffix from the slug
@@ -628,19 +633,23 @@
                         newSlug = baseSlug + '-' + locationKey;
                     }
                     
-                    // Maintain base prefix (e.g. subdirectories if any)
-                    const idx = pathVal.indexOf('/services/');
+                    // Maintain base prefix (e.g. subdirectories if any) and normalize to '/services/'
+                    const idx = pathVal.indexOf('/' + matchedPostType + '/');
                     const pathPrefix = pathVal.substring(0, idx) + '/services/';
                     urlObj.pathname = pathPrefix + newSlug + '/';
                     
+                    let newHref;
                     if (href.startsWith('/') && !href.startsWith('//')) {
-                        link.setAttribute('href', urlObj.pathname + urlObj.search + urlObj.hash);
+                        newHref = urlObj.pathname + urlObj.search + urlObj.hash;
                     } else {
-                        link.setAttribute('href', urlObj.toString());
+                        newHref = urlObj.toString();
                     }
+                    
+                    console.log('Restowrx Geo: Rewriting link:', href, '->', newHref);
+                    link.setAttribute('href', newHref);
                 }
             } catch (e) {
-                console.error('Error rewriting link: ', href, e);
+                console.error('Restowrx Geo: Error rewriting link:', href, e);
             }
         });
     }

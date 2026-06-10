@@ -3481,9 +3481,24 @@ function rwx_adjust_service_permalink( $post_link, $post ) {
                 $target_slug = $post->post_name . $suffix;
                 
                 if ( ! isset( $slug_cache[ $target_slug ] ) ) {
-                    // Check if a service post with the target slug exists
-                    $target_post = get_page_by_path( $target_slug, OBJECT, 'service' );
-                    $slug_cache[ $target_slug ] = $target_post ? get_permalink( $target_post ) : false;
+                    // Check if a service post with the target slug exists using standard get_posts query
+                    $posts = get_posts([
+                        'name'           => $target_slug,
+                        'post_type'      => 'service',
+                        'post_status'    => 'publish',
+                        'posts_per_page' => 1,
+                        'fields'         => 'ids',
+                        'suppress_filters' => false, // let the posts_where filter run if any, but wait: posts_where excludes neighborhood services!
+                    ]);
+                    
+                    // IMPORTANT: The 'posts_where' filter (rwx_exclude_neighborhood_services) excludes location-specific services
+                    // from general queries. But here, we ARE specifically querying a location-specific service by name!
+                    // Let's check: does rwx_exclude_neighborhood_services allow single page queries?
+                    // Yes! It checks: if ( $query->is_single() || $query->is_singular() || ! empty( $query->query_vars['name'] ) ... ) return $where;
+                    // Since we pass 'name' => $target_slug, the posts_where filter does NOT exclude it!
+                    // So get_posts will find it! This is perfectly safe!
+                    
+                    $slug_cache[ $target_slug ] = ! empty( $posts ) ? get_permalink( $posts[0] ) : false;
                 }
                 
                 if ( $slug_cache[ $target_slug ] !== false ) {
