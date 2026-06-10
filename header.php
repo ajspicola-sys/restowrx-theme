@@ -568,11 +568,11 @@
 <script>
 (function() {
     const geoMapping = {
-        'brandon': { name: 'Brandon', slug: 'water-damage-restoration-brandon' },
-        'st-petersburg': { name: 'St. Petersburg', slug: 'water-damage-restoration-st-petersburg' },
-        'south-tampa': { name: 'South Tampa', slug: 'water-damage-restoration-south-tampa' },
-        'carrollwood': { name: 'Carrollwood', slug: 'water-damage-restoration-carrollwood' },
-        'tampa': { name: 'Tampa (Main)', slug: '' }
+        'brandon': { name: 'Brandon' },
+        'st-petersburg': { name: 'St. Petersburg' },
+        'south-tampa': { name: 'South Tampa' },
+        'carrollwood': { name: 'Carrollwood' },
+        'tampa': { name: 'Tampa (Main)' }
     };
 
     // 1. Identify location from URL (always overrides lookup)
@@ -754,7 +754,7 @@
     if (urlLocation) {
         localStorage.setItem('rwx_user_geo', urlLocation);
         updateUI(urlLocation);
-        return; // Don't run background lookup or redirect
+        return; // Don't run background lookup
     }
 
     // 2. Read from localStorage cache
@@ -767,7 +767,6 @@
 
     if (isCacheValid) {
         updateUI(cachedGeo);
-        handleRedirect(cachedGeo);
     } else {
         // 3. Silently fetch IP Geolocation in the background (using HTTPS-friendly ipapi.co)
         fetch('https://ipapi.co/json/')
@@ -798,32 +797,13 @@
                 localStorage.setItem('rwx_user_geo_time', now.toString());
                 
                 updateUI(detected);
-                handleRedirect(detected);
             })
             .catch(err => {
-                // On error or blocked API, default to tampa (no redirect)
+                // On error or blocked API, default to tampa
                 localStorage.setItem('rwx_user_geo', 'tampa');
                 localStorage.setItem('rwx_user_geo_time', now.toString());
                 updateUI('tampa');
             });
-    }
-
-    // 4. Handle auto-redirect if they visit the main services page
-    function handleRedirect(locationKey) {
-        // Only auto-redirect if they are visiting the main services directory page
-        const isServicesMain = path.endsWith('/services/') || path.endsWith('/services');
-        if (isServicesMain && locationKey !== 'tampa') {
-            const loc = geoMapping[locationKey];
-            if (loc && loc.slug) {
-                // Prevent infinite redirect loops by marking that we redirected once in sessionStorage
-                if (!sessionStorage.getItem('rwx_redirected')) {
-                    sessionStorage.setItem('rwx_redirected', '1');
-                    const idx = path.indexOf('/services/');
-                    const pathPrefix = path.substring(0, idx) + '/services/';
-                    window.location.href = window.location.origin + pathPrefix + loc.slug + '/';
-                }
-            }
-        }
     }
 
     // 5. Handle manual dropdown changes with premium transition animation and in-place updating
@@ -861,18 +841,6 @@
                     redirectUrl = origin + pathPrefix + baseSlug + '/';
                 } else {
                     redirectUrl = origin + pathPrefix + baseSlug + '-' + selected + '/';
-                }
-            } else {
-                // If we are on the main services catalog directory
-                const isServicesMain = path.endsWith('/services/') || path.endsWith('/services');
-                if (isServicesMain) {
-                    const idx = path.indexOf('/services/');
-                    const pathPrefix = path.substring(0, idx) + '/services/';
-                    if (selected === 'tampa') {
-                        redirectUrl = origin + pathPrefix;
-                    } else {
-                        redirectUrl = origin + pathPrefix + 'water-damage-restoration-' + selected + '/';
-                    }
                 }
             }
             
