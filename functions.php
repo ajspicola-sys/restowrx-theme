@@ -3463,3 +3463,37 @@ function rwx_exclude_neighborhood_services( $where, $query ) {
 }
 add_filter( 'posts_where', 'rwx_exclude_neighborhood_services', 10, 2 );
 
+/**
+ * Dynamically adjust service permalinks based on user's selected location cookie.
+ */
+function rwx_adjust_service_permalink( $post_link, $post ) {
+    static $slug_cache = [];
+
+    if ( $post->post_type === 'service' ) {
+        // Get geolocation cookie
+        $geo = isset( $_COOKIE['rwx_user_geo'] ) ? sanitize_text_field( $_COOKIE['rwx_user_geo'] ) : '';
+        
+        if ( ! empty( $geo ) && $geo !== 'tampa' ) {
+            $suffix = '-' . $geo;
+            
+            // Check if this post slug already ends with the location suffix
+            if ( substr( $post->post_name, -strlen( $suffix ) ) !== $suffix ) {
+                $target_slug = $post->post_name . $suffix;
+                
+                if ( ! isset( $slug_cache[ $target_slug ] ) ) {
+                    // Check if a service post with the target slug exists
+                    $target_post = get_page_by_path( $target_slug, OBJECT, 'service' );
+                    $slug_cache[ $target_slug ] = $target_post ? get_permalink( $target_post ) : false;
+                }
+                
+                if ( $slug_cache[ $target_slug ] !== false ) {
+                    return $slug_cache[ $target_slug ];
+                }
+            }
+        }
+    }
+    return $post_link;
+}
+add_filter( 'post_type_link', 'rwx_adjust_service_permalink', 10, 2 );
+
+

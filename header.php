@@ -578,8 +578,9 @@
     // 1. Identify location from URL (always overrides lookup)
     const path = window.location.pathname;
     let urlLocation = null;
-    for (const [key, val] of Object.entries(geoMapping)) {
-        if (val.slug && path.includes(val.slug)) {
+    for (const key of Object.keys(geoMapping)) {
+        if (key === 'tampa') continue;
+        if (path.includes('-' + key)) {
             urlLocation = key;
             break;
         }
@@ -589,6 +590,61 @@
     const dropdown = document.getElementById('rwx-location-dropdown');
     const locationDisplay = document.getElementById('rwx-top-bar-location');
 
+    function updateServiceLinks(locationKey) {
+        if (!locationKey) return;
+        const suffixes = ['-brandon', '-st-petersburg', '-south-tampa', '-carrollwood'];
+        const links = document.querySelectorAll('a[href*="/services/"]');
+        
+        links.forEach(link => {
+            let href = link.getAttribute('href');
+            if (!href) return;
+            
+            try {
+                let urlObj;
+                if (href.startsWith('/') || href.startsWith('.') || !href.includes('://')) {
+                    urlObj = new URL(href, window.location.origin);
+                } else {
+                    urlObj = new URL(href);
+                }
+                
+                let pathVal = urlObj.pathname;
+                // Match /services/slug/ where slug does not contain a slash
+                const serviceMatch = pathVal.match(/\/services\/([^\/]+)\/?$/);
+                if (serviceMatch && serviceMatch[1] !== 'services') {
+                    let slug = serviceMatch[1];
+                    let baseSlug = slug;
+                    
+                    // Strip any existing location suffix from the slug
+                    for (const suffix of suffixes) {
+                        if (baseSlug.endsWith(suffix)) {
+                            baseSlug = baseSlug.slice(0, -suffix.length);
+                            break;
+                        }
+                    }
+                    
+                    // Re-apply the selected location suffix (unless it's 'tampa')
+                    let newSlug = baseSlug;
+                    if (locationKey !== 'tampa') {
+                        newSlug = baseSlug + '-' + locationKey;
+                    }
+                    
+                    // Maintain base prefix (e.g. subdirectories if any)
+                    const idx = pathVal.indexOf('/services/');
+                    const pathPrefix = pathVal.substring(0, idx) + '/services/';
+                    urlObj.pathname = pathPrefix + newSlug + '/';
+                    
+                    if (href.startsWith('/') && !href.startsWith('//')) {
+                        link.setAttribute('href', urlObj.pathname + urlObj.search + urlObj.hash);
+                    } else {
+                        link.setAttribute('href', urlObj.toString());
+                    }
+                }
+            } catch (e) {
+                console.error('Error rewriting link: ', href, e);
+            }
+        });
+    }
+
     function updateUI(locationKey) {
         if (!geoMapping[locationKey]) return;
         const loc = geoMapping[locationKey];
@@ -597,6 +653,9 @@
         if (dropdown) {
             dropdown.value = locationKey;
         }
+        
+        // Set geo cookie for PHP server-side handling
+        document.cookie = "rwx_user_geo=" + encodeURIComponent(locationKey) + "; path=/; max-age=" + (30 * 24 * 60 * 60) + "; SameSite=Lax";
         
         // Update top bar text
         if (locationDisplay) {
@@ -610,6 +669,9 @@
                 lucide.createIcons();
             }
         }
+
+        // Dynamically rewrite service links on load
+        updateServiceLinks(locationKey);
     }
 
     // If we are on a specific location page, cache it and update UI
@@ -673,14 +735,16 @@
     // 4. Handle auto-redirect if they visit the main services page
     function handleRedirect(locationKey) {
         // Only auto-redirect if they are visiting the main services directory page
-        const isServicesMain = path === '/services/' || path === '/services';
+        const isServicesMain = path.endsWith('/services/') || path.endsWith('/services');
         if (isServicesMain && locationKey !== 'tampa') {
             const loc = geoMapping[locationKey];
             if (loc && loc.slug) {
                 // Prevent infinite redirect loops by marking that we redirected once in sessionStorage
                 if (!sessionStorage.getItem('rwx_redirected')) {
                     sessionStorage.setItem('rwx_redirected', '1');
-                    window.location.href = window.location.origin + '/services/' + loc.slug + '/';
+                    const idx = path.indexOf('/services/');
+                    const pathPrefix = path.substring(0, idx) + '/services/';
+                    window.location.href = window.location.origin + pathPrefix + loc.slug + '/';
                 }
             }
         }
@@ -692,14 +756,15 @@
             const selected = this.value;
             localStorage.setItem('rwx_user_geo', selected);
             localStorage.setItem('rwx_user_geo_time', new Date().getTime().toString());
+            document.cookie = "rwx_user_geo=" + encodeURIComponent(selected) + "; path=/; max-age=" + (30 * 24 * 60 * 60) + "; SameSite=Lax";
             
             let redirectUrl = window.location.href; // default fallback: reload current page
             const origin = window.location.origin;
             const suffixes = ['-brandon', '-st-petersburg', '-south-tampa', '-carrollwood'];
             
             // Check if we are on a single service page
-            const serviceMatch = path.match(/^\/services\/([^\/]+)\/?$/);
-            if (serviceMatch) {
+            const serviceMatch = path.match(/\/services\/([^\/]+)\/?$/);
+            if (serviceMatch && serviceMatch[1] !== 'services') {
                 let currentSlug = serviceMatch[1];
                 let baseSlug = currentSlug;
                 
@@ -711,20 +776,26 @@
                     }
                 }
                 
+                // Determine origin + base path
+                const idx = path.indexOf('/services/');
+                const pathPrefix = path.substring(0, idx) + '/services/';
+                
                 // Redirect to the same service page under the new location
                 if (selected === 'tampa') {
-                    redirectUrl = origin + '/services/' + baseSlug + '/';
+                    redirectUrl = origin + pathPrefix + baseSlug + '/';
                 } else {
-                    redirectUrl = origin + '/services/' + baseSlug + '-' + selected + '/';
+                    redirectUrl = origin + pathPrefix + baseSlug + '-' + selected + '/';
                 }
             } else {
                 // If we are on the main services catalog directory
-                const isServicesMain = path === '/services/' || path === '/services';
+                const isServicesMain = path.endsWith('/services/') || path.endsWith('/services');
                 if (isServicesMain) {
+                    const idx = path.indexOf('/services/');
+                    const pathPrefix = path.substring(0, idx) + '/services/';
                     if (selected === 'tampa') {
-                        redirectUrl = origin + '/services/';
+                        redirectUrl = origin + pathPrefix;
                     } else {
-                        redirectUrl = origin + '/services/water-damage-restoration-' + selected + '/';
+                        redirectUrl = origin + pathPrefix + 'water-damage-restoration-' + selected + '/';
                     }
                 }
             }
@@ -740,6 +811,17 @@
                 window.location.href = redirectUrl;
             }
         });
+    }
+
+    // 6. Rewrite links when the DOM is fully parsed
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentGeo = localStorage.getItem('rwx_user_geo') || 'tampa';
+            updateServiceLinks(currentGeo);
+        });
+    } else {
+        const currentGeo = localStorage.getItem('rwx_user_geo') || 'tampa';
+        updateServiceLinks(currentGeo);
     }
 })();
 </script>
