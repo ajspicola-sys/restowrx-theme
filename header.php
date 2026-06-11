@@ -335,6 +335,20 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             transform: translateY(-2px) scale(1.02);
         }
+        .cta-btn-header + .cta-btn-header {
+            margin-left: 12px;
+        }
+        @media (max-width: 1300px) and (min-width: 1025px) {
+            .nav-links {
+                position: static;
+                transform: none;
+                margin-left: 20px;
+            }
+            .cta-btn-header {
+                font-size: 0.95rem;
+                padding: 6px 16px;
+            }
+        }
 
         /* Mobile Menu Toggle button */
         .menu-toggle { 
@@ -553,6 +567,11 @@
                     echo '</ul>';
                 }
                 ?>
+
+                <a href="tel:+18136994009" class="cta-btn-header">
+                    <i data-lucide="phone"></i>
+                    813.699.4009
+                </a>
 
                 <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="cta-btn-header">
                     <i data-lucide="zap"></i>
