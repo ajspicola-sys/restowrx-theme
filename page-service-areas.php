@@ -51,6 +51,87 @@ get_header(); ?>
         </div>
     </section>
 
+    <!-- ── Localized Services Directory ────────────────────────────────── -->
+    <section class="localized-directory-section" style="background: #0d0101; padding: clamp(60px, 8vw, 100px) 0; border-top: 1px solid rgba(255,0,0,0.1); border-bottom: 1px solid rgba(255,0,0,0.1);">
+        <div class="section__inner" style="max-width: 1300px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 40px); box-sizing: border-box;">
+            <div class="section__header reveal" style="text-align: center; margin-bottom: 50px;">
+                <span class="section__label" style="font-family: var(--font-mono, 'Space Mono', monospace); color: var(--color-red, #F22F3A); font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase; display: block; margin-bottom: 15px; font-weight: 700;">Local Index</span>
+                <h2 class="section__title" style="font-family: var(--font-accent, 'Bebas Neue', sans-serif); font-size: clamp(2.5rem, 5vw, 4.2rem); text-transform: uppercase; margin: 0 0 20px 0; color: #ffffff; line-height: 0.95; letter-spacing: 1px;">Service Area Directories</h2>
+                <p class="section__desc" style="color: #888888; max-width: 600px; margin: 0 auto; font-size: 1.05rem; line-height: 1.6;">Direct structural links to our localized emergency mitigation and restoration field offices across the Tampa Bay command zone.</p>
+            </div>
+            
+            <?php
+            // Temporarily bypass general exclude filter to retrieve neighborhood landing pages
+            remove_filter( 'posts_where', 'rwx_exclude_neighborhood_services', 10 );
+            $all_services = get_posts([
+                'post_type'      => 'service',
+                'post_status'    => 'publish',
+                'posts_per_page' => -1,
+                'orderby'        => 'title',
+                'order'          => 'ASC'
+            ]);
+            add_filter( 'posts_where', 'rwx_exclude_neighborhood_services', 10, 2 );
+
+            $locations = [
+                'tampa'          => 'Tampa (Main)',
+                'south-tampa'    => 'South Tampa',
+                'brandon'        => 'Brandon',
+                'st-petersburg'  => 'St. Petersburg',
+                'carrollwood'    => 'Carrollwood',
+            ];
+
+            $grouped = [];
+            foreach ( $locations as $key => $name ) {
+                $grouped[ $key ] = [];
+            }
+
+            foreach ( $all_services as $post ) {
+                $slug = $post->post_name;
+                $found_loc = 'tampa';
+                foreach ( $locations as $loc_key => $loc_name ) {
+                    if ( $loc_key === 'tampa' ) continue;
+                    $suffix = '-' . $loc_key;
+                    if ( substr( $slug, -strlen( $suffix ) ) === $suffix ) {
+                        $found_loc = $loc_key;
+                        break;
+                    }
+                }
+                $grouped[ $found_loc ][] = $post;
+            }
+            ?>
+
+            <div class="directory-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px;">
+                <?php foreach ( $grouped as $loc_key => $posts ) : 
+                    if ( empty( $posts ) ) continue;
+                    $loc_title = $locations[ $loc_key ];
+                    ?>
+                    <div class="directory-col reveal" style="background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.04); padding: 25px; border-radius: 6px; box-shadow: 0 4px 25px rgba(0,0,0,0.3); transition: all 0.3s;" onmouseover="this.style.borderColor='rgba(255,0,0,0.25)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.04)';">
+                        <h3 style="font-family: var(--font-accent, 'Bebas Neue', sans-serif); font-size: 1.7rem; letter-spacing: 1.5px; color: white; border-bottom: 2px solid var(--color-red, #F22F3A); padding-bottom: 10px; margin-top: 0; margin-bottom: 18px; text-transform: uppercase;"><?php echo esc_html( $loc_title ); ?></h3>
+                        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px;">
+                            <?php foreach ( $posts as $p ) : 
+                                $display_title = $p->post_title;
+                                $loc_name_raw = $locations[ $loc_key ];
+                                if ( $loc_key !== 'tampa' ) {
+                                    if ( preg_match( '/' . preg_quote( $loc_name_raw, '/' ) . '$/i', $display_title ) ) {
+                                        $display_title = preg_replace( '/' . preg_quote( $loc_name_raw, '/' ) . '$/i', '', $display_title );
+                                        $display_title = trim( $display_title, " \t\n\r\0\x0B-_:," );
+                                    }
+                                }
+                                ?>
+                                <li>
+                                    <a href="<?php echo esc_url( get_permalink( $p->ID ) ); ?>" style="color: #888888; text-decoration: none; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.8px; font-family: var(--font-mono, 'Space Mono', monospace); display: inline-flex; align-items: center; gap: 8px; transition: color 0.2s;" onmouseover="this.style.color='var(--color-red, #F22F3A)';" onmouseout="this.style.color='#888888';">
+                                        <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" style="stroke: var(--color-red, #F22F3A);"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                        <?php echo esc_html( $display_title ); ?>
+                                    </a>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </section>
+
     <!-- Why Choose Us for Your Area -->
     <section class="party-how-it-works">
         <div class="section__inner">
