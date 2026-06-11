@@ -663,6 +663,27 @@
             <div class="cert-item"><i data-lucide="shield-check" size="18"></i> OSHA COMPLIANT</div>
             <div class="cert-item"><i data-lucide="shield-check" size="18"></i> ELITE CERTIFIED</div>
         </div>
+        
+        <div class="footer-utility-links" style="display: flex; gap: clamp(8px, 1.5vw, 15px); flex-wrap: wrap; justify-content: center; margin: 10px 0;">
+            <a href="<?php echo esc_url(home_url('/service-areas/')); ?>" style="color: #777777; text-decoration: none; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; transition: color 0.2s;" onmouseover="this.style.color='var(--brand, #F22F3A)'" onmouseout="this.style.color='#777777'">Service Areas</a>
+            <span style="color: #333333;">|</span>
+            <a href="<?php echo esc_url(home_url('/before-after/')); ?>" style="color: #777777; text-decoration: none; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; transition: color 0.2s;" onmouseover="this.style.color='var(--brand, #F22F3A)'" onmouseout="this.style.color='#777777'">Before & After</a>
+            <span style="color: #333333;">|</span>
+            <a href="<?php echo esc_url(home_url('/maintenance-plan/')); ?>" style="color: #777777; text-decoration: none; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; transition: color 0.2s;" onmouseover="this.style.color='var(--brand, #F22F3A)'" onmouseout="this.style.color='#777777'">Maintenance Plan</a>
+            <span style="color: #333333;">|</span>
+            <a href="<?php echo esc_url(home_url('/products/')); ?>" style="color: #777777; text-decoration: none; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; transition: color 0.2s;" onmouseover="this.style.color='var(--brand, #F22F3A)'" onmouseout="this.style.color='#777777'">Products</a>
+            <span style="color: #333333;">|</span>
+            <a href="<?php echo esc_url(home_url('/team/')); ?>" style="color: #777777; text-decoration: none; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; transition: color 0.2s;" onmouseover="this.style.color='var(--brand, #F22F3A)'" onmouseout="this.style.color='#777777'">Team</a>
+            <span style="color: #333333;">|</span>
+            <a href="<?php echo esc_url(home_url('/values/')); ?>" style="color: #777777; text-decoration: none; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; transition: color 0.2s;" onmouseover="this.style.color='var(--brand, #F22F3A)'" onmouseout="this.style.color='#777777'">Values</a>
+            <span style="color: #333333;">|</span>
+            <a href="<?php echo esc_url(home_url('/privacy-policy/')); ?>" style="color: #777777; text-decoration: none; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; transition: color 0.2s;" onmouseover="this.style.color='var(--brand, #F22F3A)'" onmouseout="this.style.color='#777777'">Privacy Policy</a>
+            <span style="color: #333333;">|</span>
+            <a href="<?php echo esc_url(home_url('/refund-policy/')); ?>" style="color: #777777; text-decoration: none; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; transition: color 0.2s;" onmouseover="this.style.color='var(--brand, #F22F3A)'" onmouseout="this.style.color='#777777'">Refund Policy</a>
+            <span style="color: #333333;">|</span>
+            <a href="<?php echo esc_url(home_url('/cancellation-policy/')); ?>" style="color: #777777; text-decoration: none; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; transition: color 0.2s;" onmouseover="this.style.color='var(--brand, #F22F3A)'" onmouseout="this.style.color='#777777'">Cancellation Policy</a>
+        </div>
+
         <div class="copyright">
             &copy; <?php echo date('Y'); ?> RESTOWRX. ALL RIGHTS RESERVED. OPERATING AT THE APEX.
         </div>
