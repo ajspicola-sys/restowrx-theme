@@ -55,7 +55,7 @@ get_header(); ?>
         left: 0;
         width: 100%;
         height: 100%;
-        background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2000');
+        background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=70&w=1600&auto=format');
         background-size: cover;
         background-position: center;
         z-index: 1;
@@ -499,7 +499,7 @@ get_header(); ?>
         <div style="position: relative;" class="reveal">
             <div class="glass-form-panel" id="form-panel">
                 <div class="form-title">
-                    <img src="https://restowrx.com/wp-content/uploads/2025/04/GetAttachmentThumbnail.png" alt="Restowrx Logo" width="220" height="44">
+                    <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/restowrx-logo.png" alt="Restowrx Logo" width="220" height="44">
                     <p>DISPATCH CENTER</p>
                 </div>
 

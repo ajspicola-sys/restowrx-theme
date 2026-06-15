@@ -539,7 +539,7 @@
     <div class="rwx-nav-bar">
         <div class="nav-bar-inner">
             <a href="<?php echo esc_url(home_url('/')); ?>" class="rwx-logo" aria-label="Restowrx Elite — Home"<?php if (is_front_page()) echo ' aria-current="page"'; ?>>
-                <img src="https://restowrx.com/wp-content/uploads/2025/04/GetAttachmentThumbnail.png" alt="Restowrx Elite Logo" width="200" height="32" loading="eager" decoding="async">
+                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/restowrx-logo.png" alt="Restowrx Elite Logo" width="200" height="32" loading="eager" decoding="async">
             </a>
 
             <nav class="nav-container" aria-label="Main Navigation">
@@ -922,7 +922,7 @@
     <div class="mobile-menu__drawer">
         <div class="mobile-menu__header">
             <a href="<?php echo esc_url(home_url('/')); ?>" class="mobile-menu__logo">
-                <img src="https://restowrx.com/wp-content/uploads/2025/04/GetAttachmentThumbnail.png" alt="Restowrx Elite Logo" width="150" height="24">
+                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/restowrx-logo.png" alt="Restowrx Elite Logo" width="150" height="24">
             </a>
             <button class="mobile-menu__close" id="mobile-close" aria-label="Close navigation">&times;</button>
         </div>
