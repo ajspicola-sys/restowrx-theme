@@ -14,7 +14,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
 
     <?php
-    $og_img   = 'https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?q=80&w=1200';
+    $og_img   = get_template_directory_uri() . '/assets/img/restowrx-logo-white-scaled.png';
     $og_title = is_front_page() ? 'Restowrx Elite | Command Center for Property Recovery' : wp_get_document_title();
     $og_desc  = '';
     if ( function_exists('YoastSEO') ) {
@@ -39,8 +39,6 @@
     <meta property="og:title"       content="<?php echo esc_attr($og_title); ?>">
     <meta property="og:description" content="<?php echo esc_attr($og_desc); ?>">
     <meta property="og:image"       content="<?php echo esc_url($og_img); ?>">
-    <meta property="og:image:width"  content="1200">
-    <meta property="og:image:height" content="630">
     <meta property="og:image:alt"    content="Restowrx Elite - Tactical Command">
     <meta name="twitter:card"        content="summary_large_image">
     <meta name="twitter:title"       content="<?php echo esc_attr($og_title); ?>">

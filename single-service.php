@@ -898,7 +898,7 @@ if ($categories && !is_wp_error($categories)) {
                         <div class="rwx-status-dot"></div>
                     </div>
                     <div class="rwx-widget__radar">
-                        <i data-lucide="radio" size="14"></i> 60-MINUTE EMERGENCY DISPATCH
+                        <i data-lucide="radio" size="14"></i> 45-MINUTE EMERGENCY DISPATCH
                     </div>
 
                     <div class="rwx-meta-list">
@@ -1016,7 +1016,7 @@ if ($categories && !is_wp_error($categories)) {
                         <i data-lucide="zap" size="28"></i>
                     </div>
                     <div class="rwx-trust-card__body">
-                        <h3>60-Minute Response Area</h3>
+                        <h3>45-Minute Response Area</h3>
                         <p>Our rapid-response mitigation teams are fully equipped and active 24/7/365. We deploy immediately within the entire Tampa Bay metro area.</p>
                     </div>
                 </div>

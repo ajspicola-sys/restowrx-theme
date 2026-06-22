@@ -68,6 +68,25 @@ function hwh_setup() {
 }
 add_action('after_setup_theme', 'hwh_setup');
 
+// -- Nav: repair dead "Services" menu link --------------------------
+// A "Services" item configured in WP Admin → Menus can be saved as a custom
+// link pointing to "#", which renders as a dead nav link. This rewrites any
+// such placeholder to the real services archive so the menu never dead-ends.
+function rwx_fix_services_menu_link($items) {
+    $services_url = get_post_type_archive_link('service');
+    if ( ! $services_url ) {
+        $services_url = home_url('/services/');
+    }
+    foreach ($items as $item) {
+        $is_dead = in_array(trim((string) $item->url), ['', '#', '#0'], true);
+        if ( $is_dead && strcasecmp(trim(wp_strip_all_tags($item->title)), 'Services') === 0 ) {
+            $item->url = $services_url;
+        }
+    }
+    return $items;
+}
+add_filter('wp_nav_menu_objects', 'rwx_fix_services_menu_link');
+
 // -- Performance: Disable WP Emoji Scripts --------------------------
 function hwh_disable_emojis() {
     remove_action('wp_head', 'print_emoji_detection_script', 7);
@@ -2732,7 +2751,7 @@ function hwh_service_faq_schema() {
         [
             'q' => 'How long does ' . $service_name . ' take to complete?',
             'a' => $duration
-                ? $service_name . ' by Restowrx Elite typically takes ' . esc_html($duration) . '. Our priority is immediate stabilization within 60 minutes.'
+                ? $service_name . ' by Restowrx Elite typically takes ' . esc_html($duration) . '. Our priority is immediate stabilization within 45 minutes.'
                 : $service_name . ' stabilization begins immediately upon arrival. Complete dry-out and sanitation usually takes 3 to 5 days, depending on structural saturation. Call 813.699.4009 for dispatch.',
         ],
         [

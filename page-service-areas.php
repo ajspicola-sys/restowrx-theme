@@ -178,7 +178,7 @@ get_header(); ?>
                 <details class="faq-item">
                     <summary class="faq-item__question">How fast can a response team reach me?</summary>
                     <div class="faq-item__answer">
-                        <p>For emergencies, we aim to have a rapid response team at your door within 60 minutes. For scheduled inspections or scans, we offer same-day and next-day availability.</p>
+                        <p>For emergencies, we aim to have a rapid response team at your door within 45 minutes. For scheduled inspections or scans, we offer same-day and next-day availability.</p>
                     </div>
                 </details>
                 <details class="faq-item">

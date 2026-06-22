@@ -1060,7 +1060,7 @@ get_header(); ?>
                 </blockquote>
                 <div class="about-story__stat-row">
                     <div class="about-story__stat">
-                        <strong>10+</strong>
+                        <strong>5+</strong>
                         <span>Years in Business</span>
                     </div>
                     <div class="about-story__stat">
@@ -1417,7 +1417,7 @@ get_header(); ?>
                     <i data-lucide="timer" size="40"></i>
                 </div>
                 <h3>Rapid Deploy</h3>
-                <p>On-site in 60 minutes or less. Every second matters when mitigating secondary damage.</p>
+                <p>On-site in 45 minutes or less. Every second matters when mitigating secondary damage.</p>
             </div>
 
             <!-- Feature 2 -->
