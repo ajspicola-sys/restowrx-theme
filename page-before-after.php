@@ -145,7 +145,7 @@ get_header(); ?>
             </div>
 
             <div class="gallery-disclaimer reveal">
-                <p>* All case images are forensic logs from actual Restowrx Elite property recovery deployments. Pre-loss reconstruction completed in partnership with Spicola Construction.</p>
+                <p>* Case summaries describe actual Restowrx Elite property recovery deployments. Photo documentation is available on request. Pre-loss reconstruction completed in partnership with Spicola Construction.</p>
             </div>
         </div>
     </section>

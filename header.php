@@ -14,7 +14,9 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
 
     <?php
-    $og_img   = get_template_directory_uri() . '/assets/img/restowrx-logo-white-scaled.png';
+    // These are the ONLY OG/Twitter tags the theme outputs — hwh_seo_head_tags
+    // in functions.php deliberately does not duplicate them.
+    $og_img   = get_template_directory_uri() . '/assets/img/restowrx-logo.png'; // dark logo — the white one is invisible on light share cards
     $og_title = is_front_page() ? 'Restowrx Elite | Command Center for Property Recovery' : wp_get_document_title();
     $og_desc  = '';
     if ( function_exists('YoastSEO') ) {
@@ -31,6 +33,15 @@
         $td = wp_get_attachment_image_src( get_post_thumbnail_id(), 'full' );
         if ( $td ) $og_img = esc_url( $td[0] );
     }
+    // Per-post overrides from the built-in SEO metabox
+    if ( is_singular() ) {
+        $hwh_seo_title = get_post_meta( get_the_ID(), '_hwh_seo_title', true );
+        if ( $hwh_seo_title ) $og_title = $hwh_seo_title;
+        $hwh_seo_desc = get_post_meta( get_the_ID(), '_hwh_seo_desc', true );
+        if ( $hwh_seo_desc ) $og_desc = $hwh_seo_desc;
+        $hwh_og_image = get_post_meta( get_the_ID(), '_hwh_og_image', true );
+        if ( $hwh_og_image ) $og_img = $hwh_og_image;
+    }
     ?>
     <meta property="og:locale"       content="en_US">
     <meta property="og:site_name"   content="Restowrx Elite">
@@ -45,7 +56,8 @@
     <meta name="twitter:description" content="<?php echo esc_attr($og_desc); ?>">
     <meta name="twitter:image"       content="<?php echo esc_url($og_img); ?>">
 
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- defer: icons are decorated after parse; a sync CDN script here blocked first paint -->
+    <script src="https://unpkg.com/lucide@0.462.0/dist/umd/lucide.min.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800;900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
@@ -349,13 +361,18 @@
         }
 
         /* Mobile Menu Toggle button */
-        .menu-toggle { 
-            display: none; 
-            color: #0f2440; 
-            cursor: pointer; 
-            font-size: 1.5rem;
+        .menu-toggle {
             display: none;
+            color: #0f2440;
+            cursor: pointer;
+            font-size: 1.5rem;
             align-items: center;
+        }
+
+        /* Scrolled state (toggled by footer.php scroll handler) */
+        .rwx-header-master.is-scrolled .rwx-nav-bar {
+            padding: 6px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
         }
 
         @media (max-width: 1024px) {
@@ -622,9 +639,13 @@
         console.log('Restowrx Geo: Scanning links. Found:', links.length, 'for location:', locationKey);
         
         links.forEach(link => {
+            // Links marked data-geo-fixed (e.g. the Service Areas directory,
+            // which lists every location explicitly) must never be rewritten.
+            if (link.hasAttribute('data-geo-fixed')) return;
+
             let href = link.getAttribute('href');
             if (!href) return;
-            
+
             try {
                 let urlObj;
                 if (href.startsWith('/') || href.startsWith('.') || !href.includes('://')) {
@@ -801,7 +822,7 @@
 
                 if (city.includes('brandon')) {
                     detected = 'brandon';
-                } else if (city.includes('petersburg') || city.includes('st. pete') || city.includes('petersburg')) {
+                } else if (city.includes('petersburg') || city.includes('st. pete')) {
                     detected = 'st-petersburg';
                 } else if (city.includes('carrollwood')) {
                     detected = 'carrollwood';

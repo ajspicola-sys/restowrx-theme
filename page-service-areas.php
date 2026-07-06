@@ -85,8 +85,10 @@ get_header(); ?>
                 $grouped[ $key ] = [];
             }
 
-            foreach ( $all_services as $post ) {
-                $slug = $post->post_name;
+            // NOTE: loop variable must NOT be called $post — that clobbered
+            // the global post object for the rest of the template.
+            foreach ( $all_services as $svc ) {
+                $slug = $svc->post_name;
                 $found_loc = 'tampa';
                 foreach ( $locations as $loc_key => $loc_name ) {
                     if ( $loc_key === 'tampa' ) continue;
@@ -96,7 +98,7 @@ get_header(); ?>
                         break;
                     }
                 }
-                $grouped[ $found_loc ][] = $post;
+                $grouped[ $found_loc ][] = $svc;
             }
             ?>
 
@@ -119,7 +121,14 @@ get_header(); ?>
                                 }
                                 ?>
                                 <li>
-                                    <a href="<?php echo esc_url( get_permalink( $p->ID ) ); ?>" style="color: #888888; text-decoration: none; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.8px; font-family: var(--font-mono, 'Space Mono', monospace); display: inline-flex; align-items: center; gap: 8px; transition: color 0.2s;" onmouseover="this.style.color='var(--color-red, #F22F3A)';" onmouseout="this.style.color='#888888';">
+                                    <?php
+                                    // Build the URL from the slug directly. get_permalink() runs the
+                                    // rwx_user_geo cookie filter, which rewrote e.g. the "Tampa (Main)"
+                                    // column's links to the visitor's cookie location — and made this
+                                    // page's HTML vary per visitor, poisoning the page cache.
+                                    $svc_url = home_url( '/services/' . $p->post_name . '/' );
+                                    ?>
+                                    <a href="<?php echo esc_url( $svc_url ); ?>" class="no-transition" data-geo-fixed="1" style="color: #888888; text-decoration: none; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.8px; font-family: var(--font-mono, 'Space Mono', monospace); display: inline-flex; align-items: center; gap: 8px; transition: color 0.2s;" onmouseover="this.style.color='var(--color-red, #F22F3A)';" onmouseout="this.style.color='#888888';">
                                         <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" style="stroke: var(--color-red, #F22F3A);"><polyline points="9 18 15 12 9 6"></polyline></svg>
                                         <?php echo esc_html( $display_title ); ?>
                                     </a>
@@ -155,7 +164,7 @@ get_header(); ?>
                 <div class="party-step">
                     <div class="party-step__number">03</div>
                     <h3 class="party-step__title">Community Trusted</h3>
-                    <p class="party-step__text">Hundreds of 5-star reviews from your neighbors. We're proud to be Tampa Bay's go-to rapid recovery team.</p>
+                    <p class="party-step__text">Dozens of 5-star reviews from your neighbors. We're proud to be Tampa Bay's go-to rapid recovery team.</p>
                 </div>
             </div>
         </div>

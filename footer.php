@@ -628,7 +628,7 @@
             <div class="radar-zones">
                 <div class="zone-item"><div class="zone-pulse"></div>TAMPA</div>
                 <div class="zone-item"><div class="zone-pulse"></div>ST. PETE</div>
-                <div class="zone-item"><div class="zone-pulse"></div>CWATER</div>
+                <div class="zone-item"><div class="zone-pulse"></div>CLEARWATER</div>
                 <div class="zone-item"><div class="zone-pulse"></div>BRANDON</div>
                 <div class="zone-item"><div class="zone-pulse"></div>WESLEY</div>
                 <div class="zone-item"><div class="zone-pulse"></div>LITHIA</div>
@@ -803,9 +803,13 @@
                 
                 link.addEventListener('click', function(e) {
                     if (e.ctrlKey || e.metaKey || e.shiftKey) return;
-                    e.preventDefault(); 
+                    // Read the href at CLICK time — the geolocation script may
+                    // have rewritten it after this handler was attached.
+                    var dest = link.getAttribute('href');
+                    if (!dest) return;
+                    e.preventDefault();
                     document.body.classList.add('is-leaving');
-                    setTimeout(function() { window.location.href = href; }, 200);
+                    setTimeout(function() { window.location.href = dest; }, 200);
                 });
             }
         });
@@ -813,13 +817,15 @@
         // Smooth Anchor Scrolling
         document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
             anchor.addEventListener('click', function(e) {
-                var id = this.getAttribute('href'); 
+                var id = this.getAttribute('href');
                 if (id === '#') return;
-                var target = document.querySelector(id);
-                if (target) { 
-                    e.preventDefault(); 
-                    var y = target.getBoundingClientRect().top + window.scrollY - (header ? header.offsetHeight : 0) - 20; 
-                    window.scrollTo({ top: y, behavior: 'smooth' }); 
+                // getElementById instead of querySelector — ids like "#123"
+                // are invalid CSS selectors and made querySelector throw.
+                var target = document.getElementById(id.slice(1));
+                if (target) {
+                    e.preventDefault();
+                    var y = target.getBoundingClientRect().top + window.scrollY - (header ? header.offsetHeight : 0) - 20;
+                    window.scrollTo({ top: y, behavior: 'smooth' });
                 }
             });
         });
@@ -892,10 +898,11 @@
 
 <script>
     (function() {
+        var attempts = 0;
         function initLucide() {
             if (typeof lucide !== 'undefined') {
                 lucide.createIcons();
-            } else {
+            } else if (attempts++ < 50) { // give up after ~5s instead of polling forever
                 setTimeout(initLucide, 100);
             }
         }

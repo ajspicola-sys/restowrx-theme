@@ -68,7 +68,7 @@ get_header(); ?>
                     </div>
                     <div class="post-author-bar__share">
                         <span class="post-author-bar__share-label">Share</span>
-                        <a href="https://twitter.com/intent/tweet?url=<?php echo urlencode(get_permalink()); ?>&text=<?php echo urlencode(get_the_title()); ?>" target="_blank" rel="noopener noreferrer" class="post-share-link" aria-label="Share on Twitter">??</a>
+                        <a href="https://twitter.com/intent/tweet?url=<?php echo urlencode(get_permalink()); ?>&text=<?php echo urlencode(get_the_title()); ?>" target="_blank" rel="noopener noreferrer" class="post-share-link" aria-label="Share on X"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.451-6.231zm-1.161 17.52h1.833L7.084 4.126H5.117l11.966 15.644z"/></svg></a>
                         <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode(get_permalink()); ?>" target="_blank" rel="noopener noreferrer" class="post-share-link" aria-label="Share on Facebook">f</a>
                     </div>
                 </div>
@@ -127,5 +127,31 @@ get_header(); ?>
     </article>
 
 </main>
+
+<script>
+(function() {
+    // Drives the reading-progress bar (markup + CSS existed, but nothing
+    // ever updated the width).
+    var bar = document.getElementById('reading-progress-bar');
+    var article = document.querySelector('.post-content');
+    if (!bar || !article) return;
+
+    var ticking = false;
+    function update() {
+        var rect = article.getBoundingClientRect();
+        var total = rect.height - window.innerHeight;
+        var progress = total > 0 ? Math.min(1, Math.max(0, -rect.top / total)) : 1;
+        bar.style.width = (progress * 100) + '%';
+        ticking = false;
+    }
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            requestAnimationFrame(update);
+            ticking = true;
+        }
+    }, { passive: true });
+    update();
+})();
+</script>
 
 <?php get_footer(); ?>

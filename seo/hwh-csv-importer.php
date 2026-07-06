@@ -150,14 +150,20 @@ function hwh_run_import($d) {
             $slug_val = ($slugi !== null) ? sanitize_title($row[$slugi]) : '';
             
             if (!empty($title_val) || !empty($slug_val)) {
-                $post_type_val = ($typei !== null && !empty($row[$typei])) ? trim($row[$typei]) : 'service';
-                
-                $new_pid = wp_insert_post([
+                $post_type_val = ($typei !== null && !empty($row[$typei])) ? sanitize_key(trim($row[$typei])) : 'service';
+                // Never create posts of a type that isn't registered
+                if ( ! post_type_exists( $post_type_val ) ) {
+                    $post_type_val = 'service';
+                }
+
+                // wp_insert_post expects slashed data — raw CSV values with
+                // backslashes were being corrupted
+                $new_pid = wp_insert_post( wp_slash([
                     'post_title'  => !empty($title_val) ? $title_val : $slug_val,
                     'post_name'   => $slug_val,
                     'post_type'   => $post_type_val,
                     'post_status' => 'publish',
-                ]);
+                ]) );
                 
                 if ($new_pid && !is_wp_error($new_pid)) {
                     $pid = $new_pid;
@@ -181,10 +187,10 @@ function hwh_run_import($d) {
                 if($fm[$l]==='__skip__') continue;
                 $pu[$fm[$l]]=$v;
             } else {
-                update_post_meta($pid,trim($header),$v); $mu[]=trim($header);
+                update_post_meta($pid,trim($header),wp_slash($v)); $mu[]=trim($header);
             }
         }
-        if(!empty($pu)){$pu['ID']=$pid;wp_update_post($pu);}
+        if(!empty($pu)){$pu['ID']=$pid;wp_update_post(wp_slash($pu));}
         
         $status_text = $is_new ? '✅ Created' : '✅ Updated';
         if (!$is_new && empty($pu) && empty($mu)) {

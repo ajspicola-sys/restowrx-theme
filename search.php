@@ -34,7 +34,8 @@ get_header(); ?>
                                 </div>
                             <?php endif; ?>
                             <div class="search-result-card__body">
-                                <span class="search-result-card__type"><?php echo get_post_type_object(get_post_type())->labels->singular_name; ?></span>
+                                <?php $pt_obj = get_post_type_object(get_post_type()); ?>
+                                <span class="search-result-card__type"><?php echo esc_html( $pt_obj ? $pt_obj->labels->singular_name : ucfirst(get_post_type()) ); ?></span>
                                 <h2 class="search-result-card__title">
                                     <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                                 </h2>

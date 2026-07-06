@@ -33,9 +33,12 @@ function hwh_auto_purge_on_deploy() {
     // Theme files changed — update stored fingerprint
     update_option( 'hwh_deploy_fingerprint', $fingerprint, false );
 
-    // Purge LiteSpeed Cache
-    if ( class_exists( '\LiteSpeed\Purge' ) ) {
-        do_action( 'litespeed_purge_all' );
+    // Purge LiteSpeed Cache (full + ESI fragments)
+    do_action( 'litespeed_purge_all' );
+    do_action( 'litespeed_purge_all_esi' );
+    // Flush WP object cache (Redis / Memcached if active)
+    if ( function_exists( 'wp_cache_flush' ) ) {
+        wp_cache_flush();
     }
     // Purge WP Rocket
     if ( function_exists( 'rocket_clean_domain' ) ) {
@@ -50,7 +53,7 @@ function hwh_auto_purge_on_deploy() {
         wp_cache_clear_cache();
     }
 }
-add_action( 'init', 'hwh_auto_purge_on_deploy' );
+add_action( 'init', 'hwh_auto_purge_on_deploy', 1 );
 
 
 function hwh_setup() {
@@ -199,19 +202,8 @@ function hwh_enqueue_styles() {
 }
 add_action('wp_enqueue_scripts', 'hwh_enqueue_styles');
 
-// -- Performance: Make only Google Fonts non-render-blocking -----------
-// The main stylesheet MUST be render-blocking to prevent FOUC.
-// Google Fonts can safely load async since system fonts render as fallback.
-// Google Fonts loaded normally (not deferred) to prevent FOUT
-// Font files are preloaded above so Inter/Montserrat arrives before first paint
-function hwh_async_styles($html, $handle) {
-    // No async deferral needed — fonts preloaded via link[rel=preload]
-    return $html;
-}
-add_filter('style_loader_tag', 'hwh_async_styles', 10, 2);
-
-
-
+// NOTE: Fonts are preloaded in header.php; the main stylesheet stays
+// render-blocking on purpose to prevent FOUC.
 
 
 
@@ -275,80 +267,6 @@ function hwh_customizer_analytics( $wp_customize ) {
     ] );
 }
 add_action( 'customize_register', 'hwh_customizer_analytics' );
-
-// -- Performance: External image proxy & WebP cache -----------------
-// Fetches third-party images (e.g. Ageless AI before/after), resizes to
-// max 800px wide, converts to WebP, and caches in wp-uploads.
-// Subsequent requests serve the local WebP — eliminates 9+ MB of PNG downloads.
-function hwh_cached_image_url( $src_url, $max_w = 800 ) {
-    $upload   = wp_upload_dir();
-    $cache_dir = $upload['basedir'] . '/hwh-img-cache';
-    $cache_url = $upload['baseurl'] . '/hwh-img-cache';
-    $filename  = md5( $src_url ) . '.webp';
-    $file_path = $cache_dir . '/' . $filename;
-    $file_url  = $cache_url . '/' . $filename;
-
-    // Serve from cache if already downloaded
-    if ( file_exists( $file_path ) ) {
-        return $file_url;
-    }
-
-    // Create cache directory if needed
-    if ( ! file_exists( $cache_dir ) ) {
-        wp_mkdir_p( $cache_dir );
-        // Prevent direct browsing
-        file_put_contents( $cache_dir . '/.htaccess', "Options -Indexes\n" );
-    }
-
-    // Fetch the remote image
-    $response = wp_remote_get( $src_url, [
-        'timeout'   => 30,
-        'sslverify' => false,
-        'headers'   => [ 'User-Agent' => 'Mozilla/5.0 (compatible; SpicolaConstruction/1.0)' ],
-    ] );
-
-    if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {
-        return $src_url; // Fallback to original
-    }
-
-    $body = wp_remote_retrieve_body( $response );
-    if ( empty( $body ) ) {
-        return $src_url;
-    }
-
-    // Decode image with GD
-    $img = @imagecreatefromstring( $body );
-    if ( ! $img ) {
-        return $src_url; // GD can't read it, fall back
-    }
-
-    // Resize if wider than $max_w
-    $orig_w = imagesx( $img );
-    $orig_h = imagesy( $img );
-    if ( $orig_w > $max_w ) {
-        $new_h   = (int) round( ( $max_w / $orig_w ) * $orig_h );
-        $resized = imagecreatetruecolor( $max_w, $new_h );
-        // Preserve transparency (PNGs)
-        imagealphablending( $resized, false );
-        imagesavealpha( $resized, true );
-        imagecopyresampled( $resized, $img, 0, 0, 0, 0, $max_w, $new_h, $orig_w, $orig_h );
-        imagedestroy( $img );
-        $img = $resized;
-    }
-
-    // Save as WebP (quality 82 — good balance of size vs. quality)
-    if ( function_exists( 'imagewebp' ) ) {
-        imagewebp( $img, $file_path, 82 );
-    } else {
-        // Fallback: save as JPEG if WebP not available
-        $file_path = str_replace( '.webp', '.jpg', $file_path );
-        $file_url  = str_replace( '.webp', '.jpg', $file_url );
-        imagejpeg( $img, $file_path, 82 );
-    }
-    imagedestroy( $img );
-
-    return file_exists( $file_path ) ? $file_url : $src_url;
-}
 
 // -- Performance: Add async/defer to non-critical scripts -----------
 function hwh_script_loader_tag($tag, $handle) {
@@ -423,9 +341,9 @@ function hwh_schema_markup() {
         'currenciesAccepted' => 'USD',
         'paymentAccepted'  => 'Cash, Credit Card, Insurance Claims Financing',
         'image'            => [
-            esc_url(home_url('/')) . 'wp-content/uploads/spicola-og.jpg',
+            esc_url( get_template_directory_uri() . '/assets/img/restowrx-logo.png' ),
         ],
-        'logo'             => esc_url(home_url('/')) . 'wp-content/uploads/spicola-og.jpg',
+        'logo'             => esc_url( get_template_directory_uri() . '/assets/img/restowrx-logo.png' ),
         'sameAs'           => [
             'https://www.facebook.com/restowrx/',
             'https://www.instagram.com/restowrx/',
@@ -533,7 +451,7 @@ function hwh_create_pages() {
 
     foreach ($pages as $title => $content) {
         // Skip if page already exists
-        $existing = get_page_by_title($title, OBJECT, 'page');
+        $existing = hwh_get_post_by_title($title, 'page');
         if ($existing) continue;
 
         $page_id = wp_insert_post([
@@ -564,14 +482,14 @@ function hwh_fix_reading_settings() {
     if (get_option('hwh_reading_fixed_v2')) return;
 
     // Find the Blog page and set it as posts page
-    $blog_page = get_page_by_title('Blog', OBJECT, 'page');
+    $blog_page = hwh_get_post_by_title('Blog', 'page');
     if ($blog_page) {
         update_option('show_on_front', 'page');
         update_option('page_for_posts', $blog_page->ID);
     }
 
     // Find the Home page and set it as front page
-    $home_page = get_page_by_title('Home', OBJECT, 'page');
+    $home_page = hwh_get_post_by_title('Home', 'page');
     if ($home_page) {
         update_option('page_on_front', $home_page->ID);
     }
@@ -579,6 +497,22 @@ function hwh_fix_reading_settings() {
     update_option('hwh_reading_fixed_v2', true);
 }
 add_action('init', 'hwh_fix_reading_settings');
+
+// -- Shared helper: find a post by exact title (get_page_by_title is
+// deprecated since WP 6.2) ------------------------------------------------
+function hwh_get_post_by_title( $title, $post_type = 'page' ) {
+    $posts = get_posts([
+        'post_type'              => $post_type,
+        'title'                  => $title,
+        'post_status'            => 'any',
+        'posts_per_page'         => 1,
+        'no_found_rows'          => true,
+        'suppress_filters'       => true,
+        'update_post_meta_cache' => false,
+        'update_post_term_cache' => false,
+    ]);
+    return $posts ? $posts[0] : null;
+}
 
 // -- Shared helper: check if a page with a given slug exists (any status) --
 function hwh_page_slug_exists( $slug ) {
@@ -801,17 +735,20 @@ function hwh_create_blog_posts() {
         ],
     ];
 
+    $post_index = 0;
     foreach ($posts as $post_data) {
-        $existing = get_page_by_title($post_data['title'], OBJECT, 'post');
+        $existing = hwh_get_post_by_title($post_data['title'], 'post');
         if ($existing) continue;
 
+        $post_index++;
         $post_id = wp_insert_post([
             'post_title'   => $post_data['title'],
             'post_excerpt' => $post_data['excerpt'],
             'post_content' => $post_data['content'],
             'post_status'  => 'publish',
             'post_type'    => 'post',
-            'post_date'    => date('Y-m-d H:i:s', strtotime('-' . rand(1, 30) . ' days')),
+            // Deterministic, evenly spaced dates (newest first in the list)
+            'post_date'    => gmdate('Y-m-d H:i:s', strtotime('-' . ($post_index * 6) . ' days')),
         ]);
 
         if ($post_id && !is_wp_error($post_id) && isset($cat_ids[$post_data['category']])) {
@@ -865,7 +802,7 @@ function hwh_create_services() {
     ];
 
     foreach ($services as $service) {
-        $existing = get_page_by_title($service['title'], OBJECT, 'service');
+        $existing = hwh_get_post_by_title($service['title'], 'service');
         if ($existing) {
             if (isset($cat_ids[$service['category']])) {
                 wp_set_object_terms($existing->ID, (int) $cat_ids[$service['category']], 'service_category');
@@ -944,7 +881,7 @@ function hwh_create_services_v3() {
     ];
 
     foreach ( $services as $service ) {
-        $existing = get_page_by_title( $service['title'], OBJECT, 'service' );
+        $existing = hwh_get_post_by_title( $service['title'], 'service' );
         if ( $existing ) {
             if ( isset( $cat_ids[ $service['category'] ] ) ) {
                 wp_set_object_terms( $existing->ID, (int) $cat_ids[ $service['category'] ], 'service_category' );
@@ -1144,11 +1081,21 @@ add_action('admin_enqueue_scripts', 'sc_portfolio_admin_scripts');
 function hwh_redirect_singular_service() {
     if ( is_admin() || wp_doing_ajax() || wp_doing_cron() ) return;
 
-    $request = trim( $_SERVER['REQUEST_URI'], '/' );
+    // Path only — never match against the query string
+    $path = (string) parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH );
+
+    // Strip the site's base path for subdirectory installs
+    $home_path = parse_url( home_url(), PHP_URL_PATH );
+    if ( $home_path && strpos( $path, $home_path ) === 0 ) {
+        $path = substr( $path, strlen( $home_path ) );
+    }
+    $path = trim( $path, '/' );
+
     // Match /service/anything (singular, NOT /services/)
-    if ( preg_match( '#^service/(.+)#', $request, $m ) ) {
-        $target = home_url( '/services/' . $m[1] );
-        wp_redirect( $target, 301 );
+    if ( preg_match( '#^service/(.+)#', $path, $m ) ) {
+        $query  = parse_url( $_SERVER['REQUEST_URI'], PHP_URL_QUERY );
+        $target = home_url( '/services/' . $m[1] . ( $query ? '?' . $query : '' ) );
+        wp_safe_redirect( $target, 301 );
         exit;
     }
 }
@@ -1249,6 +1196,18 @@ add_filter( 'rank_math/frontend/canonical',     'hwh_purge_staging_canonical', 9
 // the generic sitewide description. This filter overrides that with
 // handwritten descriptions for core pages and auto-generated ones for
 // blog posts and services (using the post excerpt).
+// Trim text to ~155 chars at a word boundary for meta descriptions.
+// Handles the no-space edge case (strrpos returning false).
+function hwh_trim_meta_description( $text ) {
+    $meta = wp_strip_all_tags( $text );
+    if ( strlen( $meta ) > 155 ) {
+        $cut = substr( $meta, 0, 152 );
+        $pos = strrpos( $cut, ' ' );
+        $meta = ( $pos !== false ? substr( $cut, 0, $pos ) : $cut ) . '...';
+    }
+    return $meta;
+}
+
 function hwh_fix_meta_descriptions( $description ) {
     // The generic fallback we want to replace
     $generic_descriptions = [
@@ -1271,7 +1230,8 @@ function hwh_fix_meta_descriptions( $description ) {
             'cancellation-policy' => 'View the Restowrx Elite cancellation and payment policy. Clear terms for emergency response, strike team dispatches, and billing.',
             'refund-policy'       => 'Restowrx Elite refund policy — upfront estimates, transparent insurance billing, and our satisfaction guarantee for Tampa Bay property owners.',
         ];
-        if ( isset( $page_metas[ $slug ] ) ) {
+        // Only replace when no custom description was written in the SEO plugin
+        if ( isset( $page_metas[ $slug ] ) && $is_generic ) {
             return $page_metas[ $slug ];
         }
     }
@@ -1293,13 +1253,7 @@ function hwh_fix_meta_descriptions( $description ) {
     if ( is_singular( 'post' ) && $is_generic ) {
         $excerpt = get_the_excerpt();
         if ( $excerpt && strlen( $excerpt ) > 20 ) {
-            // Trim to ~155 chars at a word boundary
-            $meta = wp_strip_all_tags( $excerpt );
-            if ( strlen( $meta ) > 155 ) {
-                $meta = substr( $meta, 0, 152 );
-                $meta = substr( $meta, 0, strrpos( $meta, ' ' ) ) . '...';
-            }
-            return $meta;
+            return hwh_trim_meta_description( $excerpt );
         }
         // Fallback: use post title
         return get_the_title() . ' — expert restoration advice from Restowrx Elite, Tampa Bay\'s trusted property damage mitigation company.';
@@ -1310,12 +1264,7 @@ function hwh_fix_meta_descriptions( $description ) {
         if ( $is_generic || strlen( $description ) > 160 ) {
             $excerpt = get_the_excerpt();
             if ( $excerpt && strlen( $excerpt ) > 20 ) {
-                $meta = wp_strip_all_tags( $excerpt );
-                if ( strlen( $meta ) > 155 ) {
-                    $meta = substr( $meta, 0, 152 );
-                    $meta = substr( $meta, 0, strrpos( $meta, ' ' ) ) . '...';
-                }
-                return $meta;
+                return hwh_trim_meta_description( $excerpt );
             }
             return get_the_title() . ' in Tampa Bay, FL. Certified restoration specialists, upfront billing, 24/7 emergency response. Call Restowrx Elite at 813.699.4009.';
         }
@@ -1349,76 +1298,9 @@ function hwh_blog_only_posts($query) {
 }
 add_action('pre_get_posts', 'hwh_blog_only_posts');
 
-// -- AJAX Blog Pagination -------------------------------------------
-function hwh_ajax_blog_posts() {
-    $paged = isset( $_POST['page'] ) ? absint( $_POST['page'] ) : 1;
-
-    $blog_query = new WP_Query( array(
-        'post_type'           => 'post',
-        'post_status'         => 'publish',
-        'posts_per_page'      => 9,
-        'paged'               => $paged,
-        'ignore_sticky_posts' => false,
-    ) );
-
-    ob_start();
-
-    if ( $blog_query->have_posts() ) :
-        echo '<div class="blog-grid">';
-        while ( $blog_query->have_posts() ) : $blog_query->the_post();
-            ?>
-            <article class="blog-card reveal" itemscope itemtype="https://schema.org/BlogPosting">
-                <a href="<?php the_permalink(); ?>" class="blog-card__link">
-                    <?php if ( has_post_thumbnail() ) : ?>
-                        <div class="blog-card__img">
-                            <?php the_post_thumbnail( 'medium_large', [ 'loading' => 'lazy', 'decoding' => 'async' ] ); ?>
-                        </div>
-                    <?php else : ?>
-                        <div class="blog-card__img blog-card__img--placeholder" aria-hidden="true">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-                        </div>
-                    <?php endif; ?>
-                    <div class="blog-card__body">
-                        <div class="blog-card__meta">
-                            <?php
-                            $ccats = get_the_category();
-                            if ( ! empty( $ccats ) ) {
-                                echo '<span class="blog-card__cat">' . esc_html( $ccats[0]->name ) . '</span>';
-                            }
-                            ?>
-                            <time class="blog-card__date" datetime="<?php echo esc_attr( get_the_date( 'c' ) ); ?>"><?php echo esc_html( get_the_date( 'M j, Y' ) ); ?></time>
-                        </div>
-                        <h2 class="blog-card__title" itemprop="headline"><?php the_title(); ?></h2>
-                        <p class="blog-card__excerpt"><?php echo wp_trim_words( get_the_excerpt(), 18 ); ?></p>
-                        <span class="blog-card__read">Read Article <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
-                    </div>
-                </a>
-            </article>
-            <?php
-        endwhile;
-        echo '</div>';
-
-        // Pagination
-        if ( $blog_query->max_num_pages > 1 ) {
-            echo '<nav class="blog-pagination" aria-label="Blog pagination">';
-            echo paginate_links( array(
-                'total'     => $blog_query->max_num_pages,
-                'current'   => $paged,
-                'prev_text' => '&larr; Previous',
-                'next_text' => 'Next &rarr;',
-                'type'      => 'list',
-            ) );
-            echo '</nav>';
-        }
-    endif;
-
-    wp_reset_postdata();
-
-    $html = ob_get_clean();
-    wp_send_json_success( array( 'html' => $html ) );
-}
-add_action( 'wp_ajax_hwh_load_posts', 'hwh_ajax_blog_posts' );
-add_action( 'wp_ajax_nopriv_hwh_load_posts', 'hwh_ajax_blog_posts' );
+// NOTE: The old AJAX blog-pagination endpoint (hwh_load_posts) has been
+// removed — home.php and category.php do client-side fetch-and-swap
+// pagination and nothing ever called it.
 
 // NOTE: The old 'Service Details' custom metabox (Icon / Price / Duration) has been
 // intentionally removed. It was registered at context='normal' priority='high', which
@@ -1661,7 +1543,7 @@ function hwh_seo_meta_box() {
     foreach ($post_types as $pt) {
         add_meta_box(
             'hwh_seo_meta',
-            '?? SEO Settings',
+            '🔍 SEO Settings',
             'hwh_seo_meta_html',
             $pt,
             'normal',
@@ -1761,7 +1643,7 @@ function hwh_seo_meta_html($post) {
                    id="hwh_seo_title"
                    name="hwh_seo_title"
                    value="<?php echo esc_attr($seo_title); ?>"
-                   placeholder="<?php echo esc_attr($post->post_title . ' — Spicola Construction'); ?>"
+                   placeholder="<?php echo esc_attr($post->post_title . ' — Restowrx Elite'); ?>"
                    maxlength="120">
             <span class="hwh-seo-hint">Recommended: 50—60 characters. Leave blank to use default.</span>
             <span class="hwh-seo-counter" id="seo-title-counter">0/60</span>
@@ -1891,46 +1773,47 @@ function hwh_custom_title($title) {
 }
 add_filter('document_title_parts', 'hwh_custom_title');
 
-// -- Output meta description & OG tags in <head> -------------------
+// -- Output meta description in <head> ------------------------------
+// OG / Twitter tags are printed exactly ONCE, in header.php (which reads
+// the _hwh_seo_* custom fields). This hook only adds a plain meta
+// description, and only when no SEO plugin is handling that already.
 function hwh_seo_head_tags() {
-    if (is_singular()) {
-        $post_id = get_the_ID();
-        $desc    = get_post_meta($post_id, '_hwh_seo_desc', true);
-        $og_img  = get_post_meta($post_id, '_hwh_og_image', true);
-        $title   = get_post_meta($post_id, '_hwh_seo_title', true) ?: get_the_title();
+    if ( ! is_singular() ) return;
+    if ( defined('WPSEO_VERSION') || class_exists('RankMath') ) return; // SEO plugin owns the description tag
 
-        if (!empty($desc)) {
-            echo '<meta name="description" content="' . esc_attr($desc) . '">' . "\n";
-            echo '<meta property="og:description" content="' . esc_attr($desc) . '">' . "\n";
-            echo '<meta name="twitter:description" content="' . esc_attr($desc) . '">' . "\n";
-        }
-
-        // Open Graph tags
-        echo '<meta property="og:title" content="' . esc_attr($title) . '">' . "\n";
-        echo '<meta property="og:type" content="website">' . "\n";
-        echo '<meta property="og:url" content="' . esc_url(get_permalink($post_id)) . '">' . "\n";
-        echo '<meta property="og:site_name" content="Restowrx Elite">' . "\n";
-        echo '<meta name="twitter:card" content="summary_large_image">' . "\n";
-        echo '<meta name="twitter:title" content="' . esc_attr($title) . '">' . "\n";
-
-        if (!empty($og_img)) {
-            echo '<meta property="og:image" content="' . esc_url($og_img) . '">' . "\n";
-            echo '<meta name="twitter:image" content="' . esc_url($og_img) . '">' . "\n";
-        }
+    $desc = get_post_meta(get_the_ID(), '_hwh_seo_desc', true);
+    if (!empty($desc)) {
+        echo '<meta name="description" content="' . esc_attr($desc) . '">' . "\n";
     }
 }
 add_action('wp_head', 'hwh_seo_head_tags', 5);
+
+// Feed the theme's custom meta description into Yoast / Rank Math so the
+// SEO plugin outputs it instead of a second competing tag.
+function hwh_custom_desc_into_seo_plugin( $description ) {
+    if ( is_singular() ) {
+        $custom = get_post_meta( get_queried_object_id(), '_hwh_seo_desc', true );
+        if ( ! empty( $custom ) ) {
+            return $custom;
+        }
+    }
+    return $description;
+}
+add_filter( 'wpseo_metadesc', 'hwh_custom_desc_into_seo_plugin', 9 );
+add_filter( 'rank_math/frontend/description', 'hwh_custom_desc_into_seo_plugin', 9 );
 
 // -- FAQ Schema for Maintenance Plan Page --------------------------------
 function hwh_faq_schema() {
     if (!is_page(['memberships','maintenance-plan'])) return;
 
+    // These answers mirror the visible content on the Maintenance Plan page
+    // (How It Works, Defense Benefits, Protection Plan Terms sections).
     $faqs = [
-        ['q' => 'Is there a minimum commitment?', 'a' => 'We ask for a minimum annual commitment to get the most out of your Active Property Defense Plan membership. After that, you can continue month-to-month or cancel anytime.'],
-        ['q' => 'Do my credits expire?', 'a' => 'No! Your banked defense credits never expire as long as your membership is active. If you cancel, unused credits remain available for 90 days.'],
-        ['q' => 'What can I use my credits on?', 'a' => 'Your Active Property Defense Plan credits can be used on any structural restoration or build-back services we offer — water extraction, mold remediation, storm stabilization, or reconstruction via Spicola Construction.'],
-        ['q' => 'Can I share my credits with friends or family?', 'a' => 'Absolutely! You can gift your property defense credits to friends and family members.'],
-        ['q' => 'How much should I set as my monthly deposit?', 'a' => 'Our plans start at affordable annual rates. During your free property risk assessment, we\'ll help you find the perfect defense tier.'],
+        ['q' => 'How does the Active Property Defense Plan work?', 'a' => 'Select your defense level and we schedule a baseline structural risk and moisture telemetry scan. You then receive an annual thermal envelope and moisture scan, plus priority emergency dispatch whenever disaster strikes.'],
+        ['q' => 'What discounts do plan members receive?', 'a' => 'Members save 15% on all mitigation services, including emergency water extraction, mold remediation, biohazard cleanup, and structural dry-out.'],
+        ['q' => 'How long does the plan last, and can I cancel?', 'a' => 'Plans run on a 12-month service cycle from the authorization date and renew automatically each year. You can cancel anytime with 30 days\' written notice — there are no exit fees or lock-ins.'],
+        ['q' => 'What happens to the plan if I sell my property?', 'a' => 'Plans are bound to the property address, so coverage transfers seamlessly to the new owner when the property is sold.'],
+        ['q' => 'Do plan members get faster emergency response?', 'a' => 'Yes. In storm outbreaks or sudden emergencies, member properties receive priority placement in the 24/7 dispatch queue.'],
     ];
 
     $schema = [
@@ -1954,8 +1837,7 @@ function hwh_faq_schema() {
 }
 add_action('wp_head', 'hwh_faq_schema', 6);
 
-// -- Disable XML-RPC for security ----------------------------------
-add_filter('xmlrpc_enabled', '__return_false');
+// (XML-RPC already disabled above)
 
 // -- Add security headers ------------------------------------------
 function hwh_security_headers() {
@@ -1968,11 +1850,25 @@ function hwh_security_headers() {
 add_action('send_headers', 'hwh_security_headers');
 
 // -- Contact Form: AJAX email handler -------------------------------
+// NOTE: This is a public (nopriv) endpoint on a site behind full-page
+// caching, so a hard nonce check would reject visitors served a cached
+// page once the baked-in nonce expires (~24h). Spam protection is a
+// honeypot field + per-IP rate limit instead.
 function hwh_handle_contact_form() {
-    // Verify nonce
-    if ( ! isset($_POST['hwh_contact_nonce']) || ! wp_verify_nonce($_POST['hwh_contact_nonce'], 'hwh_contact_form') ) {
-        wp_send_json_error(['message' => 'Security check failed. Please refresh and try again.']);
+    // Honeypot — hidden field humans never fill. Pretend success so bots
+    // don't learn they were caught.
+    if ( ! empty( $_POST['hwh_website'] ) ) {
+        wp_send_json_success(['message' => 'Message sent! We\'ll get back to you within 24 hours.']);
     }
+
+    // Rate limit: max 5 submissions per IP per hour
+    $ip  = isset( $_SERVER['REMOTE_ADDR'] ) ? $_SERVER['REMOTE_ADDR'] : '';
+    $key = 'hwh_cf_rate_' . md5( $ip );
+    $hits = (int) get_transient( $key );
+    if ( $hits >= 5 ) {
+        wp_send_json_error(['message' => 'Too many messages. Please call us at 813.699.4009.']);
+    }
+    set_transient( $key, $hits + 1, HOUR_IN_SECONDS );
 
     // Sanitize inputs
     $fullname = sanitize_text_field($_POST['full_name'] ?? '');
@@ -2122,11 +2018,17 @@ function hwh_settings_page_html() {
         $emails_clean = implode(', ', array_filter(array_map('sanitize_email', array_map('trim', explode(',', $emails_raw))), 'is_email'));
         update_option('hwh_notification_emails', $emails_clean ?: 'joe@restowrx.com');
 
-        // Email template — allow HTML
-        $template = wp_unslash($_POST['hwh_email_template'] ?? '');
-        update_option('hwh_email_template', $template);
-
-        echo '<div class="notice notice-success is-dismissible"><p><strong>⚡ Settings saved!</strong></p></div>';
+        if ( isset($_POST['hwh_reset_template']) ) {
+            // Reset must run BEFORE the form renders, or the page shows the
+            // stale template until the next reload.
+            update_option('hwh_email_template', '');
+            echo '<div class="notice notice-success is-dismissible"><p><strong>⚡ Template reset to default.</strong></p></div>';
+        } else {
+            // Email template — allow HTML
+            $template = wp_unslash($_POST['hwh_email_template'] ?? '');
+            update_option('hwh_email_template', $template);
+            echo '<div class="notice notice-success is-dismissible"><p><strong>⚡ Settings saved!</strong></p></div>';
+        }
     }
 
     $current_emails  = get_option('hwh_notification_emails', 'joe@restowrx.com');
@@ -2154,7 +2056,7 @@ function hwh_settings_page_html() {
 
             <!-- Section: Email Template -->
             <div style="background:#fff;border-radius:10px;padding:28px 32px;max-width:800px;margin-bottom:20px;box-shadow:0 1px 4px rgba(0,0,0,0.08);">
-                <h2 style="margin:0 0 6px;font-size:16px;">?? Email Template (HTML)</h2>
+                <h2 style="margin:0 0 6px;font-size:16px;">✉️ Email Template (HTML)</h2>
                 <p style="margin:0 0 16px;color:#666;font-size:13px;">Customize the HTML email that gets sent to your inbox. Use the tags below to insert form data — they'll be replaced automatically.</p>
 
                 <!-- Placeholder Tags Reference -->
@@ -2177,14 +2079,14 @@ function hwh_settings_page_html() {
                                   onclick="insertTag('<?php echo esc_js($tag); ?>')"><?php echo esc_html($tag); ?></span>
                         <?php endforeach; ?>
                     </div>
-                    <p style="margin:10px 0 0;font-size:11px;color:#888;">?? Click a tag to insert it at your cursor position in the editor below.</p>
+                    <p style="margin:10px 0 0;font-size:11px;color:#888;">Tip: click a tag to insert it at your cursor position in the editor below.</p>
                 </div>
 
                 <label for="hwh_email_template" style="display:block;font-weight:600;margin-bottom:6px;font-size:13px;">HTML Template</label>
                 <textarea id="hwh_email_template" name="hwh_email_template"
                           rows="24"
                           style="width:100%;font-family:'Courier New',monospace;font-size:12px;line-height:1.6;padding:14px;border:1px solid #ddd;border-radius:6px;resize:vertical;background:#1a1a2e;color:#e8e8f0;"><?php echo esc_textarea($current_template); ?></textarea>
-                <p style="margin:8px 0 0;font-size:12px;color:#888;">?? Click "Reset to Default" to restore the original branded template.</p>
+                <p style="margin:8px 0 0;font-size:12px;color:#888;">Tip: click "Reset to Default" to restore the original branded template.</p>
             </div>
 
             <div style="max-width:800px;display:flex;gap:12px;align-items:center;">
@@ -2209,11 +2111,6 @@ function hwh_settings_page_html() {
     }
     </script>
     <?php
-
-    // Handle reset separately
-    if ( isset($_POST['hwh_reset_template']) && isset($_POST['hwh_settings_nonce']) && wp_verify_nonce($_POST['hwh_settings_nonce'], 'hwh_save_settings') ) {
-        update_option('hwh_email_template', '');
-    }
 }
 
 function hwh_add_settings_menu() {
@@ -2555,9 +2452,9 @@ add_action( 'admin_notices', 'hwh_import_success_notice' );
 function hwh_import_success_notice() {
     if ( ! isset( $_GET['hwh_imported'] ) ) return;
     echo '<div class="notice notice-success is-dismissible"><p>';
-    echo '? <strong>HWH Demo Content imported successfully!</strong> ';
+    echo '✅ <strong>Demo content imported successfully!</strong> ';
     echo 'Your services, posts, and categories have been restored. ';
-    echo '<a href="' . esc_url( admin_url( 'edit.php?post_type=service' ) ) . '">View Services ?</a>';
+    echo '<a href="' . esc_url( admin_url( 'edit.php?post_type=service' ) ) . '">View Services →</a>';
     echo '</p></div>';
 }
 
@@ -2580,82 +2477,26 @@ function hwh_importer_page() {
         'hwh_import_nonce'
     );
     echo '<div class="wrap">';
-    echo '<h1>?? HWH Demo Content Importer</h1>';
+    echo '<h1>📦 Demo Content Importer</h1>';
     if ( $already && $already !== 'dismissed' ) {
         echo '<p>Content was last imported on <strong>' . esc_html( $already ) . '</strong>.</p>';
-        echo '<p>You can re-import at any time ? existing posts with the same slug will be skipped.</p>';
+        echo '<p>You can re-import at any time — existing posts with the same slug will be skipped.</p>';
     }
     echo '<p>This will import all services, pages, blog posts, categories, and custom field data from the bundled <code>demo-content/content.xml</code> file.</p>';
     echo '<p><strong>Note:</strong> Images won\'t be re-uploaded automatically unless the WordPress Importer plugin is active and the original URLs are reachable.</p>';
     echo '<a href="' . esc_url( $import_url ) . '" class="button button-primary button-large">Run Import Now</a>';
-    // Allow re-import
-    echo '<script>document.querySelector(".button-primary").addEventListener("click",function(){';
-    echo 'if(!confirm("This will import all demo content. Continue?"))event.preventDefault();';
+    // Confirm before running (re-import is always allowed; the run handler
+    // does not check the flag, so we no longer delete it just for viewing
+    // this page — that kept resurrecting the activation notice).
+    echo '<script>document.querySelector(".button-primary").addEventListener("click",function(e){';
+    echo 'if(!confirm("This will import all demo content. Continue?"))e.preventDefault();';
     echo '});</script>';
-    // Reset flag so importer can run again
-    delete_option( 'hwh_demo_imported' );
     echo '</div>';
 }
 
 
-// =============================================================================
-// AUTO-PURGE LITESPEED CACHE ON THEME UPDATE
-// Fires automatically after every git pull / theme file change.
-// Compares the combined modified-time of key theme files against a stored
-// value. If anything changed, it purges LiteSpeed, Cloudflare (via LSC), and
-// the WP object cache — zero manual effort required.
-// =============================================================================
-add_action( 'init', function () {
-    $theme_dir = get_template_directory();
-
-    // Hash the mtime of the files most likely to change after a deploy
-    $watch = [
-        $theme_dir . '/functions.php',
-        $theme_dir . '/style.css',
-        $theme_dir . '/front-page.php',
-        $theme_dir . '/footer.php',
-        $theme_dir . '/header.php',
-    ];
-
-    $current_sig = '';
-    foreach ( $watch as $f ) {
-        if ( file_exists( $f ) ) {
-            $current_sig .= filemtime( $f );
-        }
-    }
-    $current_sig = md5( $current_sig );
-
-    $stored_sig = get_option( 'hwh_theme_sig', '' );
-
-    if ( $current_sig === $stored_sig ) {
-        return; // Nothing changed — skip
-    }
-
-    // Files changed: update stored signature
-    update_option( 'hwh_theme_sig', $current_sig, false );
-
-    // 1. LiteSpeed Cache full purge
-    do_action( 'litespeed_purge_all' );
-
-    // 2. LiteSpeed ESI purge (covers edge-cached fragments)
-    do_action( 'litespeed_purge_all_esi' );
-
-    // 3. WP Object Cache flush (Redis / Memcached if active)
-    if ( function_exists( 'wp_cache_flush' ) ) {
-        wp_cache_flush();
-    }
-
-    // 4. WP Rocket compatibility (in case both are active)
-    if ( function_exists( 'rocket_clean_domain' ) ) {
-        rocket_clean_domain();
-    }
-
-    // 5. W3 Total Cache compatibility
-    if ( function_exists( 'w3tc_flush_all' ) ) {
-        w3tc_flush_all();
-    }
-
-}, 1 ); // Priority 1 — run early
+// NOTE: The duplicate deploy-purge system that used the 'hwh_theme_sig' option
+// has been merged into hwh_auto_purge_on_deploy() at the top of this file.
 
 
 // =============================================================================
@@ -2809,67 +2650,11 @@ function hwh_allow_ai_crawlers($output, $public) {
 }
 
 
-// =============================================================================
-// AI SEARCH VISIBILITY — HOMEPAGE REVIEW SCHEMA
-// Outputs 5 real-sounding sample reviews as Review entities on the homepage.
-// AI tools use Review schema to assess business authority and sentiment.
-// UPDATE these with real Google review content when available.
-// =============================================================================
-function hwh_review_schema() {
-    if ( ! is_front_page() ) return;
-
-    $reviews = [
-        [
-            'author'  => 'Sarah M.',
-            'rating'  => 5,
-            'date'    => '2026-02-15',
-            'body'    => 'Restowrx Elite did an amazing job after our slab leak. They arrived within 45 minutes of dispatch, mapped the hidden moisture with thermal telemetry, and handled all of the drying. They even billed our insurance carrier directly, making it completely stress-free!',
-        ],
-        [
-            'author'  => 'James R.',
-            'rating'  => 5,
-            'date'    => '2026-03-10',
-            'body'    => 'We suffered severe storm damage that saturated our home\'s framing. Restowrx Elite stabilized the structural integrity immediately and dried the house perfectly. Their licensed general contractor partner Spicola Construction then rebuilt the damaged rooms flawlessly.',
-        ],
-        [
-            'author'  => 'Mike T.',
-            'rating'  => 5,
-            'date'    => '2026-01-18',
-            'body'    => 'The absolute best restoration team in the Tampa Bay area. Extremely professional, high-tech industrial dehumidifiers, and they are fully IICRC certified. They stand behind their service 100%.',
-        ],
-        [
-            'author'  => 'Linda P.',
-            'rating'  => 5,
-            'date'    => '2026-02-05',
-            'body'    => 'Saved our home from mold after a major plumbing breach. Restowrx Elite set up negative pressure containment immediately and completely scrubbed the air. Exceptional communication and surgical cleanup.',
-        ],
-        [
-            'author'  => 'David K.',
-            'rating'  => 5,
-            'date'    => '2026-02-10',
-            'body'    => 'Had Restowrx Elite handle commercial flood mitigation at our office facility. Extremely fast response, code-compliant containment, and direct insurance claims coordination. 10 out of 10 recommend.',
-        ],
-    ];
-
-    $schema_reviews = [];
-    foreach ($reviews as $r) {
-        $schema_reviews[] = [
-            '@type'         => 'Review',
-            'author'        => [ '@type' => 'Person', 'name' => $r['author'] ],
-            'reviewRating'  => [ '@type' => 'Rating', 'ratingValue' => $r['rating'], 'bestRating' => 5 ],
-            'datePublished' => $r['date'],
-            'reviewBody'    => $r['body'],
-            'itemReviewed'  => [
-                '@type' => 'LocalBusiness',
-                'name'  => 'Restowrx Elite',
-                'image' => esc_url(home_url('/')) . 'wp-content/uploads/spicola-og.jpg',
-            ],
-        ];
-    }
-
-    echo '<script type="application/ld+json">' . wp_json_encode($schema_reviews, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) . '</script>' . "\n";
-}
-add_action('wp_head', 'hwh_review_schema', 8);
+// NOTE: The fabricated homepage Review schema has been removed. It emitted
+// invalid JSON-LD (a bare array with no @context), invented reviews with
+// hardcoded dates, and self-serving Review markup on a business's own site
+// is ignored (and can be penalized) per Google's structured-data guidelines.
+// Real Google reviews are displayed in the homepage carousel instead.
 
 // ============================================================================
 // SERVICE EXCERPT SANITIZER
@@ -2878,8 +2663,11 @@ add_action('wp_head', 'hwh_review_schema', 8);
 function hwh_sanitize_service_excerpt($excerpt) {
     if (get_post_type() !== 'service') return $excerpt;
 
-    // List of med-spa keywords to detect
-    $medspa_keywords = ['botox', 'filler', 'injectable', 'aesthetic', 'skincare', 'wrinkle', 'collagen', 'rejuvenation', 'facial', 'retinol', 'glo2', 'microneedling', 'peel', 'sclerotherapy', 'kybella', 'iv therapy', 'iv vitamin', 'bloodstream', 'hydration', 'immunity', 'hyaluronic', 'neuromodulator', 'plumping', 'anti-aging', 'skin'];
+    // Legacy med-spa keywords (unambiguous only — words like 'skin', 'peel',
+    // 'filler', 'hydration', 'facial', 'aesthetic' were removed because they
+    // also appear in legitimate restoration/construction copy, e.g.
+    // "peeling paint", "wood filler", "dehydration", "aesthetic finishes").
+    $medspa_keywords = ['botox', 'injectable', 'skincare', 'collagen', 'retinol', 'glo2', 'microneedling', 'sclerotherapy', 'kybella', 'iv therapy', 'iv vitamin', 'hyaluronic', 'neuromodulator', 'anti-aging'];
 
     $excerpt_lower = strtolower($excerpt);
     $is_medspa = false;
@@ -2925,7 +2713,8 @@ add_filter('get_the_excerpt', 'hwh_sanitize_service_excerpt', 20);
 function hwh_sanitize_service_content($content) {
     if (get_post_type() !== 'service' || !is_singular('service')) return $content;
 
-    $medspa_keywords = ['botox', 'filler', 'injectable', 'aesthetic', 'skincare', 'wrinkle', 'collagen', 'rejuvenation', 'facial', 'retinol', 'glo2', 'microneedling', 'peel', 'sclerotherapy', 'kybella', 'iv therapy', 'iv vitamin', 'hyaluronic', 'neuromodulator', 'anti-aging'];
+    // Unambiguous med-spa keywords only — see note in hwh_sanitize_service_excerpt()
+    $medspa_keywords = ['botox', 'injectable', 'skincare', 'collagen', 'retinol', 'glo2', 'microneedling', 'sclerotherapy', 'kybella', 'iv therapy', 'iv vitamin', 'hyaluronic', 'neuromodulator', 'anti-aging'];
 
     $content_lower = strtolower($content);
     $is_medspa = false;
@@ -3036,8 +2825,9 @@ function restowrx_mission_blog_shortcode() {
             }
             
             $excerpt = wp_trim_words(get_the_excerpt(), 22, '...');
-            $ref_id = "REPORT-" . rand(1000, 9999);
-            
+            // Stable per-post ref id — random values busted the page cache on every render
+            $ref_id = "REPORT-" . str_pad((string) get_the_ID(), 4, '0', STR_PAD_LEFT);
+
             ?>
             <a href="<?php the_permalink(); ?>" class="blog-card" data-ref="<?php echo esc_attr($ref_id); ?>">
                 <div class="scan-line"></div>
@@ -3057,7 +2847,7 @@ function restowrx_mission_blog_shortcode() {
             </a>
             <?php
         }
-        wp_reset_postdata(); 
+        wp_reset_postdata();
     } else {
         echo '<p style="color:white; text-align:center; padding: 40px; border: 1px dashed red; font-family: monospace;">[!] NO REPORTS FOUND IN DATABASE.</p>';
     }
@@ -3139,7 +2929,8 @@ function restowrx_archive_feed_shortcode($atts) {
             }
             
             $excerpt = wp_trim_words(get_the_excerpt(), 22, '...');
-            $ref_id = "REPORT-" . rand(1000, 9999);
+            // Stable per-post ref id — random values busted the page cache on every render
+            $ref_id = "REPORT-" . str_pad((string) get_the_ID(), 4, '0', STR_PAD_LEFT);
             
             ?>
             <a href="<?php the_permalink(); ?>" class="blog-card" data-ref="<?php echo esc_attr($ref_id); ?>">
@@ -3335,7 +3126,12 @@ function rwx_render_contact_form($form_id = 'rwx-contact-form') {
     <form class="rwx-custom-form wpcf7-form" id="<?php echo esc_attr($form_id); ?>" method="post" novalidate style="width: 100%; display: flex; flex-direction: column; gap: 12px; box-sizing: border-box;">
         <input type="hidden" name="hwh_contact_nonce" value="<?php echo esc_attr($nonce); ?>">
         <input type="hidden" name="action" value="hwh_contact_submit">
-        
+
+        <!-- Honeypot: hidden from humans, bots fill it and get silently dropped -->
+        <div style="position:absolute; left:-9999px;" aria-hidden="true">
+            <label>Website<input type="text" name="hwh_website" tabindex="-1" autocomplete="off"></label>
+        </div>
+
         <div class="rwx-form-group" style="width: 100%;">
             <input type="text" name="full_name" placeholder="Full Name" required style="width: 100%;">
         </div>
@@ -3499,23 +3295,17 @@ function rwx_adjust_service_permalink( $post_link, $post ) {
                 $target_slug = $post->post_name . $suffix;
                 
                 if ( ! isset( $slug_cache[ $target_slug ] ) ) {
-                    // Check if a service post with the target slug exists using standard get_posts query
+                    // Look up the location-specific variant by slug. Passing
+                    // 'name' makes rwx_exclude_neighborhood_services skip
+                    // this query, so the suffixed post is findable.
                     $posts = get_posts([
-                        'name'           => $target_slug,
-                        'post_type'      => 'service',
-                        'post_status'    => 'publish',
-                        'posts_per_page' => 1,
-                        'fields'         => 'ids',
-                        'suppress_filters' => false, // let the posts_where filter run if any, but wait: posts_where excludes neighborhood services!
+                        'name'             => $target_slug,
+                        'post_type'        => 'service',
+                        'post_status'      => 'publish',
+                        'posts_per_page'   => 1,
+                        'fields'           => 'ids',
+                        'suppress_filters' => false,
                     ]);
-                    
-                    // IMPORTANT: The 'posts_where' filter (rwx_exclude_neighborhood_services) excludes location-specific services
-                    // from general queries. But here, we ARE specifically querying a location-specific service by name!
-                    // Let's check: does rwx_exclude_neighborhood_services allow single page queries?
-                    // Yes! It checks: if ( $query->is_single() || $query->is_singular() || ! empty( $query->query_vars['name'] ) ... ) return $where;
-                    // Since we pass 'name' => $target_slug, the posts_where filter does NOT exclude it!
-                    // So get_posts will find it! This is perfectly safe!
-                    
                     $slug_cache[ $target_slug ] = ! empty( $posts ) ? get_permalink( $posts[0] ) : false;
                 }
                 

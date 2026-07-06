@@ -208,7 +208,7 @@ get_header(); ?>
                     <div class="maint-plan-policy-card__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg></div>
                     <h3>Annual Protection</h3>
                     <ul style="list-style:square; padding-left:15px; color:#888; line-height:1.6; font-size:0.9rem;">
-                        <li style="margin-bottom:8px;">Plans operate on a **12-month service cycle** from authorization date.</li>
+                        <li style="margin-bottom:8px;">Plans operate on a <strong>12-month service cycle</strong> from authorization date.</li>
                         <li>Includes one full structural moisture scan and thermal envelope mapping annually.</li>
                     </ul>
                 </div>
@@ -217,7 +217,7 @@ get_header(); ?>
                     <div class="maint-plan-policy-card__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
                     <h3>Deactivation</h3>
                     <ul style="list-style:square; padding-left:15px; color:#888; line-height:1.6; font-size:0.9rem;">
-                        <li style="margin-bottom:8px;">Deactivate your protection shield anytime with **30 days' written notice**.</li>
+                        <li style="margin-bottom:8px;">Deactivate your protection shield anytime with <strong>30 days' written notice</strong>.</li>
                         <li>No exit fees, lock-ins, or structural penalties apply.</li>
                     </ul>
                 </div>
@@ -227,7 +227,7 @@ get_header(); ?>
                     <h3>Auto-Shield Status</h3>
                     <ul style="list-style:square; padding-left:15px; color:#888; line-height:1.6; font-size:0.9rem;">
                         <li style="margin-bottom:8px;">Defense shields renew automatically each year to ensure uninterrupted coverage.</li>
-                        <li>You'll receive a system reminder **30 days prior to renewal**.</li>
+                        <li>You'll receive a system reminder <strong>30 days prior to renewal</strong>.</li>
                     </ul>
                 </div>
 
@@ -235,7 +235,7 @@ get_header(); ?>
                     <div class="maint-plan-policy-card__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
                     <h3>Structure Bound</h3>
                     <ul style="list-style:square; padding-left:15px; color:#888; line-height:1.6; font-size:0.9rem;">
-                        <li style="margin-bottom:8px;">Shields are bound to the **property address**, protecting the structural asset.</li>
+                        <li style="margin-bottom:8px;">Shields are bound to the <strong>property address</strong>, protecting the structural asset.</li>
                         <li>If you sell the property, the defense coverage transfers seamlessly to the new owner.</li>
                     </ul>
                 </div>

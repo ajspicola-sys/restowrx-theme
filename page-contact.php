@@ -77,6 +77,10 @@ get_header(); ?>
                             <textarea id="cf-message" name="message" class="form-input form-textarea" rows="5" placeholder="Tell us about your property damage mitigation or restoration needs..."></textarea>
                         </div>
                         <input type="hidden" name="action" value="hwh_contact_submit">
+                        <!-- Honeypot: hidden from humans, bots fill it and get silently dropped -->
+                        <div style="position:absolute; left:-9999px;" aria-hidden="true">
+                            <label>Website<input type="text" name="hwh_website" tabindex="-1" autocomplete="off"></label>
+                        </div>
                         <button type="submit" class="btn btn--primary btn--lg contact-form__submit">
                             Send Message
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
@@ -123,9 +127,8 @@ get_header(); ?>
                         </div>
                         <h3 class="contact-card__title">Hours</h3>
                         <div class="contact-card__hours"><div class="contact-card__hour-row"><span>Every Day</span><span>Open 24 Hours</span></div><div class="contact-card__hour-row"><span>Emergency Line</span><span>813.699.4009</span></div></div>
-                        </div>
-
                     </div>
+
                     <!-- Social Links -->
                     <div class="contact-social">
                         <span class="contact-social__label">Follow Us</span>
@@ -147,7 +150,7 @@ get_header(); ?>
     <section class="contact-map" aria-label="Our location">
         <div class="contact-map__wrap reveal">
             <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3522.9!2d-82.50703!3d28.02203!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88c2ca2d00000001%3A0x1!2s9249+Lazy+Ln%2C+Tampa%2C+FL+33614!5e0!3m2!1sen!2sus!4v1746000000000"
+                src="https://www.google.com/maps?q=9249+Lazy+Ln,+Tampa,+FL+33614&output=embed"
                 width="100%"
                 height="400"
                 style="border:0;border-radius:16px;"
@@ -163,5 +166,64 @@ get_header(); ?>
 
 
 </main>
+
+<script>
+(function() {
+    // AJAX submit for the main contact form. Without this the form posted
+    // back to the page URL and every submission was silently lost.
+    function init() {
+        var form = document.getElementById('contact-form');
+        if (!form || form.dataset.ajaxBound) return;
+        form.dataset.ajaxBound = 'true';
+
+        var successBox = document.getElementById('form-success');
+        var submitBtn  = form.querySelector('.contact-form__submit');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Native validation (form has novalidate, so trigger it manually)
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            var originalHtml = submitBtn ? submitBtn.innerHTML : '';
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Sending...';
+            }
+
+            fetch('<?php echo esc_url(admin_url('admin-ajax.php')); ?>', {
+                method: 'POST',
+                body: new FormData(form)
+            })
+            .then(function(res) { return res.json(); })
+            .then(function(data) {
+                if (data.success) {
+                    form.style.display = 'none';
+                    if (successBox) successBox.classList.add('is-visible');
+                } else {
+                    alert((data.data && data.data.message) || 'Something went wrong. Please call us at 813.699.4009.');
+                }
+            })
+            .catch(function() {
+                alert('Connection error. Please try again or call 813.699.4009.');
+            })
+            .finally(function() {
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalHtml;
+                }
+            });
+        });
+    }
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+})();
+</script>
 
 <?php get_footer(); ?>

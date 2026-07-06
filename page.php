@@ -11,24 +11,9 @@ if ($post) {
     $slug = $post->post_name;
 }
 
-// Safety net: Intercept portfolio/projects slugs to directly load the dynamic projects archive
-if ($slug === 'projects' || $slug === 'portfolio' || $slug === 'our-work' || $slug === 'work') {
-    $archive_template = get_template_directory() . '/archive-portfolio.php';
-    if (file_exists($archive_template)) {
-        include($archive_template);
-        return;
-    }
-}
-
-$title_slug = sanitize_title(get_the_title());
-if ($title_slug === 'projects' || $title_slug === 'portfolio' || $title_slug === 'our-work' || $title_slug === 'work') {
-    $archive_template = get_template_directory() . '/archive-portfolio.php';
-    if (file_exists($archive_template)) {
-        include($archive_template);
-        return;
-    }
-}
-
+// NOTE: routes to page-memberships.php / page-parties.php /
+// archive-portfolio.php were removed — those template files don't exist
+// in this theme (leftovers from an earlier site).
 $custom_templates = [
     'team'         => 'page-team.php',
     'meet-the-team'=> 'page-team.php',
@@ -37,9 +22,8 @@ $custom_templates = [
     'about-us'     => 'page-about.php',
     'contact'      => 'page-contact.php',
     'contact-us'   => 'page-contact.php',
-    'memberships'  => 'page-memberships.php',
-    'membership'   => 'page-memberships.php',
-    'parties'      => 'page-parties.php',
+    'maintenance-plan' => 'page-maintenance-plan.php',
+    'specials'     => 'page-maintenance-plan.php',
     'products'     => 'page-products.php',
     'our-products' => 'page-products.php',
     'shop'         => 'page-products.php',
@@ -47,6 +31,7 @@ $custom_templates = [
     'our-values'   => 'page-values.php',
     'mission'      => 'page-values.php',
     'before-after' => 'page-before-after.php',
+    'service-areas'=> 'page-service-areas.php',
     'services'     => 'archive-service.php',
     'our-services' => 'archive-service.php',
 ];

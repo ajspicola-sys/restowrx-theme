@@ -7,30 +7,12 @@ get_header(); ?>
 
 <main class="site-main" id="main-content">
 
-<!-- ── Structured Data ── -->
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": ["GeneralContractor", "HomeAndConstructionBusiness", "LocalBusiness"],
-    "@id": "<?php echo esc_url(home_url('/')); ?>#business",
-    "name": "Restowrx Elite",
-    "description": "Tampa Bay's trusted property restoration and recovery contractor — expert water damage restoration, fire damage recovery, mold remediation, and emergency reconstruction services.",
-    "url": "<?php echo esc_url(home_url('/')); ?>",
-    "telephone": "+18136994009",
-    "email": "joe@restowrx.com",
-    "priceRange": "$$-$$$",
-    "address": { "@type": "PostalAddress", "addressLocality": "Tampa", "addressRegion": "FL", "addressCountry": "US" },
-    "areaServed": [
-        {"@type":"City","name":"Tampa"},{"@type":"City","name":"St. Petersburg"},
-        {"@type":"City","name":"Clearwater"},{"@type":"City","name":"Brandon"},
-        {"@type":"City","name":"Wesley Chapel"},{"@type":"City","name":"Lithia"}
-    ],
-    "aggregateRating": {"@type":"AggregateRating","ratingValue":"5","reviewCount":"32","bestRating":"5"},
-    "sameAs": ["https://www.facebook.com/restowrx/","https://www.instagram.com/restowrx/"]
-}
-</script>
+<!-- Structured data: the sitewide LocalBusiness entity (#rwx-recovery) is
+     emitted by hwh_schema_markup() in functions.php. A second competing
+     LocalBusiness block used to live here with a conflicting address,
+     priceRange, and an unsupported aggregateRating — removed. -->
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
 
 <!-- ══════════════════════════════════════════════════════
      SECTION 1 — HERO: Parallax GSAP glass form panel
@@ -519,6 +501,9 @@ get_header(); ?>
 
 <script>
     document.addEventListener("mousemove", (e) => {
+        // GSAP loads deferred from a CDN — bail out until (or unless) it's available
+        if (typeof gsap === "undefined") return;
+
         const x = (e.clientX - window.innerWidth / 2) / 200;
         const y = (e.clientY - window.innerHeight / 2) / 200;
 

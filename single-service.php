@@ -849,7 +849,7 @@ if ($categories && !is_wp_error($categories)) {
             </nav>
 
             <h1 class="page-hero__title">
-                <?php the_title(); ?><br><em>Emergency Restoration</em>
+                <?php the_title(); ?><br><em><?php echo esc_html($category_name); ?></em>
             </h1>
 
             <?php if (has_excerpt()): ?>
@@ -859,7 +859,7 @@ if ($categories && !is_wp_error($categories)) {
             <?php endif; ?>
 
             <div class="page-hero__actions" style="margin-top: 25px; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-                <a href="/contact/" class="btn btn--primary btn--lg" style="font-family: var(--font-accent); font-size: 1.2rem; letter-spacing: 1px; padding: 10px 25px;"><i data-lucide="shield-alert" size="18"></i> Activate Response</a>
+                <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary btn--lg" style="font-family: var(--font-accent); font-size: 1.2rem; letter-spacing: 1px; padding: 10px 25px;"><i data-lucide="shield-alert" size="18"></i> Activate Response</a>
                 <a href="tel:+18136994009" class="btn btn--outline btn--lg" style="font-family: var(--font-accent); font-size: 1.2rem; letter-spacing: 1px; padding: 10px 25px;"><i data-lucide="phone-call" size="18"></i> Call 813.699.4009</a>
             </div>
         </div>
@@ -876,15 +876,18 @@ if ($categories && !is_wp_error($categories)) {
             <div class="rwx-content-body">
                 <?php the_content(); ?>
             </div>
-            
-            <div class="rwx-gallery">
+            <?php
+            // The old hardcoded Unsplash "gallery" showed the same two stock
+            // water-extraction photos on EVERY service — including kitchen
+            // remodeling and roofing pages. Show the real featured image
+            // instead when one is set.
+            if ($has_image) : ?>
+            <div class="rwx-gallery" style="grid-template-columns: 1fr;">
                 <div class="rwx-gallery__item">
-                    <img src="https://images.unsplash.com/photo-1581094288338-2314dddb7eed?q=80&w=800" alt="Extraction Scan" class="rwx-gallery__img">
-                </div>
-                <div class="rwx-gallery__item">
-                    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=800" alt="Drying Array" class="rwx-gallery__img">
+                    <?php the_post_thumbnail('large', ['class' => 'rwx-gallery__img', 'loading' => 'lazy', 'decoding' => 'async']); ?>
                 </div>
             </div>
+            <?php endif; ?>
         </article>
 
         <!-- RIGHT: SIDEBAR (Sticky Quick Info & Form) -->
@@ -1028,11 +1031,14 @@ if ($categories && !is_wp_error($categories)) {
          RELATED SERVICES (Dynamic WP_Query)
          ═══════════════════════════════════════════════════════ -->
     <?php
+    // menu_order instead of rand: random ordering produced different HTML on
+    // every render, defeating full-page caching for no real benefit.
     $related_args = [
         'post_type'      => 'service',
         'posts_per_page' => 3,
         'post__not_in'   => [$post_id],
-        'orderby'        => 'rand',
+        'orderby'        => 'menu_order',
+        'order'          => 'ASC',
         'no_found_rows'  => true,
     ];
     if ($categories && !is_wp_error($categories)) {
@@ -1052,7 +1058,8 @@ if ($categories && !is_wp_error($categories)) {
             'post_type'      => 'service',
             'posts_per_page' => 3 - $related->post_count,
             'post__not_in'   => $exclude_ids,
-            'orderby'        => 'rand',
+            'orderby'        => 'menu_order',
+            'order'          => 'ASC',
             'no_found_rows'  => true,
         ]);
         if ($backfill->have_posts()) {
